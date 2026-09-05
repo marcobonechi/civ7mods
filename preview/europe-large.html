@@ -545,10 +545,14 @@ const GEO = {
     ],
 
     landBlobsLate: [
-        // Funen and the Great Belt: a one-hex-wide land bridge joining Zealand (Copenhagen) to
-        // Jutland, so Denmark is one country by land. The Oresund east of Zealand stays water, which
-        // is what keeps Denmark in the home lands rather than joining Distant-Lands Scandinavia.
-        [10.30, 55.50, 0.1, "Funen"], [11.00, 55.50, 0.1, "Great Belt isthmus"],
+        // Funen and the Great Belt: the land bridge joining Zealand (Copenhagen) to Jutland, so
+        // Denmark is one country by land and stays in the home lands. Four overlapping blobs at
+        // radius 0.8 rather than single-tile points: a point blob lands on whatever hex the
+        // projection puts under it, which differs per grid size, and the old version only bridged
+        // at 112x98 - at 128x112 and 144x126 Zealand attached itself to Sweden instead and took
+        // Denmark into the Distant Lands. The Oresund east of Zealand stays water.
+        [9.80, 55.45, 0.8, "Funen"], [10.50, 55.50, 0.8, "Great Belt"],
+        [11.20, 55.55, 0.8, "Zealand link"], [11.90, 55.60, 0.8, "Zealand west"],
         // Bosporus chokepoint: the Asian shore is carried west so the only water gate between the
         // Sea of Marmara and the Black Sea is the single hex beside Constantinople. Painted late,
         // after the strait water lines, so it narrows the channel instead of being erased by it.

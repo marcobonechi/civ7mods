@@ -143,6 +143,8 @@ function applyBiomes(grid) {
 // footprint through canHaveFeatureParam - Thera needs four coastal tiles, Kilimanjaro three
 // adjacent mountains - so a wonder that will not fit is reported and left to the random pass,
 // which still places it somewhere thanks to GEO.requestedWonders.
+const namedWonderTiles = {};   // FeatureType -> [x, y] chosen by placeNamedWonders
+
 function placeNamedWonders(grid) {
     const placed = [];
     for (const w of GEO.wonders || []) {
@@ -165,6 +167,7 @@ function placeNamedWonders(grid) {
                     };
                     if (!TerrainBuilder.canHaveFeatureParam(x, y, featureParam)) continue;
                     TerrainBuilder.setFeatureType(x, y, featureParam);
+                    namedWonderTiles[w.feature] = [x, y];
                     placed.push(w.feature);
                     console.log("Europe large map: wonder " + w.feature + " placed at (" + x + ", " + y + "), " + r + " hex from its site");
                     done = true;
@@ -174,6 +177,25 @@ function placeNamedWonders(grid) {
         if (!done) console.log("Europe large map: wonder " + w.feature + " found no valid footprint near its site; leaving it to the random pass");
     }
     return placed;
+}
+
+function dropDuplicateWonders(iWidth, iHeight) {
+    for (const feature in namedWonderTiles) {
+        const def = GameInfo.Features.lookup(feature);
+        if (!def) continue;
+        const keep = namedWonderTiles[feature];
+        let removed = 0;
+        for (let y = 0; y < iHeight; y++) {
+            for (let x = 0; x < iWidth; x++) {
+                if (x === keep[0] && y === keep[1]) continue;
+                if (GameplayMap.getFeatureType(x, y) !== def.$hash) continue;
+                TerrainBuilder.setFeatureType(x, y, { Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
+                removed++;
+            }
+        }
+        if (removed) console.log("Europe large map: removed " + removed + " duplicate " + feature +
+            " placed by the random pass; kept the one at (" + keep[0] + ", " + keep[1] + ")");
+    }
 }
 
 function placeVolcanoes(grid) {
@@ -302,6 +324,9 @@ function placeRegionalResources(grid, randomShare) {
         console.log("Europe large map: resource list failed, " + e);
         return;
     }
+    console.log("Europe large map: " + Object.keys(byType).length + " resource types usable this age: " +
+        Object.keys(byType).map((t) => t.replace("RESOURCE_", "")).join(" "));
+
     // resources placed by the engine's random pass
     const randomTiles = [];
     let totalBefore = 0;
@@ -311,8 +336,18 @@ function placeRegionalResources(grid, randomShare) {
     // regional pass
     let regionalPlaced = 0;
     for (const area of GEO.resourceAreas || []) {
-        const types = area.resources.map((t) => byType[t]).filter((i) => i !== undefined);
-        if (!types.length) { console.log("Europe large map: resources '" + area.name + "' - none of its resources exist in this age"); continue; }
+        let types = area.resources.map((t) => byType[t]).filter((i) => i !== undefined);
+        if (!types.length) {
+            // None of this region's own resources are available this age. Rather than leave the
+            // region bare, fall back to whatever the age does offer: canHaveResource still decides
+            // what actually fits each tile. The missing names are logged so the list can be fixed.
+            const missing = area.resources.filter((t) => byType[t] === undefined)
+                .map((t) => t.replace("RESOURCE_", "")).join(",");
+            console.log("Europe large map: resources '" + area.name + "' - none available this age (" +
+                missing + "); falling back to the general pool");
+            types = available.slice();
+            if (!types.length) continue;
+        }
         const candidates = [];
         let hexes = 0;
         for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
@@ -339,7 +374,8 @@ function placeRegionalResources(grid, randomShare) {
             }
         }
         regionalPlaced += placed;
-        console.log("Europe large map: resources '" + area.name + "' " + placed + "/" + target + " on " + hexes + " hexes");
+        console.log("Europe large map: resources '" + area.name + "' " + placed + "/" + target +
+            " on " + hexes + " hexes, " + candidates.length + " free candidate tiles");
     }
     // top up random resources so the random share reaches randomShare of the total
     let randomCount = randomTiles.length;
@@ -698,6 +734,10 @@ function generateMap() {
     const namedWonders = placeNamedWonders(grid);
     addNaturalWonders(iWidth, iHeight, Math.max(0, iNumNaturalWonders - namedWonders.length),
         false, (GEO.requestedWonders || []).filter((f) => !namedWonders.includes(f)));
+    // The base generator shuffles every wonder and only stops once it has placed its quota, so if
+    // one of its requested wonders finds no home it carries on into the tail and can place a second
+    // copy of one we positioned by hand. Clear any extra copies, keeping our chosen hex.
+    dropDuplicateWonders(iWidth, iHeight);
     TerrainBuilder.addFloodplains(4, 10);
     addFeatures(iWidth, iHeight);
     removeStrayIce(grid);
