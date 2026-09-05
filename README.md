@@ -9,8 +9,8 @@ Current mod version: **6**.
 
 ## Install
 
-The mod is distributed through this repository — there is no zip to download. Get the files, copy
-the `EuropeMediterranean/` folder into the game's `Mods` folder, and restart the game.
+The mod is distributed through this repository. Get the files, copy the `EuropeMediterranean/`
+folder into the game's `Mods` folder, and restart the game.
 
 ### Get the files
 
@@ -151,9 +151,8 @@ http://localhost:8080 and opens a browser. It reads and writes the geography fil
 
 ## Releasing
 
-`./release.sh` bumps the version in the `.modinfo` and installs the result locally. It does **not**
-build a zip — distribution goes through this repository, so publishing a version means pushing the
-commit and tagging it:
+`./release.sh` bumps the version in the `.modinfo` and installs the result locally. Distribution
+goes through this repository, so publishing a version means pushing the commit and tagging it:
 
 ```bash
 ./release.sh                    # bump version + install
@@ -192,7 +191,7 @@ sit alongside them; the originals are left in place, so the repo still works on 
 ./editor/build-defaults.sh
 ```
 
-**Requirements:** `python3` (server), plus `rsync` and `zip`, which ship with macOS. No third-party packages.
+**Requirements:** `python3` (server) and `rsync`, both of which ship with macOS. No third-party packages.
 
 ### Deliberate differences from the PowerShell originals
 
@@ -205,16 +204,16 @@ sit alongside them; the originals are left in place, so the repo still works on 
   The PowerShell version only handled the first, which is why it silently read the stale
   `EuropeMediterranean - Copy` geography once `editor/` moved to the project root.
 - **Output files are written without a UTF-8 BOM** (the PowerShell `build-defaults.ps1` emitted one).
-- **`release.sh` no longer writes a zip**; `release.ps1` still does.
+- **`release.sh` bumps the version and installs**, leaving publication to git; `release.ps1` also
+  writes a local archive next to the mod folder.
 - `robocopy /MIR` becomes `rsync -a --delete`; `.DS_Store` and `._*` are excluded everywhere.
 
 ### Note on the mirror save
 
 `/api/save` writes to `EuropeMediterranean/maps`, and also to `EuropeMediterranean - Copy/maps`
-if that folder is ever recreated (matching the Windows behaviour). That folder was deleted on
-2026-09-04. Its work-in-progress files were archived to a zip at the time, but every one of them
-has since been superseded by the v6 tree in this repository, so the archive was discarded on
-2026-09-05. With the folder gone, saves go to the primary folder only and `--no-mirror` is a no-op.
+if that folder is ever recreated (matching the Windows behaviour). That folder was removed in
+2026-09, and everything it held is superseded by the current tree. With it gone, saves go to the
+primary folder only and `--no-mirror` is a no-op.
 
 ---
 
@@ -231,7 +230,5 @@ jj describe -m "message" && jj new
 jj bookmark set main -r @- && jj git push --bookmark main
 ```
 
-Ignored, so they never reach the repository: `*.zip` (no longer produced — see [Releasing](#releasing)),
-`*.png` (screenshots), and `scratch/`, an orphaned Chromium/Edge profile directory that no script in
-this project reads or writes. Nothing binary has ever been committed here; the largest tracked file
-is a generated preview page at ~105 KB.
+`.gitignore` keeps local build output and scratch files out of the repository. Nothing binary has
+ever been committed here; the largest tracked file is a generated preview page at ~105 KB.
