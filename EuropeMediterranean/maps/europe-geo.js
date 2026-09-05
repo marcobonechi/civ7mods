@@ -436,7 +436,10 @@ export const GEO = {
     // True start locations by civilization: [lon, lat]
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
-        CIVILIZATION_GREECE: [23.7, 38.0],
+        CIVILIZATION_GREECE: [22.79, 39.28],   // Thermaic Gulf coast, north of Athens
+        // America starts in Ireland. It is a Modern-age civilization, so the start only applies in
+        // games where it is in play; the Dublin fallback site is left for when it is not.
+        CIVILIZATION_AMERICA: [-6.64, 53.32],
         CIVILIZATION_EGYPT: [31.2, 30.0],
         CIVILIZATION_PERSIA: [48.5, 33.0],
         CIVILIZATION_CARTHAGE: [10.3, 36.8],
@@ -458,6 +461,11 @@ export const GEO = {
 
     // Fallback start sites for civilizations without a true start location, best first
     fallbackSites: [
+        // Thracian (European) shore of the Bosporus - this map had no Constantinople site at all.
+        [28.70, 41.30, "Constantinople"],
+        // Mediterranean ports and a fuller Germany / western France
+        [2.17, 41.39, "Barcelona"], [5.37, 43.30, "Marseille"], [13.10, 45.55, "Venice"],
+        [9.99, 53.55, "Hamburg"], [6.96, 50.94, "Cologne"], [-1.55, 47.22, "Nantes"],
         [30.5, 50.4, "Kyiv"], [19.9, 50.1, "Krakow"], [19.0, 47.5, "Budapest"], [-0.1, 51.5, "London"],
         [17.6, 59.9, "Uppsala"], [-6.3, 53.3, "Dublin"], [-9.1, 38.7, "Lisbon"], [-6.0, 37.4, "Seville"],
         [32.9, 39.9, "Ankara"], [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [-5.0, 34.0, "Fez"],

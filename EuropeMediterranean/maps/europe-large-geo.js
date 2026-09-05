@@ -929,7 +929,10 @@ export const GEO = {
 
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
-        CIVILIZATION_GREECE: [23.7, 38.0],
+        CIVILIZATION_GREECE: [22.79, 39.28],   // Thermaic Gulf coast, north of Athens
+        // America starts in Ireland. It is a Modern-age civilization, so the start only applies in
+        // games where it is in play; the Dublin fallback site is left for when it is not.
+        CIVILIZATION_AMERICA: [-6.64, 53.32],
         CIVILIZATION_EGYPT: [31.2, 30.0],
         CIVILIZATION_PERSIA: [48.5, 33.0],
         CIVILIZATION_CARTHAGE: [10.3, 36.8],
@@ -973,7 +976,11 @@ export const GEO = {
         [-8.00, 12.65, "Bamako"], [-4.55, 13.91, "Djenne"], [-1.53, 12.37, "Ouagadougou"],
         [2.11, 13.51, "Niamey"], [8.99, 13.80, "Zinder"], [13.00, 12.90, "Ngazargamu"],
         [29.84, 31.78, "Alexandria"],
-        [28.98, 41.01, "Constantinople"],
+        // Thracian (European) shore. 28.98/41.01 fell through to the Asian side on the 128x112 grid.
+        [28.70, 41.30, "Constantinople"],
+        // Mediterranean ports and a fuller Germany / western France
+        [2.17, 41.39, "Barcelona"], [5.37, 43.30, "Marseille"], [13.10, 45.55, "Venice"],
+        [9.99, 53.55, "Hamburg"], [6.96, 50.94, "Cologne"], [-1.55, 47.22, "Nantes"],
         [25.5, 29.2, "Siwa"], [29.4, 22.0, "Selima"], [24.5, 17.6, "Ounianga"],
         [-11.44, 14.45, "Kayes"], [5.27, 14.89, "Tahoua"],
         // --- Horn of Africa and the Red Sea ---
