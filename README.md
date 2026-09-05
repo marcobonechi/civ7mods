@@ -1,16 +1,27 @@
+# civ7mods — Civilization VII mods
+
+Two mods live here, each in its own folder with a `.modinfo` inside:
+
+| Folder | Mod | Status |
+|---|---|---|
+| `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
+| `Byzantium/` | Byzantium, an Exploration Age civilization playable at any start age | in progress, see `plans/byzantium.md` |
+
+Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
+
 # Europe & Mediterranean — a map mod for Civilization VII
 
 Map scripts covering the Mediterranean basin and Europe: Urals to Iceland, Morocco to the Sinai.
 Three map types, historical start locations, and a browser-based geography editor with live preview.
 
-Current mod version: **6**.
+Current mod version: **44**.
 
 ---
 
 ## Install
 
-The mod is distributed through this repository. Get the files, copy the `EuropeMediterranean/`
-folder into the game's `Mods` folder, and restart the game.
+The mods are distributed through this repository. Get the files, copy the mod folders you want
+(`EuropeMediterranean/`, `Byzantium/`) into the game's `Mods` folder, and restart the game.
 
 ### Get the files
 
@@ -30,8 +41,10 @@ To update later: `git pull` (or `jj git fetch && jj new main` if you use jj — 
 | Windows | `%LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VII\Mods\` |
 | Linux | `${XDG_DATA_HOME:-~/.local/share}/Civilization VII/Mods/` |
 
-The folder you copy must land as `Mods/EuropeMediterranean/`, with the `.modinfo` file directly
-inside it. On macOS and Linux `./install.sh` does this for you; on Windows use `install.ps1`.
+Each folder you copy must land as `Mods/<Folder>/` (for example `Mods/EuropeMediterranean/`),
+with the `.modinfo` file directly inside it. On macOS and Linux `./install.sh` does this for every
+mod in the repository, or `./install.sh Byzantium` for one of them; on Windows use `install.ps1`
+the same way.
 
 **macOS note:** files that arrive via a downloaded ZIP carry Apple's `com.apple.quarantine`
 attribute, and the game will silently fail to read the mod while it is set. `install.sh` clears it.
@@ -160,12 +173,13 @@ http://localhost:8080 and opens a browser. It reads and writes the geography fil
 
 ## Releasing
 
-`./release.sh` bumps the version in the `.modinfo` and installs the result locally. Distribution
-goes through this repository, so publishing a version means pushing the commit and tagging it:
+`./release.sh <Folder>` bumps the version in that mod's `.modinfo` and installs the result locally.
+Distribution goes through this repository, so publishing a version means pushing the commit and
+tagging it:
 
 ```bash
-./release.sh                    # bump version + install
-./release.sh --no-bump          # reinstall at the current version
+./release.sh EuropeMediterranean            # bump version + install
+./release.sh EuropeMediterranean --no-bump  # reinstall at the current version
 ```
 
 Then commit, push, and cut a GitHub release for the new version. Players update with `git pull`
@@ -182,8 +196,9 @@ sit alongside them; the originals are left in place, so the repo still works on 
 |---|---|---|
 | `run-editor.ps1` / `open-editor.bat` | `./run-editor.sh` | starts the editor server and opens the browser |
 | `editor/server.ps1` | `editor/server.py` | the companion HTTP server |
-| `install.ps1` | `./install.sh` | mirrors the mod into the Civ VII Mods folder |
-| `release.ps1` | `./release.sh` | bumps the version and installs |
+| `install.ps1` | `./install.sh` | mirrors every mod folder (or the named ones) into the Civ VII Mods folder |
+| `release.ps1` | `./release.sh` | bumps one mod's version and installs it |
+| *(none)* | `tools/check-mod.py` | static checks for a mod folder: XML syntax, modinfo file list, text tags and type ids against the game data |
 | `preview/build-preview.ps1` | `preview/build-preview.sh` | rebuilds the standalone preview pages |
 | `editor/build-defaults.ps1` | `editor/build-defaults.sh` | regenerates `editor/js/default-maps.js` |
 | `editor/setup-launchers.ps1` | *(not ported)* | one-off Windows workspace bootstrap, hardcoded `C:\` paths |
@@ -194,8 +209,10 @@ sit alongside them; the originals are left in place, so the repo still works on 
 ./run-editor.sh --no-open       # don't launch a browser
 ./run-editor.sh --no-mirror     # skip the ' - Copy' mirror (no-op now it is gone)
 
-./install.sh                    # install into the game
-./release.sh                    # bump version + install
+./install.sh                    # install every mod into the game
+./install.sh Byzantium          # install one mod
+./release.sh EuropeMediterranean  # bump version + install
+python3 tools/check-mod.py Byzantium   # before installing a data mod
 ./preview/build-preview.sh --open
 ./editor/build-defaults.sh
 ```
