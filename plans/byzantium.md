@@ -126,7 +126,9 @@ existing wonder instead.
 Test of Time nodes: `NODE_CIVIC_AQ_BYZANTIUM_ORIGINS` unlocks **Themata I** (Antiquity version)
 + `MOD_TOT_TRADITION_SLOT` + `MOD_AQ_SETTLEMENT_CAP_INCREASE`; `NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION`
 unlocks **Pentarchy II** (obsoletes Pentarchy) + slot + `MOD_MO_SETTLEMENT_CAP_INCREASE`.
-Syncretism traditions (Bulgaria's Uporitost pattern) are phase 5, optional.
+Self-syncretism traditions (Romanitas I in Antiquity, Romanitas II in Modern) follow Bulgaria's
+Uporitost pattern: `CivSelfSyncretismUnlocks` rows name the unlock modifiers, the traditions carry
+`IgnoreInitializeUnlock` and `AllowInitializeAdvancedStart`, and the shell gets copies.
 
 ## 3. Files to create
 

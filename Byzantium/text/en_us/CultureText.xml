@@ -67,5 +67,20 @@
         <Row Tag="LOC_TRADITION_BYZANTIUM_PORPHYROGENNETOS_DESCRIPTION">
             <Text>[B]+2 [icon:YIELD_CULTURE] Culture[/B] on Hippodromes and Great Palaces.</Text>
         </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_TOOLTIP">
+            <Text>Romanitas</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY_NAME">
+            <Text>Romanitas I</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY_DESCRIPTION">
+            <Text>[B]+2 [icon:YIELD_CULTURE] Culture[/B] from each displayed [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_MODERN_NAME">
+            <Text>Romanitas II</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_MODERN_DESCRIPTION">
+            <Text>[B]+3 [icon:YIELD_CULTURE] Culture[/B] from each displayed [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP]. [B]+3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP][/B] for Units in your [TIP:LOC_PEDIA_CONCEPTS_HOMELANDS_TOOLTIP]Homelands[/TIP].</Text>
+        </Row>
     </EnglishText>
 </Database>
