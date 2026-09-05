@@ -2,10 +2,11 @@
 .DS_Store
 ._*
 
-# Release artifacts (regenerate with ./release.sh)
+# Mod zips. release.sh no longer builds these; distribution is the repo itself.
+# Kept so an old release.ps1 run or a stray archive cannot be committed by accident.
 *.zip
 
-# Browser profiles / caches used by the editor + preview scratch work
+# Orphaned Chromium/Edge profile directory. No script in this project uses it.
 scratch/
 
 # Screenshots

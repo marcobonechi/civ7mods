@@ -212,9 +212,9 @@ sit alongside them; the originals are left in place, so the repo still works on 
 
 `/api/save` writes to `EuropeMediterranean/maps`, and also to `EuropeMediterranean - Copy/maps`
 if that folder is ever recreated (matching the Windows behaviour). That folder was deleted on
-2026-09-04; its unique work-in-progress files are preserved in
-`EuropeMediterranean-Copy-archive-20260904-2032.zip`. With it gone, saves go to the primary
-folder only and `--no-mirror` is a no-op.
+2026-09-04. Its work-in-progress files were archived to a zip at the time, but every one of them
+has since been superseded by the v6 tree in this repository, so the archive was discarded on
+2026-09-05. With the folder gone, saves go to the primary folder only and `--no-mirror` is a no-op.
 
 ---
 
@@ -231,5 +231,7 @@ jj describe -m "message" && jj new
 jj bookmark set main -r @- && jj git push --bookmark main
 ```
 
-Build output and scratch data are ignored: `*.zip`, `scratch/` (Chromium profile caches used by the
-editor), and `*.png`.
+Ignored, so they never reach the repository: `*.zip` (no longer produced — see [Releasing](#releasing)),
+`*.png` (screenshots), and `scratch/`, an orphaned Chromium/Edge profile directory that no script in
+this project reads or writes. Nothing binary has ever been committed here; the largest tracked file
+is a generated preview page at ~105 KB.
