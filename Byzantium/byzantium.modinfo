@@ -51,6 +51,8 @@
                     <Item>loading/lsbg_byzantium_1080.png</Item>
                     <Item>loading/lsbg_byzantium_720.png</Item>
                     <Item>loading/lsbg_byzantium_vert.png</Item>
+                    <Item>loading/bg-panel-byzantium.png</Item>
+                    <Item>loading/bg-card-byzantium.png</Item>
                 </ImportFiles>
                 <UpdateIcons>
                     <Item>data/icons/icons.xml</Item>
@@ -109,6 +111,7 @@
             <Actions>
                 <UpdateDatabase>
                     <Item>data/civilizations-exploration.xml</Item>
+                    <Item>data/narrative-display.xml</Item>
                     <Item>data/civilizations-gameeffects.xml</Item>
                     <Item>data/progression-trees-culture-unique.xml</Item>
                     <Item>data/units.xml</Item>
@@ -156,6 +159,8 @@
                     <Item>loading/lsbg_byzantium_1080.png</Item>
                     <Item>loading/lsbg_byzantium_720.png</Item>
                     <Item>loading/lsbg_byzantium_vert.png</Item>
+                    <Item>loading/bg-panel-byzantium.png</Item>
+                    <Item>loading/bg-card-byzantium.png</Item>
                 </ImportFiles>
                 <UpdateIcons>
                     <Item>data/icons/icons.xml</Item>

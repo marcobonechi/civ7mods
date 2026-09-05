@@ -14,6 +14,7 @@
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PENTARCHY_II"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_MODIFIER" TargetType="MOD_MO_SETTLEMENT_CAP_INCREASE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THIRD_ROME"/>
     </ProgressionTreeNodeUnlocks>
     <ProgressionTreeNodeTraits>
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" RequiredTraitType="TRAIT_BYZANTIUM"/>

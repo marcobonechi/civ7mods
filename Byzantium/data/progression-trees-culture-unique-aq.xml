@@ -14,6 +14,7 @@
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEMATA_I"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_MODIFIER" TargetType="MOD_AQ_SETTLEMENT_CAP_INCREASE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_FOEDERATI"/>
     </ProgressionTreeNodeUnlocks>
     <ProgressionTreeNodeTraits>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" RequiredTraitType="TRAIT_BYZANTIUM"/>

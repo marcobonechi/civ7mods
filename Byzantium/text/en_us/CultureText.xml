@@ -67,6 +67,42 @@
         <Row Tag="LOC_TRADITION_BYZANTIUM_PORPHYROGENNETOS_DESCRIPTION">
             <Text>[B]+2 [icon:YIELD_CULTURE] Culture[/B] on Hippodromes and Great Palaces.</Text>
         </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_GREEK_FIRE_NAME">
+            <Text>Greek Fire</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_GREEK_FIRE_DESCRIPTION">
+            <Text>[B]+30% [icon:YIELD_PRODUCTION] Production[/B] towards [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEODOSIAN_WALLS_NAME">
+            <Text>Theodosian Walls</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEODOSIAN_WALLS_DESCRIPTION">
+            <Text>[B]+4 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP][/B] for [icon:CITY_FORTIFIED] [TIP:LOC_PEDIA_CONCEPTS_FORTIFIED_DISTRICTS_TOOLTIP]Fortified Districts[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_OIKOUMENE_NAME">
+            <Text>Oikoumene</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_OIKOUMENE_DESCRIPTION">
+            <Text>[B]+2 [icon:YIELD_DIPLOMACY] Influence[/B] for each [TIP:LOC_PEDIA_CONCEPTS_CITY_STATE_TOOLTIP]City-State[/TIP] you are Suzerain of, and [B]+3 [icon:YIELD_GOLD] Gold[/B] for each [TIP:LOC_PEDIA_CONCEPTS_ALLIANCE_TOOLTIP]Alliance[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_NAME">
+            <Text>Varangian Guard</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_DESCRIPTION">
+            <Text>[B]+30% [TIP:LOC_PEDIA_CONCEPTS_EXPERIENCE_TOOLTIP]Experience[/TIP][/B] for [TIP:LOC_PEDIA_CONCEPTS_COMMANDERS_TOOLTIP]Commanders[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_FOEDERATI_NAME">
+            <Text>Foederati</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_FOEDERATI_DESCRIPTION">
+            <Text>[B]+30% [icon:YIELD_PRODUCTION] Production[/B] towards [icon:UNIT_CLASS_CAVALRY] [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Units[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THIRD_ROME_NAME">
+            <Text>Third Rome</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THIRD_ROME_DESCRIPTION">
+            <Text>[B]+5 [icon:YIELD_CULTURE] Culture[/B] for each [TIP:LOC_PEDIA_CONCEPTS_ALLIANCE_TOOLTIP]Alliance[/TIP].</Text>
+        </Row>
         <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_TOOLTIP">
             <Text>Romanitas</Text>
         </Row>

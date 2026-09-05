@@ -54,4 +54,54 @@
         <Argument name="AbilityType">ABILITY_BYZANTIUM_THEMATA_COMBAT</Argument>
         <String context="Description">LOC_TRADITION_BYZANTIUM_THEMATA_DESCRIPTION</String>
     </Modifier>
+    <!-- Greek Fire: naval production (Chivalry shape) -->
+    <Modifier id="BYZANTIUM_GREEK_FIRE_NAVAL_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">UNIT_CLASS_NAVAL</Argument>
+        <Argument name="Percent">30</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_GREEK_FIRE_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_GREEK_FIRE_DESCRIPTION</String>
+    </Modifier>
+    <!-- Theodosian Walls: fortified district strength (Commune shape) -->
+    <Modifier id="BYZANTIUM_THEODOSIAN_WALLS_FORTIFIED" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_FORTIFIED_COMBAT_STRENGTH">
+        <Argument name="Amount">4</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_THEODOSIAN_WALLS_NAME</Argument>
+    </Modifier>
+    <!-- Oikoumene: influence per suzerainty (Vassalage shape), gold per alliance (Heqin shape) -->
+    <Modifier id="BYZANTIUM_OIKOUMENE_SUZERAIN_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_SUZERAIN">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">2</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_OIKOUMENE_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="BYZANTIUM_OIKOUMENE_ALLIANCE_GOLD" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_RELATIONSHIP">
+        <Argument name="UseAlliances">true</Argument>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_OIKOUMENE_NAME</Argument>
+    </Modifier>
+    <!-- Varangian Guard: commander experience (Commissioned Officers shape) -->
+    <Modifier id="BYZANTIUM_VARANGIAN_COMMANDER_XP" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ARMY_ADJUST_EXPERIENCE_RATE">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Percent">30</Argument>
+        <String context="Name">LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_NAME</String>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_DESCRIPTION</String>
+    </Modifier>
+    <!-- Foederati (Antiquity): cavalry production -->
+    <Modifier id="BYZANTIUM_FOEDERATI_CAVALRY_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">UNIT_CLASS_CAVALRY</Argument>
+        <Argument name="Percent">30</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_FOEDERATI_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_FOEDERATI_DESCRIPTION</String>
+    </Modifier>
+    <!-- Third Rome (Modern): culture per alliance -->
+    <Modifier id="BYZANTIUM_THIRD_ROME_ALLIANCE_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_RELATIONSHIP">
+        <Argument name="UseAlliances">true</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">5</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_THIRD_ROME_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_THIRD_ROME_DESCRIPTION</String>
+    </Modifier>
 </GameEffects>

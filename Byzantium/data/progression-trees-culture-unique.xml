@@ -29,6 +29,10 @@
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_RELIC" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PORPHYROGENNETOS" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_GREEK_FIRE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEODOSIAN_WALLS" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_OIKOUMENE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_VARANGIAN_GUARD" UnlockDepth="1"/>
     </ProgressionTreeNodeUnlocks>
     <ProgressionTreePrereqs>
         <Row Node="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" PrereqNode="NODE_CIVIC_EX_BYZANTIUM_THEMATA"/>

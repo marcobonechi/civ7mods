@@ -214,10 +214,23 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
 
 ## 4. Icons and art
 
-- Ship PNGs under `icons/` and list them in `<ImportFiles>` in both the game and the shell
-  groups; reference them as `fs://game/<modid>/icons/<file>.png` in `IconDefinitions`
-  (`ID` = type name; loading backgrounds use `Context` BACKGROUND with `IconSize` 1080/720 and
-  BACKGROUND_VERT). Sizes used by community tooling: civ symbol 256, unit flag 128, building 128.
+- Ship PNGs under `icons/` (any folder) and list them in `<ImportFiles>` in both the game and
+  the shell groups. **Imported files land flat at the root of the virtual file system, by
+  basename**: reference them as `fs://game/<file>.png`, never with the mod id or folder (the
+  engine itself refers to base-standard's `ui/loading/root-loading.html` as
+  `fs://game/root-loading.html`). So basenames must be unique across every mod: prefix them.
+  In `IconDefinitions` use `fs://game/<file>.png` (`ID` = type name; loading backgrounds use
+  `Context` BACKGROUND with `IconSize` 1080/720 and BACKGROUND_VERT); in the shell config
+  (`CivilizationIcon`, `CivilizationItems.Icon`) use the bare file name like Firaxis does.
+  Sizes: civ symbol 256, unit flag 128, building 128.
+- The shell also asks for some images **by naming convention**, not through IconDefinitions:
+  `civ_sym_<civ>.png` (symbol), `bg-card-<civ>.png` (the tall card in the age-transition civ
+  select), `bg-panel-<civ>.png` (its details panel and the in-game narrative panel, via
+  `NarrativeDisplay_Civilizations`). Ship files with exactly those names. `UI.log` lines
+  `Failed loading resource: blp:<name>` tell you which lookups missed.
+- `CivilizationItems` rows are shown for every domain the civ appears in, so listing a unit
+  under both AntiquityAgeCivilizations and ExplorationAgeCivilizations duplicates it in the
+  picker. List each unique once, under the apex-age domain (Bulgaria does).
 - Some shell code builds `blp:civ_sym_<civ>` names directly (`utilities-image.js`), so a few
   UI spots may show a blank for a mod civ. Live with it or check after the first run.
 - Loading screen: `LoadingInfo_Civilizations.BackgroundImageHigh/Low` take `fs://game/<modid>/...png`
