@@ -591,7 +591,9 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     const riverChains = [];   // per river: { name, tiles } in course order (the game steers the engine's rivers along them)
     for (const river of GEO.rivers || []) {
         let prev = null;
-        const chain = { name: river.name, tiles: [] };
+        // `strength` (0..1, default 1) scales the rainfall the map script pours along this
+        // course. Lower it to make a river less likely to win the engine's navigable-river pass.
+        const chain = { name: river.name, strength: river.strength, tiles: [] };
         riverChains.push(chain);
         const markRiver = (x, y) => {
             if (!inBounds(x, y) || x < 1 || x >= W - 1) return;

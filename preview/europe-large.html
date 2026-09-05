@@ -39,7 +39,17 @@ const GEO = {
     // Distant Lands: one anchor per landmass that should sit across the sea. [20, 10] is the
     // Sahel, i.e. the African landmass, which the Mediterranean and the Suez channel separate
     // from Eurasia. Leave the list empty to put every landmass in one region.
-    distantLandsAnchors: [[20, 10]],
+    distantLandsAnchors: [
+        [20, 10],            // the Sahel, i.e. the whole African landmass
+        [-12.0, 47.0],       // Ile de l'Ouest  - Atlantic outposts, reachable only by sea
+        [-12.6, 44.6],       // Ile du Sud,
+        [18.1, 59.3],        // Scandinavia and Finland, cut off by the Karelian passage above
+        [-21.9, 64.1],       // Iceland,
+        [-6.9, 62.0],        // Faroe   - stepping stones, so the Norse north is one region and
+        [1.48, 58.93],       // Shetland  Iceland can island-hop to Norway in the Antiquity age.
+                             // Orkney is deliberately left out: it belongs to Britain's landmass
+                             // and anchoring it would pull all of Britain into the distant lands.
+    ],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
     // Gulf of Guinea coast just above the sea lane, a tall Sahel, a three-row Sahara.
@@ -61,11 +71,75 @@ const GEO = {
 
     // Green patches: [lon, lat, radius in tiles, biome, rainfall]. Egypt's oases and the Fayyum.
     biomeBlobs: [
-        [25.5, 29.2, 0.7, "G", 60, "Siwa"], [28.9, 28.3, 0.6, "G", 60, "Bahariya"], [27.9, 27.1, 0.6, "G", 60, "Farafra"],
+        [25.5, 29.2, 1.9, "G", 110, "Siwa"], [28.9, 28.3, 0.6, "G", 60, "Bahariya"], [27.9, 27.1, 0.6, "G", 60, "Farafra"],
         [28.9, 25.5, 0.6, "G", 60, "Dakhla"], [30.5, 25.4, 0.6, "G", 60, "Kharga"], [30.6, 29.3, 0.8, "G", 60, "Fayyum"],
         // Saharan oases
         [9.5, 30.1, 0.5, "G", 60, "Ghadames"], [10.2, 24.9, 0.5, "G", 60, "Ghat"], [2.5, 27.2, 0.5, "G", 60, "In Salah"], [-4.0, 22.7, 0.5, "G", 60, "Taoudenni"],
-        [12.9, 18.7, 0.5, "G", 60, "Bilma"], [23.3, 24.2, 0.5, "G", 60, "Kufra"], [0.2, 29.2, 0.5, "G", 60, "Timimoun"], [19.1, 18.0, 0.5, "G", 60, "Faya"]
+        [12.9, 18.7, 0.5, "G", 60, "Bilma"], [23.3, 24.2, 0.5, "G", 60, "Kufra"], [0.2, 29.2, 0.5, "G", 60, "Timimoun"], [19.1, 18.0, 0.5, "G", 60, "Faya"],
+        // Three oases west of the Nile, grown large enough to hold a town each and spaced at
+        // least ten hexes apart (the map squeezes the Sahara vertically, so the historical
+        // oasis cluster of Bahariya/Farafra/Dakhla/Kharga sits only 3-6 hexes across and cannot
+        // support separate cities). All three are real stops on the desert caravan routes.
+        [29.4, 22.0, 1.9, "G", 110, "Selima"], [24.5, 17.6, 1.9, "G", 110, "Ounianga"],
+
+        // One hex of plains around every river corridor, as a transition from the green
+        // floodplain out to bare desert. Listed before the grassland blobs below, which are
+        // narrower and therefore overwrite the middle of this band.
+        // Nile skirt
+        [31.0, 31.2, 3.0, "P", 60, "Nile skirt"], [31.2, 30.0, 3.0, "P", 60, "Nile skirt"], [31.2, 29.07, 3.0, "P", 60, "Nile skirt"],
+        [31.2, 28.13, 3.0, "P", 60, "Nile skirt"], [31.2, 27.2, 3.0, "P", 60, "Nile skirt"], [31.9, 26.45, 3.0, "P", 60, "Nile skirt"],
+        [32.6, 25.7, 3.0, "P", 60, "Nile skirt"], [32.9, 24.1, 3.0, "P", 60, "Nile skirt"], [32.2, 22.95, 3.0, "P", 60, "Nile skirt"],
+        [31.5, 21.8, 3.0, "P", 60, "Nile skirt"], [31.15, 20.6, 3.0, "P", 60, "Nile skirt"], [30.8, 19.4, 3.0, "P", 60, "Nile skirt"],
+        [31.4, 18.5, 3.0, "P", 60, "Nile skirt"], [32.0, 17.6, 3.0, "P", 60, "Nile skirt"], [32.25, 16.6, 3.0, "P", 60, "Nile skirt"],
+        [32.5, 15.6, 3.0, "P", 60, "Nile skirt"],
+        // White Nile skirt
+        [31.75, 15.1, 3.0, "P", 60, "White Nile skirt"], [31.0, 14.6, 3.0, "P", 60, "White Nile skirt"], [30.15, 14.3, 3.0, "P", 60, "White Nile skirt"],
+        [29.3, 14.0, 3.0, "P", 60, "White Nile skirt"], [28.4, 13.9, 3.0, "P", 60, "White Nile skirt"], [27.5, 13.8, 3.0, "P", 60, "White Nile skirt"],
+        [26.5, 13.2, 3.0, "P", 60, "White Nile skirt"], [25.5, 12.8, 3.0, "P", 60, "White Nile skirt"],
+        // Blue Nile skirt
+        [33.25, 14.9, 3.0, "P", 60, "Blue Nile skirt"], [34.0, 14.2, 3.0, "P", 60, "Blue Nile skirt"], [34.8, 13.6, 3.0, "P", 60, "Blue Nile skirt"],
+        [35.6, 13.0, 3.0, "P", 60, "Blue Nile skirt"], [36.45, 12.55, 3.0, "P", 60, "Blue Nile skirt"], [37.3, 12.1, 3.0, "P", 60, "Blue Nile skirt"],
+        // Euphrates skirt
+        [38.0, 37.0, 3.0, "P", 60, "Euphrates skirt"], [39.0, 35.95, 3.0, "P", 60, "Euphrates skirt"], [40.1, 35.3, 3.0, "P", 60, "Euphrates skirt"],
+        [41.05, 34.9, 3.0, "P", 60, "Euphrates skirt"], [42.0, 34.5, 3.0, "P", 60, "Euphrates skirt"], [43.0, 33.95, 3.0, "P", 60, "Euphrates skirt"],
+        [44.0, 33.4, 3.0, "P", 60, "Euphrates skirt"], [44.75, 32.7, 3.0, "P", 60, "Euphrates skirt"], [45.5, 32.0, 3.0, "P", 60, "Euphrates skirt"],
+        [46.25, 31.5, 3.0, "P", 60, "Euphrates skirt"], [47.0, 31.0, 3.0, "P", 60, "Euphrates skirt"], [48.0, 30.2, 3.0, "P", 60, "Euphrates skirt"],
+        // Tigris skirt
+        [43.1, 36.3, 3.0, "P", 60, "Tigris skirt"], [43.4, 35.45, 3.0, "P", 60, "Tigris skirt"], [43.7, 34.6, 3.0, "P", 60, "Tigris skirt"],
+
+        // Great-river floodplains. Blobs, not polygons: they are generated straight from the
+        // river courses in `rivers`, so the green ribbon cannot drift off the water the way a
+        // hand-drawn corridor did. Radius 1.7 hexes with rainfall 90 - a deliberate game-balance
+        // choice, since flat desert yields no food and these regions fed the first great cities.
+        // // Nile
+        [31.0, 31.2, 1.7, "G", 90, "Nile valley"], [31.2, 30.0, 1.7, "G", 90, "Nile valley"], [31.2, 29.3, 1.7, "G", 90, "Nile valley"],
+        [31.2, 28.6, 1.7, "G", 90, "Nile valley"], [31.2, 27.9, 1.7, "G", 90, "Nile valley"], [31.2, 27.2, 1.7, "G", 90, "Nile valley"],
+        [31.9, 26.45, 1.7, "G", 90, "Nile valley"], [32.6, 25.7, 1.7, "G", 90, "Nile valley"], [32.75, 24.9, 1.7, "G", 90, "Nile valley"],
+        [32.9, 24.1, 1.7, "G", 90, "Nile valley"], [32.43, 23.33, 1.7, "G", 90, "Nile valley"], [31.97, 22.57, 1.7, "G", 90, "Nile valley"],
+        [31.5, 21.8, 1.7, "G", 90, "Nile valley"], [31.27, 21.0, 1.7, "G", 90, "Nile valley"], [31.03, 20.2, 1.7, "G", 90, "Nile valley"],
+        [30.8, 19.4, 1.7, "G", 90, "Nile valley"], [31.2, 18.8, 1.7, "G", 90, "Nile valley"], [31.6, 18.2, 1.7, "G", 90, "Nile valley"],
+        [32.0, 17.6, 1.7, "G", 90, "Nile valley"], [32.25, 16.6, 1.7, "G", 90, "Nile valley"], [32.5, 15.6, 1.7, "G", 90, "Nile valley"],
+        // White Nile
+        [31.75, 15.1, 1.7, "G", 90, "White Nile valley"], [31.0, 14.6, 1.7, "G", 90, "White Nile valley"], [30.15, 14.3, 1.7, "G", 90, "White Nile valley"],
+        [29.3, 14.0, 1.7, "G", 90, "White Nile valley"], [28.4, 13.9, 1.7, "G", 90, "White Nile valley"], [27.5, 13.8, 1.7, "G", 90, "White Nile valley"],
+        [26.5, 13.2, 1.7, "G", 90, "White Nile valley"], [25.5, 12.8, 1.7, "G", 90, "White Nile valley"],
+        // Blue Nile
+        [33.25, 14.9, 1.7, "G", 90, "Blue Nile valley"], [34.0, 14.2, 1.7, "G", 90, "Blue Nile valley"], [34.8, 13.6, 1.7, "G", 90, "Blue Nile valley"],
+        [35.6, 13.0, 1.7, "G", 90, "Blue Nile valley"], [36.45, 12.55, 1.7, "G", 90, "Blue Nile valley"], [37.3, 12.1, 1.7, "G", 90, "Blue Nile valley"],
+        // Euphrates
+        [38.0, 37.0, 1.7, "G", 90, "Euphrates valley"], [38.5, 36.48, 1.7, "G", 90, "Euphrates valley"], [39.0, 35.95, 1.7, "G", 90, "Euphrates valley"],
+        [40.1, 35.3, 1.7, "G", 90, "Euphrates valley"], [41.05, 34.9, 1.7, "G", 90, "Euphrates valley"], [42.0, 34.5, 1.7, "G", 90, "Euphrates valley"],
+        [42.67, 34.13, 1.7, "G", 90, "Euphrates valley"], [43.33, 33.77, 1.7, "G", 90, "Euphrates valley"], [44.0, 33.4, 1.7, "G", 90, "Euphrates valley"],
+        [44.75, 32.7, 1.7, "G", 90, "Euphrates valley"], [45.5, 32.0, 1.7, "G", 90, "Euphrates valley"], [46.25, 31.5, 1.7, "G", 90, "Euphrates valley"],
+        [47.0, 31.0, 1.7, "G", 90, "Euphrates valley"], [48.0, 30.2, 1.7, "G", 90, "Euphrates valley"],
+        // Tigris
+        [43.1, 36.3, 1.7, "G", 90, "Tigris valley"], [43.4, 35.45, 1.7, "G", 90, "Tigris valley"], [43.7, 34.6, 1.7, "G", 90, "Tigris valley"],
+        [44.05, 33.95, 1.7, "G", 90, "Tigris valley"],
+
+        // The delta last of all, so the plains skirt above does not cut into it: this is the
+        // richest farmland on the map by design.
+        [30.3, 31.2, 2.0, "G", 120, "Delta west"], [31.0, 31.3, 2.2, "G", 120, "Delta centre"],
+        [31.7, 31.2, 2.0, "G", 120, "Delta east"], [30.9, 30.5, 2.2, "G", 110, "Delta south"],
     ],
 
     // Mountains turned into hills: central and southern Italy (Tuscany and the Alps keep theirs;
@@ -113,6 +187,14 @@ const GEO = {
 
     // Hills turned into flat land with a probability (mountains stay): gentler Greece and Anatolia
     flatAreas: [
+        // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
+        // peninsula hilly and short of food. These are the real lowlands, flattened back.
+        { name: "Po valley", prob: 1.0, pts: [[7.6, 44.9], [7.7, 45.6], [9.2, 46.0], [11.2, 46.05],
+            [12.5, 45.85], [12.6, 45.2], [12.35, 44.75], [11.2, 44.62], [9.6, 44.68], [8.2, 44.72]] },
+        { name: "Latium and the Tuscan Maremma", prob: 0.75, pts: [[10.4, 41.2], [13.3, 41.2], [13.3, 43.4], [10.4, 43.4]] },
+        { name: "Campania and the Tavoliere", prob: 0.7, pts: [[13.8, 40.2], [17.6, 40.2], [17.6, 41.9], [13.8, 41.9]] },
+        { name: "Maghreb (Tell Atlas coast)", prob: 0.45, pts: [
+            [-9.8, 33.2], [-5.5, 34.6], [-1.0, 35.2], [3.5, 36.0], [8.0, 36.3], [11.5, 33.5], [11.5, 38.0], [-9.8, 38.0]] },
         { name: "Greece", prob: 0.65, pts: [[19.3, 35.5], [27.5, 35.5], [27.5, 41.8], [19.3, 41.8]] },
         { name: "Anatolia", prob: 0.6, pts: [[26.0, 36.0], [44.5, 36.0], [44.5, 42.2], [26.0, 42.2]] }
     ],
@@ -120,38 +202,69 @@ const GEO = {
     // Shallow-sea corridors: ocean within the radius (tiles) of these lines becomes coast, so
     // Antiquity ships can island-hop Iceland - Faroe - Shetland/Orkney - Norway.
     shallowLines: [
-        { name: "Iceland-Faroe-Shetland", radius: 1.1, pts: [[-17.0, 63.8], [-12.0, 63.0], [-6.9, 62.0], [-2.5, 60.5], [1.48, 58.93]] },
-        { name: "Faroe-Orkney", radius: 1.1, pts: [[-6.9, 62.0], [-3.5, 59.8], [-0.57, 57.95]] },
-        { name: "Shetland-Norway", radius: 1.1, pts: [[1.48, 58.93], [3.4, 59.7], [5.3, 60.4]] }
+        // Widened from 1.1 to 1.6 and carried west onto Iceland's own coast: at 1.1 the corridor
+        // had gaps, so Iceland -> Faroe -> Shetland was not sailable on coast alone and an Iceland
+        // start had nowhere to go in the Antiquity age.
+        { name: "Iceland-Faroe-Shetland", radius: 2.0, pts: [[-21.0, 64.2], [-17.0, 63.8], [-12.0, 63.0], [-6.9, 62.0], [-2.5, 60.5], [1.48, 58.93]] },
+        { name: "Faroe-Orkney", radius: 2.0, pts: [[-6.9, 62.0], [-3.5, 59.8], [-0.57, 57.95]] },
+        { name: "Shetland-Norway", radius: 2.0, pts: [[1.48, 58.93], [3.4, 59.7], [5.3, 60.4]] },
+        // A second, more northerly crossing straight from the Faroes to the Norwegian coast, so the
+        // Iceland route does not depend on the single narrow hop past Shetland.
+        { name: "Faroe-Norway (northern crossing)", radius: 1.8, pts: [[-6.9, 62.0], [-2.0, 61.9], [2.0, 61.7], [5.2, 61.2]] }
     ],
 
     // Historically placed resources: polygon, resource types (missing ones for the age are skipped),
     // density = land/coast hexes per resource. The engine's own random pass keeps a 20% share.
     resourceAreas: [
-        { name: "Greece and Aegean", density: 8, resources: ["RESOURCE_MARBLE", "RESOURCE_WINE", "RESOURCE_SILVER", "RESOURCE_FISH", "RESOURCE_CITRUS", "RESOURCE_WOOL"], pts: [[19.3, 34.5], [28.5, 34.5], [28.5, 41.8], [19.3, 41.8]] },
-        { name: "Italy", density: 8, resources: ["RESOURCE_WINE", "RESOURCE_MARBLE", "RESOURCE_TRUFFLES", "RESOURCE_WOOL", "RESOURCE_IRON", "RESOURCE_SALT", "RESOURCE_FISH", "RESOURCE_CITRUS", "RESOURCE_CLAY"], pts: [[6.5, 36.4], [19.0, 36.4], [19.0, 47.0], [6.5, 47.0]] },
+        // Iron added: Laconia and Euboea worked it, Greece's unique Hoplite is infantry (iron gives
+        // an infantry combat bonus), and three improved iron is what unlocks the Normans.
+        // --- Coastal seas -------------------------------------------------------------
+        // Listed first so they claim the shoreline before the broad "waters" areas below, which stay
+        // as a thin fallback for everything else. The boxes are pulled in to about 80% of their
+        // extent so roughly three quarters of each sea's coast gets the dense treatment and the
+        // rest stays ordinary. Water takes fish, crabs, turtles, whales, pearls, cowrie and dyes -
+        // there is no gem resource valid on water in this ruleset.
+        { name: "Italian and Adriatic waters", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_DYES"], pts: [[9.1, 36.95], [17.9, 36.95], [17.9, 44.55], [9.1, 44.55]] },
+        { name: "Sicilian and Ionian waters", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_DYES"], pts: [[11.65, 35.4], [16.85, 35.4], [16.85, 38.6], [11.65, 38.6]] },
+        { name: "Aegean and Greek waters", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_DYES"], pts: [[19.85, 34.75], [26.65, 34.75], [26.65, 40.75], [19.85, 40.75]] },
+        { name: "Anatolian coastal waters", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_DYES"], pts: [[27.6, 35.75], [40.4, 35.75], [40.4, 41.75], [27.6, 41.75]] },
+        { name: "Black Sea", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_DYES"], pts: [[28.1, 40.85], [40.9, 40.85], [40.9, 47.65], [28.1, 47.65]] },
+        { name: "Cantabrian coast", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_CRABS", "RESOURCE_PEARLS", "RESOURCE_COWRIE"], pts: [[-8.95, 42.55], [-0.55, 42.55], [-0.55, 46.95], [-8.95, 46.95]] },
+        { name: "English Channel and North Sea", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_CRABS", "RESOURCE_PEARLS", "RESOURCE_COWRIE"], pts: [[-4.8, 48.55], [4.8, 48.55], [4.8, 52.95], [-4.8, 52.95]] },
+        { name: "Baltic Sea", density: 10, resources: ["RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_CRABS", "RESOURCE_PEARLS", "RESOURCE_COWRIE"], pts: [[11.15, 54.3], [28.35, 54.3], [28.35, 64.7], [11.15, 64.7]] },
+
+        { name: "Greece and Aegean", density: 8, resources: ["RESOURCE_MARBLE", "RESOURCE_WINE", "RESOURCE_SILVER", "RESOURCE_IRON", "RESOURCE_FISH", "RESOURCE_CITRUS", "RESOURCE_WOOL"], pts: [[19.3, 34.5], [26.9, 34.5], [26.9, 40.2], [25.5, 41.2], [22.8, 41.3], [20.5, 40.5], [19.3, 39.8]] },
+        { name: "Italy", density: 8, resources: ["RESOURCE_WINE", "RESOURCE_MARBLE", "RESOURCE_TRUFFLES", "RESOURCE_WOOL", "RESOURCE_IRON", "RESOURCE_SALT", "RESOURCE_FISH", "RESOURCE_CITRUS", "RESOURCE_CLAY"], pts: [[7.0, 44.2], [7.5, 45.1], [8.6, 46.2], [10.5, 46.7], [12.5, 46.8], [13.8, 46.5], [13.8, 45.5],
+            [12.5, 45.0], [13.6, 44.0], [15.4, 42.0], [16.5, 41.9], [18.6, 40.3], [17.3, 39.2], [16.2, 37.9],
+            [15.7, 36.6], [12.3, 37.3], [11.8, 38.6], [8.1, 38.8], [8.0, 41.4], [9.9, 41.6], [9.2, 43.1], [7.4, 43.7]] },
         { name: "Ethiopia", density: 8, resources: ["RESOURCE_IVORY", "RESOURCE_INCENSE", "RESOURCE_GOLD", "RESOURCE_COFFEE", "RESOURCE_SALT", "RESOURCE_SPICES"], pts: [[34.5, 4.0], [43.5, 4.0], [43.5, 17.0], [34.5, 17.0]] },
         { name: "Egypt and Nile", density: 8, resources: ["RESOURCE_LIMESTONE", "RESOURCE_DATES", "RESOURCE_FLAX", "RESOURCE_COTTON", "RESOURCE_GOLD", "RESOURCE_FISH", "RESOURCE_SALT", "RESOURCE_GYPSUM"], pts: [[29.0, 21.5], [35.0, 21.5], [35.0, 32.0], [29.0, 32.0]] },
         { name: "Levant and Phoenicia", density: 8, resources: ["RESOURCE_DYES", "RESOURCE_HARDWOOD", "RESOURCE_WINE", "RESOURCE_CITRUS", "RESOURCE_INCENSE", "RESOURCE_FISH"], pts: [[34.0, 30.5], [37.5, 30.5], [37.5, 37.2], [34.0, 37.2]] },
-        { name: "Mesopotamia", density: 8, resources: ["RESOURCE_DATES", "RESOURCE_CLAY", "RESOURCE_PITCH", "RESOURCE_GYPSUM", "RESOURCE_WOOL", "RESOURCE_HORSES"], pts: [[38.0, 29.5], [48.5, 29.5], [48.5, 37.5], [38.0, 37.5]] },
-        { name: "Arabia", density: 13, resources: ["RESOURCE_INCENSE", "RESOURCE_CAMELS", "RESOURCE_DATES", "RESOURCE_PEARLS", "RESOURCE_SALT", "RESOURCE_OIL"], pts: [[36.0, 12.0], [56.0, 12.0], [56.0, 30.0], [36.0, 30.0]] },
-        { name: "Persia", density: 9, resources: ["RESOURCE_HORSES", "RESOURCE_LAPIS_LAZULI", "RESOURCE_SILK", "RESOURCE_GOLD", "RESOURCE_CAMELS", "RESOURCE_SALT", "RESOURCE_OIL", "RESOURCE_RUBIES"], pts: [[44.0, 26.0], [60.0, 26.0], [60.0, 40.0], [44.0, 40.0]] },
+        { name: "Mesopotamia", density: 8, resources: ["RESOURCE_DATES", "RESOURCE_CLAY", "RESOURCE_PITCH", "RESOURCE_GYPSUM", "RESOURCE_WOOL", "RESOURCE_HORSES", "RESOURCE_CAMELS"], pts: [[38.0, 29.5], [47.2, 29.5], [47.2, 37.5], [38.0, 37.5]] },
+        // Gold added here rather than in Ethiopia: that area is only ~90 land hexes and a quarter of
+        // them are mountain, so it has little room. Arabia gives Aksum gold within reach across the sea.
+        { name: "Arabia", density: 11, resources: ["RESOURCE_INCENSE", "RESOURCE_CAMELS", "RESOURCE_DATES", "RESOURCE_PEARLS", "RESOURCE_SALT", "RESOURCE_GOLD", "RESOURCE_RUBIES", "RESOURCE_OIL"], pts: [[36.0, 12.0], [56.0, 12.0], [56.0, 30.0], [36.0, 30.0]] },
+        { name: "Persia", density: 9, resources: ["RESOURCE_HORSES", "RESOURCE_LAPIS_LAZULI", "RESOURCE_SILK", "RESOURCE_GOLD", "RESOURCE_CAMELS", "RESOURCE_SALT", "RESOURCE_OIL", "RESOURCE_RUBIES"], pts: [[46.0, 26.0], [60.0, 26.0], [60.0, 40.0], [46.0, 40.0]] },
         { name: "Anatolia", density: 9, resources: ["RESOURCE_IRON", "RESOURCE_SILVER", "RESOURCE_MARBLE", "RESOURCE_WOOL", "RESOURCE_HORSES", "RESOURCE_TIN", "RESOURCE_COAL", "RESOURCE_FISH"], pts: [[26.0, 36.0], [44.0, 36.0], [44.0, 42.2], [26.0, 42.2]] },
         { name: "Caucasus and Colchis", density: 9, resources: ["RESOURCE_GOLD", "RESOURCE_WINE", "RESOURCE_IRON", "RESOURCE_HORSES", "RESOURCE_OIL"], pts: [[38.0, 39.0], [50.0, 39.0], [50.0, 45.5], [38.0, 45.5]] },
         { name: "Pontic steppe", density: 11, resources: ["RESOURCE_HORSES", "RESOURCE_HIDES", "RESOURCE_FURS", "RESOURCE_SALT", "RESOURCE_IRON", "RESOURCE_COAL"], pts: [[26.0, 44.5], [50.0, 44.5], [50.0, 52.0], [26.0, 52.0]] },
         { name: "Northern Russia", density: 13, resources: ["RESOURCE_FURS", "RESOURCE_HARDWOOD", "RESOURCE_HIDES", "RESOURCE_WILD_GAME", "RESOURCE_IRON", "RESOURCE_NICKEL", "RESOURCE_GOLD"], pts: [[28.0, 52.0], [64.0, 52.0], [64.0, 72.0], [28.0, 72.0]] },
-        { name: "Scandinavia", density: 11, resources: ["RESOURCE_FURS", "RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_IRON", "RESOURCE_HARDWOOD", "RESOURCE_WILD_GAME"], pts: [[4.0, 55.0], [31.0, 55.0], [31.0, 72.0], [4.0, 72.0]] },
+        // Silver (Sala) and nickel alongside the iron: the north pays in metal what it cannot pay in food.
+        { name: "Scandinavia", density: 11, resources: ["RESOURCE_FURS", "RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_IRON", "RESOURCE_SILVER", "RESOURCE_NICKEL", "RESOURCE_HARDWOOD", "RESOURCE_WILD_GAME"], pts: [[4.0, 55.0], [13.0, 55.0], [13.0, 56.5], [19.0, 58.5], [24.0, 59.5], [31.0, 62.0], [31.0, 72.0], [4.0, 72.0]] },
         { name: "Iceland and the Faroes", density: 11, resources: ["RESOURCE_FISH", "RESOURCE_WHALES", "RESOURCE_WOOL"], pts: [[-26.0, 61.0], [-5.0, 61.0], [-5.0, 70.0], [-26.0, 70.0]] },
-        { name: "Britain", density: 9, resources: ["RESOURCE_TIN", "RESOURCE_WOOL", "RESOURCE_COAL", "RESOURCE_IRON", "RESOURCE_FISH", "RESOURCE_HIDES"], pts: [[-6.5, 49.4], [5.0, 49.4], [5.0, 59.6], [-6.5, 59.6]] },
+        { name: "Britain", density: 9, resources: ["RESOURCE_TIN", "RESOURCE_WOOL", "RESOURCE_COAL", "RESOURCE_IRON", "RESOURCE_FISH", "RESOURCE_HIDES"], pts: [[-6.5, 49.8], [2.0, 50.5], [2.0, 59.6], [-6.5, 59.6]] },
         { name: "Ireland", density: 11, resources: ["RESOURCE_WOOL", "RESOURCE_HIDES", "RESOURCE_FISH", "RESOURCE_HARDWOOD"], pts: [[-11.5, 51.0], [-5.0, 51.0], [-5.0, 56.0], [-11.5, 56.0]] },
         { name: "Iberia", density: 9, resources: ["RESOURCE_SILVER", "RESOURCE_WOOL", "RESOURCE_WINE", "RESOURCE_HORSES", "RESOURCE_GOLD", "RESOURCE_CITRUS", "RESOURCE_SALT", "RESOURCE_IRON", "RESOURCE_TIN", "RESOURCE_FISH"], pts: [[-10.0, 35.9], [3.5, 35.9], [3.5, 43.9], [-10.0, 43.9]] },
         { name: "France", density: 9, resources: ["RESOURCE_WINE", "RESOURCE_HARDWOOD", "RESOURCE_HORSES", "RESOURCE_WOOL", "RESOURCE_SALT", "RESOURCE_TRUFFLES", "RESOURCE_IRON", "RESOURCE_COAL", "RESOURCE_FISH"], pts: [[-5.0, 42.4], [8.0, 42.4], [8.0, 51.2], [-5.0, 51.2]] },
-        { name: "Germany and Central Europe", density: 9, resources: ["RESOURCE_IRON", "RESOURCE_COAL", "RESOURCE_SALT", "RESOURCE_HARDWOOD", "RESOURCE_HIDES", "RESOURCE_SILVER", "RESOURCE_WOOL", "RESOURCE_WILD_GAME"], pts: [[6.0, 46.5], [19.0, 46.5], [19.0, 55.0], [6.0, 55.0]] },
+        { name: "Germany and Central Europe", density: 9, resources: ["RESOURCE_IRON", "RESOURCE_COAL", "RESOURCE_SALT", "RESOURCE_HARDWOOD", "RESOURCE_HIDES", "RESOURCE_SILVER", "RESOURCE_WOOL", "RESOURCE_WILD_GAME", "RESOURCE_NITER"], pts: [[6.0, 46.5], [19.0, 46.5], [19.0, 55.0], [6.0, 55.0]] },
         { name: "Poland and the Baltics", density: 11, resources: ["RESOURCE_HARDWOOD", "RESOURCE_FURS", "RESOURCE_HIDES", "RESOURCE_SALT", "RESOURCE_FLAX", "RESOURCE_WILD_GAME", "RESOURCE_IRON"], pts: [[14.0, 49.0], [31.0, 49.0], [31.0, 60.0], [14.0, 60.0]] },
         { name: "Balkans and Hungary", density: 9, resources: ["RESOURCE_HORSES", "RESOURCE_GOLD", "RESOURCE_SILVER", "RESOURCE_WINE", "RESOURCE_HARDWOOD", "RESOURCE_IRON", "RESOURCE_COAL"], pts: [[13.5, 40.5], [29.5, 40.5], [29.5, 49.0], [13.5, 49.0]] },
         { name: "Maghreb", density: 9, resources: ["RESOURCE_HORSES", "RESOURCE_WOOL", "RESOURCE_SALT", "RESOURCE_IRON", "RESOURCE_DATES", "RESOURCE_CITRUS", "RESOURCE_IVORY", "RESOURCE_FISH"], pts: [[-13.0, 29.0], [12.0, 29.0], [12.0, 37.6], [-13.0, 37.6]] },
         { name: "Libya and Cyrenaica", density: 12, resources: ["RESOURCE_DATES", "RESOURCE_SALT", "RESOURCE_HORSES", "RESOURCE_OIL", "RESOURCE_FISH"], pts: [[12.0, 26.0], [26.0, 26.0], [26.0, 33.5], [12.0, 33.5]] },
-        { name: "Sahara", density: 18, resources: ["RESOURCE_SALT", "RESOURCE_CAMELS", "RESOURCE_DATES", "RESOURCE_GOLD", "RESOURCE_OIL"], pts: [[-18.0, 17.5], [36.0, 17.5], [36.0, 29.0], [-18.0, 29.0]] },
+        // Gold cannot spawn on desert biome (grassland/plains/tropical only), so the Sahara now carries
+        // the metals and minerals that can: silver and rubies are desert-valid, as are incense, ivory,
+        // limestone and clay. Density raised from 18 so the desert is not empty between the oases.
+        { name: "Sahara", density: 12, resources: ["RESOURCE_SALT", "RESOURCE_CAMELS", "RESOURCE_DATES", "RESOURCE_INCENSE", "RESOURCE_SILVER", "RESOURCE_RUBIES", "RESOURCE_IVORY", "RESOURCE_LIMESTONE", "RESOURCE_CLAY", "RESOURCE_OIL"], pts: [[-18.0, 17.5], [36.0, 17.5], [36.0, 29.0], [-18.0, 29.0]] },
         { name: "Sahel and Niger bend", density: 9, resources: ["RESOURCE_GOLD", "RESOURCE_IVORY", "RESOURCE_SALT", "RESOURCE_HIDES", "RESOURCE_HORSES", "RESOURCE_KAOLIN", "RESOURCE_COTTON"], pts: [[-18.0, 11.5], [34.5, 11.5], [34.5, 17.5], [-18.0, 17.5]] },
         { name: "Guinea coast and jungle", density: 8, resources: ["RESOURCE_IVORY", "RESOURCE_HARDWOOD", "RESOURCE_GOLD", "RESOURCE_COCOA", "RESOURCE_RUBBER", "RESOURCE_COWRIE", "RESOURCE_FISH", "RESOURCE_SPICES"], pts: [[-18.0, -5.0], [34.5, -5.0], [34.5, 11.5], [-18.0, 11.5]] },
         { name: "Persian Gulf and Red Sea", density: 11, resources: ["RESOURCE_PEARLS", "RESOURCE_FISH", "RESOURCE_TURTLES"], pts: [[32.0, 10.0], [60.0, 10.0], [60.0, 31.0], [32.0, 31.0]] },
@@ -165,34 +278,45 @@ const GEO = {
         // west and runs north-west into that lane, so one hex separates the two river heads.
         { name: "Niger", pts: [[-7.4, 12.2], [-6.3, 13.4], [-4.2, 14.5], [-3.0, 16.8], [-0.05, 16.3], [2.1, 13.5], [4.5, 12.0], [6.7, 7.8], [6.2, 5.6], [6.0, 4.3]] },
         { name: "Senegal", pts: [[-7.4, 12.2], [-8.8, 12.6], [-10.5, 13.5], [-12.5, 14.5], [-14.5, 16.0], [-16.5, 16.0]] },
-        { name: "Nile", pts: [[31.0, 31.2], [31.2, 30.0], [31.2, 27.2], [32.6, 25.7], [32.9, 24.1], [31.5, 21.8], [30.8, 19.4], [32.0, 17.6], [32.5, 15.6]] },
-        { name: "White Nile", pts: [[32.5, 15.6], [31.0, 14.6], [29.3, 14.0], [27.5, 13.8], [26.5, 13.2], [25.5, 12.8]] },
+        // Two mouths, as a delta should have: the main channel reaches the coast at Damietta and
+        // the Rosetta branch below splits off above Memphis. The widened delta had pushed the
+        // shoreline north of the old course end, leaving the river landlocked.
+        { name: "Nile", pts: [[31.27, 32.24], [31.0, 31.2], [31.2, 30.0], [31.2, 27.2], [32.6, 25.7], [32.9, 24.1], [31.5, 21.8], [30.8, 19.4], [32.0, 17.6], [32.5, 15.6]] },
+        { name: "Nile (Rosetta branch)", pts: [[30.70, 32.24], [30.20, 31.70], [30.30, 31.00], [30.90, 30.35]] },
+        { name: "White Nile", pts: [[32.5, 15.6], [32.2, 12.5], [32.5, 10.0], [33.5, 8.0], [34.3, 6.7]] },
+        { name: "Bahr el Ghazal", pts: [[32.2, 12.5], [29.3, 14.0], [27.5, 13.8], [26.5, 13.2], [25.5, 12.8]] },
         { name: "Blue Nile", pts: [[32.5, 15.6], [34.0, 14.2], [35.6, 13.0], [37.3, 12.1]] },
         // Varangian route: Daugava from Riga up to Vitebsk, Dnieper from the Black Sea up to Orsha;
         // the two river heads end about two hexes apart (a portage).
         { name: "Daugava", pts: [[23.6, 57.4], [24.1, 57.0], [25.5, 56.6], [27.0, 56.0], [28.8, 55.5], [30.2, 55.5]] },
         { name: "Dnieper", pts: [[32.0, 46.5], [33.5, 47.5], [35.1, 47.8], [35.0, 48.5], [34.0, 49.5], [30.5, 50.4], [30.9, 51.6], [30.9, 52.5], [30.3, 53.5], [30.4, 54.15]] },
         // Europe
-        { name: "Tiber", pts: [[12.3, 41.75], [12.5, 41.9], [12.8, 42.3]] },
+        { name: "Tiber", strength: 0.2, pts: [[12.3, 41.75], [12.5, 41.9], [12.8, 42.3]] },
         { name: "Po", pts: [[12.4, 44.95], [11.6, 45.0], [10.6, 45.05], [9.2, 45.1], [7.9, 45.0]] },
         { name: "Seine", pts: [[0.2, 49.45], [1.1, 49.4], [2.35, 48.85], [3.5, 48.4]] },
         { name: "Thames", pts: [[1.5, 51.4], [0.91, 51.41], [0.0, 51.5], [-0.7, 51.7]] },
-        { name: "Rhine", pts: [[4.5, 51.9], [6.0, 51.8], [6.95, 50.95], [8.3, 50.0], [7.8, 48.6], [7.6, 47.6], [8.6, 47.6]] },
-        { name: "Danube", pts: [[9.7, 48.3], [10.5, 48.5], [12.1, 49.0], [13.5, 48.6], [14.3, 48.3], [16.4, 48.2], [19.0, 47.5], [19.0, 46.0], [20.5, 44.8], [22.5, 44.6], [24.0, 43.8], [26.0, 43.9], [28.0, 44.2], [29.5, 45.2]] },
+        { name: "Rhine", pts: [[4.34, 52.35], [4.5, 51.9], [6.0, 51.8], [6.95, 50.95], [8.3, 50.0], [7.8, 48.6], [7.6, 47.6], [8.6, 47.6]] },
+        // Rises in the Black Forest massif below: the first hexes of the old course are now
+        // mountains, so the water starts on their eastern flank and runs downhill from there.
+        { name: "Danube", pts: [[11.3, 48.75], [12.1, 49.0], [13.5, 48.6], [14.3, 48.3], [16.4, 48.2], [19.0, 47.5], [19.0, 46.0], [20.5, 44.8], [22.5, 44.6], [24.0, 43.8], [26.0, 43.9], [28.0, 44.2], [29.5, 45.2]] },
         { name: "Rhone", pts: [[4.7, 43.4], [4.8, 43.9], [4.8, 45.0], [4.8, 45.8]] },
         // Garonne: Gironde estuary at Bordeaux up to Toulouse (south-west France)
-        { name: "Garonne", pts: [[-1.1, 45.6], [-0.6, 44.85], [0.3, 44.4], [1.4, 43.6]] },
+        { name: "Garonne", strength: 0.35, pts: [[-1.1, 45.6], [-0.6, 44.85], [0.3, 44.4], [1.4, 43.6]] },
         { name: "Vistula", pts: [[18.7, 54.35], [18.6, 53.0], [19.8, 52.4], [21.0, 52.2], [21.0, 51.2], [19.9, 50.1]] },
         { name: "Oder", pts: [[14.5, 53.4], [14.5, 52.5], [15.5, 51.8], [17.0, 51.1]] },
         // Iberia
-        { name: "Ebro", pts: [[0.85, 40.7], [0.0, 41.3], [-0.9, 41.65], [-2.5, 42.4]] },
+        { name: "Ebro", pts: [[0.85, 40.7], [0.0, 41.3], [-0.9, 41.65]] },
         { name: "Tagus", pts: [[-9.1, 38.7], [-8.0, 39.3], [-6.5, 39.6], [-4.0, 39.85]] },
         { name: "Guadalquivir", pts: [[-6.4, 36.8], [-6.0, 37.4], [-4.8, 37.9]] },
         // Mesopotamia, Russia
         { name: "Euphrates", pts: [[38.0, 37.0], [39.0, 35.95], [40.1, 35.3], [42.0, 34.5], [44.0, 33.4], [45.5, 32.0], [47.0, 31.0], [48.0, 30.2]] },
         { name: "Tigris", pts: [[43.1, 36.3], [43.7, 34.6], [44.4, 33.3], [45.5, 32.2], [46.5, 31.2]] },
         { name: "Volga", pts: [[35.9, 56.9], [39.9, 57.6], [44.0, 56.3], [49.1, 55.8], [50.1, 53.2], [46.0, 51.5], [44.5, 48.7], [48.0, 46.3]] },
-        { name: "Don", pts: [[39.2, 51.7], [40.5, 50.0], [42.0, 49.0], [41.0, 48.0], [39.7, 47.2], [38.6, 46.9], [38.0, 46.6]] },
+        // Don halved (18 -> 8 tiles) and weakened further, so it reads as a minor river rather than a
+        // broad navigable one. The hexes it gave up went to the Dniester below.
+        { name: "Don", strength: 0.25, pts: [[41.6, 49.7], [42.0, 49.0], [41.0, 48.0], [39.7, 47.2], [38.6, 46.9], [38.0, 46.6]] },
+        // Carried up to the Carpathian foothills so its headwater has a peak beside it to run down from.
+        { name: "Dniester", pts: [[30.2, 46.4], [29.5, 47.0], [28.5, 47.6], [27.0, 48.2], [25.5, 48.5], [24.2, 48.5]] },
         // Africa
         { name: "Volta", pts: [[0.1, 5.6], [-0.5, 7.0], [-1.0, 8.0], [-1.5, 10.5]] },
         { name: "Benue", pts: [[6.7, 7.8], [8.5, 8.4], [9.7, 8.9], [12.5, 9.3]] },
@@ -410,13 +534,32 @@ const GEO = {
     landBlobs: [
         [4.1, 39.9, 0.5, "Menorca"], [1.4, 38.95, 0.5, "Ibiza"], [14.9, 55.1, 0.5, "Bornholm"], [20.0, 60.2, 0.5, "Aland"],
         [28.0, 36.3, 0.5, "Rhodes"], [26.3, 39.2, 0.5, "Lesbos"], [26.0, 38.4, 0.5, "Chios"], [25.4, 37.1, 0.5, "Naxos"],
-        [25.4, 36.4, 0.5, "Santorini"], [23.75, 38.05, 0.7, "Attica"], [23.45, 38.45, 0.8, "Boeotia"], [19.85, 39.65, 0.5, "Corfu"], [20.55, 38.2, 0.5, "Kefalonia"], [25.2, 39.9, 0.5, "Lemnos"],
-        [14.45, 35.9, 0.5, "Malta"], [-6.9, 62.0, 0.5, "Faroe"], [1.48, 58.93, 0.5, "Shetland"], [-0.57, 57.95, 0.5, "Orkney"],
+         [23.75, 38.05, 0.7, "Attica"], [23.45, 38.45, 0.8, "Boeotia"], [19.85, 39.65, 0.5, "Corfu"], [20.55, 38.2, 0.5, "Kefalonia"], [25.2, 39.9, 0.5, "Lemnos"],
+        [14.45, 35.9, 0.6, "Malta"],
+        // Aeolian islands north of Sicily: Stromboli and Vulcano sit on these hexes.
+        [15.00, 39.20, 0.1, "Aeolian Islands"],
+        // Two islets far out in the Bay of Biscay, near the western edge of the map.
+        [-12.0, 47.0, 0.5, "Ile de l'Ouest"], [-12.6, 44.6, 0.7, "Ile du Sud"], [-6.9, 62.0, 0.5, "Faroe"], [1.48, 58.93, 0.5, "Shetland"], [-0.57, 57.95, 0.5, "Orkney"],
         [-4.49, 57.32, 0.6, "Lewis"], [-4.16, 56.83, 0.5, "Skye"], [-3.15, 54.20, 0.5, "Man"], [49.0, 69.1, 0.6, "Kolguyev"],
         [54.0, 12.5, 0.5, "Socotra"], [23.7, 37.1, 0.5, "Kythira-Milos"], [27.2, 37.7, 0.5, "Samos"]
     ],
 
     landBlobsLate: [
+        // Funen and the Great Belt: a one-hex-wide land bridge joining Zealand (Copenhagen) to
+        // Jutland, so Denmark is one country by land. The Oresund east of Zealand stays water, which
+        // is what keeps Denmark in the home lands rather than joining Distant-Lands Scandinavia.
+        [10.30, 55.50, 0.1, "Funen"], [11.00, 55.50, 0.1, "Great Belt isthmus"],
+        // Bosporus chokepoint: the Asian shore is carried west so the only water gate between the
+        // Sea of Marmara and the Black Sea is the single hex beside Constantinople. Painted late,
+        // after the strait water lines, so it narrows the channel instead of being erased by it.
+        [29.632, 41.433, 0.1, "Bosporus east shore 1"],
+        [30.228, 41.433, 0.1, "Bosporus east shore 2"],
+        [30.824, 41.433, 0.1, "Bosporus east shore 3"],
+        // The Nile delta is silt the river built out into the sea, and it carried Alexandria and
+        // the densest farmland of the ancient world. Pushed a couple of hexes further north than
+        // the modern coastline for the food it gives.
+        [30.2, 31.45, 1.0, "Alexandria delta"], [30.9, 31.55, 1.1, "Nile delta (north)"],
+        [31.6, 31.45, 1.0, "Damietta delta"], [31.25, 31.2, 1.1, "Nile delta (centre)"],
         [11.9, 55.45, 0.5, "Zealand"]
     ],
 
@@ -455,6 +598,10 @@ const GEO = {
     waterLines: [
         { name: "Gibraltar", pts: [[-6.3, 35.95], [-4.8, 36.1]] },
         { name: "Dardanelles-Marmara-Bosporus", pts: [[25.9, 39.95], [26.5, 40.3], [27.5, 40.7], [28.6, 40.75], [29.05, 41.05], [29.2, 41.4]] },
+        // Karelian passage: a one-hex channel from the Gulf of Finland through Ladoga and Onega to
+        // the White Sea, following the line of the real Belomorsk canal. It cuts Finland from
+        // Russia, which is what makes Scandinavia a landmass of its own and so Distant Lands.
+        { name: "Karelian passage", pts: [[29.5, 60.0], [31.3, 60.9], [35.4, 61.9], [36.5, 64.0], [36.5, 66.5]] },
         { name: "Kerch", pts: [[36.5, 45.15], [36.9, 45.5]] },
         { name: "Sea of Azov", pts: [[36.9, 45.5], [37.4, 46.0], [37.9, 46.5], [38.5, 46.9]] },
         { name: "Messina", pts: [[15.5, 38.4], [15.7, 38.05], [15.9, 37.8]] },
@@ -507,6 +654,31 @@ const GEO = {
     ],
 
     ranges: [
+        { name: "Black Forest and Swabian Alb", core: 0.62, fringe: 1.0, pts: [[9.65, 48.25], [10.65, 48.72]] },
+        // Single peaks just upstream of the Seine and Thames headwaters. They sit beside the
+        // course, not on it (markRiver would overwrite a mountain), so the engine's river model
+        // gets a real downhill gradient to follow out of these two short catchments.
+        { name: "Plateau de Langres", core: 0.5, fringe: 0.9, pts: [[4.01, 48.29], [4.01, 48.29]] },
+        // East African highlands: the White Nile's headwater massif. No lake - the water comes
+        // off the mountains, and with no water at either end the rainfall steering treats the
+        // whole course uniformly instead of mistaking a source lake for a sea mouth.
+        { name: "Rwenzori", core: 0.75, fringe: 1.2, pts: [[32.4, 6.9], [33.9, 6.6]] },
+        { name: "Kenya highlands", core: 0.6, fringe: 1.0, pts: [[34.9, 6.7], [35.5, 6.7]] },
+        // Guinea highlands: the Niger's headwater massif.
+        { name: "Guinea Highlands", core: 0.65, fringe: 1.15, pts: [[-8.7, 11.1], [-7.9, 11.8]] },
+        // Purpose-built home for Kilimanjaro in the middle-bottom of Africa. The wonder needs three
+        // mutually-adjacent mountain hexes on plains biome, which nothing on the map offered, so
+        // this raises a compact massif and the plains area below recolours it.
+        { name: "Kilimanjaro massif", core: 0.9, fringe: 1.3, pts: [[17.0, 8.5], [17.9, 9.0]] },
+        // The Russian plain had no relief at all, so the Volga, Dnieper, Daugava and Don all began
+        // 15-17 hexes from the nearest peak and had nothing to flow down. These are the uplands
+        // they really rise from - drawn as mountains rather than hills because elevation is the
+        // lever the engine's river model actually reads.
+        { name: "Valdai Hills", core: 0.6, fringe: 1.1, pts: [[30.5, 55.2], [33.0, 56.6], [35.5, 57.4]] },
+        { name: "Central Russian Upland", core: 0.6, fringe: 1.1, pts: [[38.0, 52.2], [40.0, 53.4]] },
+        // The Tigris rose 4 hexes from the nearest peak; this is the Hakkari edge it really drains.
+        { name: "Hakkari", core: 0.6, fringe: 1.1, pts: [[42.8, 37.0], [43.8, 36.8]] },
+        { name: "Cotswolds", core: 0.5, fringe: 0.9, pts: [[-1.17, 51.89], [-1.17, 51.89]] },
         { name: "Alps", core: 1.05, fringe: 1.9, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
         { name: "Pyrenees", core: 0.8, fringe: 1.5, pts: [[-1.9, 43.2], [-0.5, 42.85], [1.0, 42.65], [2.6, 42.5]] },
         { name: "Cantabrian", core: 0.55, fringe: 1.3, pts: [[-7.0, 43.1], [-5.5, 43.05], [-4.0, 43.1]] },
@@ -516,7 +688,7 @@ const GEO = {
         { name: "Massif Central", core: 0.3, fringe: 1.4, pts: [[2.0, 44.5], [3.0, 45.3], [4.0, 45.5]] },
         { name: "Vosges-Jura-Black Forest", core: 0.2, fringe: 1.1, pts: [[6.3, 46.7], [7.0, 48.2], [8.0, 48.5], [9.5, 48.5]] },
         { name: "Ardennes", core: 0.0, fringe: 0.9, pts: [[4.5, 50.0], [6.0, 50.2]] },
-        { name: "Apennines", core: 0.55, fringe: 1.3, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
+        { name: "Apennines", core: 0.55, fringe: 1.05, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
         { name: "Dinaric Alps", core: 0.7, fringe: 1.5, pts: [[14.0, 45.8], [15.3, 45.0], [16.5, 44.2], [17.5, 43.6], [18.6, 43.0], [19.5, 42.5], [20.2, 42.0]] },
         { name: "Pindus", core: 0.6, fringe: 1.3, pts: [[20.4, 41.5], [20.8, 40.5], [21.2, 39.8], [21.6, 39.0], [22.2, 38.6]] },
         { name: "Peloponnese", core: 0.0, fringe: 1.0, pts: [[22.2, 37.6], [22.5, 37.2]] },
@@ -551,8 +723,11 @@ const GEO = {
         { name: "Jordan Highlands", core: 0.0, fringe: 0.8, pts: [[35.8, 31.0], [35.9, 32.2]] },
         { name: "Sinai", core: 0.5, fringe: 1.0, pts: [[33.9, 28.9], [34.1, 28.4]] },
         { name: "Red Sea Hills", core: 0.2, fringe: 1.1, pts: [[33.0, 27.5], [34.5, 24.0], [36.0, 21.0], [37.3, 18.5]] },
-        { name: "Hejaz-Asir", core: 0.3, fringe: 1.1, pts: [[36.5, 28.0], [38.5, 26.0], [40.5, 22.0], [41.8, 19.5], [43.0, 17.5]] },
-        { name: "Yemen Highlands", core: 0.6, fringe: 1.3, pts: [[43.3, 17.0], [44.0, 15.0], [45.3, 13.6]] },
+        // Hejaz-Asir and the Yemen Highlands pulled ~1.5 degrees inland: the escarpment used to sit
+        // on the shoreline, walling Arabia off from its own coast. The Tihamah strip below is the
+        // coastal plain they leave behind.
+        { name: "Hejaz-Asir", core: 0.3, fringe: 1.1, pts: [[38.0, 28.0], [40.0, 26.0], [42.0, 22.0], [43.3, 19.5], [44.3, 17.5]] },
+        { name: "Yemen Highlands", core: 0.6, fringe: 1.3, pts: [[44.2, 16.6], [44.9, 15.0], [45.9, 13.8]] },
         { name: "Ethiopian Highlands", core: 0.5, fringe: 2.6, pts: [[36.5, 15.5], [37.8, 13.5], [39.0, 12.0], [39.5, 10.0], [38.0, 7.5], [36.5, 6.0]] },
         { name: "Tigray-Simien", core: 0.35, fringe: 1.6, pts: [[38.0, 15.8], [39.3, 14.6], [39.5, 13.2]] },
         { name: "Eastern Ethiopian Highlands", core: 0.3, fringe: 1.6, pts: [[40.0, 9.5], [41.5, 9.0], [43.0, 9.5]] },
@@ -653,11 +828,45 @@ const GEO = {
         { name: "France (plains)", biome: "P", prob: 0.3, pts: [[-5.0, 42.6], [8.0, 42.6], [8.0, 51.2], [-5.0, 51.2]] },
         { name: "Germany and Poland (plains)", biome: "P", prob: 0.3, pts: [[6.0, 47.3], [24.0, 47.3], [24.0, 55.3], [6.0, 55.3]] },
         { name: "Hungary (plains)", biome: "P", prob: 0.3, pts: [[16.0, 45.5], [23.0, 45.5], [23.0, 48.8], [16.0, 48.8]] },
-        { name: "Britain (plains)", biome: "P", prob: 0.3, pts: [[-6.2, 49.4], [5.0, 49.4], [5.0, 59.5], [-6.2, 59.5]] }
+        { name: "Britain (plains)", biome: "P", prob: 0.3, pts: [[-6.2, 49.4], [5.0, 49.4], [5.0, 59.5], [-6.2, 59.5]] },
+
+        // --- Cradles of civilization -------------------------------------------------
+        // Flat desert yields no food, which left Egypt, the Levant and Mesopotamia the poorest
+        // ground on the map - backwards for the regions that fed the first great cities. These
+        // corridors are irrigated floodplain rather than strict geography: narrow green ribbons
+        // along the rivers and the fertile coasts, with the deserts around them untouched.
+        // Listed last, so they win over the Sahara and Arabian bands above.
+        { name: "Nile valley", biome: "G", pts: [
+            [31.7, 31.4], [31.9, 30.0], [31.9, 27.2], [33.3, 25.7], [33.6, 24.1], [32.2, 21.8],
+            [31.5, 19.4], [32.7, 17.6], [33.2, 15.4],
+            [31.8, 15.4], [31.3, 17.6], [30.1, 19.4], [30.8, 21.8], [31.9, 24.1], [31.9, 25.7],
+            [30.5, 27.2], [30.5, 30.0], [30.3, 31.4]] },
+        { name: "Nile delta", biome: "G", pts: [[29.4, 29.9], [32.5, 29.9], [32.5, 32.3], [29.4, 32.3]] },
+        { name: "Mesopotamia (Tigris-Euphrates)", biome: "G", pts: [
+            [37.5, 37.4], [44.5, 37.4], [49.0, 30.2], [47.2, 29.6], [43.0, 33.8], [39.5, 35.8], [37.2, 36.8]] },
+        { name: "Levant coast and Jordan", biome: "G", pts: [[34.2, 30.8], [36.8, 30.8], [37.2, 37.0], [35.0, 37.0]] },
+        { name: "Maghreb (Tell Atlas coast)", biome: "G", pts: [
+            [-9.8, 33.2], [-5.5, 34.6], [-1.0, 35.2], [3.5, 36.0], [8.0, 36.3], [11.5, 33.5], [11.5, 38.0], [-9.8, 38.0]] },
+        { name: "Cyrenaica (Jebel Akhdar)", biome: "G", pts: [[20.0, 31.8], [23.5, 31.8], [23.5, 33.2], [20.0, 33.2]] },
+        // Tihamah: the Red Sea coastal plain of Arabia, one to two hexes wide - enough for
+        // harbour cities without turning the Hejaz shore into a green belt.
+        // Kilimanjaro needs mountain + plains; the East African massif is tropical by default.
+        { name: "East African massif (plains)", biome: "P", pts: [[31.5, 4.0], [34.4, 4.0], [34.4, 8.0], [31.5, 8.0]] },
+        { name: "Kilimanjaro massif (plains)", biome: "P", pts: [[15.5, 7.0], [19.5, 7.0], [19.5, 10.5], [15.5, 10.5]] },
+        { name: "Tihamah (Red Sea coast)", biome: "G", pts: [[35.0, 28.8], [37.6, 28.8], [39.6, 25.0], [41.6, 20.5],
+            [43.6, 17.0], [44.2, 12.8], [42.7, 12.8], [42.1, 17.0],
+            [40.1, 20.5], [38.1, 25.0], [36.1, 28.8], [33.5, 28.8]] },
+
+        // Southern Scandinavia: Denmark, Skane and the Swedish lowlands were farmed in antiquity,
+        // so they are grassland rather than tundra. North of this the tundra stays, where the base
+        // game's taiga gives it 1 food / 1 production / 1 culture per tile.
+        { name: "Southern Scandinavia", biome: "G", prob: 0.7, pts: [[4.5, 55.0], [21.0, 55.0], [21.0, 61.0], [4.5, 61.0]] },
+        { name: "Scandinavian coast (milder)", biome: "G", prob: 0.4, pts: [[4.5, 61.0], [16.0, 61.0], [16.0, 64.0], [4.5, 64.0]] }
     ],
 
     rainAreas: [
         { name: "Sahara", rain: 10, pts: [[-18, 17.5], [44, 17.5], [44, 27], [-18, 27]] },
+        // rainfall for the cradle corridors is appended at the end of this list, so it wins
         { name: "Sahel", rain: 40, pts: [[-18, 12.5], [44, 12.5], [44, 17.5], [-18, 17.5]] },
         { name: "Western Sahel (wetter, more rivers)", rain: 95, pts: [[-18, 12.5], [20, 12.5], [20, 17.5], [-18, 17.5]] },
         { name: "Tropical belt", rain: 150, pts: [[-18, -5], [43, -5], [43, 12.5], [-18, 12.5]] },
@@ -684,11 +893,47 @@ const GEO = {
         { name: "Hyrcania", rain: 170, pts: [[48.6, 36.2], [54.2, 36.2], [54.2, 37.9], [49.2, 37.9]] },
         { name: "Ukraine and the steppe east (vegetated)", rain: 100, pts: [[26.0, 44.0], [56.0, 44.0], [56.0, 52.5], [26.0, 52.5]] },
         { name: "Persia (vegetated)", rain: 100, pts: [[44.0, 27.0], [60.0, 27.0], [60.0, 40.0], [44.0, 40.0]] },
-        { name: "Yemen and Oman coast (vegetated)", rain: 100, pts: [[42.0, 12.5], [56.0, 12.5], [56.0, 19.5], [42.0, 19.5]] }
+        { name: "Yemen and Oman coast (vegetated)", rain: 100, pts: [[42.0, 12.5], [56.0, 12.5], [56.0, 19.5], [42.0, 19.5]] },
+        // Cradles of civilization: enough rain for features on the irrigated corridors above.
+        { name: "Nile valley (irrigated)", rain: 90, pts: [
+            [31.7, 31.4], [31.9, 30.0], [31.9, 27.2], [33.3, 25.7], [33.6, 24.1], [32.2, 21.8],
+            [31.5, 19.4], [32.7, 17.6], [33.2, 15.4],
+            [31.8, 15.4], [31.3, 17.6], [30.1, 19.4], [30.8, 21.8], [31.9, 24.1], [31.9, 25.7],
+            [30.5, 27.2], [30.5, 30.0], [30.3, 31.4]] },
+        { name: "Nile delta (irrigated)", rain: 120, pts: [[29.4, 29.9], [32.5, 29.9], [32.5, 32.3], [29.4, 32.3]] },
+        { name: "Mesopotamia (irrigated)", rain: 90, pts: [
+            [37.5, 37.4], [44.5, 37.4], [49.0, 30.2], [47.2, 29.6], [43.0, 33.8], [39.5, 35.8], [37.2, 36.8]] },
+        { name: "Levant coast and Jordan", rain: 95, pts: [[34.2, 30.8], [36.8, 30.8], [37.2, 37.0], [35.0, 37.0]] },
+        { name: "Maghreb (Tell Atlas coast)", rain: 100, pts: [
+            [-9.8, 33.2], [-5.5, 34.6], [-1.0, 35.2], [3.5, 36.0], [8.0, 36.3], [11.5, 33.5], [11.5, 38.0], [-9.8, 38.0]] },
+        { name: "Cyrenaica (Jebel Akhdar)", rain: 95, pts: [[20.0, 31.8], [23.5, 31.8], [23.5, 33.2], [20.0, 33.2]] },
+        { name: "Tihamah (Red Sea coast)", rain: 95, pts: [[35.0, 28.8], [37.6, 28.8], [39.6, 25.0], [41.6, 20.5],
+            [43.6, 17.0], [44.2, 12.8], [42.7, 12.8], [42.1, 17.0],
+            [40.1, 20.5], [38.1, 25.0], [36.1, 28.8], [33.5, 28.8]] }
+    ],
+
+    // Natural wonders.
+    // `wonders` are attempted at an exact hex first; the engine validates the whole footprint
+    // (Thera needs four coastal tiles, Kilimanjaro three adjacent mountains) and a placement that
+    // does not fit is skipped with a log line rather than forced.
+    // `requestedWonders` are handed to the base generator, which moves them to the front of its
+    // shuffled list and forces their placement chance to 100%, so they are the ones that appear.
+    wonders: [
+        { feature: "FEATURE_THERA", lon: 25.4, lat: 36.4 },
+        { feature: "FEATURE_KILIMANJARO", lon: 17.11, lat: 7.89 }
+    ],
+    requestedWonders: [
+        "FEATURE_THERA", "FEATURE_VIHREN", "FEATURE_GULLFOSS", "FEATURE_KILIMANJARO",
+        "FEATURE_GRAND_CANYON", "FEATURE_REDWOOD_FOREST", "FEATURE_MOUNT_EVEREST",
+        "FEATURE_VALLEY_OF_FLOWERS", "FEATURE_ZHANGJIAJIE", "FEATURE_MACHAPUCHARE",
+        "FEATURE_ULURU", "FEATURE_TORRES_DEL_PAINE", "FEATURE_IGUAZU_FALLS",
+        "FEATURE_GREAT_BLUE_HOLE", "FEATURE_BARRIER_REEF"
     ],
 
     volcanoes: [
-        [15.0, 37.75, "Etna"], [14.43, 40.82, "Vesuvius"], [-19.31, 63.59, "Hekla"], [25.4, 36.4, "Santorini"],
+        // Etna removed: Sicily is only a few hexes wide here and an impassable volcano cost it too
+        // much workable land. A single decorative cone on a one-hex Aeolian islet carries the fire.
+        [15.10, 39.13, "Vulcano"], [14.43, 40.82, "Vesuvius"], [-19.31, 63.59, "Hekla"], 
         [44.3, 39.7, "Ararat"], [42.45, 43.35, "Elbrus"], [35.45, 38.53, "Erciyes"], [52.1, 35.95, "Damavand"],
         [40.7, 13.6, "Erta Ale"]
     ],
@@ -705,7 +950,7 @@ const GEO = {
         CIVILIZATION_SPAIN: [-3.7, 40.4],
         CIVILIZATION_NORMAN: [1.1, 49.4],
         CIVILIZATION_ABBASID: [44.4, 33.3],
-        CIVILIZATION_OTTOMANS: [29.1, 40.2],
+        CIVILIZATION_OTTOMANS: [32.9, 39.9],   // Ankara, central Anatolia - leaves Constantinople free to be settled
         CIVILIZATION_ICELAND: [-20.30, 63.81],
         CIVILIZATION_QAJAR: [51.4, 35.7],
         CIVILIZATION_MONGOLIA: [47.0, 48.0],
@@ -722,7 +967,7 @@ const GEO = {
         [30.5, 50.4, "Kyiv"], [17.6, 59.9, "Uppsala"], [-5.0, 34.0, "Fez"], [19.9, 50.1, "Krakow"],
         [10.4, 63.4, "Trondheim"], [12.6, 55.7, "Copenhagen"], [-8.0, 31.6, "Marrakesh"], [19.0, 47.5, "Budapest"],
         [-6.64, 53.32, "Dublin"], [0.48, 51.41, "London"], [-9.1, 38.7, "Lisbon"], [-6.0, 37.4, "Seville"],
-        [32.9, 39.9, "Ankara"], [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [44.8, 41.7, "Tbilisi"],
+        [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [44.8, 41.7, "Tbilisi"],
         [39.8, 21.4, "Mecca"], [44.2, 15.4, "Sanaa"], [33.7, 16.9, "Meroe"], [-3.0, 16.8, "Timbuktu"],
         [10.75, 59.9, "Oslo"], [-1.51, 55.82, "Edinburgh"], [49.1, 55.8, "Kazan"], [39.7, 47.2, "Rostov"],
         [4.8, 45.8, "Lyon"], [9.2, 45.5, "Milan"], [16.4, 48.2, "Vienna"], [31.3, 58.5, "Novgorod"],
@@ -734,7 +979,21 @@ const GEO = {
         [10.3, 36.8, "Carthage"], [29.1, 40.2, "Bursa"], [-3.7, 40.4, "Toledo"], [44.4, 33.3, "Baghdad"],
         [43.1, 36.3, "Nineveh"], [27.1, 43.4, "Pliska"], [3.05, 36.75, "Algiers"], [47.0, 48.0, "Sarai"],
         [48.5, 33.0, "Susa"], [51.4, 35.7, "Tehran"], [1.1, 49.4, "Rouen"], [-20.30, 63.81, "Reykjavik"],
-        [38.7, 14.1, "Axum"], [-0.05, 16.3, "Gao"]
+        [38.7, 14.1, "Axum"], [-0.05, 16.3, "Gao"],
+        // --- Sahel and West Africa (Songhai, Mali, Kanem-Bornu heartland) ---
+        [-8.00, 12.65, "Bamako"], [-4.55, 13.91, "Djenne"], [-1.53, 12.37, "Ouagadougou"],
+        [2.11, 13.51, "Niamey"], [8.99, 13.80, "Zinder"], [13.00, 12.90, "Ngazargamu"],
+        [29.84, 31.78, "Alexandria"],
+        [28.98, 41.01, "Constantinople"],
+        [25.5, 29.2, "Siwa"], [29.4, 22.0, "Selima"], [24.5, 17.6, "Ounianga"],
+        [-11.44, 14.45, "Kayes"], [5.27, 14.89, "Tahoua"],
+        // --- Horn of Africa and the Red Sea ---
+        [37.47, 12.60, "Gondar"], [39.47, 15.61, "Massawa"], [42.13, 9.31, "Harar"],
+        [43.47, 11.36, "Zeila"],
+        // --- Ukraine, the Pontic steppe and the western Rus ---
+        [24.03, 49.84, "Lviv"], [28.86, 47.01, "Chisinau"], [30.73, 46.48, "Odesa"],
+        [35.14, 47.84, "Zaporizhzhia"], [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
+        [32.05, 54.78, "Smolensk"]
     ]
 };
 
@@ -1331,7 +1590,9 @@ function buildEuropeGrid(W, H, GEO, rnd) {
     const riverChains = [];   // per river: { name, tiles } in course order (the game steers the engine's rivers along them)
     for (const river of GEO.rivers || []) {
         let prev = null;
-        const chain = { name: river.name, tiles: [] };
+        // `strength` (0..1, default 1) scales the rainfall the map script pours along this
+        // course. Lower it to make a river less likely to win the engine's navigable-river pass.
+        const chain = { name: river.name, strength: river.strength, tiles: [] };
         riverChains.push(chain);
         const markRiver = (x, y) => {
             if (!inBounds(x, y) || x < 1 || x >= W - 1) return;

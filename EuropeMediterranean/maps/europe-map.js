@@ -205,11 +205,97 @@ function civTypeOf(playerId) {
     }
 }
 
+// Features a settlement cannot replace: the impassable ones (ice, volcanoes and most natural
+// wonders) and the non-removable scenery. Anything the database marks Removable is fine, since
+// founding a city clears it. Read from GameInfo so DLC wonders are covered too.
+function featureBlocksSettlement(x, y) {
+    const f = GameplayMap.getFeatureType(x, y);
+    if (f == FeatureTypes.NO_FEATURE) return false;
+    const info = GameInfo.Features.lookup(f);
+    if (!info) return false;
+    return !!info.Impassable || !info.Removable;
+}
+
+// Clear a removable feature (forest, marsh, ...) from a chosen start so the settler founds on
+// open ground instead of having to clear it first.
+function clearStartFeature(x, y) {
+    const f = GameplayMap.getFeatureType(x, y);
+    if (f == FeatureTypes.NO_FEATURE) return;
+    const info = GameInfo.Features.lookup(f);
+    if (info && info.Removable && !info.Impassable) {
+        TerrainBuilder.setFeatureType(x, y, { Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
+    }
+}
+
+// Historical capitals grew into big cities, so every true start gets a workable amount of food.
+// Inside TSL_FOOD_RADIUS the poorest land is lifted towards flat grassland (2 food) until the
+// ring holds TSL_FOOD_MIN high-food tiles. Biomes are raised first and hills are only flattened
+// if that was not enough, so the map keeps its shape: Egypt stays desert apart from a few hexes
+// beside Memphis. Runs before features and floodplains, so those grow on the improved ground.
+const TSL_FOOD_RADIUS = 2;
+const TSL_FOOD_MIN = 5;
+
+function boostStartFood(grid) {
+    if (!GEO.tsl) return;
+    const radius = GEO.tslFoodRadius !== undefined ? GEO.tslFoodRadius : TSL_FOOD_RADIUS;
+    const want = GEO.tslFoodMin !== undefined ? GEO.tslFoodMin : TSL_FOOD_MIN;
+    const isRich = (x, y) => GameplayMap.getTerrainType(x, y) == globals.g_FlatTerrain &&
+                             GameplayMap.getBiomeType(x, y) == globals.g_GrasslandBiome;
+    let lifted = 0, flattened = 0, sites = 0;
+
+    for (const civ in GEO.tsl) {
+        const ll = GEO.tsl[civ];
+        const t = findStartTile(grid, ll[0], ll[1], 3);
+        if (!t) continue;
+        sites++;
+
+        const cells = [];
+        for (let dy = -radius; dy <= radius; dy++) {
+            for (let dx = -radius; dx <= radius; dx++) {
+                const x = t[0] + dx, y = t[1] + dy;
+                if (!grid.inBounds(x, y) || x < 1 || x >= grid.W - 1) continue;
+                if (hexDistance(t[0], t[1], x, y) > radius) continue;
+                if (GameplayMap.isWater(x, y) || GameplayMap.isMountain(x, y)) continue;
+                if (GameplayMap.isNavigableRiver(x, y)) continue;
+                cells.push([x, y]);
+            }
+        }
+        // nearest tiles first, so the city centre is improved before its outskirts
+        cells.sort((a, b) => hexDistance(t[0], t[1], a[0], a[1]) - hexDistance(t[0], t[1], b[0], b[1]));
+
+        // Small islands must not be flattened wholesale: never improve more than half the ring.
+        const target = Math.min(want, Math.max(2, Math.floor(cells.length / 2)));
+        let rich = cells.filter(c => isRich(c[0], c[1])).length;
+        const setGrass = (x, y) => {
+            TerrainBuilder.setBiomeType(x, y, globals.g_GrasslandBiome);
+            grid.biome[grid.idx(x, y)] = B.GRASSLAND;
+        };
+        // pass 1: biome only, keeping the terrain shape
+        for (const [x, y] of cells) {
+            if (rich >= target) break;
+            if (isRich(x, y)) continue;
+            if (GameplayMap.getTerrainType(x, y) != globals.g_FlatTerrain) continue;
+            setGrass(x, y); rich++; lifted++;
+        }
+        // pass 2: only if still short, flatten hills next to the start
+        for (const [x, y] of cells) {
+            if (rich >= target) break;
+            if (isRich(x, y)) continue;
+            TerrainBuilder.setTerrainType(x, y, globals.g_FlatTerrain);
+            grid.terrain[grid.idx(x, y)] = T.FLAT;
+            setGrass(x, y); rich++; flattened++;
+        }
+    }
+    console.log("Europe map" + ": start food - " + lifted + " biomes lifted, " + flattened +
+        " hills flattened across " + sites + " true starts");
+}
+
 function isValidStartTile(x, y) {
     if (GameplayMap.isWater(x, y)) return false;
     if (GameplayMap.isMountain(x, y)) return false;
     if (GameplayMap.isNavigableRiver(x, y)) return false;
     if (GameplayMap.isImpassable(x, y)) return false;
+    if (featureBlocksSettlement(x, y)) return false;
     return true;
 }
 
@@ -247,6 +333,7 @@ function assignEuropeStartPositions(grid) {
     const MIN_SPACING = 5;
 
     const place = (index, playerId, x, y, label) => {
+        clearStartFeature(x, y);
         const plotIndex = GameplayMap.getIndexFromXY(x, y);
         StartPositioner.setStartPosition(plotIndex, playerId);
         startPositions[index] = plotIndex;
@@ -346,6 +433,7 @@ function generateMap() {
     TerrainBuilder.defineNamedRivers();
 
     applyBiomes(grid);
+    boostStartFood(grid);
     addNaturalWonders(iWidth, iHeight, iNumNaturalWonders);
     TerrainBuilder.addFloodplains(4, 10);
     addFeatures(iWidth, iHeight);

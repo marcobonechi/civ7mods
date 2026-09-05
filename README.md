@@ -83,14 +83,22 @@ true starts for Aksum (Axum) and Songhai (Gao). Its fallback ranking favours Mor
 Distant Lands: landmass regions are assigned to whole water-separated landmasses, never by
 longitude. The engine treats a region change as a distant-lands boundary, so a boundary running
 through connected land is an invisible wall: land units cannot cross it and the civilizations
-beyond it cannot be contacted until the Exploration Age. On the large map the African landmass
-(anchored by `distantLandsAnchors: [[20, 10]]`) is the distant lands, separated from Eurasia by
-the Mediterranean and the Suez channel; Egypt, Carthage, Aksum and Songhai start there. The
-standard map has no anchors: north of 27.5N Europe, North Africa and the Near East form one
+beyond it cannot be contacted until the Exploration Age. On the large map three landmasses are Distant Lands: Africa (across the Mediterranean and the Suez channel), Scandinavia with Finland (cut from Russia by the Karelian passage, a one-hex channel from the Gulf of Finland through Ladoga and Onega to the White Sea), and Iceland, plus two small Atlantic islets west of France. Denmark stays in the home lands. The standard map has no anchors: north of 27.5N Europe, North Africa and the Near East form one
 connected landmass, so it runs as a single region and the Exploration Age distant-lands and
 treasure mechanics do not apply there.
 
 ## Start locations
+
+Start tiles are validated against the feature database before use: a tile carrying an impassable or
+non-removable feature (ice, a volcano, a natural wonder) is rejected and the search moves outwards,
+and a removable feature such as forest or marsh is cleared from the tile finally chosen, so a
+settler can always found on the spot.
+
+Every true start is also given workable food. Within `tslFoodRadius` (2 hexes) the poorest land is
+raised towards flat grassland until `tslFoodMin` (5) high-food tiles are present; biomes are lifted
+first and hills flattened only if that was not enough, and never more than half the ring, so small
+islands such as Iceland keep their shape. On the large map this changes about 36 tiles, under 0.5%
+of the land.
 
 Civilizations from the region start at historical sites (Rome, Athens, Memphis, Carthage, Nineveh,
 Susa, Pliska, Toledo, Rouen, Baghdad, Bursa, Reykjavik, Tehran, Sarai, Algiers, Paris, Berlin,
@@ -139,6 +147,7 @@ http://localhost:8080 and opens a browser. It reads and writes the geography fil
 | `rainAreas` | rainfall overrides (more rain = more forest/jungle features) |
 | `biomeBlobs` | circular biome patches `[lon, lat, radius, biome, rainfall, name]` (oases) |
 | `rivers` | navigable river courses as `[lon, lat]` lists; each becomes a hex-connected flat valley that is drenched in rainfall while the engine models rivers, so the engine's own navigable rivers follow it (painting river terrain directly only looks like a river: the engine keeps no river data for it) |
+| `rivers[].strength` | optional 0..1 (default 1) scaling the rainfall poured along that course. Lower values make the engine much less likely to pick the river as navigable, while still carving its flat valley. Currently: Tiber 0.2, Garonne 0.35, Don 0.35 |
 | `resourceAreas` | (large map) historical resources per region: polygon, resource types, `density` = hexes per resource; placed in-game after the engine's random pass, which is topped up to a 20% share |
 | `hillAreas`, `passes`, `flatAreas`, `roughAreas` | mountains→hills in areas / along corridors, hills→flat, flat→hills (optional `biome`) |
 | `shallowLines` | corridors where ocean becomes shallow coast (island hopping) |
