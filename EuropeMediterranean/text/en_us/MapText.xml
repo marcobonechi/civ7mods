@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION">
             <Text>The same geography as Europe, Mediterranean &amp; Sahel (Large), but with no Distant Lands: Africa and Eurasia share one landmass region, so every civilization can be reached and contacted overland from the first turn.[n][n]Trade-off: because the Exploration Age Economic (treasure fleet) and Military legacy paths both score only in Distant Lands, neither can be completed on this version. Pick the standard Large map if you want those.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME">
+            <Text>Europe &amp; Mediterranean (Variant)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION">
+            <Text>A separate copy of the large Europe, Mediterranean and Sahel geography, kept apart so it can be reshaped without changing the original. It starts out identical; edit maps/europe-alt-geo.js to take it somewhere else.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>
         </Replace>

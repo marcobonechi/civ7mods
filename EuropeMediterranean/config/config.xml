@@ -4,6 +4,7 @@
         <Row File="{europe-mediterranean-map}maps/europe-map.js" Name="LOC_MAP_EUROPE_MED_NAME" Description="LOC_MAP_EUROPE_MED_DESCRIPTION" SortIndex="5"/>
         <Row File="{europe-mediterranean-map}maps/europe-large-map.js" Name="LOC_MAP_EUROPE_MED_LARGE_NAME" Description="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" SortIndex="6"/>
         <Row File="{europe-mediterranean-map}maps/europe-large-united-map.js" Name="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Description="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" SortIndex="7"/>
+        <Row File="{europe-mediterranean-map}maps/europe-alt-map.js" Name="LOC_MAP_EUROPE_ALT_NAME" Description="LOC_MAP_EUROPE_ALT_DESCRIPTION" SortIndex="8"/>
     </Maps>
 
     <!-- Map sizes for the large map (grids come from data/maps.xml) -->
@@ -24,6 +25,12 @@
         <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>

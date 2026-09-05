@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Rebuilds the two preview pages from the mod's geography files and (optionally) opens them.
-#   ./build-preview.sh          -> writes europe-large.html and europe.html next to this script
+#   ./build-preview.sh          -> writes europe-large.html, europe.html and europe-alt.html
 #   ./build-preview.sh --open   -> also opens europe-large.html
 # The pages are self-contained (data + rasterizer inlined), so they work from a file:// URL.
 # macOS/Linux port of build-preview.ps1.
@@ -36,6 +36,7 @@ build() {
 
 build "europe-large-geo.js" "tail-large.html"    "europe-large.html"
 build "europe-geo.js"       "tail-standard.html" "europe.html"
+build "europe-alt-geo.js"   "tail-large.html"    "europe-alt.html"
 
 if [ "$OPEN" -eq 1 ]; then
     if command -v open >/dev/null; then open "$ROOT/europe-large.html"

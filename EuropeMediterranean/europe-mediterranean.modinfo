@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="europe-mediterranean-map" version="39" xmlns="ModInfo">
+<Mod id="europe-mediterranean-map" version="43" xmlns="ModInfo">
     <Properties>
         <Name>LOC_MODULE_EUROPE_MED_NAME</Name>
         <Description>LOC_MODULE_EUROPE_MED_DESCRIPTION</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
-        <Version>39</Version>
+        <Version>43</Version>
     </Properties>
     <Dependencies>
         <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
