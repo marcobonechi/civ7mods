@@ -14,3 +14,5 @@ scratch/
 
 # Mod icons are real content, not screenshots
 !Byzantium/icons/*.png
+!Byzantium/icons-alt/*.png
+!Byzantium/icons-vector/*.png

@@ -230,7 +230,11 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
 - Workflow used for Byzantium: author SVGs in `<Mod>/icons/src/`, render them with
   `tools/icon-render/server.py` plus the in-app browser (ImageMagick here has no librsvg and
   headless Chrome hangs), review on a dark contact sheet, commit both SVG and PNG.
-  `tools/make-icons.py` only makes flat placeholders.
+  `tools/make-icons.py` only makes flat placeholders. A second, painted set can live in
+  `<Mod>/icons-alt/` (Byzantium's came from an AI concept sheet: medallions cropped, eagle
+  thresholded to a white mask, units kept as painted vignettes because a dark horse cannot be
+  keyed off a purple background); `tools/switch-icons.sh <Mod> alt|vector` swaps sets and
+  reinstalls, and `icons-vector/` keeps the rendered set safe.
 
 ## 5. Map integration
 
