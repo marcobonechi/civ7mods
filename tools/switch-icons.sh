@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Swap a mod's icon set: copies <Mod>/icons-<set>/*.png over <Mod>/icons/*.png and reinstalls.
-# Usage: tools/switch-icons.sh Byzantium alt      (painted set from the concept sheet)
+# Usage: tools/switch-icons.sh Byzantium mixed    (default: painted eagle and buildings, vector unit silhouettes)
+#        tools/switch-icons.sh Byzantium alt      (painted set from the concept sheet)
 #        tools/switch-icons.sh Byzantium vector   (rendered from icons/src/*.svg)
 # The vector set is regenerated from the SVG sources with tools/icon-render; the alt set is
 # kept as PNGs in icons-alt/. Restart the game after switching.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-MOD="${1:?mod folder}"; SET="${2:?set name: alt | vector}"
+MOD="${1:?mod folder}"; SET="${2:?set name: mixed | alt | vector}"
 case "$SET" in
     vector) SRC="$ROOT/$MOD/icons-vector" ;;
     *)      SRC="$ROOT/$MOD/icons-$SET" ;;

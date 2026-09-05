@@ -278,6 +278,8 @@ Constantinople on all four Europe maps.
 | Unlocks | From Rome and Greece, or with Augustus, Catherine, Charlemagne, Xerxes; in Antiquity by holding Ancient Walls in three settlements. Leads to Russia (and the Ottomans when that DLC is present) |
 
 Unique units and buildings borrow the models of the base units and buildings they replace
-(`data/visual-remaps.xml`); icons are placeholder PNGs from `tools/make-icons.py` until real art
-exists. Design notes and the verification record are in `plans/byzantium.md`; the recipe for the
+(`data/visual-remaps.xml`). Icons: the default set in `Byzantium/icons/` mixes the painted eagle
+and building medallions (cut from a concept sheet, kept in `icons-alt/`) with vector unit
+silhouettes (`icons-vector/`, sources in `icons/src/`); `tools/switch-icons.sh Byzantium alt|vector|mixed`
+swaps between them. Design notes and the verification record are in `plans/byzantium.md`; the recipe for the
 next civilization is `.claude/skills/new-civilization/`.
