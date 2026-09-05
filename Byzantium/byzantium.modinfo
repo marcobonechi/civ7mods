@@ -48,6 +48,9 @@
                     <Item>icons/buildicon_hippodrome.png</Item>
                     <Item>icons/buildicon_great_palace.png</Item>
                     <Item>icons/wondericon_hagia_sophia.png</Item>
+                    <Item>loading/lsbg_byzantium_1080.png</Item>
+                    <Item>loading/lsbg_byzantium_720.png</Item>
+                    <Item>loading/lsbg_byzantium_vert.png</Item>
                 </ImportFiles>
                 <UpdateIcons>
                     <Item>data/icons/icons.xml</Item>
@@ -150,6 +153,9 @@
                     <Item>icons/buildicon_hippodrome.png</Item>
                     <Item>icons/buildicon_great_palace.png</Item>
                     <Item>icons/wondericon_hagia_sophia.png</Item>
+                    <Item>loading/lsbg_byzantium_1080.png</Item>
+                    <Item>loading/lsbg_byzantium_720.png</Item>
+                    <Item>loading/lsbg_byzantium_vert.png</Item>
                 </ImportFiles>
                 <UpdateIcons>
                     <Item>data/icons/icons.xml</Item>

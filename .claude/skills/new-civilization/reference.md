@@ -220,6 +220,10 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   BACKGROUND_VERT). Sizes used by community tooling: civ symbol 256, unit flag 128, building 128.
 - Some shell code builds `blp:civ_sym_<civ>` names directly (`utilities-image.js`), so a few
   UI spots may show a blank for a mod civ. Live with it or check after the first run.
+- Loading screen: `LoadingInfo_Civilizations.BackgroundImageHigh/Low` take `fs://game/<modid>/...png`
+  paths (1920x1080 and 1280x720), and the same files go into `IconDefinitions` under
+  `CIVILIZATION_X` with `Context` BACKGROUND (`IconSize` 1080 / 720) plus BACKGROUND_VERT for the
+  tall civ-select card (Byzantium uses 1080x1920). Import them in both scopes.
 - 3D: `VisualRemaps` (section 1). No art package (`.dep`, `Platforms/`) is needed for a
   data-only mod; the map mod proves that.
 - Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,

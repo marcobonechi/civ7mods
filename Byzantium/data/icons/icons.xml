@@ -5,6 +5,24 @@
             <ID>CIVILIZATION_BYZANTIUM</ID>
             <Path>fs://game/byzantium/icons/civ_sym_byzantium.png</Path>
         </Row>
+        <!-- loading screen and civ-select card, same contexts Firaxis uses -->
+        <Row>
+            <ID>CIVILIZATION_BYZANTIUM</ID>
+            <Context>BACKGROUND</Context>
+            <Path>fs://game/byzantium/loading/lsbg_byzantium_1080.png</Path>
+            <IconSize>1080</IconSize>
+        </Row>
+        <Row>
+            <ID>CIVILIZATION_BYZANTIUM</ID>
+            <Context>BACKGROUND</Context>
+            <Path>fs://game/byzantium/loading/lsbg_byzantium_720.png</Path>
+            <IconSize>720</IconSize>
+        </Row>
+        <Row>
+            <ID>CIVILIZATION_BYZANTIUM</ID>
+            <Context>BACKGROUND_VERT</Context>
+            <Path>fs://game/byzantium/loading/lsbg_byzantium_vert.png</Path>
+        </Row>
         <Row>
             <ID>UNIT_CATAPHRACT</ID>
             <Path>fs://game/byzantium/icons/unitflag_cataphract.png</Path>
