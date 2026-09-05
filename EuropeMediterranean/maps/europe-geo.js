@@ -436,6 +436,7 @@ export const GEO = {
     // True start locations by civilization: [lon, lat]
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
+        CIVILIZATION_BYZANTIUM: [28.70, 41.30],   // Constantinople, Thracian shore of the Bosporus (Byzantium mod)
         CIVILIZATION_GREECE: [22.79, 39.28],   // Thermaic Gulf coast, north of Athens
         // America starts in Ireland. It is a Modern-age civilization, so the start only applies in
         // games where it is in play; the Dublin fallback site is left for when it is not.
@@ -448,7 +449,7 @@ export const GEO = {
         CIVILIZATION_SPAIN: [-3.7, 40.4],
         CIVILIZATION_NORMAN: [1.1, 49.4],
         CIVILIZATION_ABBASID: [44.4, 33.3],
-        CIVILIZATION_OTTOMANS: [29.1, 40.2],
+        CIVILIZATION_OTTOMANS: [32.9, 39.9],   // Ankara, central Anatolia - leaves Constantinople free for Byzantium
         CIVILIZATION_ICELAND: [-21.9, 64.1],
         CIVILIZATION_QAJAR: [51.4, 35.7],
         CIVILIZATION_MONGOLIA: [47.0, 48.0],

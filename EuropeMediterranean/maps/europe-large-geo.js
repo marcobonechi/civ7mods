@@ -929,6 +929,7 @@ export const GEO = {
 
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
+        CIVILIZATION_BYZANTIUM: [28.70, 41.30],   // Constantinople, Thracian shore of the Bosporus (Byzantium mod)
         CIVILIZATION_GREECE: [22.79, 39.28],   // Thermaic Gulf coast, north of Athens
         // America starts in Ireland. It is a Modern-age civilization, so the start only applies in
         // games where it is in play; the Dublin fallback site is left for when it is not.
