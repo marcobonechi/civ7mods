@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LeaderSyncretismUnlocks>
+        <Row LeaderType="LEADER_AUGUSTUS" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderType="LEADER_CATHERINE" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderType="LEADER_CHARLEMAGNE" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderType="LEADER_XERXES" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+    </LeaderSyncretismUnlocks>
+    <CivilizationSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_ROME" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+        <Row CivilizationType="CIVILIZATION_GREECE" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" UnlockCivilizationType="CIVILIZATION_RUSSIA"/>
+    </CivilizationSyncretismUnlocks>
+</Database>

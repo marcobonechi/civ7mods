@@ -243,6 +243,19 @@ curated list. Keep neighbouring true starts apart or move one.
   loaded in an Antiquity game.
 - Version bump lives in two places in the modinfo (`version=""` and `<Version>`).
 - macOS quarantine flag makes the game ignore a mod folder silently (`install.sh` clears it).
+- The shell database has no `Types` table: a file loaded in `scope="shell"` may only carry the
+  shared tables (config tables, `Traditions`, civic nodes, the syncretism tables). Keep shell-safe
+  rows in their own file; the Bulgaria split `unlocks-syncretism.xml` vs `unlocks-*.xml` is that.
+- `Constructible_Advisories` takes `ADVISORY_CLASS_DIPLOMACY` (not DIPLOMATIC); the valid classes
+  are CITY_EXPANSION, CULTURE, DEFENSE, DIPLOMACY, ECONOMIC, EMPIRE_EXPANSION, FOOD, HAPPINESS,
+  INFRASTRUCTURE, LAND, MILITARY, NARRATIVE, OFFENSE, RELIGION, SCIENCE, SEA, TRADE.
+- `AiFavoredItems` settlement hints use `Item="Specific Terrain"` + `StringVal` with
+  `LOC_SETTLEMENT_RECOMMENDATION_TERRAIN`; there is no coastal item.
+- Startup only builds the shell database. Game-scope files (`scope="game"` under an age criteria)
+  are first parsed when a game is created, so a clean `Database.log` at the main menu says nothing
+  about units or buildings. Start a game to test those.
+- The game ignores AppleScript quit and background (unfocused) mouse input; restart it with
+  `kill <pid>` then `open -a`, and test in the foreground.
 
 ## 7. Reference checks
 

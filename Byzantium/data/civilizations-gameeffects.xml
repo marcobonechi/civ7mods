@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_REVEAL_CIV_CULTURE_TREE_BYZANTIUM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_REVEAL_CULTURE_TREE">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT">
+                <Argument name="TraitType">TRAIT_BYZANTIUM</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="ProgressionTreeType">TREE_CIVICS_EX_BYZANTIUM</Argument>
+    </Modifier>
+</GameEffects>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNLOCK_WALLS_BYZANTIUM_DESCRIPTION">
+            <Text>Have [B]Ancient Walls[/B] in three Settlements.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_WALLS_BYZANTIUM_TOOLTIP">
+            <Text>The [B]Theodosian Walls[/B] kept [B]Byzantium[/B] standing for a thousand years.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_WALLS_BYZANTIUM_NARRATIVE">
+            <Text>Behind their walls the {1_Civilization_Adj} people have learned patience. Sieges come and go; the markets reopen, the mosaics are restored, and the city on the strait endures.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_DESCRIPTION">
+            <Text>Play as [B]Byzantium[/B].</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_BYZANTIUM_TOOLTIP">
+            <Text>[B]Byzantium[/B] is able to endure throughout the Ages.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_RUSSIA_TOOLTIP">
+            <Text>[B]Russia[/B] claimed the legacy of [B]Byzantium[/B] as the Third Rome.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_OTTOMANS_TOOLTIP">
+            <Text>The [B]Ottomans[/B] took Constantinople and ruled from [B]Byzantium's[/B] capital.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ROME_BYZANTIUM_TOOLTIP">
+            <Text>[B]Byzantium[/B] was the eastern half of [B]Rome[/B], and outlived the western.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_GREECE_BYZANTIUM_TOOLTIP">
+            <Text>[B]Byzantium[/B] spoke Greek and inherited the cities of [B]Greece[/B].</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_AUGUSTUS_BYZANTIUM_TOOLTIP">
+            <Text>[B]Augustus[/B] founded the empire that [B]Byzantium[/B] carried on.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_CATHERINE_BYZANTIUM_TOOLTIP">
+            <Text>[B]Catherine[/B] styled Russia the heir of [B]Byzantium[/B].</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_CHARLEMAGNE_BYZANTIUM_TOOLTIP">
+            <Text>[B]Charlemagne[/B] and [B]Byzantium[/B] disputed the title of Roman Emperor.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_XERXES_BYZANTIUM_TOOLTIP">
+            <Text>[B]Xerxes[/B] ruled the lands [B]Byzantium[/B] would contest with Persia for centuries.</Text>
+        </Row>
+    </EnglishText>
+</Database>

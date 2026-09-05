@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shell (game setup) side of Byzantium. One Civilizations row per age domain makes the civ
+     selectable at any start age; the game side copes with the other ages by itself
+     (base-standard/data/ages-post-process.sql adds TRAIT_ANACHRONISTIC_CIV). -->
+<Database>
+    <Civilizations>
+        <Row Domain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="fs://game/byzantium/icons/civ_sym_byzantium.png" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
+        <Row Domain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="fs://game/byzantium/icons/civ_sym_byzantium.png" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
+        <Row Domain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="fs://game/byzantium/icons/civ_sym_byzantium.png" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
+    </Civilizations>
+    <CivilizationItems>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" AgeType="AGE_ANTIQUITY" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_AQ_DESCRIPTION"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" AgeType="AGE_EXPLORATION" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_DESCRIPTION"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" AgeType="AGE_MODERN" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_MO_DESCRIPTION"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="UNIT_CATAPHRACT_AQ" Kind="KIND_UNIT" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_AQ_DESCRIPTION" Icon="fs://game/byzantium/icons/unitflag_cataphract.png"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="UNIT_DROMON_AQ" Kind="KIND_UNIT" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_AQ_DESCRIPTION" Icon="fs://game/byzantium/icons/unitflag_dromon.png"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="UNIT_CATAPHRACT" Kind="KIND_UNIT" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_BASE_DESCRIPTION" Icon="fs://game/byzantium/icons/unitflag_cataphract.png"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="UNIT_DROMON" Kind="KIND_UNIT" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_DESCRIPTION" Icon="fs://game/byzantium/icons/unitflag_dromon.png"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="QUARTER_AUGUSTAION" Kind="KIND_QUARTER" Name="LOC_QUARTER_AUGUSTAION_NAME" Description="LOC_QUARTER_AUGUSTAION_DESCRIPTION" Icon="city_uniquequarter"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_HIPPODROME" Kind="KIND_BUILDING" Name="LOC_BUILDING_HIPPODROME_NAME" Description="LOC_BUILDING_HIPPODROME_DESCRIPTION" Icon="fs://game/byzantium/icons/buildicon_hippodrome.png"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_GREAT_PALACE" Kind="KIND_BUILDING" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Icon="fs://game/byzantium/icons/buildicon_great_palace.png"/>
+    </CivilizationItems>
+    <CivilizationTags>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_APEX_AGE_EXPLORATION"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
+    </CivilizationTags>
+    <CivilizationUnlocks>
+        <!-- Antiquity civs that lead to Byzantium -->
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ROME" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_GREECE" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+        <!-- Modern civ Byzantium leads to -->
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" AgeDomain="StandardAges" AgeType="AGE_MODERN" Type="CIVILIZATION_RUSSIA" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_RUSSIA_NAME" Description="LOC_CIVILIZATION_RUSSIA_DESCRIPTION" Icon="CIVILIZATION_RUSSIA"/>
+    </CivilizationUnlocks>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_AUGUSTUS" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_CATHERINE" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_CHARLEMAGNE" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_XERXES" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+    </LeaderUnlocks>
+    <LeaderCivilizationBias>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" LeaderDomain="StandardLeaders" LeaderType="LEADER_AUGUSTUS" Bias="3" ReasonType="LOC_UNLOCK_PLAY_AS_AUGUSTUS_BYZANTIUM_TOOLTIP" ChoiceType="LOC_CREATE_GAME_HISTORICAL_CHOICE"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" LeaderDomain="StandardLeaders" LeaderType="LEADER_CATHERINE" Bias="2" ReasonType="LOC_UNLOCK_PLAY_AS_CATHERINE_BYZANTIUM_TOOLTIP" ChoiceType="LOC_CREATE_GAME_STRATEGIC_CHOICE"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" LeaderDomain="StandardLeaders" LeaderType="LEADER_CHARLEMAGNE" Bias="1" ReasonType="LOC_UNLOCK_PLAY_AS_CHARLEMAGNE_BYZANTIUM_TOOLTIP" ChoiceType="LOC_CREATE_GAME_GEOGRAPHIC_CHOICE"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" LeaderDomain="StandardLeaders" LeaderType="LEADER_XERXES" Bias="1" ReasonType="LOC_UNLOCK_PLAY_AS_XERXES_BYZANTIUM_TOOLTIP" ChoiceType="LOC_CREATE_GAME_GEOGRAPHIC_CHOICE"/>
+    </LeaderCivilizationBias>
+</Database>

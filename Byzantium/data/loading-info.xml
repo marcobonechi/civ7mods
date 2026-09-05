@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LoadingInfo_Civilizations>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM" Subtitle="LOC_LOADING_INTRO_BYZANTIUM" Tip="LOC_LOADING_CIV_TIPS_TEXT_BYZANTIUM"/>
+    </LoadingInfo_Civilizations>
+</Database>

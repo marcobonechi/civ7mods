@@ -168,11 +168,13 @@ def check(mod, game_idents, game_tags):
                             referenced_tags.setdefault(m.group(0), rel)
             continue
         for table in root:
+            ttag = table.tag.split("}")[-1]          # drop the GameEffects namespace
             for row in table.iter():
+                rtag = row.tag.split("}")[-1]
                 for attr, value in row.attrib.items():
                     for m in IDENT.finditer(value):
                         ident = m.group(0)
-                        if attr in DEFINING_ATTRS and (table.tag in DEFINING_TABLES or row.tag in DEFINING_TABLES):
+                        if attr in DEFINING_ATTRS and (ttag in DEFINING_TABLES or rtag in DEFINING_TABLES):
                             defined_idents.add(ident)
                         else:
                             referenced_idents.setdefault(ident, rel)
@@ -181,11 +183,11 @@ def check(mod, game_idents, game_tags):
                 if row.text and row.text.strip():
                     for m in IDENT.finditer(row.text):
                         ident = m.group(0)
-                        if table.tag in DEFINING_TABLES and row.tag in ("ID", "From"):
+                        if ttag in DEFINING_TABLES and rtag in ("ID", "From"):
                             defined_idents.add(ident)
-                        elif row.tag in ("Argument", "Path", "To", "Item", "Text"):
+                        elif rtag in ("Argument", "Path", "To", "Item", "Text"):
                             referenced_idents.setdefault(ident, rel)
-                        elif table.tag in DEFINING_TABLES:
+                        elif ttag in DEFINING_TABLES:
                             defined_idents.add(ident)
                         else:
                             referenced_idents.setdefault(ident, rel)

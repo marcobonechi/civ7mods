@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_MODULE_BYZANTIUM_NAME">
+            <Text>Byzantium</Text>
+        </Row>
+        <Row Tag="LOC_MODULE_BYZANTIUM_DESCRIPTION">
+            <Text>Adds Byzantium, an Exploration Age civilization that can be picked at any start age, with a true start at Constantinople on the Europe &amp; Mediterranean maps.</Text>
+        </Row>
+    </EnglishText>
+</Database>

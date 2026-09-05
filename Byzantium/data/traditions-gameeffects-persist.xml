@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Porphyrogennetos: +2 Culture on Hippodromes and Great Palaces (Iconolatry II shape). -->
+    <Modifier id="BYZANTIUM_PORPHYROGENNETOS_HIPPODROME_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_HIPPODROME</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">2</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_PORPHYROGENNETOS_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="BYZANTIUM_PORPHYROGENNETOS_GREAT_PALACE_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_GREAT_PALACE</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">2</Argument>
+    </Modifier>
+</GameEffects>

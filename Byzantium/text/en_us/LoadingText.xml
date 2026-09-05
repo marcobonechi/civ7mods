@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM">
+            <Text>Where two seas meet and two continents touch, the walls of Constantinople rise above the strait. Emperors are crowned beneath the great dome, envoys wait in the palace, and the cataphracts ride out from the Golden Gate. Rome did not fall here; it changed its tongue and endured.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_INTRO_BYZANTIUM">
+            <Text>Hold the Queen of Cities, and the world will come to you.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_CIV_TIPS_TEXT_BYZANTIUM">
+            <Text>Fill your cities with Great Works: Queen of Cities turns each one displayed into Influence and Gold.</Text>
+        </Row>
+    </EnglishText>
+</Database>

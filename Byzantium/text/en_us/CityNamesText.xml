@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM1">
+            <Text>Constantinople</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM2">
+            <Text>Thessalonica</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM3">
+            <Text>Nicaea</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM4">
+            <Text>Trebizond</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM5">
+            <Text>Antioch</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM6">
+            <Text>Adrianople</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM7">
+            <Text>Ephesus</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM8">
+            <Text>Smyrna</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM9">
+            <Text>Nicomedia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM10">
+            <Text>Chalcedon</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM11">
+            <Text>Ravenna</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM12">
+            <Text>Dyrrachium</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM13">
+            <Text>Mystras</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM14">
+            <Text>Monemvasia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM15">
+            <Text>Sardis</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM16">
+            <Text>Caesarea</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM17">
+            <Text>Ancyra</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM18">
+            <Text>Attaleia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM19">
+            <Text>Corinth</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM20">
+            <Text>Thebes</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM21">
+            <Text>Heraclea</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM22">
+            <Text>Amorium</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM23">
+            <Text>Philippopolis</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM24">
+            <Text>Cherson</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM25">
+            <Text>Sinope</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM26">
+            <Text>Edessa</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM27">
+            <Text>Bari</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM28">
+            <Text>Syracuse</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM29">
+            <Text>Naupactus</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_BYZANTIUM30">
+            <Text>Larissa</Text>
+        </Row>
+    </EnglishText>
+</Database>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <TraitModifiers>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_GREAT_WORKS_INFLUENCE"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_GREAT_WORKS_GOLD"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_DISTRICT_DEFENSE_COMBAT"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_WALL_HEALTH"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_CIV_WONDER_PRODUCTION_BYZANTIUM"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_REVEAL_CIV_CULTURE_TREE_BYZANTIUM"/>
+    </TraitModifiers>
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_PLAYER_IS_BYZANTIUM" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_PLAYER_IS_BYZANTIUM" RequirementId="REQ_PLAYER_HAS_TRAIT_BYZANTIUM"/>
+    </RequirementSetRequirements>
+    <Requirements>
+        <Row RequirementId="REQ_PLAYER_HAS_TRAIT_BYZANTIUM" RequirementType="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_PLAYER_HAS_TRAIT_BYZANTIUM" Name="TraitType" Value="TRAIT_BYZANTIUM"/>
+    </RequirementArguments>
+</Database>

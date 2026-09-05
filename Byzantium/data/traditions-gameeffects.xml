@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Themata: +3 Combat Strength for units in your homelands (the base De Jure tradition shape). -->
+    <Modifier id="BYZANTIUM_THEMATA_COMBAT_HOMELANDS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_IS_IN_HOMELANDS"/>
+        </SubjectRequirements>
+        <Argument name="AbilityType">ABILITY_BYZANTIUM_THEMATA_COMBAT</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_THEMATA_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="MOD_ABILITY_BYZANTIUM_THEMATA_COMBAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <Argument name="Amount">3</Argument>
+        <String context="Preview">LOC_TRADITION_BYZANTIUM_THEMATA_PREVIEW</String>
+    </Modifier>
+    <!-- Pentarchy: +1 Happiness and +1 Influence per displayed Great Work (Iconolatry shape). -->
+    <Modifier id="BYZANTIUM_PENTARCHY_GREAT_WORKS_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_PENTARCHY_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_PENTARCHY_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="BYZANTIUM_PENTARCHY_GREAT_WORKS_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_PENTARCHY_NAME</Argument>
+    </Modifier>
+    <Modifier id="BYZANTIUM_PENTARCHY_II_GREAT_WORKS_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_PENTARCHY_II_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_PENTARCHY_II_DESCRIPTION</String>
+    </Modifier>
+</GameEffects>

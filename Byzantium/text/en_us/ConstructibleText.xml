@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_BUILDING_HIPPODROME_NAME">
+            <Text>Hippodrome</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_HIPPODROME_DESCRIPTION">
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_CULTURE] Culture. +1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Great Palace.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_HIPPODROME_TOOLTIP">
+            <Text>+1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_GREAT_PALACE_NAME">
+            <Text>Great Palace</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_GREAT_PALACE_DESCRIPTION">
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_DIPLOMACY] Influence. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Hippodrome.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_GREAT_PALACE_TOOLTIP">
+            <Text>+1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_AUGUSTAION_NAME">
+            <Text>Augustaion</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_AUGUSTAION_DESCRIPTION">
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_QUARTER_TOOLTIP]Unique Quarter[/TIP], formed by a Hippodrome and a Great Palace. +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] displayed here.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_AUGUSTAION_TOOLTIP">
+            <Text>+2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] Great Work displayed here.</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_HAGIA_SOPHIA_NAME">
+            <Text>Hagia Sophia</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION">
+            <Text>+4 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_DIPLOMACY] Influence. Has 3 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] slots. Gain a [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_RELIC_TOOLTIP]Relic[/TIP] when it is completed. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP">
+            <Text>Has 3 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] slots. Gain a [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_RELIC_TOOLTIP]Relic[/TIP] when it is completed.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_WONDER_HAGIA_SOPHIA">
+            <Text>It seems not to rest upon solid masonry, but to cover the space with its golden dome suspended from Heaven.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_AUTHOR_WONDER_HAGIA_SOPHIA">
+            <Text>Procopius</Text>
+        </Row>
+        <Row Tag="LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION">
+            <Text>+30% [icon:YIELD_PRODUCTION] Production from being Byzantium's associated [icon:WONDER] Wonder.</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_HIPPODROME">
+            <Text>Byzantium: Hippodrome</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_GREAT_PALACE">
+            <Text>Byzantium: Great Palace</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_HAGIA_SOPHIA">
+            <Text>Byzantium: Hagia Sophia</Text>
+        </Row>
+    </EnglishText>
+</Database>

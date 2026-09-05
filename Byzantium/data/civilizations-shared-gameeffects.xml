@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Queen of Cities: +1 Influence and +1 Gold in a city per displayed Great Work (all ages). -->
+    <Modifier id="MOD_BYZANTIUM_GREAT_WORKS_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_GREAT_WORKS_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
+    </Modifier>
+    <!-- Theodosian Walls: +3 Combat Strength when the defender is one of your districts, and +20 health
+         on districts that hold a fortification (both from the Norman ability). -->
+    <Modifier id="MOD_BYZANTIUM_DISTRICT_DEFENSE_COMBAT" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_DEFENDER_IS_PLAYER_OWNED_DISTRICT"/>
+        </SubjectRequirements>
+        <Argument name="Amount">3</Argument>
+        <String context="Preview">LOC_TRAIT_BYZANTIUM_ABILITY_PREVIEW</String>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_WALL_HEALTH" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_TOTAL_HEALTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+                <Argument name="Tag">FORTIFICATION</Argument>
+                <Argument name="CurrentAgeOnly">false</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">20</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
+    </Modifier>
+</GameEffects>

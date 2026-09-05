@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modern: Byzantium's node in the shared Test of Time civic tree. -->
+<Database>
+    <Types>
+        <Row Type="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" Quote="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_QUOTE" QuoteAuthor="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" ProgressionTree="TREE_CIVICS_MO_TEST_OF_TIME" Cost="2000" Name="LOC_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_NAME" IconString="cult_byzantium" CanSteal="false"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PENTARCHY_II"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_MODIFIER" TargetType="MOD_MO_SETTLEMENT_CAP_INCREASE"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreeNodeTraits>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" RequiredTraitType="TRAIT_BYZANTIUM"/>
+    </ProgressionTreeNodeTraits>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_MO_ADMINISTRATION" PrereqNode="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION"/>
+        <Row Node="NODE_CIVIC_MO_SYNCRETISM_CHOICE" PrereqNode="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION"/>
+    </ProgressionTreePrereqs>
+</Database>

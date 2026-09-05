@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Antiquity Age variants for an Antiquity start (or a Time-Tested game): the same units, replacing
+     the Horseman and the Galley. Loaded only in Antiquity because UnitReplaces is a foreign key. -->
+<Database>
+    <Types>
+        <Row Type="UNIT_CATAPHRACT_AQ" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_DROMON_AQ" Kind="KIND_UNIT"/>
+        <Row Type="ABILITY_CATAPHRACT_AQ" Kind="KIND_ABILITY"/>
+        <Row Type="ABILITY_DROMON_AQ" Kind="KIND_ABILITY"/>
+    </Types>
+    <Units>
+        <Row UnitType="UNIT_CATAPHRACT_AQ" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_AQ_DESCRIPTION" Tier="3" Maintenance="4" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
+        <Row UnitType="UNIT_DROMON_AQ" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_AQ_DESCRIPTION" Tier="2" Maintenance="2" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
+    </Units>
+    <Unit_Stats>
+        <Row UnitType="UNIT_CATAPHRACT_AQ" Combat="37"/>
+        <Row UnitType="UNIT_DROMON_AQ" Combat="25" RangedCombat="20" Bombard="15" Range="1"/>
+    </Unit_Stats>
+    <Unit_Costs>
+        <Row UnitType="UNIT_CATAPHRACT_AQ" YieldType="YIELD_PRODUCTION" Cost="130"/>
+        <Row UnitType="UNIT_DROMON_AQ" YieldType="YIELD_PRODUCTION" Cost="50"/>
+    </Unit_Costs>
+    <UnitUpgrades>
+        <Row Unit="UNIT_DROMON_AQ" UpgradeUnit="UNIT_QUADRIREME"/>
+    </UnitUpgrades>
+    <UnitReplaces>
+        <Row CivUniqueUnitType="UNIT_CATAPHRACT_AQ" ReplacesUnitType="UNIT_HORSEMAN"/>
+        <Row CivUniqueUnitType="UNIT_DROMON_AQ" ReplacesUnitType="UNIT_GALLEY"/>
+    </UnitReplaces>
+    <Tags>
+        <Row Tag="UNIT_CLASS_CATAPHRACT_AQ" Category="UNIT_CLASS"/>
+        <Row Tag="UNIT_CLASS_DROMON_AQ" Category="UNIT_CLASS"/>
+    </Tags>
+    <TypeTags>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_MOUNTED"/>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_CAVALRY"/>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_ELITE_CAVALRY"/>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_CATAPHRACT_AQ"/>
+        <Row Type="UNIT_CATAPHRACT_AQ" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_RECON"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_MELEE"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_NAVAL"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_HEAVY"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_DROMON_AQ"/>
+        <Row Type="UNIT_DROMON_AQ" Tag="UNIT_CLASS_UNIQUE"/>
+    </TypeTags>
+    <UnitClass_Abilities>
+        <Row UnitAbilityType="ABILITY_CATAPHRACT_AQ" UnitClassType="UNIT_CLASS_CATAPHRACT_AQ"/>
+        <Row UnitAbilityType="ABILITY_DROMON_AQ" UnitClassType="UNIT_CLASS_DROMON_AQ"/>
+    </UnitClass_Abilities>
+    <UnitAbilities>
+        <Row UnitAbilityType="ABILITY_CATAPHRACT_AQ" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_ABILITY_CATAPHRACT_DESCRIPTION"/>
+        <Row UnitAbilityType="ABILITY_DROMON_AQ" Name="LOC_UNIT_DROMON_NAME" Description="LOC_ABILITY_DROMON_DESCRIPTION"/>
+    </UnitAbilities>
+    <UnitAbilityModifiers>
+        <Row UnitAbilityType="ABILITY_CATAPHRACT_AQ" ModifierId="CATAPHRACT_AQ_COMBAT_VS_INFANTRY"/>
+        <Row UnitAbilityType="ABILITY_DROMON_AQ" ModifierId="DROMON_AQ_COMBAT_VS_NAVAL"/>
+    </UnitAbilityModifiers>
+    <Unit_Advisories>
+        <Row UnitType="UNIT_CATAPHRACT_AQ" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row UnitType="UNIT_DROMON_AQ" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+    </Unit_Advisories>
+</Database>

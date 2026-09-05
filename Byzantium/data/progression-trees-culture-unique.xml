@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TREE_CIVICS_EX_BYZANTIUM" Kind="KIND_TREE"/>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_THEMATA" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_THEMATA" Quote="LOC_CIVIC_BYZANTIUM_THEMATA_QUOTE" QuoteAuthor="LOC_CIVIC_BYZANTIUM_THEMATA_AUTHOR"/>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" Quote="LOC_CIVIC_BYZANTIUM_PENTARCHY_QUOTE" QuoteAuthor="LOC_CIVIC_BYZANTIUM_PENTARCHY_AUTHOR"/>
+        <Row Type="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" Quote="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_QUOTE" QuoteAuthor="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTrees>
+        <Row ProgressionTreeType="TREE_CIVICS_EX_BYZANTIUM" AgeType="AGE_EXPLORATION" SystemType="SYSTEM_CULTURE" Name="LOC_TREE_CIVICS_EX_BYZANTIUM_NAME"/>
+    </ProgressionTrees>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="800" Name="LOC_CIVIC_BYZANTIUM_THEMATA_NAME" IconString="cult_byzantium"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="1200" Name="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME" IconString="cult_byzantium"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="2000" Name="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME" IconString="cult_byzantium"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_HIPPODROME" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_GREAT_PALACE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEMATA" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_SETTLEMENT_CAP_INCREASE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PENTARCHY" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_HAGIA_SOPHIA" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_RELIC" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PORPHYROGENNETOS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT" UnlockDepth="1"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" PrereqNode="NODE_CIVIC_EX_BYZANTIUM_THEMATA"/>
+        <Row Node="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" PrereqNode="NODE_CIVIC_EX_BYZANTIUM_THEMATA"/>
+    </ProgressionTreePrereqs>
+    <ProgressionTree_Advisories>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+    </ProgressionTree_Advisories>
+</Database>

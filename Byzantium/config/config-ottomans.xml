@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Ottomans DLC is enabled: Byzantium also leads to the Ottomans. -->
+<Database>
+    <CivilizationUnlocks>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" AgeDomain="StandardAges" AgeType="AGE_MODERN" Type="CIVILIZATION_OTTOMANS" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_OTTOMANS_NAME" Description="LOC_CIVILIZATION_OTTOMANS_DESCRIPTION" Icon="CIVILIZATION_OTTOMANS"/>
+    </CivilizationUnlocks>
+</Database>

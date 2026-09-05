@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Augustaion quarter: +2 Happiness in the city per displayed Great Work. -->
+    <Modifier id="MOD_BYZANTIUM_AUGUSTAION_HAPPINESS_PER_GREAT_WORK" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_AUGUSTAION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
+    </Modifier>
+    <!-- Hagia Sophia: a Relic when it is completed (Rila Monastery shape, once). -->
+    <Modifier id="MOD_HAGIA_SOPHIA_RELIC" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="GreatWorkType">GREATWORK_RELIC</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <!-- Queen of Cities: +30% Production toward Hagia Sophia (Exploration and Modern only, the wonder must exist). -->
+    <Modifier id="MOD_CIV_WONDER_PRODUCTION_BYZANTIUM" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT">
+                <Argument name="TraitType">TRAIT_BYZANTIUM</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Percent">30</Argument>
+        <String context="Preview">LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION</String>
+    </Modifier>
+</GameEffects>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_TREE_CIVICS_EX_BYZANTIUM_NAME">
+            <Text>Byzantium Civics</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_THEMATA_NAME">
+            <Text>Themata</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_THEMATA_QUOTE">
+            <Text>"The soldier should be feared by the enemy and loved by his own."</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_THEMATA_AUTHOR">
+            <Text>The Strategikon of Maurice</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME">
+            <Text>Pentarchy</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PENTARCHY_QUOTE">
+            <Text>"Solomon, I have outdone thee."</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PENTARCHY_AUTHOR">
+            <Text>Justinian, at the dedication of the Hagia Sophia</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME">
+            <Text>Porphyrogennetos</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_QUOTE">
+            <Text>"The imperial power should be exercised with order and measure, imitating the harmony of the Creator."</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_AUTHOR">
+            <Text>Constantine VII, De Ceremoniis</Text>
+        </Row>
+        <Row Tag="LOC_NODE_CIVIC_AQ_BYZANTIUM_ORIGINS_NAME">
+            <Text>Byzantine Origins</Text>
+        </Row>
+        <Row Tag="LOC_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_NAME">
+            <Text>Byzantine Modernization</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_I_NAME">
+            <Text>Themata I</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_NAME">
+            <Text>Themata</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_DESCRIPTION">
+            <Text>[B]+3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP][/B] for Units in your [TIP:LOC_PEDIA_CONCEPTS_HOMELANDS_TOOLTIP]Homelands[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_PREVIEW">
+            <Text>+{1_Amount} Themata</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PENTARCHY_NAME">
+            <Text>Pentarchy</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PENTARCHY_DESCRIPTION">
+            <Text>[B]+1 [icon:YIELD_HAPPINESS] Happiness[/B] and [B]+1 [icon:YIELD_DIPLOMACY] Influence[/B] from each displayed [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PENTARCHY_II_NAME">
+            <Text>Pentarchy II</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PENTARCHY_II_DESCRIPTION">
+            <Text>[B]+1 [icon:YIELD_HAPPINESS] Happiness[/B] and [B]+2 [icon:YIELD_DIPLOMACY] Influence[/B] from each displayed [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PORPHYROGENNETOS_NAME">
+            <Text>Porphyrogennetos</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_PORPHYROGENNETOS_DESCRIPTION">
+            <Text>[B]+2 [icon:YIELD_CULTURE] Culture[/B] on Hippodromes and Great Palaces.</Text>
+        </Row>
+    </EnglishText>
+</Database>

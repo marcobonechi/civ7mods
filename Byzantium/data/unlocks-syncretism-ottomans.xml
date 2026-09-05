@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Loaded in both scopes when the Ottomans DLC is present (the syncretism tables are shared with the shell). -->
+<Database>
+    <CivilizationSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" UnlockCivilizationType="CIVILIZATION_OTTOMANS"/>
+    </CivilizationSyncretismUnlocks>
+</Database>

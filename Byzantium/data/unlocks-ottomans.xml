@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Loaded only with the Ottomans DLC: Byzantium also leads to the Ottomans. -->
+<Database>
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_OTTOMANS" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_OTTOMANS"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_OTTOMANS" Name="LOC_CIVILIZATION_OTTOMANS_NAME" Description="LOC_UNLOCK_MODERN_CIV_DESCRIPTION" Icon="CIVILIZATION_OTTOMANS" UnlockRewardType="CIVILIZATION_OTTOMANS" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_OTTOMANS" ConfigurationValue="CIVILIZATION_OTTOMANS"/>
+    </UnlockConfigurationValues>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_OTTOMANS" RequirementSetId="REQSET_CIV_IS_BYZANTIUM" Description="LOC_UNLOCK_PLAY_AS_BYZANTIUM_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_BYZANTIUM_OTTOMANS_TOOLTIP"/>
+    </UnlockRequirements>
+</Database>

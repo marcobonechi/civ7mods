@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Loaded under exploration-age-persist because the modifiers name the unique buildings. -->
+<Database>
+    <TraditionModifiers>
+        <Row TraditionType="TRADITION_BYZANTIUM_PORPHYROGENNETOS" ModifierId="BYZANTIUM_PORPHYROGENNETOS_HIPPODROME_CULTURE"/>
+        <Row TraditionType="TRADITION_BYZANTIUM_PORPHYROGENNETOS" ModifierId="BYZANTIUM_PORPHYROGENNETOS_GREAT_PALACE_CULTURE"/>
+    </TraditionModifiers>
+</Database>

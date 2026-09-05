@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNIT_CATAPHRACT_NAME">
+            <Text>Cataphract</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_BASE_DESCRIPTION">
+            <Text>Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP]. +2 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] over the unit it replaces, and +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_DESCRIPTION">
+            <Text>Tier 1 Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP]. +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_2_DESCRIPTION">
+            <Text>Tier 2 Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP]. +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_3_DESCRIPTION">
+            <Text>Tier 3 Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP]. +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_CATAPHRACT_DESCRIPTION">
+            <Text>+3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_CATAPHRACT_PREVIEW">
+            <Text>+{1_Amount} against Infantry</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_DROMON_NAME">
+            <Text>Dromon</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_DROMON_DESCRIPTION">
+            <Text>Byzantine Unique Naval Unit that replaces the Cog. Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_DROMON_DESCRIPTION">
+            <Text>Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_DROMON_PREVIEW">
+            <Text>+{1_Amount} Greek fire</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_AQ_DESCRIPTION">
+            <Text>Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP] that replaces the Horseman. +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_DROMON_AQ_DESCRIPTION">
+            <Text>Byzantine Unique Naval Unit that replaces the Galley. Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_CATAPHRACT">
+            <Text>Byzantium: Cataphract</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_DROMON">
+            <Text>Byzantium: Dromon</Text>
+        </Row>
+    </EnglishText>
+</Database>

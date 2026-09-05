@@ -1,6 +1,14 @@
 # Byzantium: an Exploration Age civilization, playable in every age
 
-Status: plan, awaiting go-ahead. Written 2026-09-05 from the installed game files
+Status (2026-09-05): phases 1 to 5 implemented in `Byzantium/`, version 1. Verified so far: the
+checker is clean; the game loads the mod with no database errors at startup (shell scope, all
+three age rows), and the setup log lists Byzantium in every player slot's civilization values.
+Not yet verified, because it needs a game to be created in the UI: the game-scope tables (units,
+buildings, civic tree, traditions), the visual remaps, the placeholder icons, the true start on the
+Europe maps, and Antiquity or Modern starts. Do that check next: New Game, Exploration Age,
+Byzantium, Europe & Mediterranean map, then build a Cataphract and open the civics tree.
+
+Plan written 2026-09-05 from the installed game files
 (Bulgaria DLC as template, base age modules, schema SQL). Companion skill:
 `.claude/skills/new-civilization/` (procedure + table reference).
 

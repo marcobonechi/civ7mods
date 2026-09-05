@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="byzantium" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>LOC_MODULE_BYZANTIUM_NAME</Name>
+        <Description>LOC_MODULE_BYZANTIUM_DESCRIPTION</Description>
+        <Authors>Marco</Authors>
+        <Package>Mod</Package>
+        <Version>1</Version>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
+    </Dependencies>
+    <References>
+        <Mod id="age-exploration" title="LOC_MODULE_AGE_EXPLORATION_NAME"/>
+    </References>
+    <ActionCriteria>
+        <Criteria id="always">
+            <AlwaysMet></AlwaysMet>
+        </Criteria>
+        <Criteria id="antiquity-age-current">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+        </Criteria>
+        <Criteria id="exploration-age-current">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+        </Criteria>
+        <Criteria id="modern-age-current">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+        </Criteria>
+        <Criteria id="exploration-age-persist" any="true">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <AgeInUse>AGE_MODERN</AgeInUse>
+        </Criteria>
+        <Criteria id="ottomans-current">
+            <ModInUse>ottomans</ModInUse>
+        </Criteria>
+        <Criteria id="ottomans-shell">
+            <ModIsEnabled>ottomans</ModIsEnabled>
+        </Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <!-- Icons are plain PNGs brought in with ImportFiles; the game and the shell each load them. -->
+        <ActionGroup id="byzantium-art" scope="game" criteria="always">
+            <Actions>
+                <ImportFiles>
+                    <Item>icons/civ_sym_byzantium.png</Item>
+                    <Item>icons/unitflag_cataphract.png</Item>
+                    <Item>icons/unitflag_dromon.png</Item>
+                    <Item>icons/buildicon_hippodrome.png</Item>
+                    <Item>icons/buildicon_great_palace.png</Item>
+                    <Item>icons/wondericon_hagia_sophia.png</Item>
+                </ImportFiles>
+                <UpdateIcons>
+                    <Item>data/icons/icons.xml</Item>
+                </UpdateIcons>
+                <UpdateVisualRemaps>
+                    <Item>data/visual-remaps.xml</Item>
+                </UpdateVisualRemaps>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-text" scope="game" criteria="always">
+            <Actions>
+                <UpdateText>
+                    <Item>text/en_us/CitizenNamesText.xml</Item>
+                    <Item>text/en_us/CityNamesText.xml</Item>
+                    <Item>text/en_us/CivilizationLegacyText.xml</Item>
+                    <Item>text/en_us/CivilizationText.xml</Item>
+                    <Item>text/en_us/CivilopediaText.xml</Item>
+                    <Item>text/en_us/ConstructibleText.xml</Item>
+                    <Item>text/en_us/CultureText.xml</Item>
+                    <Item>text/en_us/LoadingText.xml</Item>
+                    <Item>text/en_us/ModuleText.xml</Item>
+                    <Item>text/en_us/UnitText.xml</Item>
+                    <Item>text/en_us/UnlockText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-main" scope="game" criteria="always">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/civilizations-legacy.xml</Item>
+                    <Item>data/civilizations-shared.xml</Item>
+                    <Item>data/civilizations-shared-gameeffects.xml</Item>
+                    <Item>data/traditions.xml</Item>
+                    <Item>data/traditions-gameeffects.xml</Item>
+                    <Item>data/unlocks-base-standard.xml</Item>
+                    <Item>data/unlocks-exploration.xml</Item>
+                    <Item>data/unlocks-antiquity.xml</Item>
+                    <Item>data/unlocks-syncretism.xml</Item>
+                    <Item>data/citizen-names.xml</Item>
+                    <Item>data/loading-info.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-antiquity" scope="game" criteria="antiquity-age-current">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/civilizations-antiquity.xml</Item>
+                    <Item>data/units-antiquity.xml</Item>
+                    <Item>data/units-antiquity-gameeffects.xml</Item>
+                    <Item>data/progression-trees-tech-antiquity.xml</Item>
+                    <Item>data/progression-trees-culture-unique-aq.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-exploration" scope="game" criteria="exploration-age-current">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/civilizations-exploration.xml</Item>
+                    <Item>data/civilizations-gameeffects.xml</Item>
+                    <Item>data/progression-trees-culture-unique.xml</Item>
+                    <Item>data/units.xml</Item>
+                    <Item>data/units-gameeffects.xml</Item>
+                    <Item>data/progression-trees-tech.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-modern" scope="game" criteria="modern-age-current">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/civilizations-modern.xml</Item>
+                    <Item>data/progression-trees-culture-unique-mo.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-exploration-persist" scope="game" criteria="exploration-age-persist">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/constructibles.xml</Item>
+                    <Item>data/constructibles-gameeffects.xml</Item>
+                    <Item>data/greatworks.xml</Item>
+                    <Item>data/traditions-persist.xml</Item>
+                    <Item>data/traditions-gameeffects-persist.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-ottomans" scope="game" criteria="ottomans-current">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/unlocks-ottomans.xml</Item>
+                    <Item>data/unlocks-syncretism-ottomans.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-shell" scope="shell" criteria="always">
+            <Actions>
+                <ImportFiles>
+                    <Item>icons/civ_sym_byzantium.png</Item>
+                    <Item>icons/unitflag_cataphract.png</Item>
+                    <Item>icons/unitflag_dromon.png</Item>
+                    <Item>icons/buildicon_hippodrome.png</Item>
+                    <Item>icons/buildicon_great_palace.png</Item>
+                    <Item>icons/wondericon_hagia_sophia.png</Item>
+                </ImportFiles>
+                <UpdateIcons>
+                    <Item>data/icons/icons.xml</Item>
+                </UpdateIcons>
+                <UpdateVisualRemaps>
+                    <Item>data/visual-remaps.xml</Item>
+                </UpdateVisualRemaps>
+                <UpdateDatabase>
+                    <Item>config/config.xml</Item>
+                    <Item>config/config-traditions.xml</Item>
+                    <Item>data/unlocks-syncretism.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>text/en_us/CivilizationLegacyText.xml</Item>
+                    <Item>text/en_us/CivilizationText.xml</Item>
+                    <Item>text/en_us/ConstructibleText.xml</Item>
+                    <Item>text/en_us/CultureText.xml</Item>
+                    <Item>text/en_us/LoadingText.xml</Item>
+                    <Item>text/en_us/ModuleText.xml</Item>
+                    <Item>text/en_us/UnitText.xml</Item>
+                    <Item>text/en_us/UnlockText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-shell-ottomans" scope="shell" criteria="ottomans-shell">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>config/config-ottomans.xml</Item>
+                    <Item>data/unlocks-syncretism-ottomans.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+    <LocalizedText>
+        <File>text/en_us/ModuleText.xml</File>
+    </LocalizedText>
+</Mod>

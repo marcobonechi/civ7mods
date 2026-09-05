@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_1">
+            <Text>Basil</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_2">
+            <Text>Justinian</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_3">
+            <Text>Alexios</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_4">
+            <Text>Constantine</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_5">
+            <Text>Leo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_6">
+            <Text>Theodore</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_7">
+            <Text>Nikephoros</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_8">
+            <Text>Michael</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_9">
+            <Text>Romanos</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_MALE_10">
+            <Text>John</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_1">
+            <Text>Theodora</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_2">
+            <Text>Irene</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_3">
+            <Text>Zoe</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_4">
+            <Text>Anna</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_5">
+            <Text>Eudokia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_6">
+            <Text>Helena</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_7">
+            <Text>Maria</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_8">
+            <Text>Sophia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_9">
+            <Text>Theophano</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_BYZANTIUM_FEMALE_10">
+            <Text>Pulcheria</Text>
+        </Row>
+    </EnglishText>
+</Database>

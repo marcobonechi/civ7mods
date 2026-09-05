@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT"/>
+    </Types>
+    <Civilizations>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" FullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Adjective="LOC_CIVILIZATION_BYZANTIUM_ADJECTIVE" StartingCivilizationLevelType="CIVILIZATION_LEVEL_FULL_CIV" ApexAge="AGE_EXPLORATION" AITargetCityPercentage="75" CapitalName="LOC_CITY_NAME_BYZANTIUM1" RandomCityNameDepth="10"/>
+    </Civilizations>
+    <CivilizationFavoredWonders>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" FavoredWonderType="WONDER_HAGIA_SOPHIA" FavoredWonderName="LOC_WONDER_HAGIA_SOPHIA_NAME"/>
+    </CivilizationFavoredWonders>
+    <Traits>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_DESCRIPTION" InternalOnly="true"/>
+    </Traits>
+    <CivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_EXPLORATION_CIV"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_BYZANTIUM"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_BYZANTIUM_ABILITY"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_MILITARISTIC"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_MILITARISTIC_TOT_AQ"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_MILITARISTIC_TOT_MO"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_POLITICAL"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_POLITICAL_TOT_AQ"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_POLITICAL_TOT_AQ_INFLUENCE"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_POLITICAL_TOT_MO"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_POLITICAL_TOT_MO_INFLUENCE"/>
+    </CivilizationTraits>
+    <LeaderCivPriorities>
+        <!-- AI pairing; the setup screen uses LeaderCivilizationBias in config/config.xml -->
+        <Row Leader="LEADER_AUGUSTUS" Civilization="CIVILIZATION_BYZANTIUM" Priority="3"/>
+        <Row Leader="LEADER_CATHERINE" Civilization="CIVILIZATION_BYZANTIUM" Priority="2"/>
+        <Row Leader="LEADER_CHARLEMAGNE" Civilization="CIVILIZATION_BYZANTIUM" Priority="1"/>
+        <Row Leader="LEADER_XERXES" Civilization="CIVILIZATION_BYZANTIUM" Priority="1"/>
+    </LeaderCivPriorities>
+    <CityNames>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM1"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM2"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM3"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM4"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM5"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM6"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM7"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM8"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM9"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM10"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM11"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM12"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM13"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM14"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM15"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM16"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM17"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM18"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM19"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM20"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM21"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM22"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM23"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM24"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM25"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM26"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM27"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM28"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM29"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" CityName="LOC_CITY_NAME_BYZANTIUM30"/>
+    </CityNames>
+    <StartBiasAdjacentToCoasts>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" Score="150"/>
+    </StartBiasAdjacentToCoasts>
+    <StartBiasBiomes>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BiomeType="BIOME_GRASSLAND" Score="5"/>
+    </StartBiasBiomes>
+    <StartBiasTerrains>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TerrainType="TERRAIN_NAVIGABLE_RIVER" Score="10"/>
+    </StartBiasTerrains>
+    <VisArt_CivilizationBuildingCultures>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="BUILDING_CULTURE_MED"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="BUILDING_CULTURE_MED_ANT"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="BUILDING_CULTURE_MED_EXP"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="BUILDING_CULTURE_SAM_MOD"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="ANT_STONE"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="EXP_STONE"/>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" BuildingCulture="MOD_STONE"/>
+    </VisArt_CivilizationBuildingCultures>
+    <VisArt_CivilizationUnitCultures>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" UnitCulture="Euro"/>
+    </VisArt_CivilizationUnitCultures>
+    <AiListTypes>
+        <Row ListType="Byzantium Government Bias"/>
+        <Row ListType="Byzantium PseudoYield Biases"/>
+        <Row ListType="Byzantium Settlement Plot Evaluations"/>
+    </AiListTypes>
+    <AiLists>
+        <Row ListType="Byzantium Government Bias" LeaderType="TRAIT_BYZANTIUM" System="GovernmentBiases"/>
+        <Row ListType="Byzantium PseudoYield Biases" LeaderType="TRAIT_BYZANTIUM" System="PseudoYieldBiases"/>
+        <Row ListType="Byzantium Settlement Plot Evaluations" LeaderType="TRAIT_BYZANTIUM" System="SettlementPlotEvaluations"/>
+    </AiLists>
+    <AiFavoredItems>
+        <Row ListType="Byzantium Government Bias" Item="GOVERNMENT_FEUDAL_MONARCHY" Value="50"/>
+        <Row ListType="Byzantium PseudoYield Biases" Item="PSEUDOYIELD_GREAT_WORK" Value="25"/>
+        <Row ListType="Byzantium Settlement Plot Evaluations" Item="Specific Terrain" Favored="true" Value="5" StringVal="TERRAIN_COAST" TooltipString="LOC_SETTLEMENT_RECOMMENDATION_TERRAIN"/>
+    </AiFavoredItems>
+</Database>

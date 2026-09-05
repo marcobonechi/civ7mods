@@ -5,7 +5,7 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | Folder | Mod | Status |
 |---|---|---|
 | `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
-| `Byzantium/` | Byzantium, an Exploration Age civilization playable at any start age | in progress, see `plans/byzantium.md` |
+| `Byzantium/` | Byzantium, an Exploration Age civilization playable at any start age | version 1, see [Byzantium](#byzantium) below |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 
@@ -258,3 +258,26 @@ jj bookmark set main -r @- && jj git push --bookmark main
 
 `.gitignore` keeps local build output and scratch files out of the repository. Nothing binary has
 ever been committed here; the largest tracked file is a generated preview page at ~105 KB.
+
+---
+
+# Byzantium — a civilization mod for Civilization VII
+
+An Exploration Age civilization that can also be picked at an Antiquity or Modern start. Install
+`Byzantium/` like the map mod (`./install.sh Byzantium`); with the map mod installed it starts at
+Constantinople on all four Europe maps.
+
+| Item | What it is |
+|---|---|
+| Ability: Queen of Cities | +1 Influence and +1 Gold per Great Work displayed in a settlement; +3 Combat Strength when defending your districts and +20 district health where a fortification stands; +30% Production toward Hagia Sophia |
+| Cataphract | Cavalry line replacing Courser, Knight and Lancer (+2 Combat Strength, +3 against infantry); an Antiquity variant replaces the Horseman |
+| Dromon | Replaces the Cog (Greek fire: +5 against naval units); an Antiquity variant replaces the Galley |
+| Augustaion | Unique quarter of Hippodrome (Culture) and Great Palace (Influence): +2 Happiness per Great Work displayed in the city |
+| Hagia Sophia | Associated wonder: +4 Culture, +2 Influence, 3 Great Work slots, a Relic on completion |
+| Civics | Themata, Pentarchy, Porphyrogennetos, each with a tradition; Test of Time nodes for Antiquity and Modern |
+| Unlocks | From Rome and Greece, or with Augustus, Catherine, Charlemagne, Xerxes; in Antiquity by holding Ancient Walls in three settlements. Leads to Russia (and the Ottomans when that DLC is present) |
+
+Unique units and buildings borrow the models of the base units and buildings they replace
+(`data/visual-remaps.xml`); icons are placeholder PNGs from `tools/make-icons.py` until real art
+exists. Design notes and the verification record are in `plans/byzantium.md`; the recipe for the
+next civilization is `.claude/skills/new-civilization/`.

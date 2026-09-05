@@ -11,3 +11,6 @@ scratch/
 
 # Screenshots
 *.png
+
+# Mod icons are real content, not screenshots
+!Byzantium/icons/*.png

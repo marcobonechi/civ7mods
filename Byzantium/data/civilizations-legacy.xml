@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TRAIT_BYZANTIUM" Kind="KIND_TRAIT"/>
+        <Row Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION"/>
+    </Types>
+    <LegacyCivilizations>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" FullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" Adjective="LOC_CIVILIZATION_BYZANTIUM_ADJECTIVE" Age="AGE_EXPLORATION"/>
+    </LegacyCivilizations>
+    <LegacyCivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_BYZANTIUM"/>
+    </LegacyCivilizationTraits>
+    <Traits>
+        <Row TraitType="TRAIT_BYZANTIUM" InternalOnly="true"/>
+    </Traits>
+</Database>

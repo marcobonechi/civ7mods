@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_BYZANTIUM" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_UNLOCK_EXPLORATION_CIV_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM" UnlockRewardType="CIVILIZATION_BYZANTIUM" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" ConfigurationValue="CIVILIZATION_BYZANTIUM"/>
+    </UnlockConfigurationValues>
+    <!-- Gameplay unlock in Antiquity: walls in three settlements (the Theodosian Walls). -->
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <Requirements>
+        <Row RequirementId="REQ_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementType="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_BUILDINGS"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_PLAYER_HAS_3_WALLS_BYZANTIUM" Name="BuildingType" Value="BUILDING_ANCIENT_WALLS"/>
+        <Row RequirementId="REQ_PLAYER_HAS_3_WALLS_BYZANTIUM" Name="Amount" Value="3"/>
+    </RequirementArguments>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementId="REQ_PLAYER_HAS_3_WALLS_BYZANTIUM"/>
+    </RequirementSetRequirements>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" Description="LOC_UNLOCK_WALLS_BYZANTIUM_DESCRIPTION" Tooltip="LOC_UNLOCK_WALLS_BYZANTIUM_TOOLTIP" GameplayUnlock="True" NarrativeText="LOC_UNLOCK_WALLS_BYZANTIUM_NARRATIVE"/>
+    </UnlockRequirements>
+</Database>

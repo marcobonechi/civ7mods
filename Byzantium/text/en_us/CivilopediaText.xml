@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_BYZANTIUM_CHAPTER_HISTORY_PARA_1">
+            <Text>In 330 Constantine dedicated a new capital on the Bosporus, on the site of the old Greek colony of Byzantion. The city commanded the only sea passage between the Mediterranean and the Black Sea and the land road between Europe and Asia, and it was ringed by water on three sides. When the western provinces of the Roman Empire dissolved in the fifth century, the eastern half, governed from Constantinople, simply carried on. Its people called themselves Romans to the end; "Byzantine" is a name given to them by later historians.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_BYZANTIUM_CHAPTER_HISTORY_PARA_2">
+            <Text>Under Justinian (527-565) the empire briefly reconquered Italy, North Africa and southern Spain, codified Roman law, and raised the Hagia Sophia, whose dome was the largest in the world for nearly a thousand years. The Theodosian Walls, a triple line of fortifications built in the fifth century, turned back Avars, Arabs, Bulgars and Rus alike; the city was not taken by an enemy until the Fourth Crusade in 1204.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_BYZANTIUM_CHAPTER_HISTORY_PARA_3">
+            <Text>The seventh century brought catastrophe. Persia and then the Arab caliphate stripped away Syria, Egypt and the wealth that came with them, and the empire reorganised itself around the themes: provinces whose soldiers farmed the land they defended. The armoured cataphract and the fire-throwing dromon were the instruments of this smaller, harder state, and a famously patient diplomacy did the rest, playing neighbour against neighbour with gold, titles and marriages.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_BYZANTIUM_CHAPTER_HISTORY_PARA_4">
+            <Text>The Macedonian dynasty (867-1056) presided over a second flowering. Basil II broke Bulgaria, the frontier returned to the Danube and the Euphrates, missionaries carried the Cyrillic alphabet and Orthodox Christianity to the Slavs, and the city's workshops, scriptoria and the Hippodrome made Constantinople the largest and richest city in Christendom.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_BYZANTIUM_CHAPTER_HISTORY_PARA_5">
+            <Text>Decline came from the defeat at Manzikert in 1071, the loss of Anatolia to the Turks, and the sack of 1204, after which a restored but diminished empire held little more than the city and a few coasts. On 29 May 1453 the Ottoman army of Mehmed II breached the walls with cannon, and the last emperor, Constantine XI, died in the fighting. Byzantium's law, art, liturgy and imperial idea lived on in Russia, the Balkans and the Renaissance West.</Text>
+        </Row>
+    </EnglishText>
+</Database>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unique quarter (Augustaion = Hippodrome + Great Palace) and the associated wonder, Hagia Sophia.
+     Loaded for Exploration and Modern (exploration-age-persist), like Bulgaria's constructibles. -->
+<Database>
+    <Types>
+        <Row Type="BUILDING_HIPPODROME" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_GREAT_PALACE" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="WONDER_HAGIA_SOPHIA" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="QUARTER_AUGUSTAION" Kind="KIND_QUARTER"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="WONDER_HAGIA_SOPHIA" Quote="LOC_QUOTE_WONDER_HAGIA_SOPHIA" QuoteAuthor="LOC_QUOTE_AUTHOR_WONDER_HAGIA_SOPHIA"/>
+    </TypeQuotes>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_HIPPODROME" Name="LOC_BUILDING_HIPPODROME_NAME" Description="LOC_BUILDING_HIPPODROME_DESCRIPTION" Tooltip="LOC_BUILDING_HIPPODROME_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Tooltip="LOC_BUILDING_GREAT_PALACE_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" Name="LOC_WONDER_HAGIA_SOPHIA_NAME" Description="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION" Tooltip="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP" ConstructibleClass="WONDER" Cost="750" Population="0" ImmuneDamage="true" Age="AGE_EXPLORATION" RequiresUnlock="true"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_HIPPODROME" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+    </Buildings>
+    <Wonders>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" MaxWorldInstances="1" BuildOnFrontier="true"/>
+    </Wonders>
+    <TypeTags>
+        <Row Type="BUILDING_HIPPODROME" Tag="CULTURE"/>
+        <Row Type="BUILDING_HIPPODROME" Tag="UNIQUE"/>
+        <Row Type="BUILDING_HIPPODROME" Tag="AGELESS"/>
+        <Row Type="BUILDING_GREAT_PALACE" Tag="DIPLOMACY"/>
+        <Row Type="BUILDING_GREAT_PALACE" Tag="UNIQUE"/>
+        <Row Type="BUILDING_GREAT_PALACE" Tag="AGELESS"/>
+        <Row Type="WONDER_HAGIA_SOPHIA" Tag="GREATWORK"/>
+        <Row Type="WONDER_HAGIA_SOPHIA" Tag="AGELESS"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_HIPPODROME" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" DistrictType="DISTRICT_WONDER"/>
+    </Constructible_ValidDistricts>
+    <Constructible_YieldChanges>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_CULTURE" YieldChange="6"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_DIPLOMACY" YieldChange="6"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="4"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
+    </Constructible_YieldChanges>
+    <Constructible_Maintenances>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_GOLD" Amount="3"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_HAPPINESS" Amount="3"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_GOLD" Amount="3"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_HAPPINESS" Amount="3"/>
+    </Constructible_Maintenances>
+    <Constructible_Adjacencies>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldChangeId="HippodromeQuarterCulture"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldChangeId="WonderCulture"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="WonderDiplomacy"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="GreatPalaceCoastDiplomacy"/>
+    </Constructible_Adjacencies>
+    <Adjacency_YieldChanges>
+        <Row ID="HippodromeQuarterCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
+        <Row ID="GreatPalaceCoastDiplomacy" YieldType="YIELD_DIPLOMACY" YieldChange="1" TilesRequired="1" AdjacentTerrain="TERRAIN_COAST"/>
+    </Adjacency_YieldChanges>
+    <Constructible_Plunders>
+        <Row ConstructibleType="BUILDING_HIPPODROME" PlunderType="PLUNDER_CULTURE" Amount="80"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" PlunderType="PLUNDER_GOLD" Amount="120"/>
+    </Constructible_Plunders>
+    <Constructible_BuildingCostProgressions>
+        <Row ConstructibleType="BUILDING_HIPPODROME" Percent="5"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" Percent="5"/>
+    </Constructible_BuildingCostProgressions>
+    <UniqueQuarters>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" BuildingType1="BUILDING_HIPPODROME" BuildingType2="BUILDING_GREAT_PALACE" Name="LOC_QUARTER_AUGUSTAION_NAME" Description="LOC_QUARTER_AUGUSTAION_DESCRIPTION" Tooltip="LOC_QUARTER_AUGUSTAION_TOOLTIP" TraitType="TRAIT_BYZANTIUM"/>
+    </UniqueQuarters>
+    <UniqueQuarterModifiers>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_HAPPINESS_PER_GREAT_WORK"/>
+    </UniqueQuarterModifiers>
+    <ConstructibleModifiers>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_RELIC"/>
+    </ConstructibleModifiers>
+    <Constructible_Advisories>
+        <Row ConstructibleType="BUILDING_HIPPODROME" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" AdvisoryClassType="ADVISORY_CLASS_DIPLOMACY"/>
+    </Constructible_Advisories>
+</Database>
