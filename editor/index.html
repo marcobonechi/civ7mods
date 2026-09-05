@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civ VII Map Visual Editor - Europe & Mediterranean</title>
+    <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+    <!-- App Header Toolbar -->
+    <header class="app-header">
+        <div class="header-brand">
+            <span class="brand-icon">&#127963;&#65039;</span>
+            <div class="brand-text">
+                <div class="brand-title">Civ VII Editor</div>
+                <div class="brand-subtitle">Europe &amp; Mediterranean</div>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <!-- Map Preset Selector -->
+            <div class="control-group">
+                <select id="mapSelect" class="header-select">
+                    <option value="europe-large">Europe, Mediterranean & Sahel (Large)</option>
+                    <option value="europe-std">Europe & Mediterranean (Standard)</option>
+                </select>
+            </div>
+
+            <!-- Grid Size Selector -->
+            <div class="control-group">
+                <select id="gridSizeSelect" class="header-select">
+                    <!-- Populated by script -->
+                </select>
+            </div>
+
+            <!-- Quick Live Stats -->
+            <div class="stats-badges">
+                <div class="stat-tag">Land: <strong id="statLandPct">--%</strong></div>
+                <div class="stat-tag">Mtns: <strong id="statMtnCount">--</strong></div>
+                <div id="statStartsStatus" class="status-tag ok">✓ Starts OK</div>
+            </div>
+
+            <!-- Undo / Redo -->
+            <div class="control-group">
+                <button id="btnUndo" class="btn-icon" title="Undo (Ctrl+Z)">↩</button>
+                <button id="btnRedo" class="btn-icon" title="Redo (Ctrl+Y)">↪</button>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Connection Status -->
+            <div id="serverIndicator" class="status-badge standalone">
+                <span class="idle-dot"></span> Checking server...
+            </div>
+
+            <button id="btnAsciiDump" class="btn" title="View Civ VII ASCII Text Grid">ASCII Grid</button>
+            <button id="btnExport" class="btn" title="Download formatted JS file">Export JS</button>
+            <button id="btnBuildPreview" class="btn" title="Run preview\build-preview.ps1" style="display: none;">Rebuild Preview</button>
+            <button id="btnInstallMod" class="btn success" title="Run install.ps1 to copy to Civ VII" style="display: none;">Install to Game</button>
+            <button id="btnSave" class="btn gold" title="Save changes directly to mod (Ctrl+S)">💾 Save to Mod</button>
+        </div>
+    </header>
+
+    <!-- App Body -->
+    <div class="app-body">
+        <!-- Left Sidebar: Feature Tree & Layer Toggles -->
+        <aside class="sidebar-left">
+            <div class="sidebar-header">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="treeSearch" class="search-input" placeholder="Search features (e.g. Rome, Danube, Alps)...">
+                </div>
+                <button id="btnAddFeature" class="btn primary block">+ Add New Feature</button>
+            </div>
+
+            <!-- Feature Tree -->
+            <div id="featureTreeList" class="tree-container">
+                <!-- Injected by editor-app.js -->
+            </div>
+
+            <!-- Layer Checklist -->
+            <div class="layers-panel">
+                <div class="layers-title">Display Layers</div>
+                <label class="layer-toggle"><input type="checkbox" data-layer="hexRaster" checked> Hex Raster (Civ 7 Map)</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="hexGrid" checked> Hex Grid Outlines</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="landPolys" checked> Land & Coastlines</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="mountainRanges" checked> Mountain Ranges & Buffers</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="rivers" checked> Navigable Rivers</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="straits" checked> Straits (waterLines)</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="lakesBlobs" checked> Lakes & Island Blobs</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="biomeAreas" checked> Biome Override Areas</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="startsVolcanoes" checked> Start Locations & Volcanoes</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="handles" checked> Draggable Vertex Handles</label>
+                <label class="layer-toggle"><input type="checkbox" data-layer="labels" checked> Feature Name Labels</label>
+            </div>
+        </aside>
+
+        <!-- Center Viewport: Interactive Canvas -->
+        <main class="canvas-viewport">
+            <canvas id="mapCanvas"></canvas>
+
+            <!-- Floating Viewport Controls -->
+            <div class="viewport-toolbar">
+                <button id="btnZoomIn" class="btn-icon" title="Zoom In (+)">➕</button>
+                <button id="btnZoomOut" class="btn-icon" title="Zoom Out (-)">➖</button>
+                <button id="btnZoomFit" class="btn-icon" title="Zoom to Fit">⛶</button>
+                <button id="btnZoomReset" class="btn-icon" title="Reset Zoom">1:1</button>
+            </div>
+
+            <!-- Status Readout Bar -->
+            <div class="viewport-status-bar">
+                <span id="cursorCoords">Lon: --°  Lat: --°</span>
+                <span id="cursorTile">Tile: (--, --)</span>
+                <span>Pan: Right-Drag / Space+Drag • Zoom: Mouse Wheel</span>
+            </div>
+        </main>
+
+        <!-- Right Sidebar: Inspector, Projection Knobs, Detailed Stats -->
+        <aside class="sidebar-right">
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="inspectorTab">Inspector</button>
+                <button class="tab-btn" data-tab="projectionTab">Projection</button>
+                <button class="tab-btn" data-tab="statsTab">Diagnostics</button>
+            </nav>
+
+            <div class="tab-content">
+                <!-- Inspector Tab -->
+                <div id="inspectorTab" class="tab-pane active">
+                    <div id="inspectorContent">
+                        <!-- Populated by script -->
+                    </div>
+                </div>
+
+                <!-- Projection Knobs Tab -->
+                <div id="projectionTab" class="tab-pane">
+                    <div id="projectionContent">
+                        <!-- Populated by script -->
+                    </div>
+                </div>
+
+                <!-- Statistics / Diagnostics Tab -->
+                <div id="statsTab" class="tab-pane">
+                    <div id="statsContent">
+                        <!-- Populated by script -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Modal: Add Feature -->
+    <div id="addFeatureModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title">Add New Geographic Feature</div>
+                <button id="btnCloseAddModal" class="btn-icon">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Feature Category</label>
+                    <select id="newFeatureType" class="form-select">
+                        <option value="land">Island / Land Polygon</option>
+                        <option value="ranges">Mountain Range</option>
+                        <option value="rivers">Navigable River</option>
+                        <option value="lakes">Lake (Round)</option>
+                        <option value="landBlobs">Island Blob (Round)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Feature Name</label>
+                    <input type="text" id="newFeatureName" class="form-input" placeholder="e.g. Corsica, Rhine, Apennines...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmAdd" class="btn primary">Create Feature</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: ASCII Dump View -->
+    <div id="asciiModal" class="modal-backdrop">
+        <div class="modal-box large">
+            <div class="modal-header">
+                <div class="modal-title">Civilization VII Debug ASCII Text Grid</div>
+                <button id="btnCloseAsciiModal" class="btn-icon">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="asciiDumpText" class="ascii-code-view"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Application Scripts -->
+    <script src="js/default-maps.js"></script>
+    <script src="js/rasterizer.js"></script>
+    <script src="js/serializer.js"></script>
+    <script src="js/canvas-view.js"></script>
+    <script src="js/editor-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<title>Europe Map Preview</title>
+<style>
+body{margin:0;background:#111;color:#ddd;font:12px monospace}
+#info{padding:6px 8px 2px}
+#bar{padding:2px 8px 4px;display:flex;gap:8px;align-items:center}
+#bar button{background:#2a2a2a;color:#ddd;border:1px solid #555;padding:2px 10px;font:12px monospace;cursor:pointer}
+#hover{color:#ffd23f;min-height:14px}
+canvas{display:block;margin:0 8px;cursor:grab}
+pre{font-size:9px;line-height:9px;letter-spacing:1px;padding:6px}
+</style>
+<div id="info"></div>
+<div id="bar"><button id="zin">+</button><button id="zout">&minus;</button><button id="zfit">fit</button><span>wheel = zoom at cursor, drag = pan, hover = hex details</span><span id="hover"></span></div>
+<canvas id="c"></canvas>
+<pre id="ascii"></pre>
+<script>

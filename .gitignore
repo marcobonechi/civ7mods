@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+._*
+
+# Release artifacts (regenerate with ./release.sh)
+*.zip
+
+# Browser profiles / caches used by the editor + preview scratch work
+scratch/
+
+# Screenshots
+*.png

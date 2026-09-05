@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="en_US">
+            <Text>Europe &amp; Mediterranean Map</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="en_US">
+            <Text>Adds the "Europe &amp; Mediterranean" map: the Mediterranean world and Europe from the Urals to Iceland and from Morocco to the Sinai, with true start locations for civilizations from the region.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

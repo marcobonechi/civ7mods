@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Maps>
+        <Row File="{europe-mediterranean-map}maps/europe-map.js" Name="LOC_MAP_EUROPE_MED_NAME" Description="LOC_MAP_EUROPE_MED_DESCRIPTION" SortIndex="5"/>
+        <Row File="{europe-mediterranean-map}maps/europe-large-map.js" Name="LOC_MAP_EUROPE_MED_LARGE_NAME" Description="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" SortIndex="6"/>
+    </Maps>
+
+    <!-- Map sizes for the large map (grids come from data/maps.xml) -->
+    <MapSizes>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Name="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="10" DefaultPlayers="10" SortIndex="200"/>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Name="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="16" MaxHumans="12" DefaultPlayers="12" SortIndex="201"/>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Name="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="18" MaxHumans="12" DefaultPlayers="12" SortIndex="202"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Name="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="6" DefaultPlayers="10" SortIndex="200"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Name="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="16" MaxHumans="7" DefaultPlayers="12" SortIndex="201"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Name="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="18" MaxHumans="7" DefaultPlayers="12" SortIndex="202"/>
+    </MapSizes>
+
+    <!-- The large map only offers its own sizes -->
+    <SupportedValuesByMap>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+    </SupportedValuesByMap>
+</Database>

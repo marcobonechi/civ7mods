@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME">
+            <Text>Europe &amp; Mediterranean</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION">
+            <Text>A map of Europe and the Mediterranean basin, from the Urals to Iceland and from Morocco to the Sinai. Historical start locations for civilizations from the region; other civilizations start at curated sites.[n]Works with the standard map sizes.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME">
+            <Text>Europe, Mediterranean &amp; Sahel (Large)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION">
+            <Text>A larger take on Europe and the Mediterranean that reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily have room for several cities), a harsher Russia, a compressed Arctic and Sahara, and historical starts for Aksum and Songhai as well.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
+            <Text>Europe Large 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION">
+            <Text>Europe, Mediterranean and Sahel on a 112x98 grid, 10 players by default.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME">
+            <Text>Europe Large 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION">
+            <Text>Europe, Mediterranean and Sahel on a 128x112 grid, 12 players by default.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME">
+            <Text>Europe Large 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION">
+            <Text>Europe, Mediterranean and Sahel on a 144x126 grid, 12 players by default. Long turns on older machines.</Text>
+        </Replace>
+    </EnglishText>
+</Database>

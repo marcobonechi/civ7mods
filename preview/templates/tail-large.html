@@ -1,0 +1,118 @@
+(function(){
+  const q = new URLSearchParams(location.search);
+  const W = parseInt(q.get('w')||'112'), H = parseInt(q.get('h')||'98');
+  let seed = parseInt(q.get('seed')||'12345');
+  const rnd = () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+  const t0 = performance.now();
+  const g = buildEuropeGrid(W, H, GEO, rnd);
+  const t1 = performance.now();
+
+  // start tiles
+  const starts = [];
+  for (const civ in GEO.tsl) { const ll = GEO.tsl[civ]; const t = g.findLandTile(ll[0], ll[1], 3, false); starts.push({civ: civ.replace('CIVILIZATION_',''), t}); }
+  const startAt = {}; for (const st of starts) if (st.t) startAt[st.t[0]+','+st.t[1]] = st.civ;
+  const volcanoAt = {}; for (const v of g.volcanoes) volcanoAt[v.x+','+v.y] = v.name;
+
+  // ---- geometry of the hex picture (world units: one hex side = s) ----
+  const s = 6, w = Math.sqrt(3)*s, hh = 2*s;
+  const worldW = (W+1)*w + 4, worldH = (H+1)*0.75*hh + hh + 4;
+  const centerOf = (x, y) => [ (x + 0.5*(y&1)) * w + w/2 + 2, (H-1-y) * 0.75*hh + hh/2 + 2 ];
+  const colors = { ocean:'#0f2a4a', coast:'#3d7fb8', G:'#4f9a3a', P:'#b3a45c', D:'#e2cf8e', T:'#a9b6bd', R:'#2f7a3a', river:'#5fb3e6' };
+  const biomeName = { M:'marine', G:'grassland', P:'plains', D:'desert', T:'tundra', R:'tropical' };
+  const terrainName = ['ocean','coast','flat','hills','mountain','navigable river'];
+
+  // ---- counts and text dump ----
+  let counts = {land:0, water:0, mtn:0, hill:0, coast:0, ocean:0, river:0, G:0,P:0,D:0,T:0,R:0};
+  const rows = [];
+  for (let y = H-1; y >= 0; y--) {
+    let line = '';
+    for (let x = 0; x < W; x++) {
+      const i = g.idx(x,y); const t = g.terrain[i]; const b = g.biome[i]; let ch;
+      if (t === T.OCEAN) { ch='.'; counts.ocean++; counts.water++; }
+      else if (t === T.COAST) { ch=','; counts.coast++; counts.water++; }
+      else if (t === T.RIVER) { ch='V'; counts.river++; counts.land++; }
+      else { counts.land++; counts[b]=(counts[b]||0)+1; ch = b.toLowerCase(); if (t === T.HILL) { ch = b; counts.hill++; } if (t === T.MOUNTAIN) { ch='^'; counts.mtn++; } }
+      line += ch;
+    }
+    rows.push(line);
+  }
+  document.getElementById('info').textContent = `${W}x${H}  built in ${(t1-t0).toFixed(0)} ms  land=${counts.land} (${(100*counts.land/(W*H)).toFixed(1)}%) coast=${counts.coast} ocean=${counts.ocean} mtn=${counts.mtn} hill=${counts.hill} rivers=${counts.river} G=${counts.G} P=${counts.P} D=${counts.D} T=${counts.T} R=${counts.R}  missing starts: ${starts.filter(s=>!s.t).map(s=>s.civ).join(',')||'none'}`;
+  document.getElementById('ascii').textContent = rows.map((r,i)=>String(H-1-i).padStart(2,'0')+' '+r).join('\n');
+
+  // ---- pre-render the whole map once into an offscreen canvas ----
+  const off = document.createElement('canvas'); off.width = Math.ceil(worldW); off.height = Math.ceil(worldH);
+  const octx = off.getContext('2d');
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const i = g.idx(x,y); const t = g.terrain[i]; const b = g.biome[i];
+      let fill = t === T.OCEAN ? colors.ocean : t === T.COAST ? colors.coast : t === T.RIVER ? colors.river : (colors[b] || '#f0f');
+      const [cx, cy] = centerOf(x, y);
+      octx.beginPath();
+      for (let k=0;k<6;k++){ const a=(60*k-30)*Math.PI/180; const px=cx+s*Math.cos(a), py=cy+s*Math.sin(a); if(k===0)octx.moveTo(px,py); else octx.lineTo(px,py);} octx.closePath();
+      octx.fillStyle = fill; octx.fill();
+      octx.strokeStyle = 'rgba(0,0,0,0.15)'; octx.lineWidth = 0.5; octx.stroke();
+      if (t === T.HILL) { octx.fillStyle='rgba(0,0,0,0.35)'; octx.beginPath(); octx.arc(cx, cy, s*0.35, 0, 6.3); octx.fill(); }
+      if (t === T.MOUNTAIN) { octx.fillStyle='#4a3b32'; octx.beginPath(); octx.moveTo(cx-s*0.6, cy+s*0.5); octx.lineTo(cx, cy-s*0.6); octx.lineTo(cx+s*0.6, cy+s*0.5); octx.closePath(); octx.fill(); }
+    }
+  }
+  for (const v of g.volcanoes) { const [cx, cy] = centerOf(v.x, v.y); octx.fillStyle='#ff3b1f'; octx.beginPath(); octx.arc(cx,cy,s*0.4,0,6.3); octx.fill(); }
+
+  // ---- viewport with zoom and pan ----
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+  let zoom = 1, panX = 0, panY = 0, hover = null;
+  function fit() {
+    cv.width = Math.max(600, window.innerWidth - 24); cv.height = Math.max(400, Math.min(window.innerHeight - 90, Math.round(cv.width * worldH / worldW)));
+    zoom = Math.min(cv.width / worldW, cv.height / worldH); panX = (cv.width - worldW*zoom)/2; panY = (cv.height - worldH*zoom)/2; draw();
+  }
+  function draw() {
+    ctx.setTransform(1,0,0,1,0,0); ctx.fillStyle = '#111'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.setTransform(zoom,0,0,zoom,panX,panY);
+    ctx.imageSmoothingEnabled = zoom < 1;
+    ctx.drawImage(off, 0, 0);
+    // labels keep a readable screen size
+    const fs = Math.max(9, 11 / zoom); ctx.font = fs + 'px sans-serif'; ctx.lineWidth = 2 / zoom;
+    for (const st of starts) { if(!st.t) continue; const [cx, cy] = centerOf(st.t[0], st.t[1]); ctx.strokeStyle='#fff'; ctx.beginPath(); ctx.arc(cx,cy,s*0.8,0,6.3); ctx.stroke(); ctx.fillStyle='#fff'; ctx.fillText(zoom >= 1.6 ? st.civ : st.civ.substring(0,6), cx+s, cy+fs*0.35); }
+    if (zoom >= 2.2) { // hex coordinates when zoomed in
+      ctx.font = Math.max(3, 7 / zoom) + 'px monospace'; ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      const [x0, y0] = worldToHex(-panX/zoom, -panY/zoom), [x1, y1] = worldToHex((cv.width-panX)/zoom, (cv.height-panY)/zoom);
+      for (let y = Math.max(0, y1-1); y <= Math.min(H-1, y0+1); y++) for (let x = Math.max(0, x0-1); x <= Math.min(W-1, x1+1); x++) { const [cx, cy] = centerOf(x, y); ctx.fillText(x+','+y, cx - s*0.7, cy + s*0.9); }
+    }
+    if (hover) { const [cx, cy] = centerOf(hover[0], hover[1]); ctx.strokeStyle='#ffd23f'; ctx.lineWidth = 2/zoom; ctx.beginPath(); for (let k=0;k<6;k++){ const a=(60*k-30)*Math.PI/180; const px=cx+s*Math.cos(a), py=cy+s*Math.sin(a); if(k===0)ctx.moveTo(px,py); else ctx.lineTo(px,py);} ctx.closePath(); ctx.stroke(); }
+  }
+  function worldToHex(wx, wy) { // nearest hex to a world point (offset rows)
+    const y = Math.round((H-1) - (wy - 2 - hh/2) / (0.75*hh));
+    const x = Math.round((wx - 2 - w/2) / w - 0.5*(y&1));
+    return [x, y];
+  }
+  function describe(x, y) {
+    if (x < 0 || x >= W || y < 0 || y >= H) return '';
+    const i = g.idx(x, y); const t = g.terrain[i];
+    let d = `hex ${x},${y}   lon ${g.lonC[i].toFixed(1)}  lat ${g.latC[i].toFixed(1)}   ${terrainName[t]}`;
+    if (t !== T.OCEAN && t !== T.COAST) d += `  ${biomeName[g.biome[i]]||g.biome[i]}  rain ${g.rain[i]}  region ${g.region[i]}`;
+    if (startAt[x+','+y]) d += `   start: ${startAt[x+','+y]}`;
+    if (volcanoAt[x+','+y]) d += `   volcano: ${volcanoAt[x+','+y]}`;
+    return d;
+  }
+  cv.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const r = cv.getBoundingClientRect(); const mx = e.clientX - r.left, my = e.clientY - r.top;
+    const f = e.deltaY < 0 ? 1.2 : 1/1.2; const nz = Math.min(12, Math.max(0.2, zoom * f));
+    panX = mx - (mx - panX) * (nz / zoom); panY = my - (my - panY) * (nz / zoom); zoom = nz; draw();
+  }, { passive: false });
+  let drag = null;
+  cv.addEventListener('mousedown', (e) => { drag = { x: e.clientX, y: e.clientY, px: panX, py: panY }; });
+  window.addEventListener('mouseup', () => { drag = null; });
+  cv.addEventListener('mousemove', (e) => {
+    if (drag) { panX = drag.px + (e.clientX - drag.x); panY = drag.py + (e.clientY - drag.y); draw(); return; }
+    const r = cv.getBoundingClientRect(); const hx = worldToHex((e.clientX - r.left - panX)/zoom, (e.clientY - r.top - panY)/zoom);
+    if (!hover || hover[0] !== hx[0] || hover[1] !== hx[1]) { hover = hx; document.getElementById('hover').textContent = describe(hx[0], hx[1]); draw(); }
+  });
+  cv.addEventListener('mouseleave', () => { hover = null; draw(); });
+  document.getElementById('zin').onclick = () => { const nz = Math.min(12, zoom*1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };
+  document.getElementById('zout').onclick = () => { const nz = Math.max(0.2, zoom/1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };
+  document.getElementById('zfit').onclick = fit;
+  window.addEventListener('resize', fit);
+  fit();
+})();
+</script>
