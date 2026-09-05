@@ -13,7 +13,9 @@ export const GEO = {
     scaleExp: 0.5,       // 0 = plain equirectangular, 1 = area-true per row
     latBottom: 27.5,     // latitude of the bottom row
     latTop: 71.0,        // latitude of the top row
-    landmassSplitLon: 19.5,   // west of this = LANDMASS_REGION_WEST, east = EAST
+    // No Distant Lands on this map: north of 27.5N Europe, North Africa and the Near East are
+    // one connected landmass, so any split would cut through walkable ground.
+    distantLandsAnchors: [],
 
     // ---- land polygons -----------------------------------------------
     land: [

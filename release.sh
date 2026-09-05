@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Bump the mod version, install it into the game, and write a new versioned zip to share.
+# Bump the mod version and install it into the game.
+# Distribution goes through the git repository, not a zip: publish a version by
+# committing and pushing, then tagging a GitHub release.
 # Usage: ./release.sh             (bumps 1 -> 2 -> 3 ...)
-#        ./release.sh --no-bump   (rebuild the zip for the current version)
-# macOS/Linux port of release.ps1.
+#        ./release.sh --no-bump   (reinstall at the current version)
+# macOS/Linux port of release.ps1, which still writes a zip.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -36,16 +38,9 @@ fi
 
 bash "$ROOT/install.sh" | tail -1
 
-STAMP="$(date +%Y%m%d-%H%M)"
-ZIP="$ROOT/EuropeMediterranean-v${VERSION}-${STAMP}.zip"
-rm -f "$ZIP"
-# Zip from the project root so the archive root is EuropeMediterranean/, matching the Windows zips.
-( cd "$ROOT" && zip -r -q -X "$ZIP" EuropeMediterranean \
-    -x '*.DS_Store' -x '*._*' -x '*/.git/*' )
-
-SIZE="$(wc -c < "$ZIP" | tr -d ' ')"
-if command -v md5 >/dev/null; then MD5="$(md5 -q "$ZIP")"; else MD5="$(md5sum "$ZIP" | cut -d' ' -f1)"; fi
-
 echo "mod version $VERSION"
-echo "zip: $ZIP ($SIZE bytes)"
-echo "md5: $MD5"
+echo
+echo "next: commit and push, then cut the GitHub release"
+echo "  jj describe -m \"Release v$VERSION\" && jj new"
+echo "  jj bookmark set main -r @- && jj git push --bookmark main"
+echo "  gh release create v$VERSION --target main --title \"v$VERSION\" --notes \"...\""

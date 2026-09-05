@@ -8,10 +8,16 @@
             <Text>A map of Europe and the Mediterranean basin, from the Urals to Iceland and from Morocco to the Sinai. Historical start locations for civilizations from the region; other civilizations start at curated sites.[n]Works with the standard map sizes.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME">
-            <Text>Europe, Mediterranean &amp; Sahel (Large)</Text>
+            <Text>Europe, Mediterranean &amp; Sahel (Large, Distant Lands)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION">
-            <Text>A larger take on Europe and the Mediterranean that reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily have room for several cities), a harsher Russia, a compressed Arctic and Sahara, and historical starts for Aksum and Songhai as well.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+            <Text>A larger take on Europe and the Mediterranean that reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily have room for several cities), a harsher Russia, a compressed Arctic and Sahara, and historical starts for Aksum and Songhai as well.[n][n]Africa is Distant Lands across the Mediterranean, so Exploration Age treasure fleets and the distant-lands legacy paths work here.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME">
+            <Text>Europe, Mediterranean &amp; Sahel (Large, One Landmass)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION">
+            <Text>The same geography as Europe, Mediterranean &amp; Sahel (Large), but with no Distant Lands: Africa and Eurasia share one landmass region, so every civilization can be reached and contacted overland from the first turn.[n][n]Trade-off: because the Exploration Age Economic (treasure fleet) and Military legacy paths both score only in Distant Lands, neither can be completed on this version. Pick the standard Large map if you want those.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>

@@ -21,7 +21,10 @@ export const GEO = {
     latControl: [[10.0, 0.0], [27.0, 0.13], [46.0, 0.556], [60.0, 0.876], [71.0, 1.0]],
     rangeScale: 1.45,    // mountain range widths are authored for the 78-wide grid
     blobScale: 1.35,
-    landmassSplitLon: 19.5,
+    // Distant Lands: one anchor per landmass that should sit across the sea. [20, 10] is the
+    // Sahel, i.e. the African landmass, which the Mediterranean and the Suez channel separate
+    // from Eurasia. Leave the list empty to put every landmass in one region.
+    distantLandsAnchors: [[20, 10]],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
     // Gulf of Guinea coast just above the sea lane, a tall Sahel, a three-row Sahara.
@@ -716,6 +719,17 @@ export const GEO = {
         [10.3, 36.8, "Carthage"], [29.1, 40.2, "Bursa"], [-3.7, 40.4, "Toledo"], [44.4, 33.3, "Baghdad"],
         [43.1, 36.3, "Nineveh"], [27.1, 43.4, "Pliska"], [3.05, 36.75, "Algiers"], [47.0, 48.0, "Sarai"],
         [48.5, 33.0, "Susa"], [51.4, 35.7, "Tehran"], [1.1, 49.4, "Rouen"], [-20.30, 63.81, "Reykjavik"],
-        [38.7, 14.1, "Axum"], [-0.05, 16.3, "Gao"]
+        [38.7, 14.1, "Axum"], [-0.05, 16.3, "Gao"],
+        // --- Sahel and West Africa (Songhai, Mali, Kanem-Bornu heartland) ---
+        [-8.00, 12.65, "Bamako"], [-4.55, 13.91, "Djenne"], [-1.53, 12.37, "Ouagadougou"],
+        [2.11, 13.51, "Niamey"], [8.99, 13.80, "Zinder"], [13.00, 12.90, "Ngazargamu"],
+        [-11.44, 14.45, "Kayes"], [5.27, 14.89, "Tahoua"],
+        // --- Horn of Africa and the Red Sea ---
+        [37.47, 12.60, "Gondar"], [39.47, 15.61, "Massawa"], [42.13, 9.31, "Harar"],
+        [43.47, 11.36, "Zeila"],
+        // --- Ukraine, the Pontic steppe and the western Rus ---
+        [24.03, 49.84, "Lviv"], [28.86, 47.01, "Chisinau"], [30.73, 46.48, "Odesa"],
+        [35.14, 47.84, "Zaporizhzhia"], [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
+        [32.05, 54.78, "Smolensk"]
     ]
 };

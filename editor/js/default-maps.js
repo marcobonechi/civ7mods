@@ -24,7 +24,10 @@ window.DEFAULT_EUROPE_LARGE_GEO = {
     latControl: [[10.0, 0.0], [27.0, 0.13], [46.0, 0.556], [60.0, 0.876], [71.0, 1.0]],
     rangeScale: 1.45,    // mountain range widths are authored for the 78-wide grid
     blobScale: 1.35,
-    landmassSplitLon: 19.5,
+    // Distant Lands: one anchor per landmass that should sit across the sea. [20, 10] is the
+    // Sahel, i.e. the African landmass, which the Mediterranean and the Suez channel separate
+    // from Eurasia. Leave the list empty to put every landmass in one region.
+    distantLandsAnchors: [[20, 10]],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
     // Gulf of Guinea coast just above the sea lane, a tall Sahel, a three-row Sahara.
@@ -739,7 +742,9 @@ window.DEFAULT_EUROPE_GEO = {
     scaleExp: 0.5,       // 0 = plain equirectangular, 1 = area-true per row
     latBottom: 27.5,     // latitude of the bottom row
     latTop: 71.0,        // latitude of the top row
-    landmassSplitLon: 19.5,   // west of this = LANDMASS_REGION_WEST, east = EAST
+    // No Distant Lands on this map: north of 27.5N Europe, North Africa and the Near East are
+    // one connected landmass, so any split would cut through walkable ground.
+    distantLandsAnchors: [],
 
     // ---- land polygons -----------------------------------------------
     land: [
