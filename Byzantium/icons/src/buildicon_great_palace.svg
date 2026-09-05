@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Great Palace: an arcaded facade under a lead dome, purple hangings and a gold cross. -->
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9d7ae"/><stop offset="1" stop-color="#b8975f"/></linearGradient>
+    <linearGradient id="dome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fb0bd"/><stop offset="1" stop-color="#55666f"/></linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c6653a"/><stop offset="1" stop-color="#8a4024"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4dc86"/><stop offset="1" stop-color="#b8862a"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a2e86"/><stop offset="1" stop-color="#4a1454"/></linearGradient>
+  </defs>
+  <ellipse cx="128" cy="214" rx="104" ry="18" fill="#000" opacity="0.28"/>
+  <!-- side wings -->
+  <rect x="30" y="132" width="196" height="80" fill="url(#wall)"/>
+  <rect x="24" y="126" width="208" height="10" fill="#9c7a48"/>
+  <!-- wing roofs -->
+  <path d="M30,126 L78,104 L78,126 Z M226,126 L178,104 L178,126 Z" fill="url(#roof)"/>
+  <rect x="78" y="104" width="100" height="24" fill="#d2ba86"/>
+  <!-- drum and dome -->
+  <rect x="94" y="80" width="68" height="26" fill="#d9c391"/>
+  <path d="M90,82 A38,34 0 0 1 166,82 Z" fill="url(#dome)"/>
+  <path d="M96,82 A32,30 0 0 1 128,52 L128,82 Z" fill="#ffffff" opacity="0.12"/>
+  <!-- drum windows -->
+  <g fill="#3a2a1a">
+    <path d="M102,86 a4,5 0 0 1 8,0 v14 h-8z M118,86 a4,5 0 0 1 8,0 v14 h-8z M134,86 a4,5 0 0 1 8,0 v14 h-8z M150,86 a4,5 0 0 1 8,0 v14 h-8z"/>
+  </g>
+  <!-- small side domes -->
+  <path d="M40,132 A16,14 0 0 1 72,132 Z M184,132 A16,14 0 0 1 216,132 Z" fill="url(#dome)"/>
+  <!-- cross -->
+  <rect x="126" y="28" width="4" height="22" fill="url(#gold)"/>
+  <rect x="120" y="34" width="16" height="4" fill="url(#gold)"/>
+  <circle cx="128" cy="50" r="4" fill="#e6c062"/>
+  <!-- arcade -->
+  <g>
+    <path d="M44,212 v-44 a12,14 0 0 1 24,0 v44z" fill="#3d2814"/>
+    <path d="M84,212 v-44 a12,14 0 0 1 24,0 v44z" fill="#3d2814"/>
+    <path d="M116,212 v-52 a12,16 0 0 1 24,0 v52z" fill="#2a1a0c"/>
+    <path d="M148,212 v-44 a12,14 0 0 1 24,0 v44z" fill="#3d2814"/>
+    <path d="M188,212 v-44 a12,14 0 0 1 24,0 v44z" fill="#3d2814"/>
+    <!-- purple hangings in the outer arches -->
+    <path d="M48,170 h16 v26 l-8,6 l-8,-6z M88,170 h16 v26 l-8,6 l-8,-6z M152,170 h16 v26 l-8,6 l-8,-6z M192,170 h16 v26 l-8,6 l-8,-6z" fill="url(#purple)"/>
+    <!-- columns -->
+    <rect x="40" y="166" width="4" height="46" fill="#f0e2bf"/><rect x="68" y="166" width="4" height="46" fill="#f0e2bf"/>
+    <rect x="80" y="166" width="4" height="46" fill="#f0e2bf"/><rect x="108" y="166" width="4" height="46" fill="#f0e2bf"/>
+    <rect x="144" y="166" width="4" height="46" fill="#f0e2bf"/><rect x="172" y="166" width="4" height="46" fill="#f0e2bf"/>
+    <rect x="184" y="166" width="4" height="46" fill="#f0e2bf"/><rect x="212" y="166" width="4" height="46" fill="#f0e2bf"/>
+  </g>
+  <!-- gold band and steps -->
+  <rect x="24" y="140" width="208" height="5" fill="url(#gold)"/>
+  <rect x="20" y="212" width="216" height="6" fill="#a08050"/>
+  <rect x="14" y="218" width="228" height="6" fill="#8a6a40"/>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Hagia Sophia: the great dome over half-domes and buttressed brick walls. -->
+  <defs>
+    <linearGradient id="dome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9b9c4"/><stop offset="1" stop-color="#55666f"/></linearGradient>
+    <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9946a"/><stop offset="1" stop-color="#9a5335"/></linearGradient>
+    <linearGradient id="brick2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c47f56"/><stop offset="1" stop-color="#7f4229"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4dc86"/><stop offset="1" stop-color="#b8862a"/></linearGradient>
+  </defs>
+  <ellipse cx="128" cy="216" rx="112" ry="18" fill="#000" opacity="0.28"/>
+  <!-- outer buttress blocks -->
+  <rect x="18" y="150" width="40" height="64" fill="url(#brick2)"/>
+  <rect x="198" y="150" width="40" height="64" fill="url(#brick2)"/>
+  <path d="M18,150 h40 v-8 h-40z M198,150 h40 v-8 h-40z" fill="#e0a97e"/>
+  <!-- main body -->
+  <rect x="48" y="132" width="160" height="82" fill="url(#brick)"/>
+  <rect x="44" y="126" width="168" height="8" fill="#e0a97e"/>
+  <!-- half domes left and right -->
+  <path d="M46,132 A34,30 0 0 1 114,132 Z" fill="url(#dome)"/>
+  <path d="M142,132 A34,30 0 0 1 210,132 Z" fill="url(#dome)"/>
+  <!-- central block and drum -->
+  <rect x="74" y="100" width="108" height="34" fill="url(#brick)"/>
+  <rect x="70" y="96" width="116" height="6" fill="#e0a97e"/>
+  <!-- window ring -->
+  <g fill="#3a2418">
+    <path d="M80,108 a3,4 0 0 1 6,0 v10 h-6z M92,108 a3,4 0 0 1 6,0 v10 h-6z M104,108 a3,4 0 0 1 6,0 v10 h-6z M116,108 a3,4 0 0 1 6,0 v10 h-6z M128,108 a3,4 0 0 1 6,0 v10 h-6z M140,108 a3,4 0 0 1 6,0 v10 h-6z M152,108 a3,4 0 0 1 6,0 v10 h-6z M164,108 a3,4 0 0 1 6,0 v10 h-6z"/>
+  </g>
+  <!-- great dome -->
+  <path d="M68,98 A60,52 0 0 1 188,98 Z" fill="url(#dome)"/>
+  <path d="M76,98 A52,46 0 0 1 128,52 L128,98 Z" fill="#ffffff" opacity="0.10"/>
+  <g stroke="#3f4d55" stroke-width="1.2" fill="none" opacity="0.7">
+    <path d="M128,46 L128,98 M104,52 L112,98 M152,52 L144,98 M84,66 L96,98 M172,66 L160,98"/>
+  </g>
+  <!-- cross -->
+  <rect x="126" y="26" width="4" height="22" fill="url(#gold)"/>
+  <rect x="120" y="32" width="16" height="4" fill="url(#gold)"/>
+  <!-- lower arches -->
+  <g fill="#3a2418">
+    <path d="M66,214 v-40 a10,12 0 0 1 20,0 v40z M96,214 v-40 a10,12 0 0 1 20,0 v40z M140,214 v-40 a10,12 0 0 1 20,0 v40z M170,214 v-40 a10,12 0 0 1 20,0 v40z"/>
+    <path d="M118,214 v-52 a10,14 0 0 1 20,0 v52z" fill="#2a1a0c"/>
+  </g>
+  <!-- brick courses -->
+  <g stroke="#7a3f28" stroke-width="1" opacity="0.5">
+    <path d="M48,150 h160 M48,166 h160 M48,196 h160 M74,116 h108"/>
+  </g>
+</svg>

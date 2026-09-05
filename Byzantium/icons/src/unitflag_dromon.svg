@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Dromon: Byzantine war galley, lateen sail, ram, and a Greek fire siphon at the bow (right). -->
+  <defs>
+    <mask id="cuts">
+      <rect width="256" height="256" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="4" stroke-linecap="round">
+        <!-- gunwale line and the sail's foot -->
+        <path d="M44,138 C80,132 130,130 204,130"/>
+        <path d="M104,122 L140,122"/>
+      </g>
+      <!-- inner tongue of the flame -->
+      <path d="M244,112 C248,104 246,98 242,92 C246,100 250,106 248,112 Z" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="#ffffff" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" mask="url(#cuts)">
+    <!-- hull -->
+    <path d="M18,134 C40,128 70,124 100,124 L206,124 L236,120 L250,136 L232,150 C204,170 168,178 128,178 C92,178 62,172 40,158 Z"/>
+    <!-- ram -->
+    <path d="M236,138 L256,146 L236,154 Z"/>
+    <!-- raised stern with its curled post -->
+    <path d="M18,134 L14,104 C16,96 24,94 30,100 L44,126 Z"/>
+    <path d="M14,104 L12,88 L22,92 Z"/>
+    <!-- oars -->
+    <path d="M66,170 L56,196 M88,175 L82,202 M110,178 L108,206 M132,178 L134,206 M154,177 L160,204 M176,172 L186,198 M198,164 L212,188" stroke-width="7" fill="none"/>
+    <!-- mast, yard, lateen sail -->
+    <rect x="128" y="28" width="8" height="98"/>
+    <path d="M82,110 L204,26" stroke-width="7" fill="none"/>
+    <path d="M92,106 L196,34 C192,76 172,106 142,122 L102,122 Z"/>
+    <!-- siphon and flame -->
+    <rect x="208" y="112" width="26" height="9" rx="3"/>
+    <path d="M232,116 C230,104 236,92 244,80 C242,92 246,98 252,102 C256,92 254,86 250,78 C260,88 264,102 258,114 C254,122 244,126 236,122 Z"/>
+  </g>
+</svg>

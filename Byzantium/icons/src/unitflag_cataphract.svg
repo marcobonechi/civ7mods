@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Cataphract: armoured rider on a barded horse, side view facing right. White silhouette with
+       cut lines (masked out) separating rider, saddle, neck and barding. -->
+  <defs>
+    <mask id="cuts">
+      <rect width="256" height="256" fill="#fff"/>
+      <g fill="none" stroke="#000" stroke-width="4" stroke-linecap="round">
+        <!-- saddle line: rider from horse -->
+        <path d="M108,116 C122,112 146,112 164,116"/>
+        <!-- neck from body -->
+        <path d="M178,120 C186,110 196,102 206,98"/>
+        <!-- barding hem from body -->
+        <path d="M70,160 L204,160"/>
+        <!-- rider's arm from torso -->
+        <path d="M150,78 L150,92"/>
+        <!-- eye and mouth of the horse -->
+        <path d="M222,88 l6,-2 M240,96 l4,4"/>
+      </g>
+      <circle cx="226" cy="90" r="2.5" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="#ffffff" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" mask="url(#cuts)">
+    <!-- lance -->
+    <path d="M70,152 L236,54" stroke-width="6" fill="none"/>
+    <path d="M232,56 L250,40 L244,62 Z"/>
+    <!-- tail -->
+    <path d="M70,134 C50,140 40,162 46,186 C54,174 58,158 70,150 Z"/>
+    <!-- body -->
+    <path d="M66,152 C64,128 86,114 112,114 L176,114 C194,114 204,124 206,140 L206,162 L66,162 Z"/>
+    <!-- barding skirt with scalloped hem -->
+    <path d="M64,160 L206,160 L206,180 L196,188 L186,180 L176,188 L166,180 L156,188 L146,180 L136,188 L126,180 L116,188 L106,180 L96,188 L86,180 L76,188 L64,180 Z"/>
+    <!-- legs -->
+    <path d="M76,180 L62,216 L74,218 L90,182 Z"/>
+    <path d="M94,184 L94,218 L106,218 L108,184 Z"/>
+    <path d="M160,184 L164,218 L176,218 L178,184 Z"/>
+    <path d="M184,182 L208,208 L218,200 L200,180 Z"/>
+    <!-- neck and head, chamfron over the face -->
+    <path d="M178,118 C186,100 198,86 214,78 L236,72 C246,74 250,86 244,94 L238,100 C234,108 226,114 216,116 L212,122 C208,130 206,138 206,148 L190,142 Z"/>
+    <path d="M216,78 L222,62 L230,76 Z M228,74 L236,60 L240,72 Z"/>
+    <!-- rider: leg and stirrup -->
+    <path d="M124,112 L118,152 L130,154 L140,114 Z"/>
+    <rect x="112" y="150" width="20" height="8" rx="2"/>
+    <!-- torso and arm on the lance -->
+    <path d="M114,66 C114,54 122,48 134,48 C146,48 154,54 154,66 L158,114 L112,114 Z"/>
+    <path d="M150,74 L184,86 L182,98 L148,92 Z"/>
+    <!-- aventail, helmet, spike -->
+    <path d="M118,44 L150,44 L154,60 L116,60 Z"/>
+    <path d="M120,46 C120,30 126,20 134,18 C142,20 148,30 148,46 Z"/>
+    <path d="M132,20 L134,4 L136,20 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Byzantium: the tetragrammatic cross of the Palaiologoi. White shape on transparency;
+       the game applies its own colour mask. -->
+  <defs>
+    <path id="b" fill-rule="evenodd" d="M-13,-31 L-13,31 L7,31 C20,31 26,24 26,15 C26,7 21,2 14,0 C20,-2 24,-8 24,-15 C24,-24 18,-31 6,-31 Z
+      M-2,-20 L-2,-6 L5,-6 C11,-6 13,-9 13,-13 C13,-17 11,-20 5,-20 Z
+      M-2,6 L-2,20 L6,20 C12,20 15,17 15,13 C15,9 12,6 6,6 Z"/>
+  </defs>
+  <g fill="#ffffff">
+    <rect x="116" y="18" width="24" height="220" rx="2"/>
+    <rect x="18" y="116" width="220" height="24" rx="2"/>
+    <!-- arm ends flare a little, like the flag -->
+    <path d="M112,18 h32 l-4,12 h-24 z M112,238 h32 l-4,-12 h-24 z M18,112 v32 l12,-4 v-24 z M238,112 v32 l-12,-4 v-24 z"/>
+    <!-- four firesteels, the B shapes, facing away from the cross -->
+    <use href="#b" transform="translate(70,70) scale(-1.15,1.15)"/>
+    <use href="#b" transform="translate(186,70) scale(1.15,1.15)"/>
+    <use href="#b" transform="translate(70,186) scale(-1.15,1.15)"/>
+    <use href="#b" transform="translate(186,186) scale(1.15,1.15)"/>
+  </g>
+</svg>

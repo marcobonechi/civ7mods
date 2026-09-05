@@ -222,6 +222,15 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   UI spots may show a blank for a mod civ. Live with it or check after the first run.
 - 3D: `VisualRemaps` (section 1). No art package (`.dep`, `Platforms/`) is needed for a
   data-only mod; the map mod proves that.
+- Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,
+  so it must be a **white shape on transparency** (the game recolours it); unit flags are plain
+  **white silhouettes on transparency** drawn on the coloured flag; building and wonder icons are
+  **full-colour** paintings with a soft shadow, three-quarter view, warm palette. Silhouettes read
+  better with a few masked-out cut lines (saddle, hem, gunwale) than as one blob.
+- Workflow used for Byzantium: author SVGs in `<Mod>/icons/src/`, render them with
+  `tools/icon-render/server.py` plus the in-app browser (ImageMagick here has no librsvg and
+  headless Chrome hangs), review on a dark contact sheet, commit both SVG and PNG.
+  `tools/make-icons.py` only makes flat placeholders.
 
 ## 5. Map integration
 
