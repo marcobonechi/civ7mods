@@ -46,7 +46,7 @@ buildings).
 | Ids | `CIVILIZATION_BYZANTIUM`, `TRAIT_BYZANTIUM`, `TRAIT_BYZANTIUM_ABILITY`; mod id `byzantium`, folder `Byzantium/` |
 | Names | Byzantium / Byzantine Empire / Byzantine; capital Constantinople |
 | Apex age | Exploration (`TAG_APEX_AGE_EXPLORATION`) |
-| Attributes | Militaristic + Political (Byzantine diplomacy). Traits `TRAIT_ATTRIBUTE_MILITARISTIC`, `_MILITARISTIC_TOT_AQ`, `_MILITARISTIC_TOT_MO`, `TRAIT_ATTRIBUTE_POLITICAL`, `_POLITICAL_TOT_AQ_INFLUENCE`, `_POLITICAL_TOT_MO_INFLUENCE`; tags `TAG_TRAIT_MILITARISTIC`, `TAG_TRAIT_POLITICAL` |
+| Attributes | Cultural + Political (changed from Militaristic after the first test). Traits `TRAIT_ATTRIBUTE_CULTURAL`, `_CULTURAL_TOT_AQ`, `_CULTURAL_TOT_MO`, `TRAIT_ATTRIBUTE_POLITICAL`, `_POLITICAL_TOT_AQ_INFLUENCE`, `_POLITICAL_TOT_MO_INFLUENCE`; tags `TAG_TRAIT_CULTURAL`, `TAG_TRAIT_POLITICAL` |
 | Ability | **Queen of Cities** (see 2.1) |
 | Unique units | **Cataphract** (cavalry line, 3 tiers) and **Dromon** (naval, replaces Cog) (see 2.2) |
 | Unique quarter | **Augustaion** = Hippodrome + Great Palace (see 2.3) |
@@ -66,8 +66,9 @@ All three effects reuse modifier shapes that ship in Bulgaria or Spain (see refe
 
 1. +30% Production toward Hagia Sophia (`EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION`), loaded in
    the persist group because it names the wonder. Exploration and Modern only.
-2. +1 Influence and +1 Gold in a city per displayed Great Work
-   (`EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK`, YIELD_DIPLOMACY and YIELD_GOLD). All ages.
+2. +2 Influence and +2 Gold in the Capital (`EFFECT_CITY_ADJUST_YIELD` on
+   `COLLECTION_PLAYER_CAPITAL_CITY`). All ages. Replaced the per-Great-Work version after the first
+   test: Great Works are too slow to come by for a civ ability.
 3. Theodosian Walls: units defending in a fortified district get +3 Combat Strength. Implement
    with whichever proven defensive modifier the base civs use (candidates in
    `age-exploration/data/civilizations-gameeffects.xml`, Norman and Ming); if none fits, swap for

@@ -19,12 +19,12 @@
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_GREAT_PALACE" Kind="KIND_BUILDING" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Icon="buildicon_great_palace.png"/>
     </CivilizationItems>
     <CivilizationTags>
-        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
-        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_APEX_AGE_EXPLORATION"/>
-        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
     </CivilizationTags>
     <CivilizationUnlocks>

@@ -8,7 +8,7 @@
             <Text>Hold the Queen of Cities, and the world will come to you.</Text>
         </Row>
         <Row Tag="LOC_LOADING_CIV_TIPS_TEXT_BYZANTIUM">
-            <Text>Fill your cities with Great Works: Queen of Cities turns each one displayed into Influence and Gold.</Text>
+            <Text>Your Capital pays for your diplomacy: Queen of Cities adds Influence and Gold there from turn one, so spend Influence freely on City-States and alliances.</Text>
         </Row>
     </EnglishText>
 </Database>

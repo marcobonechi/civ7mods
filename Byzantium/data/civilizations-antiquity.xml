@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <TraitModifiers>
-        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_GREAT_WORKS_INFLUENCE"/>
-        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_GREAT_WORKS_GOLD"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_CAPITAL_INFLUENCE"/>
+        <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_CAPITAL_GOLD"/>
         <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_DISTRICT_DEFENSE_COMBAT"/>
         <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_WALL_HEALTH"/>
     </TraitModifiers>
