@@ -106,6 +106,9 @@ Start tiles are validated against the feature database before use: a tile carryi
 non-removable feature (ice, a volcano, a natural wonder) is rejected and the search moves outwards,
 and a removable feature such as forest or marsh, or a resource (resources are generated before
 starts are assigned), is cleared from the tile finally chosen, so a settler can always found on the spot.
+Floodplains are kept. Every placed start is then re-checked, and the game's console log reports any
+start that is not foundable or that sits away from its coordinates, plus a summary line
+(`Europe map: N starts placed, M on their exact tile, max shift K hex(es)`).
 
 Every true start is also given workable food. Within `tslFoodRadius` (2 hexes) the poorest land is
 raised towards flat grassland until `tslFoodMin` (5) high-food tiles are present; biomes are lifted
