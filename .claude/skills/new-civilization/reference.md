@@ -214,14 +214,16 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
 
 ## 4. Icons and art
 
-- Ship PNGs under `icons/` (any folder) and list them in `<ImportFiles>` in both the game and
-  the shell groups. **Imported files land flat at the root of the virtual file system, by
-  basename**: reference them as `fs://game/<file>.png`, never with the mod id or folder (the
-  engine itself refers to base-standard's `ui/loading/root-loading.html` as
-  `fs://game/root-loading.html`). So basenames must be unique across every mod: prefix them.
-  In `IconDefinitions` use `fs://game/<file>.png` (`ID` = type name; loading backgrounds use
-  `Context` BACKGROUND with `IconSize` 1080/720 and BACKGROUND_VERT); in the shell config
-  (`CivilizationIcon`, `CivilizationItems.Icon`) use the bare file name like Firaxis does.
+- Ship PNGs in any folder (Byzantium uses `icons/` and `loading/`) and list them in
+  `<ImportFiles>` in both the game and the shell groups with their folder path. **The URL drops
+  the folder and adds the mod id**: `fs://game/<modid>/<basename>` (verified against
+  izica/civ7-modding-tools' generated mod, which imports `imports/civ_sym_gondor` and refers to
+  it as `fs://game/mod-test/civ_sym_gondor`). Neither `fs://game/<modid>/<folder>/<file>` nor
+  the flat `fs://game/<file>` works: the flat form is a package-texture lookup and shows up in
+  `UI.log` as `Failed loading resource: blp:<name>`. Basenames must therefore be unique per mod.
+  In `IconDefinitions` use that URL (`ID` = type name; loading backgrounds use `Context`
+  BACKGROUND with `IconSize` 1080/720 and BACKGROUND_VERT). In the shell config give **icon IDs**,
+  not file names: `CivilizationIcon="CIVILIZATION_X"`, `CivilizationItems.Icon="UNIT_X"`.
   Sizes: civ symbol 256, unit flag 128, building 128.
 - The shell also asks for some images **by naming convention**, not through IconDefinitions:
   `civ_sym_<civ>.png` (symbol), `bg-card-<civ>.png` (the tall card in the age-transition civ
