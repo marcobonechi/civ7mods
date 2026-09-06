@@ -432,9 +432,10 @@ function clearStartFeature(x, y) {
     const f = GameplayMap.getFeatureType(x, y);
     if (f == FeatureTypes.NO_FEATURE) return;
     const info = GameInfo.Features.lookup(f);
-    if (info && info.Removable && !info.Impassable) {
-        TerrainBuilder.setFeatureType(x, y, { Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
-    }
+    if (!info || !info.Removable || info.Impassable) return;
+    // Floodplains are flagged removable but a city founds on them fine; keep them.
+    if (info.FeatureClassType == "FEATURE_CLASS_FLOODPLAIN") return;
+    TerrainBuilder.setFeatureType(x, y, { Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
 }
 
 // Historical capitals grew into big cities, so every true start gets a workable amount of food.
@@ -554,13 +555,25 @@ function assignEuropeStartPositions(grid) {
     const MIN_SPACING = Math.max(5, Math.round(grid.W / 14));   // fallback sites: 8 hexes on the 112-wide grid
     const TSL_SPACING = 5;                                       // historical starts may sit closer together
 
-    const place = (index, playerId, x, y, label) => {
+    const shifts = [];
+    const place = (index, playerId, x, y, label, wantXY) => {
         clearStartFeature(x, y);
         clearStartResource(x, y);
         const plotIndex = GameplayMap.getIndexFromXY(x, y);
         StartPositioner.setStartPosition(plotIndex, playerId);
         startPositions[index] = plotIndex;
         taken.push([x, y]);
+        // Verify: the settler must be able to found here on turn one, and a true start should sit
+        // on its coordinates. Anything else is logged so a playthrough log shows it.
+        const problems = [];
+        if (!isValidStartTile(x, y)) problems.push("tile not valid");
+        if (GameplayMap.getResourceType(x, y) != ResourceTypes.NO_RESOURCE) problems.push("resource left");
+        const f = GameplayMap.getFeatureType(x, y);
+        if (f != FeatureTypes.NO_FEATURE && featureBlocksSettlement(x, y)) problems.push("blocking feature");
+        const shift = wantXY ? hexDistance(wantXY[0], wantXY[1], x, y) : 0;
+        shifts.push(shift);
+        if (problems.length) console.log("Europe large map: WARNING start for player " + playerId + " at (" + x + ", " + y + ") " + problems.join(", "));
+        if (shift > 0) console.log("Europe large map: start for player " + playerId + " (" + label + ") is " + shift + " hex(es) from its coordinates");
         console.log("Europe large map: start for player " + playerId + " (" + civTypeOf(playerId) + ") at (" + x + ", " + y + ") " + label);
     };
 
@@ -574,7 +587,7 @@ function assignEuropeStartPositions(grid) {
         if (ll) {
             const t = findStartTile(grid, ll[0], ll[1], 3);
             if (t && minDistanceTo(taken, t[0], t[1]) >= TSL_SPACING) {
-                place(i, playerId, t[0], t[1], "TSL");
+                place(i, playerId, t[0], t[1], "TSL", grid.P.nearestTile(ll[0], ll[1]));
                 usedSites.add(civ);
                 done = true;
             } else {
@@ -600,7 +613,7 @@ function assignEuropeStartPositions(grid) {
         }
         if (best) {
             usedSites.add(best.site[2]);
-            place(i, playerId, best.t[0], best.t[1], best.site[2]);
+            place(i, playerId, best.t[0], best.t[1], best.site[2], grid.P.nearestTile(best.site[0], best.site[1]));
             continue;
         }
         // Last resort: any valid land tile as far from the others as possible
@@ -616,6 +629,9 @@ function assignEuropeStartPositions(grid) {
         if (fx >= 0) place(i, playerId, fx, fy, "open land");
         else console.log("Europe large map: FAILED to place player " + playerId);
     }
+    const exact = shifts.filter((d) => d == 0).length;
+    console.log("Europe large map: " + shifts.length + " starts placed, " + exact + " on their exact tile, max shift " +
+        (shifts.length ? Math.max.apply(null, shifts) : 0) + " hex(es)");
     return startPositions;
 }
 
