@@ -299,6 +299,17 @@ function isValidStartTile(x, y) {
     return true;
 }
 
+// A resource on the start tile blocks founding the city, and resources are generated before
+// starts are assigned, so a true start can land on cotton or wine. Clear it: the historical
+// capital site matters more than one resource tile.
+function clearStartResource(x, y) {
+    const r = GameplayMap.getResourceType(x, y);
+    if (r != ResourceTypes.NO_RESOURCE) {
+        ResourceBuilder.setResourceType(x, y, ResourceTypes.NO_RESOURCE);
+        console.log("Europe map: removed resource " + r + " from start tile (" + x + ", " + y + ")");
+    }
+}
+
 // Find a valid start tile near a lon/lat, expanding outwards up to maxR hexes.
 function findStartTile(grid, lon, lat, maxR) {
     const [nx, ny] = grid.P.nearestTile(lon, lat);
@@ -334,6 +345,7 @@ function assignEuropeStartPositions(grid) {
 
     const place = (index, playerId, x, y, label) => {
         clearStartFeature(x, y);
+        clearStartResource(x, y);
         const plotIndex = GameplayMap.getIndexFromXY(x, y);
         StartPositioner.setStartPosition(plotIndex, playerId);
         startPositions[index] = plotIndex;
