@@ -66,8 +66,8 @@ All three effects reuse modifier shapes that ship in Bulgaria or Spain (see refe
 
 1. +30% Production toward Hagia Sophia (`EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION`), loaded in
    the persist group because it names the wonder. Exploration and Modern only.
-2. +2 Influence and +2 Gold in the Capital (`EFFECT_CITY_ADJUST_YIELD` on
-   `COLLECTION_PLAYER_CAPITAL_CITY`). All ages. Replaced the per-Great-Work version after the first
+2. +2 Influence and +2 Gold in every settlement (`EFFECT_CITY_ADJUST_YIELD` on
+   `COLLECTION_PLAYER_CITIES`). All ages. Replaced the per-Great-Work version after the first
    test: Great Works are too slow to come by for a civ ability.
 3. Theodosian Walls: units defending in a fortified district get +3 Combat Strength. Implement
    with whichever proven defensive modifier the base civs use (candidates in

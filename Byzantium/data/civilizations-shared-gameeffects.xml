@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
-    <!-- Queen of Cities: +2 Influence and +2 Gold in the Capital (all ages; Ming's capital-yield shape). -->
-    <Modifier id="MOD_BYZANTIUM_CAPITAL_INFLUENCE" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+    <!-- Queen of Cities: +2 Influence and +2 Gold in every Settlement (all ages). -->
+    <Modifier id="MOD_BYZANTIUM_CAPITAL_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
         <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
         <Argument name="Amount">2</Argument>
         <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
     </Modifier>
-    <Modifier id="MOD_BYZANTIUM_CAPITAL_GOLD" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+    <Modifier id="MOD_BYZANTIUM_CAPITAL_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
         <Argument name="YieldType">YIELD_GOLD</Argument>
         <Argument name="Amount">2</Argument>
         <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
