@@ -166,6 +166,7 @@ http://localhost:8080 and opens a browser. It reads and writes the geography fil
 | `rivers[].strength` | optional 0..1 (default 1) scaling the rainfall poured along that course. Lower values make the engine much less likely to pick the river as navigable, while still carving its flat valley. Currently: Tiber 0.2, Garonne 0.35, Don 0.35 |
 | `resourceAreas` | (large map) historical resources per region: polygon, resource types, `density` = hexes per resource; placed in-game after the engine's random pass, which is topped up to a 20% share |
 | `hillAreas`, `passes`, `flatAreas`, `roughAreas` | mountains→hills in areas / along corridors, hills→flat, flat→hills (optional `biome`) |
+| `lowAreas` | hills and mountains→flat inside polygons, applied after every other terrain step (the Asian shore of the Bosporus) |
 | `shallowLines` | corridors where ocean becomes shallow coast (island hopping) |
 | `lonSqueeze`, `lonSqueezeWest` | horizontal squeezes east / west of a longitude |
 | `volcanoes` | `[lon, lat, name]` |

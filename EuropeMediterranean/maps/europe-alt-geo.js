@@ -175,6 +175,11 @@ export const GEO = {
     ],
 
     // Hills turned into flat land with a probability (mountains stay): gentler Greece and Anatolia
+    // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
+    // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
+    lowAreas: [
+        { name: "Bosporus Asian shore", pts: [[29.0, 40.7], [31.8, 40.7], [31.8, 41.65], [29.0, 41.65]] }
+    ],
     flatAreas: [
         // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
         // peninsula hilly and short of food. These are the real lowlands, flattened back.

@@ -18,11 +18,11 @@
         <Row TraditionType="TRADITION_BYZANTIUM_SYNCRETISM_MODERN" Name="LOC_TRADITION_BYZANTIUM_SYNCRETISM_MODERN_NAME" Description="LOC_TRADITION_BYZANTIUM_SYNCRETISM_MODERN_DESCRIPTION" AgeType="AGE_MODERN" CultureSlotType="TRADITION_CULTURE_SLOT" TraitType="TRAIT_BYZANTIUM" IgnoreInitializeUnlock="true" ObsoletesTraditionType="TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY" AllowInitializeAdvancedStart="true"/>
     </Traditions>
     <ProgressionTreeNodes>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="800" Name="LOC_CIVIC_BYZANTIUM_THEMATA_NAME" IconString="cult_byzantium"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="1200" Name="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME" IconString="cult_byzantium"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="2000" Name="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME" IconString="cult_byzantium"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" ProgressionTree="TREE_CIVICS_AQ_TEST_OF_TIME" Cost="150" Name="LOC_NODE_CIVIC_AQ_BYZANTIUM_ORIGINS_NAME" IconString="cult_byzantium" CanSteal="false"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" ProgressionTree="TREE_CIVICS_MO_TEST_OF_TIME" Cost="2000" Name="LOC_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_NAME" IconString="cult_byzantium" CanSteal="false"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="800" Name="LOC_CIVIC_BYZANTIUM_THEMATA_NAME" IconString="cult_authority"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="1200" Name="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME" IconString="cult_theology"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="2000" Name="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME" IconString="cult_sovereignty"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" ProgressionTree="TREE_CIVICS_AQ_TEST_OF_TIME" Cost="150" Name="LOC_NODE_CIVIC_AQ_BYZANTIUM_ORIGINS_NAME" IconString="cult_chiefdom" CanSteal="false"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" ProgressionTree="TREE_CIVICS_MO_TEST_OF_TIME" Cost="2000" Name="LOC_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_NAME" IconString="cult_politicaltheory" CanSteal="false"/>
     </ProgressionTreeNodes>
     <ProgressionTreeNodeUnlocks>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEMATA" UnlockDepth="1"/>

@@ -433,6 +433,12 @@ export const GEO = {
         [44.3, 39.7, "Ararat"], [42.45, 43.35, "Elbrus"], [35.45, 38.53, "Erciyes"], [52.1, 35.95, "Damavand"]
     ],
 
+    // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
+    // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
+    lowAreas: [
+        { name: "Bosporus Asian shore", pts: [[29.0, 40.7], [31.8, 40.7], [31.8, 41.65], [29.0, 41.65]] }
+    ],
+
     // True start locations by civilization: [lon, lat]
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],

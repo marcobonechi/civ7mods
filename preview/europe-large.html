@@ -186,6 +186,11 @@ const GEO = {
     ],
 
     // Hills turned into flat land with a probability (mountains stay): gentler Greece and Anatolia
+    // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
+    // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
+    lowAreas: [
+        { name: "Bosporus Asian shore", pts: [[29.0, 40.7], [31.8, 40.7], [31.8, 41.65], [29.0, 41.65]] }
+    ],
     flatAreas: [
         // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
         // peninsula hilly and short of food. These are the real lowlands, flattened back.
@@ -1536,6 +1541,18 @@ function buildEuropeGrid(W, H, GEO, rnd) {
                     if (dd < dmin) dmin = dd;
                 }
                 if (dmin < r) terrain[i] = T.HILL;
+            }
+        }
+    }
+
+    // 7d. low areas: hills and mountains -> flat inside polygons (with a probability). Runs after every
+    // other terrain step so a crossing or a plain stays open whatever the ranges and the sprinkle did.
+    const lowPolys = prepPolys((GEO.lowAreas || []).map((a) => ({ name: a.name, pts: a.pts, prob: a.prob })));
+    if (lowPolys.length) {
+        for (let i = 0; i < N; i++) {
+            if (terrain[i] !== T.HILL && terrain[i] !== T.MOUNTAIN) continue;
+            for (const p of lowPolys) {
+                if (pointInPolygon(lonC[i], latC[i], p) && rnd() < (p.prob === undefined ? 1 : p.prob)) { terrain[i] = T.FLAT; break; }
             }
         }
     }

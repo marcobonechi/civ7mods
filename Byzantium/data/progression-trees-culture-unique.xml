@@ -15,9 +15,9 @@
         <Row ProgressionTreeType="TREE_CIVICS_EX_BYZANTIUM" AgeType="AGE_EXPLORATION" SystemType="SYSTEM_CULTURE" Name="LOC_TREE_CIVICS_EX_BYZANTIUM_NAME"/>
     </ProgressionTrees>
     <ProgressionTreeNodes>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="800" Name="LOC_CIVIC_BYZANTIUM_THEMATA_NAME" IconString="cult_byzantium"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="1200" Name="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME" IconString="cult_byzantium"/>
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="2000" Name="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME" IconString="cult_byzantium"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="800" Name="LOC_CIVIC_BYZANTIUM_THEMATA_NAME" IconString="cult_authority"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="1200" Name="LOC_CIVIC_BYZANTIUM_PENTARCHY_NAME" IconString="cult_theology"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PORPHYROGENNETOS" ProgressionTree="TREE_CIVICS_EX_BYZANTIUM" Cost="2000" Name="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_NAME" IconString="cult_sovereignty"/>
     </ProgressionTreeNodes>
     <ProgressionTreeNodeUnlocks>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_HIPPODROME" UnlockDepth="1"/>

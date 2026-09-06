@@ -59,9 +59,5 @@
             <ID>WONDER_HAGIA_SOPHIA</ID>
             <Path>fs://game/byzantium/wondericon_hagia_sophia.png</Path>
         </Row>
-        <Row>
-            <ID>cult_byzantium</ID>
-            <Path>fs://game/byzantium/civ_sym_byzantium.png</Path>
-        </Row>
     </IconDefinitions>
 </Database>

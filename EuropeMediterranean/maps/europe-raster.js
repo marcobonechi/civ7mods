@@ -529,6 +529,18 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
         }
     }
 
+    // 7d. low areas: hills and mountains -> flat inside polygons (with a probability). Runs after every
+    // other terrain step so a crossing or a plain stays open whatever the ranges and the sprinkle did.
+    const lowPolys = prepPolys((GEO.lowAreas || []).map((a) => ({ name: a.name, pts: a.pts, prob: a.prob })));
+    if (lowPolys.length) {
+        for (let i = 0; i < N; i++) {
+            if (terrain[i] !== T.HILL && terrain[i] !== T.MOUNTAIN) continue;
+            for (const p of lowPolys) {
+                if (pointInPolygon(lonC[i], latC[i], p) && rnd() < (p.prob === undefined ? 1 : p.prob)) { terrain[i] = T.FLAT; break; }
+            }
+        }
+    }
+
     // 7b. landmass regions (Distant Lands).
     // The engine reads a region change as a distant-lands boundary: land units cannot cross it
     // and civilizations across it cannot be contacted until the Exploration Age. A boundary that
