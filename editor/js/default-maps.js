@@ -177,7 +177,7 @@ window.DEFAULT_EUROPE_LARGE_GEO = {
     // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
     // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
     lowAreas: [
-        { name: "Bosporus Asian shore", pts: [[29.0, 40.7], [31.8, 40.7], [31.8, 41.65], [29.0, 41.65]] }
+        { name: "Bosporus Asian shore", pts: [[29.0, 40.5], [33.2, 40.5], [33.2, 41.75], [29.0, 41.75]] }
     ],
     flatAreas: [
         // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
@@ -1441,7 +1441,7 @@ window.DEFAULT_EUROPE_GEO = {
     // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
     // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
     lowAreas: [
-        { name: "Bosporus Asian shore", pts: [[29.0, 40.7], [31.8, 40.7], [31.8, 41.65], [29.0, 41.65]] }
+        { name: "Bosporus Asian shore", pts: [[29.0, 40.5], [33.2, 40.5], [33.2, 41.75], [29.0, 41.75]] }
     ],
 
     // True start locations by civilization: [lon, lat]
