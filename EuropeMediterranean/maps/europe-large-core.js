@@ -333,7 +333,14 @@ function placeRegionalResources(grid, randomShare) {
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
         if (GameplayMap.getResourceType(x, y) != ResourceTypes.NO_RESOURCE) { randomTiles.push([x, y]); totalBefore++; }
     }
-    // regional pass
+    // regional pass. An area with `fill: true` is a catch-all: it only places on hexes that no
+    // specific (non-fill) area of the same kind covers, so a sea hex under a named sea gets one
+    // area's worth of resources, not two or three.
+    const SEA_RESOURCES = new Set(["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_WHALES", "RESOURCE_DYES", "RESOURCE_COWRIE"]);
+    const specificAreas = (GEO.resourceAreas || []).filter((a) => !a.fill).map((a) => ({
+        pts: a.pts, sea: a.resources.some((r) => SEA_RESOURCES.has(r)), land: a.resources.some((r) => !SEA_RESOURCES.has(r))
+    }));
+    const coveredBySpecific = (lon, lat, water) => specificAreas.some((a) => (water ? a.sea : a.land) && pointInPoly(lon, lat, a.pts));
     let regionalPlaced = 0;
     for (const area of GEO.resourceAreas || []) {
         let types = area.resources.map((t) => byType[t]).filter((i) => i !== undefined);
@@ -355,6 +362,7 @@ function placeRegionalResources(grid, randomShare) {
             if (!pointInPoly(grid.lonC[i], grid.latC[i], area.pts)) continue;
             const t = GameplayMap.getTerrainType(x, y);
             if (t == globals.g_OceanTerrain) continue;
+            if (area.fill && coveredBySpecific(grid.lonC[i], grid.latC[i], GameplayMap.isWater(x, y))) continue;
             hexes++;
             if (GameplayMap.getResourceType(x, y) == ResourceTypes.NO_RESOURCE) candidates.push([x, y]);
         }
