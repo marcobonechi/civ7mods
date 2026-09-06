@@ -60,6 +60,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UIScripts>
+                    <Item>ui/byzantium-images.js</Item>
+                </UIScripts>
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-text" scope="game" criteria="always">
@@ -168,6 +171,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UIScripts>
+                    <Item>ui/byzantium-images.js</Item>
+                </UIScripts>
                 <UpdateDatabase>
                     <Item>config/config.xml</Item>
                     <Item>config/config-traditions.xml</Item>
