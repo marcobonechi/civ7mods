@@ -311,6 +311,42 @@ function clearStartResource(x, y) {
     }
 }
 
+// Buildings need resource-free land next to the city: an urban district cannot be placed on a
+// resource tile. The engine pass plus the regional pass can fill every hex around a start, so open
+// the ring: at least MIN_FREE_R1 free land hexes adjacent and MIN_FREE_R2 within two hexes.
+const MIN_FREE_R1 = 3;
+const MIN_FREE_R2 = 5;
+function openStartRing(x, y, label) {
+    const ringLand = (r) => {
+        const out = [];
+        for (let dy = -r; dy <= r; dy++) {
+            for (let dx = -r; dx <= r; dx++) {
+                const tx = x + dx, ty = y + dy;
+                if (tx < 0 || ty < 0 || tx >= GameplayMap.getGridWidth() || ty >= GameplayMap.getGridHeight()) continue;
+                const d = hexDistance(x, y, tx, ty);
+                if (d < 1 || d > r) continue;
+                if (GameplayMap.isWater(tx, ty) || GameplayMap.isMountain(tx, ty) || GameplayMap.isNavigableRiver(tx, ty)) continue;
+                out.push([tx, ty, d]);
+            }
+        }
+        return out;
+    };
+    let removed = 0;
+    for (const [r, want] of [[1, MIN_FREE_R1], [2, MIN_FREE_R2]]) {
+        const tiles = ringLand(r);
+        let free = tiles.filter((t) => GameplayMap.getResourceType(t[0], t[1]) == ResourceTypes.NO_RESOURCE).length;
+        // clear nearest first, flat before hills, until enough hexes are open (or none are left)
+        const candidates = tiles.filter((t) => GameplayMap.getResourceType(t[0], t[1]) != ResourceTypes.NO_RESOURCE)
+            .sort((a, b) => (a[2] - b[2]) || ((GameplayMap.getTerrainType(a[0], a[1]) == globals.g_HillTerrain ? 1 : 0) - (GameplayMap.getTerrainType(b[0], b[1]) == globals.g_HillTerrain ? 1 : 0)));
+        for (const t of candidates) {
+            if (free >= Math.min(want, tiles.length)) break;
+            ResourceBuilder.setResourceType(t[0], t[1], ResourceTypes.NO_RESOURCE);
+            free++; removed++;
+        }
+    }
+    if (removed > 0) console.log("Europe map: opened " + removed + " resource hex(es) around start " + label + " at (" + x + ", " + y + ") so buildings can be placed");
+}
+
 // Find a valid start tile near a lon/lat, expanding outwards up to maxR hexes.
 function findStartTile(grid, lon, lat, maxR) {
     const [nx, ny] = grid.P.nearestTile(lon, lat);
@@ -348,6 +384,7 @@ function assignEuropeStartPositions(grid) {
     const place = (index, playerId, x, y, label, wantXY) => {
         clearStartFeature(x, y);
         clearStartResource(x, y);
+        openStartRing(x, y, label);
         const plotIndex = GameplayMap.getIndexFromXY(x, y);
         StartPositioner.setStartPosition(plotIndex, playerId);
         startPositions[index] = plotIndex;
