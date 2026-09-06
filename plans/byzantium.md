@@ -8,7 +8,12 @@ must be flat `fs://game/<file>` names and the card/panel are found by naming con
 flat paths, `bg-card-byzantium.png`, `bg-panel-byzantium.png`); the picker duplicated the two
 units because the Antiquity variants were listed as items too (fixed); traditions felt thin
 (now 7 Exploration + 2 Antiquity + 2 Modern + 2 self-syncretism).
-Not yet verified, because it needs a game to be created in the UI: the game-scope tables (units,
+Second test (2026-09-05, evening): symbol, card and icons show in the picker once the URLs use
+`fs://game/byzantium/<file>`; the picker lists each unique once; the extra traditions, the Cultural
+and Political tags and the reworked ability (+2 Influence, +2 Gold in every settlement) are
+visible. The Constantinople start landed on cotton, so both map scripts now clear a resource
+from a placed start tile.
+Still to verify in play: the game-scope tables (units,
 buildings, civic tree, traditions), the visual remaps, the placeholder icons, the true start on the
 Europe maps, and Antiquity or Modern starts. Do that check next: New Game, Exploration Age,
 Byzantium, Europe & Mediterranean map, then build a Cataphract and open the civics tree.
