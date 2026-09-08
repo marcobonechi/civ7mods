@@ -145,11 +145,17 @@
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-ottomans" scope="game" criteria="ottomans-current">
+            <Properties>
+                <LoadOrder>20</LoadOrder>
+            </Properties>
             <Actions>
                 <UpdateDatabase>
                     <Item>data/unlocks-ottomans.xml</Item>
                     <Item>data/unlocks-syncretism-ottomans.xml</Item>
                 </UpdateDatabase>
+                <UpdateVisualRemaps>
+                    <Item>data/visual-remaps-ottomans.xml</Item>
+                </UpdateVisualRemaps>
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-shell" scope="shell" criteria="always">
@@ -196,11 +202,17 @@
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-shell-ottomans" scope="shell" criteria="ottomans-shell">
+            <Properties>
+                <LoadOrder>20</LoadOrder>
+            </Properties>
             <Actions>
                 <UpdateDatabase>
                     <Item>config/config-ottomans.xml</Item>
                     <Item>data/unlocks-syncretism-ottomans.xml</Item>
                 </UpdateDatabase>
+                <UpdateVisualRemaps>
+                    <Item>data/visual-remaps-ottomans.xml</Item>
+                </UpdateVisualRemaps>
             </Actions>
         </ActionGroup>
     </ActionGroups>

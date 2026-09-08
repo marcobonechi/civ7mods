@@ -257,6 +257,12 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   (`CREATE TABLE IF NOT EXISTS`) with `LoadOrder` 10 in shell and game scope. Unit portraits in
   the unit panel are live renders (`WorldUI.requestPortrait`, `live:/UNIT_X`) of the remapped
   model; `ml-unit-portrait-fix` shows how to swap in a 2D `url(fs://...)` instead.
+- `VisualRemaps` rows are keyed by `ID` and each is a player-toggleable option (`VisualRemaps.
+  getRemapState` in `core/ui/options/options.js`). Modinfo criteria cannot be negated (only
+  `AgeInUse`, `ModInUse`, `ModIsEnabled`, `RuleSetInUse`, `any="true"`), so a DLC-dependent
+  model choice is an always-on fallback row plus a second file with the **same ID** in a
+  `ModInUse` group with a later `LoadOrder`. Workshop civs' "new" units are remaps too (Scythia's
+  amazon horse archer is `UNIT_KESHIG`), so remap to the base unit rather than to the mod.
 - Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,
   so it must be a **white shape on transparency** (the game recolours it); unit flags are plain
   **white silhouettes on transparency** drawn on the coloured flag; building and wonder icons are

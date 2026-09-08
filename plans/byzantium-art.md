@@ -1,9 +1,16 @@
 # Byzantium art plan
 
-Status: proposals for review. The three requested pieces (Hagia Sophia, Dromon, Cataphract)
-are delivered as vector art under `Byzantium/icons/src/` with 256² renders in `icons/`,
-`icons-mixed/` and `icons-vector/` (the portrait PNGs are imported by the modinfo but not yet
-shown anywhere: see the portrait item in §3). Everything marked **Decide** waits for Marco.
+Status: the three requested pieces (Hagia Sophia, Dromon, Cataphract) are delivered as vector
+art under `Byzantium/icons/src/` with 256² renders in `icons/`, `icons-mixed/` and
+`icons-vector/` (the portrait PNGs are imported by the modinfo but not yet shown anywhere: see
+the portrait item in §3). 3D decisions taken 2026-09-07: Hagia Sophia = Blue Mosque
+(`WONDER_SULTANAHMET_CAMII`) when the Ottomans DLC is in use, Notre Dame otherwise; Cataphract =
+Mongol Keshig line (Marco asked for the Scythia mod's amazon horse archer, which is itself a
+Keshig remap, so the base unit is used directly and no Workshop dependency is added); Dromon =
+Treasure Fleet hull (a civilian model; if attack animations are missing in game, fall back to
+`UNIT_GALLEON`). The Blue Mosque override reuses the remap ID in `visual-remaps-ottomans.xml`
+with `LoadOrder` 20; first in-game check confirms whether the later file wins. Remaining
+**Decide** items: unit-panel portraits (§3) and civic glyphs (§5).
 
 ## 1. What a mod can actually ship (learned from the Workshop examples)
 

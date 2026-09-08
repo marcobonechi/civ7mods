@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Custom units borrow the models of the base units they replace (same table Firaxis uses for
-     the Founder-edition scout and palace). From = our type, To = the type whose art is shown. -->
+<!-- Custom units borrow the models of base units (same table Firaxis uses for the Founder-edition
+     scout and palace). From = our type, To = the type whose art is shown. Remaps are keyed by ID and
+     players can toggle each one in Options. Choices (Sep 2026): Cataphract = Mongol Keshig (the
+     Scythia Workshop civ's amazon horse archer is itself a Keshig remap), Dromon = Treasure Fleet
+     hull (a civilian model: if attack animations turn out missing, fall back to UNIT_GALLEON),
+     Hagia Sophia = Notre Dame here, overridden by the Blue Mosque in visual-remaps-ottomans.xml
+     when the Ottomans DLC is in use. -->
 <Database>
     <VisualRemaps>
         <Row>
@@ -8,28 +13,28 @@
             <DisplayName>LOC_REMAP_BYZANTIUM_CATAPHRACT</DisplayName>
             <Kind>UNIT</Kind>
             <From>UNIT_CATAPHRACT</From>
-            <To>UNIT_COURSER</To>
+            <To>UNIT_KESHIG</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_CATAPHRACT_2</ID>
             <DisplayName>LOC_REMAP_BYZANTIUM_CATAPHRACT</DisplayName>
             <Kind>UNIT</Kind>
             <From>UNIT_CATAPHRACT_2</From>
-            <To>UNIT_KNIGHT</To>
+            <To>UNIT_KESHIG_2</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_CATAPHRACT_3</ID>
             <DisplayName>LOC_REMAP_BYZANTIUM_CATAPHRACT</DisplayName>
             <Kind>UNIT</Kind>
             <From>UNIT_CATAPHRACT_3</From>
-            <To>UNIT_LANCER</To>
+            <To>UNIT_KESHIG_3</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_DROMON</ID>
             <DisplayName>LOC_REMAP_BYZANTIUM_DROMON</DisplayName>
             <Kind>UNIT</Kind>
             <From>UNIT_DROMON</From>
-            <To>UNIT_COG</To>
+            <To>UNIT_TREASURE_FLEET</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_HIPPODROME</ID>
