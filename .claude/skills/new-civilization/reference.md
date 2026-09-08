@@ -263,6 +263,12 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   model choice is an always-on fallback row plus a second file with the **same ID** in a
   `ModInUse` group with a later `LoadOrder`. Workshop civs' "new" units are remaps too (Scythia's
   amazon horse archer is `UNIT_KESHIG`), so remap to the base unit rather than to the mod.
+- Real art packages: Smayo's Civ Art Tools (CivFanatics resource 32918) builds `CIVBLP`
+  packages (wonder/building/improvement art under a new type, unit member swaps, material
+  clones, UI textures, static meshes). Output must live in the game install's `DLC/` folder,
+  so it cannot ship on the Workshop; the Mods half only carries `<UpdateArt>`. Code assumes
+  `Platforms/Windows`; on the Mac build the folder is `Platforms/Mac` (same format). Notes in
+  `plans/byzantium-art.md` §8.
 - Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,
   so it must be a **white shape on transparency** (the game recolours it); unit flags are plain
   **white silhouettes on transparency** drawn on the coloured flag; building and wonder icons are

@@ -175,3 +175,34 @@ warm desaturated palette, soft rim light, no text, no watermark."*
    into `Byzantium/loading/` and `Byzantium/icons/`.
 6. Update `.claude/skills/new-civilization/reference.md` with §1 and §4 so the next civ starts
    from a working art pipeline.
+
+## 8. Civ Art Tools (Smayo, CivFanatics resource 32918, v1.0 of 2026-08-21)
+
+Investigated 2026-09-07 from the source in `civ7-art-studio.zip` (Python 3.11+, MIT,
+starlette + uvicorn web app on 127.0.0.1:8765, plus a Windows-only PyInstaller exe).
+What it is: a manifest-driven builder for the game's own binary art packages
+(`CIVBLP` files). It copies a donor package's type registry from a shipped DLC and emits
+new entries: building bin modifiers, improvement and wonder region assets with attachment
+sets copied from a shipped asset, unit metadata assets whose members point at another
+unit's members, material clones of shipped models, UI textures, static glTF meshes, and
+Wwise sound banks. Output is `built/DLC/<name>/` (`.dep` + `Platforms/<OS>/BLPs/*.blp`
++ `SHARED_DATA/` blobs) and `built/Mods/<name>/` (a modinfo with `<UpdateArt>` in both
+scopes). The DLC half must be copied into the game install's `DLC/` folder by hand; the
+engine never looks for art packages in the user Mods folder, so Workshop distribution
+is impossible and the Mods half is only the switch that turns the art group on.
+
+What it would give Byzantium beyond `VisualRemaps`: Hagia Sophia as a real wonder asset
+(attachments copied from the Blue Mosque, terrain flattening, placement sound) under our
+own type, so no Ottomans-DLC condition; Hippodrome and Great Palace bound to any shipped
+building art with correct pillage and construction states; a Byzantine-coloured copy of
+a shipped unit or banner model (clone + new material); UI textures such as the panel and
+card images shipped as package textures, which would make the naming-convention lookups
+resolve without any UI script. Custom rigged units are not possible (meshes only, no
+armatures or animations); audio needs Wwise 2022.1 on Windows.
+
+Mac status: the package format is platform-independent (its parser reads
+`DLC/bulgaria/Platforms/Mac/BLPs/StandardAsset.blp` correctly), but the code hard-codes
+`Platforms/Windows` in about twelve places for both donor discovery and output. A
+one-line constant swap to `Mac` is needed and untested; BC7 DDS input needs an encoder
+that exists on macOS (Compressonator CLI or `bc7enc`), and the shipped exe is Windows.
+Running the tool has not been attempted here (only its read-only parser).
