@@ -8,6 +8,7 @@ Reports, without touching the game:
      nor in the game's own text.
   4. Type-like identifiers (CIVILIZATION_*, UNIT_*, MOD_*, REQSET_* ...) referenced in the
      mod that are neither introduced by the mod nor known to the game.
+  5. Identifiers declared in <Types> that no concrete table (Units, Traditions ...) defines.
 
 Usage: tools/check-mod.py <ModFolder> [--game <Resources dir>] [--refresh]
 
@@ -152,6 +153,7 @@ def check(mod, game_idents, game_tags):
     # 3 + 4. Symbol tables.
     defined_idents, referenced_idents = set(), {}
     defined_tags, referenced_tags = set(), {}
+    types_declared, concrete_defined = {}, set()
     for path, root in parsed.items():
         rel = os.path.relpath(path, mod)
         text = open(path, encoding="utf-8", errors="ignore").read()
@@ -176,6 +178,12 @@ def check(mod, game_idents, game_tags):
                         ident = m.group(0)
                         if attr in DEFINING_ATTRS and (ttag in DEFINING_TABLES or rtag in DEFINING_TABLES):
                             defined_idents.add(ident)
+                            # A <Types> row only declares a name; the concrete table
+                            # (Traditions, Units, Constructibles ...) must define it too.
+                            if ttag == "Types":
+                                types_declared.setdefault(ident, rel)
+                            else:
+                                concrete_defined.add(ident)
                         else:
                             referenced_idents.setdefault(ident, rel)
                     for m in LOC.finditer(value):
@@ -203,6 +211,14 @@ def check(mod, game_idents, game_tags):
     for i in unknown:
         print(f"ERROR: {i} (first used in {referenced_idents[i]}) is neither defined by the mod nor known to the game")
     problems += len(unknown)
+
+    # 5. Declared in <Types> but no row in a concrete table: the game's foreign-key
+    #    validation fails on the first table that points at it (seen with a tradition whose
+    #    Traditions row was lost while its TraditionModifiers rows stayed).
+    declared_only = sorted(i for i in types_declared if i not in concrete_defined and i not in game_idents)
+    for i in declared_only:
+        print(f"ERROR: {i} is declared in <Types> ({types_declared[i]}) but no table defines it")
+    problems += len(declared_only)
 
     mod_only = sorted(i for i in defined_idents if i not in game_idents)
     print(f"{os.path.basename(mod)}: {len(xml_files)} xml files, {len(defined_idents)} identifiers defined "
