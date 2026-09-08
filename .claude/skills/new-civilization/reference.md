@@ -28,7 +28,8 @@ Time-Tested play in an earlier age keep the row but give it its own `Civilizatio
 ("Byzantium (Time-Tested)"); reach the age normally through `CivilizationUnlocks` from the
 predecessors. Firaxis's own out-of-age content is small: an Origins node in
 `TREE_CIVICS_AQ_TEST_OF_TIME` with `_I` traditions, the ability's `TraitModifiers`, a
-self-syncretism tradition; no unique units (Syncretism lends an apex civ's unit).
+self-syncretism tradition; no unique units (Syncretism lends an apex civ's unit). Byzantium
+adds Antiquity unit variants anyway, listed in the picker only under the Antiquity domain.
 
 Game side, any civ whose `ApexAge` is not the active age receives `TRAIT_ANACHRONISTIC_CIV`
 (`base-standard/data/ages-post-process.sql`), which carries the same baseline modifiers as

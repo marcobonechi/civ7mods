@@ -105,12 +105,16 @@
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-antiquity" scope="game" criteria="antiquity-age-current">
-            <!-- Time-Tested play in Antiquity: the civ ability and the Origins civic node (Themata I,
-                 Foederati). No Antiquity unique units: like Firaxis's own out-of-age civs, Byzantium
-                 borrows an apex civ's unit through Syncretism. -->
+            <!-- Time-Tested play in Antiquity: the civ ability, the Origins civic node (Themata I,
+                 Foederati) and Antiquity variants of the two unique units (Cataphract on the Horseman,
+                 Dromon on the Galley), unlocked by Iron Working and Sailing. Firaxis's own out-of-age
+                 civs have no units and rely on Syncretism; this mod gives both. -->
             <Actions>
                 <UpdateDatabase>
                     <Item>data/civilizations-antiquity.xml</Item>
+                    <Item>data/units-antiquity.xml</Item>
+                    <Item>data/units-antiquity-gameeffects.xml</Item>
+                    <Item>data/progression-trees-tech-antiquity.xml</Item>
                     <Item>data/progression-trees-culture-unique-aq.xml</Item>
                 </UpdateDatabase>
             </Actions>

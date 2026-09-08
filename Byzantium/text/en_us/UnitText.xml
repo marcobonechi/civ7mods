@@ -40,5 +40,11 @@
         <Row Tag="LOC_REMAP_BYZANTIUM_DROMON">
             <Text>Byzantium: Dromon</Text>
         </Row>
+        <Row Tag="LOC_UNIT_CATAPHRACT_AQ_DESCRIPTION">
+            <Text>Byzantine Unique [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Unit[/TIP] that replaces the Horseman. +3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [icon:UNIT_CLASS_INFANTRY] Infantry.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_DROMON_AQ_DESCRIPTION">
+            <Text>Byzantine Unique Naval Unit that replaces the Galley. Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+        </Row>
     </EnglishText>
 </Database>

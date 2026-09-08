@@ -51,5 +51,13 @@
             <ID>WONDER_HAGIA_SOPHIA</ID>
             <Path>fs://game/byzantium/wondericon_hagia_sophia.png</Path>
         </Row>
+        <Row>
+            <ID>UNIT_CATAPHRACT_AQ</ID>
+            <Path>fs://game/byzantium/unitflag_cataphract.png</Path>
+        </Row>
+        <Row>
+            <ID>UNIT_DROMON_AQ</ID>
+            <Path>fs://game/byzantium/unitflag_dromon.png</Path>
+        </Row>
     </IconDefinitions>
 </Database>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_CATAPHRACT_AQ" UnlockDepth="1" RequiredTraitType="TRAIT_BYZANTIUM"/>
+        <Row ProgressionTreeNodeType="NODE_TECH_AQ_SAILING" TargetKind="KIND_UNIT" TargetType="UNIT_DROMON_AQ" UnlockDepth="1" RequiredTraitType="TRAIT_BYZANTIUM"/>
+    </ProgressionTreeNodeUnlocks>
+</Database>

@@ -33,9 +33,9 @@ Plan written 2026-09-05 from the installed game files
 > (Time-Tested) game. The picker only lists civs with a row for that age, so the Antiquity shell
 > row is back, labelled "Byzantium (Time-Tested)" so it reads as an out-of-age option. Restored
 > with it: the Antiquity civ-ability modifiers, the Origins node (Themata I, Foederati for
-> cavalry), the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits. Not
-> restored: the Antiquity Cataphract and Dromon; like Firaxis's own civs, a Time-Tested Byzantium
-> borrows an apex civ's unit through Syncretism. The rest of this section describes the original
+> cavalry), the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits. The
+> Antiquity Cataphract (on the Horseman, Iron Working) and Dromon (on the Galley, Sailing) are
+> back too, on Marco's request; Firaxis's own civs have no out-of-age units. The rest of this section describes the original
 > any-age design, which is again what ships.
 
 The game itself already supports this, in two halves.
