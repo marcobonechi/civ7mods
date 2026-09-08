@@ -5,7 +5,7 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | Folder | Mod | Status |
 |---|---|---|
 | `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
-| `Byzantium/` | Byzantium, an Exploration Age civilization playable at any start age | version 1, see [Byzantium](#byzantium) below |
+| `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it; a Modern start is also possible) | version 1, see [Byzantium](#byzantium) below |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 

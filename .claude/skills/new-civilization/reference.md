@@ -21,6 +21,10 @@ Age domains in the shell: `Ages.PlayerCivilizationDomain` is `AntiquityAgeCivili
 `ExplorationAgeCivilizations` or `ModernAgeCivilizations`. The civ list for a start age is the
 `Civilizations` config rows in that domain (primary key is Domain + CivilizationType, so one civ
 may sit in all three). The "Time-Tested Allowed" game option only widens *random* picks.
+Lesson from Byzantium: offering a civ in an earlier age than its apex reads as "this is an
+Antiquity civ" to players (the Antiquity picker lists it beside Rome). A successor civ should
+have shell rows only for its apex age and later, and reach the earlier age through
+`CivilizationUnlocks` from its predecessors.
 
 Game side, any civ whose `ApexAge` is not the active age receives `TRAIT_ANACHRONISTIC_CIV`
 (`base-standard/data/ages-post-process.sql`), which carries the same baseline modifiers as

@@ -24,6 +24,13 @@ Plan written 2026-09-05 from the installed game files
 
 ## 1. What "playable in any era" means and how it is done
 
+> Status 2026-09-08: Antiquity playability was removed on Marco's request ("it should be
+> Exploration Age, it's the continuation of Rome"). The Antiquity shell rows, the Antiquity
+> action group, the AQ unit variants, the Origins civic node, the Themata I and Foederati
+> traditions, the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits
+> are gone. Rome and Greece still unlock Byzantium at the transition; the Modern start stays.
+> The rest of this section describes the original any-age design.
+
 The game itself already supports this, in two halves.
 
 - **Game side.** `base-standard/data/ages-post-process.sql` adds `TRAIT_ANACHRONISTIC_CIV` to every

@@ -44,19 +44,5 @@
             <From>BUILDING_GREAT_PALACE</From>
             <To>BUILDING_GUILDHALL</To>
         </Row>
-        <Row>
-            <ID>REMAP_BYZANTIUM_CATAPHRACT_AQ</ID>
-            <DisplayName>LOC_REMAP_BYZANTIUM_CATAPHRACT</DisplayName>
-            <Kind>UNIT</Kind>
-            <From>UNIT_CATAPHRACT_AQ</From>
-            <To>UNIT_HORSEMAN</To>
-        </Row>
-        <Row>
-            <ID>REMAP_BYZANTIUM_DROMON_AQ</ID>
-            <DisplayName>LOC_REMAP_BYZANTIUM_DROMON</DisplayName>
-            <Kind>UNIT</Kind>
-            <From>UNIT_DROMON_AQ</From>
-            <To>UNIT_GALLEY</To>
-        </Row>
     </VisualRemaps>
 </Database>
