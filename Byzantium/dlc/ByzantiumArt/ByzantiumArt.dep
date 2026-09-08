@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- CUSTOM MODDED -->
+<AssetObjects..GameDependencyData>
+	<ID>
+		<name text="ByzantiumArt"/>
+		<id text="4F89C768-2645-4099-9D62-E34A55E5C372"/>
+	</ID>
+	<RequiredGameArtIDs>
+		<Element>
+			<name text="Civ7"/>
+			<id text="F5D94984-9531-46FF-92D9-3B65894F212B"/>
+		</Element>
+	</RequiredGameArtIDs>
+	<LibraryDependencies>
+		<Element>
+			<LibraryName text="StandardAsset"/>
+			<LibraryHash>3471015496</LibraryHash>
+			<PackageNames>
+				<Element text="StandardAsset"/>
+			</PackageNames>
+		</Element>
+	</LibraryDependencies>
+</AssetObjects..GameDependencyData>

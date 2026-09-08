@@ -267,8 +267,15 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   packages (wonder/building/improvement art under a new type, unit member swaps, material
   clones, UI textures, static meshes). Output must live in the game install's `DLC/` folder,
   so it cannot ship on the Workshop; the Mods half only carries `<UpdateArt>`. Code assumes
-  `Platforms/Windows`; on the Mac build the folder is `Platforms/Mac` (same format). Notes in
-  `plans/byzantium-art.md` §8.
+  `Platforms/Windows`; on the Mac build the folder is `Platforms/Mac` (same format, seven path
+  edits make it run). Recipe used for Byzantium's Hagia Sophia: run `civart --no-browser`
+  with `CIV7_GAME_ROOT`, create a project named after the art group, search the asset index for
+  the shipped wonder (`WONDER_<Name>`), add a wonder entry with your asset name, your
+  `ConstructibleType`, the shipped asset's attachments and `TER_EDIT_Flatten_Hex`, build, copy
+  `built/DLC/<Group>` into `<Mod>/dlc/<Group>` (both platform folders), add
+  `<UpdateArt><Item><Group></Item></UpdateArt>` to the game and shell action groups, drop any
+  `VisualRemaps` row for that type. The install scripts mirror `dlc/*` into the game's `DLC/`.
+  Notes in `plans/byzantium-art.md` §8.
 - Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,
   so it must be a **white shape on transparency** (the game recolours it); unit flags are plain
   **white silhouettes on transparency** drawn on the coloured flag; building and wonder icons are

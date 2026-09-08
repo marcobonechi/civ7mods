@@ -289,7 +289,13 @@ Unique units and buildings borrow the models of the base units and buildings the
 and building medallions (cut from a concept sheet, kept in `icons-alt/`) with vector unit
 silhouettes (`icons-vector/`, sources in `icons/src/`); `tools/switch-icons.sh Byzantium alt|vector|mixed`
 swaps between them; all icons are 256 px, and `portrait_*.png` are full-colour unit portraits awaiting the
-unit-panel hook described in `plans/byzantium-art.md`. `Byzantium/loading/` holds the painted loading screen (1080 and 720 variants) and the
+unit-panel hook described in `plans/byzantium-art.md`. `Byzantium/dlc/ByzantiumArt/` is a binary art package
+(a `.dep` plus `Platforms/<OS>/BLPs/StandardAsset.blp`, identical bytes for Mac and Windows) that gives Hagia
+Sophia its own wonder art, copied from the Blue Mosque's attachment set; it was built with Smayo's Civ Art
+Tools from `Byzantium/dlc/civart.json`, and `install.sh` / `install.ps1` mirror it into the game install's
+`DLC/` folder because the engine only looks for art packages there (set `CIV7_GAME_ROOT` if the Steam
+library is elsewhere). The modinfo switches it on with `<UpdateArt><Item>ByzantiumArt</Item></UpdateArt>`
+in both scopes. `Byzantium/loading/` holds the painted loading screen (1080 and 720 variants) and the
 civilization-select card; the `source-*.png` files are the untouched generations. `lsbg_byzantium_emperor_1080.png` is an
 alternate loading painting (emperor portrait); point `data/loading-info.xml` and the BACKGROUND rows in
 `data/icons/icons.xml` at it to use it. Design notes and the verification record are in `plans/byzantium.md`; the recipe for the

@@ -52,8 +52,5 @@
         <Row Tag="LOC_REMAP_BYZANTIUM_GREAT_PALACE">
             <Text>Byzantium: Great Palace</Text>
         </Row>
-        <Row Tag="LOC_REMAP_BYZANTIUM_HAGIA_SOPHIA">
-            <Text>Byzantium: Hagia Sophia</Text>
-        </Row>
     </EnglishText>
 </Database>

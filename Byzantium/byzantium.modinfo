@@ -62,6 +62,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>ByzantiumArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/byzantium-images.js</Item>
                 </UIScripts>
@@ -153,9 +156,6 @@
                     <Item>data/unlocks-ottomans.xml</Item>
                     <Item>data/unlocks-syncretism-ottomans.xml</Item>
                 </UpdateDatabase>
-                <UpdateVisualRemaps>
-                    <Item>data/visual-remaps-ottomans.xml</Item>
-                </UpdateVisualRemaps>
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-shell" scope="shell" criteria="always">
@@ -181,6 +181,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>ByzantiumArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/byzantium-images.js</Item>
                 </UIScripts>
@@ -210,9 +213,6 @@
                     <Item>config/config-ottomans.xml</Item>
                     <Item>data/unlocks-syncretism-ottomans.xml</Item>
                 </UpdateDatabase>
-                <UpdateVisualRemaps>
-                    <Item>data/visual-remaps-ottomans.xml</Item>
-                </UpdateVisualRemaps>
             </Actions>
         </ActionGroup>
     </ActionGroups>

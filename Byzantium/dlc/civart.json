@@ -1,0 +1,67 @@
+{
+  "project": {
+    "name": "ByzantiumArt",
+    "guid": "4F89C768-2645-4099-9D62-E34A55E5C372",
+    "displayName": "Byzantium Art",
+    "author": "marcob",
+    "version": "1"
+  },
+  "buildings": [],
+  "binArt": [],
+  "improvements": [],
+  "wonders": [
+    {
+      "asset": "WONDER_Byzantium_Hagia_Sophia",
+      "type": "WONDER_HAGIA_SOPHIA",
+      "attachments": [
+        [
+          "newAttachmentPoint_1",
+          "BIN_WON_Sultan_Ahmet_Camii",
+          -0.523599
+        ],
+        [
+          "Road_CP_E",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          0.0
+        ],
+        [
+          "Road_CP_NE",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          1.047198
+        ],
+        [
+          "Road_CP_NW",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          2.094395
+        ],
+        [
+          "Road_CP_SE",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          -1.047198
+        ],
+        [
+          "Road_CP_SW",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          -2.094395
+        ],
+        [
+          "Road_CP_W",
+          "BIN_TER_Decal_Road_CP_Straight_Short_A",
+          -3.141592
+        ]
+      ],
+      "hexes": {},
+      "baseLayer": "TER_EDIT_Flatten_Hex"
+    }
+  ],
+  "units": [],
+  "meshes": [],
+  "soundbanks": [],
+  "audioEvents": [],
+  "clones": [],
+  "uiTextures": [],
+  "materials": [],
+  "donors": {
+    "StandardAsset": "DLC/asia-wonders/Platforms/Mac/BLPs/StandardAsset.blp"
+  }
+}

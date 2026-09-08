@@ -205,4 +205,17 @@ Mac status: the package format is platform-independent (its parser reads
 `Platforms/Windows` in about twelve places for both donor discovery and output. A
 one-line constant swap to `Mac` is needed and untested; BC7 DDS input needs an encoder
 that exists on macOS (Compressonator CLI or `bc7enc`), and the shipped exe is Windows.
-Running the tool has not been attempted here (only its read-only parser).
+Done 2026-09-08: the tool runs on the Mac with seven `Platforms/Windows` → `Platforms/Mac`
+edits (`gameinfo.py`, `project.py`, `blp/donors.py`, `blp/sync_blobs.py`,
+`blp/build_material_blp.py`, `blp/build_blp.py`, `importers.py`), started with
+`CIV7_GAME_ROOT=<Resources folder> civart --no-browser --port 8770`. The asset index built in
+two seconds. Project `ByzantiumArt`, one wonder entry: asset `WONDER_Byzantium_Hagia_Sophia`,
+type `WONDER_HAGIA_SOPHIA`, the seven attachments of `WONDER_Sultan_Ahmet_Camii`
+(`BIN_WON_Sultan_Ahmet_Camii` plus six road decals), base layer `TER_EDIT_Flatten_Hex`. Donor
+`DLC/asia-wonders` StandardAsset. Output committed as `Byzantium/dlc/ByzantiumArt/` (91 KB
+package, both platform folder names) with the manifest in `Byzantium/dlc/civart.json`; the
+wonder `VisualRemaps` rows and the Ottomans override file are gone, `<UpdateArt>` is in both
+modinfo scopes, the install scripts mirror `dlc/*` into the game's `DLC/`. The bin lives in the
+Ottomans DLC package, so the wonder renders only while that DLC is enabled. In-game check
+pending. Pitfall met: `POST /api/manifest` wants `{"project": <manifest>}`; posting the bare
+manifest replaces it with its own metadata block.

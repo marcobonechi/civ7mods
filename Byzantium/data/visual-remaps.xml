@@ -3,9 +3,9 @@
      scout and palace). From = our type, To = the type whose art is shown. Remaps are keyed by ID and
      players can toggle each one in Options. Choices (Sep 2026): Cataphract = Mongol Keshig (the
      Scythia Workshop civ's amazon horse archer is itself a Keshig remap), Dromon = Treasure Fleet
-     hull (a civilian model: if attack animations turn out missing, fall back to UNIT_GALLEON),
-     Hagia Sophia = Notre Dame here, overridden by the Blue Mosque in visual-remaps-ottomans.xml
-     when the Ottomans DLC is in use. -->
+     hull (a civilian model: if attack animations turn out missing, fall back to UNIT_GALLEON).
+     Hagia Sophia is not remapped: it has its own art entry in the ByzantiumArt package
+     (dlc/ByzantiumArt, built with Civ Art Tools from the Blue Mosque's attachment set). -->
 <Database>
     <VisualRemaps>
         <Row>
@@ -49,13 +49,6 @@
             <Kind>BUILDING</Kind>
             <From>BUILDING_GREAT_PALACE</From>
             <To>BUILDING_GUILDHALL</To>
-        </Row>
-        <Row>
-            <ID>REMAP_BYZANTIUM_HAGIA_SOPHIA</ID>
-            <DisplayName>LOC_REMAP_BYZANTIUM_HAGIA_SOPHIA</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>WONDER_HAGIA_SOPHIA</From>
-            <To>WONDER_NOTRE_DAME</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_CATAPHRACT_AQ</ID>
