@@ -1,45 +1,109 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <!-- Hagia Sophia: the great dome over half-domes and buttressed brick walls. -->
+  <!-- Hagia Sophia, Justinian's church: great dome on a forty-window drum, two half-domes,
+       buttress towers, brick-and-marble walls. Three-quarter view from the south-west, lit from
+       the upper left, in the painted style of the Civ 7 wonder icons. -->
   <defs>
-    <linearGradient id="dome" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9b9c4"/><stop offset="1" stop-color="#55666f"/></linearGradient>
-    <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9946a"/><stop offset="1" stop-color="#9a5335"/></linearGradient>
-    <linearGradient id="brick2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c47f56"/><stop offset="1" stop-color="#7f4229"/></linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4dc86"/><stop offset="1" stop-color="#b8862a"/></linearGradient>
+    <radialGradient id="domeG" cx="0.38" cy="0.25" r="0.8">
+      <stop offset="0" stop-color="#c9d6dd"/><stop offset="0.45" stop-color="#8ea1ad"/><stop offset="1" stop-color="#3f4f58"/>
+    </radialGradient>
+    <radialGradient id="halfG" cx="0.4" cy="0.2" r="0.9">
+      <stop offset="0" stop-color="#b6c5ce"/><stop offset="0.5" stop-color="#7d919c"/><stop offset="1" stop-color="#3a4950"/>
+    </radialGradient>
+    <linearGradient id="wallL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a878"/><stop offset="1" stop-color="#b3653f"/></linearGradient>
+    <linearGradient id="wallD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8734c"/><stop offset="1" stop-color="#7c4128"/></linearGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e3c7"/><stop offset="1" stop-color="#cdb08a"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset="0.5" stop-color="#e2b437"/><stop offset="1" stop-color="#9a6b14"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5d7a2" stop-opacity="0"/><stop offset="1" stop-color="#e29a5a" stop-opacity="0.35"/></linearGradient>
   </defs>
-  <ellipse cx="128" cy="216" rx="112" ry="18" fill="#000" opacity="0.28"/>
-  <!-- outer buttress blocks -->
-  <rect x="18" y="150" width="40" height="64" fill="url(#brick2)"/>
-  <rect x="198" y="150" width="40" height="64" fill="url(#brick2)"/>
-  <path d="M18,150 h40 v-8 h-40z M198,150 h40 v-8 h-40z" fill="#e0a97e"/>
-  <!-- main body -->
-  <rect x="48" y="132" width="160" height="82" fill="url(#brick)"/>
-  <rect x="44" y="126" width="168" height="8" fill="#e0a97e"/>
-  <!-- half domes left and right -->
-  <path d="M46,132 A34,30 0 0 1 114,132 Z" fill="url(#dome)"/>
-  <path d="M142,132 A34,30 0 0 1 210,132 Z" fill="url(#dome)"/>
-  <!-- central block and drum -->
-  <rect x="74" y="100" width="108" height="34" fill="url(#brick)"/>
-  <rect x="70" y="96" width="116" height="6" fill="#e0a97e"/>
-  <!-- window ring -->
-  <g fill="#3a2418">
-    <path d="M80,108 a3,4 0 0 1 6,0 v10 h-6z M92,108 a3,4 0 0 1 6,0 v10 h-6z M104,108 a3,4 0 0 1 6,0 v10 h-6z M116,108 a3,4 0 0 1 6,0 v10 h-6z M128,108 a3,4 0 0 1 6,0 v10 h-6z M140,108 a3,4 0 0 1 6,0 v10 h-6z M152,108 a3,4 0 0 1 6,0 v10 h-6z M164,108 a3,4 0 0 1 6,0 v10 h-6z"/>
-  </g>
-  <!-- great dome -->
-  <path d="M68,98 A60,52 0 0 1 188,98 Z" fill="url(#dome)"/>
-  <path d="M76,98 A52,46 0 0 1 128,52 L128,98 Z" fill="#ffffff" opacity="0.10"/>
-  <g stroke="#3f4d55" stroke-width="1.2" fill="none" opacity="0.7">
-    <path d="M128,46 L128,98 M104,52 L112,98 M152,52 L144,98 M84,66 L96,98 M172,66 L160,98"/>
-  </g>
-  <!-- cross -->
-  <rect x="126" y="26" width="4" height="22" fill="url(#gold)"/>
-  <rect x="120" y="32" width="16" height="4" fill="url(#gold)"/>
-  <!-- lower arches -->
-  <g fill="#3a2418">
-    <path d="M66,214 v-40 a10,12 0 0 1 20,0 v40z M96,214 v-40 a10,12 0 0 1 20,0 v40z M140,214 v-40 a10,12 0 0 1 20,0 v40z M170,214 v-40 a10,12 0 0 1 20,0 v40z"/>
-    <path d="M118,214 v-52 a10,14 0 0 1 20,0 v52z" fill="#2a1a0c"/>
-  </g>
+
+  <!-- ground and cast shadow -->
+  <ellipse cx="130" cy="222" rx="118" ry="16" fill="#1a0f08" opacity="0.35"/>
+  <ellipse cx="130" cy="218" rx="112" ry="12" fill="url(#sky)"/>
+
+  <!-- rear buttress towers (north side, seen over the roof) -->
+  <rect x="86" y="128" width="14" height="30" fill="url(#wallD)"/>
+  <rect x="164" y="128" width="14" height="30" fill="url(#wallD)"/>
+
+  <!-- main body: lit south face and shaded west face -->
+  <path d="M48,214 L48,150 L196,150 L196,214 Z" fill="url(#wallL)"/>
+  <path d="M196,150 L226,138 L226,206 L196,214 Z" fill="url(#wallD)"/>
+  <path d="M48,150 L196,150 L226,138 L78,138 Z" fill="#d5936a"/>
+  <!-- marble string courses -->
+  <rect x="48" y="150" width="148" height="4" fill="url(#marble)"/>
+  <rect x="48" y="176" width="148" height="3" fill="url(#marble)" opacity="0.8"/>
+  <path d="M196,154 L226,142 L226,145 L196,157 Z" fill="#e8cfa6" opacity="0.8"/>
   <!-- brick courses -->
-  <g stroke="#7a3f28" stroke-width="1" opacity="0.5">
-    <path d="M48,150 h160 M48,166 h160 M48,196 h160 M74,116 h108"/>
+  <g stroke="#8a4a2e" stroke-width="1" opacity="0.45">
+    <path d="M48,162 h148 M48,169 h148 M48,186 h148 M48,194 h148 M48,202 h148"/>
+    <path d="M196,166 l30,-12 M196,182 l30,-12 M196,198 l30,-12"/>
   </g>
+  <!-- ground-floor arcade -->
+  <g fill="#2a1710">
+    <path d="M60,214 v-24 a8,10 0 0 1 16,0 v24z M84,214 v-24 a8,10 0 0 1 16,0 v24z M144,214 v-24 a8,10 0 0 1 16,0 v24z M168,214 v-24 a8,10 0 0 1 16,0 v24z"/>
+    <path d="M110,214 v-32 a12,14 0 0 1 24,0 v32z" fill="#1c0e08"/>
+  </g>
+  <path d="M112,214 v-30 a10,12 0 0 1 20,0 v30z" fill="url(#gold)" opacity="0.35"/>
+  <!-- upper window band on the south face -->
+  <g fill="#3a2418">
+    <path d="M64,172 v-12 a4,5 0 0 1 8,0 v12z M80,172 v-12 a4,5 0 0 1 8,0 v12z M96,172 v-12 a4,5 0 0 1 8,0 v12z M140,172 v-12 a4,5 0 0 1 8,0 v12z M156,172 v-12 a4,5 0 0 1 8,0 v12z M172,172 v-12 a4,5 0 0 1 8,0 v12z"/>
+  </g>
+
+  <!-- south-west and south-east buttress towers -->
+  <path d="M30,216 L30,142 L54,136 L54,216 Z" fill="url(#wallL)"/>
+  <path d="M54,136 L64,132 L64,214 L54,216 Z" fill="url(#wallD)"/>
+  <path d="M30,142 L54,136 L64,132 L40,138 Z" fill="#e6b088"/>
+  <path d="M190,216 L190,142 L214,136 L214,216 Z" fill="url(#wallL)"/>
+  <path d="M214,136 L224,132 L224,208 L214,216 Z" fill="url(#wallD)"/>
+  <path d="M190,142 L214,136 L224,132 L200,138 Z" fill="#e6b088"/>
+
+  <!-- half-domes flanking the central block -->
+  <path d="M40,140 A42,38 0 0 1 124,140 Z" fill="url(#halfG)"/>
+  <path d="M132,140 A42,38 0 0 1 216,140 Z" fill="url(#halfG)"/>
+  <path d="M46,140 A36,32 0 0 1 82,108 L82,140 Z" fill="#ffffff" opacity="0.12"/>
+  <path d="M138,140 A36,32 0 0 1 174,108 L174,140 Z" fill="#ffffff" opacity="0.12"/>
+  <!-- half-dome ribs -->
+  <g stroke="#2f3d45" stroke-width="1" fill="none" opacity="0.55">
+    <path d="M82,102 L82,140 M62,110 L70,140 M102,110 L94,140"/>
+    <path d="M174,102 L174,140 M154,110 L162,140 M194,110 L186,140"/>
+  </g>
+  <!-- small exedra domes -->
+  <path d="M36,146 A14,12 0 0 1 64,146 Z" fill="url(#halfG)"/>
+  <path d="M192,146 A14,12 0 0 1 220,146 Z" fill="url(#halfG)"/>
+
+  <!-- central block carrying the drum -->
+  <path d="M72,140 L72,100 L184,100 L184,140 Z" fill="url(#wallL)"/>
+  <path d="M184,100 L200,94 L200,136 L184,140 Z" fill="url(#wallD)"/>
+  <rect x="72" y="100" width="112" height="4" fill="url(#marble)"/>
+  <g fill="#3a2418">
+    <path d="M80,130 v-14 a4,5 0 0 1 8,0 v14z M100,130 v-14 a4,5 0 0 1 8,0 v14z M148,130 v-14 a4,5 0 0 1 8,0 v14z M168,130 v-14 a4,5 0 0 1 8,0 v14z"/>
+  </g>
+  <!-- tympanum arch -->
+  <path d="M116,140 v-22 a12,14 0 0 1 24,0 v22z" fill="#2a1710"/>
+
+  <!-- drum with its ring of windows -->
+  <path d="M70,102 A58,14 0 0 1 186,102 L186,86 A58,14 0 0 0 70,86 Z" fill="url(#wallL)"/>
+  <path d="M70,86 A58,14 0 0 1 186,86 A58,14 0 0 1 70,86 Z" fill="#d9a074"/>
+  <g fill="#2a1710">
+    <path d="M78,100 v-9 a2.5,3 0 0 1 5,0 v9z M88,101 v-10 a2.5,3 0 0 1 5,0 v10z M98,102 v-11 a2.5,3 0 0 1 5,0 v11z M108,102 v-11 a2.5,3 0 0 1 5,0 v11z M118,103 v-12 a2.5,3 0 0 1 5,0 v12z M128,103 v-12 a2.5,3 0 0 1 5,0 v12z M138,103 v-12 a2.5,3 0 0 1 5,0 v12z M148,102 v-11 a2.5,3 0 0 1 5,0 v11z M158,102 v-11 a2.5,3 0 0 1 5,0 v11z M168,101 v-10 a2.5,3 0 0 1 5,0 v10z"/>
+  </g>
+  <g fill="#f6d27a" opacity="0.55">
+    <path d="M79,99 v-7 a1.5,2 0 0 1 3,0 v7z M99,101 v-9 a1.5,2 0 0 1 3,0 v9z M119,102 v-10 a1.5,2 0 0 1 3,0 v10z M139,102 v-10 a1.5,2 0 0 1 3,0 v10z M159,101 v-9 a1.5,2 0 0 1 3,0 v9z"/>
+  </g>
+
+  <!-- the great dome -->
+  <path d="M68,90 A60,50 0 0 1 188,90 A60,14 0 0 1 68,90 Z" fill="url(#domeG)"/>
+  <path d="M76,88 A52,44 0 0 1 128,44 L128,88 Z" fill="#ffffff" opacity="0.10"/>
+  <g stroke="#26333a" stroke-width="1.1" fill="none" opacity="0.6">
+    <path d="M128,40 L128,90 M108,44 L114,90 M148,44 L142,90 M90,54 L100,90 M166,54 L156,90 M76,70 L86,90 M180,70 L170,90"/>
+  </g>
+  <path d="M68,90 A60,14 0 0 0 188,90 A60,14 0 0 0 68,90 Z" fill="#26333a" opacity="0.35"/>
+  <!-- lantern base and gold cross -->
+  <ellipse cx="128" cy="41" rx="8" ry="3" fill="url(#gold)"/>
+  <rect x="126" y="16" width="4" height="26" fill="url(#gold)"/>
+  <rect x="119" y="22" width="18" height="4" fill="url(#gold)"/>
+  <circle cx="128" cy="24" r="3" fill="#fff4bf"/>
+
+  <!-- warm rim light on the left edges -->
+  <path d="M30,142 L30,216 L34,216 L34,144 Z" fill="#ffd9a8" opacity="0.35"/>
+  <path d="M48,150 L48,214 L52,214 L52,152 Z" fill="#ffd9a8" opacity="0.25"/>
 </svg>

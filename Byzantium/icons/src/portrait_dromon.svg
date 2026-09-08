@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Dromon portrait: a Byzantine war galley under a lateen sail with a bank of oars, a bronze
+       siphon at the bow throwing Greek fire, eagle banner at the stern; dusk over the Bosporus. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d1a2e"/><stop offset="0.55" stop-color="#6b3f3a"/><stop offset="0.8" stop-color="#d98a4a"/><stop offset="1" stop-color="#f2c07a"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f6b6e"/><stop offset="0.4" stop-color="#1f4145"/><stop offset="1" stop-color="#0b1c20"/>
+    </linearGradient>
+    <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a5230"/><stop offset="0.5" stop-color="#4a2f18"/><stop offset="1" stop-color="#1e120a"/></linearGradient>
+    <linearGradient id="sail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6ead0"/><stop offset="0.6" stop-color="#d9c39c"/><stop offset="1" stop-color="#9c8461"/></linearGradient>
+    <linearGradient id="bronze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0b05a"/><stop offset="1" stop-color="#7a5218"/></linearGradient>
+    <radialGradient id="fire" cx="0.35" cy="0.6" r="0.7">
+      <stop offset="0" stop-color="#fff4b0"/><stop offset="0.35" stop-color="#ffb03a"/><stop offset="0.75" stop-color="#e2461c"/><stop offset="1" stop-color="#7a1608" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffb03a" stop-opacity="0.55"/><stop offset="1" stop-color="#ffb03a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.75"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="256" height="256" fill="url(#sky)"/>
+  <!-- low sun -->
+  <circle cx="196" cy="150" r="22" fill="#ffd992" opacity="0.9"/>
+  <circle cx="196" cy="150" r="40" fill="url(#glow)"/>
+  <!-- distant shore: the walls of Constantinople -->
+  <path d="M0,152 L40,150 L48,144 L52,150 L96,148 L102,140 L108,148 L150,146 L156,140 L162,146 L256,148 L256,160 L0,160 Z" fill="#3a2431"/>
+  <path d="M70,140 A10,8 0 0 1 90,140 L90,148 L70,148 Z" fill="#3a2431"/>
+  <!-- sea -->
+  <rect x="0" y="158" width="256" height="98" fill="url(#sea)"/>
+  <g stroke="#a7c7c4" stroke-width="1.2" fill="none" opacity="0.35">
+    <path d="M10,172 q10,-3 20,0 t20,0 t20,0 M150,176 q10,-3 20,0 t20,0 t20,0 M20,236 q10,-3 20,0 t20,0 M180,226 q10,-3 20,0 t20,0 t20,0"/>
+  </g>
+  <!-- sun path on the water -->
+  <path d="M184,160 L208,160 L226,250 L166,250 Z" fill="#ffd992" opacity="0.14"/>
+
+  <g transform="translate(-16,0)">
+  <!-- mast and yard (behind the sail) -->
+  <rect x="124" y="40" width="7" height="120" fill="#3b2612"/>
+  <path d="M74,134 L214,30" stroke="#5a3d1e" stroke-width="6" stroke-linecap="round"/>
+  <!-- lateen sail with a purple stripe -->
+  <path d="M84,130 L206,36 C204,80 184,120 148,142 L98,142 Z" fill="url(#sail)"/>
+  <path d="M120,104 C140,96 160,80 178,58 L188,52 C170,84 148,110 124,124 Z" fill="#6a2a5e" opacity="0.65"/>
+  <path d="M84,130 L206,36" stroke="#f9f1dc" stroke-width="2" opacity="0.6"/>
+  <path d="M100,140 C120,132 140,124 160,110" stroke="#8c7451" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- banner at the masthead -->
+  <path d="M131,40 L166,50 L131,58 Z" fill="#7a1a12"/>
+  <path d="M136,45 l10,3 -10,3 z" fill="#e6c46a"/>
+
+  <!-- hull -->
+  <path d="M14,164 C36,156 70,150 100,150 L206,150 L236,146 L248,164 L230,178 C204,196 168,204 128,204 C92,204 62,198 40,186 Z" fill="url(#hull)"/>
+  <path d="M100,150 L206,150 L236,146 L240,152 L206,156 L100,156 Z" fill="#8c623b"/>
+  <path d="M40,186 C62,196 92,200 128,200 C168,200 204,192 230,176" stroke="#1e120a" stroke-width="3" fill="none"/>
+  <!-- shield row along the gunwale -->
+  <g fill="#7a1a12" stroke="#e6c46a" stroke-width="1">
+    <circle cx="110" cy="163" r="6"/><circle cx="126" cy="164" r="6"/><circle cx="142" cy="164" r="6"/><circle cx="158" cy="163" r="6"/><circle cx="174" cy="162" r="6"/><circle cx="190" cy="160" r="6"/>
+  </g>
+  <!-- fighting castle amidships -->
+  <path d="M96,150 L96,138 L120,138 L120,150 Z" fill="#5a3d1e"/>
+  <g fill="#2a1a0c"><path d="M98,140 h4 v-4 h-4z M106,140 h4 v-4 h-4z M114,140 h4 v-4 h-4z"/></g>
+  <!-- ram -->
+  <path d="M236,162 L256,172 L236,182 Z" fill="url(#bronze)"/>
+  <!-- stern post with the eagle -->
+  <path d="M14,164 L10,126 C12,116 22,114 28,122 L44,152 Z" fill="url(#hull)"/>
+  <path d="M10,126 L8,108 L18,112 Z" fill="#8c623b"/>
+  <path d="M6,104 c6,-8 14,-6 16,2 c-4,0 -8,2 -10,6 c-2,-4 -4,-6 -6,-8z" fill="#e6c46a"/>
+  <!-- oars, with wakes -->
+  <g stroke="#3b2612" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M64,196 L52,224 M86,200 L78,228 M108,203 L104,232 M130,204 L132,232 M152,203 L158,230 M174,199 L184,226 M196,190 L210,214"/>
+  </g>
+  <g stroke="#a7c7c4" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M46,226 q6,-2 12,0 M72,230 q6,-2 12,0 M98,234 q6,-2 12,0 M126,234 q6,-2 12,0 M152,232 q6,-2 12,0 M178,228 q6,-2 12,0 M204,216 q6,-2 12,0"/>
+  </g>
+
+  <!-- siphon and Greek fire -->
+  <rect x="204" y="140" width="30" height="10" rx="4" fill="url(#bronze)"/>
+  <path d="M214,140 L214,132 L226,132 L226,140 Z" fill="#7a5218"/>
+  <path d="M232,146 C236,126 246,110 256,100 L256,150 C248,152 240,152 232,146 Z" fill="url(#fire)"/>
+  <path d="M232,146 C236,132 244,120 254,110 C250,124 252,134 256,140 L256,150 C246,152 238,152 232,146 Z" fill="#fff4b0" opacity="0.55"/>
+  <g stroke="#ffb03a" stroke-width="1.5" fill="none" opacity="0.8" stroke-linecap="round">
+    <path d="M238,128 l4,-8 M246,122 l6,-10 M242,112 l2,-8"/>
+  </g>
+  <!-- fire reflection and smoke -->
+  <path d="M228,166 C238,176 248,184 256,190 L256,166 Z" fill="#ffb03a" opacity="0.25"/>
+  <path d="M236,116 C230,100 236,88 246,78 C240,92 246,102 252,104 C244,110 240,116 236,116 Z" fill="#3a2a2a" opacity="0.5"/>
+
+  </g>
+  <rect width="256" height="256" fill="url(#vignette)"/>
+</svg>

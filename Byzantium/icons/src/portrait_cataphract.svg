@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Cataphract portrait: a tenth-century klibanophoros on a barded horse, side view facing
+       right, lamellar cuirass, iron chamfron, kontos lance, purple-and-gold saddle cloth.
+       Square, dark smoky vignette like the unit panel portraits. -->
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0" stop-color="#5a4330"/><stop offset="0.6" stop-color="#2a1d14"/><stop offset="1" stop-color="#0d0906"/>
+    </radialGradient>
+    <linearGradient id="horse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b4a33"/><stop offset="1" stop-color="#2e1c11"/></linearGradient>
+    <linearGradient id="bard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9b3a6"/><stop offset="1" stop-color="#5e5850"/></linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d7dce0"/><stop offset="0.5" stop-color="#8b949c"/><stop offset="1" stop-color="#40474d"/></linearGradient>
+    <linearGradient id="lamellar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4b25a"/><stop offset="1" stop-color="#7e5c1c"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a2f6a"/><stop offset="1" stop-color="#3d1236"/></linearGradient>
+    <linearGradient id="plume" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e64a3c"/><stop offset="1" stop-color="#7a1a12"/></linearGradient>
+    <pattern id="scales" width="8" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0,6 a4,4 0 0 1 8,0" fill="none" stroke="#3b2a0c" stroke-width="1" opacity="0.7"/>
+      <path d="M4,3 a4,4 0 0 1 8,0" fill="none" stroke="#3b2a0c" stroke-width="1" opacity="0.5"/>
+    </pattern>
+    <pattern id="mail" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="none" stroke="#2c3238" stroke-width="0.8"/>
+    </pattern>
+  </defs>
+
+  <rect width="256" height="256" fill="url(#bg)"/>
+  <!-- dusty ground glow -->
+  <ellipse cx="128" cy="226" rx="120" ry="18" fill="#c48a4a" opacity="0.18"/>
+  <ellipse cx="128" cy="230" rx="96" ry="9" fill="#000" opacity="0.5"/>
+
+  <!-- lance (behind the rider) -->
+  <path d="M62,168 L240,44" stroke="#8d6a3f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M62,168 L240,44" stroke="#d9b378" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M236,47 L252,30 L246,54 Z" fill="url(#steel)"/>
+  <path d="M214,62 L226,70 L212,76 Z" fill="url(#plume)"/>
+
+  <!-- tail -->
+  <path d="M70,138 C48,146 38,168 44,194 C52,180 56,164 72,154 Z" fill="#231409"/>
+  <path d="M68,142 C54,150 46,166 48,184 C54,172 60,160 70,152 Z" fill="#4a2f1b"/>
+
+  <!-- rear legs -->
+  <path d="M78,184 L62,220 L76,222 L94,188 Z" fill="#2e1c11"/>
+  <path d="M96,188 L96,222 L110,222 L112,188 Z" fill="#3d2616"/>
+  <!-- horse body -->
+  <path d="M66,156 C64,128 88,116 114,116 L178,116 C196,116 206,126 208,142 L208,168 L66,168 Z" fill="url(#horse)"/>
+  <!-- scale barding skirt -->
+  <path d="M64,164 L208,164 L208,186 L198,194 L188,186 L178,194 L168,186 L158,194 L148,186 L138,194 L128,186 L118,194 L108,186 L98,194 L88,186 L78,194 L64,186 Z" fill="url(#bard)"/>
+  <path d="M64,164 L208,164 L208,186 L198,194 L188,186 L178,194 L168,186 L158,194 L148,186 L138,194 L128,186 L118,194 L108,186 L98,194 L88,186 L78,194 L64,186 Z" fill="url(#scales)"/>
+  <path d="M64,164 h144 v3 h-144z" fill="#e8d9a8" opacity="0.6"/>
+  <!-- front legs -->
+  <path d="M162,188 L166,222 L180,222 L182,188 Z" fill="#3d2616"/>
+  <path d="M186,186 L212,212 L222,204 L204,184 Z" fill="#2e1c11"/>
+  <g fill="#1a100a"><path d="M62,220 h14 v4 h-14z M96,222 h14 v4 h-14z M166,222 h14 v4 h-14z M214,210 l8,-6 l4,4 l-8,6z"/></g>
+
+  <!-- neck with crinet, head with chamfron -->
+  <path d="M174,124 C182,104 198,88 220,80 L242,74 C250,78 252,90 246,96 L238,104 C230,112 220,116 212,120 C208,130 208,140 208,150 L188,146 Z" fill="url(#horse)"/>
+  <path d="M176,122 C184,104 200,90 222,82 L228,92 C214,100 204,112 198,132 Z" fill="url(#bard)" opacity="0.9"/>
+  <path d="M176,122 C184,104 200,90 222,82 L228,92 C214,100 204,112 198,132 Z" fill="url(#scales)"/>
+  <path d="M220,80 L242,74 C250,78 252,90 246,96 L238,104 C232,108 226,110 220,110 L214,96 Z" fill="url(#steel)"/>
+  <path d="M226,84 l12,-4" stroke="#2c3238" stroke-width="1.5"/>
+  <circle cx="232" cy="90" r="2.5" fill="#0d0906"/>
+  <path d="M246,94 l2,4" stroke="#2c3238" stroke-width="1.5"/>
+  <path d="M222,80 L228,64 L236,78 Z M234,76 L242,62 L246,74 Z" fill="#3d2616"/>
+  <path d="M184,110 C194,96 206,88 218,82 C208,92 200,104 192,118 Z" fill="url(#plume)"/>
+  <!-- reins -->
+  <path d="M236,96 C224,110 208,118 190,124" stroke="#4d2c14" stroke-width="2" fill="none"/>
+
+  <!-- saddle cloth, purple with a gold Chi-Rho -->
+  <path d="M104,118 L150,118 L154,160 L100,160 Z" fill="url(#purple)"/>
+  <path d="M104,118 h46 v3 h-46z M100,157 h54 v3 h-54z" fill="#d8b25a"/>
+  <g stroke="#e6c46a" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M118,150 L118,128 M110,148 L126,132 M126,148 L110,132"/>
+  </g>
+  <circle cx="118" cy="139" r="4" fill="none" stroke="#e6c46a" stroke-width="2"/>
+
+  <!-- rider's leg, boot and stirrup -->
+  <path d="M126,116 L120,158 L132,160 L142,118 Z" fill="url(#mail)"/>
+  <path d="M126,116 L120,158 L132,160 L142,118 Z" fill="#5f6a72" opacity="0.7"/>
+  <path d="M126,116 L120,158 L132,160 L142,118 Z" fill="url(#mail)"/>
+  <path d="M118,154 L136,156 L134,166 L116,164 Z" fill="#3b2612"/>
+  <rect x="114" y="160" width="20" height="8" rx="2" fill="url(#steel)"/>
+
+  <!-- torso: lamellar klibanion over a mail shirt -->
+  <path d="M112,70 L156,70 L160,118 L110,118 Z" fill="url(#mail)"/>
+  <path d="M112,70 L156,70 L160,118 L110,118 Z" fill="#5f6a72" opacity="0.6"/>
+  <path d="M114,68 C114,56 122,50 134,50 C146,50 154,56 154,68 L158,112 L112,112 Z" fill="url(#lamellar)"/>
+  <path d="M114,68 C114,56 122,50 134,50 C146,50 154,56 154,68 L158,112 L112,112 Z" fill="url(#scales)"/>
+  <!-- pteruges -->
+  <g fill="#7a1a12"><path d="M112,112 h6 v10 h-6z M120,112 h6 v10 h-6z M128,112 h6 v10 h-6z M136,112 h6 v10 h-6z M144,112 h6 v10 h-6z M152,112 h6 v10 h-6z"/></g>
+  <!-- arm holding the lance -->
+  <path d="M150,78 L186,90 L184,102 L148,96 Z" fill="url(#lamellar)"/>
+  <path d="M150,78 L186,90 L184,102 L148,96 Z" fill="url(#scales)"/>
+  <path d="M182,90 L196,94 L194,104 L180,102 Z" fill="#3b2612"/>
+  <!-- shield slung on the left -->
+  <path d="M96,86 C96,70 106,64 112,64 L112,118 C104,118 96,104 96,86 Z" fill="url(#purple)"/>
+  <path d="M100,86 C100,74 106,68 110,68 L110,112 C106,110 100,100 100,86 Z" fill="none" stroke="#d8b25a" stroke-width="2"/>
+  <!-- aventail, helmet, plume -->
+  <path d="M118,46 L150,46 L154,64 L116,64 Z" fill="url(#mail)"/>
+  <path d="M118,46 L150,46 L154,64 L116,64 Z" fill="#6c777f" opacity="0.6"/>
+  <path d="M118,46 L150,46 L154,64 L116,64 Z" fill="url(#mail)"/>
+  <path d="M120,48 C120,32 126,22 134,20 C142,22 148,32 148,48 Z" fill="url(#steel)"/>
+  <path d="M124,46 C124,34 128,26 134,24 L134,46 Z" fill="#ffffff" opacity="0.15"/>
+  <path d="M120,47 h28 v3 h-28z" fill="#d8b25a"/>
+  <path d="M132,22 C130,10 136,4 140,2 C142,10 138,16 136,22 Z" fill="url(#plume)"/>
+  <!-- face slit -->
+  <path d="M138,44 h8 v4 h-8z" fill="#0d0906"/>
+
+  <!-- rim light -->
+  <path d="M66,156 C64,128 88,116 114,116" stroke="#ffd9a8" stroke-width="2" fill="none" opacity="0.35"/>
+  <path d="M220,80 L242,74 C250,78 252,90 246,96" stroke="#ffd9a8" stroke-width="1.5" fill="none" opacity="0.4"/>
+</svg>

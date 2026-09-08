@@ -241,6 +241,22 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   tall civ-select card (Byzantium uses 1080x1920). Import them in both scopes.
 - 3D: `VisualRemaps` (section 1). No art package (`.dep`, `Platforms/`) is needed for a
   data-only mod; the map mod proves that.
+- What a mod can ship, learned from 18 Workshop civs (Sep 2026, see `plans/byzantium-art.md`):
+  loose 2D PNGs, borrowed 3D through `VisualRemaps`, and 3D props placed from a UI script with
+  `WorldUI.createModelGroup` (Austria-Hungary `ui/polder_model.js`, Custom Civ Art Fixes
+  `remap/` tables; the base asset stays underneath, so it suits improvements, not wonders).
+  Nobody ships a new model: those need Firaxis `.blp` packages. Reference sizes from a civ that
+  displays correctly: symbol, unit, building, `cult_` icons 256², `bg-card` 720x1080,
+  `bg-panel` 1301x732, loading 1920x1080 and 1280x720.
+- The picker panel and vertical card go through `WorldUI.addBackgroundLayer(texture)` and
+  `blp:` names, which cannot take a PNG. The community fix (Custom Civ Art Fixes,
+  Civilization Background Framework) wraps `WorldUI.addBackgroundLayer` to show a DOM overlay
+  div with the PNG, wraps `CSSStyleDeclaration.prototype.setProperty` to rewrite
+  `blp:fs://` and `blp:bg_panel_<civ>` values, and reads a config table
+  `CivsWithoutBackgrounds(CivilizationType, ArtPath)` that a civ mod creates
+  (`CREATE TABLE IF NOT EXISTS`) with `LoadOrder` 10 in shell and game scope. Unit portraits in
+  the unit panel are live renders (`WorldUI.requestPortrait`, `live:/UNIT_X`) of the remapped
+  model; `ml-unit-portrait-fix` shows how to swap in a 2D `url(fs://...)` instead.
 - Style, read from the game's UI code: the civ symbol goes through `filter: fxs-color-mask(...)`,
   so it must be a **white shape on transparency** (the game recolours it); unit flags are plain
   **white silhouettes on transparency** drawn on the coloured flag; building and wonder icons are
