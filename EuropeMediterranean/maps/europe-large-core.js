@@ -693,6 +693,21 @@ function assignEuropeStartPositions(grid) {
     const exact = shifts.filter((d) => d == 0).length;
     console.log("Europe large map: " + shifts.length + " starts placed, " + exact + " on their exact tile, max shift " +
         (shifts.length ? Math.max.apply(null, shifts) : 0) + " hex(es)");
+
+    // Historic sites nobody starts on (Constantinople in an Antiquity game, say) stay settleable:
+    // a city cannot be founded on a resource, so clear the site hex and open its ring exactly as
+    // for a real start. Terrain was already flattened for every site before the raster went in.
+    let reserved = 0;
+    for (const civ in GEO.tsl) {
+        if (usedSites.has(civ)) continue;
+        const ll = GEO.tsl[civ];
+        const t = findStartTile(grid, ll[0], ll[1], 3);
+        if (!t || minDistanceTo(taken, t[0], t[1]) < 2) continue;
+        clearStartResource(t[0], t[1]);
+        openStartRing(t[0], t[1], civ + " (reserved site)");
+        reserved++;
+    }
+    if (reserved) console.log("Europe large map: " + reserved + " unused historic sites kept resource-free");
     return startPositions;
 }
 

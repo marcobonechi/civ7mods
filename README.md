@@ -108,7 +108,8 @@ and a removable feature such as forest or marsh, or a resource (resources are ge
 starts are assigned), is cleared from the tile finally chosen, so a settler can always found on the spot.
 Floodplains are kept. Because an urban district cannot be placed on a resource tile, the ring around
 every start is opened as well: at least three resource-free land hexes adjacent and five within two
-hexes, clearing resources nearest-first where the map is dense. Every placed start is then re-checked, and the game's console log reports any
+hexes, clearing resources nearest-first where the map is dense. Historic sites that no player starts on
+(Constantinople in an Antiquity game, for example) get the same treatment, so they can be settled later. Every placed start is then re-checked, and the game's console log reports any
 start that is not foundable or that sits away from its coordinates, plus a summary line
 (`Europe map: N starts placed, M on their exact tile, max shift K hex(es)`).
 
