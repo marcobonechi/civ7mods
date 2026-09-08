@@ -6,7 +6,14 @@
     "author": "marcob",
     "version": "1"
   },
-  "buildings": [],
+  "buildings": [
+    {
+      "target": "BIN_Arena_Scaled",
+      "expression": "[BUILDING:BUILDING_HIPPODROME]",
+      "priority": 1,
+      "weight": 1.0
+    }
+  ],
   "binArt": [],
   "improvements": [],
   "wonders": [
@@ -62,6 +69,6 @@
   "uiTextures": [],
   "materials": [],
   "donors": {
-    "StandardAsset": "DLC/asia-wonders/Platforms/Mac/BLPs/StandardAsset.blp"
+    "StandardAsset": "DLC/joseon/Platforms/Mac/BLPs/StandardAsset.blp"
   }
 }

@@ -216,6 +216,8 @@ type `WONDER_HAGIA_SOPHIA`, the seven attachments of `WONDER_Sultan_Ahmet_Camii`
 package, both platform folder names) with the manifest in `Byzantium/dlc/civart.json`; the
 wonder `VisualRemaps` rows and the Ottomans override file are gone, `<UpdateArt>` is in both
 modinfo scopes, the install scripts mirror `dlc/*` into the game's `DLC/`. The bin lives in the
-Ottomans DLC package, so the wonder renders only while that DLC is enabled. In-game check
-pending. Pitfall met: `POST /api/manifest` wants `{"project": <manifest>}`; posting the bare
+Ottomans DLC package, so the wonder renders only while that DLC is enabled. Second entry
+(2026-09-08): a `buildings` row binding `[BUILDING:BUILDING_HIPPODROME]` to `BIN_Arena_Scaled`
+(priority 1) through a `BIN_Hero_Building_Footprint` modifier; donor moved to `DLC/joseon`.
+The Hippodrome remap row is gone. In-game check pending for both. Pitfall met: `POST /api/manifest` wants `{"project": <manifest>}`; posting the bare
 manifest replaces it with its own metadata block.

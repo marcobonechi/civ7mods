@@ -291,7 +291,8 @@ silhouettes (`icons-vector/`, sources in `icons/src/`); `tools/switch-icons.sh B
 swaps between them; all icons are 256 px, and `portrait_*.png` are full-colour unit portraits awaiting the
 unit-panel hook described in `plans/byzantium-art.md`. `Byzantium/dlc/ByzantiumArt/` is a binary art package
 (a `.dep` plus `Platforms/<OS>/BLPs/StandardAsset.blp`, identical bytes for Mac and Windows) that gives Hagia
-Sophia its own wonder art, copied from the Blue Mosque's attachment set; it was built with Smayo's Civ Art
+Sophia its own wonder art, copied from the Blue Mosque's attachment set, and renders the Hippodrome with the
+Arena's model; it was built with Smayo's Civ Art
 Tools from `Byzantium/dlc/civart.json`, and `install.sh` / `install.ps1` mirror it into the game install's
 `DLC/` folder because the engine only looks for art packages there (set `CIV7_GAME_ROOT` if the Steam
 library is elsewhere). The modinfo switches it on with `<UpdateArt><Item>ByzantiumArt</Item></UpdateArt>`

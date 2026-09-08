@@ -4,8 +4,9 @@
      players can toggle each one in Options. Choices (Sep 2026): Cataphract = Mongol Keshig (the
      Scythia Workshop civ's amazon horse archer is itself a Keshig remap), Dromon = Treasure Fleet
      hull (a civilian model: if attack animations turn out missing, fall back to UNIT_GALLEON).
-     Hagia Sophia is not remapped: it has its own art entry in the ByzantiumArt package
-     (dlc/ByzantiumArt, built with Civ Art Tools from the Blue Mosque's attachment set). -->
+     Hagia Sophia and the Hippodrome are not remapped: they have their own art entries in the
+     ByzantiumArt package (dlc/ByzantiumArt, built with Civ Art Tools: the Blue Mosque's
+     attachment set for the wonder, the Arena bin for the Hippodrome). -->
 <Database>
     <VisualRemaps>
         <Row>
@@ -35,13 +36,6 @@
             <Kind>UNIT</Kind>
             <From>UNIT_DROMON</From>
             <To>UNIT_TREASURE_FLEET</To>
-        </Row>
-        <Row>
-            <ID>REMAP_BYZANTIUM_HIPPODROME</ID>
-            <DisplayName>LOC_REMAP_BYZANTIUM_HIPPODROME</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>BUILDING_HIPPODROME</From>
-            <To>BUILDING_PAVILION</To>
         </Row>
         <Row>
             <ID>REMAP_BYZANTIUM_GREAT_PALACE</ID>

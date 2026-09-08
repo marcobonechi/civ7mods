@@ -46,9 +46,6 @@
         <Row Tag="LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION">
             <Text>+30% [icon:YIELD_PRODUCTION] Production from being Byzantium's associated [icon:WONDER] Wonder.</Text>
         </Row>
-        <Row Tag="LOC_REMAP_BYZANTIUM_HIPPODROME">
-            <Text>Byzantium: Hippodrome</Text>
-        </Row>
         <Row Tag="LOC_REMAP_BYZANTIUM_GREAT_PALACE">
             <Text>Byzantium: Great Palace</Text>
         </Row>
