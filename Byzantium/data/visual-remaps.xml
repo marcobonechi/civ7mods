@@ -45,17 +45,17 @@
             <To>BUILDING_GUILDHALL</To>
         </Row>
         <Row>
-            <ID>REMAP_BYZANTIUM_CATAPHRACT_AQ</ID>
+            <ID>REMAP_BYZANTIUM_CLIBANARII</ID>
             <DisplayName>LOC_REMAP_BYZANTIUM_CATAPHRACT</DisplayName>
             <Kind>UNIT</Kind>
-            <From>UNIT_CATAPHRACT_AQ</From>
+            <From>UNIT_CLIBANARII</From>
             <To>UNIT_HORSEMAN</To>
         </Row>
         <Row>
-            <ID>REMAP_BYZANTIUM_DROMON_AQ</ID>
+            <ID>REMAP_BYZANTIUM_LIBURNA</ID>
             <DisplayName>LOC_REMAP_BYZANTIUM_DROMON</DisplayName>
             <Kind>UNIT</Kind>
-            <From>UNIT_DROMON_AQ</From>
+            <From>UNIT_LIBURNA</From>
             <To>UNIT_GALLEY</To>
         </Row>
     </VisualRemaps>

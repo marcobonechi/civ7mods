@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- The Mese: every road of the empire was measured from the Milion, so the quarter earns
+         Gold for each settlement in the empire, cities and towns alike. -->
+    <Modifier id="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+</GameEffects>

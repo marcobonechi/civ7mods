@@ -5,7 +5,7 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | Folder | Mod | Status |
 |---|---|---|
 | `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
-| `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Byzantium (Time-Tested)" in Antiquity | version 1, see [Byzantium](#byzantium) below |
+| `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Byzantium (Time-Tested)" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1, see [Byzantium](#byzantium) below |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 
@@ -286,7 +286,10 @@ Constantinople on all four Europe maps.
 | Civics | Themata, Pentarchy, Porphyrogennetos, each with a tradition; Test of Time nodes for Antiquity and Modern |
 | Unlocks | From Rome and Greece, or with Augustus, Catherine, Charlemagne, Xerxes; in Antiquity by holding Ancient Walls in three settlements. Leads to Russia (and the Ottomans when that DLC is present) |
 
-Unique units and buildings borrow the models of the base units and buildings they replace
+Antiquity (Time-Tested) uniques: the Clibanarii (heavy cavalry on the Horseman, Iron Working), the Liburna (fast
+galley on the Galley, Sailing), and the Cistern and Milion, which form the Mese quarter (Gold per settlement); the
+Origins civic unlocks the buildings and the Themata I and Foederati traditions. Exploration uniques: Cataphract,
+Dromon, Hippodrome and Great Palace (Augustaion), Hagia Sophia. Unique units and buildings borrow the models of the base units and buildings they replace
 (`data/visual-remaps.xml`). Icons: the default set in `Byzantium/icons/` mixes the painted eagle
 and building medallions (cut from a concept sheet, kept in `icons-alt/`) with vector unit
 silhouettes (`icons-vector/`, sources in `icons/src/`); `tools/switch-icons.sh Byzantium alt|vector|mixed`

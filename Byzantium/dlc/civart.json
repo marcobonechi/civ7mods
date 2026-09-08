@@ -12,6 +12,18 @@
       "expression": "[BUILDING:BUILDING_HIPPODROME]",
       "priority": 1,
       "weight": 1.0
+    },
+    {
+      "target": "BIN_Bath_Scaled",
+      "expression": "[BUILDING:BUILDING_CISTERN]",
+      "priority": 1,
+      "weight": 1.0
+    },
+    {
+      "target": "BIN_Monument_Scaled",
+      "expression": "[BUILDING:BUILDING_MILION]",
+      "priority": 1,
+      "weight": 1.0
     }
   ],
   "binArt": [],

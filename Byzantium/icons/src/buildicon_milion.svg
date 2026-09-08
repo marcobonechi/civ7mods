@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Milion: the gilded milestone of Constantinople, a domed tetrapylon on four arches with
+       the distance plaque, marble and gold, three-quarter view. -->
+  <defs>
+    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3ead6"/><stop offset="1" stop-color="#b9aa8a"/></linearGradient>
+    <linearGradient id="marbleD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9bc9e"/><stop offset="1" stop-color="#7c705a"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset="0.5" stop-color="#e2b437"/><stop offset="1" stop-color="#9a6b14"/></linearGradient>
+    <radialGradient id="dome" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffe9a0"/><stop offset="0.6" stop-color="#d9a63a"/><stop offset="1" stop-color="#7a5010"/></radialGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9a78c"/><stop offset="1" stop-color="#7d6d55"/></linearGradient>
+  </defs>
+  <ellipse cx="128" cy="224" rx="110" ry="14" fill="#000" opacity="0.3"/>
+  <!-- paved road converging on the milestone -->
+  <path d="M20,226 L96,190 L160,190 L236,226 Z" fill="url(#road)"/>
+  <g stroke="#5f5240" stroke-width="1" opacity="0.5"><path d="M44,214 L212,214 M66,204 L190,204 M84,196 L172,196"/></g>
+  <!-- four piers, front two lit -->
+  <path d="M70,196 L70,118 L94,118 L94,196 Z" fill="url(#marble)"/>
+  <path d="M94,118 L106,112 L106,190 L94,196 Z" fill="url(#marbleD)"/>
+  <path d="M150,196 L150,118 L174,118 L174,196 Z" fill="url(#marble)"/>
+  <path d="M174,118 L186,112 L186,190 L174,196 Z" fill="url(#marbleD)"/>
+  <!-- rear piers seen through the arches -->
+  <path d="M112,180 L112,124 L128,124 L128,180 Z" fill="#8f836a" opacity="0.8"/>
+  <!-- front arch spanning the two piers -->
+  <path d="M94,196 L94,150 A28,30 0 0 1 150,150 L150,196 L140,196 L140,152 A18,22 0 0 0 104,152 L104,196 Z" fill="url(#marble)"/>
+  <!-- entablature -->
+  <path d="M62,118 L194,118 L206,112 L74,112 Z" fill="#f3ead6"/>
+  <path d="M62,118 h132 v10 h-132z" fill="url(#marbleD)"/>
+  <path d="M194,118 l12,-6 v10 l-12,6z" fill="#7c705a"/>
+  <!-- gold band and dome on top -->
+  <path d="M84,104 h88 v8 h-88z" fill="url(#gold)"/>
+  <path d="M84,104 A44,34 0 0 1 172,104 Z" fill="url(#dome)"/>
+  <path d="M90,104 A38,30 0 0 1 128,74 L128,104 Z" fill="#ffffff" opacity="0.14"/>
+  <g stroke="#7a5010" stroke-width="1" fill="none" opacity="0.6"><path d="M128,70 L128,104 M108,78 L114,104 M148,78 L142,104"/></g>
+  <!-- gilded statue of the emperor on the dome -->
+  <rect x="124" y="46" width="8" height="24" fill="url(#gold)"/>
+  <circle cx="128" cy="42" r="6" fill="url(#gold)"/>
+  <path d="M120,58 l-8,10 M136,58 l10,-4" stroke="#e2b437" stroke-width="4" stroke-linecap="round"/>
+  <!-- distance plaque with inscription lines -->
+  <rect x="60" y="150" width="30" height="36" fill="url(#gold)"/>
+  <g stroke="#7a5010" stroke-width="2"><path d="M65,158 h20 M65,166 h20 M65,174 h14"/></g>
+  <!-- rim light -->
+  <path d="M70,118 L70,196" stroke="#fff6dd" stroke-width="2" opacity="0.6"/>
+  <path d="M150,118 L150,196" stroke="#fff6dd" stroke-width="2" opacity="0.6"/>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Cistern: the Basilica Cistern's forest of columns over dark water, seen through a cut-away
+       brick vault. Three-quarter painted style like the other building icons. -->
+  <defs>
+    <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d09a70"/><stop offset="1" stop-color="#8a4a30"/></linearGradient>
+    <linearGradient id="vault" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a2a"/><stop offset="1" stop-color="#2a1810"/></linearGradient>
+    <linearGradient id="col" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e9dcc4"/><stop offset="0.5" stop-color="#cbb894"/><stop offset="1" stop-color="#8a7a5c"/></linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6b74"/><stop offset="1" stop-color="#0f2a30"/></linearGradient>
+    <linearGradient id="torch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#e2762a"/></linearGradient>
+  </defs>
+  <ellipse cx="128" cy="222" rx="112" ry="16" fill="#000" opacity="0.3"/>
+  <!-- outer brick shell, cut away at the front -->
+  <path d="M28,210 L28,120 A100,60 0 0 1 228,120 L228,210 Z" fill="url(#brick)"/>
+  <path d="M40,210 L40,124 A88,52 0 0 1 216,124 L216,210 Z" fill="url(#vault)"/>
+  <g stroke="#6a3a26" stroke-width="1" opacity="0.5"><path d="M28,150 h12 M28,170 h12 M28,190 h12 M216,150 h12 M216,170 h12 M216,190 h12"/></g>
+  <!-- water -->
+  <path d="M40,176 L216,176 L216,210 L40,210 Z" fill="url(#water)"/>
+  <g stroke="#7fc0c4" stroke-width="1.2" fill="none" opacity="0.5"><path d="M56,190 q8,-3 16,0 t16,0 M120,198 q8,-3 16,0 t16,0 M170,188 q8,-3 16,0 t16,0"/></g>
+  <!-- rear rows of columns (smaller, dimmer) -->
+  <g fill="#8a7a5c" opacity="0.75">
+    <rect x="70" y="118" width="8" height="58"/><rect x="100" y="114" width="8" height="62"/><rect x="148" y="114" width="8" height="62"/><rect x="178" y="118" width="8" height="58"/>
+    <rect x="66" y="114" width="16" height="5"/><rect x="96" y="110" width="16" height="5"/><rect x="144" y="110" width="16" height="5"/><rect x="174" y="114" width="16" height="5"/>
+  </g>
+  <!-- arches between rear columns -->
+  <g fill="none" stroke="#7a5a44" stroke-width="3"><path d="M78,128 A14,12 0 0 1 100,128 M108,124 A22,16 0 0 1 148,124 M156,128 A14,12 0 0 1 178,128"/></g>
+  <!-- front columns with Corinthian-style capitals -->
+  <g>
+    <rect x="52" y="132" width="14" height="52" fill="url(#col)"/><path d="M46,128 h26 v8 h-26z" fill="#e9dcc4"/><path d="M48,124 q11,-6 22,0 v4 h-22z" fill="#cbb894"/>
+    <rect x="120" y="126" width="16" height="58" fill="url(#col)"/><path d="M113,122 h30 v8 h-30z" fill="#e9dcc4"/><path d="M115,118 q13,-6 26,0 v4 h-26z" fill="#cbb894"/>
+    <rect x="190" y="132" width="14" height="52" fill="url(#col)"/><path d="M184,128 h26 v8 h-26z" fill="#e9dcc4"/><path d="M186,124 q11,-6 22,0 v4 h-22z" fill="#cbb894"/>
+  </g>
+  <!-- reflections -->
+  <g opacity="0.35"><rect x="52" y="184" width="14" height="22" fill="#e9dcc4"/><rect x="120" y="184" width="16" height="24" fill="#e9dcc4"/><rect x="190" y="184" width="14" height="22" fill="#e9dcc4"/></g>
+  <!-- torches -->
+  <g><rect x="86" y="140" width="3" height="18" fill="#3b2612"/><path d="M87,140 c-5,-8 0,-14 1,-18 c1,4 6,10 -1,18z" fill="url(#torch)"/>
+     <rect x="166" y="140" width="3" height="18" fill="#3b2612"/><path d="M167,140 c-5,-8 0,-14 1,-18 c1,4 6,10 -1,18z" fill="url(#torch)"/></g>
+  <!-- rim light on the shell -->
+  <path d="M28,120 A100,60 0 0 1 128,60" stroke="#ffd9a8" stroke-width="3" fill="none" opacity="0.4"/>
+</svg>

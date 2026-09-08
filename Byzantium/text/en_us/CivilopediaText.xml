@@ -85,5 +85,17 @@
         <Row Tag="LOC_PEDIA_PAGE_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_CHAPTER_HISTORY_PARA_1">
             <Text>After 1453 the Byzantine inheritance was claimed on several sides. Moscow's rulers married into the Palaiologoi, took the double-headed eagle and the title of tsar, and called their city the Third Rome; the Ottoman sultans styled themselves Kayser-i Rum and governed from Constantinople with Byzantine ceremony. The Greek revival of the nineteenth century looked to Byzantium for its church, its script and its capital, an idea that shaped the Balkans until 1922.</Text>
         </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_CLIBANARII_CHAPTER_HISTORY_PARA_1">
+            <Text>The clibanarii, "oven-men" in the soldiers' joke about their armour, were the fully armoured lancers of the late Roman army, raised on the Persian and Sarmatian model from the third century onward. Rider and horse alike wore scale or mail, and they charged in close order with the long kontos. Constantine kept them in the field armies of the East, and from them, five centuries on, the Byzantine cataphract descended.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_LIBURNA_CHAPTER_HISTORY_PARA_1">
+            <Text>The liburna was the light, fast war galley of the Roman fleets, copied from the pirates of Liburnia on the Adriatic coast. Two banks of oars and a ram made it the workhorse of the imperial navy from Actium to the fall of the West, and the dromon of the sixth century was its direct descendant.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_BUILDING_CISTERN_CHAPTER_HISTORY_PARA_1">
+            <Text>Constantinople sits on a peninsula without rivers, so the city drank from aqueducts and stored the water underground. The Basilica Cistern of Justinian, a hall of 336 columns beneath the great church, is the largest of dozens that let the capital outlast every siege.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_BUILDING_MILION_CHAPTER_HISTORY_PARA_1">
+            <Text>The Milion was a domed tetrapylon at the head of the Mese, Constantinople's main avenue, raised by Constantine as the zero point of the empire's roads. Distances to every city were inscribed on it, and emperors passed beneath it in triumph.</Text>
+        </Row>
     </EnglishText>
 </Database>

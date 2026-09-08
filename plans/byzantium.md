@@ -34,8 +34,14 @@ Plan written 2026-09-05 from the installed game files
 > row is back, labelled "Byzantium (Time-Tested)" so it reads as an out-of-age option. Restored
 > with it: the Antiquity civ-ability modifiers, the Origins node (Themata I, Foederati for
 > cavalry), the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits. The
-> Antiquity Cataphract (on the Horseman, Iron Working) and Dromon (on the Galley, Sailing) are
-> back too, on Marco's request; Firaxis's own civs have no out-of-age units. The rest of this section describes the original
+> Antiquity now has its own Late Roman kit (2026-09-08, Marco's request): Clibanarii (heavy
+> cavalry on the Horseman, Iron Working, +3 vs infantry), Liburna (galley with +1 move, +1 sight,
+> ignores ZOC, Sailing), Cistern (+2 Food +1 Happiness, +1 Food per adjacent coast/river) and
+> Milion (+2 Culture +2 Influence, +1 Influence per adjacent quarter) forming the Mese quarter
+> (+1 Gold per settlement). The Origins node unlocks the two buildings. Art: Cistern on the Bath
+> bin, Milion on the Monument bin through the ByzantiumArt package. Firaxis's own civs have no
+> out-of-age uniques; the in-game check that an Antiquity unique quarter forms for a Time-Tested
+> civ is still pending. The rest of this section describes the original
 > any-age design, which is again what ships.
 
 The game itself already supports this, in two halves.

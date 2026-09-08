@@ -12,6 +12,8 @@
     </ProgressionTreeNodes>
     <ProgressionTreeNodeUnlocks>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEMATA_I"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_CISTERN" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_MILION" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_MODIFIER" TargetType="MOD_AQ_SETTLEMENT_CAP_INCREASE"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_BYZANTIUM_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_FOEDERATI"/>

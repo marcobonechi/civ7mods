@@ -49,5 +49,32 @@
         <Row Tag="LOC_REMAP_BYZANTIUM_GREAT_PALACE">
             <Text>Byzantium: Great Palace</Text>
         </Row>
+        <Row Tag="LOC_BUILDING_CISTERN_NAME">
+            <Text>Cistern</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_CISTERN_DESCRIPTION">
+            <Text>Byzantine unique Antiquity Age building. +2 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_FOOD] Food for each adjacent Coast or River tile. Ageless. Forms the Mese with the Milion.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_CISTERN_TOOLTIP">
+            <Text>Constantinople stored a year of water under its streets in vaulted cisterns fed by aqueducts from Thrace.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_MILION_NAME">
+            <Text>Milion</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_MILION_DESCRIPTION">
+            <Text>Byzantine unique Antiquity Age building. +2 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_DIPLOMACY] Influence. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Quarter and +1 [icon:YIELD_CULTURE] Culture for each adjacent Wonder. Ageless. Forms the Mese with the Cistern.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_MILION_TOOLTIP">
+            <Text>The gilded milestone from which every road of the empire was measured.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_MESE_NAME">
+            <Text>Mese</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_MESE_DESCRIPTION">
+            <Text>Byzantine unique Antiquity Age quarter, formed by the Cistern and the Milion on the same tile. +1 [icon:YIELD_GOLD] Gold for each Settlement in your empire.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_MESE_TOOLTIP">
+            <Text>The colonnaded avenue of Constantinople, lined with forums and shops, with the great cisterns beneath.</Text>
+        </Row>
     </EnglishText>
 </Database>

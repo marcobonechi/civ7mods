@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Antiquity Age uniques for Time-Tested play, the Constantinople of Constantine and Theodosius:
+     the Cistern and the Milion, which together form the Mese quarter. Loaded in Antiquity only,
+     the way Rome's Basilica and Temple of Jupiter are. -->
+<Database>
+    <Types>
+        <Row Type="BUILDING_CISTERN" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_MILION" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="QUARTER_MESE" Kind="KIND_QUARTER"/>
+    </Types>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="110" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="110" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_CISTERN" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_MILION" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+    </Buildings>
+    <TypeTags>
+        <Row Type="BUILDING_CISTERN" Tag="FOOD"/>
+        <Row Type="BUILDING_CISTERN" Tag="UNIQUE"/>
+        <Row Type="BUILDING_CISTERN" Tag="AGELESS"/>
+        <Row Type="BUILDING_MILION" Tag="CULTURE"/>
+        <Row Type="BUILDING_MILION" Tag="UNIQUE"/>
+        <Row Type="BUILDING_MILION" Tag="AGELESS"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_CISTERN" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_CISTERN" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_MILION" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_MILION" DistrictType="DISTRICT_URBAN"/>
+    </Constructible_ValidDistricts>
+    <Constructible_YieldChanges>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_FOOD" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_HAPPINESS" YieldChange="1"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_CULTURE" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
+    </Constructible_YieldChanges>
+    <Constructible_Maintenances>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_GOLD" Amount="1"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_GOLD" Amount="2"/>
+    </Constructible_Maintenances>
+    <Constructible_Adjacencies>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldChangeId="CisternCoastFood"/>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldChangeId="CisternRiverFood"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldChangeId="MilionQuarterInfluence"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldChangeId="WonderCulture"/>
+    </Constructible_Adjacencies>
+    <Adjacency_YieldChanges>
+        <Row ID="CisternCoastFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" AdjacentTerrain="TERRAIN_COAST"/>
+        <Row ID="CisternRiverFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" AdjacentRiver="true"/>
+        <Row ID="MilionQuarterInfluence" Age="AGE_ANTIQUITY" YieldType="YIELD_DIPLOMACY" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
+    </Adjacency_YieldChanges>
+    <Constructible_Plunders>
+        <Row ConstructibleType="BUILDING_CISTERN" PlunderType="PLUNDER_HEAL" Amount="30"/>
+        <Row ConstructibleType="BUILDING_MILION" PlunderType="PLUNDER_CULTURE" Amount="40"/>
+    </Constructible_Plunders>
+    <Constructible_BuildingCostProgressions>
+        <Row ConstructibleType="BUILDING_CISTERN" Percent="5"/>
+        <Row ConstructibleType="BUILDING_MILION" Percent="5"/>
+    </Constructible_BuildingCostProgressions>
+    <UniqueQuarters>
+        <Row UniqueQuarterType="QUARTER_MESE" BuildingType1="BUILDING_CISTERN" BuildingType2="BUILDING_MILION" Name="LOC_QUARTER_MESE_NAME" Description="LOC_QUARTER_MESE_DESCRIPTION" Tooltip="LOC_QUARTER_MESE_TOOLTIP" TraitType="TRAIT_BYZANTIUM"/>
+    </UniqueQuarters>
+    <UniqueQuarterModifiers>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT"/>
+    </UniqueQuarterModifiers>
+    <Constructible_Advisories>
+        <Row ConstructibleType="BUILDING_CISTERN" AdvisoryClassType="ADVISORY_CLASS_FOOD"/>
+        <Row ConstructibleType="BUILDING_CISTERN" AdvisoryClassType="ADVISORY_CLASS_HAPPINESS"/>
+        <Row ConstructibleType="BUILDING_MILION" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ConstructibleType="BUILDING_MILION" AdvisoryClassType="ADVISORY_CLASS_DIPLOMACY"/>
+    </Constructible_Advisories>
+</Database>
