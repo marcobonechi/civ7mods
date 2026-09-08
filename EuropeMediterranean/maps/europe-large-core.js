@@ -537,6 +537,20 @@ function isValidStartTile(x, y) {
 // A resource on the start tile blocks founding the city, and resources are generated before
 // starts are assigned, so a true start can land on cotton or wine. Clear it: the historical
 // capital site matters more than one resource tile.
+// No reef on the water beside a start: an aquatic feature on an adjacent coast hex blocks the
+// tile for a district and reads as rocky shore. Barrier Reef is not removable and is left alone.
+function clearStartReefs(x, y) {
+    for (const [a, b] of hexNeighbors(x, y)) {
+        if (a < 0 || b < 0 || a >= GameplayMap.getGridWidth() || b >= GameplayMap.getGridHeight()) continue;
+        const f = GameplayMap.getFeatureType(a, b);
+        if (f === FeatureTypes.NO_FEATURE) continue;
+        const info = GameInfo.Features.lookup(f);
+        if (info && info.FeatureClassType === "FEATURE_CLASS_AQUATIC" && info.Removable) {
+            TerrainBuilder.setFeatureType(a, b, { Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
+        }
+    }
+}
+
 function clearStartResource(x, y) {
     const r = GameplayMap.getResourceType(x, y);
     if (r != ResourceTypes.NO_RESOURCE) {
@@ -619,6 +633,7 @@ function assignEuropeStartPositions(grid) {
     const place = (index, playerId, x, y, label, wantXY) => {
         clearStartFeature(x, y);
         clearStartResource(x, y);
+        clearStartReefs(x, y);
         openStartRing(x, y, label);
         const plotIndex = GameplayMap.getIndexFromXY(x, y);
         StartPositioner.setStartPosition(plotIndex, playerId);

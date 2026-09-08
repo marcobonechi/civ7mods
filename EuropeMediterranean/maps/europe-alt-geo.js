@@ -96,6 +96,9 @@ export const GEO = {
         // Tigris skirt
         [43.1, 36.3, 3.0, "P", 60, "Tigris skirt"], [43.4, 35.45, 3.0, "P", 60, "Tigris skirt"], [43.7, 34.6, 3.0, "P", 60, "Tigris skirt"],
 
+        // The Constantinople hex itself: grassland rather than the plains it would otherwise be.
+        [28.61, 41.69, 0.1, "G", 90, "Constantinople (grass)"],
+
         // Great-river floodplains. Blobs, not polygons: they are generated straight from the
         // river courses in `rivers`, so the green ribbon cannot drift off the water the way a
         // hand-drawn corridor did. Radius 1.7 hexes with rainfall 90 - a deliberate game-balance
@@ -593,6 +596,20 @@ export const GEO = {
         }
     ],
 
+    // Force the Turkish straits to a single-file channel at every grid size: the Dardanelles, the
+    // Sea of Marmara and the Bosporus all one hex wide. The line stops short of both mouths and the
+    // radius is kept tight, because a wide fill reaching the ends bulldozed the open Aegean and the
+    // southern Black Sea - dozens of sea hexes turned into land well beyond the straits. The narrowStraits pass fills water along
+    // this line only while a route between openA (Aegean) and openB (Black Sea) survives, so it can
+    // narrow but never seal. Coordinate-pinned land blobs cannot do this: the hex under a given
+    // lon/lat moves with the grid size, which is why the strait came out two wide at 128x112.
+    narrowStraits: [
+        { name: "Turkish straits", radius: 2.5, skipEnds: 0.25,
+          pts: [[26.70, 40.35], [27.40, 40.60], [28.10, 40.72], [28.70, 40.85],
+                [29.05, 41.10], [29.18, 41.40]],
+          openA: [25.0, 39.0], openB: [31.5, 43.2] }
+    ],
+
     waterLines: [
         { name: "Gibraltar", pts: [[-6.3, 35.95], [-4.8, 36.1]] },
         { name: "Dardanelles-Marmara-Bosporus", pts: [[25.9, 39.95], [26.5, 40.3], [27.5, 40.7], [28.6, 40.75], [29.05, 41.05], [29.2, 41.4]] },
@@ -938,7 +955,10 @@ export const GEO = {
 
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
-        CIVILIZATION_BYZANTIUM: [28.70, 41.30],   // Constantinople, Thracian shore of the Bosporus (Byzantium mod)
+        CIVILIZATION_BYZANTIUM: [28.61, 41.69],   // Constantinople, western bank at the northern
+                                                  // mouth of the straits (Byzantium mod). Must be a
+                                                  // land hex at every grid size, so it is chosen from
+                                                  // the bank, not from the channel itself.
         CIVILIZATION_GREECE: [22.79, 39.28],   // moved 3 rows north of Athens onto the Thermaic Gulf coast
         // America starts in Ireland on this variant. It is a Modern-age civilization, so the start
         // only applies in games where it is actually in play; the Dublin fallback site is left in
@@ -989,7 +1009,7 @@ export const GEO = {
         [29.84, 31.78, "Alexandria"],
         // Moved north-west onto the Thracian (European) shore: at 28.98/41.01 the search fell through
         // to the Asian side on the 128x112 grid. 28.70/41.30 lands in Thrace at all three sizes.
-        [28.70, 41.30, "Constantinople"],
+        [28.61, 41.69, "Constantinople"],
         // Mediterranean ports and a fuller Germany / western France
         [2.17, 41.39, "Barcelona"], [5.37, 43.30, "Marseille"], [13.10, 45.55, "Venice"],
         [9.99, 53.55, "Hamburg"], [6.96, 50.94, "Cologne"], [-1.55, 47.22, "Nantes"],

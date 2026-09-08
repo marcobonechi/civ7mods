@@ -10,15 +10,15 @@
         <Row Type="ABILITY_LIBURNA" Kind="KIND_ABILITY"/>
     </Types>
     <Units>
-        <Row UnitType="UNIT_CLIBANARII" Name="LOC_UNIT_CLIBANARII_NAME" Description="LOC_UNIT_CLIBANARII_DESCRIPTION" Tier="3" Maintenance="4" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
+        <Row UnitType="UNIT_CLIBANARII" Name="LOC_UNIT_CLIBANARII_NAME" Description="LOC_UNIT_CLIBANARII_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row UnitType="UNIT_LIBURNA" Name="LOC_UNIT_LIBURNA_NAME" Description="LOC_UNIT_LIBURNA_DESCRIPTION" Tier="2" Maintenance="2" BaseSightRange="3" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
     </Units>
     <Unit_Stats>
-        <Row UnitType="UNIT_CLIBANARII" Combat="37"/>
+        <Row UnitType="UNIT_CLIBANARII" Combat="38"/>
         <Row UnitType="UNIT_LIBURNA" Combat="25" RangedCombat="20" Bombard="15" Range="1"/>
     </Unit_Stats>
     <Unit_Costs>
-        <Row UnitType="UNIT_CLIBANARII" YieldType="YIELD_PRODUCTION" Cost="130"/>
+        <Row UnitType="UNIT_CLIBANARII" YieldType="YIELD_PRODUCTION" Cost="115"/>
         <Row UnitType="UNIT_LIBURNA" YieldType="YIELD_PRODUCTION" Cost="50"/>
     </Unit_Costs>
     <UnitUpgrades>

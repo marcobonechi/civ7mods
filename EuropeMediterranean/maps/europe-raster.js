@@ -352,6 +352,81 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     // 4b. islands that sit between straits (painted after the lines)
     for (const b of GEO.landBlobsLate || []) paintBlob(b[0], b[1], b[2] * blobScale, 1);
 
+    // 4c. narrow straits: reduce a channel to a single hex without ever sealing it.
+    // Coordinate-pinned blobs cannot do this reliably, because the hex under a given lon/lat moves
+    // with the grid size. This fills water along the line only while a route through still exists,
+    // outermost hexes first, so whatever remains is the narrowest connected channel the geometry
+    // allows - one hex wide at every grid size, and never a closed sea.
+    for (const st of GEO.narrowStraits || []) {
+        const r = st.radius || 2.0;
+        const samples = [];
+        for (let k = 0; k < st.pts.length - 1; k++) {
+            const a = st.pts[k], b = st.pts[k + 1];
+            const [ax, ay] = P.toTile(a[0], a[1]);
+            const [bx, by] = P.toTile(b[0], b[1]);
+            const steps = Math.max(1, Math.ceil(Math.sqrt((bx - ax) ** 2 + ((by - ay) * ROW_SPACING) ** 2) * 3));
+            for (let j = 0; j <= steps; j++) {
+                const t = j / steps;
+                samples.push(P.toTile(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t));
+            }
+        }
+        const nearestWater = (xf, yf) => {
+            const nx = Math.round(xf), ny = Math.round(yf);
+            let best = -1, bd = Infinity;
+            for (let y = ny - 4; y <= ny + 4; y++) for (let x = nx - 4; x <= nx + 4; x++) {
+                if (!inBounds(x, y) || isLand[idx(x, y)]) continue;
+                const dx = (x + 0.5 * (y & 1)) - xf, dy = (y - yf) * ROW_SPACING;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < bd) { bd = d; best = idx(x, y); }
+            }
+            return best;
+        };
+        // Connectivity is judged between two points far out in the open seas, not at the ends of the
+        // line: preserving a route between the line's own endpoints does not stop the fill severing
+        // the strait from the sea beyond it.
+        const openA = st.openA ? P.toTile(st.openA[0], st.openA[1]) : samples[0];
+        const openB = st.openB ? P.toTile(st.openB[0], st.openB[1]) : samples[samples.length - 1];
+        const from = nearestWater(openA[0], openA[1]);
+        const to = nearestWater(openB[0], openB[1]);
+        if (from < 0 || to < 0 || from === to) continue;
+        const connected = () => {
+            const seen = new Uint8Array(N); const q = [from]; seen[from] = 1;
+            for (let h = 0; h < q.length; h++) {
+                const cur = q[h]; if (cur === to) return true;
+                const cx = cur % W, cy = (cur - cx) / W;
+                for (const [nx2, ny2] of hexNeighbors(cx, cy)) {
+                    if (!inBounds(nx2, ny2)) continue;
+                    const ni = idx(nx2, ny2);
+                    if (isLand[ni] || seen[ni]) continue;
+                    seen[ni] = 1; q.push(ni);
+                }
+            }
+            return false;
+        };
+        if (!connected()) continue;                 // already closed: leave it alone
+        // candidates: water near the line, farthest from it first
+        const cand = new Map();
+        const skip = st.skipEnds === undefined ? 0.2 : st.skipEnds;
+        const mid = samples.slice(Math.floor(samples.length * skip), Math.ceil(samples.length * (1 - skip)));
+        for (const [xf, yf] of mid) {
+            const nx = Math.round(xf), ny = Math.round(yf), R = Math.ceil(r) + 1;
+            for (let y = ny - R; y <= ny + R; y++) for (let x = nx - R; x <= nx + R; x++) {
+                if (!inBounds(x, y) || isLand[idx(x, y)]) continue;
+                const dx = (x + 0.5 * (y & 1)) - xf, dy = (y - yf) * ROW_SPACING;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d >= r) continue;
+                const i = idx(x, y);
+                if (i === from || i === to) continue;
+                if (!cand.has(i) || cand.get(i) > d) cand.set(i, d);
+            }
+        }
+        const order = [...cand.entries()].sort((a, b) => b[1] - a[1]).map((e) => e[0]);
+        for (const i of order) {
+            isLand[i] = 1; isLake[i] = 0;
+            if (!connected()) { isLand[i] = 0; }   // that hex was the channel: put it back
+        }
+    }
+
     // 5. map edge: keep the left/right columns water
     for (let y = 0; y < H; y++) { isLand[idx(0, y)] = 0; isLand[idx(W - 1, y)] = 0; }
 

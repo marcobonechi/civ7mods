@@ -107,6 +107,9 @@ const GEO = {
         // Tigris skirt
         [43.1, 36.3, 3.0, "P", 60, "Tigris skirt"], [43.4, 35.45, 3.0, "P", 60, "Tigris skirt"], [43.7, 34.6, 3.0, "P", 60, "Tigris skirt"],
 
+        // The Constantinople hex itself: grassland rather than the plains it would otherwise be.
+        [28.61, 41.69, 0.1, "G", 90, "Constantinople (grass)"],
+
         // Great-river floodplains. Blobs, not polygons: they are generated straight from the
         // river courses in `rivers`, so the green ribbon cannot drift off the water the way a
         // hand-drawn corridor did. Radius 1.7 hexes with rainfall 90 - a deliberate game-balance
@@ -219,7 +222,9 @@ const GEO = {
     ],
 
     // Historically placed resources: polygon, resource types (missing ones for the age are skipped),
-    // density = land/coast hexes per resource. The engine's own random pass keeps a 20% share.
+    // density = land/coast hexes per resource. The engine's own random pass is thinned or topped
+    // up to a 20% share, so these densities decide the map's resource count. resourceScale (top
+    // of this object, default 1) multiplies every density: 1.5 places a third fewer everywhere.
     resourceAreas: [
         // Iron added: Laconia and Euboea worked it, Greece's unique Hoplite is infantry (iron gives
         // an infantry combat bonus), and three improved iron is what unlocks the Normans.
@@ -604,6 +609,20 @@ const GEO = {
         }
     ],
 
+    // Force the Turkish straits to a single-file channel at every grid size: the Dardanelles, the
+    // Sea of Marmara and the Bosporus all one hex wide. The line stops short of both mouths and the
+    // radius is kept tight, because a wide fill reaching the ends bulldozed the open Aegean and the
+    // southern Black Sea - dozens of sea hexes turned into land well beyond the straits. The narrowStraits pass fills water along
+    // this line only while a route between openA (Aegean) and openB (Black Sea) survives, so it can
+    // narrow but never seal. Coordinate-pinned land blobs cannot do this: the hex under a given
+    // lon/lat moves with the grid size, which is why the strait came out two wide at 128x112.
+    narrowStraits: [
+        { name: "Turkish straits", radius: 2.5, skipEnds: 0.25,
+          pts: [[26.70, 40.35], [27.40, 40.60], [28.10, 40.72], [28.70, 40.85],
+                [29.05, 41.10], [29.18, 41.40]],
+          openA: [25.0, 39.0], openB: [31.5, 43.2] }
+    ],
+
     waterLines: [
         { name: "Gibraltar", pts: [[-6.3, 35.95], [-4.8, 36.1]] },
         { name: "Dardanelles-Marmara-Bosporus", pts: [[25.9, 39.95], [26.5, 40.3], [27.5, 40.7], [28.6, 40.75], [29.05, 41.05], [29.2, 41.4]] },
@@ -949,7 +968,10 @@ const GEO = {
 
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
-        CIVILIZATION_BYZANTIUM: [28.70, 41.30],   // Constantinople, Thracian shore of the Bosporus (Byzantium mod)
+        CIVILIZATION_BYZANTIUM: [28.61, 41.69],   // Constantinople, western bank at the northern
+                                                  // mouth of the straits (Byzantium mod). Must be a
+                                                  // land hex at every grid size, so it is chosen from
+                                                  // the bank, not from the channel itself.
         CIVILIZATION_GREECE: [22.79, 39.28],   // Thermaic Gulf coast, north of Athens
         // America starts in Ireland. It is a Modern-age civilization, so the start only applies in
         // games where it is in play; the Dublin fallback site is left for when it is not.
@@ -997,8 +1019,9 @@ const GEO = {
         [-8.00, 12.65, "Bamako"], [-4.55, 13.91, "Djenne"], [-1.53, 12.37, "Ouagadougou"],
         [2.11, 13.51, "Niamey"], [8.99, 13.80, "Zinder"], [13.00, 12.90, "Ngazargamu"],
         [29.84, 31.78, "Alexandria"],
-        // Thracian (European) shore. 28.98/41.01 fell through to the Asian side on the 128x112 grid.
-        [28.70, 41.30, "Constantinople"],
+        // European bank at the northern mouth of the Bosporus. 28.70/41.30 put it halfway down the
+        // straits, which reads as mid-Marmara now that the basin is narrowed to a channel.
+        [28.61, 41.69, "Constantinople"],
         // Mediterranean ports and a fuller Germany / western France
         [2.17, 41.39, "Barcelona"], [5.37, 43.30, "Marseille"], [13.10, 45.55, "Venice"],
         [9.99, 53.55, "Hamburg"], [6.96, 50.94, "Cologne"], [-1.55, 47.22, "Nantes"],
@@ -1367,6 +1390,81 @@ function buildEuropeGrid(W, H, GEO, rnd) {
 
     // 4b. islands that sit between straits (painted after the lines)
     for (const b of GEO.landBlobsLate || []) paintBlob(b[0], b[1], b[2] * blobScale, 1);
+
+    // 4c. narrow straits: reduce a channel to a single hex without ever sealing it.
+    // Coordinate-pinned blobs cannot do this reliably, because the hex under a given lon/lat moves
+    // with the grid size. This fills water along the line only while a route through still exists,
+    // outermost hexes first, so whatever remains is the narrowest connected channel the geometry
+    // allows - one hex wide at every grid size, and never a closed sea.
+    for (const st of GEO.narrowStraits || []) {
+        const r = st.radius || 2.0;
+        const samples = [];
+        for (let k = 0; k < st.pts.length - 1; k++) {
+            const a = st.pts[k], b = st.pts[k + 1];
+            const [ax, ay] = P.toTile(a[0], a[1]);
+            const [bx, by] = P.toTile(b[0], b[1]);
+            const steps = Math.max(1, Math.ceil(Math.sqrt((bx - ax) ** 2 + ((by - ay) * ROW_SPACING) ** 2) * 3));
+            for (let j = 0; j <= steps; j++) {
+                const t = j / steps;
+                samples.push(P.toTile(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t));
+            }
+        }
+        const nearestWater = (xf, yf) => {
+            const nx = Math.round(xf), ny = Math.round(yf);
+            let best = -1, bd = Infinity;
+            for (let y = ny - 4; y <= ny + 4; y++) for (let x = nx - 4; x <= nx + 4; x++) {
+                if (!inBounds(x, y) || isLand[idx(x, y)]) continue;
+                const dx = (x + 0.5 * (y & 1)) - xf, dy = (y - yf) * ROW_SPACING;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < bd) { bd = d; best = idx(x, y); }
+            }
+            return best;
+        };
+        // Connectivity is judged between two points far out in the open seas, not at the ends of the
+        // line: preserving a route between the line's own endpoints does not stop the fill severing
+        // the strait from the sea beyond it.
+        const openA = st.openA ? P.toTile(st.openA[0], st.openA[1]) : samples[0];
+        const openB = st.openB ? P.toTile(st.openB[0], st.openB[1]) : samples[samples.length - 1];
+        const from = nearestWater(openA[0], openA[1]);
+        const to = nearestWater(openB[0], openB[1]);
+        if (from < 0 || to < 0 || from === to) continue;
+        const connected = () => {
+            const seen = new Uint8Array(N); const q = [from]; seen[from] = 1;
+            for (let h = 0; h < q.length; h++) {
+                const cur = q[h]; if (cur === to) return true;
+                const cx = cur % W, cy = (cur - cx) / W;
+                for (const [nx2, ny2] of hexNeighbors(cx, cy)) {
+                    if (!inBounds(nx2, ny2)) continue;
+                    const ni = idx(nx2, ny2);
+                    if (isLand[ni] || seen[ni]) continue;
+                    seen[ni] = 1; q.push(ni);
+                }
+            }
+            return false;
+        };
+        if (!connected()) continue;                 // already closed: leave it alone
+        // candidates: water near the line, farthest from it first
+        const cand = new Map();
+        const skip = st.skipEnds === undefined ? 0.2 : st.skipEnds;
+        const mid = samples.slice(Math.floor(samples.length * skip), Math.ceil(samples.length * (1 - skip)));
+        for (const [xf, yf] of mid) {
+            const nx = Math.round(xf), ny = Math.round(yf), R = Math.ceil(r) + 1;
+            for (let y = ny - R; y <= ny + R; y++) for (let x = nx - R; x <= nx + R; x++) {
+                if (!inBounds(x, y) || isLand[idx(x, y)]) continue;
+                const dx = (x + 0.5 * (y & 1)) - xf, dy = (y - yf) * ROW_SPACING;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d >= r) continue;
+                const i = idx(x, y);
+                if (i === from || i === to) continue;
+                if (!cand.has(i) || cand.get(i) > d) cand.set(i, d);
+            }
+        }
+        const order = [...cand.entries()].sort((a, b) => b[1] - a[1]).map((e) => e[0]);
+        for (const i of order) {
+            isLand[i] = 1; isLake[i] = 0;
+            if (!connected()) { isLand[i] = 0; }   // that hex was the channel: put it back
+        }
+    }
 
     // 5. map edge: keep the left/right columns water
     for (let y = 0; y < H; y++) { isLand[idx(0, y)] = 0; isLand[idx(W - 1, y)] = 0; }
