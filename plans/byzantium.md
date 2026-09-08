@@ -29,7 +29,14 @@ Plan written 2026-09-05 from the installed game files
 > action group, the AQ unit variants, the Origins civic node, the Themata I and Foederati
 > traditions, the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits
 > are gone. Rome and Greece still unlock Byzantium at the transition; the Modern start stays.
-> The rest of this section describes the original any-age design.
+> Reversed the same day: Marco wants to pick Byzantium in Antiquity in a continuity
+> (Time-Tested) game. The picker only lists civs with a row for that age, so the Antiquity shell
+> row is back, labelled "Byzantium (Time-Tested)" so it reads as an out-of-age option. Restored
+> with it: the Antiquity civ-ability modifiers, the Origins node (Themata I, Foederati for
+> cavalry), the Antiquity self-syncretism tradition and the Test-of-Time Antiquity traits. Not
+> restored: the Antiquity Cataphract and Dromon; like Firaxis's own civs, a Time-Tested Byzantium
+> borrows an apex civ's unit through Syncretism. The rest of this section describes the original
+> any-age design, which is again what ships.
 
 The game itself already supports this, in two halves.
 

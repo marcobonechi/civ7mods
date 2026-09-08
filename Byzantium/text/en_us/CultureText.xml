@@ -31,8 +31,14 @@
         <Row Tag="LOC_CIVIC_BYZANTIUM_PORPHYROGENNETOS_AUTHOR">
             <Text>Constantine VII, De Ceremoniis</Text>
         </Row>
+        <Row Tag="LOC_NODE_CIVIC_AQ_BYZANTIUM_ORIGINS_NAME">
+            <Text>Byzantine Origins</Text>
+        </Row>
         <Row Tag="LOC_NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION_NAME">
             <Text>Byzantine Modernization</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_I_NAME">
+            <Text>Themata I</Text>
         </Row>
         <Row Tag="LOC_TRADITION_BYZANTIUM_THEMATA_NAME">
             <Text>Themata</Text>
@@ -85,6 +91,12 @@
         <Row Tag="LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_DESCRIPTION">
             <Text>[B]+30% [TIP:LOC_PEDIA_CONCEPTS_EXPERIENCE_TOOLTIP]Experience[/TIP][/B] for [TIP:LOC_PEDIA_CONCEPTS_COMMANDERS_TOOLTIP]Commanders[/TIP].</Text>
         </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_FOEDERATI_NAME">
+            <Text>Foederati</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_FOEDERATI_DESCRIPTION">
+            <Text>[B]+30% [icon:YIELD_PRODUCTION] Production[/B] towards [icon:UNIT_CLASS_CAVALRY] [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Units[/TIP].</Text>
+        </Row>
         <Row Tag="LOC_TRADITION_BYZANTIUM_THIRD_ROME_NAME">
             <Text>Third Rome</Text>
         </Row>
@@ -93,6 +105,12 @@
         </Row>
         <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_TOOLTIP">
             <Text>Romanitas</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY_NAME">
+            <Text>Romanitas I</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY_DESCRIPTION">
+            <Text>[B]+2 [icon:YIELD_CULTURE] Culture[/B] from each displayed [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP].</Text>
         </Row>
         <Row Tag="LOC_TRADITION_BYZANTIUM_SYNCRETISM_MODERN_NAME">
             <Text>Romanitas II</Text>

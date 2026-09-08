@@ -21,10 +21,14 @@ Age domains in the shell: `Ages.PlayerCivilizationDomain` is `AntiquityAgeCivili
 `ExplorationAgeCivilizations` or `ModernAgeCivilizations`. The civ list for a start age is the
 `Civilizations` config rows in that domain (primary key is Domain + CivilizationType, so one civ
 may sit in all three). The "Time-Tested Allowed" game option only widens *random* picks.
-Lesson from Byzantium: offering a civ in an earlier age than its apex reads as "this is an
-Antiquity civ" to players (the Antiquity picker lists it beside Rome). A successor civ should
-have shell rows only for its apex age and later, and reach the earlier age through
-`CivilizationUnlocks` from its predecessors.
+Lesson from Byzantium: the picker lists exactly the civs that have a row in that age's domain
+(`SetupParameters` overrides `PlayerCivilization`'s domain with `Ages.PlayerCivilizationDomain`),
+and a plain row in an earlier age reads as "this is an Antiquity civ" beside Rome. For
+Time-Tested play in an earlier age keep the row but give it its own `CivilizationName`
+("Byzantium (Time-Tested)"); reach the age normally through `CivilizationUnlocks` from the
+predecessors. Firaxis's own out-of-age content is small: an Origins node in
+`TREE_CIVICS_AQ_TEST_OF_TIME` with `_I` traditions, the ability's `TraitModifiers`, a
+self-syncretism tradition; no unique units (Syncretism lends an apex civ's unit).
 
 Game side, any civ whose `ApexAge` is not the active age receives `TRAIT_ANACHRONISTIC_CIV`
 (`base-standard/data/ages-post-process.sql`), which carries the same baseline modifiers as

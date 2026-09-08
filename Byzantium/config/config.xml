@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Shell (game setup) side of Byzantium. Civilizations rows for the Exploration and Modern
-     domains: Byzantium is the continuation of Rome, so it is not offered at an Antiquity start
-     (Rome and Greece lead to it at the transition instead). The Modern row keeps a late start
-     possible; the game side copes with that through TRAIT_ANACHRONISTIC_CIV
-     (base-standard/data/ages-post-process.sql). -->
+<!-- Shell (game setup) side of Byzantium. One Civilizations row per age domain: the picker only
+     offers a civ in an age it has a row for (SetupParameters overrides PlayerCivilization's domain
+     with Ages.PlayerCivilizationDomain). Exploration is the apex age; the Antiquity row is
+     labelled "Byzantium (Time-Tested)" so it reads as an out-of-age option next to Rome, and the
+     Modern row keeps a late start possible. The game side handles both through
+     TRAIT_ANACHRONISTIC_CIV (base-standard/data/ages-post-process.sql). -->
 <Database>
     <Civilizations>
+        <Row Domain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_TIME_TESTED_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_TIME_TESTED_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="CIVILIZATION_BYZANTIUM" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
         <Row Domain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="CIVILIZATION_BYZANTIUM" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
         <Row Domain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" CivilizationName="LOC_CIVILIZATION_BYZANTIUM_NAME" CivilizationFullName="LOC_CIVILIZATION_BYZANTIUM_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" CivilizationIcon="CIVILIZATION_BYZANTIUM" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_BYZANTIUM"/>
     </Civilizations>
     <CivilizationItems>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" AgeType="AGE_ANTIQUITY" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_AQ_DESCRIPTION"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" AgeType="AGE_EXPLORATION" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_DESCRIPTION"/>
         <Row CivilizationDomain="ModernAgeCivilizations" AgeType="AGE_MODERN" CivilizationType="CIVILIZATION_BYZANTIUM" Type="TRAIT_BYZANTIUM_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_MO_DESCRIPTION"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="UNIT_CATAPHRACT" Kind="KIND_UNIT" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_BASE_DESCRIPTION" Icon="UNIT_CATAPHRACT"/>
@@ -19,6 +22,8 @@
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_GREAT_PALACE" Kind="KIND_BUILDING" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Icon="BUILDING_GREAT_PALACE"/>
     </CivilizationItems>
     <CivilizationTags>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_POLITICAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_APEX_AGE_EXPLORATION"/>

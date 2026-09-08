@@ -31,8 +31,16 @@
         <String context="Description">LOC_TRADITION_BYZANTIUM_PENTARCHY_II_DESCRIPTION</String>
     </Modifier>
     <!-- Self-syncretism: Romanitas. The unlock modifiers are named by CivSelfSyncretismUnlocks. -->
+    <Modifier id="MOD_UNLOCK_BYZANTIUM_SYNCRETISM_ANTIQUITY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
+        <Argument name="Tradition">TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY</Argument>
+    </Modifier>
     <Modifier id="MOD_UNLOCK_BYZANTIUM_SYNCRETISM_MODERN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
         <Argument name="Tradition">TRADITION_BYZANTIUM_SYNCRETISM_MODERN</Argument>
+    </Modifier>
+    <Modifier id="BYZANTIUM_SYNCRETISM_ANTIQUITY_GREAT_WORKS_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_SYNCRETISM_ANTIQUITY_NAME</Argument>
     </Modifier>
     <Modifier id="BYZANTIUM_SYNCRETISM_MODERN_GREAT_WORKS_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
         <Argument name="YieldType">YIELD_CULTURE</Argument>
@@ -82,6 +90,12 @@
         <String context="Description">LOC_TRADITION_BYZANTIUM_VARANGIAN_GUARD_DESCRIPTION</String>
     </Modifier>
     <!-- Foederati (Antiquity): cavalry production -->
+    <Modifier id="BYZANTIUM_FOEDERATI_CAVALRY_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">UNIT_CLASS_CAVALRY</Argument>
+        <Argument name="Percent">30</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_BYZANTIUM_FOEDERATI_NAME</Argument>
+        <String context="Description">LOC_TRADITION_BYZANTIUM_FOEDERATI_DESCRIPTION</String>
+    </Modifier>
     <!-- Third Rome (Modern): culture per alliance -->
     <Modifier id="BYZANTIUM_THIRD_ROME_ALLIANCE_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_RELATIONSHIP">
         <Argument name="UseAlliances">true</Argument>
