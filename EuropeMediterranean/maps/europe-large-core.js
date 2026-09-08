@@ -265,8 +265,9 @@ function removeStrayIce(grid) {
 
 // ---------------------------------------------------------------------------
 // Regional resources: after the engine's random pass, place historically placed resources per
-// region (GEO.resourceAreas), then top up random ones so that about randomShare of all resources
-// stay random.
+// region (GEO.resourceAreas), then top up or thin the engine's random ones so that about
+// randomShare of all resources stay random. The regional densities therefore set the map's
+// resource count: total = regional / (1 - randomShare).
 
 function pointInPoly(lon, lat, pts) {
     let inside = false;
@@ -366,7 +367,8 @@ function placeRegionalResources(grid, randomShare) {
             hexes++;
             if (GameplayMap.getResourceType(x, y) == ResourceTypes.NO_RESOURCE) candidates.push([x, y]);
         }
-        const target = Math.floor(hexes / (area.density || 8));
+        // GEO.resourceScale (default 1) multiplies every area's density: 1.5 means a third fewer.
+        const target = Math.floor(hexes / ((area.density || 8) * (GEO.resourceScale || 1)));
         shuffleInPlace(candidates);
         let placed = 0, rot = 0;
         for (const c of candidates) {
@@ -406,8 +408,22 @@ function placeRegionalResources(grid, randomShare) {
             randomCount++; added++;
         }
     }
+    // ... and thin them when the engine's pass alone already exceeds that share. The engine
+    // scatters at vanilla density (a Poisson map with three hexes between points), so without
+    // this step the regional pass simply stacks on top of a full vanilla map and the total runs
+    // to roughly one resource per three land hexes.
+    let removed = 0;
+    if (randomCount > wantRandom) {
+        shuffleInPlace(randomTiles);
+        for (const t of randomTiles) {
+            if (randomCount <= wantRandom) break;
+            if (GameplayMap.getResourceType(t[0], t[1]) == ResourceTypes.NO_RESOURCE) continue;
+            ResourceBuilder.setResourceType(t[0], t[1], ResourceTypes.NO_RESOURCE);
+            randomCount--; removed++;
+        }
+    }
     const total = randomCount + regionalPlaced;
-    console.log("Europe large map: resources - engine random " + totalBefore + ", regional " + regionalPlaced + ", random top-up " + added + ", total " + total + ", random share " + (total ? Math.round(100 * randomCount / total) : 0) + "%");
+    console.log("Europe large map: resources - engine random " + totalBefore + ", regional " + regionalPlaced + ", random top-up " + added + ", engine thinned " + removed + ", total " + total + ", random share " + (total ? Math.round(100 * randomCount / total) : 0) + "%");
 }
 
 // ---------------------------------------------------------------------------

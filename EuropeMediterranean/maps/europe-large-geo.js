@@ -204,7 +204,9 @@ export const GEO = {
     ],
 
     // Historically placed resources: polygon, resource types (missing ones for the age are skipped),
-    // density = land/coast hexes per resource. The engine's own random pass keeps a 20% share.
+    // density = land/coast hexes per resource. The engine's own random pass is thinned or topped
+    // up to a 20% share, so these densities decide the map's resource count. resourceScale (top
+    // of this object, default 1) multiplies every density: 1.5 places a third fewer everywhere.
     resourceAreas: [
         // Iron added: Laconia and Euboea worked it, Greece's unique Hoplite is infantry (iron gives
         // an infantry combat bonus), and three improved iron is what unlocks the Normans.
