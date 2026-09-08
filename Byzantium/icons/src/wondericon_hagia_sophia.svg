@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <!-- Hagia Sophia, Justinian's church: great dome on a forty-window drum, two half-domes,
-       buttress towers, pale limestone walls (matching the grey Blue Mosque model the wonder borrows in game). Three-quarter view from the south-west, lit from
+       buttress towers, walls in the red-ochre wash of the real building. Three-quarter view from the south-west, lit from
        the upper left, in the painted style of the Civ 7 wonder icons. -->
   <defs>
     <radialGradient id="domeG" cx="0.38" cy="0.25" r="0.8">
@@ -9,11 +9,11 @@
     <radialGradient id="halfG" cx="0.4" cy="0.2" r="0.9">
       <stop offset="0" stop-color="#b6c5ce"/><stop offset="0.5" stop-color="#7d919c"/><stop offset="1" stop-color="#3a4950"/>
     </radialGradient>
-    <linearGradient id="wallL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8e2d3"/><stop offset="1" stop-color="#b7ad98"/></linearGradient>
-    <linearGradient id="wallD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b0a894"/><stop offset="1" stop-color="#77705f"/></linearGradient>
-    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6efe0"/><stop offset="1" stop-color="#c9b993"/></linearGradient>
+    <linearGradient id="wallL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9a68d"/><stop offset="1" stop-color="#b5563d"/></linearGradient>
+    <linearGradient id="wallD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b8664d"/><stop offset="1" stop-color="#77382a"/></linearGradient>
+    <linearGradient id="marble" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7ecd6"/><stop offset="1" stop-color="#d0b78e"/></linearGradient>
     <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a8"/><stop offset="0.5" stop-color="#e2b437"/><stop offset="1" stop-color="#9a6b14"/></linearGradient>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5e6c8" stop-opacity="0"/><stop offset="1" stop-color="#d8b98a" stop-opacity="0.35"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5d7a2" stop-opacity="0"/><stop offset="1" stop-color="#e29a5a" stop-opacity="0.35"/></linearGradient>
   </defs>
 
   <!-- ground and cast shadow -->
@@ -27,34 +27,34 @@
   <!-- main body: lit south face and shaded west face -->
   <path d="M48,214 L48,150 L196,150 L196,214 Z" fill="url(#wallL)"/>
   <path d="M196,150 L226,138 L226,206 L196,214 Z" fill="url(#wallD)"/>
-  <path d="M48,150 L196,150 L226,138 L78,138 Z" fill="#d9d2c2"/>
+  <path d="M48,150 L196,150 L226,138 L78,138 Z" fill="#d98a72"/>
   <!-- marble string courses -->
   <rect x="48" y="150" width="148" height="4" fill="url(#marble)"/>
   <rect x="48" y="176" width="148" height="3" fill="url(#marble)" opacity="0.8"/>
   <path d="M196,154 L226,142 L226,145 L196,157 Z" fill="#e8cfa6" opacity="0.8"/>
   <!-- brick courses -->
-  <g stroke="#7d7566" stroke-width="1" opacity="0.45">
+  <g stroke="#8a3f2b" stroke-width="1" opacity="0.45">
     <path d="M48,162 h148 M48,169 h148 M48,186 h148 M48,194 h148 M48,202 h148"/>
     <path d="M196,166 l30,-12 M196,182 l30,-12 M196,198 l30,-12"/>
   </g>
   <!-- ground-floor arcade -->
-  <g fill="#23252b">
+  <g fill="#2a150f">
     <path d="M60,214 v-24 a8,10 0 0 1 16,0 v24z M84,214 v-24 a8,10 0 0 1 16,0 v24z M144,214 v-24 a8,10 0 0 1 16,0 v24z M168,214 v-24 a8,10 0 0 1 16,0 v24z"/>
-    <path d="M110,214 v-32 a12,14 0 0 1 24,0 v32z" fill="#181a1f"/>
+    <path d="M110,214 v-32 a12,14 0 0 1 24,0 v32z" fill="#1c0d08"/>
   </g>
   <path d="M112,214 v-30 a10,12 0 0 1 20,0 v30z" fill="url(#gold)" opacity="0.35"/>
   <!-- upper window band on the south face -->
-  <g fill="#2f3138">
+  <g fill="#3a1f16">
     <path d="M64,172 v-12 a4,5 0 0 1 8,0 v12z M80,172 v-12 a4,5 0 0 1 8,0 v12z M96,172 v-12 a4,5 0 0 1 8,0 v12z M140,172 v-12 a4,5 0 0 1 8,0 v12z M156,172 v-12 a4,5 0 0 1 8,0 v12z M172,172 v-12 a4,5 0 0 1 8,0 v12z"/>
   </g>
 
   <!-- south-west and south-east buttress towers -->
   <path d="M30,216 L30,142 L54,136 L54,216 Z" fill="url(#wallL)"/>
   <path d="M54,136 L64,132 L64,214 L54,216 Z" fill="url(#wallD)"/>
-  <path d="M30,142 L54,136 L64,132 L40,138 Z" fill="#ece6d8"/>
+  <path d="M30,142 L54,136 L64,132 L40,138 Z" fill="#efb59f"/>
   <path d="M190,216 L190,142 L214,136 L214,216 Z" fill="url(#wallL)"/>
   <path d="M214,136 L224,132 L224,208 L214,216 Z" fill="url(#wallD)"/>
-  <path d="M190,142 L214,136 L224,132 L200,138 Z" fill="#ece6d8"/>
+  <path d="M190,142 L214,136 L224,132 L200,138 Z" fill="#efb59f"/>
 
   <!-- half-domes flanking the central block -->
   <path d="M40,140 A42,38 0 0 1 124,140 Z" fill="url(#halfG)"/>
@@ -74,16 +74,16 @@
   <path d="M72,140 L72,100 L184,100 L184,140 Z" fill="url(#wallL)"/>
   <path d="M184,100 L200,94 L200,136 L184,140 Z" fill="url(#wallD)"/>
   <rect x="72" y="100" width="112" height="4" fill="url(#marble)"/>
-  <g fill="#2f3138">
+  <g fill="#3a1f16">
     <path d="M80,130 v-14 a4,5 0 0 1 8,0 v14z M100,130 v-14 a4,5 0 0 1 8,0 v14z M148,130 v-14 a4,5 0 0 1 8,0 v14z M168,130 v-14 a4,5 0 0 1 8,0 v14z"/>
   </g>
   <!-- tympanum arch -->
-  <path d="M116,140 v-22 a12,14 0 0 1 24,0 v22z" fill="#23252b"/>
+  <path d="M116,140 v-22 a12,14 0 0 1 24,0 v22z" fill="#2a150f"/>
 
   <!-- drum with its ring of windows -->
   <path d="M70,102 A58,14 0 0 1 186,102 L186,86 A58,14 0 0 0 70,86 Z" fill="url(#wallL)"/>
-  <path d="M70,86 A58,14 0 0 1 186,86 A58,14 0 0 1 70,86 Z" fill="#d4cdbc"/>
-  <g fill="#23252b">
+  <path d="M70,86 A58,14 0 0 1 186,86 A58,14 0 0 1 70,86 Z" fill="#d68a72"/>
+  <g fill="#2a150f">
     <path d="M78,100 v-9 a2.5,3 0 0 1 5,0 v9z M88,101 v-10 a2.5,3 0 0 1 5,0 v10z M98,102 v-11 a2.5,3 0 0 1 5,0 v11z M108,102 v-11 a2.5,3 0 0 1 5,0 v11z M118,103 v-12 a2.5,3 0 0 1 5,0 v12z M128,103 v-12 a2.5,3 0 0 1 5,0 v12z M138,103 v-12 a2.5,3 0 0 1 5,0 v12z M148,102 v-11 a2.5,3 0 0 1 5,0 v11z M158,102 v-11 a2.5,3 0 0 1 5,0 v11z M168,101 v-10 a2.5,3 0 0 1 5,0 v10z"/>
   </g>
   <g fill="#f6d27a" opacity="0.55">
@@ -104,6 +104,6 @@
   <circle cx="128" cy="24" r="3" fill="#fff4bf"/>
 
   <!-- warm rim light on the left edges -->
-  <path d="M30,142 L30,216 L34,216 L34,144 Z" fill="#fff6e0" opacity="0.45"/>
-  <path d="M48,150 L48,214 L52,214 L52,152 Z" fill="#fff6e0" opacity="0.35"/>
+  <path d="M30,142 L30,216 L34,216 L34,144 Z" fill="#ffd9c4" opacity="0.4"/>
+  <path d="M48,150 L48,214 L52,214 L52,152 Z" fill="#ffd9c4" opacity="0.3"/>
 </svg>
