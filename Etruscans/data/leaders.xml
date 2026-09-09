@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lars Porsena of Clusium. Shaped after DLC/ada-lovelace/modules/data/leaders.xml.
+     BasePersonaType is what Firaxis's alternate personas use to borrow an existing leader's
+     persona; a mod cannot ship a leader model (the shell asks the engine for
+     <LEADER_TYPE>_GAME_ASSET), so it is the closest thing to a fallback. -->
+<Database>
+    <Types>
+        <Row Type="LEADER_PORSENNA" Kind="KIND_LEADER"/>
+        <Row Type="TRAIT_LEADER_PORSENNA_ABILITY" Kind="KIND_TRAIT"/>
+    </Types>
+    <Leaders>
+        <Row LeaderType="LEADER_PORSENNA" Name="LOC_LEADER_PORSENNA_NAME" IsMajorLeader="true" InheritFrom="LEADER_DEFAULT" BasePersonaType="LEADER_XERXES"/>
+    </Leaders>
+    <TypeQuotes>
+        <Row Type="LEADER_PORSENNA" Quote="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY"/>
+    </TypeQuotes>
+    <Traits>
+        <Row TraitType="TRAIT_LEADER_PORSENNA_ABILITY" InternalOnly="true" Name="LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME" Description="LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION"/>
+    </Traits>
+    <LeaderTraits>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_LEADER_PORSENNA_ABILITY"/>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_LEADER_ATTRIBUTE_MILITARISTIC"/>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_LEADER_ATTRIBUTE_SCIENTIFIC"/>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_AQ_SCIENCE_VICTORY"/>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_EX_ECONOMIC_VICTORY"/>
+        <Row LeaderType="LEADER_PORSENNA" TraitType="TRAIT_MO_SCIENCE_VICTORY"/>
+    </LeaderTraits>
+    <TraitModifiers>
+        <Row TraitType="TRAIT_LEADER_PORSENNA_ABILITY" ModifierId="PORSENNA_MOD_CITY_PRODUCTION"/>
+        <Row TraitType="TRAIT_LEADER_PORSENNA_ABILITY" ModifierId="PORSENNA_MOD_WALL_HEALTH"/>
+        <Row TraitType="TRAIT_LEADER_PORSENNA_ABILITY" ModifierId="PORSENNA_MOD_DISTRICT_DEFENSE"/>
+    </TraitModifiers>
+    <AiListTypes>
+        <Row ListType="Porsenna Yield Biases"/>
+        <Row ListType="Porsenna Pseudoyield Biases"/>
+    </AiListTypes>
+    <AiLists>
+        <Row ListType="Porsenna Yield Biases" LeaderType="TRAIT_LEADER_PORSENNA_ABILITY" System="YieldBiases"/>
+        <Row ListType="Porsenna Pseudoyield Biases" LeaderType="TRAIT_LEADER_PORSENNA_ABILITY" System="PseudoYieldBiases"/>
+    </AiLists>
+    <AiFavoredItems>
+        <Row ListType="Porsenna Yield Biases" Item="YIELD_PRODUCTION" Value="50"/>
+        <Row ListType="Porsenna Yield Biases" Item="YIELD_SCIENCE" Value="25"/>
+        <Row ListType="Porsenna Pseudoyield Biases" Item="PSEUDOYIELD_STANDING_ARMY_COMMANDER" Value="25"/>
+    </AiFavoredItems>
+</Database>

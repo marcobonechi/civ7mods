@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The two uniques unlock where the units they replace do: Chariot at The Wheel, Galley at Sailing. -->
+<Database>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_TECH_AQ_WHEEL" TargetKind="KIND_UNIT" TargetType="UNIT_BIGA" UnlockDepth="1" RequiredTraitType="TRAIT_ETRUSCANS"/>
+        <Row ProgressionTreeNodeType="NODE_TECH_AQ_SAILING" TargetKind="KIND_UNIT" TargetType="UNIT_TYRRHENIAN_GALLEY" UnlockDepth="1" RequiredTraitType="TRAIT_ETRUSCANS"/>
+    </ProgressionTreeNodeUnlocks>
+</Database>

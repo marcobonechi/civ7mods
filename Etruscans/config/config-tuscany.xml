@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Tuscany mod is enabled: the Etruscans lead to Tuscany. -->
+<Database>
+    <CivilizationUnlocks>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
+    </CivilizationUnlocks>
+</Database>

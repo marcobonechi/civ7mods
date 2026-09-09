@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- The Spura: a drained, paved, walled Etruscan town. Every settlement in the league gains
+         from one (the Mese pattern: yield per number of cities, gated on the quarter). -->
+    <Modifier id="MOD_ETRUSCANS_SPURA_PRODUCTION_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_SPURA</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_SPURA_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_ETRUSCANS_SPURA_CULTURE_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_SPURA</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_SPURA_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_ETRUSCANS_SPURA_HAPPINESS_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_SPURA</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_SPURA_NAME</Argument>
+    </Modifier>
+    <!-- The Tumulus is where the banquet never ends; it celebrates everything the people keep. -->
+    <Modifier id="MOD_ETRUSCANS_TUMULUS_CULTURE_PER_TRADITION" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD_PER_ACTIVE_TRADITION">
+        <Argument name="CivUnique">false</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_BUILDING_TUMULUS_NAME</Argument>
+    </Modifier>
+    <!-- Fanum Voltumnae: the twelve peoples met here, so it pays Influence for every settlement. -->
+    <Modifier id="MOD_FANUM_VOLTUMNAE_INFLUENCE_PER_SETTLEMENT" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_WONDER_FANUM_VOLTUMNAE_NAME</Argument>
+    </Modifier>
+    <!-- A Relic when it is finished (Rila Monastery shape, once). -->
+    <Modifier id="MOD_FANUM_VOLTUMNAE_RELIC" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_FANUM_VOLTUMNAE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="GreatWorkType">GREATWORK_RELIC</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <!-- Disciplina Etrusca: +45% Production toward the Fanum Voltumnae. Named here because it
+         references the wonder, so it loads with the constructibles. -->
+    <Modifier id="MOD_CIV_WONDER_PRODUCTION_ETRUSCANS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT">
+                <Argument name="TraitType">TRAIT_ETRUSCANS</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Percent">45</Argument>
+        <String context="Preview">LOC_MOD_CIV_WONDER_PRODUCTION_ETRUSCANS_DESCRIPTION</String>
+    </Modifier>
+</GameEffects>

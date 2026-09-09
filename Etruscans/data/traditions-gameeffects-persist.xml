@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="ETRUSCANS_CUNICULI_CUNICULUS_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_CUNICULUS</Argument>
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">2</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_CUNICULI_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="ETRUSCANS_CUNICULI_TUMULUS_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_TUMULUS</Argument>
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">2</Argument>
+    </Modifier>
+    <Modifier id="ETRUSCANS_CUNICULI_II_CUNICULUS_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_CUNICULUS</Argument>
+        <Argument name="YieldType">YIELD_FOOD</Argument>
+        <Argument name="Amount">3</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_CUNICULI_II_DESCRIPTION</String>
+    </Modifier>
+</GameEffects>

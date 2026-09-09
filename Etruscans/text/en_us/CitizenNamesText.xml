@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_1">
+            <Text>Arnth</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_2">
+            <Text>Larth</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_3">
+            <Text>Vel</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_4">
+            <Text>Aule</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_5">
+            <Text>Tarchon</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_6">
+            <Text>Thefarie</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_7">
+            <Text>Velthur</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_8">
+            <Text>Sethre</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_9">
+            <Text>Laris</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_MALE_10">
+            <Text>Avle</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_1">
+            <Text>Ramtha</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_2">
+            <Text>Thanchvil</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_3">
+            <Text>Larthia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_4">
+            <Text>Velia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_5">
+            <Text>Hastia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_6">
+            <Text>Fasti</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_7">
+            <Text>Culni</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_8">
+            <Text>Ravnthu</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_9">
+            <Text>Seianti</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_ETRUSCANS_FEMALE_10">
+            <Text>Thana</Text>
+        </Row>
+    </EnglishText>
+</Database>

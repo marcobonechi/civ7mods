@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Bucchero: the glossy black ware that went out of Etruria to every port in the Mediterranean. -->
+    <Modifier id="ETRUSCANS_BUCCHERO_CULTURE_BUILDING_GOLD" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="Tag">CULTURE</Argument>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_BUCCHERO_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_BUCCHERO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Dodecapolis: the league of twelve peoples. -->
+    <Modifier id="ETRUSCANS_DODECAPOLIS_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_DODECAPOLIS_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_DODECAPOLIS_DESCRIPTION</String>
+    </Modifier>
+    <!-- Convivium: the banquet the tomb paintings never stop showing. -->
+    <Modifier id="ETRUSCANS_CONVIVIUM_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_CONVIVIUM_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_CONVIVIUM_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="ETRUSCANS_CONVIVIUM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_CONVIVIUM_NAME</Argument>
+    </Modifier>
+    <Modifier id="ETRUSCANS_CONVIVIUM_II_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_CONVIVIUM_II_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_CONVIVIUM_II_DESCRIPTION</String>
+    </Modifier>
+    <!-- Haruspicina: reading the liver, and everything else the discipline covered. -->
+    <Modifier id="ETRUSCANS_HARUSPICINA_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_HARUSPICINA_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_HARUSPICINA_DESCRIPTION</String>
+    </Modifier>
+    <!-- Metalla: the iron of Elba and the copper of the Colline Metallifere. -->
+    <Modifier id="ETRUSCANS_METALLA_UNIT_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">UNIT_CLASS_COMBAT</Argument>
+        <Argument name="Percent">25</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_METALLA_NAME</Argument>
+        <String context="Description">LOC_TRADITION_ETRUSCANS_METALLA_DESCRIPTION</String>
+    </Modifier>
+    <!-- Self-syncretism: Rasna. The unlock modifiers are named by CivSelfSyncretismUnlocks. -->
+    <Modifier id="MOD_UNLOCK_ETRUSCANS_SYNCRETISM_EXPLORATION" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
+        <Argument name="Tradition">TRADITION_ETRUSCANS_SYNCRETISM_EXPLORATION</Argument>
+    </Modifier>
+    <Modifier id="MOD_UNLOCK_ETRUSCANS_SYNCRETISM_MODERN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
+        <Argument name="Tradition">TRADITION_ETRUSCANS_SYNCRETISM_MODERN</Argument>
+    </Modifier>
+    <Modifier id="ETRUSCANS_SYNCRETISM_EXPLORATION_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_SYNCRETISM_EXPLORATION_NAME</Argument>
+    </Modifier>
+    <Modifier id="ETRUSCANS_SYNCRETISM_MODERN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_ETRUSCANS_SYNCRETISM_MODERN_NAME</Argument>
+    </Modifier>
+</GameEffects>

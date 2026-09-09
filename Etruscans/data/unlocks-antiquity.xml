@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Who can pick the Etruscans, and what the Etruscans lead to in the Exploration Age. -->
+<Database>
+    <!-- The gameplay unlock: waterworks in three settlements. -->
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_BATHS_ETRUSCANS" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <Requirements>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BATHS_ETRUSCANS" RequirementType="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_BUILDINGS"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BATHS_ETRUSCANS" Name="BuildingType" Value="BUILDING_BATH"/>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BATHS_ETRUSCANS" Name="Amount" Value="3"/>
+    </RequirementArguments>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_BATHS_ETRUSCANS" RequirementId="REQ_PLAYER_HAS_3_BATHS_ETRUSCANS"/>
+    </RequirementSetRequirements>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" RequirementSetId="REQSET_PLAYER_HAS_3_BATHS_ETRUSCANS" Description="LOC_UNLOCK_BATHS_ETRUSCANS_DESCRIPTION" Tooltip="LOC_UNLOCK_BATHS_ETRUSCANS_TOOLTIP" GameplayUnlock="True" NarrativeText="LOC_UNLOCK_BATHS_ETRUSCANS_NARRATIVE"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" RequirementSetId="REQSET_LEADER_IS_AUGUSTUS" Description="LOC_UNLOCK_PLAY_AS_AUGUSTUS_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_AUGUSTUS_ETRUSCANS_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" RequirementSetId="REQSET_CIV_IS_ETRUSCANS" Description="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ETRUSCANS_ETRUSCANS_TOOLTIP"/>
+    </UnlockRequirements>
+    <!-- The Etruscans lead to the Normans in the Exploration Age (the Norman conquest of the
+         Italian south). Tuscany is handled in unlocks-tuscany.xml, which only loads when the
+         Tuscany mod is present. -->
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_NORMAN" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_NORMAN"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_NORMAN" Name="LOC_CIVILIZATION_NORMAN_NAME" Description="LOC_UNLOCK_EXPLORATION_CIV_DESCRIPTION" Icon="CIVILIZATION_NORMAN" UnlockRewardType="CIVILIZATION_NORMAN" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_NORMAN" ConfigurationValue="CIVILIZATION_NORMAN"/>
+    </UnlockConfigurationValues>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_NORMAN" RequirementSetId="REQSET_CIV_IS_ETRUSCANS" Description="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ETRUSCANS_NORMAN_TOOLTIP"/>
+    </UnlockRequirements>
+</Database>

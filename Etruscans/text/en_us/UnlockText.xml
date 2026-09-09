@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNLOCK_ANTIQUITY_CIV_DESCRIPTION">
+            <Text>Unlocks an Antiquity Age civilization.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION">
+            <Text>Play as the Etruscans</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_ETRUSCANS_TOOLTIP">
+            <Text>The Etruscans keep their own civilization across the ages.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_NORMAN_TOOLTIP">
+            <Text>The Normans took the Etruscan south and made a kingdom of it.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_TUSCANY_TOOLTIP">
+            <Text>Tuscany takes its name and its hills from Etruria.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_AUGUSTUS_ETRUSCANS_TOOLTIP">
+            <Text>Rome's kings, its augurs and its very insignia came from Etruria.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_MACHIAVELLI_ETRUSCANS_TOOLTIP">
+            <Text>A Florentine reading of the oldest republics on the peninsula.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_ETRUSCANS_TOOLTIP">
+            <Text>Porsenna was lucumo of Clusium.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BATHS_ETRUSCANS_DESCRIPTION">
+            <Text>Own Baths in 3 Settlements</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BATHS_ETRUSCANS_TOOLTIP">
+            <Text>Own a Bath in 3 Settlements to unlock the Etruscans, masters of moving water.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BATHS_ETRUSCANS_NARRATIVE">
+            <Text>Your engineers have learned to take water where it is wanted and away from where it is not. The Etruscans made a civilization of that skill.</Text>
+        </Row>
+    </EnglishText>
+</Database>

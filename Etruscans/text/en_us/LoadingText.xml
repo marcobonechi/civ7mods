@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_LOADING_CIV_INTRO_TEXT_ETRUSCANS">
+            <Text>Twelve cities between two rivers, rich on iron and bronze, famous for their engineers, their diviners and their banquets.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_INTRO_ETRUSCANS">
+            <Text>Rasna, the people of the Twelve</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_CIV_TIPS_TEXT_ETRUSCANS">
+            <Text>Build a Cuniculus and a Tumulus in the same District to form the Spura, which pays every Settlement you own. Everything you build goes up faster than your neighbours' work.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_LEADER_INTRO_TEXT_PORSENNA">
+            <Text>Lars Porsenna of Clusium, who marched on Rome and, they say, built a tomb with a labyrinth beneath it.</Text>
+        </Row>
+    </EnglishText>
+</Database>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TRAIT_ETRUSCANS" Kind="KIND_TRAIT"/>
+        <Row Type="CIVILIZATION_ETRUSCANS" Kind="KIND_CIVILIZATION"/>
+    </Types>
+    <LegacyCivilizations>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" FullName="LOC_CIVILIZATION_ETRUSCANS_FULLNAME" Adjective="LOC_CIVILIZATION_ETRUSCANS_ADJECTIVE" Age="AGE_ANTIQUITY"/>
+    </LegacyCivilizations>
+    <LegacyCivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ETRUSCANS"/>
+    </LegacyCivilizationTraits>
+    <Traits>
+        <Row TraitType="TRAIT_ETRUSCANS" InternalOnly="true"/>
+    </Traits>
+</Database>

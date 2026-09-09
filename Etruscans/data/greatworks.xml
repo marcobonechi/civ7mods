@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Constructible_GreatWorks>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="2"/>
+    </Constructible_GreatWorks>
+</Database>

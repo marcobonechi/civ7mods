@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shell side of Porsenna. Mirrors DLC/ada-lovelace/modules/config/config.xml. -->
+<Database>
+    <Leaders>
+        <Row LeaderType="LEADER_PORSENNA" LeaderName="LOC_LEADER_PORSENNA_NAME" LeaderDescription="LOC_LEADER_PORSENNA_DESCRIPTION" LeaderIcon="LEADER_PORSENNA" LeaderIntroText="LOC_LOADING_LEADER_INTRO_TEXT_PORSENNA"/>
+    </Leaders>
+    <LeaderItems>
+        <Row LeaderType="LEADER_PORSENNA" Type="TRAIT_LEADER_PORSENNA_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME" Description="LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION"/>
+    </LeaderItems>
+    <LeaderTags>
+        <Row LeaderType="LEADER_PORSENNA" TagType="TAG_TRAIT_MILITARISTIC"/>
+        <Row LeaderType="LEADER_PORSENNA" TagType="TAG_TRAIT_SCIENTIFIC"/>
+        <Row LeaderType="LEADER_PORSENNA" TagType="TAG_GENDER_MALE"/>
+    </LeaderTags>
+    <LeaderQuotes>
+        <Row LeaderType="LEADER_PORSENNA" Quote="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY"/>
+    </LeaderQuotes>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_NORMAN" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_NORMAN_NAME" Description="LOC_CIVILIZATION_NORMAN_DESCRIPTION" Icon="CIVILIZATION_NORMAN"/>
+    </LeaderUnlocks>
+</Database>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_LEADER_PORSENNA_NAME">
+            <Text>Porsenna</Text>
+        </Row>
+        <Row Tag="LOC_LEADER_PORSENNA_DESCRIPTION">
+            <Text>Lars Porsenna, lucumo of Clusium, the Etruscan king who besieged Rome and whose works Pliny could hardly believe.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME">
+            <Text>Lars of Clusium</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION">
+            <Text>+2 [icon:YIELD_PRODUCTION] Production in Cities. Districts with a Fortification have +20 Health, and units defending one of your Districts have +3 [icon:COMBAT] Combat Strength.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW">
+            <Text>Lars of Clusium</Text>
+        </Row>
+        <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY">
+            <Text>Bring me the surveyors before you bring me the army.</Text>
+        </Row>
+    </EnglishText>
+</Database>

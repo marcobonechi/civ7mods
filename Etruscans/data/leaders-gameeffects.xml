@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Lars of Clusium. Porsenna took Rome and, if Pliny is to be believed, built himself a tomb
+         with a labyrinth under it; he gets the builder's bonus and the besieger's walls. -->
+    <Modifier id="PORSENNA_MOD_CITY_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
+        <String context="Description">LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="PORSENNA_MOD_WALL_HEALTH" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_TOTAL_HEALTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+                <Argument name="Tag">FORTIFICATION</Argument>
+                <Argument name="CurrentAgeOnly">false</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">20</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="PORSENNA_MOD_DISTRICT_DEFENSE" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_DEFENDER_IS_PLAYER_OWNED_DISTRICT"/>
+        </SubjectRequirements>
+        <Argument name="Amount">3</Argument>
+        <String context="Preview">LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW</String>
+    </Modifier>
+</GameEffects>

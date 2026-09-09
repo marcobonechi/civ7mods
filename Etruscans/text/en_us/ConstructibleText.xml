@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_BUILDING_CUNICULUS_NAME">
+            <Text>Cuniculus</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_CUNICULUS_DESCRIPTION">
+            <Text>+2 [icon:YIELD_FOOD] Food, +2 [icon:YIELD_PRODUCTION] Production and +1 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_FOOD] Food for each adjacent Coast or River tile. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_CUNICULUS_TOOLTIP">
+            <Text>An Etruscan Unique Building. Half of the Spura. Drains the valley and waters the fields.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_TUMULUS_NAME">
+            <Text>Tumulus</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_TUMULUS_DESCRIPTION">
+            <Text>+4 [icon:YIELD_CULTURE] Culture, +2 [icon:YIELD_HAPPINESS] Happiness and +1 [icon:YIELD_GOLD] Gold. +1 [icon:YIELD_CULTURE] Culture for each adjacent Wonder and each adjacent Quarter, and +1 [icon:YIELD_CULTURE] Culture for each active Tradition. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_TUMULUS_TOOLTIP">
+            <Text>An Etruscan Unique Building. Half of the Spura. The painted chamber tomb where the banquet never ends.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_SPURA_NAME">
+            <Text>Spura</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_SPURA_DESCRIPTION">
+            <Text>+1 [icon:YIELD_PRODUCTION] Production, +1 [icon:YIELD_CULTURE] Culture and +1 [icon:YIELD_HAPPINESS] Happiness in this Settlement for every Settlement you own.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_SPURA_TOOLTIP">
+            <Text>The Etruscan Unique Quarter, formed by a Cuniculus and a Tumulus in the same District.</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_FANUM_VOLTUMNAE_NAME">
+            <Text>Fanum Voltumnae</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_FANUM_VOLTUMNAE_DESCRIPTION">
+            <Text>+3 [icon:YIELD_CULTURE] Culture, +3 [icon:YIELD_DIPLOMACY] Influence and +2 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_DIPLOMACY] Influence for every Settlement you own. Grants a Relic when completed. 2 Great Work slots. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_FANUM_VOLTUMNAE_TOOLTIP">
+            <Text>The federal sanctuary of the Twelve Peoples, where the League met each spring.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_WONDER_FANUM_VOLTUMNAE">
+            <Text>At the shrine of Voltumna, where by ancient custom the peoples of Etruria assembled each year.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_AUTHOR_WONDER_FANUM_VOLTUMNAE">
+            <Text>Livy, after the Etruscan annals</Text>
+        </Row>
+    </EnglishText>
+</Database>

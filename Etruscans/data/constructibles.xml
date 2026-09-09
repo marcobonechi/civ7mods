@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Spura quarter (Cuniculus + Tumulus) and the wonder that goes with it, the Fanum
+     Voltumnae. Loaded under antiquity-age-persist: the buildings are tagged AGELESS, so they
+     have to keep resolving in the Exploration and Modern databases too. -->
+<Database>
+    <Types>
+        <Row Type="BUILDING_CUNICULUS" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_TUMULUS" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="WONDER_FANUM_VOLTUMNAE" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="QUARTER_SPURA" Kind="KIND_QUARTER"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="WONDER_FANUM_VOLTUMNAE" Quote="LOC_QUOTE_WONDER_FANUM_VOLTUMNAE" QuoteAuthor="LOC_QUOTE_AUTHOR_WONDER_FANUM_VOLTUMNAE"/>
+    </TypeQuotes>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_CUNICULUS" Name="LOC_BUILDING_CUNICULUS_NAME" Description="LOC_BUILDING_CUNICULUS_DESCRIPTION" Tooltip="LOC_BUILDING_CUNICULUS_TOOLTIP" ConstructibleClass="BUILDING" Cost="60" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" Name="LOC_BUILDING_TUMULUS_NAME" Description="LOC_BUILDING_TUMULUS_DESCRIPTION" Tooltip="LOC_BUILDING_TUMULUS_TOOLTIP" ConstructibleClass="BUILDING" Cost="95" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" Name="LOC_WONDER_FANUM_VOLTUMNAE_NAME" Description="LOC_WONDER_FANUM_VOLTUMNAE_DESCRIPTION" Tooltip="LOC_WONDER_FANUM_VOLTUMNAE_TOOLTIP" ConstructibleClass="WONDER" Cost="400" Population="0" ImmuneDamage="true" Age="AGE_ANTIQUITY" RequiresUnlock="true"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_CUNICULUS" Movable="false" TraitType="TRAIT_ETRUSCANS"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" Movable="false" TraitType="TRAIT_ETRUSCANS"/>
+    </Buildings>
+    <Wonders>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" MaxWorldInstances="1" BuildOnFrontier="true"/>
+    </Wonders>
+    <TypeTags>
+        <Row Type="BUILDING_CUNICULUS" Tag="FOOD"/>
+        <Row Type="BUILDING_CUNICULUS" Tag="UNIQUE"/>
+        <Row Type="BUILDING_CUNICULUS" Tag="AGELESS"/>
+        <Row Type="BUILDING_TUMULUS" Tag="CULTURE"/>
+        <Row Type="BUILDING_TUMULUS" Tag="UNIQUE"/>
+        <Row Type="BUILDING_TUMULUS" Tag="AGELESS"/>
+        <Row Type="WONDER_FANUM_VOLTUMNAE" Tag="GREATWORK"/>
+        <Row Type="WONDER_FANUM_VOLTUMNAE" Tag="AGELESS"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_CUNICULUS" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_CUNICULUS" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" DistrictType="DISTRICT_WONDER"/>
+    </Constructible_ValidDistricts>
+    <Constructible_YieldChanges>
+        <Row ConstructibleType="BUILDING_CUNICULUS" YieldType="YIELD_FOOD" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_CUNICULUS" YieldType="YIELD_PRODUCTION" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_CUNICULUS" YieldType="YIELD_HAPPINESS" YieldChange="1"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldType="YIELD_CULTURE" YieldChange="4"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldType="YIELD_HAPPINESS" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldType="YIELD_GOLD" YieldChange="1"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" YieldType="YIELD_CULTURE" YieldChange="3"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" YieldType="YIELD_DIPLOMACY" YieldChange="3"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" YieldType="YIELD_HAPPINESS" YieldChange="2"/>
+    </Constructible_YieldChanges>
+    <Constructible_Maintenances>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldType="YIELD_GOLD" Amount="2"/>
+    </Constructible_Maintenances>
+    <Constructible_Adjacencies>
+        <Row ConstructibleType="BUILDING_CUNICULUS" YieldChangeId="CuniculusCoastFood"/>
+        <Row ConstructibleType="BUILDING_CUNICULUS" YieldChangeId="CuniculusRiverFood"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldChangeId="WonderCulture"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" YieldChangeId="TumulusQuarterCulture"/>
+    </Constructible_Adjacencies>
+    <Adjacency_YieldChanges>
+        <Row ID="CuniculusCoastFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" AdjacentTerrain="TERRAIN_COAST"/>
+        <Row ID="CuniculusRiverFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" AdjacentRiver="true"/>
+        <Row ID="TumulusQuarterCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
+    </Adjacency_YieldChanges>
+    <Constructible_Plunders>
+        <Row ConstructibleType="BUILDING_CUNICULUS" PlunderType="PLUNDER_HEAL" Amount="30"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" PlunderType="PLUNDER_CULTURE" Amount="60"/>
+    </Constructible_Plunders>
+    <Constructible_BuildingCostProgressions>
+        <Row ConstructibleType="BUILDING_CUNICULUS" Percent="5"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" Percent="5"/>
+    </Constructible_BuildingCostProgressions>
+    <UniqueQuarters>
+        <Row UniqueQuarterType="QUARTER_SPURA" BuildingType1="BUILDING_CUNICULUS" BuildingType2="BUILDING_TUMULUS" Name="LOC_QUARTER_SPURA_NAME" Description="LOC_QUARTER_SPURA_DESCRIPTION" Tooltip="LOC_QUARTER_SPURA_TOOLTIP" TraitType="TRAIT_ETRUSCANS"/>
+    </UniqueQuarters>
+    <UniqueQuarterModifiers>
+        <Row UniqueQuarterType="QUARTER_SPURA" ModifierId="MOD_ETRUSCANS_SPURA_PRODUCTION_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_SPURA" ModifierId="MOD_ETRUSCANS_SPURA_CULTURE_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_SPURA" ModifierId="MOD_ETRUSCANS_SPURA_HAPPINESS_PER_SETTLEMENT"/>
+    </UniqueQuarterModifiers>
+    <ConstructibleModifiers>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" ModifierId="MOD_FANUM_VOLTUMNAE_RELIC"/>
+        <Row ConstructibleType="WONDER_FANUM_VOLTUMNAE" ModifierId="MOD_FANUM_VOLTUMNAE_INFLUENCE_PER_SETTLEMENT"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" ModifierId="MOD_ETRUSCANS_TUMULUS_CULTURE_PER_TRADITION"/>
+    </ConstructibleModifiers>
+    <Constructible_Advisories>
+        <Row ConstructibleType="BUILDING_CUNICULUS" AdvisoryClassType="ADVISORY_CLASS_FOOD"/>
+        <Row ConstructibleType="BUILDING_CUNICULUS" AdvisoryClassType="ADVISORY_CLASS_INFRASTRUCTURE"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ConstructibleType="BUILDING_TUMULUS" AdvisoryClassType="ADVISORY_CLASS_HAPPINESS"/>
+    </Constructible_Advisories>
+</Database>

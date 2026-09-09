@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_ETRUSCANS_CHAPTER_HISTORY_PARA_1">
+            <Text>The Etruscans called themselves Rasna and lived in the country between the Tiber and the Arno that still carries their name. From roughly the eighth century BC their cities - Tarquinii, Caere, Vulci, Clusium, Veii and the rest - grew rich on the iron of Elba and the copper of the Colline Metallifere, and traded that metal for Greek pottery, Phoenician ivory and Baltic amber. Their language, written in an alphabet borrowed from the Greeks of Cumae, is not related to any other we know.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_ETRUSCANS_CHAPTER_HISTORY_PARA_2">
+            <Text>They were, above all, engineers. Etruscan surveyors cut cuniculi - narrow drainage tunnels - through tufa to carry water off waterlogged plateaus and into the fields; they built roads on embankments, bridges on arches, and city walls of squared stone; and they laid out new towns such as Marzabotto on a grid with a drainage system under the streets. Rome learned the arch, the sewer, the survey and the ritual of founding a city from them, and Roman writers said so.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_ETRUSCANS_CHAPTER_HISTORY_PARA_3">
+            <Text>They were also, as their neighbours never tired of saying, devoted to the good life. Etruscan tombs at Tarquinia are painted with banquets: men and women reclining together on the same couch, which scandalised the Greeks, with musicians, dancers, wine and games. Etruscan women had names of their own, owned property and attended public spectacles, and the tomb sculpture of a married couple smiling on a couch is the single most recognisable Etruscan image.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_ETRUSCANS_CHAPTER_HISTORY_PARA_4">
+            <Text>Politically they were a league rather than a state: twelve peoples who met each spring at the Fanum Voltumnae near Volsinii for a festival, a market and a council, and who almost never acted together in war. Their religion was a written discipline - the Etrusca disciplina - covering the reading of livers and lightning, the founding of cities and the interpretation of prodigies, and Roman magistrates were still consulting Etruscan haruspices in the fourth century AD.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_ETRUSCANS_CHAPTER_HISTORY_PARA_5">
+            <Text>Veii fell to Rome in 396 BC and the rest of Etruria followed over the next two centuries, city by city, until the Social War made Etruscans Roman citizens. The language died out under Augustus. But the fasces, the toga, the triumph, the arch, the gladiatorial games and the very shape of a Roman temple were Etruscan first, and the hills the Romans called Tuscia have never been called anything else since.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_BIGA_CHAPTER_HISTORY_PARA_1">
+            <Text>The biga was the light two-horse chariot the Etruscans used for war, for racing and for parade. The finest surviving example, found at Monteleone di Spoleto and now in New York, is sheathed in bronze panels showing scenes from the life of Achilles; it was made around 530 BC and buried with its owner. Etruscan aristocrats fought from chariots long after their Greek contemporaries had gone over to the hoplite phalanx, and Rome kept the vehicle for the triumph.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_TYRRHENIAN_GALLEY_CHAPTER_HISTORY_PARA_1">
+            <Text>Greek sailors called the sea west of Italy the Tyrrhenian after the Etruscans, and Greek writers called Etruscan crews pirates - which mostly meant that they were competitors. Etruscan ships carried metal out of Populonia and Vetulonia and brought back wine, oil and pottery; in 540 BC an Etruscan and Carthaginian fleet beat the Phocaean Greeks off Alalia and kept them out of the northern Tyrrhenian for a generation.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_BUILDING_CUNICULUS_CHAPTER_HISTORY_PARA_1">
+            <Text>A cuniculus is a tunnel, usually less than a metre wide and cut by hand through soft volcanic tufa, with vertical shafts at intervals for the spoil and the air. Etruscan engineers drove thousands of them across southern Etruria to drain lakes, lower water tables, control floods and lead water to fields and towns. Many still work. The Cloaca Maxima at Rome, traditionally the work of the Tarquin kings, is the same technology on an urban scale.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_BUILDING_TUMULUS_CHAPTER_HISTORY_PARA_1">
+            <Text>The great tumuli of Cerveteri are drums of masonry cut into the rock and heaped with earth, sometimes thirty metres across, arranged along streets like a town. Inside, the chambers are carved to imitate a house: beams, doors, beds, and on the walls the painted banquet with its flute players and dancers. The Etruscans spent on their dead what other peoples spent on their temples, and it is from these rooms that almost everything we know about them comes.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_WONDER_FANUM_VOLTUMNAE_CHAPTER_HISTORY_PARA_1">
+            <Text>Once a year the twelve peoples of Etruria met at the sanctuary of Voltumna, near Volsinii, for a festival with games and a fair, and for a council at which they elected a priest and debated whether to make war. Livy mentions the meetings repeatedly, usually to report that the League had again declined to help one of its members. Excavations at Campo della Fiera below Orvieto since 2000 have uncovered a large sanctuary complex that is very probably the place.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_LEADER_PORSENNA_CHAPTER_HISTORY_PARA_1">
+            <Text>Lars Porsenna, lucumo of Clusium, marched on Rome around 508 BC, in the Roman telling to restore the exiled Tarquins, and in the Roman telling was turned back by the courage of Horatius at the bridge and Mucius Scaevola's hand in the fire. Tacitus and Pliny let slip a different story: that Porsenna took the city and dictated terms, forbidding the Romans the use of iron except for farming.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_LEADER_PORSENNA_CHAPTER_HISTORY_PARA_2">
+            <Text>Pliny also passes on, with visible disbelief, Varro's description of Porsenna's tomb at Clusium: a square base fifty metres on a side containing an inextricable labyrinth, carrying five pyramids, and above them more pyramids again, hung with bronze bells. No such monument has been found. What has been found at Chiusi is a landscape of painted chamber tombs and a city that was one of the richest in Etruria, which is enough to be going on with.</Text>
+        </Row>
+    </EnglishText>
+</Database>

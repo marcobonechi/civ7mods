@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNIT_BIGA_NAME">
+            <Text>Biga</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_BIGA_DESCRIPTION">
+            <Text>Etruscan unique Antiquity Age cavalry unit. Replaces the Chariot. Faster and stronger than the unit it replaces, and stronger still on flat ground.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_BIGA_DESCRIPTION">
+            <Text>+4 [icon:COMBAT] Combat Strength on Flat terrain.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_BIGA_PREVIEW">
+            <Text>Monteleone: +4 Combat Strength on Flat terrain.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_TYRRHENIAN_GALLEY_NAME">
+            <Text>Tyrrhenian Galley</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_TYRRHENIAN_GALLEY_DESCRIPTION">
+            <Text>Etruscan unique Antiquity Age naval unit. Replaces the Galley. Faster, sees further, and hits harder against other ships.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_TYRRHENIAN_GALLEY_DESCRIPTION">
+            <Text>+5 [icon:COMBAT] Combat Strength against Naval units.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_TYRRHENIAN_GALLEY_PREVIEW">
+            <Text>Thalassocracy: +5 Combat Strength against Naval units.</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_ETRUSCANS_BIGA">
+            <Text>Etruscan Biga</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_ETRUSCANS_TYRRHENIAN_GALLEY">
+            <Text>Etruscan Tyrrhenian Galley</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_ETRUSCANS_CUNICULUS">
+            <Text>Etruscan Cuniculus</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_ETRUSCANS_TUMULUS">
+            <Text>Etruscan Tumulus</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_ETRUSCANS_FANUM_VOLTUMNAE">
+            <Text>Fanum Voltumnae</Text>
+        </Row>
+    </EnglishText>
+</Database>

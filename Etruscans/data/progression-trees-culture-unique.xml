@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TREE_CIVICS_AQ_ETRUSCANS" Kind="KIND_TREE"/>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" Quote="LOC_CIVIC_ETRUSCANS_CUNICULI_QUOTE" QuoteAuthor="LOC_CIVIC_ETRUSCANS_CUNICULI_AUTHOR"/>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" Quote="LOC_CIVIC_ETRUSCANS_DODECAPOLIS_QUOTE" QuoteAuthor="LOC_CIVIC_ETRUSCANS_DODECAPOLIS_AUTHOR"/>
+        <Row Type="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" Quote="LOC_CIVIC_ETRUSCANS_HARUSPICINA_QUOTE" QuoteAuthor="LOC_CIVIC_ETRUSCANS_HARUSPICINA_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTrees>
+        <Row ProgressionTreeType="TREE_CIVICS_AQ_ETRUSCANS" AgeType="AGE_ANTIQUITY" SystemType="SYSTEM_CULTURE" Name="LOC_TREE_CIVICS_AQ_ETRUSCANS_NAME"/>
+    </ProgressionTrees>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" ProgressionTree="TREE_CIVICS_AQ_ETRUSCANS" Cost="150" Name="LOC_CIVIC_ETRUSCANS_CUNICULI_NAME" IconString="cult_skilledtrades"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" ProgressionTree="TREE_CIVICS_AQ_ETRUSCANS" Cost="250" Name="LOC_CIVIC_ETRUSCANS_DODECAPOLIS_NAME" IconString="cult_publiclife"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" ProgressionTree="TREE_CIVICS_AQ_ETRUSCANS" Cost="400" Name="LOC_CIVIC_ETRUSCANS_HARUSPICINA_NAME" IconString="cult_mysticism"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_CUNICULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_TUMULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_CUNICULI" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_BUCCHERO" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" TargetKind="KIND_MODIFIER" TargetType="MOD_AQ_SETTLEMENT_CAP_INCREASE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_FANUM_VOLTUMNAE" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_DODECAPOLIS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_CONVIVIUM" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_HARUSPICINA" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_METALLA" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT" UnlockDepth="1"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" PrereqNode="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI"/>
+        <Row Node="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" PrereqNode="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI"/>
+    </ProgressionTreePrereqs>
+    <ProgressionTree_Advisories>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_CUNICULI" AdvisoryClassType="ADVISORY_CLASS_INFRASTRUCTURE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_DODECAPOLIS" AdvisoryClassType="ADVISORY_CLASS_DIPLOMACY"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ETRUSCANS_HARUSPICINA" AdvisoryClassType="ADVISORY_CLASS_SCIENCE"/>
+    </ProgressionTree_Advisories>
+</Database>

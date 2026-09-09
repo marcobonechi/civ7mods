@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS1">
+            <Text>Tarquinii</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS2">
+            <Text>Veii</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS3">
+            <Text>Caere</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS4">
+            <Text>Vulci</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS5">
+            <Text>Clusium</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS6">
+            <Text>Volsinii</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS7">
+            <Text>Perusia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS8">
+            <Text>Arretium</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS9">
+            <Text>Cortona</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS10">
+            <Text>Volaterrae</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS11">
+            <Text>Populonia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS12">
+            <Text>Rusellae</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS13">
+            <Text>Vetulonia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS14">
+            <Text>Faesulae</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS15">
+            <Text>Pisae</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS16">
+            <Text>Falerii</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS17">
+            <Text>Capena</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS18">
+            <Text>Statonia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS19">
+            <Text>Saturnia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS20">
+            <Text>Cosa</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS21">
+            <Text>Graviscae</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS22">
+            <Text>Pyrgi</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS23">
+            <Text>Marzabotto</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS24">
+            <Text>Felsina</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS25">
+            <Text>Spina</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS26">
+            <Text>Adria</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS27">
+            <Text>Capua</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS28">
+            <Text>Nola</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS29">
+            <Text>Pontecagnano</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_ETRUSCANS30">
+            <Text>Salpinum</Text>
+        </Row>
+    </EnglishText>
+</Database>

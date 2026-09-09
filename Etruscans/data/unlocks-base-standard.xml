@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_ETRUSCANS" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" Description="LOC_UNLOCK_ANTIQUITY_CIV_DESCRIPTION" Icon="CIVILIZATION_ETRUSCANS" UnlockRewardType="CIVILIZATION_ETRUSCANS" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" ConfigurationValue="CIVILIZATION_ETRUSCANS"/>
+    </UnlockConfigurationValues>
+    <!-- "Is Etruscans" requirement set, used by the age-transition unlocks. -->
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_CIV_IS_ETRUSCANS" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <Requirements>
+        <Row RequirementId="REQ_CIV_IS_ETRUSCANS" RequirementType="REQUIREMENT_PLAYER_CIVILIZATION_TYPE_MATCHES"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_CIV_IS_ETRUSCANS" Name="CivilizationType" Value="CIVILIZATION_ETRUSCANS"/>
+    </RequirementArguments>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_CIV_IS_ETRUSCANS" RequirementId="REQ_CIV_IS_ETRUSCANS"/>
+    </RequirementSetRequirements>
+</Database>

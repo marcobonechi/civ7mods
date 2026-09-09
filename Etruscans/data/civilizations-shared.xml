@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TRAIT_ETRUSCANS_ABILITY" Kind="KIND_TRAIT"/>
+    </Types>
+    <Civilizations>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" FullName="LOC_CIVILIZATION_ETRUSCANS_FULLNAME" Description="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" Adjective="LOC_CIVILIZATION_ETRUSCANS_ADJECTIVE" StartingCivilizationLevelType="CIVILIZATION_LEVEL_FULL_CIV" ApexAge="AGE_ANTIQUITY" AITargetCityPercentage="60" CapitalName="LOC_CITY_NAME_ETRUSCANS1" RandomCityNameDepth="10"/>
+    </Civilizations>
+    <CivilizationFavoredWonders>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" FavoredWonderType="WONDER_FANUM_VOLTUMNAE" FavoredWonderName="LOC_WONDER_FANUM_VOLTUMNAE_NAME"/>
+    </CivilizationFavoredWonders>
+    <Traits>
+        <Row TraitType="TRAIT_ETRUSCANS_ABILITY" Name="LOC_TRAIT_ETRUSCANS_ABILITY_NAME" Description="LOC_TRAIT_ETRUSCANS_ABILITY_DESCRIPTION" InternalOnly="true"/>
+    </Traits>
+    <CivilizationTraits>
+        <!-- TRAIT_ANTIQUITY_CIV is declared by the age-antiquity module only, so the row that
+             grants it lives in civilizations-antiquity.xml. In the other two ages the engine
+             adds TRAIT_ANACHRONISTIC_CIV itself (base-standard/data/ages-post-process.sql). -->
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ETRUSCANS"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ETRUSCANS_ABILITY"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_SCIENTIFIC"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_SCIENTIFIC_TOT_EX"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_SCIENTIFIC_TOT_MO"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_ECONOMIC"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_ECONOMIC_TOT_EX"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_ECONOMIC_TOT_MO"/>
+    </CivilizationTraits>
+    <LeaderCivPriorities>
+        <!-- AI pairing; the setup screen uses LeaderCivilizationBias in config/config.xml -->
+        <Row Leader="LEADER_PORSENNA" Civilization="CIVILIZATION_ETRUSCANS" Priority="3"/>
+        <Row Leader="LEADER_AUGUSTUS" Civilization="CIVILIZATION_ETRUSCANS" Priority="2"/>
+        <Row Leader="LEADER_MACHIAVELLI" Civilization="CIVILIZATION_ETRUSCANS" Priority="1"/>
+        <Row Leader="LEADER_HATSHEPSUT" Civilization="CIVILIZATION_ETRUSCANS" Priority="1"/>
+    </LeaderCivPriorities>
+    <CityNames>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS1"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS2"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS3"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS4"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS5"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS6"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS7"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS8"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS9"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS10"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS11"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS12"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS13"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS14"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS15"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS16"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS17"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS18"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS19"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS20"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS21"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS22"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS23"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS24"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS25"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS26"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS27"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS28"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS29"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" CityName="LOC_CITY_NAME_ETRUSCANS30"/>
+    </CityNames>
+    <StartBiasAdjacentToCoasts>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" Score="100"/>
+    </StartBiasAdjacentToCoasts>
+    <StartBiasBiomes>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BiomeType="BIOME_GRASSLAND" Score="5"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BiomeType="BIOME_PLAINS" Score="5"/>
+    </StartBiasBiomes>
+    <StartBiasTerrains>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TerrainType="TERRAIN_NAVIGABLE_RIVER" Score="10"/>
+    </StartBiasTerrains>
+    <VisArt_CivilizationBuildingCultures>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="BUILDING_CULTURE_MED"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="BUILDING_CULTURE_MED_ANT"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="BUILDING_CULTURE_MED_EXP"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="BUILDING_CULTURE_SAM_MOD"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="ANT_STONE"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="EXP_STONE"/>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" BuildingCulture="MOD_STONE"/>
+    </VisArt_CivilizationBuildingCultures>
+    <VisArt_CivilizationUnitCultures>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" UnitCulture="Euro"/>
+    </VisArt_CivilizationUnitCultures>
+    <AiListTypes>
+        <Row ListType="Etruscans Government Bias"/>
+        <Row ListType="Etruscans PseudoYield Biases"/>
+        <Row ListType="Etruscans Settlement Plot Evaluations"/>
+    </AiListTypes>
+    <AiLists>
+        <Row ListType="Etruscans Government Bias" LeaderType="TRAIT_ETRUSCANS" System="GovernmentBiases"/>
+        <Row ListType="Etruscans PseudoYield Biases" LeaderType="TRAIT_ETRUSCANS" System="PseudoYieldBiases"/>
+        <Row ListType="Etruscans Settlement Plot Evaluations" LeaderType="TRAIT_ETRUSCANS" System="SettlementPlotEvaluations"/>
+    </AiLists>
+    <AiFavoredItems>
+        <Row ListType="Etruscans Government Bias" Item="GOVERNMENT_OLIGARCHY" Value="50"/>
+        <Row ListType="Etruscans PseudoYield Biases" Item="PSEUDOYIELD_GREAT_WORK" Value="20"/>
+        <Row ListType="Etruscans Settlement Plot Evaluations" Item="Specific Terrain" Favored="true" Value="5" StringVal="TERRAIN_COAST" TooltipString="LOC_SETTLEMENT_RECOMMENDATION_TERRAIN"/>
+    </AiFavoredItems>
+</Database>

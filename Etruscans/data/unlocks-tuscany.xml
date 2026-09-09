@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Tuscany mod is in use: the Etruscans lead to Tuscany. -->
+<Database>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_CIV_IS_ETRUSCANS" Description="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ETRUSCANS_TUSCANY_TOOLTIP"/>
+    </UnlockRequirements>
+    <CivilizationSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+    </CivilizationSyncretismUnlocks>
+</Database>

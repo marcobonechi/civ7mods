@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_MODULE_ETRUSCANS_NAME">
+            <Text>Etruscans</Text>
+        </Row>
+        <Row Tag="LOC_MODULE_ETRUSCANS_DESCRIPTION">
+            <Text>Adds the Etruscans, an Antiquity Age civilization of engineers and banqueters, together with Lars Porsenna of Clusium. Playable at any start age, with a true start at Tarquinii on the Europe &amp; Mediterranean maps.</Text>
+        </Row>
+    </EnglishText>
+</Database>

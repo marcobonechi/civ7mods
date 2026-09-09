@@ -50,6 +50,7 @@ DEFINING_ATTRS = {
     "RequirementId", "UnlockType", "ProgressionTreeNodeType", "ProgressionTreeType",
     "UnitAbilityType", "Tag", "ID", "CivilizationType", "UniqueQuarterType", "TraitType",
     "MapSizeType", "ListType", "NamedRiverType", "NamedVolcanoType", "MovieType",
+    "LeaderType", "GreatPersonClassType", "GreatPersonIndividualType",
     "ChallengeType", "CivUniqueUnitType", "UnitClassType", "id",
 }
 # Tables (element names) in which the defining attribute really defines a new row.
@@ -58,6 +59,7 @@ DEFINING_TABLES = {
     "Unlocks", "ProgressionTreeNodes", "ProgressionTrees", "UnitAbilities", "Tags",
     "IconDefinitions", "Adjacency_YieldChanges", "Civilizations", "LegacyCivilizations",
     "UniqueQuarters", "Traits", "Maps", "MapSizes", "AiListTypes", "NamedRivers",
+    "Leaders", "GreatPersonClasses", "GreatPersonIndividuals",
     "NamedVolcanoes", "Movies", "Challenges", "UnitReplaces", "VisualRemaps", "Modifier",
     "Requirement",
 }

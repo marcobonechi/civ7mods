@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_NAME">
+            <Text>Etruria</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_FULLNAME">
+            <Text>The Etruscan League</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_ADJECTIVE">
+            <Text>Etruscan</Text>
+        </Row>
+    </EnglishText>
+</Database>

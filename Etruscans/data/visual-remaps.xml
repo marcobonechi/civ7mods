@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Custom types borrow the models of shipped ones. From = our type, To = the type whose art is
+     shown. Remaps are keyed by ID and each is a toggle in the game's Options screen. -->
+<Database>
+    <VisualRemaps>
+        <Row>
+            <ID>REMAP_ETRUSCANS_BIGA</ID>
+            <DisplayName>LOC_REMAP_ETRUSCANS_BIGA</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_BIGA</From>
+            <To>UNIT_CHARIOT</To>
+        </Row>
+        <Row>
+            <ID>REMAP_ETRUSCANS_TYRRHENIAN_GALLEY</ID>
+            <DisplayName>LOC_REMAP_ETRUSCANS_TYRRHENIAN_GALLEY</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_TYRRHENIAN_GALLEY</From>
+            <To>UNIT_GALLEY</To>
+        </Row>
+        <Row>
+            <ID>REMAP_ETRUSCANS_CUNICULUS</ID>
+            <DisplayName>LOC_REMAP_ETRUSCANS_CUNICULUS</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_CUNICULUS</From>
+            <To>BUILDING_BATH</To>
+        </Row>
+        <Row>
+            <ID>REMAP_ETRUSCANS_TUMULUS</ID>
+            <DisplayName>LOC_REMAP_ETRUSCANS_TUMULUS</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_TUMULUS</From>
+            <To>BUILDING_MONUMENT</To>
+        </Row>
+        <Row>
+            <ID>REMAP_ETRUSCANS_FANUM_VOLTUMNAE</ID>
+            <DisplayName>LOC_REMAP_ETRUSCANS_FANUM_VOLTUMNAE</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>WONDER_FANUM_VOLTUMNAE</From>
+            <To>WONDER_ORACLE</To>
+        </Row>
+    </VisualRemaps>
+</Database>

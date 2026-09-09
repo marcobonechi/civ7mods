@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shell (game setup) side of the Etruscans. One Civilizations row per age domain: the picker
+     only offers a civ in an age it has a row for. Antiquity is the apex age; the Exploration and
+     Modern rows are labelled "Etruscans (Time-Tested)" so they read as out-of-age options, the
+     way Byzantium's Antiquity row does. -->
+<Database>
+    <Civilizations>
+        <Row Domain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" CivilizationName="LOC_CIVILIZATION_ETRUSCANS_NAME" CivilizationFullName="LOC_CIVILIZATION_ETRUSCANS_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" CivilizationIcon="CIVILIZATION_ETRUSCANS" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_ETRUSCANS"/>
+        <Row Domain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" CivilizationName="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_NAME" CivilizationFullName="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" CivilizationIcon="CIVILIZATION_ETRUSCANS" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_ETRUSCANS"/>
+        <Row Domain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" CivilizationName="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_NAME" CivilizationFullName="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" CivilizationIcon="CIVILIZATION_ETRUSCANS" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_ETRUSCANS"/>
+    </Civilizations>
+    <CivilizationItems>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" AgeType="AGE_ANTIQUITY" CivilizationType="CIVILIZATION_ETRUSCANS" Type="TRAIT_ETRUSCANS_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_ETRUSCANS_ABILITY_NAME" Description="LOC_TRAIT_ETRUSCANS_ABILITY_DESCRIPTION"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" AgeType="AGE_EXPLORATION" CivilizationType="CIVILIZATION_ETRUSCANS" Type="TRAIT_ETRUSCANS_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_ETRUSCANS_ABILITY_NAME" Description="LOC_TRAIT_ETRUSCANS_ABILITY_EX_DESCRIPTION"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" AgeType="AGE_MODERN" CivilizationType="CIVILIZATION_ETRUSCANS" Type="TRAIT_ETRUSCANS_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_ETRUSCANS_ABILITY_NAME" Description="LOC_TRAIT_ETRUSCANS_ABILITY_MO_DESCRIPTION"/>
+        <!-- Uniques are listed once, under the apex-age domain (Bulgaria does the same). -->
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" Type="UNIT_BIGA" Kind="KIND_UNIT" Name="LOC_UNIT_BIGA_NAME" Description="LOC_UNIT_BIGA_DESCRIPTION" Icon="UNIT_BIGA"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" Type="UNIT_TYRRHENIAN_GALLEY" Kind="KIND_UNIT" Name="LOC_UNIT_TYRRHENIAN_GALLEY_NAME" Description="LOC_UNIT_TYRRHENIAN_GALLEY_DESCRIPTION" Icon="UNIT_TYRRHENIAN_GALLEY"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" Type="QUARTER_SPURA" Kind="KIND_QUARTER" Name="LOC_QUARTER_SPURA_NAME" Description="LOC_QUARTER_SPURA_DESCRIPTION" Icon="city_uniquequarter"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" Type="BUILDING_CUNICULUS" Kind="KIND_BUILDING" Name="LOC_BUILDING_CUNICULUS_NAME" Description="LOC_BUILDING_CUNICULUS_DESCRIPTION" Icon="BUILDING_CUNICULUS"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" Type="BUILDING_TUMULUS" Kind="KIND_BUILDING" Name="LOC_BUILDING_TUMULUS_NAME" Description="LOC_BUILDING_TUMULUS_DESCRIPTION" Icon="BUILDING_TUMULUS"/>
+    </CivilizationItems>
+    <CivilizationTags>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_SCIENTIFIC"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_ECONOMIC"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_APEX_AGE_ANTIQUITY"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_SCIENTIFIC"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_ECONOMIC"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_SCIENTIFIC"/>
+        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" TagType="TAG_TRAIT_ECONOMIC"/>
+    </CivilizationTags>
+    <CivilizationUnlocks>
+        <!-- Exploration civ the Etruscans lead to. Tuscany is added by config-tuscany.xml when
+             that mod is enabled. -->
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_NORMAN" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_NORMAN_NAME" Description="LOC_CIVILIZATION_NORMAN_DESCRIPTION" Icon="CIVILIZATION_NORMAN"/>
+    </CivilizationUnlocks>
+    <LeaderCivilizationBias>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" Bias="3" ReasonType="LOC_UNLOCK_PLAY_AS_PORSENNA_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_HISTORICAL_CHOICE"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_AUGUSTUS" Bias="2" ReasonType="LOC_UNLOCK_PLAY_AS_AUGUSTUS_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_HISTORICAL_CHOICE"/>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_MACHIAVELLI" Bias="1" ReasonType="LOC_UNLOCK_PLAY_AS_MACHIAVELLI_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_GEOGRAPHIC_CHOICE"/>
+    </LeaderCivilizationBias>
+</Database>

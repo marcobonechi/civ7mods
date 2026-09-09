@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modern: the Etruscan node in the shared Test of Time civic tree. -->
+<Database>
+    <Types>
+        <Row Type="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" Quote="LOC_CIVIC_ETRUSCANS_HARUSPICINA_QUOTE" QuoteAuthor="LOC_CIVIC_ETRUSCANS_HARUSPICINA_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" ProgressionTree="TREE_CIVICS_MO_TEST_OF_TIME" Cost="2000" Name="LOC_NODE_CIVIC_MO_ETRUSCANS_REVIVAL_NAME" IconString="cult_mysticism" CanSteal="false"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_CONVIVIUM_II"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_MODIFIER" TargetType="MOD_MO_SETTLEMENT_CAP_INCREASE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_CUNICULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_TUMULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_FANUM_VOLTUMNAE" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreeNodeTraits>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_ETRUSCANS_REVIVAL" RequiredTraitType="TRAIT_ETRUSCANS"/>
+    </ProgressionTreeNodeTraits>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_MO_ADMINISTRATION" PrereqNode="NODE_CIVIC_MO_ETRUSCANS_REVIVAL"/>
+        <Row Node="NODE_CIVIC_MO_SYNCRETISM_CHOICE" PrereqNode="NODE_CIVIC_MO_ETRUSCANS_REVIVAL"/>
+    </ProgressionTreePrereqs>
+</Database>

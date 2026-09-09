@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Biga: the Monteleone chariot ran on the level, and so does this one. -->
+    <Modifier id="BIGA_COMBAT_FLAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLOT_TERRAIN_TYPE_MATCHES">
+                <Argument name="TerrainType">TERRAIN_FLAT</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">4</Argument>
+        <String context="Preview">LOC_ABILITY_BIGA_PREVIEW</String>
+    </Modifier>
+    <!-- Tyrrhenian Galley: the Greeks called the whole sea after these ships, and their crews
+         pirates. Same shape as the Dromon's Greek fire. -->
+    <Modifier id="TYRRHENIAN_GALLEY_COMBAT_VS_NAVAL" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_OPPONENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">5</Argument>
+        <String context="Preview">LOC_ABILITY_TYRRHENIAN_GALLEY_PREVIEW</String>
+    </Modifier>
+</GameEffects>

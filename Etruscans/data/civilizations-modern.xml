@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Time-Tested play in the Modern Age. -->
+<Database>
+    <TraitModifiers>
+        <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_ETRUSCANS_SETTLEMENT_PRODUCTION"/>
+        <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_ETRUSCANS_SETTLEMENT_HAPPINESS"/>
+        <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_ETRUSCANS_BUILDING_PRODUCTION"/>
+        <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_CIV_WONDER_PRODUCTION_ETRUSCANS"/>
+    </TraitModifiers>
+</Database>

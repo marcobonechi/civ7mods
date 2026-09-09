@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Antiquity Age unique units. UnitReplaces is a foreign key to Units, so this file is loaded
+     under antiquity-age-current only. -->
+<Database>
+    <Types>
+        <Row Type="UNIT_BIGA" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Kind="KIND_UNIT"/>
+        <Row Type="ABILITY_BIGA" Kind="KIND_ABILITY"/>
+        <Row Type="ABILITY_TYRRHENIAN_GALLEY" Kind="KIND_ABILITY"/>
+    </Types>
+    <Units>
+        <Row UnitType="UNIT_BIGA" Name="LOC_UNIT_BIGA_NAME" Description="LOC_UNIT_BIGA_DESCRIPTION" Tier="2" Maintenance="3" BaseSightRange="2" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_WHEELED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_ETRUSCANS"/>
+        <Row UnitType="UNIT_TYRRHENIAN_GALLEY" Name="LOC_UNIT_TYRRHENIAN_GALLEY_NAME" Description="LOC_UNIT_TYRRHENIAN_GALLEY_DESCRIPTION" Tier="2" Maintenance="2" BaseSightRange="3" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_ETRUSCANS"/>
+    </Units>
+    <Unit_Stats>
+        <Row UnitType="UNIT_BIGA" Combat="33"/>
+        <Row UnitType="UNIT_TYRRHENIAN_GALLEY" Combat="27" RangedCombat="22" Bombard="15" Range="1"/>
+    </Unit_Stats>
+    <Unit_Costs>
+        <Row UnitType="UNIT_BIGA" YieldType="YIELD_PRODUCTION" Cost="85"/>
+        <Row UnitType="UNIT_TYRRHENIAN_GALLEY" YieldType="YIELD_PRODUCTION" Cost="55"/>
+    </Unit_Costs>
+    <UnitUpgrades>
+        <Row Unit="UNIT_BIGA" UpgradeUnit="UNIT_HORSEMAN"/>
+        <Row Unit="UNIT_TYRRHENIAN_GALLEY" UpgradeUnit="UNIT_QUADRIREME"/>
+    </UnitUpgrades>
+    <UnitReplaces>
+        <Row CivUniqueUnitType="UNIT_BIGA" ReplacesUnitType="UNIT_CHARIOT"/>
+        <Row CivUniqueUnitType="UNIT_TYRRHENIAN_GALLEY" ReplacesUnitType="UNIT_GALLEY"/>
+    </UnitReplaces>
+    <Tags>
+        <Row Tag="UNIT_CLASS_BIGA" Category="UNIT_CLASS"/>
+        <Row Tag="UNIT_CLASS_TYRRHENIAN_GALLEY" Category="UNIT_CLASS"/>
+    </Tags>
+    <TypeTags>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_WHEELED"/>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_CAVALRY"/>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_MOUNTED"/>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_BIGA"/>
+        <Row Type="UNIT_BIGA" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_RECON"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_MELEE"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_NAVAL"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_HEAVY"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_TYRRHENIAN_GALLEY"/>
+        <Row Type="UNIT_TYRRHENIAN_GALLEY" Tag="UNIT_CLASS_UNIQUE"/>
+    </TypeTags>
+    <UnitClass_Abilities>
+        <Row UnitAbilityType="ABILITY_BIGA" UnitClassType="UNIT_CLASS_BIGA"/>
+        <Row UnitAbilityType="ABILITY_TYRRHENIAN_GALLEY" UnitClassType="UNIT_CLASS_TYRRHENIAN_GALLEY"/>
+    </UnitClass_Abilities>
+    <UnitAbilities>
+        <Row UnitAbilityType="ABILITY_BIGA" Name="LOC_UNIT_BIGA_NAME" Description="LOC_ABILITY_BIGA_DESCRIPTION"/>
+        <Row UnitAbilityType="ABILITY_TYRRHENIAN_GALLEY" Name="LOC_UNIT_TYRRHENIAN_GALLEY_NAME" Description="LOC_ABILITY_TYRRHENIAN_GALLEY_DESCRIPTION"/>
+    </UnitAbilities>
+    <UnitAbilityModifiers>
+        <Row UnitAbilityType="ABILITY_BIGA" ModifierId="BIGA_COMBAT_FLAT"/>
+        <Row UnitAbilityType="ABILITY_TYRRHENIAN_GALLEY" ModifierId="TYRRHENIAN_GALLEY_COMBAT_VS_NAVAL"/>
+    </UnitAbilityModifiers>
+    <Unit_Advisories>
+        <Row UnitType="UNIT_BIGA" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row UnitType="UNIT_TYRRHENIAN_GALLEY" AdvisoryClassType="ADVISORY_CLASS_SEA"/>
+    </Unit_Advisories>
+</Database>

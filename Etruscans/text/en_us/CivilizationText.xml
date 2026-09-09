@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION">
+            <Text>Twelve peoples between the Tiber and the Arno, who drained their valleys with rock-cut tunnels, laid out their cities on a grid, sold bronze and black pottery across the sea, and painted their tombs with banquets.</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_NAME">
+            <Text>Etruscans (Time-Tested)</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_ETRUSCANS_TIME_TESTED_FULLNAME">
+            <Text>The Etruscan League, Time-Tested</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_NAME">
+            <Text>Disciplina Etrusca</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_DESCRIPTION">
+            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings. +45% [icon:YIELD_PRODUCTION] Production toward the Fanum Voltumnae.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_EX_DESCRIPTION">
+            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_MO_DESCRIPTION">
+            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_PREVIEW">
+            <Text>Disciplina Etrusca</Text>
+        </Row>
+        <Row Tag="LOC_MOD_CIV_WONDER_PRODUCTION_ETRUSCANS_DESCRIPTION">
+            <Text>+45% [icon:YIELD_PRODUCTION] Production toward the Fanum Voltumnae.</Text>
+        </Row>
+    </EnglishText>
+</Database>

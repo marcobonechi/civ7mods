@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Loaded under antiquity-age-persist: these modifiers name the unique buildings. -->
+<Database>
+    <TraditionModifiers>
+        <Row TraditionType="TRADITION_ETRUSCANS_CUNICULI" ModifierId="ETRUSCANS_CUNICULI_CUNICULUS_PRODUCTION"/>
+        <Row TraditionType="TRADITION_ETRUSCANS_CUNICULI" ModifierId="ETRUSCANS_CUNICULI_TUMULUS_PRODUCTION"/>
+        <Row TraditionType="TRADITION_ETRUSCANS_CUNICULI_II" ModifierId="ETRUSCANS_CUNICULI_II_CUNICULUS_FOOD"/>
+        <Row TraditionType="TRADITION_ETRUSCANS_CUNICULI_II" ModifierId="ETRUSCANS_CUNICULI_TUMULUS_PRODUCTION"/>
+    </TraditionModifiers>
+</Database>

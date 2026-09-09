@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Exploration: the Etruscan node in the shared Test of Time civic tree. -->
+<Database>
+    <Types>
+        <Row Type="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" Quote="LOC_CIVIC_ETRUSCANS_CUNICULI_QUOTE" QuoteAuthor="LOC_CIVIC_ETRUSCANS_CUNICULI_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" ProgressionTree="TREE_CIVICS_EX_TEST_OF_TIME" Cost="800" Name="LOC_NODE_CIVIC_EX_ETRUSCANS_SURVIVAL_NAME" IconString="cult_skilledtrades" CanSteal="false"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_TRADITION" TargetType="TRADITION_ETRUSCANS_CUNICULI_II"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_SETTLEMENT_CAP_INCREASE"/>
+        <!-- An Exploration start never sees the Antiquity civic tree, so the quarter and the
+             wonder are unlocked here too (a harmless duplicate for carried-over games). -->
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_CUNICULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_TUMULUS" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_FANUM_VOLTUMNAE" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreeNodeTraits>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL" RequiredTraitType="TRAIT_ETRUSCANS"/>
+    </ProgressionTreeNodeTraits>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_EX_HIERARCHY" PrereqNode="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL"/>
+        <Row Node="NODE_CIVIC_EX_SYNCRETISM_CHOICE" PrereqNode="NODE_CIVIC_EX_ETRUSCANS_SURVIVAL"/>
+    </ProgressionTreePrereqs>
+</Database>
