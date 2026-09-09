@@ -15,7 +15,7 @@
     </Units>
     <Unit_Stats>
         <Row UnitType="UNIT_CLIBANARII" Combat="38"/>
-        <Row UnitType="UNIT_LIBURNA" Combat="25" RangedCombat="20" Bombard="15" Range="1"/>
+        <Row UnitType="UNIT_LIBURNA" Combat="28" RangedCombat="25" Bombard="15" Range="2"/>
     </Unit_Stats>
     <Unit_Costs>
         <Row UnitType="UNIT_CLIBANARII" YieldType="YIELD_PRODUCTION" Cost="115"/>

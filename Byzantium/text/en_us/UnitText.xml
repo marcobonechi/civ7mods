@@ -56,7 +56,7 @@
             <Text>Liburna</Text>
         </Row>
         <Row Tag="LOC_UNIT_LIBURNA_DESCRIPTION">
-            <Text>Byzantine unique Antiquity Age naval unit that replaces the Galley. +1 [icon:MOVEMENT] Movement, +1 Sight, and ignores Zone of Control.</Text>
+            <Text>Byzantine unique Antiquity Age naval unit that replaces the Galley. Stronger, with [icon:COMBAT_RANGED] Range 2, +1 [icon:MOVEMENT] Movement, +1 Sight, and ignores Zone of Control.</Text>
         </Row>
         <Row Tag="LOC_ABILITY_LIBURNA_DESCRIPTION">
             <Text>Ignores Zone of Control.</Text>
