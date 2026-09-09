@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
+    <!-- The baseline Exploration-civ trait; it only exists while the Exploration module is
+         loaded, and one unresolved foreign key makes the game drop the whole file. -->
+    <CivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_EXPLORATION_CIV"/>
+    </CivilizationTraits>
     <TraitModifiers>
         <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_CAPITAL_INFLUENCE"/>
         <Row TraitType="TRAIT_BYZANTIUM_ABILITY" ModifierId="MOD_BYZANTIUM_CAPITAL_GOLD"/>

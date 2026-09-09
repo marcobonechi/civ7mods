@@ -13,7 +13,9 @@
         <Row TraitType="TRAIT_BYZANTIUM_ABILITY" Name="LOC_TRAIT_BYZANTIUM_ABILITY_NAME" Description="LOC_TRAIT_BYZANTIUM_ABILITY_DESCRIPTION" InternalOnly="true"/>
     </Traits>
     <CivilizationTraits>
-        <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_EXPLORATION_CIV"/>
+        <!-- TRAIT_EXPLORATION_CIV is declared by the age-exploration module only, so the row that
+             grants it lives in civilizations-exploration.xml. In the other two ages the engine
+             adds TRAIT_ANACHRONISTIC_CIV itself (base-standard/data/ages-post-process.sql). -->
         <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_BYZANTIUM"/>
         <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_BYZANTIUM_ABILITY"/>
         <Row CivilizationType="CIVILIZATION_BYZANTIUM" TraitType="TRAIT_ATTRIBUTE_CULTURAL"/>
