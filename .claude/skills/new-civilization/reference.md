@@ -273,8 +273,8 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   and those lookups are package-texture lookups that cannot open a mod's loose PNG.** The names,
   read out of the shipped UI on 2026-09-09: `bg-panel-<civ>` and `bg_panel_<civ>` (picker
   background, narrative panel, syncretism and unlock screens), `bg-card-<civ>` (age-transition
-  card), `civ_sym_<civ>`, and for leaders `lp_circ_<leader>_256`, `lp_hex_<leader>_256` and
-  `lsl_<leader>`. Two of them - `age-transition-civ-card.js` and `age-transition-civ-select.js` -
+  card), `civ_sym_<civ>`, and for leaders `lp_circ_<leader>_{256,140,128,64}`,
+  `lp_hex_<leader>_{256,128,64}` and `lsl_<leader>`. Two of them - `age-transition-civ-card.js` and `age-transition-civ-select.js` -
   build the flat form `fs://game/bg-card-<civ>.png`, which is also a package lookup; and callers
   that receive an `fs://` URL from `UI.getIconBLP` sometimes prepend `blp:` to it, which then
   fails as `blp:fs://...`.
@@ -296,6 +296,24 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
+- **A leader's icon rows are not one image.** Copy `DLC/ada-lovelace/modules/data/icons/
+  leader-icons.xml`: nine rows per leader, the default rows and the `LEADER_HAPPY` /
+  `LEADER_ANGRY` contexts pointing at a **hex** crop with an explicit `IconSize`, and
+  `CIRCLE_MASK` / `PORTRAIT_MASK` pointing at a **circle** crop. Pointing all of them at one
+  square PNG is what makes a modded leader show up square in Leader Select while every shipped
+  leader is round with a frame.
+- **A mod cannot ship a leader 3D model, and `Leaders.BasePersonaType` does not substitute for
+  one.** `core/ui/shell/leader-select/leader-select-model-manager.js` asks the engine for
+  `<LEADER_TYPE>_GAME_ASSET` and falls through to `LEADER_FALLBACK_GAME_ASSET` - a faceless
+  figure - when it resolves to nothing; `BasePersonaType` is read by the alternate-persona
+  system, not by that lookup. Borrow a shipped leader's model in the UI script instead: proxy
+  `WorldUI.createModelGroup` and wrap `addModel` / `addModelAtPos` on the group it returns,
+  rewriting the asset name on the way in. See `Etruscans/ui/etruscans-images.js`.
+- **Every shipped leader has a diplomatic agenda** (`EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE`, one
+  `TraitModifiers` row, no other table involved) and the AI reads it; a leader without one is
+  diplomatically inert. Copy the argument set from `MACHIAVELLI_MOD_AGENDA_THE_SPIDER` and pick
+  a `WeightType` from the `DIPLOMACY_AGENDA_COMPARE_*` list in `base-standard/data`. While you
+  are there: the base game's median leader has five ability modifiers, not three.
 - `VisualRemaps` rows are keyed by `ID` and each is a player-toggleable option (`VisualRemaps.
   getRemapState` in `core/ui/options/options.js`). Modinfo criteria cannot be negated (only
   `AgeInUse`, `ModInUse`, `ModIsEnabled`, `RuleSetInUse`, `any="true"`), so a DLC-dependent
