@@ -23,7 +23,7 @@
             <Text>Augustaion</Text>
         </Row>
         <Row Tag="LOC_QUARTER_AUGUSTAION_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_QUARTER_TOOLTIP]Unique Quarter[/TIP], formed by a Hippodrome and a Great Palace. +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] displayed here.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_QUARTER_TOOLTIP]Unique Quarter[/TIP], formed by a Hippodrome and a Great Palace. +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] displayed here. +2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_DIPLOMACY] Influence, and +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire.</Text>
         </Row>
         <Row Tag="LOC_QUARTER_AUGUSTAION_TOOLTIP">
             <Text>+2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] Great Work displayed here.</Text>

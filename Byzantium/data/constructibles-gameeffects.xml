@@ -40,4 +40,36 @@
         <Argument name="Amount">1</Argument>
         <Argument name="Tooltip">LOC_BUILDING_HIPPODROME_NAME</Argument>
     </Modifier>
+    <!-- Augustaion additions: Culture per active tradition, and flat Gold and Influence. -->
+    <Modifier id="MOD_BYZANTIUM_AUGUSTAION_CULTURE_PER_TRADITION" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_ACTIVE_TRADITION">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_AUGUSTAION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="CivUnique">false</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_AUGUSTAION_GOLD" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_AUGUSTAION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_AUGUSTAION_INFLUENCE" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_AUGUSTAION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
+    </Modifier>
 </GameEffects>

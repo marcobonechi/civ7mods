@@ -77,6 +77,9 @@
     </UniqueQuarters>
     <UniqueQuarterModifiers>
         <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_HAPPINESS_PER_GREAT_WORK"/>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_CULTURE_PER_TRADITION"/>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_GOLD"/>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_INFLUENCE"/>
     </UniqueQuarterModifiers>
     <ConstructibleModifiers>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_RELIC"/>
