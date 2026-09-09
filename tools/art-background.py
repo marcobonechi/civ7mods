@@ -24,6 +24,9 @@ magnified crop. `--inspect` writes those crops for you and stops:
 It is patched by cloning a feathered ellipse of nearby ground over it, taken from just above by
 default. Always look at the before/after crop the tool writes next to the source: whether the
 clone lands on plain ground or on top of a building is luck, and --from-dy / --from-dx move it.
+Where the mark sits on something smooth - water, sky, a plain wall - and there is no clean patch
+near enough to clone, --blur-fill smudges it out instead. On texture that is obvious and wrong; on
+the Arno it is invisible.
 
 Needs ImageMagick 7 (`magick`).
 """
@@ -51,23 +54,35 @@ def main():
     ap.add_argument("--landscape", action="store_true")
     ap.add_argument("--portrait", action="store_true")
     ap.add_argument("--mark", help="X,Y,W,H of the generator's signature")
+    ap.add_argument("--crop", metavar="WxH+X+Y",
+                    help="crop the source first. Sometimes the cleanest way to lose the signature: "
+                         "if it sits near an edge and there is no plain patch to clone from, "
+                         "cutting it off costs a slice of the painting and nothing else")
     ap.add_argument("--from-dy", type=int, default=None, help="clone from this many pixels above")
     ap.add_argument("--from-dx", type=int, default=0)
+    ap.add_argument("--blur-fill", action="store_true",
+                    help="fill with a blurred copy of the image instead of cloning; right for "
+                         "smooth surfaces like water or sky, wrong for anything with texture")
     ap.add_argument("--inspect", action="store_true", help="write magnified corner crops and stop")
     ap.add_argument("--quiet", action="store_true", help="skip the before/after crop")
     args = ap.parse_args()
 
     if not os.path.exists(args.source):
         sys.exit("no such file: " + args.source)
-    w, h = (int(v) for v in magick("identify", "-format", "%w %h", args.source).split())
     stem = os.path.splitext(args.source)[0]
+    source = args.source
+    if args.crop:
+        source = stem + ".cropped.png"
+        magick(args.source, "-crop", args.crop, "+repage", source)
+        print("  cropped to %s" % args.crop)
+    w, h = (int(v) for v in magick("identify", "-format", "%w %h", source).split())
 
     if args.inspect:
         for label, x, y in (("br", int(w * .72), int(h * .60)), ("bl", 0, int(h * .60)),
                             ("tr", int(w * .72), 0), ("tl", 0, 0)):
             cw, ch = int(w * .28), int(h * .40)
             out = "%s.corner-%s.png" % (stem, label)
-            magick(args.source, "-crop", "%dx%d+%d+%d" % (cw, ch, x, y), "+repage",
+            magick(source, "-crop", "%dx%d+%d+%d" % (cw, ch, x, y), "+repage",
                    "-resize", "300%", out)
             print("%s  (this crop starts at %d,%d in the original; divide any position you read "
                   "off it by 3 and add that)" % (out, x, y))
@@ -78,7 +93,7 @@ def main():
     if not (args.civ and args.mod):
         sys.exit("pass --civ and --mod")
 
-    clean = args.source
+    clean = source
     if args.mark:
         mx, my, mw, mh = (int(v) for v in args.mark.split(","))
         cx, cy = mx + mw // 2, my + mh // 2
@@ -96,18 +111,23 @@ def main():
         magick("-size", "%dx%d" % (side, side), "xc:black", "-fill", "white",
                "-draw", "ellipse %d,%d %d,%d 0,360" % (side // 2, side // 2, reach + 10, reach + 10),
                "-blur", "0x10", tmp_mask)
-        magick(args.source, "-crop", "%dx%d+%d+%d" % (side, side, sx, sy), "+repage", tmp_patch)
+        if args.blur_fill:
+            magick(source, "-blur", "0x%d" % max(8, side // 6),
+                   "-crop", "%dx%d+%d+%d" % (side, side, px, py), "+repage", tmp_patch)
+        else:
+            magick(source, "-crop", "%dx%d+%d+%d" % (side, side, sx, sy), "+repage", tmp_patch)
         magick(tmp_patch, tmp_mask, "-alpha", "off", "-compose", "CopyOpacity", "-composite", tmp_patch)
-        magick(args.source, tmp_patch, "-geometry", "+%d+%d" % (px, py),
+        magick(source, tmp_patch, "-geometry", "+%d+%d" % (px, py),
                "-compose", "over", "-composite", tmp_out)
         os.remove(tmp_mask)
         os.remove(tmp_patch)
         clean = tmp_out
-        print("  patched a %dx%d mark at %d,%d by cloning from %d,%d" % (mw, mh, mx, my, sx, sy))
+        how = "with a blurred copy" if args.blur_fill else "by cloning from %d,%d" % (sx, sy)
+        print("  patched a %dx%d mark at %d,%d %s" % (mw, mh, mx, my, how))
         if not args.quiet:
             check = stem + ".mark-check.png"
             box = "%dx%d+%d+%d" % (side + 80, side + 80, max(0, px - 40), max(0, py - 40))
-            magick("(", args.source, "-crop", box, "+repage", "-resize", "300%", ")",
+            magick("(", source, "-crop", box, "+repage", "-resize", "300%", ")",
                    "(", clean, "-crop", box, "+repage", "-resize", "300%", ")",
                    "+append", check)
             print("  before/after: %s" % check)

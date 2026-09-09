@@ -304,6 +304,10 @@ python3 tools/art-background.py raw16x9.png --civ etruscans --mod Etruscans --la
 python3 tools/art-background.py raw9x16.png --civ etruscans --mod Etruscans --portrait  --mark X,Y,W,H
 ```
 
+Three ways to lose the signature, in order of preference: `--crop WxH+X+Y` cuts it off, which
+leaves no artefact at all and is usually right when it sits near an edge; the default clone covers
+it with nearby ground; `--blur-fill` smudges it, which only works on water, sky or a plain wall.
+
 `--landscape` writes the two loading sizes and the panel; `--portrait` writes the vertical card and
 the detail card.
 
@@ -501,7 +505,7 @@ device that makes the Cuniculus work:
 > Vertical composition, the couple in the upper two thirds. Sid Meier's Civilization VII concept
 > painting, loose oil brushwork, warm desaturated palette, soft rim light, no text, no watermark.
 
-### 9. `lsbg_tuscany_1080` / `_720` / `bg-panel-tuscany` — 16:9, at least 1920 wide
+### 9. `lsbg_tuscany_1080` / `_720` / `bg-panel-tuscany` — **done 2026-09-09**, 1376×768
 
 > Florence from the hills above San Miniato at golden hour: Brunelleschi's red-tiled dome and white
 > lantern dominating the skyline, Giotto's pale campanile beside it, the crenellated tower of the
@@ -510,7 +514,7 @@ device that makes the Cuniculus work:
 > foreground, blue hills fading behind. Haze and a low sun. Sid Meier's Civilization VII concept
 > painting, loose oil brushwork, warm desaturated palette, soft rim light, no text, no watermark.
 
-### 10. `lsbg_tuscany_vert` / `bg-card-tuscany` — 9:16, at least 1080 wide
+### 10. `lsbg_tuscany_vert` / `bg-card-tuscany` — **done 2026-09-09**, 768×1376
 
 > The courtyard of a Florentine palazzo at midday, looking up: two storeys of grey pietra serena
 > arches on slender columns around a small square of flagstones, a bright square of sky above, a
@@ -521,9 +525,19 @@ device that makes the Cuniculus work:
 
 ### Still open
 
-Three generations, five files, all Tuscan: the Bottega as a cutaway block (§3), the Florence
-landscape (§9) and the palazzo courtyard (§10). **Etruria is finished** — every one of its
-fourteen files is real art.
+One: the Bottega as a cutaway block (§3). Everything else in both mods is real art — audited by
+colour count, since the generated placeholders quantise to 64 colours at 64×64 and painted art to
+thousands.
+
+Two notes from the last pass, both about the signature on a full-bleed painting:
+
+- **Cropping it off is often the right answer.** On the Florence landscape it sat on the Arno, 70 px
+  from the right edge, straddling the weir. Every clone source dragged something in — cypresses,
+  a bank, an entire building — and a blur fill smudged the weir away. Cutting 146 px off the right
+  cost nothing but a strip of rooftops and raised the upscale from 1.41× to 1.56×. `--crop` does it
+  in the same command.
+- **`--blur-fill` is for smooth surfaces only.** Water, sky, a plain wall. It cannot duplicate
+  anything, which is its appeal, but anywhere there is structure it reads as a smudge.
 
 A pattern worth knowing while these are generated: **the PNG exports carry the sparkle, the JPG
 exports do not.** Every PNG so far has had a 48×48 mark at 880,880 on a 1024 square; none of the

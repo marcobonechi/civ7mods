@@ -357,3 +357,27 @@ in the brief.
 
 Remaining: three generations, five files, all Tuscan — the Bottega as a cutaway block, the Florence
 landscape, and the palazzo courtyard.
+
+### 2026-09-09 — both mods on real art
+
+The palazzo courtyard and the Florence landscape came in, and with them **every file in both mods
+is real art**. Audited by colour count again: nothing in either `icons/` folder quantises to the
+64 colours a generated placeholder does. The game loads both, the shell database validates, and
+`UI.log` records no failed lookup for either civ or either leader.
+
+The signature on these two took the most work of any so far, and taught two things now in the brief:
+
+- **Read the box off a ruled crop.** My first courtyard box was about 25 px off and left a visible
+  ghost of the star. Numeric detection failed repeatedly — the mark is translucent, so on pale
+  flagstones or bright water it is neither much brighter nor much less saturated than its
+  surroundings, and every threshold I tried caught the floor or the river instead. A grid of thin
+  lines every 20 px over a 4× crop, heavier every 100, makes the numbers countable in one look.
+- **Cropping the mark off is often better than covering it.** On the Florence landscape it sat on
+  the Arno 70 px from the right edge, straddling the weir. Every clone source dragged something
+  into the river — cypresses, a green bank, an entire building — and the blur fill I added for
+  smooth surfaces smudged the weir away. Cutting 146 px off the right lost a strip of rooftops,
+  kept the Duomo, the campanile, the Palazzo Vecchio, the Ponte Vecchio and the foreground
+  cypresses, and left no artefact at all. `--crop` and `--blur-fill` are both new options.
+
+Remaining: one asset, the Bottega, whose content is right but which is composed as a flat framed
+panel rather than a cut-out object. Interim version installed; the corrected prompt is in the brief.
