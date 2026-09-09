@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
     <!-- Disciplina Etrusca. The libri rituales told an Etruscan how to found a city, drain its
-         valley and orient its temples; the tomb paintings show what the result was for. -->
+         valley and orient its temples; the tomb paintings show what the result was for. Two
+         halves, and a third thing the Greeks could not get over.
+
+         The engineering: the surveyors and the drainage crews. -->
     <Modifier id="MOD_ETRUSCANS_SETTLEMENT_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
         <Argument name="YieldType">YIELD_PRODUCTION</Argument>
-        <Argument name="Amount">1</Argument>
-        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
-    </Modifier>
-    <Modifier id="MOD_ETRUSCANS_SETTLEMENT_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
-        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
         <Argument name="Amount">2</Argument>
         <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
     </Modifier>
-    <!-- The engineering half: buildings go up faster (the shape base civs use for unit production,
-         applied to constructibles). -->
     <Modifier id="MOD_ETRUSCANS_BUILDING_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION">
         <Argument name="ConstructibleClass">BUILDING</Argument>
-        <Argument name="Percent">15</Argument>
+        <Argument name="Percent">25</Argument>
         <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
         <String context="Preview">LOC_TRAIT_ETRUSCANS_ABILITY_PREVIEW</String>
+    </Modifier>
+
+    <!-- The good life. The cuniculi drained the valleys and the valleys fed the banquet; every
+         painted tomb in Tarquinia is people eating, drinking, dancing and watching games. -->
+    <Modifier id="MOD_ETRUSCANS_SETTLEMENT_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">4</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_ETRUSCANS_SETTLEMENT_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_FOOD</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_ETRUSCANS_GROWTH" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_GROWTH">
+        <Argument name="Percent">15</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+    <!-- The banquet itself: when the Etruscans celebrate, they do not stop early. -->
+    <Modifier id="MOD_ETRUSCANS_CELEBRATION_LENGTH" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_GOLDEN_AGE_DURATION">
+        <Argument name="Percent">25</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+    <!-- And a contented city leaves something behind it. Ashoka's shape, Culture instead of Food. -->
+    <Modifier id="MOD_ETRUSCANS_CULTURE_PER_SURPLUS_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Divisor">5</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- Freedom for women. Theopompus was scandalised that Etruscan women reclined at table with
+         the men; they kept their own names, appear on their own tombs, and owned property. In
+         game terms that is a larger share of the city's people taking part in its work, and
+         costing it less to do so. -->
+    <Modifier id="MOD_ETRUSCANS_WORKER_CAP" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_CAP">
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_ETRUSCANS_SPECIALIST_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_MAINTENANCE_EFFICIENCY">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_ETRUSCANS_ABILITY_NAME</Argument>
     </Modifier>
 </GameEffects>

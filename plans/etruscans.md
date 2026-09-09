@@ -42,12 +42,38 @@ female: Ramtha, Thanchvil, Larthia, Velia, Hastia, Fasti, Culni, Ravnthu, Seiant
 Named for the body of Etruscan lore — haruspicy, augury, and the *libri rituales* that laid out how
 to found a city, drain a valley and orient a temple. Rome learned all three from them.
 
-1. +1 Production and +2 Happiness in every Settlement (`EFFECT_CITY_ADJUST_YIELD` on
-   `COLLECTION_PLAYER_CITIES`, the shape Byzantium's Queen of Cities uses). All ages.
-2. +30% Production toward the Fanum Voltumnae
-   (`EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION`), loaded in the persist group because it names
-   the wonder.
-3. Reveal the Etruscan civic tree (`EFFECT_PLAYER_REVEAL_CULTURE_TREE`), Antiquity only.
+Nine modifiers, which is a lot until you count the base game: Greece has thirteen, Maurya and
+Ming nine, Rome and Byzantium six. Three groups.
+
+*The engineering — the surveyors and the drainage crews.* All ages.
+
+1. +2 Production in every Settlement (`EFFECT_CITY_ADJUST_YIELD` on `COLLECTION_PLAYER_CITIES`,
+   the shape Byzantium's Queen of Cities uses).
+2. +25% Production toward Buildings (`EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION`,
+   ConstructibleClass BUILDING).
+
+*The good life.* The cuniculi drained the valleys, the valleys fed the banquet, and every painted
+tomb at Tarquinia is people eating, drinking, dancing and watching games.
+
+3. +4 Happiness in every Settlement.
+4. +2 Food in every Settlement.
+5. +15% growth rate (`EFFECT_CITY_ADJUST_GROWTH`).
+6. Celebrations last 25% longer (`EFFECT_PLAYER_ADJUST_GOLDEN_AGE_DURATION`, Jose Rizal's shape
+   at half his number).
+7. +1 Culture per 5 surplus Happiness in Cities (`EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS`,
+   Ashoka's shape with Culture instead of Food) — a contented city leaves something behind it.
+
+*Freedom for women.* Theopompus was scandalised that Etruscan women reclined at table with the
+men; they kept their own names, appear on their own tombs, and owned property. That is a larger
+share of the city's people taking part in its work, and costing it less to do so.
+
+8. +1 Specialist cap in every Settlement (`EFFECT_CITY_ADJUST_WORKER_CAP`).
+9. Specialists cost 1 less Happiness to maintain
+   (`EFFECT_CITY_ADJUST_WORKER_MAINTENANCE_EFFICIENCY`).
+
+Plus, outside the shared file: +45% Production toward the Fanum Voltumnae
+(`EFFECT_CITY_ADJUST_FAVORED_WONDER_PRODUCTION`), loaded in the persist group because it names the
+wonder; and reveal the Etruscan civic tree (`EFFECT_PLAYER_REVEAL_CULTURE_TREE`), Antiquity only.
 
 ### 1.2 Unique units
 

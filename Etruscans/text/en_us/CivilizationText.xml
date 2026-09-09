@@ -14,13 +14,13 @@
             <Text>Disciplina Etrusca</Text>
         </Row>
         <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_DESCRIPTION">
-            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings. +45% [icon:YIELD_PRODUCTION] Production toward the Fanum Voltumnae.</Text>
+            <Text>+2 [icon:YIELD_PRODUCTION] Production, +4 [icon:YIELD_HAPPINESS] Happiness and +2 [icon:YIELD_FOOD] Food in all Settlements, and Settlements grow 15% faster. +25% [icon:YIELD_PRODUCTION] Production toward Buildings. Celebrations last 25% longer. Cities gain +1 [icon:YIELD_CULTURE] Culture for every 5 surplus [icon:YIELD_HAPPINESS] Happiness. Settlements support 1 more Specialist, and each Specialist costs 1 less [icon:YIELD_HAPPINESS] Happiness to maintain. +45% [icon:YIELD_PRODUCTION] Production toward the Fanum Voltumnae.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_EX_DESCRIPTION">
-            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings.</Text>
+            <Text>+2 [icon:YIELD_PRODUCTION] Production, +4 [icon:YIELD_HAPPINESS] Happiness and +2 [icon:YIELD_FOOD] Food in all Settlements, and Settlements grow 15% faster. +25% [icon:YIELD_PRODUCTION] Production toward Buildings. Celebrations last 25% longer. Cities gain +1 [icon:YIELD_CULTURE] Culture for every 5 surplus [icon:YIELD_HAPPINESS] Happiness. Settlements support 1 more Specialist, and each Specialist costs 1 less [icon:YIELD_HAPPINESS] Happiness to maintain.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_MO_DESCRIPTION">
-            <Text>+1 [icon:YIELD_PRODUCTION] Production and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements. +15% [icon:YIELD_PRODUCTION] Production toward Buildings.</Text>
+            <Text>+2 [icon:YIELD_PRODUCTION] Production, +4 [icon:YIELD_HAPPINESS] Happiness and +2 [icon:YIELD_FOOD] Food in all Settlements, and Settlements grow 15% faster. +25% [icon:YIELD_PRODUCTION] Production toward Buildings. Celebrations last 25% longer. Cities gain +1 [icon:YIELD_CULTURE] Culture for every 5 surplus [icon:YIELD_HAPPINESS] Happiness. Settlements support 1 more Specialist, and each Specialist costs 1 less [icon:YIELD_HAPPINESS] Happiness to maintain.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_ETRUSCANS_ABILITY_PREVIEW">
             <Text>Disciplina Etrusca</Text>
