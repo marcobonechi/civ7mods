@@ -32,7 +32,7 @@
             <Text>Hagia Sophia</Text>
         </Row>
         <Row Tag="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION">
-            <Text>+4 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_DIPLOMACY] Influence. Has 3 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] slots. Gain a [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_RELIC_TOOLTIP]Relic[/TIP] when it is completed. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP].</Text>
+            <Text>+5 [icon:YIELD_CULTURE] Culture, +3 [icon:YIELD_DIPLOMACY] Influence, +2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_SCIENCE] Science. Each time a religion is spread to your [TIP:LOC_PEDIA_CONCEPTS_CAPITAL_TOOLTIP]Capital[/TIP], start a [icon:CELEBRATION] Celebration. Each time a unit is trained in your Capital, gain a Missionary there. Has 3 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] slots. Gain a [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_RELIC_TOOLTIP]Relic[/TIP] when it is completed. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP].</Text>
         </Row>
         <Row Tag="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP">
             <Text>Has 3 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] slots. Gain a [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_RELIC_TOOLTIP]Relic[/TIP] when it is completed.</Text>
@@ -44,7 +44,7 @@
             <Text>Procopius</Text>
         </Row>
         <Row Tag="LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION">
-            <Text>+30% [icon:YIELD_PRODUCTION] Production from being Byzantium's associated [icon:WONDER] Wonder.</Text>
+            <Text>+45% [icon:YIELD_PRODUCTION] Production from being Byzantium's associated [icon:WONDER] Wonder.</Text>
         </Row>
         <Row Tag="LOC_REMAP_BYZANTIUM_GREAT_PALACE">
             <Text>Byzantium: Great Palace</Text>

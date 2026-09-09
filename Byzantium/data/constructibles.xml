@@ -45,8 +45,10 @@
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_DIPLOMACY" YieldChange="6"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_GOLD" YieldChange="6"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_HAPPINESS" YieldChange="3"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="4"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="5"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="3"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_GOLD" YieldChange="2"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_SCIENCE" YieldChange="1"/>
     </Constructible_YieldChanges>
     <Constructible_Maintenances>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_GOLD" Amount="3"/>
@@ -83,6 +85,26 @@
     </UniqueQuarterModifiers>
     <ConstructibleModifiers>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_RELIC"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_1"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_2"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_3"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_4"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_5"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_6"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_7"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_CELEBRATION_8"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_1"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_2"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_3"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_4"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_5"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_6"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_7"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_8"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_9"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_10"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_11"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_12"/>
         <Row ConstructibleType="BUILDING_HIPPODROME" ModifierId="MOD_BYZANTIUM_HIPPODROME_CULTURE_PER_TRADITION"/>
     </ConstructibleModifiers>
     <Constructible_Advisories>

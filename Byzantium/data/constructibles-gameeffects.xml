@@ -28,7 +28,7 @@
                 <Argument name="TraitType">TRAIT_BYZANTIUM</Argument>
             </Requirement>
         </SubjectRequirements>
-        <Argument name="Percent">30</Argument>
+        <Argument name="Percent">45</Argument>
         <String context="Preview">LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION</String>
     </Modifier>
     <!-- The Hippodrome was where the emperor met his people; every tradition the empire keeps
@@ -71,5 +71,274 @@
         <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
         <Argument name="Amount">1</Argument>
         <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
+    </Modifier>
+    <!-- Hagia Sophia, event bonuses. The effect system has no "on religion spread" or "on unit
+         trained" trigger, so both are built the way the narrative system counts events: the
+         gossip log. Each run-once modifier fires when the owner's log holds at least N matching
+         entries, so the first 8 conversions of the capital each start a Celebration and the
+         first 12 units trained in the capital each add a Missionary there. -->
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_1" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_2" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">2</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_3" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">3</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_4" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">4</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_5" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">5</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_6" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">6</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_7" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">7</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_CELEBRATION_8" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_GOLDEN_AGE" run-once="true" permanent="true">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_CONVERT_CITY01</Argument>
+                <Argument name="GOSSIP_CONVERT_CITY01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </SubjectRequirements>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_1" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">1</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_2" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">2</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_3" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">3</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_4" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">4</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_5" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">5</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_6" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">6</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_7" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">7</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_8" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">8</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_9" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">9</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_10" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">10</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_11" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">11</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
+    </Modifier>
+    <Modifier id="MOD_HAGIA_SOPHIA_MISSIONARY_12" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_GRANT_UNIT" run-once="true" permanent="true">
+        <OwnerRequirements>
+            <Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+                <Argument name="ConstructibleType">WONDER_HAGIA_SOPHIA</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+                <Argument name="GossipTypes">GOSSIP_TRAIN_UNIT01</Argument>
+                <Argument name="GOSSIP_TRAIN_UNIT01">Hash,IsCapital,True</Argument>
+                <Argument name="Amount">12</Argument>
+            </Requirement>
+        </OwnerRequirements>
+        <Argument name="UnitType">UNIT_MISSIONARY</Argument>
+        <Argument name="Amount">1</Argument>
     </Modifier>
 </GameEffects>
