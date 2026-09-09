@@ -199,3 +199,29 @@ white-mask assets. The raw generation is kept at `Etruscans/icons/src/buildicon_
 so the icon can be re-cropped later; `.gitignore` un-ignores `*/icons/src/*.png` for that.
 
 23 assets to go.
+
+### 2026-09-09 — the Tumulus, and two corrections to the tool
+
+The Tumulus came in and broke `art-icon.py` twice, both worth having found now rather than on the
+twentieth asset.
+
+- **The fixed fuzz was too aggressive.** At 18 the key ran out of the background and into the dry
+  grass of the mound, leaving a hole across the top right that only showed on a bright test
+  background. Sweeping the fuzz shows a clear plateau — coverage sits at ~56% from 4 to 15 and
+  falls to 48% at 18 — so the tool now sweeps and takes the largest value before the cliff. Both
+  Etruscan icons land on 10.
+- **The watermark box was guesswork, and wrong.** I had it inset 4% with a side of 7.5%, which on
+  a 1024 image is 908..984; the sparkle is actually at 880..927. So it was being half-missed —
+  including in the Cuniculus I committed an hour ago, which shipped with the mark still in it.
+  Fixed properly: the mark is removed *after* the key, where it survives as a small opaque island
+  separate from the subject. The tool labels the islands with ImageMagick's connected-components,
+  keeps the largest and drops the rest, which also sweeps up the speckle. Detecting it before the
+  key cannot work — the subject often reaches into the same corner.
+
+Both icons re-processed and re-installed. Verified on a red background, which is the only way the
+transparency holes and the leftover sparkle were visible at all; on the dark panels the game uses,
+both defects were invisible.
+
+One thing for Marco to decide: the Tumulus came back flat and cel-shaded, the Cuniculus painterly.
+They do not quite belong to the same set. Better to settle the register before generating the
+other twenty-two.

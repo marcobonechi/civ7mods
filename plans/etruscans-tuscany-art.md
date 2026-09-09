@@ -17,7 +17,7 @@ and the rows for the square icons carry no `IconSize`, so a 256² file drops str
 |---|---|---|---|
 | `civ_sym_<civ>.png` | 256² | 256² | **White shape on transparency.** Recoloured through `filter: fxs-color-mask(...)`, so any colour in the file is thrown away. |
 | `unitflag_*.png` | 128² | 256² | **White silhouette on transparency**, drawn on the player's coloured flag. |
-| `buildicon_*.png`, `wondericon_*.png` | 128², Cuniculus 256² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
+| `buildicon_*.png`, `wondericon_*.png` | 128², Cuniculus and Tumulus 256² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
 | `leader_<name>.png` | 256² | 256² | Portrait. Firaxis ships a hex crop and a circle crop as separate files; ours points all three icon contexts at one PNG — see §5. |
 | `lsbg_<civ>_1080.png` | 1920×1080 | same | Loading-screen painting. |
 | `lsbg_<civ>_720.png` | 1280×720 | same | The same painting, downscaled. |
@@ -86,12 +86,17 @@ The generation came back as a cutaway block rather than a tunnel mouth in a hill
 better at icon size than the prompt would have: the shaft of light and the water channel are both
 legible at 64 px. Raw kept at `Etruscans/icons/src/buildicon_cuniculus.raw.png`.
 
-### `buildicon_tumulus` — 1:1, icon
+### `buildicon_tumulus` — 1:1, icon — **done 2026-09-09**
 
 > An Etruscan tumulus tomb at Cerveteri: a circular drum of squared tufa blocks cut down into the
 > rock, a grassed earth mound heaped on top, a low doorway with a heavy lintel at the front
 > opening into darkness, a stone bench running round the base. Warm ochre stone, dry grass, the
 > shadow of a cypress falling across it.
+
+Came back flatter and more cel-shaded than the Cuniculus, which is painterly — the two do not
+quite belong to the same set. Worth deciding before the remaining icons are generated: either ask
+for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
+`Etruscans/icons/src/buildicon_tumulus.raw.png`.
 
 ### `wondericon_fanum_voltumnae` — 1:1, icon
 
@@ -234,11 +239,21 @@ grey you asked for, so both steps matter.
 python3 tools/art-icon.py raw.png Etruscans/icons/buildicon_cuniculus.png
 ```
 
-It samples the background from the top-left pixel; pass `--bg '#808080'` to force one, `--fuzz` to
-change how much of the soft drop shadow goes with it (18 by default, which took the shadow off the
-Cuniculus cleanly), `--margin` for breathing room, and `--keep` to leave the intermediate steps
-beside the output when something looks wrong. If the subject shares a tone with the background,
-generate on chroma green (`#00b140`) and pass `--bg '#00b140'`.
+It samples the background from the top-left pixel and picks the fuzz itself, by sweeping and
+stopping before the key starts eating the subject — dry grass and pale stone sit close enough to a
+mid grey that a fixed 18 took a bite out of the Tumulus mound. Pass `--bg '#808080'` to force a
+colour, `--fuzz 12` to force a value, `--margin` for breathing room, and `--keep` to leave the
+intermediate steps beside the output when something looks wrong. If the subject shares a tone with
+the background, generate on chroma green (`#00b140`) and pass `--bg '#00b140'`.
+
+The watermark is removed after the key rather than before: it survives as a small opaque island
+separate from the subject, so the tool labels the islands, keeps the largest and drops the rest.
+That also sweeps up the speckle a key always leaves. Trying to find the mark *before* keying does
+not work — the subject often reaches into the same corner and there is no way to tell them apart.
+
+A faint grey fringe survives at the silhouette edge, which is the generation's own drop shadow.
+Against the dark panels the game draws these on it reads as the soft shadow the style asks for;
+it only looks like an outline on a bright test background.
 
 **Silhouettes** go through the same tool with `--silhouette`, which thresholds instead of keying:
 
