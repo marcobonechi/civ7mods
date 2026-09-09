@@ -6,6 +6,8 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 |---|---|---|
 | `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
 | `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Byzantium (Time-Tested)" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1, see [Byzantium](#byzantium) below |
+| `Etruscans/` | The Etruscans, an Antiquity Age civilization of engineers and banqueters, with Lars Porsenna of Clusium | version 1, see [Etruscans](#etruscans) below |
+| `Tuscany/` | Tuscany, an Exploration Age civilization of bankers, navigators and painters, with Lorenzo il Magnifico and the Maestri | version 1, see [Tuscany](#tuscany) below |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 
@@ -14,14 +16,14 @@ Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 Map scripts covering the Mediterranean basin and Europe: Urals to Iceland, Morocco to the Sinai.
 Three map types, historical start locations, and a browser-based geography editor with live preview.
 
-Current mod version: **44**.
+Current mod version: **52**.
 
 ---
 
 ## Install
 
 The mods are distributed through this repository. Get the files, copy the mod folders you want
-(`EuropeMediterranean/`, `Byzantium/`) into the game's `Mods` folder, and restart the game.
+(`EuropeMediterranean/`, `Byzantium/`, `Etruscans/`, `Tuscany/`) into the game's `Mods` folder, and restart the game.
 
 ### Get the files
 
@@ -306,3 +308,60 @@ civilization-select card; the `source-*.png` files are the untouched generations
 alternate loading painting (emperor portrait); point `data/loading-info.xml` and the BACKGROUND rows in
 `data/icons/icons.xml` at it to use it. Design notes and the verification record are in `plans/byzantium.md`; the recipe for the
 next civilization is `.claude/skills/new-civilization/`.
+
+---
+
+# Etruscans — an Antiquity Age civilization
+
+Twelve peoples between the Tiber and the Arno: engineering and the good life. Install `Etruscans/`
+like the other mods (`./install.sh Etruscans`); with the map mod installed it starts at Tarquinii
+on all four Europe maps. Pickable at an Exploration or Modern start too, listed there as
+"Etruscans (Time-Tested)".
+
+| Item | What it is |
+|---|---|
+| Ability: Disciplina Etrusca | +1 Production and +2 Happiness in every Settlement; +15% Production toward Buildings; +45% toward the Fanum Voltumnae |
+| Biga | Replaces the Chariot: faster, stronger, +4 Combat Strength on flat ground |
+| Tyrrhenian Galley | Replaces the Galley: +1 Movement, +1 Sight, +5 Combat Strength against ships |
+| Spura | Unique quarter of Cuniculus (Food, Production) and Tumulus (Culture, Happiness): +1 Production, Culture and Happiness in this Settlement for every Settlement you own |
+| Fanum Voltumnae | Associated wonder, the League's federal sanctuary: Culture, Influence per Settlement, a Relic on completion, 2 Great Work slots |
+| Civics | Cuniculi, Dodecapolis, Haruspicina; six traditions, plus Test of Time nodes for Exploration and Modern |
+| Leader: Porsenna | Militaristic + Scientific. Lars of Clusium: +2 Production in Cities, +20 Health on Districts with a Fortification, +3 Combat Strength defending one of your Districts |
+| Unlocks | Leaders Porsenna and Augustus, or holding a Bath in three Settlements. Leads to the Normans, and to Tuscany when that mod is installed |
+
+# Tuscany — an Exploration Age civilization
+
+Economy, Discovery and Renaissance art. Install `Tuscany/` (`./install.sh Tuscany`); it starts at
+Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
+
+| Item | What it is |
+|---|---|
+| Ability: Rinascimento | +2 Gold and +1 Culture in every Settlement; +1 Culture per Great Work; +45% Production toward Santa Maria del Fiore |
+| Maestro | A unique Great Person class, available once you have a Piazza. Ten named individuals: Leonardo (a free Technology), Raffaello, Michelangelo, Botticelli, Donatello, Brunelleschi, Dante, Machiavelli, Galileo, and Amerigo Vespucci (reveals the Distant Lands waters) |
+| Condottiero | Replaces Swordsman, Man-at-Arms and Pikeman: +2 Combat Strength, +4 more when attacking |
+| Galea di Santo Stefano | Replaces the Cog: +1 Movement, +1 Sight, +5 Combat Strength against ships |
+| Piazza | Unique quarter of Bottega (Culture, a Great Work slot) and Banco (Gold, Influence): Gold and Culture per Settlement, Happiness per Great Work, and it is what makes the Maestro available |
+| Santa Maria del Fiore | Associated wonder, Brunelleschi's dome: Culture, Gold, Happiness, Science, a Relic on completion, 3 Great Work slots |
+| Civics | Mecenatismo, Umanesimo, Navigatori; eight traditions, plus Test of Time nodes for Antiquity and Modern |
+| Leader: Lorenzo | Cultural + Economic. Il Magnifico: +2 Gold and +1 Happiness per Great Work, +1 Culture in every Settlement |
+| Unlocks | Rome, Greece, or the Etruscans when that mod is installed; leaders Lorenzo, Machiavelli, Isabella, Ibn Battuta; or holding a Bank in three Settlements. Leads to America (Amerigo Vespucci's hemisphere) and the French Empire |
+
+## Notes on both
+
+- **They know about each other, but neither needs the other.** The Etruscans-to-Tuscany link lives
+  behind `ModInUse` / `ModIsEnabled` criteria in both modinfos, so either folder installs alone.
+- **Central Italy is crowded.** The map script keeps starts at least five hexes apart, and Rome,
+  Tarquinii and Florence are all closer than that. Whichever is placed later falls back to a
+  curated site; Tarquinia and Florence are both in the fallback list, so a displaced player still
+  lands in Italy. Etruria and Tuscany are meant to be played one after the other rather than
+  side by side.
+- **Art is placeholder.** Icons and loading screens are flat generated PNGs
+  (`tools/make-icons.py`, `tools/make-backgrounds.py`); units, buildings and wonders borrow the
+  models of what they replace through `data/visual-remaps.xml`. Neither mod ships a binary art
+  package, so neither touches the game install.
+- **The leaders borrow a persona.** A mod cannot add a leader model: the shell asks the engine for
+  `<LEADER_TYPE>_GAME_ASSET` and falls back to a generic one. `Leaders.BasePersonaType` points
+  Porsenna at Xerxes and Lorenzo at Machiavelli, which is the mechanism Firaxis's own alternate
+  personas use; whether it carries the model through is the first thing to check in game.
+- Design sheets and the running work log: [`plans/etruscans.md`](plans/etruscans.md),
+  [`plans/tuscany.md`](plans/tuscany.md), [`plans/etruscans-tuscany-log.md`](plans/etruscans-tuscany-log.md).
