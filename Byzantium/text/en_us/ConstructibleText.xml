@@ -53,7 +53,7 @@
             <Text>Cistern</Text>
         </Row>
         <Row Tag="LOC_BUILDING_CISTERN_DESCRIPTION">
-            <Text>Byzantine unique Antiquity Age building. +2 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_FOOD] Food for each adjacent Coast or River tile. Ageless. Forms the Mese with the Milion.</Text>
+            <Text>Byzantine unique Antiquity Age building. +3 [icon:YIELD_FOOD] Food, +1 [icon:YIELD_CULTURE] Culture and +1 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_FOOD] Food for each adjacent Coast or River tile. No maintenance. Ageless. Forms the Mese with the Milion.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_CISTERN_TOOLTIP">
             <Text>Constantinople stored a year of water under its streets in vaulted cisterns fed by aqueducts from Thrace.</Text>

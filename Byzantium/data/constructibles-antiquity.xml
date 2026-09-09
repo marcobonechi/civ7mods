@@ -9,7 +9,7 @@
         <Row Type="QUARTER_MESE" Kind="KIND_QUARTER"/>
     </Types>
     <Constructibles>
-        <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="110" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="55" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="110" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
     </Constructibles>
     <Buildings>
@@ -31,13 +31,13 @@
         <Row ConstructibleType="BUILDING_MILION" DistrictType="DISTRICT_URBAN"/>
     </Constructible_ValidDistricts>
     <Constructible_YieldChanges>
-        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_FOOD" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_FOOD" YieldChange="3"/>
+        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_CULTURE" YieldChange="1"/>
         <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_HAPPINESS" YieldChange="1"/>
         <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_CULTURE" YieldChange="2"/>
         <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
     </Constructible_YieldChanges>
     <Constructible_Maintenances>
-        <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_GOLD" Amount="1"/>
         <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_GOLD" Amount="2"/>
     </Constructible_Maintenances>
     <Constructible_Adjacencies>
@@ -56,7 +56,6 @@
         <Row ConstructibleType="BUILDING_MILION" PlunderType="PLUNDER_CULTURE" Amount="40"/>
     </Constructible_Plunders>
     <Constructible_BuildingCostProgressions>
-        <Row ConstructibleType="BUILDING_CISTERN" Percent="5"/>
         <Row ConstructibleType="BUILDING_MILION" Percent="5"/>
     </Constructible_BuildingCostProgressions>
     <UniqueQuarters>
