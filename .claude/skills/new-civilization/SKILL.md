@@ -65,8 +65,13 @@ modules first and copy a working row.
 ```bash
 find <Civ> -name '*.xml' -exec xmllint --noout {} +
 python3 tools/check-mod.py <Civ>      # LOC tags and type references (see reference.md)
+python3 tools/check-ages.py <Civ>     # foreign keys that break in one of the ages the file loads in
 ./install.sh && open -a "Sid Meier's Civilization VII"
 grep -n -i "error\|failed\|constraint" ~/Library/Application\ Support/Civilization\ VII/Logs/Database.log
 ```
+
+Both checkers take companion mods as extra arguments (`tools/check-mod.py Tuscany --with Etruscans`,
+`tools/check-ages.py Tuscany Etruscans`) so two mods that name each other's types behind a
+`ModInUse` criteria do not report each other as unknown.
 
 A file with one bad foreign key is rejected as a whole; the log names the file.

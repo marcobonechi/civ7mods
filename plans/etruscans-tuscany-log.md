@@ -58,3 +58,52 @@ game's own data for the pieces the skill does not cover:
   below is invented.
 
 Wrote `plans/etruscans.md` and `plans/tuscany.md`.
+
+### 2026-09-09 — both mods built
+
+`Etruscans/` and `Tuscany/` complete: 48 and 50 XML files, following the Byzantium layout file for
+file, plus `data/leaders.xml` / `data/leaders-gameeffects.xml` in each and
+`data/greatpeople.xml` / `data/greatpeople-gameeffects.xml` in Tuscany for the Maestri. True
+starts on all three geo files, README sections, placeholder icons and backgrounds.
+
+Verified so far:
+
+- `xmllint` clean on every file in both mods.
+- `tools/check-mod.py Etruscans --with Tuscany` and the reverse: clean. The `--with` flag is new;
+  without it each mod reports the other's types as unknown, because the cross-mod unlocks sit
+  behind `ModInUse` / `ModIsEnabled` criteria.
+- `tools/check-ages.py`: clean on all three mods. Also new — see below.
+- The game loads both mods and the **shell database passes foreign-key validation** with no
+  errors in `Database.log` and nothing in `Modding.log`.
+
+Still to check in game (the game-scope tables are only built when a game is created, so a clean
+main menu says nothing about them):
+
+1. New Game → Antiquity → Etruscans, Europe & Mediterranean map. Confirm the civ symbol and card,
+   the picker items, a start at or near Tarquinii, then build a Biga and open the civics tree.
+2. New Game → Exploration → Tuscany. Same, then build a Bottega and a Banco in one district to
+   form the Piazza, and confirm a Maestro can be trained and retired.
+3. Whether `BasePersonaType` gives Porsenna and Lorenzo a 3D leader, or whether they fall back to
+   the generic model.
+4. Whether the wonder and building visual remaps take (Fanum Voltumnae on the Oracle, Santa Maria
+   del Fiore on Notre-Dame). Byzantium ended up building an art package for its wonder; if the
+   remap is enough, these two need none.
+
+### 2026-09-09 — a correction, and a new checker
+
+Partway through I "fixed" a bug in Byzantium that was not one. The reasoning was that
+`TRAIT_EXPLORATION_CIV` is declared by the age-exploration module, so a `CivilizationTraits` row
+naming it in an always-loaded file would fail its foreign key in Antiquity and Modern games and
+take the whole file down with it. Wrong: **all three age modules load in every game**, and each
+loads its `civilizations-shared.xml` (where its `TRAIT_<AGE>_CIV` is declared) under an `always`
+criteria. Only the groups behind an `AgeInUse` / `AgeAtOrBefore` criteria are age-scoped —
+`units.xml`, `progression-trees-tech.xml`, `constructibles.xml`, the per-age
+`civilizations-<age>.xml`. That is the real reason `UnitReplaces` cannot name an out-of-age unit.
+
+Byzantium is back the way it was, and the Etruscans and Tuscany rows moved back into
+`civilizations-shared.xml` to match. The rule is now written down in the skill's `reference.md`.
+
+Out of that came `tools/check-ages.py`, which does the check properly: it reads the FOREIGN KEY
+declarations out of the game's gameplay schema, works out which ages each of a mod's files is
+loaded in from the modinfo criteria, models the always/age-gated split inside the base age modules,
+and reports only genuine unresolvable keys. All three mods are clean under it.
