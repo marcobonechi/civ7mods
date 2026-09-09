@@ -10,7 +10,7 @@
     </Types>
     <Constructibles>
         <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="55" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
-        <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="110" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="95" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
     </Constructibles>
     <Buildings>
         <Row ConstructibleType="BUILDING_CISTERN" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
@@ -34,8 +34,10 @@
         <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_FOOD" YieldChange="3"/>
         <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_CULTURE" YieldChange="1"/>
         <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_HAPPINESS" YieldChange="1"/>
-        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_CULTURE" YieldChange="2"/>
-        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_CULTURE" YieldChange="5"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_DIPLOMACY" YieldChange="3"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_GOLD" YieldChange="1"/>
+        <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_HAPPINESS" YieldChange="1"/>
     </Constructible_YieldChanges>
     <Constructible_Maintenances>
         <Row ConstructibleType="BUILDING_MILION" YieldType="YIELD_GOLD" Amount="2"/>

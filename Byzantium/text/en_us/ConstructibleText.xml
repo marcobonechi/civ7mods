@@ -62,7 +62,7 @@
             <Text>Milion</Text>
         </Row>
         <Row Tag="LOC_BUILDING_MILION_DESCRIPTION">
-            <Text>Byzantine unique Antiquity Age building. +2 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_DIPLOMACY] Influence. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Quarter and +1 [icon:YIELD_CULTURE] Culture for each adjacent Wonder. Ageless. Forms the Mese with the Cistern.</Text>
+            <Text>Byzantine unique Antiquity Age building. +5 [icon:YIELD_CULTURE] Culture, +3 [icon:YIELD_DIPLOMACY] Influence, +1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Quarter and +1 [icon:YIELD_CULTURE] Culture for each adjacent Wonder. Ageless. Forms the Mese with the Cistern.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_MILION_TOOLTIP">
             <Text>The gilded milestone from which every road of the empire was measured.</Text>
