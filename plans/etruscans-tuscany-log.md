@@ -225,3 +225,26 @@ both defects were invisible.
 One thing for Marco to decide: the Tumulus came back flat and cel-shaded, the Cuniculus painterly.
 They do not quite belong to the same set. Better to settle the register before generating the
 other twenty-two.
+
+### 2026-09-09 — the Tarquinia painting
+
+The 16:9 landscape came back almost exactly as the brief described it: the ridge city with the
+Tuscan-order temple on the high point, the tumulus field laid out along cut streets, the cuniculus
+spilling into an irrigated field in the foreground, two figures on the track. It feeds three files
+— the two loading sizes and the picker panel — all installed.
+
+The signature needed a different approach here. On an icon it is found automatically, because
+after keying it survives as a small opaque island apart from the subject. A painting has nothing
+to key, and colour will not separate it: it is a pale translucent star, and warm sunlit dirt reads
+exactly the same — a relative-saturation test flagged 5,224 pixels of footpath along with it. So
+`tools/art-background.py` takes the box explicitly (`--inspect` writes magnified corner crops to
+read it off) and clones a feathered ellipse of nearby ground over it.
+
+The clone source matters more than expected. The first automatic offset reached far enough above
+the mark to pull a tomb doorway down into the middle of the footpath — an obvious ghost. Shortened
+the default and the tool now always writes a before/after crop, because whether the clone lands on
+plain ground or on a building is luck.
+
+One thing to change on the generator side: this arrived at 1024×572 and had to be upscaled 1.89×
+to fill 1920×1080. The brushwork hides it and it holds up at 1:1, but that is the limit. Ask for
+1920 wide or more; the smaller outputs are then downscales, which is always better.

@@ -19,11 +19,11 @@ and the rows for the square icons carry no `IconSize`, so a 256² file drops str
 | `unitflag_*.png` | 128² | 256² | **White silhouette on transparency**, drawn on the player's coloured flag. |
 | `buildicon_*.png`, `wondericon_*.png` | 128², Cuniculus and Tumulus 256² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
 | `leader_<name>.png` | 256² | 256² | Portrait. Firaxis ships a hex crop and a circle crop as separate files; ours points all three icon contexts at one PNG — see §5. |
-| `lsbg_<civ>_1080.png` | 1920×1080 | same | Loading-screen painting. |
+| `lsbg_<civ>_1080.png` | 1920×1080, Etruscans done | same | Loading-screen painting. |
 | `lsbg_<civ>_720.png` | 1280×720 | same | The same painting, downscaled. |
 | `lsbg_<civ>_vert.png` | 1080×1920 | same | Tall card in the age-transition civ select. |
 | `bg-card-<civ>.png` | 720×1080 | same | Civ detail panel. |
-| `bg-panel-<civ>.png` | 1301×732 | same | Picker background and narrative panel. 16:9, drawn `background-size: cover`, so keep detail away from the edges — the crop moves with the window. |
+| `bg-panel-<civ>.png` | 1301×732, Etruscans done | same | Picker background and narrative panel. 16:9, drawn `background-size: cover`, so keep detail away from the edges — the crop moves with the window. |
 
 Generator aspect ratios: **1:1** for every icon and the leader; **16:9** for the loading painting
 and the panel; **9:16** for the vertical card, cropped to 2:3 for `bg-card`.
@@ -115,7 +115,7 @@ for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 > linen tunic; he holds a short ivory sceptre. Head and shoulders, three-quarter view from the
 > front left, looking at the viewer. Dark smoky background, warm light from the left.
 
-### `lsbg_etruscans_1080` / `_720` / `bg-panel-etruscans` — 16:9, painting
+### `lsbg_etruscans_1080` / `_720` / `bg-panel-etruscans` — 16:9, painting — **done 2026-09-09**
 
 > Tarquinia in southern Etruria at golden hour, seen from across the valley: a city of tufa walls
 > and low tiled roofs along a flat-topped ridge, a painted Tuscan-order temple with a deep gabled
@@ -123,6 +123,19 @@ for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 > distance a field of round grassed tumulus tombs laid out along cut streets. In the foreground the
 > mouth of a cuniculus spilling water into an irrigated field, and two figures in Etruscan mantles
 > walking a track. Long shadows, dust in the air.
+
+Came back almost exactly as written, including the tumulus field laid out along cut streets and
+the cuniculus outfall. Processed with:
+
+```bash
+python3 tools/art-background.py Etruscans/icons/src/lsbg_etruscans.raw.png \
+  --civ etruscans --mod Etruscans --landscape --mark 919,464,38,38
+```
+
+**Generate these bigger if the generator will.** This one arrived at 1024×572 and had to be
+upscaled 1.89× to fill 1920×1080. The painterly brushwork hides it and it looks fine at 1:1, but
+anything with fine detail would not survive that. 1920 wide or more is the size to ask for; the
+two smaller outputs are then downscales, which is always better.
 
 ### `lsbg_etruscans_vert` / `bg-card-etruscans` — 9:16, painting
 
@@ -261,20 +274,31 @@ it only looks like an outline on a bright test background.
 python3 tools/art-icon.py raw.png Etruscans/icons/civ_sym_etruscans.png --silhouette
 ```
 
-**Loading screens and the panel** come from one 16:9 painting:
+**Backgrounds** go through `tools/art-background.py`, which writes every size from one painting
+and patches out the signature on the way:
 
 ```bash
-magick raw16x9.png -resize 1920x1080^ -gravity center -extent 1920x1080 Etruscans/icons/lsbg_etruscans_1080.png
-magick Etruscans/icons/lsbg_etruscans_1080.png -resize 1280x720 Etruscans/icons/lsbg_etruscans_720.png
-magick Etruscans/icons/lsbg_etruscans_1080.png -resize 1301x732 Etruscans/icons/bg-panel-etruscans.png
+python3 tools/art-background.py raw16x9.png --civ etruscans --mod Etruscans --landscape --mark X,Y,W,H
+python3 tools/art-background.py raw9x16.png --civ etruscans --mod Etruscans --portrait  --mark X,Y,W,H
 ```
 
-**Card and vertical card** come from one 9:16 painting, the card being a centre crop:
+`--landscape` writes the two loading sizes and the panel; `--portrait` writes the vertical card and
+the detail card.
+
+The signature cannot be found automatically here the way it can on an icon. An icon is keyed, so
+the mark is left over as a small opaque island apart from the subject and the tool just drops it. A
+painting has no transparency to key, and colour is no help: the mark is a pale translucent star and
+sunlit dirt reads identically — a saturation test on the Tarquinia painting flagged five thousand
+pixels of footpath along with it. So read the box off a magnified crop:
 
 ```bash
-magick raw9x16.png -resize 1080x1920^ -gravity center -extent 1080x1920 Etruscans/icons/lsbg_etruscans_vert.png
-magick Etruscans/icons/lsbg_etruscans_vert.png -resize 720x1280^ -gravity center -extent 720x1080 Etruscans/icons/bg-card-etruscans.png
+python3 tools/art-background.py raw.png --inspect     # writes 3x crops of all four corners
 ```
+
+It is patched by cloning a feathered ellipse of nearby ground over it. **Look at the before/after
+crop the tool writes** — whether the clone lands on plain ground or on top of a building is luck.
+The first run on Tarquinia pulled a tomb doorway down into the middle of a footpath; `--from-dy`
+and `--from-dx` move the source.
 
 **Leader portrait.** Ours points the plain, `CIRCLE_MASK` and `PORTRAIT_MASK` rows at one file, so a
 square bust will do to start with:
