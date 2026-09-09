@@ -367,7 +367,140 @@ asset can take:
 
 So: sheets for reviewing designs, individual generations for anything that ends up cut out.
 
-## 7. After dropping them in
+## 7. The regeneration set
+
+Nine assets are in. These nine are what is left, written as finished prompts to paste one at a
+time. Three are corrections to something that came back wrong, two are re-runs at size, and four
+have never been generated.
+
+**Ask for 1024×1024 for every icon and portrait, and at least 1920 wide for the landscapes.** The
+contact sheet's 175 px tiles were the limit of what a mask can take and below the limit for
+anything cut out.
+
+**Rendering register.** Neither icon prompt said how to render, and the generator chose
+differently each time: the Cuniculus came back painterly, the Tumulus flat and cel-shaded. Every
+prompt below now says painterly. That reverses what I suggested when the Tumulus arrived — I
+argued for the flat register because it held up at 96 px, but both do, and the deciding argument
+is the other one: the game's own building icons are soft-edged paintings (reference.md §4, read
+off the shipped art), and both landscape paintings are painterly too. So the Tumulus is the odd
+one out and is the one to re-run if the set ever needs to match exactly.
+
+### Shared icon line
+
+Append to each of the five icon prompts:
+
+> Civilization VII building icon: one subject centred with a clear margin, three-quarter view from
+> slightly above, full colour, painterly oil rendering with soft edges and a soft drop shadow,
+> warm desaturated palette, flat mid-grey #808080 background with nothing else on it, no border,
+> no frame, no text, no watermark. Square, 1024×1024.
+
+The flat field matters as much as the subject: it is what lets the background be keyed away. The
+contact-sheet versions were painted full-bleed to the tile edge, which is why none of them could
+be used.
+
+### 1. `civ_sym_etruscans` — correction
+
+> Flat pure-white silhouette on solid black: the Chimera of Arezzo in strict side profile facing
+> left. It has to read as three creatures in one — a lion's body striding forward, its mane in
+> stiff flame-shaped locks; a second head, a horned goat's, rising on a long neck from the middle
+> of the lion's back and turned to face backwards; and a tail that ends in a snake's head reared
+> up and turned back towards the goat. Narrow black cut-lines separate mane from body, the goat's
+> neck from the mane, and the snake from the tail. One bold closed shape, no gradients, no
+> outline, no shading, no text, centred with a generous margin. Square, 1024×1024. **Not a plain
+> lion** — the goat's head and the snake-headed tail are the whole point of the emblem.
+
+### 2. `wondericon_fanum_voltumnae` — correction, second time
+
+> An Etruscan temple of the Tuscan order. **Not a Greek temple**: the columns are smooth and
+> unfluted, wooden on low stone bases, and spaced roughly twice as far apart as a Greek temple's;
+> the roof is low-pitched and overhangs so far that the eave projects about a third of the
+> building's depth, throwing the whole porch into shadow; the gable is open woodwork, not carved
+> marble. It stands on a high stone podium reached by one broad flight of steps at the front only.
+> Painted terracotta figures stand along the roof ridge and at the corners of the eaves, and
+> painted terracotta plaques sheathe the projecting beam ends. Behind the deep porch are three
+> doorways for three cellae. The silhouette is wide, low, heavy and top-heavy with roof.
+> Terracotta red, cream stucco, dark timber.
+
+### 3. `buildicon_bottega` — correction
+
+> A Florentine artist's workshop seen from the street. **The subject is the shop counter, not the
+> building.** A wide stone-arched opening at ground level with its heavy wooden shutter propped up
+> horizontally as an awning, and the counter beneath it crowded with work: a half-finished painted
+> panel propped on a small easel and catching the light, a stone slab with pigment being ground on
+> it, open jars of ochre and one of ultramarine, brushes standing in a pot, a mahlstick, a plaster
+> cast of a hand and a small terracotta model on the shelf above. Plain lime-washed wall and
+> dressed sandstone around the opening. **No church, no altarpiece, no cloister, no arcade** — a
+> working shop, and the working clutter is what identifies it.
+
+### 4. `buildicon_banco` — re-run at size
+
+> A Florentine bank: a long banker's bench under a single stone loggia arch, spread with a green
+> cloth. On the cloth an open leather-bound ledger showing two columns of figures, a pair of brass
+> scales, a stack of gold florins and a spilled leather purse; beneath the bench an iron-banded
+> strongbox with three locks. Grey-green pietra serena, green cloth, gold. One group of objects,
+> not a room interior.
+
+### 5. `wondericon_santa_maria_del_fiore` — re-run at size
+
+> The cathedral of Florence: Brunelleschi's octagonal dome in red terracotta tile with eight white
+> marble ribs and a white marble lantern on top, the drum beneath it pierced with round oculi; the
+> nave running back from the dome, its flank faced in polychrome marble — white, dark green and
+> rose — and Giotto's slender square campanile rising beside it in the same marble. Angle it so the
+> dome dominates and the campanile reads clearly against the sky rather than against the nave.
+
+### 6. `leader_porsenna` — correction and re-run at size
+
+> Lars Porsenna, an Etruscan king of Clusium about 500 BC. Head and shoulders, three-quarter view
+> from the front left, looking at the viewer. A man in his fifties, dark hair and a full
+> spade-shaped beard in tight archaic curls, a strong straight nose, and the faint closed-lip
+> archaic smile of Etruscan tomb sculpture. He wears **a tall stiff conical felt cap rising to a
+> blunt point — the Etruscan tutulus, not a soft beret and not a Renaissance cap** — a heavy gold
+> and amber pectoral across the chest, a large gold disc fibula at the shoulder, and a
+> purple-bordered tebenna mantle over a linen tunic. He holds a short ivory sceptre with an eagle
+> finial. Dark smoky background, warm light from the left. Sid Meier's Civilization VII leader
+> portrait, loose oil brushwork, warm desaturated palette, no text, no watermark. Square,
+> 1024×1024.
+
+### 7. `leader_lorenzo` — re-run at size, design unchanged
+
+> Lorenzo de' Medici in Florence about 1480: a man of thirty, clean-shaven, straight dark hair cut
+> level at the jaw under a red flat cap, a long heavy jaw, a flattened broken-looking nose, a wide
+> mouth, dark watchful eyes. He wears a crimson cioppa of heavy wool over a dark doublet and no
+> jewellery at all. Head and shoulders, three-quarter view from the front left, looking at the
+> viewer. Behind him a dark warm interior and the suggestion of a stone window frame; soft light
+> from the left. Sid Meier's Civilization VII leader portrait, loose oil brushwork, warm
+> desaturated palette, no text, no watermark. Square, 1024×1024.
+
+### 8. `lsbg_etruscans_vert` / `bg-card-etruscans` — 9:16, at least 1080 wide
+
+> Inside a painted Etruscan chamber tomb at Tarquinia. On the back wall a frescoed banquet: a
+> married couple reclining together on a single couch, garlands hung above them, a flute player
+> and a lyre player, dancers among stylised trees; red, ochre and black pigment on plaster, the
+> plaster cracked and worn away in patches. The chamber is cut from rock and carved to imitate a
+> house, with a beamed ceiling and a low bench along the wall. An oil lamp standing on the floor
+> lights it from below, and at the edge of the frame the doorway is a rectangle of pale daylight.
+> Vertical composition, the couple in the upper two thirds. Sid Meier's Civilization VII concept
+> painting, loose oil brushwork, warm desaturated palette, soft rim light, no text, no watermark.
+
+### 9. `lsbg_tuscany_1080` / `_720` / `bg-panel-tuscany` — 16:9, at least 1920 wide
+
+> Florence from the hills above San Miniato at golden hour: Brunelleschi's red-tiled dome and white
+> lantern dominating the skyline, Giotto's pale campanile beside it, the crenellated tower of the
+> Palazzo Vecchio further off, red roofs packed close between them, the Arno curving through with
+> the shops of the Ponte Vecchio sitting on it. Cypresses and olive terraces on the slope in the
+> foreground, blue hills fading behind. Haze and a low sun. Sid Meier's Civilization VII concept
+> painting, loose oil brushwork, warm desaturated palette, soft rim light, no text, no watermark.
+
+### 10. `lsbg_tuscany_vert` / `bg-card-tuscany` — 9:16, at least 1080 wide
+
+> The courtyard of a Florentine palazzo at midday, looking up: two storeys of grey pietra serena
+> arches on slender columns around a small square of flagstones, a bright square of sky above, a
+> bronze statue on a plinth in the middle, a marble bust and an open folio on a stone bench, and an
+> apprentice carrying a wooden panel through an archway in deep shade. Vertical composition, hard
+> sunlight from directly above, the loggia in shadow. Sid Meier's Civilization VII concept
+> painting, loose oil brushwork, warm desaturated palette, no text, no watermark.
+
+## 8. After dropping them in
 
 ```bash
 find Etruscans Tuscany -name '*.xml' -exec xmllint --noout {} +
