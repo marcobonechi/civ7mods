@@ -157,6 +157,9 @@ export const GEO = {
         { name: "Simplon-Gotthard (Milan-Switzerland)", radius: 0.6, pts: [[8.2, 46.0], [8.6, 46.55]] },
         { name: "Brenner (Verona-Innsbruck)", radius: 0.6, pts: [[11.3, 46.6], [11.5, 47.2]] },
         { name: "Trieste-Postojna gate (Italy-Croatia)", radius: 0.7, pts: [[13.6, 45.75], [14.5, 45.5]] },
+        // Etruria to Felsina: the Futa and the Porretta, the crossings the Etruscans used to
+        // settle the Po valley from Tuscany.
+        { name: "Northern Apennines (Futa and Porretta)", radius: 0.8, pts: [[10.9, 43.9], [11.1, 44.2], [11.35, 44.5]] },
         { name: "Atlantic gate (Irun-Bayonne)", radius: 0.8, pts: [[-2.2, 43.1], [-1.4, 43.5]] },
         { name: "Roncesvalles", radius: 0.6, pts: [[-1.4, 42.9], [-1.2, 43.3]] },
         { name: "Mediterranean gate (Le Perthus)", radius: 0.8, pts: [[2.6, 42.3], [3.1, 42.7]] },

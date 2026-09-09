@@ -447,6 +447,46 @@ export const GEO = {
         [44.3, 39.7, "Ararat"], [42.45, 43.35, "Elbrus"], [35.45, 38.53, "Erciyes"], [52.1, 35.95, "Damavand"]
     ],
 
+    // Italy. Without these three lists the peninsula is a sealed box: the Apennines run down the
+    // spine as an unbroken core of impassable mountain and the Alps close the top, so on a
+    // standard grid the whole of Italy came to four to thirty-seven walkable tiles with no land
+    // route to the rest of Europe at any size. Rome, Etruria, Florence and Milan all shared one
+    // pocket and none of them could walk out of it. The two Large maps have carried this
+    // treatment since they were written; this map never got it.
+    //
+    // Mountains turned into hills. Tuscany and the Alps keep theirs - unlike the Large maps, which
+    // also soften the eastern Alps, this map leaves the range solid and opens it only at the named
+    // passes below, which is enough and keeps the wall a wall. Volcanoes are stamped afterwards,
+    // so Vesuvius and Etna survive.
+    hillAreas: [
+        { name: "Central and southern Italy", prob: 1.0, pts: [[11.8, 36.5], [19.0, 36.5], [19.0, 42.6], [14.6, 43.5], [12.6, 43.3], [11.8, 42.2]] }
+    ],
+    // Mountain passes: mountains within the radius (tiles) of these lines become hills. The
+    // northern Apennine crossings are what let Etruria reach the Po valley overland rather than
+    // sitting boxed in between Rome and the ridge; the Alpine ones are the routes the amber and
+    // tin trade actually took.
+    passes: [
+        { name: "Riviera coast (Genoa-Nice)", radius: 0.7, pts: [[6.9, 43.65], [8.2, 44.0]] },
+        { name: "Mont Cenis (Turin-Lyon)", radius: 0.6, pts: [[6.6, 45.1], [7.4, 45.2]] },
+        { name: "Simplon-Gotthard (Milan-Switzerland)", radius: 0.6, pts: [[8.2, 46.0], [8.6, 46.55]] },
+        { name: "Brenner (Verona-Innsbruck)", radius: 0.6, pts: [[11.3, 46.6], [11.5, 47.2]] },
+        { name: "Trieste-Postojna gate (Italy-Croatia)", radius: 0.7, pts: [[13.6, 45.75], [14.5, 45.5]] },
+        // Etruria to Felsina: the Futa and the Porretta, the crossings the Etruscans used to
+        // settle the Po valley from Tuscany.
+        { name: "Northern Apennines (Futa and Porretta)", radius: 0.8, pts: [[10.9, 43.9], [11.1, 44.2], [11.35, 44.5]] },
+        { name: "Atlantic gate (Irun-Bayonne)", radius: 0.8, pts: [[-2.2, 43.1], [-1.4, 43.5]] },
+        { name: "Mediterranean gate (Le Perthus)", radius: 0.8, pts: [[2.6, 42.3], [3.1, 42.7]] },
+        { name: "Isthmus of Corinth", radius: 0.6, pts: [[22.75, 37.85], [23.15, 38.02]] }
+    ],
+    // The real lowlands, flattened back after the hillAreas above have turned the mountains to
+    // hills - otherwise the whole peninsula is hill country and short of food.
+    flatAreas: [
+        { name: "Po valley", prob: 1.0, pts: [[7.6, 44.9], [7.7, 45.6], [9.2, 46.0], [11.2, 46.05],
+            [12.5, 45.85], [12.6, 45.2], [12.35, 44.75], [11.2, 44.62], [9.6, 44.68], [8.2, 44.72]] },
+        { name: "Latium and the Tuscan Maremma", prob: 0.75, pts: [[10.4, 41.2], [13.3, 41.2], [13.3, 43.4], [10.4, 43.4]] },
+        { name: "Campania and the Tavoliere", prob: 0.7, pts: [[13.8, 40.2], [17.6, 40.2], [17.6, 41.9], [13.8, 41.9]] }
+    ],
+
     // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the
     // Bosporus, so armies cross from Constantinople into Bithynia over open ground.
     lowAreas: [

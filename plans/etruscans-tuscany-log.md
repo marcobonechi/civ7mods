@@ -522,3 +522,52 @@ first — `PSEUDOYIELD_TRADE_ROUTE`, which would have been the obvious one for L
 exist, and `PSEUDOYIELD_RESOURCE_IMPORT` stands in for it.
 
 Both static checkers clean, XML valid, installed.
+
+### 2026-09-09 — Etruscans made stronger, and Italy unsealed
+
+**Disciplina Etrusca rebuilt.** Marco: the Etruscans are known for their cities and their good life
+— food, banquets, freedom for women — and the ability did not show it. It was three modifiers. Now
+nine; see `plans/etruscans.md` §1.1 for the list and the sources. Base-game civ abilities run from
+three (Persia) to thirteen (Greece), so nine is comfortably inside the range.
+
+**The maps: Italy was a sealed box.** Marco asked for the Etruscans not to be locked in by Rome and
+to be able to move north over land. Measuring it first turned up something larger than a start
+position.
+
+`TERRAIN_MOUNTAIN` is `Impassable="true"` in `base-standard/data/terrain.xml`, so a mountain range
+with no gap in it is a wall, not slow ground. In `europe-geo.js` the Apennines ran down the spine of
+Italy with an unbroken core and the Alps closed the top. Flood-filling the walkable tiles from
+Populonia:
+
+| grid | before | after |
+|---|---|---|
+| 56x50 | **4** | 972 |
+| 66x60 | **9** | 1409 |
+| 78x70 | **7** | 1977 |
+| 90x80 | **37** | 3778 |
+| 102x92 | **15** | 4973 |
+
+And it was not an Etruscan problem. On 78x70, before: Rome 7 tiles, Florence 24, Etruria 7 — one
+pocket, no land route out — while Greece, Spain, France, Bulgaria and Byzantium all shared a
+1926-tile continent. Whoever drew Italy was playing a different game on an island.
+
+The fix is the treatment the two Large maps have carried since they were written and this map never
+got: `hillAreas` (central and southern Apennine mountains become hills), `passes` (mountains within
+a radius of a named line become hills) and `flatAreas` (the Po valley, Latium and the Maremma
+flattened back, so the peninsula is not all hill country and short of food). Ported the Italian
+subset, plus the Atlantic and Mediterranean gates through the Pyrenees and the Isthmus of Corinth,
+which the same list carries.
+
+One pass is new in all three geo files: **Northern Apennines (Futa and Porretta)**, the crossings
+the Etruscans actually used to settle the Po valley from Tuscany. That single line is what fixed the
+Variant map, which was also sealed at four of its five sizes (1 to 30 tiles) despite already having
+the rest of the pass list.
+
+Two things deliberately *not* done. The Large maps also soften the eastern Alps (`hillAreas`, prob
+0.3); `europe-geo.js` does not get that — the named passes are enough, and the Alps stay a wall
+between them. And the Etruscan true start did not move: Populonia was chosen carefully (§1.7) and
+the lock was the mountains, not the neighbour.
+
+New tool: **`tools/land-reach.mjs`** — flood-fills walkable land from a lon/lat on any of the three
+geo files at any grid size, offline. Verified across every grid size and four seeds for all three
+maps; every one now reaches the map's northern edge.
