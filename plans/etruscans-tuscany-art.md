@@ -125,17 +125,17 @@ for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 > walking a track. Long shadows, dust in the air.
 
 Came back almost exactly as written, including the tumulus field laid out along cut streets and
-the cuniculus outfall. Processed with:
+the cuniculus outfall.
+
+Regenerated larger on the second pass: 1376×768 instead of 1024×572, which brings the upscale to
+1920×1080 down from 1.89× to 1.41×, and the extra pixels are real — the temple's column flutes and
+antefixes are crisper, not just bigger. **1920 wide or more is still the size to ask for**, so the
+three outputs become downscales. Processed with:
 
 ```bash
 python3 tools/art-background.py Etruscans/icons/src/lsbg_etruscans.raw.png \
-  --civ etruscans --mod Etruscans --landscape --mark 919,464,38,38
+  --civ etruscans --mod Etruscans --landscape --mark 1237,622,42,52 --from-dx 70 --from-dy -80
 ```
-
-**Generate these bigger if the generator will.** This one arrived at 1024×572 and had to be
-upscaled 1.89× to fill 1920×1080. The painterly brushwork hides it and it looks fine at 1:1, but
-anything with fine detail would not survive that. 1920 wide or more is the size to ask for; the
-two smaller outputs are then downscales, which is always better.
 
 ### `lsbg_etruscans_vert` / `bg-card-etruscans` — 9:16, painting
 
@@ -295,10 +295,16 @@ pixels of footpath along with it. So read the box off a magnified crop:
 python3 tools/art-background.py raw.png --inspect     # writes 3x crops of all four corners
 ```
 
-It is patched by cloning a feathered ellipse of nearby ground over it. **Look at the before/after
-crop the tool writes** — whether the clone lands on plain ground or on top of a building is luck.
-The first run on Tarquinia pulled a tomb doorway down into the middle of a footpath; `--from-dy`
-and `--from-dx` move the source.
+It is patched by cloning a feathered ellipse of nearby ground over it, and **the clone source has
+to be chosen by eye**. On the Tarquinia painting the first three offsets all failed differently:
+straight up pulled a tomb doorway into the middle of a footpath, left pulled in a headless copy of
+one of the walking figures, and down re-cloned the top point of the mark itself. Up-and-right
+landed on plain bank and was clean.
+
+So: run it two or three times with different `--from-dx` / `--from-dy`, look at the
+`.mark-check.png` it writes beside the source each time, and keep the one that works. Filling with
+a blur instead of a clone was tried and is worse — it cannot duplicate anything, but it leaves an
+obvious soft blob where the ground had texture.
 
 **Leader portrait.** Ours points the plain, `CIRCLE_MASK` and `PORTRAIT_MASK` rows at one file, so a
 square bust will do to start with:

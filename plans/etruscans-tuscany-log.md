@@ -248,3 +248,21 @@ plain ground or on a building is luck.
 One thing to change on the generator side: this arrived at 1024×572 and had to be upscaled 1.89×
 to fill 1920×1080. The brushwork hides it and it holds up at 1:1, but that is the limit. Ask for
 1920 wide or more; the smaller outputs are then downscales, which is always better.
+
+### 2026-09-09 — Tarquinia regenerated larger
+
+Marco regenerated the landscape at 1376×768 instead of 1024×572. Worth it: the upscale to
+1920×1080 drops from 1.89× to 1.41×, and checking the temple side by side at matched scale, the
+extra pixels are real detail — the column flutes and the antefixes along the ridge are crisper,
+not just larger. Same composition, so nothing else changed.
+
+The signature moved with the render, to 1237,622 (42×52), and this time the clone needed three
+attempts. Straight up pulled a tomb doorway into the middle of the footpath; left pulled in a
+headless copy of one of the walking figures; down re-cloned the mark's own top point back in.
+Up-and-right landed on plain bank and is clean at 1:1 in the delivered file. A blur fill was tried
+as an alternative and is worse — it cannot duplicate anything, but it leaves an obvious soft blob.
+
+The lesson is in the brief: the clone source has to be chosen by eye, two or three runs, comparing
+the before/after crop the tool writes each time. I started to add a `--candidates` mode that would
+sweep the offsets automatically and backed it out — it made the tool convoluted for something that
+is three commands and a look.
