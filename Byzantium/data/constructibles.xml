@@ -43,6 +43,8 @@
     <Constructible_YieldChanges>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_CULTURE" YieldChange="8"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_DIPLOMACY" YieldChange="6"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_GOLD" YieldChange="6"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_HAPPINESS" YieldChange="3"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="4"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
     </Constructible_YieldChanges>
