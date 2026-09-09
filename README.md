@@ -363,5 +363,7 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   `<LEADER_TYPE>_GAME_ASSET` and falls back to a generic one. `Leaders.BasePersonaType` points
   Porsenna at Xerxes and Lorenzo at Machiavelli, which is the mechanism Firaxis's own alternate
   personas use; whether it carries the model through is the first thing to check in game.
-- Design sheets and the running work log: [`plans/etruscans.md`](plans/etruscans.md),
-  [`plans/tuscany.md`](plans/tuscany.md), [`plans/etruscans-tuscany-log.md`](plans/etruscans-tuscany-log.md).
+- Design sheets, the running work log, and the art brief with a generation prompt for every PNG:
+  [`plans/etruscans.md`](plans/etruscans.md), [`plans/tuscany.md`](plans/tuscany.md),
+  [`plans/etruscans-tuscany-log.md`](plans/etruscans-tuscany-log.md),
+  [`plans/etruscans-tuscany-art.md`](plans/etruscans-tuscany-art.md).

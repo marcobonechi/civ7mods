@@ -4,6 +4,7 @@ A running record of what was built, in what order, and what is still open. Marco
 the history is readable and easy to adjust; each entry corresponds to one or more commits.
 
 Design sheets: [etruscans.md](etruscans.md), [tuscany.md](tuscany.md).
+Art brief and prompts: [etruscans-tuscany-art.md](etruscans-tuscany-art.md).
 Recipe: `.claude/skills/new-civilization/` (`SKILL.md` + `reference.md`). Worked precedent:
 [byzantium.md](byzantium.md) and the `Byzantium/` folder, which both mods copy structurally.
 
@@ -107,3 +108,12 @@ Out of that came `tools/check-ages.py`, which does the check properly: it reads 
 declarations out of the game's gameplay schema, works out which ages each of a mod's files is
 loaded in from the modinfo criteria, models the always/age-gated split inside the base age modules,
 and reports only genuine unresolvable keys. All three mods are clean under it.
+
+### 2026-09-09 — art brief
+
+`plans/etruscans-tuscany-art.md`: the slot inventory for both mods (what each PNG is, what size it
+should be, and what the game does to it), a prompt per asset, and tested ImageMagick recipes for
+turning generator output into the files the game wants — white-on-black keyed to a white mask for
+the symbol and unit flags, a flood-fill for the colour icons, and the crops for the four
+background sizes. Nothing in the XML has to change when the real art lands: the icon rows already
+name every file and carry no size, so a 256 square drops in over the 128 placeholder.
