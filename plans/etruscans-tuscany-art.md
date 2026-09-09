@@ -459,7 +459,7 @@ device that makes the Cuniculus work:
 > strongbox with three locks. Grey-green pietra serena, green cloth, gold. One group of objects,
 > not a room interior.
 
-### 5. `wondericon_santa_maria_del_fiore` — re-run at size
+### 5. `wondericon_santa_maria_del_fiore` — **done 2026-09-09**
 
 > The cathedral of Florence: Brunelleschi's octagonal dome in red terracotta tile with eight white
 > marble ribs and a white marble lantern on top, the drum beneath it pierced with round oculi; the
@@ -467,7 +467,7 @@ device that makes the Cuniculus work:
 > rose — and Giotto's slender square campanile rising beside it in the same marble. Angle it so the
 > dome dominates and the campanile reads clearly against the sky rather than against the nave.
 
-### 6. `leader_porsenna` — correction and re-run at size
+### 6. `leader_porsenna` — **done 2026-09-09** (the tutulus arrived, with the pectoral and the tebenna)
 
 > Lars Porsenna, an Etruscan king of Clusium about 500 BC. Head and shoulders, three-quarter view
 > from the front left, looking at the viewer. A man in his fifties, dark hair and a full
@@ -480,7 +480,7 @@ device that makes the Cuniculus work:
 > portrait, loose oil brushwork, warm desaturated palette, no text, no watermark. Square,
 > 1024×1024.
 
-### 7. `leader_lorenzo` — re-run at size, design unchanged
+### 7. `leader_lorenzo` — **done 2026-09-09**
 
 > Lorenzo de' Medici in Florence about 1480: a man of thirty, clean-shaven, straight dark hair cut
 > level at the jaw under a red flat cap, a long heavy jaw, a flattened broken-looking nose, a wide
@@ -490,7 +490,7 @@ device that makes the Cuniculus work:
 > from the left. Sid Meier's Civilization VII leader portrait, loose oil brushwork, warm
 > desaturated palette, no text, no watermark. Square, 1024×1024.
 
-### 8. `lsbg_etruscans_vert` / `bg-card-etruscans` — 9:16, at least 1080 wide
+### 8. `lsbg_etruscans_vert` / `bg-card-etruscans` — **done 2026-09-09**, 768×1376
 
 > Inside a painted Etruscan chamber tomb at Tarquinia. On the back wall a frescoed banquet: a
 > married couple reclining together on a single couch, garlands hung above them, a flute player
@@ -518,6 +518,17 @@ device that makes the Cuniculus work:
 > apprentice carrying a wooden panel through an archway in deep shade. Vertical composition, hard
 > sunlight from directly above, the loggia in shadow. Sid Meier's Civilization VII concept
 > painting, loose oil brushwork, warm desaturated palette, no text, no watermark.
+
+### Still open
+
+Three generations, five files, all Tuscan: the Bottega as a cutaway block (§3), the Florence
+landscape (§9) and the palazzo courtyard (§10). **Etruria is finished** — every one of its
+fourteen files is real art.
+
+A pattern worth knowing while these are generated: **the PNG exports carry the sparkle, the JPG
+exports do not.** Every PNG so far has had a 48×48 mark at 880,880 on a 1024 square; none of the
+JPGs has had one at all. It costs nothing either way — `art-icon.py` finds and removes it — but on
+a full-bleed painting, where it has to be cloned out by hand, asking for a JPG saves the trouble.
 
 ## 8. After dropping them in
 

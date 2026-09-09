@@ -333,3 +333,27 @@ prompt in the brief asking for the same content as a **cutaway block**, which is
 makes the Cuniculus read.
 
 Seventeen of twenty-four assets are real art now.
+
+### 2026-09-09 — Etruria finished
+
+Four more in: the tomb interior, the cathedral, and both leaders at size. All four landed first
+time, and Porsenna's correction is complete — the tall conical tutulus, the gold and amber
+pectoral, the purple-bordered tebenna, the ivory sceptre.
+
+**Every one of the Etruscans' fourteen files is now real art.** Checked by colour count rather than
+by eye: the flat generated placeholders quantise to 64 colours at 64×64, real art to thousands, so
+the whole set can be audited in one pass. Tuscany has five placeholders left, all of them
+backgrounds — the two paintings that have not been generated.
+
+The tomb interior arrived at 768×1376, a 1.41× upscale to fill 1080×1920, same as the second
+Tarquinia. It feeds the tall civ-select card and the civ detail card, and the 2:3 centre crop keeps
+the whole chamber with the lamp.
+
+One pattern noticed while processing: **the PNG exports carry the sparkle, the JPG exports do
+not.** Every PNG so far has had a 48×48 mark at 880,880 on a 1024 square; none of the JPGs has had
+one. It costs nothing on an icon, where the tool finds and removes it automatically, but on a
+full-bleed painting it has to be cloned out by hand — so asking for JPG saves that step. Recorded
+in the brief.
+
+Remaining: three generations, five files, all Tuscan — the Bottega as a cutaway block, the Florence
+landscape, and the palazzo courtyard.
