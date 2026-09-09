@@ -433,3 +433,92 @@ Also checked and *not* a problem, having wondered: `LEADER_MACHIAVELLI` is defin
 `base-standard`, not a DLC, so the rows need no `ModInUse` guard. And an Antiquity civ carrying
 `UnlockRequirements` on its own unlock is normal, not a lock-out — Rome, Greece, Egypt, Persia,
 Maurya and Aksum all do the same.
+
+### 2026-09-09 — the leader select screen
+
+Marco pointed at three things in the Leader Select screen, all of them true.
+
+**The portraits were square.** Every leader row in both `data/icons/icons.xml` files pointed at
+the same `leader_<name>.png`, a plain square crop. Firaxis does not do that. Ada Lovelace's
+`leader-icons.xml` has nine rows: the default rows take a *hex* crop at 256/128/64, the
+`LEADER_HAPPY` and `LEADER_ANGRY` contexts take the hex at 128, and `CIRCLE_MASK` and
+`PORTRAIT_MASK` take a *circle* crop — that is where the round frame comes from. Generated
+`lp_hex_<leader>_{256,128,64}` and `lp_circ_<leader>_{256,140,128,64}` for both leaders with
+ImageMagick polygon and circle `DstIn` masks, rewrote both icons.xml files to those nine rows,
+and added the new files to both `ImportFiles` blocks in each modinfo.
+
+The shell also builds some of these names by hand rather than going through `IconDefinitions`, so
+the UI scripts' registry now generates every size token instead of only the 256s it had.
+
+**There was no human on the pedestal.** This one is engine-level.
+`core/ui/shell/leader-select/leader-select-model-manager.js:151-162`:
+
+```js
+this.leader3DModel = this.leaderSelectModelGroup.addModel(
+  this.getLeaderAssetName(this.currentLeaderAssetName), ...);   // "<LEADER_TYPE>_GAME_ASSET"
+if (this.leader3DModel == null) {
+  this.leader3DModel = this.leaderSelectModelGroup.addModel(
+    this.getFallbackAssetName(), ...);                          // the faceless figure
+}
+```
+
+A mod cannot ship a model, so `LEADER_PORSENNA_GAME_ASSET` does not resolve and the fallback
+takes over. `BasePersonaType` does *not* help here, which is worth writing down because it looks
+like it should: it is read by the alternate-persona system, not by this lookup.
+
+The fix is the same trick as the background wall — hook the call, not the data. The UI scripts now
+proxy `WorldUI.createModelGroup` and wrap `addModel` / `addModelAtPos` on whatever group comes
+back, rewriting the asset name on the way in. Porsenna borrows **Augustus** (the toga the Romans
+took from the Etruscans is the closest thing the game has to a lucumo) and Lorenzo borrows
+**Machiavelli** (the other Florentine, dressed for the right century). Because the scripts load in
+both `shell` and `game` scope, any other screen that builds its models the same way is covered too.
+`BasePersonaType` was moved to match the borrowed model in each case, for coherence rather than
+effect.
+
+Not verified. It only shows itself once the screen is on the pedestal, and computer-use access to
+the game was declined earlier, so this is the one change here that Marco has to look at.
+
+**Both leaders were thin.** Three modifiers each. The base game's median is five (Ashoka and Jose
+Rizal have eight; Confucius and Hatshepsut have three, but theirs are large). More to the point,
+*every* shipped leader has an `EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE` agenda and neither of ours
+did, which leaves them diplomatically inert — the AI has nothing to read.
+
+Lorenzo, ten modifiers, following Marco's direction (wonders, a bigger banking empire including
+trade money, a *smaller* science bonus):
+
+| | |
+|---|---|
+| +3 Gold per Great Work | was 2 |
+| +1 Happiness per Great Work | |
+| +1 Culture in all Settlements | |
+| **+20% Production toward Wonders** | above the 15% at the top of the base range; it is his headline |
+| **+50% trade income** | `EFFECT_CITY_ADJUST_TRADE_YIELD` |
+| **+3 Gold per trade route** | |
+| **+1 trade capacity** | |
+| **15% off building purchases** | the bank has to buy something |
+| **+1 Science** | deliberately the smallest number on the sheet |
+| **Patron of Workshops** agenda | weighs `DIPLOMACY_AGENDA_COMPARE_NUM_GREAT_WORKS` |
+
+Porsenna, eight, keeping the engineer/besieger identity and widening it:
+
+| | |
+|---|---|
+| +3 Production in Cities | was 2 |
+| **15% off building purchases** | |
+| **+2 Science** | he is the scientific attribute |
+| **+2 Happiness** | the drains and the aqueduct earned their keep in how people lived |
+| +30 Health on fortified Districts | was 20 |
+| +4 Combat defending a District | was 3 |
+| **+5 Combat attacking a District** | `REQUIREMENT_OPPONENT_IS_DISTRICT`; he is the one man in the tradition who actually took the city |
+| **The Labyrinth** agenda | weighs `DIPLOMACY_AGENDA_COMPARE_DISTRICT_BUILDINGS` |
+
+Ability descriptions rewritten to match, agenda name and description text added to both
+`LeaderText.xml`, and the AI yield/pseudoyield biases extended so the AI actually plays the new
+bonuses (`PSEUDOYIELD_WONDER`, `PSEUDOYIELD_GREAT_WORK_SLOT`, `PSEUDOYIELD_RESOURCE_IMPORT` for
+Lorenzo; `PSEUDOYIELD_CITY_DEFENSES`, `YIELD_HAPPINESS` for Porsenna).
+
+Every effect, requirement, weight type and pseudoyield above was grepped out of the base modules
+first — `PSEUDOYIELD_TRADE_ROUTE`, which would have been the obvious one for Lorenzo, does not
+exist, and `PSEUDOYIELD_RESOURCE_IMPORT` stands in for it.
+
+Both static checkers clean, XML valid, installed.
