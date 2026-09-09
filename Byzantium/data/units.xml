@@ -13,13 +13,13 @@
         <Row UnitType="UNIT_CATAPHRACT" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row UnitType="UNIT_CATAPHRACT_2" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_2_DESCRIPTION" Tier="2" Maintenance="4" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row UnitType="UNIT_CATAPHRACT_3" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_3_DESCRIPTION" Tier="3" Maintenance="5" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
-        <Row UnitType="UNIT_DROMON" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_DESCRIPTION" Tier="1" Maintenance="4" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
+        <Row UnitType="UNIT_DROMON" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
     </Units>
     <Unit_Stats>
         <Row UnitType="UNIT_CATAPHRACT" Combat="44"/>
         <Row UnitType="UNIT_CATAPHRACT_2" Combat="49"/>
         <Row UnitType="UNIT_CATAPHRACT_3" Combat="54"/>
-        <Row UnitType="UNIT_DROMON" Combat="30" RangedCombat="35" Bombard="30" Range="2"/>
+        <Row UnitType="UNIT_DROMON" Combat="35" RangedCombat="40" Bombard="45" Range="2"/>
     </Unit_Stats>
     <Unit_Costs>
         <Row UnitType="UNIT_CATAPHRACT" YieldType="YIELD_PRODUCTION" Cost="160"/>
