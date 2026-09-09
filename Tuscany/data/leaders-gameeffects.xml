@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Il Magnifico. Lorenzo bought very little art himself; what he did was keep the peace,
+         run the bank, write poetry and put the right people in front of the right patrons. -->
+    <Modifier id="LORENZO_MOD_GOLD_PER_GREAT_WORK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+        <String context="Description">LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="LORENZO_MOD_HAPPINESS_PER_GREAT_WORK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="LORENZO_MOD_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+</GameEffects>

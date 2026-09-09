@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_TUSCANY" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_UNLOCK_EXPLORATION_CIV_DESCRIPTION" Icon="CIVILIZATION_TUSCANY" UnlockRewardType="CIVILIZATION_TUSCANY" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" ConfigurationValue="CIVILIZATION_TUSCANY"/>
+    </UnlockConfigurationValues>
+    <!-- "Is Lorenzo" requirement set, for the unlocks the leader carries. -->
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_LEADER_IS_LORENZO" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_BANKS_TUSCANY" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <Requirements>
+        <Row RequirementId="REQ_LEADER_IS_LORENZO" RequirementType="REQUIREMENT_PLAYER_LEADER_TYPE_MATCHES"/>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BANKS_TUSCANY" RequirementType="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_BUILDINGS"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_LEADER_IS_LORENZO" Name="LeaderType" Value="LEADER_LORENZO"/>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BANKS_TUSCANY" Name="BuildingType" Value="BUILDING_BANK"/>
+        <Row RequirementId="REQ_PLAYER_HAS_3_BANKS_TUSCANY" Name="Amount" Value="3"/>
+    </RequirementArguments>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_LEADER_IS_LORENZO" RequirementId="REQ_LEADER_IS_LORENZO"/>
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_BANKS_TUSCANY" RequirementId="REQ_PLAYER_HAS_3_BANKS_TUSCANY"/>
+    </RequirementSetRequirements>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_LEADER_IS_LORENZO" Description="LOC_UNLOCK_PLAY_AS_LORENZO_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_LORENZO_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_PLAYER_HAS_3_BANKS_TUSCANY" Description="LOC_UNLOCK_BANKS_TUSCANY_DESCRIPTION" Tooltip="LOC_UNLOCK_BANKS_TUSCANY_TOOLTIP" GameplayUnlock="True" NarrativeText="LOC_UNLOCK_BANKS_TUSCANY_NARRATIVE"/>
+    </UnlockRequirements>
+</Database>

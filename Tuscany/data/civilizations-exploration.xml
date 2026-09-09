@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <!-- The baseline Exploration-civ trait. It only exists while the Exploration module is loaded,
+         so the row lives here rather than in the always-loaded shared file. -->
+    <CivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_EXPLORATION_CIV"/>
+    </CivilizationTraits>
+    <TraitModifiers>
+        <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_TUSCANY_SETTLEMENT_GOLD"/>
+        <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_TUSCANY_SETTLEMENT_CULTURE"/>
+        <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_TUSCANY_CULTURE_PER_GREAT_WORK"/>
+        <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_CIV_WONDER_PRODUCTION_TUSCANY"/>
+        <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_REVEAL_CIV_CULTURE_TREE_TUSCANY"/>
+    </TraitModifiers>
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_PLAYER_IS_TUSCANY" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_PLAYER_IS_TUSCANY" RequirementId="REQ_PLAYER_HAS_TRAIT_TUSCANY"/>
+    </RequirementSetRequirements>
+    <Requirements>
+        <Row RequirementId="REQ_PLAYER_HAS_TRAIT_TUSCANY" RequirementType="REQUIREMENT_PLAYER_HAS_CIVILIZATION_OR_LEADER_TRAIT"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_PLAYER_HAS_TRAIT_TUSCANY" Name="TraitType" Value="TRAIT_TUSCANY"/>
+    </RequirementArguments>
+</Database>

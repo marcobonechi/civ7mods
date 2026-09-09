@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modern: Tuscany's node in the shared Test of Time civic tree. A Modern start never sees the
+     Exploration civic tree, so the quarter and the wonder unlock here too. -->
+<Database>
+    <Types>
+        <Row Type="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" Quote="LOC_CIVIC_TUSCANY_UMANESIMO_QUOTE" QuoteAuthor="LOC_CIVIC_TUSCANY_UMANESIMO_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" ProgressionTree="TREE_CIVICS_MO_TEST_OF_TIME" Cost="2000" Name="LOC_NODE_CIVIC_MO_TUSCANY_GRANDUCATO_NAME" IconString="cult_philosophy" CanSteal="false"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_UMANESIMO_II"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_MODIFIER" TargetType="MOD_MO_SETTLEMENT_CAP_INCREASE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_BOTTEGA" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_BANCO" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_SANTA_MARIA_DEL_FIORE" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreeNodeTraits>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_TUSCANY_GRANDUCATO" RequiredTraitType="TRAIT_TUSCANY"/>
+    </ProgressionTreeNodeTraits>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_MO_ADMINISTRATION" PrereqNode="NODE_CIVIC_MO_TUSCANY_GRANDUCATO"/>
+        <Row Node="NODE_CIVIC_MO_SYNCRETISM_CHOICE" PrereqNode="NODE_CIVIC_MO_TUSCANY_GRANDUCATO"/>
+    </ProgressionTreePrereqs>
+</Database>

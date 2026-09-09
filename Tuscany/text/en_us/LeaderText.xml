@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_LEADER_LORENZO_NAME">
+            <Text>Lorenzo</Text>
+        </Row>
+        <Row Tag="LOC_LEADER_LORENZO_DESCRIPTION">
+            <Text>Lorenzo de' Medici, il Magnifico: banker, poet, diplomat, and the man who kept Italy at peace for twelve years and Florence full of workshops.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME">
+            <Text>Il Magnifico</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION">
+            <Text>+2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_HAPPINESS] Happiness for each Great Work in a Settlement, and +1 [icon:YIELD_CULTURE] Culture in all Settlements.</Text>
+        </Row>
+        <Row Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_PREVIEW">
+            <Text>Il Magnifico</Text>
+        </Row>
+        <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY">
+            <Text>How beautiful is youth, that flies from us so fast. Let who will be glad: of tomorrow there is no certainty.</Text>
+        </Row>
+    </EnglishText>
+</Database>

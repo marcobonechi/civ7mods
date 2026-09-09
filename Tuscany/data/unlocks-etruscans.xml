@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Etruscans mod is in use: Lorenzo can also take Etruria in Antiquity. -->
+<Database>
+    <LeaderSyncretismUnlocks>
+        <Row LeaderType="LEADER_LORENZO" UnlockCivilizationType="CIVILIZATION_ETRUSCANS"/>
+    </LeaderSyncretismUnlocks>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" RequirementSetId="REQSET_LEADER_IS_LORENZO" Description="LOC_UNLOCK_PLAY_AS_LORENZO_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_LORENZO_ETRUSCANS_TOOLTIP"/>
+    </UnlockRequirements>
+</Database>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="TUSCANY_MECENATISMO_BOTTEGA_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_BOTTEGA</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">3</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_MECENATISMO_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="TUSCANY_FIORINO_BANCO_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="ConstructibleType">BUILDING_BANCO</Argument>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">3</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_FIORINO_DESCRIPTION</String>
+    </Modifier>
+</GameEffects>

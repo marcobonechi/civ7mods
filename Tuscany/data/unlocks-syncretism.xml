@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LeaderSyncretismUnlocks>
+        <Row LeaderType="LEADER_LORENZO" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+        <Row LeaderType="LEADER_MACHIAVELLI" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+        <Row LeaderType="LEADER_ISABELLA" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+        <Row LeaderType="LEADER_IBN_BATTUTA" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+    </LeaderSyncretismUnlocks>
+    <CivilizationSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_ROME" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+        <Row CivilizationType="CIVILIZATION_GREECE" UnlockCivilizationType="CIVILIZATION_TUSCANY"/>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockCivilizationType="CIVILIZATION_AMERICA"/>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockCivilizationType="CIVILIZATION_FRENCH_EMPIRE"/>
+    </CivilizationSyncretismUnlocks>
+    <CivSelfSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY" Kind="KIND_TRADITION" Age="AGE_ANTIQUITY" ModifierID="MOD_UNLOCK_TUSCANY_SYNCRETISM_ANTIQUITY"/>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_CULTURE_SLOT" Kind="KIND_CULTURE_SLOT" Age="AGE_ANTIQUITY" ModifierID="MOD_SELF_SYNCRETISM_GRANT_TRADITION_SLOT"/>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_TUSCANY_SYNCRETISM_MODERN" Kind="KIND_TRADITION" Age="AGE_MODERN" ModifierID="MOD_UNLOCK_TUSCANY_SYNCRETISM_MODERN"/>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_CULTURE_SLOT" Kind="KIND_CULTURE_SLOT" Age="AGE_MODERN" ModifierID="MOD_SELF_SYNCRETISM_GRANT_TRADITION_SLOT"/>
+    </CivSelfSyncretismUnlocks>
+</Database>

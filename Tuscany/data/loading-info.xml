@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LoadingInfo_Civilizations>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" CivilizationText="LOC_LOADING_CIV_INTRO_TEXT_TUSCANY" Subtitle="LOC_LOADING_INTRO_TUSCANY" BackgroundImageHigh="fs://game/tuscany/lsbg_tuscany_1080.png" BackgroundImageLow="fs://game/tuscany/lsbg_tuscany_720.png" Tip="LOC_LOADING_CIV_TIPS_TEXT_TUSCANY"/>
+    </LoadingInfo_Civilizations>
+    <LoadingInfo_Leaders>
+        <Row LeaderType="LEADER_LORENZO" LeaderText="LOC_LOADING_LEADER_INTRO_TEXT_LORENZO" LeaderImage="fs://game/tuscany/lsbg_tuscany_1080.png"/>
+    </LoadingInfo_Leaders>
+</Database>

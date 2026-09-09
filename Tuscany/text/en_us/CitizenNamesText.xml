@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_1">
+            <Text>Leonardo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_2">
+            <Text>Raffaello</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_3">
+            <Text>Filippo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_4">
+            <Text>Donatello</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_5">
+            <Text>Sandro</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_6">
+            <Text>Niccolo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_7">
+            <Text>Amerigo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_8">
+            <Text>Dante</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_9">
+            <Text>Cosimo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_MALE_10">
+            <Text>Galileo</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_1">
+            <Text>Caterina</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_2">
+            <Text>Bianca</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_3">
+            <Text>Lucrezia</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_4">
+            <Text>Simonetta</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_5">
+            <Text>Contessina</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_6">
+            <Text>Isabella</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_7">
+            <Text>Ginevra</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_8">
+            <Text>Clarice</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_9">
+            <Text>Beatrice</Text>
+        </Row>
+        <Row Tag="LOC_CITIZEN_TUSCANY_FEMALE_10">
+            <Text>Fioretta</Text>
+        </Row>
+    </EnglishText>
+</Database>

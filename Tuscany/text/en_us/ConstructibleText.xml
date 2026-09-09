@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_BUILDING_BOTTEGA_NAME">
+            <Text>Bottega</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_BOTTEGA_DESCRIPTION">
+            <Text>+5 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_GOLD] Gold. +1 [icon:YIELD_CULTURE] Culture for each adjacent Quarter and each adjacent Wonder. +1 [icon:YIELD_GOLD] Gold for each Great Work in this Settlement. One Great Work slot. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_BOTTEGA_TOOLTIP">
+            <Text>A Tuscan Unique Building. Half of the Piazza. The workshop where a master takes apprentices.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_BANCO_NAME">
+            <Text>Banco</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_BANCO_DESCRIPTION">
+            <Text>+6 [icon:YIELD_GOLD] Gold and +2 [icon:YIELD_DIPLOMACY] Influence. +1 [icon:YIELD_GOLD] Gold for each adjacent Quarter and each adjacent River tile. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_BANCO_TOOLTIP">
+            <Text>A Tuscan Unique Building. Half of the Piazza. A bank with branches in every capital in Europe.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_PIAZZA_NAME">
+            <Text>Piazza</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_PIAZZA_DESCRIPTION">
+            <Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in this Settlement for every Settlement you own, and +2 [icon:YIELD_HAPPINESS] Happiness for each Great Work here. Makes the Maestro available.</Text>
+        </Row>
+        <Row Tag="LOC_QUARTER_PIAZZA_TOOLTIP">
+            <Text>The Tuscan Unique Quarter, formed by a Bottega and a Banco in the same District. The square where the bank, the workshop and the city government face each other.</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_SANTA_MARIA_DEL_FIORE_NAME">
+            <Text>Santa Maria del Fiore</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_SANTA_MARIA_DEL_FIORE_DESCRIPTION">
+            <Text>+5 [icon:YIELD_CULTURE] Culture, +3 [icon:YIELD_GOLD] Gold, +2 [icon:YIELD_HAPPINESS] Happiness and +1 [icon:YIELD_SCIENCE] Science. Grants a Relic when completed. 3 Great Work slots. Ageless.</Text>
+        </Row>
+        <Row Tag="LOC_WONDER_SANTA_MARIA_DEL_FIORE_TOOLTIP">
+            <Text>Brunelleschi's dome over the cathedral of Florence, raised without centering.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_WONDER_SANTA_MARIA_DEL_FIORE">
+            <Text>A structure so great, rising above the skies, ample to cover with its shadow all the Tuscan people.</Text>
+        </Row>
+        <Row Tag="LOC_QUOTE_AUTHOR_WONDER_SANTA_MARIA_DEL_FIORE">
+            <Text>Leon Battista Alberti, to Brunelleschi</Text>
+        </Row>
+    </EnglishText>
+</Database>

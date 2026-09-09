@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_TUSCANY_CHAPTER_HISTORY_PARA_1">
+            <Text>Tuscany takes its name from the Etruscans, but the Tuscany of the Renaissance was made by wool and money. From the thirteenth century Florence, Siena, Pisa and Lucca imported raw English and Spanish wool, finished it, and sold the cloth across Europe. The guild that ran the trade, the Arte della Lana, was the richest institution in the city and paid for its cathedral.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_TUSCANY_CHAPTER_HISTORY_PARA_2">
+            <Text>In 1252 Florence struck the fiorino, a gold coin of consistent weight, and it became the reserve currency of Europe for two hundred years. Florentine houses - the Bardi, the Peruzzi, and after them the Medici - kept branches from London to Constantinople, invented double-entry bookkeeping and the bill of exchange, and lent to kings, occasionally to their own ruin.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_TUSCANY_CHAPTER_HISTORY_PARA_3">
+            <Text>What the money bought was extraordinary. Between roughly 1400 and 1520 a city of perhaps sixty thousand people produced Brunelleschi and Donatello, Masaccio and Botticelli, Leonardo, Michelangelo and Raffaello, Alberti and Machiavelli. The workshop system is part of the reason: a bottega took boys as apprentices and trained them in everything from grinding pigment to casting bronze, so Verrocchio's shop could turn out Leonardo and Perugino at the same time.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_TUSCANY_CHAPTER_HISTORY_PARA_4">
+            <Text>The other half was humanism: the deliberate recovery of ancient texts, read in the original and applied to the present. Florentine scholars bought Greek manuscripts from a collapsing Byzantium, learned the language, translated Plato, and argued that a life of active citizenship was as worthy as a life of prayer. Machiavelli, secretary to the Republic, drew the hardest conclusions from it.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CIVILIZATION_TUSCANY_CHAPTER_HISTORY_PARA_5">
+            <Text>Tuscans were also at sea. Amerigo Vespucci, a Medici agent turned navigator, sailed on Spanish and Portuguese voyages and wrote letters arguing that the lands to the west were not Asia but a mundus novus; a German mapmaker read them and put his first name on the map in 1507. Giovanni da Verrazzano, from the Chianti hills, charted the North American coast for France. The Republic ended in 1532 and became a Grand Duchy that lasted until 1859, when Tuscany voted itself into a united Italy.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_CONDOTTIERO_CHAPTER_HISTORY_PARA_1">
+            <Text>Italian city-states preferred to buy their wars. A condottiero was a captain who signed a condotta, a contract, and brought his own company: Hawkwood the Englishman, Colleoni, Sforza who ended as Duke of Milan. Florence, with money and no great appetite for soldiering, was among their best customers, and Machiavelli spent much of his career arguing that this was a catastrophe and that the Republic should raise a militia instead. It did, briefly, and lost.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_GALEA_SANTO_STEFANO_CHAPTER_HISTORY_PARA_1">
+            <Text>Cosimo I founded the Order of Saint Stephen in 1561 and gave it a fleet based at Livorno and Pisa, partly to fight corsairs in the Tyrrhenian and partly to give Tuscan nobles something chivalric to do. Its galleys fought at Lepanto and raided as far as the Levant. Livorno itself, declared a free port open to Jews, Greeks, Armenians and English alike, became the busiest harbour in the western Mediterranean.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_UNIT_MAESTRO_CHAPTER_HISTORY_PARA_1">
+            <Text>A maestro was the head of a bottega: a workshop that took commissions for altarpieces, tombs, armour, banners and anything else, and trained apprentices by having them do the work. Boys entered around twelve and learned by grinding colours and gilding frames before they were allowed to paint a hand. Leonardo was apprenticed to Verrocchio, Michelangelo to Ghirlandaio, and both left knowing metalwork, engineering and anatomy as well as painting.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_BUILDING_BOTTEGA_CHAPTER_HISTORY_PARA_1">
+            <Text>The bottega was a shop open to the street with a workroom behind, and it was the engine of Florentine art. Contracts survive that specify the price of ultramarine by the ounce and how much of the work the master must do with his own hand. Because a workshop had to be able to make anything, its people learned everything, which is why the same men designed fortifications, cast cannon and painted Madonnas.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_BUILDING_BANCO_CHAPTER_HISTORY_PARA_1">
+            <Text>The Medici bank, founded in 1397, ran branches in Rome, Venice, Naples, Milan, Geneva, Bruges and London, each a separate partnership so that one failure would not sink the rest. Its most profitable business was handling the papal account. Its books, which survive, use double entry throughout, and its bills of exchange moved money across Europe without moving coin - and, conveniently, without technically charging interest.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_CONSTRUCTIBLE_WONDER_SANTA_MARIA_DEL_FIORE_CHAPTER_HISTORY_PARA_1">
+            <Text>The cathedral of Florence stood roofless for decades because nobody knew how to span the forty-two-metre octagon. In 1418 the Arte della Lana held a competition; Filippo Brunelleschi won it and built the dome between 1420 and 1436 without centering, using a double shell, a herringbone brick pattern that let each ring support itself, and hoists he designed himself. It is still the largest masonry dome in the world.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_LEADER_LORENZO_CHAPTER_HISTORY_PARA_1">
+            <Text>Lorenzo de' Medici (1449-1492) inherited the leadership of Florence at twenty and held it for twenty-three years without ever holding an office that gave it to him. He survived the Pazzi conspiracy of 1478, in which his brother was murdered at Mass, then talked the King of Naples out of the war that followed by sailing to Naples alone and staying three months.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_PAGE_LEADER_LORENZO_CHAPTER_HISTORY_PARA_2">
+            <Text>He was a considerable poet in Tuscan at a time when serious men wrote Latin, kept a sculpture garden where the young Michelangelo was noticed, funded the search for Greek manuscripts, and held the Italian states in balance for twelve years. He was a worse banker than his grandfather: branches closed under him. Two years after his death the French invaded, the Medici were expelled, and Savonarola was burning vanities in the square.</Text>
+        </Row>
+    </EnglishText>
+</Database>

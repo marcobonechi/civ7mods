@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lorenzo de' Medici, il Magnifico. Shaped after DLC/ada-lovelace/modules/data/leaders.xml.
+     BasePersonaType points at Machiavelli, the other Florentine in the game, because a mod
+     cannot ship a leader model: the shell asks the engine for <LEADER_TYPE>_GAME_ASSET. -->
+<Database>
+    <Types>
+        <Row Type="LEADER_LORENZO" Kind="KIND_LEADER"/>
+        <Row Type="TRAIT_LEADER_LORENZO_ABILITY" Kind="KIND_TRAIT"/>
+    </Types>
+    <Leaders>
+        <Row LeaderType="LEADER_LORENZO" Name="LOC_LEADER_LORENZO_NAME" IsMajorLeader="true" InheritFrom="LEADER_DEFAULT" BasePersonaType="LEADER_MACHIAVELLI"/>
+    </Leaders>
+    <TypeQuotes>
+        <Row Type="LEADER_LORENZO" Quote="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY"/>
+    </TypeQuotes>
+    <Traits>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" InternalOnly="true" Name="LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME" Description="LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION"/>
+    </Traits>
+    <LeaderTraits>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_LEADER_LORENZO_ABILITY"/>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_LEADER_ATTRIBUTE_CULTURAL"/>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_LEADER_ATTRIBUTE_ECONOMIC"/>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_AQ_ECONOMIC_VICTORY"/>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_EX_CULTURE_VICTORY"/>
+        <Row LeaderType="LEADER_LORENZO" TraitType="TRAIT_MO_CULTURE_VICTORY"/>
+    </LeaderTraits>
+    <TraitModifiers>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_GOLD_PER_GREAT_WORK"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_HAPPINESS_PER_GREAT_WORK"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_CULTURE"/>
+    </TraitModifiers>
+    <AiListTypes>
+        <Row ListType="Lorenzo Yield Biases"/>
+        <Row ListType="Lorenzo Pseudoyield Biases"/>
+        <Row ListType="Lorenzo Diplomacy Biases"/>
+    </AiListTypes>
+    <AiLists>
+        <Row ListType="Lorenzo Yield Biases" LeaderType="TRAIT_LEADER_LORENZO_ABILITY" System="YieldBiases"/>
+        <Row ListType="Lorenzo Pseudoyield Biases" LeaderType="TRAIT_LEADER_LORENZO_ABILITY" System="PseudoYieldBiases"/>
+        <Row ListType="Lorenzo Diplomacy Biases" LeaderType="TRAIT_LEADER_LORENZO_ABILITY" System="DiplomaticGroupBiases"/>
+    </AiLists>
+    <AiFavoredItems>
+        <Row ListType="Lorenzo Yield Biases" Item="YIELD_GOLD" Value="50"/>
+        <Row ListType="Lorenzo Yield Biases" Item="YIELD_CULTURE" Value="50"/>
+        <Row ListType="Lorenzo Pseudoyield Biases" Item="PSEUDOYIELD_GREAT_WORK" Value="50"/>
+        <Row ListType="Lorenzo Diplomacy Biases" Item="DIPLOMACY_ACTION_BECOME_SUZERAIN" Value="50"/>
+    </AiFavoredItems>
+</Database>

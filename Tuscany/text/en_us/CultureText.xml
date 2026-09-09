@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_TREE_CIVICS_EX_TUSCANY_NAME">
+            <Text>Tuscan Traditions</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_MECENATISMO_NAME">
+            <Text>Mecenatismo</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_MECENATISMO_QUOTE">
+            <Text>He wished above all things that the city should be adorned, and that men of talent should have somewhere to work.</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_MECENATISMO_AUTHOR">
+            <Text>On the Medici</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_UMANESIMO_NAME">
+            <Text>Umanesimo</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_UMANESIMO_QUOTE">
+            <Text>We can become what we will: that is the one gift given to us and to no other creature.</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_UMANESIMO_AUTHOR">
+            <Text>After Pico della Mirandola</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_NAVIGATORI_NAME">
+            <Text>Navigatori</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_NAVIGATORI_QUOTE">
+            <Text>These regions we may rightly call a new world, for our ancestors had no knowledge of them.</Text>
+        </Row>
+        <Row Tag="LOC_CIVIC_TUSCANY_NAVIGATORI_AUTHOR">
+            <Text>Amerigo Vespucci</Text>
+        </Row>
+        <Row Tag="LOC_NODE_CIVIC_AQ_TUSCANY_ORIGINS_NAME">
+            <Text>Tuscan Origins</Text>
+        </Row>
+        <Row Tag="LOC_NODE_CIVIC_MO_TUSCANY_GRANDUCATO_NAME">
+            <Text>The Grand Duchy</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_MECENATISMO_NAME">
+            <Text>Mecenatismo</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_MECENATISMO_DESCRIPTION">
+            <Text>+2 [icon:YIELD_CULTURE] Culture on Buildings with a [icon:YIELD_CULTURE] Culture yield, and +3 [icon:YIELD_CULTURE] Culture on Botteghe.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_FIORINO_NAME">
+            <Text>Fiorino</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_FIORINO_DESCRIPTION">
+            <Text>+3 [icon:YIELD_GOLD] Gold in all Settlements, and +3 [icon:YIELD_GOLD] Gold on Banchi.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_FIORINO_I_NAME">
+            <Text>Fiorino I</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_FIORINO_I_DESCRIPTION">
+            <Text>+3 [icon:YIELD_GOLD] Gold in all Settlements.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_UMANESIMO_NAME">
+            <Text>Umanesimo</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_UMANESIMO_DESCRIPTION">
+            <Text>+2 [icon:YIELD_SCIENCE] Science and +2 [icon:YIELD_CULTURE] Culture in all Settlements.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_UMANESIMO_II_NAME">
+            <Text>Umanesimo II</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_UMANESIMO_II_DESCRIPTION">
+            <Text>+4 [icon:YIELD_SCIENCE] Science and +2 [icon:YIELD_CULTURE] Culture in all Settlements.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_PROSPETTIVA_NAME">
+            <Text>Prospettiva</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_PROSPETTIVA_DESCRIPTION">
+            <Text>+1 [icon:YIELD_HAPPINESS] Happiness and +1 [icon:YIELD_DIPLOMACY] Influence for each Great Work in a Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_NAVIGATORI_NAME">
+            <Text>Navigatori</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_NAVIGATORI_DESCRIPTION">
+            <Text>Naval units gain +1 Sight, and +25% [icon:YIELD_PRODUCTION] Production toward Naval units.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_NAVIGATORI_PREVIEW">
+            <Text>Navigatori: +1 Sight.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_ARTE_DELLA_LANA_NAME">
+            <Text>Arte della Lana</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_ARTE_DELLA_LANA_DESCRIPTION">
+            <Text>+15% [icon:YIELD_PRODUCTION] Production toward Buildings.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY_NAME">
+            <Text>Toscana I</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY_DESCRIPTION">
+            <Text>+2 [icon:YIELD_GOLD] Gold for each Great Work in a Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_SYNCRETISM_MODERN_NAME">
+            <Text>Toscana II</Text>
+        </Row>
+        <Row Tag="LOC_TRADITION_TUSCANY_SYNCRETISM_MODERN_DESCRIPTION">
+            <Text>+3 [icon:YIELD_GOLD] Gold for each Great Work in a Settlement, and +2 [icon:YIELD_CULTURE] Culture in all Settlements.</Text>
+        </Row>
+    </EnglishText>
+</Database>

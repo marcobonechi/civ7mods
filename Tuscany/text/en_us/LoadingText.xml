@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_LOADING_CIV_INTRO_TEXT_TUSCANY">
+            <Text>A republic of wool merchants and bankers on the Arno, which spent two centuries of profit on painters, architects and the recovery of the ancient world.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_INTRO_TUSCANY">
+            <Text>Florence, and the rebirth</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_CIV_TIPS_TEXT_TUSCANY">
+            <Text>Build a Bottega and a Banco in the same District to form the Piazza. The Piazza is what makes the Maestro available: train them, and retire them where their gift will do most good.</Text>
+        </Row>
+        <Row Tag="LOC_LOADING_LEADER_INTRO_TEXT_LORENZO">
+            <Text>Lorenzo de' Medici, who held no office and ruled Florence for twenty-three years.</Text>
+        </Row>
+    </EnglishText>
+</Database>

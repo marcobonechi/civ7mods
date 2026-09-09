@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What each Maestro does when he is retired. Every modifier copies the shape of one that ships
+     in age-exploration/data/greatpeople-gameeffects.xml (the Alim's set), with Tuscan text. -->
+<GameEffects xmlns="GameEffects">
+    <!-- Leonardo: the notebooks. A free Technology already unlocked by someone. -->
+    <Modifier id="MAESTRO_LEONARDO_TECH" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_PROGRESSION" permanent="true">
+        <Argument name="Amount">1</Argument>
+        <Argument name="SystemType">SYSTEM_TECH</Argument>
+        <Argument name="FreeProgressionType">FREE_PROGRESSION_NODE_ANY_UNLOCKED</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_LEONARDO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Raffaello: the Stanze. Culture on the building he decorates. -->
+    <Modifier id="MAESTRO_RAFFAELLO_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">4</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_RAFFAELLO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Michelangelo: the David and the ceiling. -->
+    <Modifier id="MAESTRO_MICHELANGELO_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">5</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MICHELANGELO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Botticelli: the Primavera, painted for a Medici villa. -->
+    <Modifier id="MAESTRO_BOTTICELLI_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">4</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BOTTICELLI_DESCRIPTION</String>
+    </Modifier>
+    <!-- Donatello: a workshop that trains the next generation. -->
+    <Modifier id="MAESTRO_DONATELLO_TRADITION_SLOT" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_TRADITION_SLOTS" run-once="true" permanent="true">
+        <Argument name="SlotType">TRADITION_CULTURE_SLOT</Argument>
+        <Argument name="Amount">1</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DONATELLO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Brunelleschi: the dome, and the machines that built it. -->
+    <Modifier id="MAESTRO_BRUNELLESCHI_PRODUCTION" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_PRODUCTION</Argument>
+        <Argument name="Amount">4</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BRUNELLESCHI_DESCRIPTION</String>
+    </Modifier>
+    <!-- Dante: the Commedia, which made a dialect into a language. -->
+    <Modifier id="MAESTRO_DANTE_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">3</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DANTE_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="MAESTRO_DANTE_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">2</Argument>
+    </Modifier>
+    <!-- Machiavelli: the Second Chancery, and the letters. -->
+    <Modifier id="MAESTRO_MACHIAVELLI_TOKENS" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_DIPLOMATIC_ENVOYS" run-once="true" permanent="true">
+        <Argument name="Amount">2</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MACHIAVELLI_DESCRIPTION</String>
+    </Modifier>
+    <!-- Galileo: the telescope pointed at Jupiter. -->
+    <Modifier id="MAESTRO_GALILEO_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD" run-once="false" permanent="true">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">4</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_GALILEO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Vespucci: the letters that persuaded Europe it was a new world, and got it his name. -->
+    <Modifier id="MAESTRO_VESPUCCI_REVEAL" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_REVEAL_TYPE" run-once="true" permanent="true">
+        <Argument name="RevealType">REVEAL_TYPE_DISTANT_LANDS_WATER</Argument>
+        <String context="Summary">LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_VESPUCCI_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="MAESTRO_VESPUCCI_GOLD" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_UNIT_YIELD_ADJACENT_NATURAL_WONDERS" run-once="true" permanent="true">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount" type="ScaleByGameSpeed">200</Argument>
+    </Modifier>
+</GameEffects>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Custom types borrow the models of shipped ones. From = our type, To = the type whose art is
+     shown. The Maestro rides on the Abbasid Alim, the other Exploration-age scholar on foot. -->
+<Database>
+    <VisualRemaps>
+        <Row>
+            <ID>REMAP_TUSCANY_CONDOTTIERO</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_CONDOTTIERO</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_CONDOTTIERO</From>
+            <To>UNIT_SWORDSMAN</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_CONDOTTIERO_2</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_CONDOTTIERO</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_CONDOTTIERO_2</From>
+            <To>UNIT_MAN_AT_ARMS</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_CONDOTTIERO_3</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_CONDOTTIERO</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_CONDOTTIERO_3</From>
+            <To>UNIT_PIKEMAN</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_GALEA_SANTO_STEFANO</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_GALEA_SANTO_STEFANO</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_GALEA_SANTO_STEFANO</From>
+            <To>UNIT_COG</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_MAESTRO</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_MAESTRO</DisplayName>
+            <Kind>UNIT</Kind>
+            <From>UNIT_MAESTRO</From>
+            <To>UNIT_ALIM</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_BOTTEGA</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_BOTTEGA</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_BOTTEGA</From>
+            <To>BUILDING_GUILDHALL</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_BANCO</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_BANCO</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_BANCO</From>
+            <To>BUILDING_BANK</To>
+        </Row>
+        <Row>
+            <ID>REMAP_TUSCANY_SANTA_MARIA_DEL_FIORE</ID>
+            <DisplayName>LOC_REMAP_TUSCANY_SANTA_MARIA_DEL_FIORE</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>WONDER_SANTA_MARIA_DEL_FIORE</From>
+            <To>WONDER_NOTRE_DAME</To>
+        </Row>
+    </VisualRemaps>
+</Database>

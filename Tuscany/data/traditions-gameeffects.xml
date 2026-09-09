@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Mecenatismo: the patron pays, the workshop produces. -->
+    <Modifier id="TUSCANY_MECENATISMO_CULTURE_BUILDING_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD">
+        <Argument name="Tag">CULTURE</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_MECENATISMO_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_MECENATISMO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Fiorino: the florin, struck in 1252 and good in every market in Europe. -->
+    <Modifier id="TUSCANY_FIORINO_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_FIORINO_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_FIORINO_DESCRIPTION</String>
+    </Modifier>
+    <!-- Umanesimo: reading the ancients in the original. -->
+    <Modifier id="TUSCANY_UMANESIMO_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_UMANESIMO_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_UMANESIMO_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="TUSCANY_UMANESIMO_II_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">4</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_UMANESIMO_II_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_UMANESIMO_II_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="TUSCANY_UMANESIMO_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_UMANESIMO_NAME</Argument>
+    </Modifier>
+    <!-- Prospettiva: Brunelleschi's panels and Alberti's book. -->
+    <Modifier id="TUSCANY_PROSPETTIVA_GREAT_WORKS_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_PROSPETTIVA_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_PROSPETTIVA_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="TUSCANY_PROSPETTIVA_GREAT_WORKS_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_PROSPETTIVA_NAME</Argument>
+    </Modifier>
+    <!-- Navigatori: Vespucci, Verrazzano, and the charts they sent home. -->
+    <Modifier id="TUSCANY_NAVIGATORI_NAVAL_SIGHT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="AbilityType">ABILITY_TUSCANY_NAVIGATORI_SIGHT</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_NAVIGATORI_DESCRIPTION</String>
+    </Modifier>
+    <Modifier id="MOD_ABILITY_TUSCANY_NAVIGATORI_SIGHT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_UNIT_SIGHT">
+        <Argument name="Amount">1</Argument>
+        <String context="Preview">LOC_TRADITION_TUSCANY_NAVIGATORI_PREVIEW</String>
+    </Modifier>
+    <Modifier id="TUSCANY_NAVIGATORI_NAVAL_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+        <Argument name="UnitClass">UNIT_CLASS_NAVAL</Argument>
+        <Argument name="Percent">25</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_NAVIGATORI_NAME</Argument>
+    </Modifier>
+    <!-- Arte della Lana: the wool guild that paid for the dome. -->
+    <Modifier id="TUSCANY_ARTE_DELLA_LANA_BUILDING_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION">
+        <Argument name="ConstructibleClass">BUILDING</Argument>
+        <Argument name="Percent">15</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_ARTE_DELLA_LANA_NAME</Argument>
+        <String context="Description">LOC_TRADITION_TUSCANY_ARTE_DELLA_LANA_DESCRIPTION</String>
+    </Modifier>
+    <!-- Self-syncretism: Toscana. The unlock modifiers are named by CivSelfSyncretismUnlocks. -->
+    <Modifier id="MOD_UNLOCK_TUSCANY_SYNCRETISM_ANTIQUITY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
+        <Argument name="Tradition">TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY</Argument>
+    </Modifier>
+    <Modifier id="MOD_UNLOCK_TUSCANY_SYNCRETISM_MODERN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_UNLOCK_TRADITION" run-once="false" permanent="true">
+        <Argument name="Tradition">TRADITION_TUSCANY_SYNCRETISM_MODERN</Argument>
+    </Modifier>
+    <Modifier id="TUSCANY_SYNCRETISM_ANTIQUITY_GOLD_PER_GREAT_WORK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="TUSCANY_SYNCRETISM_MODERN_GOLD_PER_GREAT_WORK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRADITION_TUSCANY_SYNCRETISM_MODERN_NAME</Argument>
+    </Modifier>
+</GameEffects>

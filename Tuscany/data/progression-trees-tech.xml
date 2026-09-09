@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Condottiero's later tiers unlock where the Man-at-Arms and the Pikeman do. -->
+<Database>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_TECH_EX_HERALDRY" TargetKind="KIND_UNIT" TargetType="UNIT_CONDOTTIERO_2" UnlockDepth="1" RequiredTraitType="TRAIT_TUSCANY"/>
+        <Row ProgressionTreeNodeType="NODE_TECH_EX_METAL_CASTING" TargetKind="KIND_UNIT" TargetType="UNIT_CONDOTTIERO_3" UnlockDepth="1" RequiredTraitType="TRAIT_TUSCANY"/>
+    </ProgressionTreeNodeUnlocks>
+</Database>

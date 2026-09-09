@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_MODULE_TUSCANY_NAME">
+            <Text>Tuscany</Text>
+        </Row>
+        <Row Tag="LOC_MODULE_TUSCANY_DESCRIPTION">
+            <Text>Adds Tuscany, an Exploration Age civilization of bankers, navigators and painters, with the Maestro great person - Leonardo, Raffaello, Michelangelo, Brunelleschi, Vespucci and five more - and Lorenzo il Magnifico. Playable at any start age, with a true start at Florence on the Europe &amp; Mediterranean maps.</Text>
+        </Row>
+    </EnglishText>
+</Database>

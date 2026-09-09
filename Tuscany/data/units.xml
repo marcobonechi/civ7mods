@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Exploration Age uniques: the Condottiero line, the Galea di Santo Stefano, and the Maestro,
+     the trainable half of Tuscany's unique Great Person class (see greatpeople.xml). -->
+<Database>
+    <Types>
+        <Row Type="UNIT_CONDOTTIERO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Kind="KIND_UNIT"/>
+        <Row Type="ABILITY_CONDOTTIERO" Kind="KIND_ABILITY"/>
+        <Row Type="ABILITY_GALEA_SANTO_STEFANO" Kind="KIND_ABILITY"/>
+        <Row Type="UNIT_MAESTRO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_LEONARDO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_RAFFAELLO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_MICHELANGELO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_BOTTICELLI" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_DONATELLO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_BRUNELLESCHI" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_DANTE" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_MACHIAVELLI" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_GALILEO" Kind="KIND_UNIT"/>
+        <Row Type="UNIT_MAESTRO_VESPUCCI" Kind="KIND_UNIT"/>
+    </Types>
+    <Units>
+        <Row UnitType="UNIT_CONDOTTIERO" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_2_DESCRIPTION" Tier="2" Maintenance="4" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_3_DESCRIPTION" Tier="3" Maintenance="5" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_GALEA_SANTO_STEFANO" Name="LOC_UNIT_GALEA_SANTO_STEFANO_NAME" Description="LOC_UNIT_GALEA_SANTO_STEFANO_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="3" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_MAESTRO" Name="LOC_UNIT_MAESTRO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_MAESTRO_LEONARDO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_LEONARDO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_RAFFAELLO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_RAFFAELLO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_MICHELANGELO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MICHELANGELO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_BOTTICELLI" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BOTTICELLI_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_DONATELLO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DONATELLO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_BRUNELLESCHI" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BRUNELLESCHI_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_DANTE" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DANTE_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_MACHIAVELLI" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MACHIAVELLI_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_GALILEO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_GALILEO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+        <Row UnitType="UNIT_MAESTRO_VESPUCCI" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_VESPUCCI_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
+    </Units>
+    <Unit_Stats>
+        <Row UnitType="UNIT_CONDOTTIERO" Combat="37"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" Combat="42"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" Combat="47"/>
+        <Row UnitType="UNIT_GALEA_SANTO_STEFANO" Combat="30" RangedCombat="35" Bombard="30" Range="2"/>
+    </Unit_Stats>
+    <Unit_Costs>
+        <Row UnitType="UNIT_CONDOTTIERO" YieldType="YIELD_PRODUCTION" Cost="140"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" YieldType="YIELD_PRODUCTION" Cost="180"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" YieldType="YIELD_PRODUCTION" Cost="230"/>
+        <Row UnitType="UNIT_GALEA_SANTO_STEFANO" YieldType="YIELD_PRODUCTION" Cost="130"/>
+        <Row UnitType="UNIT_MAESTRO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_LEONARDO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_RAFFAELLO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_MICHELANGELO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_BOTTICELLI" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_DONATELLO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_BRUNELLESCHI" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_DANTE" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_MACHIAVELLI" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_GALILEO" YieldType="YIELD_PRODUCTION" Cost="40"/>
+        <Row UnitType="UNIT_MAESTRO_VESPUCCI" YieldType="YIELD_PRODUCTION" Cost="40"/>
+    </Unit_Costs>
+    <UnitUpgrades>
+        <Row Unit="UNIT_CONDOTTIERO" UpgradeUnit="UNIT_CONDOTTIERO_2"/>
+        <Row Unit="UNIT_CONDOTTIERO_2" UpgradeUnit="UNIT_CONDOTTIERO_3"/>
+        <Row Unit="UNIT_GALEA_SANTO_STEFANO" UpgradeUnit="UNIT_CARRACK"/>
+    </UnitUpgrades>
+    <UnitReplaces>
+        <Row CivUniqueUnitType="UNIT_CONDOTTIERO" ReplacesUnitType="UNIT_SWORDSMAN"/>
+        <Row CivUniqueUnitType="UNIT_CONDOTTIERO_2" ReplacesUnitType="UNIT_MAN_AT_ARMS"/>
+        <Row CivUniqueUnitType="UNIT_CONDOTTIERO_3" ReplacesUnitType="UNIT_PIKEMAN"/>
+        <Row CivUniqueUnitType="UNIT_GALEA_SANTO_STEFANO" ReplacesUnitType="UNIT_COG"/>
+    </UnitReplaces>
+    <Tags>
+        <Row Tag="UNIT_CLASS_CONDOTTIERO" Category="UNIT_CLASS"/>
+        <Row Tag="UNIT_CLASS_GALEA_SANTO_STEFANO" Category="UNIT_CLASS"/>
+        <Row Tag="UNIT_CLASS_MAESTRO" Category="UNIT_CLASS"/>
+    </Tags>
+    <TypeTags>
+        <Row Type="UNIT_CONDOTTIERO" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_CONDOTTIERO" Tag="UNIT_CLASS_MELEE"/>
+        <Row Type="UNIT_CONDOTTIERO" Tag="UNIT_CLASS_INFANTRY"/>
+        <Row Type="UNIT_CONDOTTIERO" Tag="UNIT_CLASS_CONDOTTIERO"/>
+        <Row Type="UNIT_CONDOTTIERO" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Tag="UNIT_CLASS_MELEE"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Tag="UNIT_CLASS_INFANTRY"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Tag="UNIT_CLASS_CONDOTTIERO"/>
+        <Row Type="UNIT_CONDOTTIERO_2" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_MELEE"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_INFANTRY"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_ELITE_INFANTRY"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_CONDOTTIERO"/>
+        <Row Type="UNIT_CONDOTTIERO_3" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_COMBAT"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_NAVAL"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_RANGED"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_HEAVY"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_GALEA_SANTO_STEFANO"/>
+        <Row Type="UNIT_GALEA_SANTO_STEFANO" Tag="UNIT_CLASS_UNIQUE"/>
+        <Row Type="UNIT_MAESTRO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_LEONARDO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_LEONARDO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_RAFFAELLO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_RAFFAELLO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_MICHELANGELO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_MICHELANGELO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_BOTTICELLI" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_BOTTICELLI" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_DONATELLO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_DONATELLO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_BRUNELLESCHI" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_BRUNELLESCHI" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_DANTE" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_DANTE" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_MACHIAVELLI" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_MACHIAVELLI" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_GALILEO" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_GALILEO" Tag="UNIT_CLASS_MAESTRO"/>
+        <Row Type="UNIT_MAESTRO_VESPUCCI" Tag="UNIT_CLASS_GREATPERSON"/>
+        <Row Type="UNIT_MAESTRO_VESPUCCI" Tag="UNIT_CLASS_MAESTRO"/>
+    </TypeTags>
+    <UnitClass_Abilities>
+        <Row UnitAbilityType="ABILITY_CONDOTTIERO" UnitClassType="UNIT_CLASS_CONDOTTIERO"/>
+        <Row UnitAbilityType="ABILITY_GALEA_SANTO_STEFANO" UnitClassType="UNIT_CLASS_GALEA_SANTO_STEFANO"/>
+    </UnitClass_Abilities>
+    <UnitAbilities>
+        <Row UnitAbilityType="ABILITY_CONDOTTIERO" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_ABILITY_CONDOTTIERO_DESCRIPTION"/>
+        <Row UnitAbilityType="ABILITY_GALEA_SANTO_STEFANO" Name="LOC_UNIT_GALEA_SANTO_STEFANO_NAME" Description="LOC_ABILITY_GALEA_SANTO_STEFANO_DESCRIPTION"/>
+    </UnitAbilities>
+    <UnitAbilityModifiers>
+        <Row UnitAbilityType="ABILITY_CONDOTTIERO" ModifierId="CONDOTTIERO_COMBAT_ATTACK"/>
+        <Row UnitAbilityType="ABILITY_GALEA_SANTO_STEFANO" ModifierId="GALEA_SANTO_STEFANO_COMBAT_VS_NAVAL"/>
+    </UnitAbilityModifiers>
+    <Unit_Advisories>
+        <Row UnitType="UNIT_CONDOTTIERO" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row UnitType="UNIT_GALEA_SANTO_STEFANO" AdvisoryClassType="ADVISORY_CLASS_SEA"/>
+        <Row UnitType="UNIT_MAESTRO" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+    </Unit_Advisories>
+    <AIUnitPrioritizedActions>
+        <Row UnitType="UNIT_MAESTRO" CommandType="UNITCOMMAND_ACTIVATE_GREAT_PERSON"/>
+    </AIUnitPrioritizedActions>
+</Database>

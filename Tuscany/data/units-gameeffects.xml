@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <!-- Condottiero: a captain is paid to take the field, not to hold it. Same shape as Persia's
+         Hamarana Council modifier. -->
+    <Modifier id="CONDOTTIERO_COMBAT_ATTACK" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLAYER_IS_ATTACKING"/>
+        </SubjectRequirements>
+        <Argument name="Amount">4</Argument>
+        <String context="Preview">LOC_ABILITY_CONDOTTIERO_PREVIEW</String>
+    </Modifier>
+    <!-- Galea di Santo Stefano: the Tuscan order's galleys out of Livorno. -->
+    <Modifier id="GALEA_SANTO_STEFANO_COMBAT_VS_NAVAL" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_OPPONENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">5</Argument>
+        <String context="Preview">LOC_ABILITY_GALEA_SANTO_STEFANO_PREVIEW</String>
+    </Modifier>
+</GameEffects>

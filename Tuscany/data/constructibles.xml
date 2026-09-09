@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Piazza quarter (Bottega + Banco) and Santa Maria del Fiore. Loaded for Exploration and
+     Modern; the Maestro Great Person class is bound to the quarter, so this file loads first. -->
+<Database>
+    <Types>
+        <Row Type="BUILDING_BOTTEGA" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_BANCO" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="WONDER_SANTA_MARIA_DEL_FIORE" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="QUARTER_PIAZZA" Kind="KIND_QUARTER"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="WONDER_SANTA_MARIA_DEL_FIORE" Quote="LOC_QUOTE_WONDER_SANTA_MARIA_DEL_FIORE" QuoteAuthor="LOC_QUOTE_AUTHOR_WONDER_SANTA_MARIA_DEL_FIORE"/>
+    </TypeQuotes>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_BOTTEGA" Name="LOC_BUILDING_BOTTEGA_NAME" Description="LOC_BUILDING_BOTTEGA_DESCRIPTION" Tooltip="LOC_BUILDING_BOTTEGA_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_BANCO" Name="LOC_BUILDING_BANCO_NAME" Description="LOC_BUILDING_BANCO_DESCRIPTION" Tooltip="LOC_BUILDING_BANCO_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" Name="LOC_WONDER_SANTA_MARIA_DEL_FIORE_NAME" Description="LOC_WONDER_SANTA_MARIA_DEL_FIORE_DESCRIPTION" Tooltip="LOC_WONDER_SANTA_MARIA_DEL_FIORE_TOOLTIP" ConstructibleClass="WONDER" Cost="750" Population="0" ImmuneDamage="true" Age="AGE_EXPLORATION" RequiresUnlock="true"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_BOTTEGA" Movable="false" TraitType="TRAIT_TUSCANY"/>
+        <Row ConstructibleType="BUILDING_BANCO" Movable="false" TraitType="TRAIT_TUSCANY"/>
+    </Buildings>
+    <Wonders>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" MaxWorldInstances="1" BuildOnFrontier="true"/>
+    </Wonders>
+    <TypeTags>
+        <Row Type="BUILDING_BOTTEGA" Tag="CULTURE"/>
+        <Row Type="BUILDING_BOTTEGA" Tag="GREATWORK"/>
+        <Row Type="BUILDING_BOTTEGA" Tag="UNIQUE"/>
+        <Row Type="BUILDING_BOTTEGA" Tag="AGELESS"/>
+        <Row Type="BUILDING_BANCO" Tag="GOLD"/>
+        <Row Type="BUILDING_BANCO" Tag="UNIQUE"/>
+        <Row Type="BUILDING_BANCO" Tag="AGELESS"/>
+        <Row Type="WONDER_SANTA_MARIA_DEL_FIORE" Tag="GREATWORK"/>
+        <Row Type="WONDER_SANTA_MARIA_DEL_FIORE" Tag="AGELESS"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_BOTTEGA" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_BOTTEGA" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_BANCO" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_BANCO" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" DistrictType="DISTRICT_WONDER"/>
+    </Constructible_ValidDistricts>
+    <Constructible_YieldChanges>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldType="YIELD_CULTURE" YieldChange="5"/>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldType="YIELD_GOLD" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldType="YIELD_GOLD" YieldChange="6"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" YieldType="YIELD_CULTURE" YieldChange="5"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" YieldType="YIELD_GOLD" YieldChange="3"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" YieldType="YIELD_HAPPINESS" YieldChange="2"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" YieldType="YIELD_SCIENCE" YieldChange="1"/>
+    </Constructible_YieldChanges>
+    <Constructible_Maintenances>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldType="YIELD_GOLD" Amount="3"/>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldType="YIELD_HAPPINESS" Amount="3"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldType="YIELD_GOLD" Amount="3"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldType="YIELD_HAPPINESS" Amount="3"/>
+    </Constructible_Maintenances>
+    <Constructible_Adjacencies>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldChangeId="BottegaQuarterCulture"/>
+        <Row ConstructibleType="BUILDING_BOTTEGA" YieldChangeId="WonderCulture"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldChangeId="BancoQuarterGold"/>
+        <Row ConstructibleType="BUILDING_BANCO" YieldChangeId="BancoRiverGold"/>
+    </Constructible_Adjacencies>
+    <Adjacency_YieldChanges>
+        <Row ID="BottegaQuarterCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
+        <Row ID="BancoQuarterGold" YieldType="YIELD_GOLD" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
+        <Row ID="BancoRiverGold" YieldType="YIELD_GOLD" YieldChange="1" TilesRequired="1" AdjacentRiver="true"/>
+    </Adjacency_YieldChanges>
+    <Constructible_Plunders>
+        <Row ConstructibleType="BUILDING_BOTTEGA" PlunderType="PLUNDER_CULTURE" Amount="80"/>
+        <Row ConstructibleType="BUILDING_BANCO" PlunderType="PLUNDER_GOLD" Amount="150"/>
+    </Constructible_Plunders>
+    <Constructible_BuildingCostProgressions>
+        <Row ConstructibleType="BUILDING_BOTTEGA" Percent="5"/>
+        <Row ConstructibleType="BUILDING_BANCO" Percent="5"/>
+    </Constructible_BuildingCostProgressions>
+    <UniqueQuarters>
+        <Row UniqueQuarterType="QUARTER_PIAZZA" BuildingType1="BUILDING_BOTTEGA" BuildingType2="BUILDING_BANCO" Name="LOC_QUARTER_PIAZZA_NAME" Description="LOC_QUARTER_PIAZZA_DESCRIPTION" Tooltip="LOC_QUARTER_PIAZZA_TOOLTIP" TraitType="TRAIT_TUSCANY"/>
+    </UniqueQuarters>
+    <UniqueQuarterModifiers>
+        <Row UniqueQuarterType="QUARTER_PIAZZA" ModifierId="MOD_TUSCANY_PIAZZA_GOLD_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_PIAZZA" ModifierId="MOD_TUSCANY_PIAZZA_CULTURE_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_PIAZZA" ModifierId="MOD_TUSCANY_PIAZZA_HAPPINESS_PER_GREAT_WORK"/>
+    </UniqueQuarterModifiers>
+    <ConstructibleModifiers>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" ModifierId="MOD_SANTA_MARIA_DEL_FIORE_RELIC"/>
+        <Row ConstructibleType="BUILDING_BOTTEGA" ModifierId="MOD_TUSCANY_BOTTEGA_CULTURE_PER_GREAT_WORK"/>
+    </ConstructibleModifiers>
+    <Constructible_Advisories>
+        <Row ConstructibleType="BUILDING_BOTTEGA" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ConstructibleType="BUILDING_BANCO" AdvisoryClassType="ADVISORY_CLASS_ECONOMIC"/>
+        <Row ConstructibleType="BUILDING_BANCO" AdvisoryClassType="ADVISORY_CLASS_TRADE"/>
+    </Constructible_Advisories>
+</Database>

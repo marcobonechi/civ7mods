@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Loaded under exploration-age-persist: these modifiers name the unique buildings. -->
+<Database>
+    <TraditionModifiers>
+        <Row TraditionType="TRADITION_TUSCANY_MECENATISMO" ModifierId="TUSCANY_MECENATISMO_BOTTEGA_CULTURE"/>
+        <Row TraditionType="TRADITION_TUSCANY_FIORINO" ModifierId="TUSCANY_FIORINO_BANCO_GOLD"/>
+    </TraditionModifiers>
+</Database>

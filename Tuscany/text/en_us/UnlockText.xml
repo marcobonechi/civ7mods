@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_DESCRIPTION">
+            <Text>Play as Tuscany</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_LORENZO_DESCRIPTION">
+            <Text>Play as Lorenzo</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_TUSCANY_TOOLTIP">
+            <Text>Tuscany keeps its own civilization across the ages.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_AMERICA_TOOLTIP">
+            <Text>A Florentine navigator gave the hemisphere its name.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_FRENCH_EMPIRE_TOOLTIP">
+            <Text>Napoleon annexed Tuscany and crowned himself king in Italy.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ROME_TUSCANY_TOOLTIP">
+            <Text>The Renaissance began by reading Rome, in the country Rome grew out of.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_GREECE_TUSCANY_TOOLTIP">
+            <Text>Greek scholars fleeing east brought Plato to Florence.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_MACHIAVELLI_TUSCANY_TOOLTIP">
+            <Text>Machiavelli served the Florentine Republic for fourteen years.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ISABELLA_TUSCANY_TOOLTIP">
+            <Text>The Florentine banks and the Florentine navigators followed the Atlantic crowns west.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_IBN_BATTUTA_TUSCANY_TOOLTIP">
+            <Text>A republic that made its fortune on other people's routes.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_LORENZO_TUSCANY_TOOLTIP">
+            <Text>Lorenzo ruled Florence without ever holding office.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_LORENZO_ETRUSCANS_TOOLTIP">
+            <Text>The Medici collected Etruscan bronzes.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BANKS_TUSCANY_DESCRIPTION">
+            <Text>Own Banks in 3 Settlements</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BANKS_TUSCANY_TOOLTIP">
+            <Text>Own a Bank in 3 Settlements to unlock Tuscany, where the modern bank was invented.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_BANKS_TUSCANY_NARRATIVE">
+            <Text>Your bankers keep books in two columns and settle debts by letter across a continent. Florence did this first, and paid for a renaissance with the proceeds.</Text>
+        </Row>
+    </EnglishText>
+</Database>

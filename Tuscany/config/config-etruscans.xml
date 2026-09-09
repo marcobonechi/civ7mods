@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Etruscans mod is enabled: Lorenzo can also lead Etruria. -->
+<Database>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_LORENZO" AgeDomain="StandardAges" AgeType="AGE_ANTIQUITY" Type="CIVILIZATION_ETRUSCANS" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" Description="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" Icon="CIVILIZATION_ETRUSCANS"/>
+    </LeaderUnlocks>
+    <LeaderCivilizationBias>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_LORENZO" Bias="2" ReasonType="LOC_UNLOCK_PLAY_AS_LORENZO_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_GEOGRAPHIC_CHOICE"/>
+    </LeaderCivilizationBias>
+</Database>

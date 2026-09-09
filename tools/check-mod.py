@@ -10,7 +10,7 @@ Reports, without touching the game:
      mod that are neither introduced by the mod nor known to the game.
   5. Identifiers declared in <Types> that no concrete table (Units, Traditions ...) defines.
 
-Usage: tools/check-mod.py <ModFolder> [--game <Resources dir>] [--refresh]
+Usage: tools/check-mod.py <ModFolder> [--with <OtherModFolder>] [--game <Resources dir>] [--refresh]
 
 The game's identifiers and text tags are scanned once and cached under ~/.cache/civ7mods;
 --refresh rebuilds the cache (do that after a game update).
@@ -111,6 +111,19 @@ def scan_game(game, refresh):
     with open(CACHE, "w") as fh:
         json.dump({"game": game, "stamp": stamp, "idents": sorted(idents), "tags": sorted(tags)}, fh)
     print(f"  {len(idents)} identifiers, {len(tags)} text tags in {time.time() - t0:.1f}s", file=sys.stderr)
+    return idents, tags
+
+
+def scan_companion(mod):
+    """Identifiers and text tags a sibling mod introduces. Two mods that reference each other
+    (Etruscans and Tuscany, each adding the other as a predecessor behind a ModInUse criteria)
+    would otherwise report the other's types as unknown."""
+    idents, tags = set(), set()
+    for path in iter_xml(mod):
+        with open(path, encoding="utf-8", errors="ignore") as fh:
+            text = fh.read()
+        idents.update(m.group(0) for m in IDENT.finditer(text))
+        tags.update(TAGDEF.findall(text))
     return idents, tags
 
 
@@ -235,11 +248,20 @@ def main():
     ap.add_argument("--game", default=os.environ.get("CIV7_RESOURCES", DEFAULT_GAME),
                     help="game Resources directory (or set CIV7_RESOURCES)")
     ap.add_argument("--refresh", action="store_true", help="rebuild the cached game symbol table")
+    ap.add_argument("--with", dest="companions", action="append", default=[], metavar="MOD",
+                    help="another mod folder whose types this one may reference (repeatable)")
     args = ap.parse_args()
     if not os.path.isdir(os.path.join(args.game, "Base")):
         print(f"game data not found at {args.game}; pass --game", file=sys.stderr)
         return 2
     idents, tags = scan_game(args.game, args.refresh)
+    for companion in args.companions:
+        if not os.path.isdir(companion):
+            print(f"companion mod folder not found: {companion}", file=sys.stderr)
+            return 2
+        ci, ct = scan_companion(companion)
+        idents |= ci
+        tags |= ct
     return check(args.mod, idents, tags)
 
 

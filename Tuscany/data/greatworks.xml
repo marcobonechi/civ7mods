@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Constructible_GreatWorks>
+        <Row ConstructibleType="BUILDING_BOTTEGA" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="1"/>
+        <Row ConstructibleType="WONDER_SANTA_MARIA_DEL_FIORE" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="3"/>
+    </Constructible_GreatWorks>
+</Database>

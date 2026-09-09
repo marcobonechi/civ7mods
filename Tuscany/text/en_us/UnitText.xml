@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_UNIT_CONDOTTIERO_NAME">
+            <Text>Condottiero</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CONDOTTIERO_BASE_DESCRIPTION">
+            <Text>Tuscan unique Exploration Age infantry line. Replaces the Swordsman, the Man-at-Arms and the Pikeman. Stronger than the units it replaces, and stronger again when attacking.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CONDOTTIERO_DESCRIPTION">
+            <Text>Tuscan unique Exploration Age infantry unit. Replaces the Swordsman.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CONDOTTIERO_2_DESCRIPTION">
+            <Text>Tuscan unique Exploration Age infantry unit. Replaces the Man-at-Arms.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_CONDOTTIERO_3_DESCRIPTION">
+            <Text>Tuscan unique Exploration Age infantry unit. Replaces the Pikeman.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_CONDOTTIERO_DESCRIPTION">
+            <Text>+4 [icon:COMBAT] Combat Strength when attacking.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_CONDOTTIERO_PREVIEW">
+            <Text>Contratto: +4 Combat Strength when attacking.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_GALEA_SANTO_STEFANO_NAME">
+            <Text>Galea di Santo Stefano</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_GALEA_SANTO_STEFANO_DESCRIPTION">
+            <Text>Tuscan unique Exploration Age naval unit. Replaces the Cog. Faster, sees further, and hits harder against other ships.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_GALEA_SANTO_STEFANO_DESCRIPTION">
+            <Text>+5 [icon:COMBAT] Combat Strength against Naval units.</Text>
+        </Row>
+        <Row Tag="LOC_ABILITY_GALEA_SANTO_STEFANO_PREVIEW">
+            <Text>Rotta per l'Occidente: +5 Combat Strength against Naval units.</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_MAESTRO_NAME">
+            <Text>Maestro</Text>
+        </Row>
+        <Row Tag="LOC_UNIT_MAESTRO_DESCRIPTION">
+            <Text>Tuscan unique Great Person. Available once you have built a Piazza. Retire a Maestro to take his gift permanently: Leonardo brings a technology, Brunelleschi a dome, Vespucci a hemisphere.</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_CONDOTTIERO">
+            <Text>Tuscan Condottiero</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_GALEA_SANTO_STEFANO">
+            <Text>Galea di Santo Stefano</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_MAESTRO">
+            <Text>Tuscan Maestro</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_BOTTEGA">
+            <Text>Tuscan Bottega</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_BANCO">
+            <Text>Tuscan Banco</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_TUSCANY_SANTA_MARIA_DEL_FIORE">
+            <Text>Santa Maria del Fiore</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_LEONARDO_NAME">
+            <Text>Leonardo da Vinci</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_RAFFAELLO_NAME">
+            <Text>Raffaello Sanzio</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MICHELANGELO_NAME">
+            <Text>Michelangelo Buonarroti</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BOTTICELLI_NAME">
+            <Text>Sandro Botticelli</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DONATELLO_NAME">
+            <Text>Donatello</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BRUNELLESCHI_NAME">
+            <Text>Filippo Brunelleschi</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DANTE_NAME">
+            <Text>Dante Alighieri</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MACHIAVELLI_NAME">
+            <Text>Niccolo Machiavelli</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_GALILEO_NAME">
+            <Text>Galileo Galilei</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_VESPUCCI_NAME">
+            <Text>Amerigo Vespucci</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_LEONARDO_DESCRIPTION">
+            <Text>Grants a free Technology that another civilization has already unlocked.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_RAFFAELLO_DESCRIPTION">
+            <Text>+4 [icon:YIELD_CULTURE] Culture in this Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MICHELANGELO_DESCRIPTION">
+            <Text>+5 [icon:YIELD_CULTURE] Culture in this Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BOTTICELLI_DESCRIPTION">
+            <Text>+4 [icon:YIELD_HAPPINESS] Happiness in this Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DONATELLO_DESCRIPTION">
+            <Text>Grants a Tradition slot.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_BRUNELLESCHI_DESCRIPTION">
+            <Text>+4 [icon:YIELD_PRODUCTION] Production in this Settlement. Two charges.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_DANTE_DESCRIPTION">
+            <Text>+3 [icon:YIELD_CULTURE] Culture and +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_MACHIAVELLI_DESCRIPTION">
+            <Text>Grants 2 Diplomatic Envoys.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_GALILEO_DESCRIPTION">
+            <Text>+4 [icon:YIELD_SCIENCE] Science in this Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_VESPUCCI_DESCRIPTION">
+            <Text>Reveals the waters of the Distant Lands, and grants Gold for Natural Wonders near this unit.</Text>
+        </Row>
+    </EnglishText>
+</Database>

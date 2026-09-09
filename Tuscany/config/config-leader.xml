@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shell side of Lorenzo. Mirrors DLC/ada-lovelace/modules/config/config.xml. -->
+<Database>
+    <Leaders>
+        <Row LeaderType="LEADER_LORENZO" LeaderName="LOC_LEADER_LORENZO_NAME" LeaderDescription="LOC_LEADER_LORENZO_DESCRIPTION" LeaderIcon="LEADER_LORENZO" LeaderIntroText="LOC_LOADING_LEADER_INTRO_TEXT_LORENZO"/>
+    </Leaders>
+    <LeaderItems>
+        <Row LeaderType="LEADER_LORENZO" Type="TRAIT_LEADER_LORENZO_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME" Description="LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION"/>
+    </LeaderItems>
+    <LeaderTags>
+        <Row LeaderType="LEADER_LORENZO" TagType="TAG_TRAIT_CULTURAL"/>
+        <Row LeaderType="LEADER_LORENZO" TagType="TAG_TRAIT_ECONOMIC"/>
+        <Row LeaderType="LEADER_LORENZO" TagType="TAG_GENDER_MALE"/>
+    </LeaderTags>
+    <LeaderQuotes>
+        <Row LeaderType="LEADER_LORENZO" Quote="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY"/>
+    </LeaderQuotes>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_LORENZO" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_LORENZO" AgeDomain="StandardAges" AgeType="AGE_MODERN" Type="CIVILIZATION_AMERICA" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_AMERICA_NAME" Description="LOC_CIVILIZATION_AMERICA_DESCRIPTION" Icon="CIVILIZATION_AMERICA"/>
+    </LeaderUnlocks>
+</Database>

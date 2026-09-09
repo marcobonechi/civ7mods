@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TRAIT_TUSCANY" Kind="KIND_TRAIT"/>
+        <Row Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION"/>
+    </Types>
+    <LegacyCivilizations>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" Name="LOC_CIVILIZATION_TUSCANY_NAME" FullName="LOC_CIVILIZATION_TUSCANY_FULLNAME" Adjective="LOC_CIVILIZATION_TUSCANY_ADJECTIVE" Age="AGE_EXPLORATION"/>
+    </LegacyCivilizations>
+    <LegacyCivilizationTraits>
+        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_TUSCANY"/>
+    </LegacyCivilizationTraits>
+    <Traits>
+        <Row TraitType="TRAIT_TUSCANY" InternalOnly="true"/>
+    </Traits>
+</Database>

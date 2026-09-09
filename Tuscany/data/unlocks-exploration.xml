@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <!-- "Is Tuscany" requirement set. -->
+    <RequirementSets>
+        <Row RequirementSetId="REQSET_CIV_IS_TUSCANY" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+    </RequirementSets>
+    <Requirements>
+        <Row RequirementId="REQ_CIV_IS_TUSCANY" RequirementType="REQUIREMENT_PLAYER_CIVILIZATION_TYPE_MATCHES"/>
+    </Requirements>
+    <RequirementArguments>
+        <Row RequirementId="REQ_CIV_IS_TUSCANY" Name="CivilizationType" Value="CIVILIZATION_TUSCANY"/>
+    </RequirementArguments>
+    <RequirementSetRequirements>
+        <Row RequirementSetId="REQSET_CIV_IS_TUSCANY" RequirementId="REQ_CIV_IS_TUSCANY"/>
+    </RequirementSetRequirements>
+    <!-- Who leads to Tuscany. -->
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_CIV_IS_ROME" Description="LOC_UNLOCK_PLAY_AS_ROME_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ROME_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_CIV_IS_GREECE" Description="LOC_UNLOCK_PLAY_AS_GREECE_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_GREECE_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_LEADER_IS_MACHIAVELLI" Description="LOC_UNLOCK_PLAY_AS_MACHIAVELLI_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_MACHIAVELLI_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_LEADER_IS_ISABELLA" Description="LOC_UNLOCK_PLAY_AS_ISABELLA_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ISABELLA_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_LEADER_IS_IBN_BATTUTA" Description="LOC_UNLOCK_PLAY_AS_IBN_BATTUTA_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_IBN_BATTUTA_TUSCANY_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_TUSCANY" RequirementSetId="REQSET_CIV_IS_TUSCANY" Description="LOC_UNLOCK_PLAY_AS_TUSCANY_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_TUSCANY_TUSCANY_TOOLTIP"/>
+    </UnlockRequirements>
+    <!-- What Tuscany leads to: America, whose name is a Florentine's, and the French Empire,
+         which made a Kingdom of Italy out of these hills. -->
+    <Types>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_AMERICA" Kind="KIND_UNLOCK"/>
+        <InsertOrIgnore Type="UNLOCK_CIVILIZATION_FRENCH_EMPIRE" Kind="KIND_UNLOCK"/>
+    </Types>
+    <Unlocks>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_AMERICA"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_FRENCH_EMPIRE"/>
+    </Unlocks>
+    <UnlockRewards>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_AMERICA" Name="LOC_CIVILIZATION_AMERICA_NAME" Description="LOC_UNLOCK_MODERN_CIV_DESCRIPTION" Icon="CIVILIZATION_AMERICA" UnlockRewardType="CIVILIZATION_AMERICA" UnlockRewardKind="KIND_CIVILIZATION"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_FRENCH_EMPIRE" Name="LOC_CIVILIZATION_FRENCH_EMPIRE_NAME" Description="LOC_UNLOCK_MODERN_CIV_DESCRIPTION" Icon="CIVILIZATION_FRENCH_EMPIRE" UnlockRewardType="CIVILIZATION_FRENCH_EMPIRE" UnlockRewardKind="KIND_CIVILIZATION"/>
+    </UnlockRewards>
+    <UnlockConfigurationValues>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_AMERICA" ConfigurationValue="CIVILIZATION_AMERICA"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_FRENCH_EMPIRE" ConfigurationValue="CIVILIZATION_FRENCH_EMPIRE"/>
+    </UnlockConfigurationValues>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_AMERICA" RequirementSetId="REQSET_CIV_IS_TUSCANY" Description="LOC_UNLOCK_PLAY_AS_TUSCANY_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_TUSCANY_AMERICA_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_FRENCH_EMPIRE" RequirementSetId="REQSET_CIV_IS_TUSCANY" Description="LOC_UNLOCK_PLAY_AS_TUSCANY_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_TUSCANY_FRENCH_EMPIRE_TOOLTIP"/>
+    </UnlockRequirements>
+</Database>

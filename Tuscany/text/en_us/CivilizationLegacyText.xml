@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CIVILIZATION_TUSCANY_NAME">
+            <Text>Tuscany</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_TUSCANY_FULLNAME">
+            <Text>The Florentine Republic</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_TUSCANY_ADJECTIVE">
+            <Text>Tuscan</Text>
+        </Row>
+    </EnglishText>
+</Database>

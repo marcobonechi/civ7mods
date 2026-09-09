@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_CITY_NAME_TUSCANY1">
+            <Text>Florence</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY2">
+            <Text>Siena</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY3">
+            <Text>Pisa</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY4">
+            <Text>Lucca</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY5">
+            <Text>Arezzo</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY6">
+            <Text>Livorno</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY7">
+            <Text>Prato</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY8">
+            <Text>Pistoia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY9">
+            <Text>Volterra</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY10">
+            <Text>Cortona</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY11">
+            <Text>Montepulciano</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY12">
+            <Text>San Gimignano</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY13">
+            <Text>Grosseto</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY14">
+            <Text>Massa</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY15">
+            <Text>Carrara</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY16">
+            <Text>Piombino</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY17">
+            <Text>Empoli</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY18">
+            <Text>Fiesole</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY19">
+            <Text>Colle di Val d'Elsa</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY20">
+            <Text>Poggibonsi</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY21">
+            <Text>Certaldo</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY22">
+            <Text>Anghiari</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY23">
+            <Text>Pienza</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY24">
+            <Text>Montalcino</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY25">
+            <Text>Sansepolcro</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY26">
+            <Text>Vinci</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY27">
+            <Text>Barga</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY28">
+            <Text>Portoferraio</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY29">
+            <Text>Pescia</Text>
+        </Row>
+        <Row Tag="LOC_CITY_NAME_TUSCANY30">
+            <Text>Bibbiena</Text>
+        </Row>
+    </EnglishText>
+</Database>

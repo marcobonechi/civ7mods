@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <Types>
+        <Row Type="TREE_CIVICS_EX_TUSCANY" Kind="KIND_TREE"/>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_MECENATISMO" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_UMANESIMO" Kind="KIND_TREE_NODE"/>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" Kind="KIND_TREE_NODE"/>
+    </Types>
+    <TypeQuotes>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_MECENATISMO" Quote="LOC_CIVIC_TUSCANY_MECENATISMO_QUOTE" QuoteAuthor="LOC_CIVIC_TUSCANY_MECENATISMO_AUTHOR"/>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_UMANESIMO" Quote="LOC_CIVIC_TUSCANY_UMANESIMO_QUOTE" QuoteAuthor="LOC_CIVIC_TUSCANY_UMANESIMO_AUTHOR"/>
+        <Row Type="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" Quote="LOC_CIVIC_TUSCANY_NAVIGATORI_QUOTE" QuoteAuthor="LOC_CIVIC_TUSCANY_NAVIGATORI_AUTHOR"/>
+    </TypeQuotes>
+    <ProgressionTrees>
+        <Row ProgressionTreeType="TREE_CIVICS_EX_TUSCANY" AgeType="AGE_EXPLORATION" SystemType="SYSTEM_CULTURE" Name="LOC_TREE_CIVICS_EX_TUSCANY_NAME"/>
+    </ProgressionTrees>
+    <ProgressionTreeNodes>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" ProgressionTree="TREE_CIVICS_EX_TUSCANY" Cost="800" Name="LOC_CIVIC_TUSCANY_MECENATISMO_NAME" IconString="cult_commerce"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" ProgressionTree="TREE_CIVICS_EX_TUSCANY" Cost="1200" Name="LOC_CIVIC_TUSCANY_UMANESIMO_NAME" IconString="cult_philosophy"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" ProgressionTree="TREE_CIVICS_EX_TUSCANY" Cost="2000" Name="LOC_CIVIC_TUSCANY_NAVIGATORI_NAME" IconString="cult_naturalhistory"/>
+    </ProgressionTreeNodes>
+    <ProgressionTreeNodeUnlocks>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_BOTTEGA" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_BANCO" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_MECENATISMO" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_FIORINO" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_SETTLEMENT_CAP_INCREASE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_SANTA_MARIA_DEL_FIORE" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_UMANESIMO" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_PROSPETTIVA" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_RELIC" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_NAVIGATORI" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" TargetKind="KIND_TRADITION" TargetType="TRADITION_TUSCANY_ARTE_DELLA_LANA" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" TargetKind="KIND_MODIFIER" TargetType="MOD_TOT_TRADITION_SLOT" UnlockDepth="1"/>
+    </ProgressionTreeNodeUnlocks>
+    <ProgressionTreePrereqs>
+        <Row Node="NODE_CIVIC_EX_TUSCANY_UMANESIMO" PrereqNode="NODE_CIVIC_EX_TUSCANY_MECENATISMO"/>
+        <Row Node="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" PrereqNode="NODE_CIVIC_EX_TUSCANY_MECENATISMO"/>
+    </ProgressionTreePrereqs>
+    <ProgressionTree_Advisories>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_MECENATISMO" AdvisoryClassType="ADVISORY_CLASS_ECONOMIC"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_UMANESIMO" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_TUSCANY_NAVIGATORI" AdvisoryClassType="ADVISORY_CLASS_SEA"/>
+    </ProgressionTree_Advisories>
+</Database>
