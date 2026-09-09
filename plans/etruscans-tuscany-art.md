@@ -15,10 +15,10 @@ and the rows for the square icons carry no `IconSize`, so a 256² file drops str
 
 | File (in `<Mod>/icons/`) | Ships at | Should be | What the game does to it |
 |---|---|---|---|
-| `civ_sym_<civ>.png` | 256² | 256² | **White shape on transparency.** Recoloured through `filter: fxs-color-mask(...)`, so any colour in the file is thrown away. |
-| `unitflag_*.png` | 128² | 256² | **White silhouette on transparency**, drawn on the player's coloured flag. |
+| `civ_sym_<civ>.png` | 256², both done | 256² | **White shape on transparency.** Recoloured through `filter: fxs-color-mask(...)`, so any colour in the file is thrown away. |
+| `unitflag_*.png` | 256², all five done | 256² | **White silhouette on transparency**, drawn on the player's coloured flag. |
 | `buildicon_*.png`, `wondericon_*.png` | 128², Cuniculus and Tumulus 256² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
-| `leader_<name>.png` | 256² | 256² | Portrait. Firaxis ships a hex crop and a circle crop as separate files; ours points all three icon contexts at one PNG — see §5. |
+| `leader_<name>.png` | 256², both done (interim) | 256² | Portrait. Firaxis ships a hex crop and a circle crop as separate files; ours points all three icon contexts at one PNG — see §5. |
 | `lsbg_<civ>_1080.png` | 1920×1080, Etruscans done | same | Loading-screen painting. |
 | `lsbg_<civ>_720.png` | 1280×720 | same | The same painting, downscaled. |
 | `lsbg_<civ>_vert.png` | 1080×1920 | same | Tall card in the age-transition civ select. |
@@ -52,7 +52,7 @@ an opaque white blob, so it has to be painted out first; `tools/art-icon.py` doe
 
 Palette to keep asking for: terracotta red, bucchero black, tufa ochre, bronze, wine-dark purple.
 
-### `civ_sym_etruscans` — 1:1, silhouette
+### `civ_sym_etruscans` — 1:1, silhouette — **done 2026-09-09, but see below**
 
 > The Chimera of Arezzo in strict side profile: a lion striding left, its mane in stiff
 > flame-shaped locks, a goat's head and neck rising from the middle of its back, the tail a
@@ -62,14 +62,19 @@ Palette to keep asking for: terracotta red, bucchero black, tufa ochre, bronze, 
 Alternative, if the chimera reads as clutter at 32 px: *a pair of winged horses in profile, wings
 raised and overlapping, after the terracotta relief from the Ara della Regina at Tarquinia.*
 
-### `unitflag_biga` — 1:1, silhouette
+**What came back is a plain striding lion** — no goat's head rising from the back, no snake tail.
+It is a clean silhouette and it is installed, but those two features are the whole point: without
+them this is a lion, and a lion belongs to no one in particular. Worth one more generation
+insisting on all three heads.
+
+### `unitflag_biga` — 1:1, silhouette — **done 2026-09-09**
 
 > An Etruscan two-horse war chariot from the side: two horses at full gallop, heads together,
 > forelegs raised; behind them a light open chariot box on one spoked wheel; a driver leaning
 > forward with the reins taut. Narrow black cut-lines for the reins, the wheel spokes and the gap
 > between the two horses.
 
-### `unitflag_tyrrhenian_galley` — 1:1, silhouette
+### `unitflag_tyrrhenian_galley` — 1:1, silhouette — **done 2026-09-09**
 
 > An Etruscan war galley from the side: a long low hull, a heavy bronze ram at the waterline, a
 > high curved sternpost, one bank of oars angled down into the water, a short mast with a small
@@ -98,7 +103,7 @@ quite belong to the same set. Worth deciding before the remaining icons are gene
 for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 `Etruscans/icons/src/buildicon_tumulus.raw.png`.
 
-### `wondericon_fanum_voltumnae` — 1:1, icon
+### `wondericon_fanum_voltumnae` — 1:1, icon — **rejected twice**
 
 > An Etruscan temple in the Tuscan order: a high stone podium with one broad frontal stair, four
 > widely spaced wooden columns with plain cushion capitals, a very deep overhanging gable roof of
@@ -106,7 +111,13 @@ for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 > doorways behind the porch for three cellae. Wide, low and heavy — nothing Greek or slender.
 > Terracotta red, cream stucco, dark timber.
 
-### `leader_porsenna` — 1:1, portrait
+Both attempts came back as a Greek temple: slender fluted columns, a shallow pediment, a thin
+roof edge. The Tuscan order is the entire point of this icon, so say what it is *not*: **not a
+Parthenon**, no fluting, columns twice as far apart as a Greek temple's, the roof overhanging
+**a third of the building's depth**, and painted terracotta figures standing along the ridge and
+at the eave corners.
+
+### `leader_porsenna` — 1:1, portrait — **interim 2026-09-09**
 
 > Lars Porsenna, an Etruscan lucumo of Clusium about 500 BC: a man in his fifties, dark hair and a
 > full spade-shaped beard in tight archaic curls, a strong straight nose, and the faint closed-lip
@@ -114,6 +125,10 @@ for the painterly register explicitly, or re-do the Cuniculus flat. Raw at
 > amber pectoral, a large gold fibula at the shoulder, and a purple-bordered tebenna mantle over a
 > linen tunic; he holds a short ivory sceptre. Head and shoulders, three-quarter view from the
 > front left, looking at the viewer. Dark smoky background, warm light from the left.
+
+Installed from the contact sheet at 175 px, upscaled — good enough to stop looking like a
+placeholder, not good enough to keep. The cap came back soft and Venetian rather than the tall
+pointed tutulus, so the regeneration should press on that.
 
 ### `lsbg_etruscans_1080` / `_720` / `bg-panel-etruscans` — 16:9, painting — **done 2026-09-09**
 
@@ -150,40 +165,47 @@ python3 tools/art-background.py Etruscans/icons/src/lsbg_etruscans.raw.png \
 
 Palette: terracotta roof tile, grey-green pietra serena, lime white, ultramarine, gold florin.
 
-### `civ_sym_tuscany` — 1:1, silhouette
+### `civ_sym_tuscany` — 1:1, silhouette — **done 2026-09-09**
 
 > The Florentine giglio: a lily of three petals, the outer two curling outward and down, a slender
 > stamen springing from each side of the central petal, a narrow band at the waist and two small
 > leaves below. Strictly symmetrical. Narrow black cut-lines between the petals and the stamens.
 
-### `unitflag_condottiero` — 1:1, silhouette
+### `unitflag_condottiero` — 1:1, silhouette — **done 2026-09-09**
 
 > A fifteenth-century Italian mercenary captain, bust and shoulders in three-quarter armour: a
 > sallet helmet with the visor raised, a bevor at the throat, fluted pauldrons, a broad sash across
 > the breastplate, one gloved hand holding a short baton of command angled up across the body.
 > Narrow black cut-lines for the visor gap, the edge of the sash and the baton.
 
-### `unitflag_galea_santo_stefano` — 1:1, silhouette
+### `unitflag_galea_santo_stefano` — 1:1, silhouette — **done 2026-09-09**
 
 > A Mediterranean war galley from the side: a long low hull, a spur beak at the bow, one bank of
 > oars angled down, a single raked mast carrying a big triangular lateen sail bellying forward, a
 > stern lantern and a pennant aft. On the sail, a bold cross with forked ends is left as a black
 > cut-out.
 
-### `unitflag_maestro` — 1:1, silhouette
+The cross came back plain rather than forked-ended. At flag size it makes no difference; only fix
+it if the set is ever redone.
+
+### `unitflag_maestro` — 1:1, silhouette — **done 2026-09-09**
 
 > A Renaissance workshop master, bust and shoulders, three-quarter view: a soft flat cap, hair to
 > the collar, a plain gown with a working apron over it, one hand raised holding a pair of
 > dividers, a mahlstick and a rolled drawing under the other arm. Narrow black cut-lines for the
 > dividers, the cap brim and the collar.
 
-### `buildicon_bottega` — 1:1, icon
+### `buildicon_bottega` — 1:1, icon — **rejected once**
 
 > A Florentine artist's bottega: a stone-arched shop front open to the street, its wooden shutter
 > propped up as an awning; just inside, a painted panel on an easel catching the light; on the
 > bench a grinding slab and pigment jars, brushes standing in a pot, a plaster cast on a shelf
 > above; lime-washed wall over dressed sandstone. Warm ochre and lead white with one note of
 > ultramarine.
+
+The first attempt came back as a church cloister with an altarpiece in it — arcades, a religious
+panel, no workshop. Push the prompt away from architecture: the subject is a **shop counter open
+to the street**, and the tell is the working clutter, not the building.
 
 ### `buildicon_banco` — 1:1, icon
 
@@ -199,7 +221,7 @@ Palette: terracotta roof tile, grey-green pietra serena, lime white, ultramarine
 > windows, the nave running back, the flank in polychrome marble — white, dark green and rose — and
 > Giotto's slender square campanile rising beside it. Warm terracotta against marble.
 
-### `leader_lorenzo` — 1:1, portrait
+### `leader_lorenzo` — 1:1, portrait — **interim 2026-09-09**
 
 > Lorenzo de' Medici in Florence about 1480: a man of thirty, clean-shaven, straight dark hair cut
 > level at the jaw under a red flat cap, a long heavy jaw, a flattened broken-looking nose, a wide
@@ -327,7 +349,25 @@ magick raw.png -resize 256x256^ -gravity center -extent 256x256 \
 
 Same commands for Tuscany with `Tuscany/icons/` and the `tuscany` filenames.
 
-## 6. After dropping them in
+## 6. What a contact sheet is and is not good for
+
+Marco sent all sixteen remaining assets on one 1376×768 sheet, about 175×160 per tile. That is a
+sixth of the linear resolution of an individual 1024² generation, and it settles what each kind of
+asset can take:
+
+- **Silhouettes survive it.** They are thresholded to a mask, the shapes are simple, and 175 px up
+  to 256 costs nothing visible — all seven read cleanly at 48 px. Installed from the sheet.
+- **Leader portraits survive it, just.** They are cropped to a hex and a circle anyway, so the
+  upscale shows less than it would on a flat icon. Installed as interim.
+- **Colour building and wonder icons do not.** At 175 px the generator has no room for the detail
+  that makes them readable, and worse, the sheet paints them as full-bleed rectangles rather than
+  a subject on a flat field — so there is nothing to key, and they would sit in the game as opaque
+  boxes next to the Cuniculus and Tumulus, which are cut out. Those stay to be generated one at a
+  time.
+
+So: sheets for reviewing designs, individual generations for anything that ends up cut out.
+
+## 7. After dropping them in
 
 ```bash
 find Etruscans Tuscany -name '*.xml' -exec xmllint --noout {} +

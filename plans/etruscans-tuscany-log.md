@@ -266,3 +266,38 @@ The lesson is in the brief: the clone source has to be chosen by eye, two or thr
 the before/after crop the tool writes each time. I started to add a `--candidates` mode that would
 sweep the offsets automatically and backed it out — it made the tool convoluted for something that
 is three commands and a look.
+
+### 2026-09-09 — the contact sheet: nine assets in, five sent back
+
+All sixteen remaining assets arrived on one 1376×768 sheet, about 175×160 per tile. That is a
+sixth of the linear resolution of an individual generation, which turns out to decide what can be
+taken from it:
+
+- **The seven silhouettes are in** — both civ symbols and all five unit flags. They threshold to a
+  mask, so the upscale to 256 costs nothing visible, and every one reads at 48 px, which is the
+  size that matters. Checked tinted purple as well, since the game colour-masks the civ symbol.
+- **Both leader portraits are in as interim.** They get cropped to a hex and a circle anyway, so
+  the upscale shows less than it would elsewhere. Lorenzo's likeness is right — jaw, bob, red cap
+  and cioppa — and only needs re-running at size. Porsenna needs re-designing as well: the cap came
+  back soft and Venetian instead of the tall pointed tutulus.
+- **The four colour icons stay out.** Two reasons, and the second is the real one: at 175 px there
+  is no room for the detail that makes a building icon readable, and the sheet paints them as
+  full-bleed rectangles rather than a subject on a flat field. There is nothing to key, so they
+  would sit in the game as opaque boxes beside the Cuniculus and Tumulus, which are cut out.
+
+Design notes sent back, recorded in the brief:
+
+- The Etruscan symbol came back as a **plain striding lion**. No goat's head from the back, no
+  snake tail — so it is not the Chimera, it is a lion, and a lion belongs to no one. Installed
+  because it is a clean silhouette, but worth one more try.
+- The **Fanum Voltumnae** has now come back as a Greek temple twice: fluted columns, shallow
+  pediment, thin roof edge. The Tuscan order is the whole reason this icon exists, so the prompt
+  now says what it is not.
+- The **Bottega** came back as a church cloister with an altarpiece. The subject is a shop counter
+  open to the street; the tell is the working clutter, not the building.
+- Tuscany appeared twice on the sheet. The second block is the better one and is what went in: its
+  giglio has the stamens, which makes it the Florentine *giglio bottonato* rather than a French
+  fleur-de-lis, and its galley carries a cross on the sail.
+
+Nine of twenty-four assets are now real art. Remaining: four colour icons, the two vertical
+paintings, the Tuscany landscape, and eventual re-runs of the symbol and Porsenna.
