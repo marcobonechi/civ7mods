@@ -34,6 +34,11 @@
              that mod is enabled. -->
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_NORMAN" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_NORMAN_NAME" Description="LOC_CIVILIZATION_NORMAN_DESCRIPTION" Icon="CIVILIZATION_NORMAN"/>
     </CivilizationUnlocks>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" AgeDomain="StandardAges" AgeType="AGE_ANTIQUITY" Type="CIVILIZATION_ETRUSCANS" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" Description="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" Icon="CIVILIZATION_ETRUSCANS"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_AUGUSTUS" AgeDomain="StandardAges" AgeType="AGE_ANTIQUITY" Type="CIVILIZATION_ETRUSCANS" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" Description="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" Icon="CIVILIZATION_ETRUSCANS"/>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_MACHIAVELLI" AgeDomain="StandardAges" AgeType="AGE_ANTIQUITY" Type="CIVILIZATION_ETRUSCANS" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_ETRUSCANS_NAME" Description="LOC_CIVILIZATION_ETRUSCANS_DESCRIPTION" Icon="CIVILIZATION_ETRUSCANS"/>
+    </LeaderUnlocks>
     <LeaderCivilizationBias>
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" Bias="3" ReasonType="LOC_UNLOCK_PLAY_AS_PORSENNA_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_HISTORICAL_CHOICE"/>
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" LeaderDomain="StandardLeaders" LeaderType="LEADER_AUGUSTUS" Bias="2" ReasonType="LOC_UNLOCK_PLAY_AS_AUGUSTUS_ETRUSCANS_TOOLTIP" ChoiceType="LOC_CREATE_GAME_HISTORICAL_CHOICE"/>

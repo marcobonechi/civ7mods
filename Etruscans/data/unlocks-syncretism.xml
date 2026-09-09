@@ -3,6 +3,7 @@
     <LeaderSyncretismUnlocks>
         <Row LeaderType="LEADER_PORSENNA" UnlockCivilizationType="CIVILIZATION_ETRUSCANS"/>
         <Row LeaderType="LEADER_AUGUSTUS" UnlockCivilizationType="CIVILIZATION_ETRUSCANS"/>
+        <Row LeaderType="LEADER_MACHIAVELLI" UnlockCivilizationType="CIVILIZATION_ETRUSCANS"/>
     </LeaderSyncretismUnlocks>
     <CivilizationSyncretismUnlocks>
         <Row CivilizationType="CIVILIZATION_ETRUSCANS" UnlockCivilizationType="CIVILIZATION_NORMAN"/>

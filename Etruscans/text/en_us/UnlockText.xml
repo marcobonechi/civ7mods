@@ -4,6 +4,9 @@
         <Row Tag="LOC_UNLOCK_ANTIQUITY_CIV_DESCRIPTION">
             <Text>Unlocks an Antiquity Age civilization.</Text>
         </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION">
+            <Text>Play as Porsenna</Text>
+        </Row>
         <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION">
             <Text>Play as the Etruscans</Text>
         </Row>

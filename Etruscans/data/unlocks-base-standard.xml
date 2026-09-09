@@ -12,17 +12,22 @@
     <UnlockConfigurationValues>
         <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_ETRUSCANS" ConfigurationValue="CIVILIZATION_ETRUSCANS"/>
     </UnlockConfigurationValues>
-    <!-- "Is Etruscans" requirement set, used by the age-transition unlocks. -->
+    <!-- "Is Etruscans" and "is Porsenna" requirement sets, used by the unlock rows. The base
+         game ships a REQSET_LEADER_IS_<X> for each of its own leaders; ours needs one too. -->
     <RequirementSets>
         <Row RequirementSetId="REQSET_CIV_IS_ETRUSCANS" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+        <Row RequirementSetId="REQSET_LEADER_IS_PORSENNA" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
     </RequirementSets>
     <Requirements>
         <Row RequirementId="REQ_CIV_IS_ETRUSCANS" RequirementType="REQUIREMENT_PLAYER_CIVILIZATION_TYPE_MATCHES"/>
+        <Row RequirementId="REQ_LEADER_IS_PORSENNA" RequirementType="REQUIREMENT_PLAYER_LEADER_TYPE_MATCHES"/>
     </Requirements>
     <RequirementArguments>
         <Row RequirementId="REQ_CIV_IS_ETRUSCANS" Name="CivilizationType" Value="CIVILIZATION_ETRUSCANS"/>
+        <Row RequirementId="REQ_LEADER_IS_PORSENNA" Name="LeaderType" Value="LEADER_PORSENNA"/>
     </RequirementArguments>
     <RequirementSetRequirements>
         <Row RequirementSetId="REQSET_CIV_IS_ETRUSCANS" RequirementId="REQ_CIV_IS_ETRUSCANS"/>
+        <Row RequirementSetId="REQSET_LEADER_IS_PORSENNA" RequirementId="REQ_LEADER_IS_PORSENNA"/>
     </RequirementSetRequirements>
 </Database>

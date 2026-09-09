@@ -409,3 +409,27 @@ whatever `LOC_CITY_NAME_ETRUSCANS1` says, and founding a city called Tarquinii o
 headland would have been sloppy. Tarquinii takes the old slot at eleven, and the tomb art and the
 civilopedia still refer to it, which remains correct: it is a city of the league either way.
 Populonia added to the fallback list beside Tarquinia and Florence.
+
+### 2026-09-09 — leader wiring audited
+
+Marco thought Machiavelli had never been connected to Tuscany. He had been, in all five places a
+base-game leader can be: `LeaderUnlocks` and `LeaderCivilizationBias` in the shell config,
+`LeaderCivPriorities` for the AI, a `REQSET_LEADER_IS_MACHIAVELLI` unlock requirement, and
+`LeaderSyncretismUnlocks` — plus he is one of the ten Maestri.
+
+Auditing to check that turned up three real gaps on the Etruscan side, all now fixed:
+
+- **Porsenna did not unlock his own civilization.** Tuscany defines `REQSET_LEADER_IS_LORENZO`
+  because the base game only ships a requirement set for its own leaders; the Etruscans never got
+  the equivalent, so Augustus unlocked Etruria and Porsenna did not. `REQSET_LEADER_IS_PORSENNA`
+  now exists and is on the unlock.
+- **`Etruscans/config/config.xml` had no `LeaderUnlocks` block at all.** It carried the bias rows
+  but never told the shell which leaders lead to Etruria, so the pairing was invisible in the
+  picker. Porsenna, Augustus and Machiavelli now have rows.
+- **Machiavelli had a bias toward Etruria but no unlock and no syncretism row**, where Augustus had
+  both. Now symmetric.
+
+Also checked and *not* a problem, having wondered: `LEADER_MACHIAVELLI` is defined in
+`base-standard`, not a DLC, so the rows need no `ModInUse` guard. And an Antiquity civ carrying
+`UnlockRequirements` on its own unlock is normal, not a lock-out — Rome, Greece, Egypt, Persia,
+Maurya and Aksum all do the same.
