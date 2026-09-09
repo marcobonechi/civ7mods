@@ -11,10 +11,16 @@
             <Text>Il Magnifico</Text>
         </Row>
         <Row Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION">
-            <Text>+2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_HAPPINESS] Happiness for each Great Work in a Settlement, and +1 [icon:YIELD_CULTURE] Culture in all Settlements.</Text>
+            <Text>+3 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_HAPPINESS] Happiness for each Great Work in a Settlement. +1 [icon:YIELD_CULTURE] Culture and +1 [icon:YIELD_SCIENCE] Science in all Settlements, and +20% [icon:YIELD_PRODUCTION] Production towards Wonders. Trade Route income is increased by 50%, you have +1 Trade Route capacity and +3 [icon:YIELD_GOLD] Gold for each Trade Route, and Buildings cost 15% less [icon:YIELD_GOLD] Gold to purchase.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_PREVIEW">
             <Text>Il Magnifico</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_NAME">
+            <Text>Patron of Workshops</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC">
+            <Text>Lorenzo judges a court by what its artists have made. He admires leaders who hold many Great Works, and has little to say to those who hold none.</Text>
         </Row>
         <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY">
             <Text>How beautiful is youth, that flies from us so fast. Let who will be glad: of tomorrow there is no certainty.</Text>

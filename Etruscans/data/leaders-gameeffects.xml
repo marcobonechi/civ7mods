@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
     <!-- Lars of Clusium. Porsenna took Rome and, if Pliny is to be believed, built himself a tomb
-         with a labyrinth under it; he gets the builder's bonus and the besieger's walls. -->
+         with a labyrinth under it. Two halves, both about works: the engineer at home (production,
+         cheap building, science, an easier life) and the engineer at your gate (walls that hold,
+         and siegework that does not). -->
+
+    <!-- The works at home. -->
     <Modifier id="PORSENNA_MOD_CITY_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_CITY_IS_CITY"/>
         </SubjectRequirements>
         <Argument name="YieldType">YIELD_PRODUCTION</Argument>
-        <Argument name="Amount">2</Argument>
+        <Argument name="Amount">3</Argument>
         <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
         <String context="Description">LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION</String>
     </Modifier>
+    <Modifier id="PORSENNA_MOD_BUILDING_PURCHASE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+        <Argument name="Percent">15</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="PORSENNA_MOD_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
+    </Modifier>
+    <!-- The drains and the aqueduct earned their keep in how people lived, not in what they cost. -->
+    <Modifier id="PORSENNA_MOD_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">2</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- The works at your gate. -->
     <Modifier id="PORSENNA_MOD_WALL_HEALTH" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_TOTAL_HEALTH">
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
@@ -18,14 +39,40 @@
                 <Argument name="CurrentAgeOnly">false</Argument>
             </Requirement>
         </SubjectRequirements>
-        <Argument name="Amount">20</Argument>
+        <Argument name="Amount">30</Argument>
         <Argument name="Tooltip">LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME</Argument>
     </Modifier>
     <Modifier id="PORSENNA_MOD_DISTRICT_DEFENSE" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_DEFENDER_IS_PLAYER_OWNED_DISTRICT"/>
         </SubjectRequirements>
-        <Argument name="Amount">3</Argument>
+        <Argument name="Amount">4</Argument>
         <String context="Preview">LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW</String>
+    </Modifier>
+    <!-- He is the one man in the tradition who actually took the city. -->
+    <Modifier id="PORSENNA_MOD_SIEGE" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_OPPONENT_IS_DISTRICT"/>
+        </SubjectRequirements>
+        <Argument name="Amount">5</Argument>
+        <String context="Preview">LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW</String>
+    </Modifier>
+
+    <!-- Every base-game leader has an agenda and the AI reads it; without one Porsenna is
+         diplomatically inert. He measures a neighbour by what stands in their cities. -->
+    <Modifier id="PORSENNA_MOD_AGENDA_LABYRINTH" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE">
+        <String context="Name">LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_NAME</String>
+        <Argument name="ModName">LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_NAME</Argument>
+        <Argument name="Tooltip">LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC</Argument>
+        <Argument name="WeightType">DIPLOMACY_AGENDA_COMPARE_DISTRICT_BUILDINGS</Argument>
+        <Argument name="FirstMeetDelay">20</Argument>
+        <Argument name="UpdateFreq">10</Argument>
+        <Argument name="UpdateFreqVariance">2</Argument>
+        <Argument name="AwardTo1">DIPLOMACY_AGENDA_AWARD_HIGHER</Argument>
+        <Argument name="AwardAmtType1">DIPLOMACY_AGENDA_AMT_MEDIUM</Argument>
+        <Argument name="AwardTo2">DIPLOMACY_AGENDA_AWARD_LOWER</Argument>
+        <Argument name="AwardAmtType2">DIPLOMACY_AGENDA_NEG_AMT_MEDIUM</Argument>
+        <Argument name="NotifyMessage">LOC_NOTIFICATION_DIPLOMATIC_AGENDA_DEFAULT_MESSAGE</Argument>
+        <Argument name="NotifySummary">LOC_NOTIFICATION_DIPLOMATIC_AGENDA_DEFAULT_SUMMARY</Argument>
     </Modifier>
 </GameEffects>

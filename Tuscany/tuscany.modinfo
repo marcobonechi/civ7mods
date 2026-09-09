@@ -49,8 +49,13 @@
                     <Item>icons/buildicon_banco.png</Item>
                     <Item>icons/wondericon_santa_maria_del_fiore.png</Item>
                     <Item>icons/leader_lorenzo.png</Item>
-                    <Item>icons/lp_circ_lorenzo_256.png</Item>
                     <Item>icons/lp_hex_lorenzo_256.png</Item>
+                    <Item>icons/lp_hex_lorenzo_128.png</Item>
+                    <Item>icons/lp_hex_lorenzo_64.png</Item>
+                    <Item>icons/lp_circ_lorenzo_256.png</Item>
+                    <Item>icons/lp_circ_lorenzo_140.png</Item>
+                    <Item>icons/lp_circ_lorenzo_128.png</Item>
+                    <Item>icons/lp_circ_lorenzo_64.png</Item>
                     <Item>icons/lsl_lorenzo.png</Item>
                     <Item>icons/lsbg_tuscany_1080.png</Item>
                     <Item>icons/lsbg_tuscany_720.png</Item>
@@ -185,8 +190,13 @@
                     <Item>icons/buildicon_banco.png</Item>
                     <Item>icons/wondericon_santa_maria_del_fiore.png</Item>
                     <Item>icons/leader_lorenzo.png</Item>
-                    <Item>icons/lp_circ_lorenzo_256.png</Item>
                     <Item>icons/lp_hex_lorenzo_256.png</Item>
+                    <Item>icons/lp_hex_lorenzo_128.png</Item>
+                    <Item>icons/lp_hex_lorenzo_64.png</Item>
+                    <Item>icons/lp_circ_lorenzo_256.png</Item>
+                    <Item>icons/lp_circ_lorenzo_140.png</Item>
+                    <Item>icons/lp_circ_lorenzo_128.png</Item>
+                    <Item>icons/lp_circ_lorenzo_64.png</Item>
                     <Item>icons/lsl_lorenzo.png</Item>
                     <Item>icons/lsbg_tuscany_1080.png</Item>
                     <Item>icons/lsbg_tuscany_720.png</Item>

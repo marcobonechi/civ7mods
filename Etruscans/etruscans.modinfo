@@ -51,8 +51,13 @@
                     <Item>icons/buildicon_tumulus.png</Item>
                     <Item>icons/wondericon_fanum_voltumnae.png</Item>
                     <Item>icons/leader_porsenna.png</Item>
-                    <Item>icons/lp_circ_porsenna_256.png</Item>
                     <Item>icons/lp_hex_porsenna_256.png</Item>
+                    <Item>icons/lp_hex_porsenna_128.png</Item>
+                    <Item>icons/lp_hex_porsenna_64.png</Item>
+                    <Item>icons/lp_circ_porsenna_256.png</Item>
+                    <Item>icons/lp_circ_porsenna_140.png</Item>
+                    <Item>icons/lp_circ_porsenna_128.png</Item>
+                    <Item>icons/lp_circ_porsenna_64.png</Item>
                     <Item>icons/lsl_porsenna.png</Item>
                     <Item>icons/lsbg_etruscans_1080.png</Item>
                     <Item>icons/lsbg_etruscans_720.png</Item>
@@ -169,8 +174,13 @@
                     <Item>icons/buildicon_tumulus.png</Item>
                     <Item>icons/wondericon_fanum_voltumnae.png</Item>
                     <Item>icons/leader_porsenna.png</Item>
-                    <Item>icons/lp_circ_porsenna_256.png</Item>
                     <Item>icons/lp_hex_porsenna_256.png</Item>
+                    <Item>icons/lp_hex_porsenna_128.png</Item>
+                    <Item>icons/lp_hex_porsenna_64.png</Item>
+                    <Item>icons/lp_circ_porsenna_256.png</Item>
+                    <Item>icons/lp_circ_porsenna_140.png</Item>
+                    <Item>icons/lp_circ_porsenna_128.png</Item>
+                    <Item>icons/lp_circ_porsenna_64.png</Item>
                     <Item>icons/lsl_porsenna.png</Item>
                     <Item>icons/lsbg_etruscans_1080.png</Item>
                     <Item>icons/lsbg_etruscans_720.png</Item>

@@ -11,10 +11,16 @@
             <Text>Lars of Clusium</Text>
         </Row>
         <Row Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION">
-            <Text>+2 [icon:YIELD_PRODUCTION] Production in Cities. Districts with a Fortification have +20 Health, and units defending one of your Districts have +3 [icon:COMBAT] Combat Strength.</Text>
+            <Text>+3 [icon:YIELD_PRODUCTION] Production in Cities, +2 [icon:YIELD_SCIENCE] Science and +2 [icon:YIELD_HAPPINESS] Happiness in all Settlements, and Buildings cost 15% less [icon:YIELD_GOLD] Gold to purchase. Districts with a Fortification have +30 Health, units defending one of your Districts have +4 [icon:COMBAT] Combat Strength, and your units have +5 [icon:COMBAT] Combat Strength when attacking a District.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW">
             <Text>Lars of Clusium</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_NAME">
+            <Text>The Labyrinth</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC">
+            <Text>Porsenna measures a neighbour by what stands in their cities. He respects leaders whose Districts are well built up, and thinks little of those who leave them empty.</Text>
         </Row>
         <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY">
             <Text>Bring me the surveyors before you bring me the army.</Text>

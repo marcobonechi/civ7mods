@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Lorenzo de' Medici, il Magnifico. Shaped after DLC/ada-lovelace/modules/data/leaders.xml.
-     BasePersonaType points at Machiavelli, the other Florentine in the game, because a mod
-     cannot ship a leader model: the shell asks the engine for <LEADER_TYPE>_GAME_ASSET. -->
+     A mod cannot ship a leader model: the shell asks the engine for <LEADER_TYPE>_GAME_ASSET
+     and falls back to a faceless figure when there is none. BasePersonaType does NOT fix that
+     - it is read by the alternate-persona system, not by the model lookup - so the model is
+     borrowed in ui/tuscany-images.js instead, and this row only keeps the persona in step
+     with it. -->
 <Database>
     <Types>
         <Row Type="LEADER_LORENZO" Kind="KIND_LEADER"/>
@@ -28,6 +31,13 @@
         <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_GOLD_PER_GREAT_WORK"/>
         <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_HAPPINESS_PER_GREAT_WORK"/>
         <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_CULTURE"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_WONDER_PRODUCTION"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_TRADE_INCOME"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_GOLD_PER_TRADE_ROUTE"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_TRADE_CAPACITY"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_BUILDING_PURCHASE"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_SCIENCE"/>
+        <Row TraitType="TRAIT_LEADER_LORENZO_ABILITY" ModifierId="LORENZO_MOD_AGENDA_PATRON"/>
     </TraitModifiers>
     <AiListTypes>
         <Row ListType="Lorenzo Yield Biases"/>
@@ -43,6 +53,9 @@
         <Row ListType="Lorenzo Yield Biases" Item="YIELD_GOLD" Value="50"/>
         <Row ListType="Lorenzo Yield Biases" Item="YIELD_CULTURE" Value="50"/>
         <Row ListType="Lorenzo Pseudoyield Biases" Item="PSEUDOYIELD_GREAT_WORK" Value="50"/>
+        <Row ListType="Lorenzo Pseudoyield Biases" Item="PSEUDOYIELD_GREAT_WORK_SLOT" Value="35"/>
+        <Row ListType="Lorenzo Pseudoyield Biases" Item="PSEUDOYIELD_WONDER" Value="50"/>
+        <Row ListType="Lorenzo Pseudoyield Biases" Item="PSEUDOYIELD_RESOURCE_IMPORT" Value="40"/>
         <Row ListType="Lorenzo Diplomacy Biases" Item="DIPLOMACY_ACTION_BECOME_SUZERAIN" Value="50"/>
     </AiFavoredItems>
 </Database>

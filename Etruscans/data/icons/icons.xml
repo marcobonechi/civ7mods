@@ -24,17 +24,54 @@
         </Row>
         <Row>
             <ID>LEADER_PORSENNA</ID>
-            <Path>fs://game/etruscans/leader_porsenna.png</Path>
+            <Path>fs://game/etruscans/lp_hex_porsenna_256.png</Path>
+            <IconSize>256</IconSize>
         </Row>
         <Row>
             <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_hex_porsenna_128.png</Path>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_hex_porsenna_64.png</Path>
+            <IconSize>64</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_hex_porsenna_128.png</Path>
+            <Context>LEADER_HAPPY</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_hex_porsenna_128.png</Path>
+            <Context>LEADER_ANGRY</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_circ_porsenna_256.png</Path>
             <Context>CIRCLE_MASK</Context>
-            <Path>fs://game/etruscans/leader_porsenna.png</Path>
+            <IconSize>256</IconSize>
         </Row>
         <Row>
             <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_circ_porsenna_140.png</Path>
             <Context>PORTRAIT_MASK</Context>
-            <Path>fs://game/etruscans/leader_porsenna.png</Path>
+            <IconSize>140</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_circ_porsenna_128.png</Path>
+            <Context>CIRCLE_MASK</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_circ_porsenna_64.png</Path>
+            <Context>CIRCLE_MASK</Context>
+            <IconSize>64</IconSize>
         </Row>
         <Row>
             <ID>UNIT_BIGA</ID>

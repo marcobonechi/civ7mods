@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
     <!-- Il Magnifico. Lorenzo bought very little art himself; what he did was keep the peace,
-         run the bank, write poetry and put the right people in front of the right patrons. -->
+         run the bank, write poetry and put the right people in front of the right patrons.
+         So: the bank first (trade income, trade reach, cheap building), then the workshops
+         (Great Works, Wonders), then a thin line of Science - Florence did not fund
+         laboratories, but it did leave Leonardo and Vespucci alone to think. -->
+
+    <!-- The workshops. -->
     <Modifier id="LORENZO_MOD_GOLD_PER_GREAT_WORK" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
         <Argument name="YieldType">YIELD_GOLD</Argument>
-        <Argument name="Amount">2</Argument>
+        <Argument name="Amount">3</Argument>
         <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
         <String context="Description">LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION</String>
     </Modifier>
@@ -17,5 +22,62 @@
         <Argument name="YieldType">YIELD_CULTURE</Argument>
         <Argument name="Amount">1</Argument>
         <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- Wonders. The top of the base game's range is the 15% a diplomatic action buys you;
+         this is Lorenzo's headline, so it sits above it. -->
+    <Modifier id="LORENZO_MOD_WONDER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WONDER_PRODUCTION">
+        <Argument name="Percent">20</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- The bank. Trade income, an extra route, and cheaper buildings to spend the gold on. -->
+    <Modifier id="LORENZO_MOD_TRADE_INCOME" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_TRADE_YIELD">
+        <Argument name="Percent">50</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="LORENZO_MOD_GOLD_PER_TRADE_ROUTE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_NUM_TRADE_ROUTES">
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">3</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="LORENZO_MOD_TRADE_CAPACITY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_TRADE_CAPACITY">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_GAME_TURN_ATLEAST">
+                <Argument name="MinGameTurn">2</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">1</Argument>
+        <Argument name="MajorsOnly">true</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="LORENZO_MOD_BUILDING_PURCHASE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+        <Argument name="Percent">15</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- Freedom of thought. Deliberately the smallest number on the sheet. -->
+    <Modifier id="LORENZO_MOD_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_SCIENCE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME</Argument>
+    </Modifier>
+
+    <!-- Every base-game leader has an agenda and the AI reads it; without one Lorenzo is
+         diplomatically inert. He judges you by what your artists have made. -->
+    <Modifier id="LORENZO_MOD_AGENDA_PATRON" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE">
+        <String context="Name">LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_NAME</String>
+        <Argument name="ModName">LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_NAME</Argument>
+        <Argument name="Tooltip">LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC</Argument>
+        <Argument name="WeightType">DIPLOMACY_AGENDA_COMPARE_NUM_GREAT_WORKS</Argument>
+        <Argument name="FirstMeetDelay">20</Argument>
+        <Argument name="UpdateFreq">10</Argument>
+        <Argument name="UpdateFreqVariance">2</Argument>
+        <Argument name="AwardTo1">DIPLOMACY_AGENDA_AWARD_HIGHER</Argument>
+        <Argument name="AwardAmtType1">DIPLOMACY_AGENDA_AMT_MEDIUM</Argument>
+        <Argument name="AwardTo2">DIPLOMACY_AGENDA_AWARD_LOWER</Argument>
+        <Argument name="AwardAmtType2">DIPLOMACY_AGENDA_NEG_AMT_MEDIUM</Argument>
+        <Argument name="NotifyMessage">LOC_NOTIFICATION_DIPLOMATIC_AGENDA_DEFAULT_MESSAGE</Argument>
+        <Argument name="NotifySummary">LOC_NOTIFICATION_DIPLOMATIC_AGENDA_DEFAULT_SUMMARY</Argument>
     </Modifier>
 </GameEffects>

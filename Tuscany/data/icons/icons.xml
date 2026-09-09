@@ -24,17 +24,54 @@
         </Row>
         <Row>
             <ID>LEADER_LORENZO</ID>
-            <Path>fs://game/tuscany/leader_lorenzo.png</Path>
+            <Path>fs://game/tuscany/lp_hex_lorenzo_256.png</Path>
+            <IconSize>256</IconSize>
         </Row>
         <Row>
             <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_hex_lorenzo_128.png</Path>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_hex_lorenzo_64.png</Path>
+            <IconSize>64</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_hex_lorenzo_128.png</Path>
+            <Context>LEADER_HAPPY</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_hex_lorenzo_128.png</Path>
+            <Context>LEADER_ANGRY</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_circ_lorenzo_256.png</Path>
             <Context>CIRCLE_MASK</Context>
-            <Path>fs://game/tuscany/leader_lorenzo.png</Path>
+            <IconSize>256</IconSize>
         </Row>
         <Row>
             <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_circ_lorenzo_140.png</Path>
             <Context>PORTRAIT_MASK</Context>
-            <Path>fs://game/tuscany/leader_lorenzo.png</Path>
+            <IconSize>140</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_circ_lorenzo_128.png</Path>
+            <Context>CIRCLE_MASK</Context>
+            <IconSize>128</IconSize>
+        </Row>
+        <Row>
+            <ID>LEADER_LORENZO</ID>
+            <Path>fs://game/tuscany/lp_circ_lorenzo_64.png</Path>
+            <Context>CIRCLE_MASK</Context>
+            <IconSize>64</IconSize>
         </Row>
         <Row>
             <ID>UNIT_CONDOTTIERO</ID>

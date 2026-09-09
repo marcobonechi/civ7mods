@@ -41,14 +41,17 @@
         card: "bg-card-etruscans.png",
         symbol: "civ_sym_etruscans.png",
         vert: "lsbg_etruscans_vert.png",
-        // The leader preloader asks for lp_circ_<leader>_256, lp_hex_<leader>_256 and
+        // The leader preloader asks for lp_circ_<leader>_<n>, lp_hex_<leader>_<n> and
         // lsl_<leader> by name, never through IconDefinitions.
-        leaders: [{ id: "porsenna", circle: "lp_circ_porsenna_256.png",
-                    hex: "lp_hex_porsenna_256.png", portrait: "lsl_porsenna.png" }],
+        // model: the shipped leader whose 3D asset Porsenna borrows. Augustus wears the toga
+        // the Romans took from the Etruscans, which is as close as the game gets to a lucumo.
+        leaders: [{ id: "porsenna", type: "LEADER_PORSENNA", model: "LEADER_AUGUSTUS",
+                    portrait: "lsl_porsenna.png" }],
     };
 
     const KEY = "__civ7modsCivArt";
     const shared = window[KEY] || (window[KEY] = { textures: new Map(), panels: new Map(), hooked: false });
+    if (!shared.leaderAssets) shared.leaderAssets = new Map();
 
     const url = (file) => "fs://game/" + CONFIG.modId + "/" + file;
 
@@ -63,10 +66,18 @@
     // addBackgroundLayer is given the bare texture name, never a URL.
     shared.panels.set("bg-panel-" + CONFIG.civ, url(CONFIG.panel));
     shared.panels.set("bg_panel_" + CONFIG.civ, url(CONFIG.panel));
+    // The shell asks for a portrait at whatever size the widget it is filling wants, and each
+    // size is a separate texture name; icons.xml covers the ones that go through IconDefinitions,
+    // this covers the ones the preloader builds by hand.
     for (const leader of CONFIG.leaders || []) {
-        register("lp_circ_" + leader.id + "_256", leader.circle);
-        register("lp_hex_" + leader.id + "_256", leader.hex);
+        for (const n of [256, 140, 128, 64]) {
+            register("lp_circ_" + leader.id + "_" + n, "lp_circ_" + leader.id + "_" + n + ".png");
+        }
+        for (const n of [256, 128, 64]) {
+            register("lp_hex_" + leader.id + "_" + n, "lp_hex_" + leader.id + "_" + n + ".png");
+        }
         register("lsl_" + leader.id, leader.portrait);
+        if (leader.model) shared.leaderAssets.set(leader.type + "_GAME_ASSET", leader.model + "_GAME_ASSET");
     }
 
     // ---------------------------------------------------------------- shared, install once
@@ -214,7 +225,38 @@
             }
         } catch (e) { /* ignore */ }
 
-        // 5. Last net: HTML that arrives with an inline style or src already set. This does not
+        // 5. Leader models. A mod cannot ship one: leader-select asks the engine for
+        //    `<LEADER_TYPE>_GAME_ASSET`, gets null back, and falls through to the faceless
+        //    LEADER_FALLBACK_GAME_ASSET -
+        //    core/ui/shell/leader-select/leader-select-model-manager.js:151-162. Leaders'
+        //    BasePersonaType does not help; that is read by the alternate-persona system, not
+        //    by this lookup. So borrow a shipped leader's model by rewriting the asset name on
+        //    its way into the model group, which covers leader select and every other screen
+        //    that builds its models the same way.
+        try {
+            if (window.WorldUI && WorldUI.createModelGroup) {
+                const original = WorldUI.createModelGroup.bind(WorldUI);
+                const swap = (name) => (typeof name === "string"
+                    && shared.leaderAssets.get(name.toUpperCase())) || name;
+                const wrapMethod = (group, method) => {
+                    if (!group || typeof group[method] !== "function" || group[method].__civ7mods) return;
+                    const inner = group[method].bind(group);
+                    const wrapped = function (asset) {
+                        return inner.apply(null, [swap(asset)].concat([].slice.call(arguments, 1)));
+                    };
+                    wrapped.__civ7mods = true;
+                    group[method] = wrapped;
+                };
+                WorldUI.createModelGroup = function () {
+                    const group = original.apply(null, arguments);
+                    wrapMethod(group, "addModel");
+                    wrapMethod(group, "addModelAtPos");
+                    return group;
+                };
+            }
+        } catch (e) { /* ignore */ }
+
+        // 6. Last net: HTML that arrives with an inline style or src already set. This does not
         //    catch programmatic changes (see the note at the top) - the prototype hooks do.
         try {
             const fixElement = (el) => {
