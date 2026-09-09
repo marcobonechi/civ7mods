@@ -13,9 +13,7 @@
         <Row TraitType="TRAIT_ETRUSCANS_ABILITY" Name="LOC_TRAIT_ETRUSCANS_ABILITY_NAME" Description="LOC_TRAIT_ETRUSCANS_ABILITY_DESCRIPTION" InternalOnly="true"/>
     </Traits>
     <CivilizationTraits>
-        <!-- TRAIT_ANTIQUITY_CIV is declared by the age-antiquity module only, so the row that
-             grants it lives in civilizations-antiquity.xml. In the other two ages the engine
-             adds TRAIT_ANACHRONISTIC_CIV itself (base-standard/data/ages-post-process.sql). -->
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ANTIQUITY_CIV"/>
         <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ETRUSCANS"/>
         <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ETRUSCANS_ABILITY"/>
         <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ATTRIBUTE_SCIENTIFIC"/>

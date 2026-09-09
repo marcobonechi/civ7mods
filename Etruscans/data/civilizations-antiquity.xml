@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
-    <!-- The baseline Antiquity-civ trait. It only exists while the Antiquity module is loaded, so
-         the row lives here rather than in the always-loaded shared file; a single unresolved
-         foreign key makes the game drop the whole file. -->
-    <CivilizationTraits>
-        <Row CivilizationType="CIVILIZATION_ETRUSCANS" TraitType="TRAIT_ANTIQUITY_CIV"/>
-    </CivilizationTraits>
     <TraitModifiers>
         <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_ETRUSCANS_SETTLEMENT_PRODUCTION"/>
         <Row TraitType="TRAIT_ETRUSCANS_ABILITY" ModifierId="MOD_ETRUSCANS_SETTLEMENT_HAPPINESS"/>

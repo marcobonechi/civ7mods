@@ -33,6 +33,16 @@ goes further with a full Antiquity kit (`units-antiquity.xml`, `constructibles-a
 with its own quarter, loaded under `antiquity-age-current` only, like Rome's Basilica), listed
 in the picker only under the Antiquity domain's `CivilizationItems`.
 
+**All three age modules load in every game** (checked 2026-09-09 in `Modding.log` and the three
+modinfos): only their `AgeInUse` action groups differ. So anything an age module loads under
+`always` — `civilizations-shared.xml` with `TRAIT_ANTIQUITY_CIV` / `TRAIT_EXPLORATION_CIV` /
+`TRAIT_MODERN_CIV`, `traditions.xml`, `unlocks-shared.xml` with `REQSET_CIV_IS_ROME` and friends —
+is present whatever age is active, and a mod may reference it from its own always-loaded files.
+What is genuinely age-scoped is what sits behind an age criteria: `units.xml`,
+`progression-trees-tech.xml`, `constructibles.xml` (age-at-or-before), the per-age
+`civilizations-<age>.xml`. That is why `UnitReplaces` cannot name an out-of-age unit, and why a
+file naming a unique building must be loaded under the persist criteria.
+
 Game side, any civ whose `ApexAge` is not the active age receives `TRAIT_ANACHRONISTIC_CIV`
 (`base-standard/data/ages-post-process.sql`), which carries the same baseline modifiers as
 `TRAIT_ANTIQUITY_CIV` / `TRAIT_EXPLORATION_CIV` / `TRAIT_MODERN_CIV`. So an Exploration civ is

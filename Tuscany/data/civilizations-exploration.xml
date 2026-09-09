@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
-    <!-- The baseline Exploration-civ trait. It only exists while the Exploration module is loaded,
-         so the row lives here rather than in the always-loaded shared file. -->
-    <CivilizationTraits>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_EXPLORATION_CIV"/>
-    </CivilizationTraits>
     <TraitModifiers>
         <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_TUSCANY_SETTLEMENT_GOLD"/>
         <Row TraitType="TRAIT_TUSCANY_ABILITY" ModifierId="MOD_TUSCANY_SETTLEMENT_CULTURE"/>
