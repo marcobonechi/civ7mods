@@ -31,4 +31,13 @@
         <Argument name="Percent">30</Argument>
         <String context="Preview">LOC_MOD_CIV_WONDER_PRODUCTION_BYZANTIUM_DESCRIPTION</String>
     </Modifier>
+    <!-- The Hippodrome was where the emperor met his people; every tradition the empire keeps
+         is celebrated there. COLLECTION_OWNER on a ConstructibleModifier is the city that owns
+         the building (Chola's Anjuvannam uses the same shape). -->
+    <Modifier id="MOD_BYZANTIUM_HIPPODROME_CULTURE_PER_TRADITION" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_YIELD_PER_ACTIVE_TRADITION">
+        <Argument name="CivUnique">false</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_BUILDING_HIPPODROME_NAME</Argument>
+    </Modifier>
 </GameEffects>

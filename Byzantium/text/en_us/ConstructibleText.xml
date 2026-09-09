@@ -5,7 +5,7 @@
             <Text>Hippodrome</Text>
         </Row>
         <Row Tag="LOC_BUILDING_HIPPODROME_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_CULTURE] Culture. +1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Great Palace.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +8 [icon:YIELD_CULTURE] Culture, and +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire. +1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Great Palace.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_HIPPODROME_TOOLTIP">
             <Text>+1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>

@@ -41,7 +41,7 @@
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" DistrictType="DISTRICT_WONDER"/>
     </Constructible_ValidDistricts>
     <Constructible_YieldChanges>
-        <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_CULTURE" YieldChange="6"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_CULTURE" YieldChange="8"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_DIPLOMACY" YieldChange="6"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="4"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="2"/>
@@ -78,6 +78,7 @@
     </UniqueQuarterModifiers>
     <ConstructibleModifiers>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_RELIC"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" ModifierId="MOD_BYZANTIUM_HIPPODROME_CULTURE_PER_TRADITION"/>
     </ConstructibleModifiers>
     <Constructible_Advisories>
         <Row ConstructibleType="BUILDING_HIPPODROME" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
