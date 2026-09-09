@@ -71,7 +71,7 @@
             <Text>Mese</Text>
         </Row>
         <Row Tag="LOC_QUARTER_MESE_DESCRIPTION">
-            <Text>Byzantine unique Antiquity Age quarter, formed by the Cistern and the Milion on the same tile. +1 [icon:YIELD_GOLD] Gold for each Settlement in your empire.</Text>
+            <Text>Byzantine unique Antiquity Age quarter, formed by the Cistern and the Milion on the same tile. +1 [icon:YIELD_GOLD] Gold, +1 [icon:YIELD_CULTURE] Culture and +1 [icon:YIELD_HAPPINESS] Happiness for each Settlement in your empire, doubled if the Mese is in a Town.</Text>
         </Row>
         <Row Tag="LOC_QUARTER_MESE_TOOLTIP">
             <Text>The colonnaded avenue of Constantinople, lined with forums and shops, with the great cisterns beneath.</Text>

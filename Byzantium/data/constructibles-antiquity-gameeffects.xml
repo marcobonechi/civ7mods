@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
     <!-- The Mese: every road of the empire was measured from the Milion, so the quarter earns
-         Gold for each settlement in the empire, cities and towns alike. -->
+         Gold, Culture and Happiness for each settlement in the empire, cities and towns alike.
+         A Mese in a town doubles that: the same modifiers again, gated on the settlement being a
+         town. -->
     <Modifier id="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
         <SubjectRequirements>
             <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
@@ -9,6 +11,69 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_MESE_CULTURE_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_MESE_HAPPINESS_PER_SETTLEMENT" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT_TOWN" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_GOLD</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_MESE_CULTURE_PER_SETTLEMENT_TOWN" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Cities">true</Argument>
+        <Argument name="Towns">true</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_MESE_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_MESE_HAPPINESS_PER_SETTLEMENT_TOWN" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_NUM_CITIES">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_MESE</Argument>
+            </Requirement>
+            <Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+        </SubjectRequirements>
+        <Argument name="YieldType">YIELD_HAPPINESS</Argument>
         <Argument name="Amount">1</Argument>
         <Argument name="Cities">true</Argument>
         <Argument name="Towns">true</Argument>

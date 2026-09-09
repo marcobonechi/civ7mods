@@ -65,6 +65,11 @@
     </UniqueQuarters>
     <UniqueQuarterModifiers>
         <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_CULTURE_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_HAPPINESS_PER_SETTLEMENT"/>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_GOLD_PER_SETTLEMENT_TOWN"/>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_CULTURE_PER_SETTLEMENT_TOWN"/>
+        <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_HAPPINESS_PER_SETTLEMENT_TOWN"/>
     </UniqueQuarterModifiers>
     <Constructible_Advisories>
         <Row ConstructibleType="BUILDING_CISTERN" AdvisoryClassType="ADVISORY_CLASS_FOOD"/>
