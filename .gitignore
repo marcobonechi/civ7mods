@@ -12,9 +12,9 @@ scratch/
 # Screenshots
 *.png
 
-# Mod icons are real content, not screenshots
-!Byzantium/icons/*.png
-!Byzantium/icons-alt/*.png
-!Byzantium/icons-vector/*.png
-!Byzantium/icons-mixed/*.png
-!Byzantium/loading/*.png
+# Mod art is real content, not screenshots. Any mod folder's icons/ (including the alternate
+# sets) and loading/ are kept, so a new civilization does not have to touch this file - which
+# the Etruscans and Tuscany did have to, silently, until 2026-09-09.
+!*/icons/*.png
+!*/icons-*/*.png
+!*/loading/*.png

@@ -269,15 +269,33 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   Nobody ships a new model: those need Firaxis `.blp` packages. Reference sizes from a civ that
   displays correctly: symbol, unit, building, `cult_` icons 256², `bg-card` 720x1080,
   `bg-panel` 1301x732, loading 1920x1080 and 1280x720.
-- The picker panel and vertical card go through `WorldUI.addBackgroundLayer(texture)` and
-  `blp:` names, which cannot take a PNG. The community fix (Custom Civ Art Fixes,
-  Civilization Background Framework) wraps `WorldUI.addBackgroundLayer` to show a DOM overlay
-  div with the PNG, wraps `CSSStyleDeclaration.prototype.setProperty` to rewrite
-  `blp:fs://` and `blp:bg_panel_<civ>` values, and reads a config table
-  `CivsWithoutBackgrounds(CivilizationType, ArtPath)` that a civ mod creates
-  (`CREATE TABLE IF NOT EXISTS`) with `LoadOrder` 10 in shell and game scope. Unit portraits in
-  the unit panel are live renders (`WorldUI.requestPortrait`, `live:/UNIT_X`) of the remapped
-  model; `ml-unit-portrait-fix` shows how to swap in a 2D `url(fs://...)` instead.
+- **The shell asks for civ and leader art by naming convention, not through `IconDefinitions`,
+  and those lookups are package-texture lookups that cannot open a mod's loose PNG.** The names,
+  read out of the shipped UI on 2026-09-09: `bg-panel-<civ>` and `bg_panel_<civ>` (picker
+  background, narrative panel, syncretism and unlock screens), `bg-card-<civ>` (age-transition
+  card), `civ_sym_<civ>`, and for leaders `lp_circ_<leader>_256`, `lp_hex_<leader>_256` and
+  `lsl_<leader>`. Two of them - `age-transition-civ-card.js` and `age-transition-civ-select.js` -
+  build the flat form `fs://game/bg-card-<civ>.png`, which is also a package lookup; and callers
+  that receive an `fs://` URL from `UI.getIconBLP` sometimes prepend `blp:` to it, which then
+  fails as `blp:fs://...`.
+  The fix is a `UIScripts` file in both scopes that rewrites those names to
+  `fs://game/<modid>/<file>`, and it has to hook **prototypes**, for two reasons found the hard
+  way: a `MutationObserver` does not report programmatic style changes in this engine (the
+  Custom Civ Art Fixes author documents the same thing), and `el.style.backgroundImage = x` goes
+  through the `CSSStyleDeclaration` **accessor**, not `setProperty` - so hooking `setProperty`
+  alone misses both age-transition screens. Hook `setProperty`, the `backgroundImage` accessor,
+  `Element.prototype.setAttribute` for `src`, and the `HTMLImageElement` `src` accessor (whose
+  getter must keep returning what the caller assigned, because
+  `ui-next/utilities/image-cache.js` compares `image.src` back against the URL it set and
+  rejects when they differ). `WorldUI.addBackgroundLayer` takes a bare texture name and never
+  touches the DOM, so there is nothing to rewrite: show the PNG on a fixed `z-index:-1` overlay
+  div instead and wrap `WorldUI.clearBackground` to hide it.
+  Working implementation: `Etruscans/ui/etruscans-images.js` (same file in all three civ mods,
+  differing only in the CONFIG block; the registry and the hooks are shared through `window` so
+  several mods coexist). Verified by the main-menu preloader, which asks for every one of these
+  names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
+  script installed our civs and leaders produce no such line, while mod civs without it still do.
+  That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
 - `VisualRemaps` rows are keyed by `ID` and each is a player-toggleable option (`VisualRemaps.
   getRemapState` in `core/ui/options/options.js`). Modinfo criteria cannot be negated (only
   `AgeInUse`, `ModInUse`, `ModIsEnabled`, `RuleSetInUse`, `any="true"`), so a DLC-dependent

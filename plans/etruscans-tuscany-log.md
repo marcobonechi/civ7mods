@@ -117,3 +117,63 @@ turning generator output into the files the game wants — white-on-black keyed 
 the symbol and unit flags, a flood-fill for the colour icons, and the crops for the four
 background sizes. Nothing in the XML has to change when the real art lands: the icon rows already
 name every file and carry no size, so a 256 square drops in over the 128 placeholder.
+
+### 2026-09-09 — the background wall, solved
+
+The card, panel and vertical-card art had never shown for any of our civs. Diagnosed and fixed.
+
+The shell asks for civilization and leader art **by naming convention**, not through
+`IconDefinitions`, and hands the names to a package-texture lookup that cannot open a mod's loose
+PNG: `bg-panel-<civ>`, `bg_panel_<civ>`, `bg-card-<civ>`, `civ_sym_<civ>`, and for leaders
+`lp_circ_<leader>_256`, `lp_hex_<leader>_256`, `lsl_<leader>`. Two screens build the flat form
+`fs://game/bg-card-<civ>.png`, which is a package lookup too, and some callers prepend `blp:` to
+an `fs://` URL they were handed, which then fails as `blp:fs://…`.
+
+Why the first attempt did nothing — both found by reading the shipped UI, one of them corroborated
+by a comment from the Custom Civ Art Fixes author:
+
+1. **A MutationObserver does not report programmatic style changes in this engine.** Watching the
+   style attribute catches HTML that arrives with an inline style, and nothing else. The old
+   `byzantium-images.js` was an observer plus a `UI.getIconBLP` wrap, so it never fired.
+2. **`el.style.backgroundImage = x` goes through the CSSStyleDeclaration accessor, not
+   `setProperty`.** Both Workshop frameworks hook only `setProperty`, so they miss
+   `age-transition-civ-card.js:163` and `age-transition-civ-select.js:487` — which is exactly
+   where the card and the details panel are set. That part appears not to have worked for anyone.
+
+The rewritten script hooks `setProperty`, the `backgroundImage` accessor,
+`Element.prototype.setAttribute` for `src`, and the `HTMLImageElement` `src` accessor — the last
+with its getter preserved, because `ui-next/utilities/image-cache.js` compares `image.src` back
+against the URL it assigned and rejects when they differ. `WorldUI.addBackgroundLayer` gets the
+overlay-div treatment, since it takes a bare texture name and never touches the DOM. The registry
+and the hooks live on `window`, so the three civ mods coexist and only the first to load installs
+them. Identical file in all three, differing only in the CONFIG block at the top.
+
+**How it was verified without navigating the UI.** The main-menu preloader
+(`main-menu-asset-preload.js`) requests every one of these names for every owned civ and leader,
+and `Logs/UI.log` records `Failed loading resource: blp:<name>` for each miss. Baseline: three
+lines per civ of ours, plus three per leader. After the fix: **none**, while other people's mod
+civs in the same load order still produce theirs — a control group that came free. Stripping
+`blp:` from `blp:fs://…` turned out to fix the vertical-card lookup for every mod civ in the load
+order, not only ours.
+
+Also added, since the log named them: `lp_circ_<leader>_256`, `lp_hex_<leader>_256` and
+`lsl_<leader>` files for Porsenna and Lorenzo, cropped from the placeholder portraits with the
+commands in the art brief, and listed in both `ImportFiles` blocks.
+
+Still to see with human eyes: the card and details panel on the age-transition screen and the
+picker background, which need an actual game to reach. The token mapping and the image path are
+proven; the CSS accessor hook is installed the same way but is only exercised on those screens.
+
+Deliberately **not** done: registering in `CivsWithoutBackgrounds`. Our own hook covers the same
+ground, and registering would make the two Workshop frameworks draw a second overlay over ours.
+
+### 2026-09-09 — the icons were never committed
+
+Caught while committing the background fix: `.gitignore` ignores `*.png` (for screenshots) and
+un-ignored it again with an allow-list that named only `Byzantium/`. So every PNG in `Etruscans/`
+and `Tuscany/` — the whole placeholder set from the first commit — was silently untracked, and
+anyone cloning the repo would have got two mods with no art at all. `install.sh` copies the
+working tree, so it never showed up locally.
+
+The allow-list is now a pattern (`!*/icons/*.png`, `!*/icons-*/*.png`, `!*/loading/*.png`), so the
+next civilization does not have to remember this.

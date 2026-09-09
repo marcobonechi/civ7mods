@@ -359,6 +359,14 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   (`tools/make-icons.py`, `tools/make-backgrounds.py`); units, buildings and wonders borrow the
   models of what they replace through `data/visual-remaps.xml`. Neither mod ships a binary art
   package, so neither touches the game install.
+- **The shell finds that art through a UI script.** `ui/<mod>-images.js` rewrites the
+  naming-convention lookups the shell uses for civ and leader art (`bg-panel-<civ>`,
+  `bg-card-<civ>`, `civ_sym_<civ>`, `lp_circ_<leader>_256` and the rest) to the
+  `fs://game/<modid>/<file>` URLs a mod can actually serve. It hooks the CSSOM and Image
+  prototypes rather than watching the DOM, because a MutationObserver does not see programmatic
+  style changes here and the age-transition screens assign `style.backgroundImage` directly. The
+  same file, with a different CONFIG block, is in all three civ mods and they share one set of
+  hooks. `plans/byzantium-art.md` §4 has the detail.
 - **The leaders borrow a persona.** A mod cannot add a leader model: the shell asks the engine for
   `<LEADER_TYPE>_GAME_ASSET` and falls back to a generic one. `Leaders.BasePersonaType` points
   Porsenna at Xerxes and Lorenzo at Machiavelli, which is the mechanism Firaxis's own alternate

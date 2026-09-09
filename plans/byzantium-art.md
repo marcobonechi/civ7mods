@@ -10,7 +10,8 @@ Keshig remap, so the base unit is used directly and no Workshop dependency is ad
 Treasure Fleet hull (a civilian model; if attack animations are missing in game, fall back to
 `UNIT_GALLEON`). The Blue Mosque override reuses the remap ID in `visual-remaps-ottomans.xml`
 with `LoadOrder` 20; first in-game check confirms whether the later file wins. Remaining
-**Decide** items: unit-panel portraits (§3) and civic glyphs (§5).
+**Decide** items: unit-panel portraits (§3) and civic glyphs (§5). The background hooks in §4
+are done (2026-09-09).
 
 ## 1. What a mod can actually ship (learned from the Workshop examples)
 
@@ -113,26 +114,35 @@ our painted portrait instead (this is what `ml-unit-portrait-fix` does with a wh
 replacement; wrapping is lighter and has no dependency). The portrait SVGs delivered here are
 drawn for that slot (square, dark vignette, unit facing right).
 
-## 4. Backgrounds that still do not show (loading, card, panel)
+## 4. Backgrounds that still do not show (loading, card, panel) — SOLVED 2026-09-09
 
-Rewrite `ui/byzantium-images.js` along the lines of the two frameworks, dependency-free:
+`ui/byzantium-images.js` has been rewritten and now resolves every naming-convention lookup.
+What was wrong with the first version, and what it takes, is written up in the skill's
+`reference.md` (§4, the naming-convention bullet). In short:
 
-1. Wrap `WorldUI.addBackgroundLayer(texture, params)`: when `texture` is `bg-panel-byzantium`,
-   show a fixed, `z-index:-1`, `background-size:cover` overlay div with our PNG (honouring
-   `params.offset`, `params.size`, `params.alpha`) and do not call the original; wrap
-   `WorldUI.clearBackground` to hide it.
-2. Wrap `CSSStyleDeclaration.prototype.setProperty` for `background-image`/`background`: turn
-   `blp:fs://…` into `fs://…`, and `blp:bg_panel_byzantium(.png)`, `blp:bg-card-byzantium`,
-   `blp:civ_sym_byzantium`, `blp:lsbg_byzantium_vert` into our URLs. Keep the mutation
-   observer for nodes that arrive with inline styles, plus `<img src>`.
-3. Keep the `BACKGROUND_VERT` icon row as an `fs://` path (hook 2 strips the `blp:` the UI
-   prepends).
-4. Ship `data/civ-art-fixes.sql` in shell and game scope with `LoadOrder` 10:
-   `CREATE TABLE IF NOT EXISTS CivsWithoutBackgrounds(...)` plus our row, so both Workshop
-   frameworks recognise Byzantium when a player has them, and nothing breaks when they do not.
+1. A `MutationObserver` does not report programmatic style changes in this engine, so watching
+   the style attribute — all the old file did, besides wrapping `UI.getIconBLP` — caught nothing.
+2. `el.style.backgroundImage = x` goes through the `CSSStyleDeclaration` accessor rather than
+   `setProperty`, so the hook both Workshop frameworks use misses the age-transition card and the
+   details panel, which is where `bg-card-<civ>` and `bg-panel-<civ>` are actually set.
 
-Gate: picker shows the square panel behind the civ list, the vertical card on the detail
-panel, the painting on the loading screen; `UI.log` has no `blp:bg-panel-byzantium` misses.
+The new file hooks `setProperty`, the `backgroundImage` accessor, `Element.setAttribute` for
+`src`, and the `HTMLImageElement` `src` accessor (getter preserved so `image-cache.js`'s
+`image.src != url` check still passes), plus `WorldUI.addBackgroundLayer` for the bare-texture
+path, with the MutationObserver kept only as a net for HTML that arrives with inline styles.
+The registry and hooks are shared through `window`, so Byzantium, the Etruscans and Tuscany can
+be installed together and only the first script to load installs the hooks.
+
+Verified without navigating the UI: the main-menu preloader requests every one of these names and
+logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss. Before, each of our
+civs produced three lines; after, none of them produce any, while mod civs that do not have the
+script still do. Stripping `blp:` from `blp:fs://…` also fixes the vertical-card lookup for every
+mod civ in the load order, not just ours.
+
+Not yet seen with human eyes: the card and details panel on the age-transition screen, and the
+picker background, since reaching them needs a game. The `CivsWithoutBackgrounds` table is
+deliberately *not* written: our own hook already covers the same ground, and registering would
+make the two Workshop frameworks put up a second overlay div over ours.
 
 ## 5. Civic tree glyphs (Decide)
 
