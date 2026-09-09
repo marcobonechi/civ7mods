@@ -381,3 +381,31 @@ The signature on these two took the most work of any so far, and taught two thin
 
 Remaining: one asset, the Bottega, whose content is right but which is composed as a flat framed
 panel rather than a cut-out object. Interim version installed; the corrected prompt is in the brief.
+
+### 2026-09-09 — Etruria moved to Populonia
+
+Marco asked to move Etruria away from Rome, leaving Rome where it is. Measured properly this time,
+against the map's own projection rather than in degrees: I imported `makeProjection` and
+`hexDistance` from `europe-raster.js` and ran eight candidate Etruscan cities against Rome on all
+six grid sizes.
+
+Two things came out of that which guessing had hidden:
+
+- **The large maps demand far more spacing than I had written down.** `MIN_SPACING` is 5 on the
+  standard grids but `round(W/14)` on the large ones — eight, nine and ten hexes. Earlier notes,
+  including the comment in the geo files, said five everywhere.
+- **No Etruscan city clears it on any grid.** Italy is barely three hexes wide at the smaller
+  sizes; the best any candidate manages is Populonia at 2 (Tiny) to 6 (144x126). So moving improves
+  the odds without ever removing the fallback when Rome is in play.
+
+Populonia is the pick: furthest from Rome on five grids of six, and unlike Volaterrae — which ties
+it — it stays three hexes from Florence rather than one, so it does not collide with Tuscany too.
+It also fits the civ better than the mechanics required, being the one Etruscan city on the sea and
+the port for Elban iron, which is what the Metalla tradition is about; the coastal start bias and
+the Tyrrhenian Galley were already pointing that way.
+
+The city list was reordered so Populonia is first and therefore the capital — the capital name is
+whatever `LOC_CITY_NAME_ETRUSCANS1` says, and founding a city called Tarquinii on Populonia's
+headland would have been sloppy. Tarquinii takes the old slot at eleven, and the tomb art and the
+civilopedia still refer to it, which remains correct: it is a city of the league either way.
+Populonia added to the fallback list beside Tarquinia and Florence.

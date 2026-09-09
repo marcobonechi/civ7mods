@@ -314,7 +314,7 @@ next civilization is `.claude/skills/new-civilization/`.
 # Etruscans — an Antiquity Age civilization
 
 Twelve peoples between the Tiber and the Arno: engineering and the good life. Install `Etruscans/`
-like the other mods (`./install.sh Etruscans`); with the map mod installed it starts at Tarquinii
+like the other mods (`./install.sh Etruscans`); with the map mod installed it starts at Populonia
 on all four Europe maps. Pickable at an Exploration or Modern start too, listed there as
 "Etruscans (Time-Tested)".
 
@@ -350,11 +350,14 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
 
 - **They know about each other, but neither needs the other.** The Etruscans-to-Tuscany link lives
   behind `ModInUse` / `ModIsEnabled` criteria in both modinfos, so either folder installs alone.
-- **Central Italy is crowded.** The map script keeps starts at least five hexes apart, and Rome,
-  Tarquinii and Florence are all closer than that. Whichever is placed later falls back to a
-  curated site; Tarquinia and Florence are both in the fallback list, so a displaced player still
-  lands in Italy. Etruria and Tuscany are meant to be played one after the other rather than
-  side by side.
+- **Central Italy is crowded.** The map script keeps starts apart — five hexes on the standard
+  grids, eight to ten on the large ones — and no Etruscan city is that far from Rome; Italy is
+  barely three hexes wide at the smaller sizes. Etruria starts at Populonia, which is the furthest
+  any of its cities gets (two hexes from Rome on Tiny, six on the largest grid) without landing on
+  top of Florence the way Volaterrae would. When Rome is also in play one of the two still takes a
+  fallback site; Populonia, Tarquinia and Florence are all in the fallback list, so a displaced
+  player stays in Italy. Etruria and Tuscany are meant to be played one after the other rather
+  than side by side.
 - **Art is placeholder.** Icons and loading screens are flat generated PNGs
   (`tools/make-icons.py`, `tools/make-backgrounds.py`); units, buildings and wonders borrow the
   models of what they replace through `data/visual-remaps.xml`. Neither mod ships a binary art

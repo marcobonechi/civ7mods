@@ -15,7 +15,7 @@ reclining couples, music, wine).
 | Item | Decision |
 |---|---|
 | Ids | `CIVILIZATION_ETRUSCANS`, `TRAIT_ETRUSCANS`, `TRAIT_ETRUSCANS_ABILITY`; mod id `etruscans`, folder `Etruscans/` |
-| Names | Etruria / The Etruscan League / Etruscan; capital Tarquinii |
+| Names | Etruria / The Etruscan League / Etruscan; capital Populonia |
 | Apex age | Antiquity (`TAG_APEX_AGE_ANTIQUITY`) |
 | Attributes | Scientific + Economic. Traits `TRAIT_ATTRIBUTE_SCIENTIFIC` (+`_TOT_EX`, `_TOT_MO`), `TRAIT_ATTRIBUTE_ECONOMIC` (+`_TOT_EX`, `_TOT_MO`); tags `TAG_TRAIT_SCIENTIFIC`, `TAG_TRAIT_ECONOMIC` |
 | Ability | **Disciplina Etrusca** (see 1.1) |
@@ -27,11 +27,11 @@ reclining couples, music, wine).
 | Unlocks | Tuscany (Exploration, historical) and Norman (Exploration, geographic — the Normans in Italy) |
 | Start bias | coast +100, navigable river +10, grassland/plains biome; favoured wonder Fanum Voltumnae |
 | Art cultures | buildings `BUILDING_CULTURE_MED`, `_MED_ANT`, `_MED_EXP`, `BUILDING_CULTURE_SAM_MOD`, `ANT_STONE`, `EXP_STONE`, `MOD_STONE`; units `Euro` |
-| True start | Tarquinii, southern Etruria: `[11.75, 42.25]` on all three geo files |
+| True start | Populonia, on the Tuscan coast: `[10.50, 42.99]` on all three geo files (moved 2026-09-09 — see below) |
 | Leader | **Porsenna** — see 3 |
 
-Cities (30): Tarquinii, Veii, Caere, Vulci, Clusium, Volsinii, Perusia, Arretium, Cortona,
-Volaterrae, Populonia, Rusellae, Vetulonia, Faesulae, Pisae, Falerii, Capena, Statonia, Saturnia,
+Cities (30): Populonia, Veii, Caere, Vulci, Clusium, Volsinii, Perusia, Arretium, Cortona,
+Volaterrae, Tarquinii, Rusellae, Vetulonia, Faesulae, Pisae, Falerii, Capena, Statonia, Saturnia,
 Cosa, Graviscae, Pyrgi, Marzabotto, Felsina, Spina, Adria, Capua, Nola, Pontecagnano, Salpinum.
 
 Citizens — male: Arnth, Larth, Vel, Aule, Tarchon, Thefarie, Velthur, Sethre, Laris, Avle;
@@ -114,6 +114,32 @@ Test of Time nodes: `NODE_CIVIC_EX_ETRUSCANS_SURVIVAL` in `TREE_CIVICS_EX_TEST_O
 Bulgaria and Byzantium do. Gameplay unlock: own `BUILDING_BATH` in 3 Settlements — the closest base
 building to Etruscan waterworks. Etruscans then appear as a predecessor of Tuscany and Norman in
 `CivilizationUnlocks`, and in `CivilizationSyncretismUnlocks`.
+
+### 1.7 Why the start is Populonia and not Tarquinii
+
+Measured against the map's own projection rather than in degrees, hexes from Rome `[12.5, 41.9]`:
+
+| | Tiny 60x38 | Small 74x46 | Huge 106x66 | Lg 112x98 | Lg 128x112 | Lg 144x126 |
+|---|---|---|---|---|---|---|
+| minimum spacing the script enforces | 5 | 5 | 5 | 8 | 9 | 10 |
+| Tarquinii | 2 | 1 | 1 | 2 | 2 | 2 |
+| Clusium | 1 | 1 | 1 | 2 | 2 | 3 |
+| Arretium | 2 | 2 | 2 | 3 | 3 | 4 |
+| Vetulonia | 2 | 2 | 3 | 4 | 4 | 5 |
+| Volaterrae | 3 | 2 | 3 | 4 | 5 | 5 |
+| **Populonia** | 2 | 2 | 3 | 4 | 5 | 6 |
+
+**No Etruscan city clears the requirement on any grid**, so when Rome is in play one of the two
+still falls back — Italy is barely three hexes wide on the standard sizes and the large maps ask
+for eight to ten. Populonia is simply the best available: furthest from Rome on five grids out of
+six, and unlike Volaterrae (which ties it) it stays three hexes from Florence instead of one, so it
+does not collide with Tuscany as well.
+
+It also suits the civ better than the mechanics required: Populonia was the one Etruscan city built
+on the sea, the port through which the iron of Elba was shipped and smelted — which is what the
+Metalla tradition is about — and the civ already carries a coastal start bias and a naval unique.
+The city list was reordered so Populonia is first and therefore the capital; Tarquinii takes its
+old slot at eleven.
 
 ## 2. Playable in every age
 

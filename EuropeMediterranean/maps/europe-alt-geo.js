@@ -955,11 +955,16 @@ export const GEO = {
 
     tsl: {
         CIVILIZATION_ROME: [12.5, 41.9],
-        // Central Italy is small: Rome, Etruria and Florence all sit inside the 5-hex minimum
-        // spacing the map script enforces, so whichever is placed later falls back to a curated
-        // site (Tarquinia and Florence are both in the fallback list below). Etruria and Tuscany
-        // are meant to be played one after the other rather than side by side.
-        CIVILIZATION_ETRUSCANS: [11.76, 42.25],   // Tarquinii, southern Etruria
+        // Etruria starts at Populonia rather than in the southern heartland, to put as much of
+        // Italy as possible between it and Rome. Measured on the real projection, hexes to Rome:
+        // Tarquinii 1-2 on every grid, Populonia 2 (Tiny) to 6 (144x126). That is the best any
+        // Etruscan city does - Volaterrae matches it but lands 1 hex from Florence - and it still
+        // does not clear the minimum spacing, which is 5 on the standard grids and 8-10 on the
+        // large ones. So when Rome is also in play one of the two still takes a fallback site;
+        // Populonia, Tarquinia and Florence are all in the list below so it stays in Italy.
+        // Populonia also suits the civ: the one Etruscan city on the sea, the port for Elban
+        // iron, and a coastal start bias to match.
+        CIVILIZATION_ETRUSCANS: [10.50, 42.99],   // Populonia, on the Tuscan coast
         CIVILIZATION_TUSCANY: [11.25, 43.77],     // Florence, on the Arno
         CIVILIZATION_BYZANTIUM: [28.61, 41.69],   // Constantinople, western bank at the northern
                                                   // mouth of the straits (Byzantium mod). Must be a
@@ -1018,7 +1023,7 @@ export const GEO = {
         [28.61, 41.69, "Constantinople"],
         // Mediterranean ports and a fuller Germany / western France
         [2.17, 41.39, "Barcelona"], [5.37, 43.30, "Marseille"], [13.10, 45.55, "Venice"],
-        [11.25, 43.77, "Florence"], [11.76, 42.25, "Tarquinia"],
+        [11.25, 43.77, "Florence"], [11.76, 42.25, "Tarquinia"], [10.50, 42.99, "Populonia"],
         [9.99, 53.55, "Hamburg"], [6.96, 50.94, "Cologne"], [-1.55, 47.22, "Nantes"],
         [25.5, 29.2, "Siwa"], [29.4, 22.0, "Selima"], [24.5, 17.6, "Ounianga"],
         [-11.44, 14.45, "Kayes"], [5.27, 14.89, "Tahoua"],

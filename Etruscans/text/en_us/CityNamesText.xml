@@ -2,7 +2,7 @@
 <Database>
     <EnglishText>
         <Row Tag="LOC_CITY_NAME_ETRUSCANS1">
-            <Text>Tarquinii</Text>
+            <Text>Populonia</Text>
         </Row>
         <Row Tag="LOC_CITY_NAME_ETRUSCANS2">
             <Text>Veii</Text>
@@ -32,7 +32,7 @@
             <Text>Volaterrae</Text>
         </Row>
         <Row Tag="LOC_CITY_NAME_ETRUSCANS11">
-            <Text>Populonia</Text>
+            <Text>Tarquinii</Text>
         </Row>
         <Row Tag="LOC_CITY_NAME_ETRUSCANS12">
             <Text>Rusellae</Text>
