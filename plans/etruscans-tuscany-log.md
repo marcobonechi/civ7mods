@@ -301,3 +301,35 @@ Design notes sent back, recorded in the brief:
 
 Nine of twenty-four assets are now real art. Remaining: four colour icons, the two vertical
 paintings, the Tuscany landscape, and eventual re-runs of the symbol and Porsenna.
+
+### 2026-09-09 — four regenerations, and a hole in the Cuniculus
+
+The Chimera, the Fanum Voltumnae, the Banco and the Bottega came back. Three went straight in and
+the corrections all landed: the Chimera now has the goat's head rising from the lion's back and the
+snake-headed tail turned back towards it, and reads at 48 px; the temple is finally Tuscan order —
+deep overhanging eave, unfluted widely spaced columns, terracotta figures along the ridge, three
+doorways, high podium with a frontal stair.
+
+The Banco exposed a defect in `art-icon.py` that had been there all along: **background enclosed by
+the subject**. The corner flood-fill cannot reach the inside of an arch, so it stayed as an opaque
+grey blob — invisible against the dark panels the game uses, obvious against red. Fixed by finding
+those pockets with connected-components on a background-colour mask and seeding a flood-fill in
+each.
+
+That fix then broke the Cuniculus, which had been fine. At the keying fuzz the test took the pale
+water on the tunnel floor for a pocket and punched a hole straight through it. Two guards now: the
+pocket test runs at a much tighter fuzz than the key (3% against 8–10%), because a real pocket *is*
+the background colour and anything merely near it is paint; and a candidate has to be both large
+and reasonably solid, since the near-grey scatter in painted stonework has a big bounding box and
+almost no area. Cuniculus and Tumulus reprocess identically to before, so the fix costs nothing
+where it was not needed. Caught only because I re-ran the two finished icons through the changed
+tool and compared — worth continuing to do.
+
+The Bottega is the one that did not go in cleanly. The content is exactly right this time, and then
+it is composed as a flat framed panel filling the frame edge to edge, with its own drop shadow — so
+there is no background to key and it lands as a rectangle among four cut-out objects. Keying the
+cream wall as well does nothing; the wall is the picture. Installed as interim, with a corrected
+prompt in the brief asking for the same content as a **cutaway block**, which is the device that
+makes the Cuniculus read.
+
+Seventeen of twenty-four assets are real art now.

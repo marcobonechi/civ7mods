@@ -398,7 +398,7 @@ The flat field matters as much as the subject: it is what lets the background be
 contact-sheet versions were painted full-bleed to the tile edge, which is why none of them could
 be used.
 
-### 1. `civ_sym_etruscans` — correction
+### 1. `civ_sym_etruscans` — **done 2026-09-09** (all three creatures read; survives to 48 px)
 
 > Flat pure-white silhouette on solid black: the Chimera of Arezzo in strict side profile facing
 > left. It has to read as three creatures in one — a lion's body striding forward, its mane in
@@ -409,7 +409,7 @@ be used.
 > outline, no shading, no text, centred with a generous margin. Square, 1024×1024. **Not a plain
 > lion** — the goat's head and the snake-headed tail are the whole point of the emblem.
 
-### 2. `wondericon_fanum_voltumnae` — correction, second time
+### 2. `wondericon_fanum_voltumnae` — **done 2026-09-09** (the Tuscan order arrived: deep eave, unfluted columns, acroteria along the ridge)
 
 > An Etruscan temple of the Tuscan order. **Not a Greek temple**: the columns are smooth and
 > unfluted, wooden on low stone bases, and spaced roughly twice as far apart as a Greek temple's;
@@ -421,7 +421,26 @@ be used.
 > doorways for three cellae. The silhouette is wide, low, heavy and top-heavy with roof.
 > Terracotta red, cream stucco, dark timber.
 
-### 3. `buildicon_bottega` — correction
+### 3. `buildicon_bottega` — content right, composition wrong
+
+The second attempt fixed the subject completely — shop counter, propped shutter, panel on the
+easel, pigment slab, ultramarine jar, plaster hand — and then composed it as **a flat framed panel
+that fills the frame edge to edge**, with its own drop shadow, so there is no background to key and
+it comes out as a rectangle among four cut-out objects. Keying the cream wall as well was tried;
+it does nothing, because the wall *is* the picture.
+
+Installed as interim. The fix is to ask for the same content as a **cutaway block**, which is the
+device that makes the Cuniculus work:
+
+> A Florentine artist's workshop, drawn as a single free-standing cutaway block of building seen in
+> three-quarter view from slightly above — a corner of masonry wall with the shop front cut out of
+> it, the block ending in irregular broken edges on every side and floating with nothing behind it.
+> **Not a flat panel, not a framed picture, nothing reaching the edges of the frame.** In the wall,
+> a wide stone-arched opening at ground level with its heavy wooden shutter propped up horizontally
+> as an awning, and the counter beneath it crowded with work: a half-finished painted panel on a
+> small easel, a stone slab with pigment being ground, open jars of ochre and one of ultramarine,
+> brushes in a pot, a mahlstick, a plaster cast of a hand and a small terracotta model on the shelf
+> above. Plain lime-washed wall and dressed sandstone.
 
 > A Florentine artist's workshop seen from the street. **The subject is the shop counter, not the
 > building.** A wide stone-arched opening at ground level with its heavy wooden shutter propped up
@@ -432,7 +451,7 @@ be used.
 > dressed sandstone around the opening. **No church, no altarpiece, no cloister, no arcade** — a
 > working shop, and the working clutter is what identifies it.
 
-### 4. `buildicon_banco` — re-run at size
+### 4. `buildicon_banco` — **done 2026-09-09**
 
 > A Florentine bank: a long banker's bench under a single stone loggia arch, spread with a green
 > cloth. On the cloth an open leather-bound ledger showing two columns of figures, a pair of brass

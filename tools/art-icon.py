@@ -55,6 +55,47 @@ def opaque_fraction(path):
     return sum(1 for a in alphas if a > 200) / len(alphas)
 
 
+def _is_white(mean_color):
+    """connected-components reports a greyscale mask as gray(255) and an RGB one as
+    srgb(255,255,255); accept either."""
+    return mean_color.endswith("(255)") or mean_color.endswith("(255,255,255)")
+
+
+def enclosed_background(source, bg, fuzz, w, h):
+    """Seed points inside background-coloured regions that the corner flood-fill cannot reach -
+    the opening of an arch, the gaps between a temple's columns. Those are enclosed by the subject,
+    so filling only from the corners leaves them as opaque grey blobs; the Banco's arch showed up
+    as one against a red test background. Returns a centroid per region worth clearing."""
+    # Deliberately much tighter than the keying fuzz. A pocket of background really is the
+    # background colour; anything merely near it is paint. At the keying fuzz this test took the
+    # pale water in the Cuniculus for a hole and punched one straight through the floor.
+    fuzz = min(fuzz, 3.0)
+    mask = tempfile.mkstemp(suffix=".png")[1]
+    magick(source, "-alpha", "off", "-fuzz", "%f%%" % fuzz, "-fill", "white", "-opaque", bg,
+           "-fill", "black", "+opaque", "white", mask)
+    out = subprocess.run(
+        ["magick", mask, "-threshold", "50%",
+         "-define", "connected-components:verbose=true", "-connected-components", "8", "null:"],
+        capture_output=True, text=True).stdout
+    os.remove(mask)
+    seeds = []
+    for line in out.splitlines():
+        m = re.match(r"\s*\d+:\s+(\d+)x(\d+)\+(\d+)\+(\d+)\s+([\d.]+),([\d.]+)\s+(\d+)\s+(\S+)", line)
+        if not m or not _is_white(m.group(8)):
+            continue
+        bw, bh, bx, by = (int(m.group(i)) for i in (1, 2, 3, 4))
+        cx, cy, area = float(m.group(5)), float(m.group(6)), int(m.group(7))
+        if bx <= 1 or by <= 1 or bx + bw >= w - 1 or by + bh >= h - 1:
+            continue                                   # that is the outside, already flood-filled
+        # Big and reasonably solid. Without the solidity test this also seizes on the scatter of
+        # near-grey pixels in painted stonework, which have a large bounding box but almost no
+        # area, and punches holes through the subject.
+        if area < w * h * 0.005 or area / float(bw * bh) < 0.3:
+            continue
+        seeds.append((int(cx), int(cy), area))
+    return seeds
+
+
 def islands(path):
     """Every separately-connected opaque blob in a keyed image, as (area, x, y, w, h), largest
     first. ImageMagick does the labelling; the subject is the biggest one and anything else is
@@ -66,7 +107,7 @@ def islands(path):
     found = []
     for line in out.splitlines():
         m = re.match(r"\s*\d+:\s+(\d+)x(\d+)\+(\d+)\+(\d+)\s+\S+\s+(\d+)\s+(\S+)", line)
-        if m and m.group(6).endswith("(255,255,255)"):
+        if m and _is_white(m.group(6)):
             w, h, x, y, area = (int(m.group(i)) for i in (1, 2, 3, 4, 5))
             found.append((area, x, y, w, h))
     found.sort(reverse=True)
@@ -85,6 +126,8 @@ def main():
     ap.add_argument("--no-watermark", action="store_true")
     ap.add_argument("--silhouette", action="store_true")
     ap.add_argument("--threshold", type=float, default=50.0, help="--silhouette only, per cent")
+    ap.add_argument("--no-pockets", action="store_true",
+                    help="do not clear background-coloured pockets enclosed by the subject")
     ap.add_argument("--keep", action="store_true")
     args = ap.parse_args()
 
@@ -105,12 +148,15 @@ def main():
         bg_rgb = tuple(int(bg.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
         source = args.source
 
-        # Key from all four corners, so an enclosed grey inside the subject is left alone.
-        def key(fuzz, out):
-            corners = []
-            for cx, cy in ((2, 2), (w - 3, 2), (2, h - 3), (w - 3, h - 3)):
-                corners += ["-fill", "none", "-floodfill", "+%d+%d" % (cx, cy), bg]
-            magick(source, "-alpha", "set", "-fuzz", "%f%%" % fuzz, *corners, out)
+        # Flood-fill rather than a global colour key, so a grey that happens to be *inside* the
+        # subject survives. The corners find the outside; enclosed_background() finds the pockets
+        # the corners cannot reach.
+        def key(fuzz, out, seeds=()):
+            points = [(2, 2), (w - 3, 2), (2, h - 3), (w - 3, h - 3)] + list(seeds)
+            args = []
+            for cx, cy in points:
+                args += ["-fill", "none", "-floodfill", "+%d+%d" % (cx, cy), bg]
+            magick(source, "-alpha", "set", "-fuzz", "%f%%" % fuzz, *args, out)
 
         if str(args.fuzz).lower() == "auto":
             # Sweep, and take the largest fuzz before the subject starts disappearing.
@@ -131,7 +177,11 @@ def main():
                   % (chosen, baseline * 100, min(coverage) * 100))
         else:
             chosen = float(args.fuzz)
-        key(chosen, step(2))
+        seeds = [] if args.no_pockets else [
+            (x, y) for x, y, _ in enclosed_background(source, bg, chosen, w, h)]
+        if seeds:
+            print("  cleared %d enclosed background pocket(s)" % len(seeds))
+        key(chosen, step(2), seeds)
 
         # The generator signs its work with a small sparkle, and a key always leaves a little
         # speckle. Both survive as opaque islands separate from the subject; the subject is the
