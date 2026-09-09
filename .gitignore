@@ -18,3 +18,5 @@ scratch/
 !*/icons/*.png
 !*/icons-*/*.png
 !*/loading/*.png
+# The untouched generations, kept so an icon can be re-cropped or re-rendered later.
+!*/icons/src/*.png

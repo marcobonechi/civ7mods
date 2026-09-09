@@ -177,3 +177,25 @@ working tree, so it never showed up locally.
 
 The allow-list is now a pattern (`!*/icons/*.png`, `!*/icons-*/*.png`, `!*/loading/*.png`), so the
 next civilization does not have to remember this.
+
+### 2026-09-09 — first real icon: the Cuniculus
+
+Marco generated the Cuniculus from the brief and it went straight in. The generation read the
+prompt as a cutaway block of tufa rather than a tunnel mouth in a hillside, which is the better
+icon: the shaft of light down the vertical well and the water channel running out are both legible
+at 64 px, which is the size that matters.
+
+Processing it turned up two things the brief had not accounted for, so it now does:
+
+- The generator signs its work with a small sparkle in the bottom-right corner. It is not the
+  background colour, so keying leaves it behind as an opaque white blob; it has to be painted out
+  first.
+- The subject is not centred in the frame and the background is not the grey the prompt asked for
+  (this one came back at #7e7e7e). So the pipeline has to sample the background, key from all four
+  corners, trim to the subject and re-centre — not just flood-fill and resize.
+
+`tools/art-icon.py` now does all four steps in one command, with `--silhouette` for the
+white-mask assets. The raw generation is kept at `Etruscans/icons/src/buildicon_cuniculus.raw.png`
+so the icon can be re-cropped later; `.gitignore` un-ignores `*/icons/src/*.png` for that.
+
+23 assets to go.

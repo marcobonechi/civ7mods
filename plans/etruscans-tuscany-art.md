@@ -17,7 +17,7 @@ and the rows for the square icons carry no `IconSize`, so a 256² file drops str
 |---|---|---|---|
 | `civ_sym_<civ>.png` | 256² | 256² | **White shape on transparency.** Recoloured through `filter: fxs-color-mask(...)`, so any colour in the file is thrown away. |
 | `unitflag_*.png` | 128² | 256² | **White silhouette on transparency**, drawn on the player's coloured flag. |
-| `buildicon_*.png`, `wondericon_*.png` | 128² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
+| `buildicon_*.png`, `wondericon_*.png` | 128², Cuniculus 256² | 256² | **Full colour on transparency.** Painting with a soft shadow, three-quarter view from above. |
 | `leader_<name>.png` | 256² | 256² | Portrait. Firaxis ships a hex crop and a circle crop as separate files; ours points all three icon contexts at one PNG — see §5. |
 | `lsbg_<civ>_1080.png` | 1920×1080 | same | Loading-screen painting. |
 | `lsbg_<civ>_720.png` | 1280×720 | same | The same painting, downscaled. |
@@ -44,6 +44,9 @@ Put the matching line at the end of every prompt in its group.
 
 Silhouettes want a few **narrow black cut-lines** inside the shape (a rein, a visor gap, a mast)
 rather than one solid blob — that is what makes them read at flag size.
+
+The generator signs its work with a small sparkle in the bottom-right corner. It survives keying as
+an opaque white blob, so it has to be painted out first; `tools/art-icon.py` does that by default.
 
 ## 3. Etruscans
 
@@ -72,12 +75,16 @@ raised and overlapping, after the terracotta relief from the Ara della Regina at
 > high curved sternpost, one bank of oars angled down into the water, a short mast with a small
 > square sail. A round painted eye near the bow is left as a black cut-out.
 
-### `buildicon_cuniculus` — 1:1, icon
+### `buildicon_cuniculus` — 1:1, icon — **done 2026-09-09**
 
 > The mouth of an Etruscan cuniculus: a narrow hand-cut drainage tunnel driven through golden
 > volcanic tufa, chisel marks across the walls, a shallow channel of clear water running out over
 > the rock; behind it a square vertical shaft drops a bar of sunlight into the tunnel; ferns and
 > wet moss at the lip. Warm ochre stone against cool water-green.
+
+The generation came back as a cutaway block rather than a tunnel mouth in a hillside, which reads
+better at icon size than the prompt would have: the shaft of light and the water channel are both
+legible at 64 px. Raw kept at `Etruscans/icons/src/buildicon_cuniculus.raw.png`.
 
 ### `buildicon_tumulus` — 1:1, icon
 
@@ -207,27 +214,37 @@ horse's head on a table, an apprentice grinding pigment in the foreground.*
 
 All commands tested here with ImageMagick 7 (`magick`). Run them from the repo root.
 
-**Silhouettes → white on transparency.** Generate white-on-black, then key the black out:
+**Silhouettes → white on transparency**, by hand if you want to see each step. Generate
+white-on-black, then key the black out:
 
 ```bash
 magick raw.png -colorspace gray -threshold 50% -alpha copy \
   -channel RGB -evaluate set 100% +channel -resize 256x256 Etruscans/icons/civ_sym_etruscans.png
 ```
 
-Raise the threshold if the generator adds a grey halo, lower it if thin parts drop out. The result
-is a greyscale+alpha PNG, which is exactly what Byzantium's working symbol is; add
-`-define png:color-type=6` if you would rather have RGBA.
+Raise the threshold (`--threshold` on the tool) if the generator adds a grey halo, lower it if thin
+parts drop out.
 
-**Colour icons → transparent background.** Generate on the flat `#808080` the prompt asks for, then
-flood-fill it away from the corner:
+**Colour icons → transparent background.** `tools/art-icon.py` does the whole job: paints out the
+generator's sparkle watermark, keys the background from all four corners, trims to the subject and
+re-centres it square. The generator does not centre its subject and does not give you exactly the
+grey you asked for, so both steps matter.
 
 ```bash
-magick raw.png -alpha set -fuzz 12% -fill none -floodfill +0+0 '#808080' \
-  -resize 256x256 Etruscans/icons/buildicon_cuniculus.png
+python3 tools/art-icon.py raw.png Etruscans/icons/buildicon_cuniculus.png
 ```
 
-If the subject shares a tone with the background, generate on chroma green (`#00b140`) instead and
-change both the fill colour and the fuzz.
+It samples the background from the top-left pixel; pass `--bg '#808080'` to force one, `--fuzz` to
+change how much of the soft drop shadow goes with it (18 by default, which took the shadow off the
+Cuniculus cleanly), `--margin` for breathing room, and `--keep` to leave the intermediate steps
+beside the output when something looks wrong. If the subject shares a tone with the background,
+generate on chroma green (`#00b140`) and pass `--bg '#00b140'`.
+
+**Silhouettes** go through the same tool with `--silhouette`, which thresholds instead of keying:
+
+```bash
+python3 tools/art-icon.py raw.png Etruscans/icons/civ_sym_etruscans.png --silhouette
+```
 
 **Loading screens and the panel** come from one 16:9 painting:
 
