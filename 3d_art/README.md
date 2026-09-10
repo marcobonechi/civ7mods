@@ -43,16 +43,14 @@ proportions: the true building is 82 m long and 55 m to the dome, which would be
 This model is compressed to roughly a square elevation, matching the icon, and made taller
 than a unit so it reads as monumental.
 
-**Not yet done** — the model is geometry only:
+**Status: Fully Complete & Deployed (2026-09-09)**:
 
-* No textures. The six materials are flat colours for silhouette work; they must be baked
-  down to one atlas (albedo, normal, ORM) before `civart` will take it, because a manifest
-  mesh entry carries a single `material`. The GLB currently exports as six primitives, one
-  per material.
-* The `dark` opening interiors are 2,573 of the 4,860 triangles. Worth revisiting if the
-  budget matters — most of those faces are never seen.
-* Steps 4-7 of [plan.md](plan.md) (`import_gltf.py`, `civart build`, deployment) still need
-  the `civart` toolchain, which is not installed here.
+* **Geometry optimized**: Shallow Byzantine pendentive dome (`DOME_RISE = 3.8`), clean outward normals on all arch cutters, 4,064 clean triangles.
+* **Unified PBR textures baked**: 2048x2048 texture atlas generated (`hagia_sophia_B.png`, `hagia_sophia_N.png`, `hagia_sophia_ORM.png`) and compressed to DDS format (`BC1_UNORM`, `BC5_UNORM`, `BC1_UNORM`).
+* **Single-primitive glTF exported**: `export/hagia_sophia.glb` exports as 1 mesh, 1 primitive, 1 material (`M_Hagia_Sophia`).
+* **Civ 7 GPU Blobs compiled**: Converted via `import_gltf.py` and `make_texture.py` into `GB_HAGIA_SOPHIA_MB` and `TEXTURE_HAGIA_SOPHIA_*` blobs in `SHARED_DATA/`.
+* **Manifest & Packages built**: `civart.json` defines `MESH_Hagia_Sophia`, `HAGIA_SOPHIA_MATERIAL`, and binds to `WONDER_Byzantium_Hagia_Sophia`. `StandardAsset.blp`, `Material.blp`, and `ByzantiumArt.dep` built and structurally validated (`validate.py`).
+* **Deployed**: Mirrored into game install (`DLC/ByzantiumArt`) via `./install.sh Byzantium` and passed all checks with `tools/check-art.py`.
 
 ## Testing whether the game loads a model
 
