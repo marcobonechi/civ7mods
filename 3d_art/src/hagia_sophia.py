@@ -17,6 +17,7 @@ or inside a running Blender (the MCP path):
     exec(open('3d_art/src/hagia_sophia.py').read())
 """
 
+import os
 import math
 import bmesh
 import bpy
@@ -72,14 +73,123 @@ def _hex_linear(h):
 
 def _materials():
     out = []
+    cc0_dir = os.path.abspath("3d_art/textures/cc0")
+
+    def _get_cc0(subpath, non_color=False):
+        p = os.path.join(cc0_dir, subpath)
+        if not os.path.exists(p):
+            return None
+        img = bpy.data.images.load(p, check_existing=True)
+        if non_color:
+            img.colorspace_settings.name = "Non-Color"
+        return img
+
+    cc0_configs = {
+        "brick": {
+            "color": _get_cc0("brick/color.jpg"),
+            "normal": _get_cc0("brick/normal.jpg", non_color=True),
+            "roughness": _get_cc0("brick/roughness.jpg", non_color=True),
+            "tint": _hex_linear(PALETTE_SRGB["brick"][0]),
+            "tint_fac": 0.20,
+            "scale": 1.2,
+            "norm_strength": 0.7,
+            "metallic": 0.0,
+        },
+        "brick2": {
+            "color": _get_cc0("brick/color.jpg"),
+            "normal": _get_cc0("brick/normal.jpg", non_color=True),
+            "roughness": _get_cc0("brick/roughness.jpg", non_color=True),
+            "tint": _hex_linear(PALETTE_SRGB["brick2"][0]),
+            "tint_fac": 0.45,
+            "scale": 1.2,
+            "norm_strength": 0.7,
+            "metallic": 0.0,
+        },
+        "lead": {
+            "color": _get_cc0("lead/color.jpg"),
+            "normal": _get_cc0("lead/normal.jpg", non_color=True),
+            "roughness": _get_cc0("lead/roughness.jpg", non_color=True),
+            "tint": _hex_linear(PALETTE_SRGB["lead"][0]),
+            "tint_fac": 0.20,
+            "scale": 0.8,
+            "norm_strength": 0.4,
+            "metallic": 0.2,
+        },
+        "marble": {
+            "color": _get_cc0("marble/color.jpg"),
+            "normal": _get_cc0("marble/normal.jpg", non_color=True),
+            "roughness": _get_cc0("marble/roughness.jpg", non_color=True),
+            "tint": _hex_linear(PALETTE_SRGB["marble"][0]),
+            "tint_fac": 0.35,
+            "scale": 1.0,
+            "norm_strength": 0.5,
+            "metallic": 0.0,
+        },
+    }
+
     for name in MATS:
         h, rough, metal = PALETTE_SRGB[name]
         mat = bpy.data.materials.get("HS_" + name) or bpy.data.materials.new("HS_" + name)
         mat.use_nodes = True
-        bsdf = mat.node_tree.nodes["Principled BSDF"]
-        bsdf.inputs["Base Color"].default_value = _hex_linear(h)
-        bsdf.inputs["Roughness"].default_value = rough
-        bsdf.inputs["Metallic"].default_value = metal
+        nodes = mat.node_tree.nodes
+        links = mat.node_tree.links
+        nodes.clear()
+
+        bsdf = nodes.new("ShaderNodeBsdfPrincipled")
+        output = nodes.new("ShaderNodeOutputMaterial")
+        links.new(output.inputs["Surface"], bsdf.outputs["BSDF"])
+
+        cfg = cc0_configs.get(name)
+        if cfg and cfg["color"] and cfg["normal"] and cfg["roughness"]:
+            # Object-space triplanar box projection
+            coord = nodes.new("ShaderNodeTexCoord")
+            mapping = nodes.new("ShaderNodeMapping")
+            s = cfg["scale"]
+            mapping.inputs["Scale"].default_value = (s, s, s)
+            links.new(mapping.inputs["Vector"], coord.outputs["Object"])
+
+            # BaseColor with tint
+            tex_c = nodes.new("ShaderNodeTexImage")
+            tex_c.image = cfg["color"]
+            tex_c.projection = "BOX"
+            tex_c.projection_blend = 0.15
+            links.new(tex_c.inputs["Vector"], mapping.outputs["Vector"])
+
+            mix = nodes.new("ShaderNodeMix")
+            mix.data_type = "RGBA"
+            mix.blend_type = "MIX"
+            mix.inputs[0].default_value = cfg["tint_fac"]
+            mix.inputs[7].default_value = cfg["tint"]
+            links.new(mix.inputs[6], tex_c.outputs["Color"])
+            links.new(bsdf.inputs["Base Color"], mix.outputs[2])
+
+            # Roughness
+            tex_r = nodes.new("ShaderNodeTexImage")
+            tex_r.image = cfg["roughness"]
+            tex_r.projection = "BOX"
+            tex_r.projection_blend = 0.15
+            links.new(tex_r.inputs["Vector"], mapping.outputs["Vector"])
+            links.new(bsdf.inputs["Roughness"], tex_r.outputs["Color"])
+
+            # Normal Map
+            tex_n = nodes.new("ShaderNodeTexImage")
+            tex_n.image = cfg["normal"]
+            tex_n.projection = "BOX"
+            tex_n.projection_blend = 0.15
+            links.new(tex_n.inputs["Vector"], mapping.outputs["Vector"])
+
+            norm_node = nodes.new("ShaderNodeNormalMap")
+            norm_node.inputs["Strength"].default_value = cfg["norm_strength"]
+            links.new(norm_node.inputs["Color"], tex_n.outputs["Color"])
+            links.new(bsdf.inputs["Normal"], norm_node.outputs["Normal"])
+
+            # Metallic
+            bsdf.inputs["Metallic"].default_value = cfg["metallic"]
+        else:
+            bsdf.inputs["Base Color"].default_value = _hex_linear(h)
+            bsdf.inputs["Roughness"].default_value = rough
+            bsdf.inputs["Metallic"].default_value = metal
+
         out.append(mat)
     return out
 
@@ -413,6 +523,9 @@ def report(ob):
 
 def render_previews():
     scene = bpy.context.scene
+    scene.render.engine = "CYCLES"
+    scene.cycles.device = "CPU"
+    scene.cycles.samples = 32
     scene.render.resolution_x = 1024
     scene.render.resolution_y = 1024
 
