@@ -19,5 +19,12 @@
 				<Element text="StandardAsset"/>
 			</PackageNames>
 		</Element>
+		<Element>
+			<LibraryName text="TiledMaterialLibrary"/>
+			<LibraryHash>3419754368</LibraryHash>
+			<PackageNames>
+				<Element text="Material"/>
+			</PackageNames>
+		</Element>
 	</LibraryDependencies>
 </AssetObjects..GameDependencyData>

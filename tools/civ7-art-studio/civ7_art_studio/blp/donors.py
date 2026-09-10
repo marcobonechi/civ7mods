@@ -27,10 +27,11 @@ from blp import BLP
 def candidates(game_root, package='StandardAsset'):
     """Every shipped package of the given name, base and DLC alike."""
     found = []
-    found += glob.glob(os.path.join(game_root, 'Base', 'Platforms', 'Windows',
-                                    'BLPs', f'{package}*.blp'))
-    found += glob.glob(os.path.join(game_root, 'DLC', '*', 'Platforms', 'Windows',
-                                    'BLPs', f'{package}*.blp'))
+    for plat in ('Mac', 'Windows'):
+        found += glob.glob(os.path.join(game_root, 'Base', 'Platforms', plat,
+                                        'BLPs', f'{package}*.blp'))
+        found += glob.glob(os.path.join(game_root, 'DLC', '*', 'Platforms', plat,
+                                        'BLPs', f'{package}*.blp'))
     return sorted(found)
 
 
