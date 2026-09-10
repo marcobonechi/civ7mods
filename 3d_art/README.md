@@ -2,22 +2,28 @@
 
 This directory contains documentation, specifications, and pipeline guides for authoring and deploying custom 3D models for Civilization VII mods.
 
+* **[.claude/skills/civ7-3d-model/](../.claude/skills/civ7-3d-model/)**: the skill that
+  drives this pipeline - procedure in `SKILL.md`, specs, formats and traps in
+  `reference.md`. Start there.
 * **[plan.md](plan.md)**: The end-to-end technical plan, engine geometry specifications, texture compression formats, coordinate transforms, conversion steps (`civart` / `import_gltf.py`), manifest schema, and in-game deployment.
 
 ## Models
 
 ### Hagia Sophia (`src/hagia_sophia.py`)
 
-The Justinianic church, built to replace the borrowed Ottoman Blue Mosque
-(`BIN_WON_Sultan_Ahmet_Camii`) that `Byzantium/dlc/civart.json` currently stands in for
-`WONDER_HAGIA_SOPHIA`. Art direction follows the wonder icon
+The Justinianic church. It **replaced** the borrowed Ottoman Blue Mosque
+(`BIN_WON_Sultan_Ahmet_Camii`) that used to stand in for `WONDER_HAGIA_SOPHIA`;
+`Byzantium/dlc/civart.json` now attaches `MESH_Hagia_Sophia` directly. Art direction
+follows the wonder icon
 (`Byzantium/icons/src/wondericon_hagia_sophia.svg`), whose palette the materials sample
 directly: terracotta brick, lead-grey ribbed dome, marble string courses, gold cross, and
 no minarets.
 
 It is a **generator script, not a hand-modelled `.blend`** — every dimension is a named
 constant in game units, so the proportions can be retuned and the mesh rebuilt in a second.
-`src/hagia_sophia.blend` and `export/hagia_sophia.glb` are build outputs of that script.
+`src/hagia_sophia.blend` is a build output of that script; `export/hagia_sophia.glb` comes
+from `src/export_glb.py`, which flattens the baked materials to the single primitive the
+manifest requires.
 
 ```bash
 blender -b --factory-startup --python 3d_art/src/hagia_sophia.py
@@ -26,11 +32,14 @@ blender -b --factory-startup --python 3d_art/src/hagia_sophia.py
 | | |
 |---|---|
 | Footprint | 24.3 × 20.0 units (inside a 12-14 unit hex radius) |
-| Height | 28.3 units to the cross, dome apex at 25.3 |
-| Triangles | 4,860 |
+| Height | 25.8 units to the cross |
+| Geometry | 5,020 verts, 4,064 triangles, 1 mesh / 1 primitive / 1 material |
 | Grounded | lowest vertex at Z = 0, centred on the origin in XY |
 | UVs | smart-projected into 0-1, as the stride-20 vertex layout requires |
-| Manifest bounds | `(-12.1, -10.0, 0.0, 12.1, 10.0, 28.3)` |
+| Manifest bounds | `[-12.13, -10.0, 0.0, 12.13, 10.0, 25.8]` |
+
+Those numbers are read back out of the shipped `.glb`, not remembered - regenerate them
+with `3d_art/.venv/bin/python 3d_art/src/check_glb.py 3d_art/export/hagia_sophia.glb`.
 
 Openings are cut with a boolean rather than painted on as dark panels, so every arch has
 real depth and catches shadow at the angle the game camera uses. The dome's ribs come free:
@@ -45,27 +54,44 @@ than a unit so it reads as monumental.
 
 **Status: Fully Complete & Deployed (2026-09-09)**:
 
-* **Geometry optimized**: Shallow Byzantine pendentive dome (`DOME_RISE = 3.8`), clean outward normals on all arch cutters, 4,064 clean triangles.
+* **Geometry**: shallow Byzantine pendentive dome (`DOME_RISE = 3.8`), outward normals on every arch cutter, 4,064 triangles.
 * **Unified PBR textures baked**: 2048x2048 texture atlas generated (`hagia_sophia_B.png`, `hagia_sophia_N.png`, `hagia_sophia_ORM.png`) and compressed to DDS format (`BC1_UNORM`, `BC5_UNORM`, `BC1_UNORM`).
 * **Single-primitive glTF exported**: `export/hagia_sophia.glb` exports as 1 mesh, 1 primitive, 1 material (`M_Hagia_Sophia`).
 * **Civ 7 GPU Blobs compiled**: Converted via `import_gltf.py` and `make_texture.py` into `GB_HAGIA_SOPHIA_MB` and `TEXTURE_HAGIA_SOPHIA_*` blobs in `SHARED_DATA/`.
 * **Manifest & Packages built**: `civart.json` defines `MESH_Hagia_Sophia`, `HAGIA_SOPHIA_MATERIAL`, and binds to `WONDER_Byzantium_Hagia_Sophia`. `StandardAsset.blp`, `Material.blp`, and `ByzantiumArt.dep` built and structurally validated (`validate.py`).
-* **Deployed**: Mirrored into game install (`DLC/ByzantiumArt`) via `./install.sh Byzantium` and passed all checks with `tools/check-art.py`.
+* **Deployed**: mirrored into the game install (`DLC/ByzantiumArt`) via `./install.sh Byzantium`; `tools/check-art.py` confirms the package **mounts**.
+
+**Not yet confirmed**: that the wonder actually *renders*. Civ 7 logs packages, never
+individual assets, so a mount is as far as the logs can take you - see *Testing* below.
+An audit on 2026-09-09 also found two texture defects that are still unfixed; they are
+listed in the skill's `reference.md` §7, and `src/check_dds.py` reproduces them.
 
 ## Testing whether the game loads a model
 
-Four stages, and they fail in different places. Only the first is possible without `civart`.
+Four stages, and they fail in different places. All four have now been run for the Hagia
+Sophia; the toolchain that used to be missing is vendored at `tools/civ7-art-studio/`.
 
 **1. Geometry conformance — no game needed.** Read the exported GLB back and apply the
 transform `import_gltf.py` will apply (`(x, y, z) -> (x, -z, y)`, `--scale 10`), then check
 the result is grounded at Z = 0, centred in XY, inside the hex, and carries normals and UVs.
 The Hagia Sophia numbers in the table above came from exactly this check.
 
-**2. Package build — needs `civart`, which is not installed here.** `import_gltf.py` writes
-the vertex/index blob into `SHARED_DATA/` and prints a manifest snippet; that snippet goes
-into `civart.json` under `meshes`, and `civart build` regenerates `StandardAsset.blp`,
-`Material.blp` and the `.dep`. This stage is unavoidable: **the game only loads `.blp`, so
-until `civart` runs there is nothing for it to load and no test to run.**
+**2. Package build.** `import_gltf.py` writes the vertex/index blob into `SHARED_DATA/` and
+prints a manifest snippet; that snippet goes into `civart.json` under `meshes`, and the
+build regenerates `StandardAsset.blp`, `Material.blp` and the `.dep`. Unavoidable: **the
+game only loads `.blp`.**
+
+Note that `civart` is only a web server - there is no `civart build` subcommand, whatever
+step 6 of `plan.md` says. Build via `civ7_art_studio.build.build()` or the per-package CLIs
+under `civ7_art_studio/blp/`. Check the manifest first, and the packages after:
+
+```bash
+python3 -c "import sys,json; sys.path.insert(0,'tools/civ7-art-studio'); \
+from civ7_art_studio import guards; \
+print(guards.check_project(json.load(open('Byzantium/dlc/civart.json'))) or 'clean')"
+python3 tools/civ7-art-studio/civ7_art_studio/blp/validate.py \
+    Byzantium/dlc/ByzantiumArt/Platforms/*/BLPs/*.blp
+```
 
 The `.dep` is plain XML and looks temptingly hand-editable. It is not — it carries a
 `LibraryHash` per library, and a mismatch makes the game skip the package with
@@ -79,7 +105,7 @@ startup.
 **4. Confirm the mount, then look at it.**
 
 ```bash
-tools/check-art.py Byzantium --asset MESH_Hagia_Sophia
+tools/check-art.py Byzantium
 ```
 
 That checks the `.modinfo` actually switches the group on with `<UpdateArt>` (in both
@@ -98,9 +124,11 @@ package mounted on the last run. What it looks for:
 `UI.log`'s `Failed loading resource: blp:<name>` is a *different* layer — 2D UI textures,
 not meshes.
 
-A mount is not a render. The last step is still visual: build the wonder in a game and check
-grounding (no sinking or floating), the hex footprint, normal direction and the specular
-response on the dome.
+**A mount is not a render, and no log can close that gap.** Civ 7 logs packages and never
+individual art assets: grepping every file in `Logs/` for our own asset names returns
+nothing, across 1171 package lines. (`check-art.py --asset` will search anyway, and says so.)
+The last step is therefore visual: build the wonder in a game and check grounding (no sinking
+or floating), the hex footprint, normal direction and the specular response on the dome.
 
 ## Toolchain setup
 
@@ -142,9 +170,18 @@ drains commands on Blender's main thread via `bpy.app.timers`. Two consequences:
 Telemetry in the addon is opt-in and left **off**; with consent it would upload prompts,
 generated code and screenshots. It lives in `Preferences → Add-ons → MCP for Blender`.
 
-### Still missing
+### Toolchain notes
 
-`civart` / `civ7-art-studio` (plan.md steps 4 and 6) is a community tool, not on PyPI and
-not installed here. `texconv` for the DDS compression in step 2 is Windows-only; a macOS
-run needs an alternative such as AMD Compressonator's CLI. Both are decisions to make
-before the first model ships.
+`civ7-art-studio` is **vendored and tracked** at `tools/civ7-art-studio/` (60 files), so a
+fresh clone has it. It is not pip-installed; call it by path, or add it to `sys.path`. Its
+module docstrings are the most accurate format documentation available - they were derived
+by surveying the shipped game packages, and they contradict `plan.md` in places. Believe the
+docstrings.
+
+`texconv` (plan.md step 2) is Windows-only and was never used here; the DDS maps were written
+by hand-rolled encoders in `src/`. That works, but it is what produced the two texture defects
+noted above, so check the output:
+
+```bash
+3d_art/.venv/bin/python 3d_art/src/check_dds.py 3d_art/dds/*.dds
+```
