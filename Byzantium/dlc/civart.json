@@ -34,9 +34,9 @@
       "type": "WONDER_HAGIA_SOPHIA",
       "attachments": [
         [
-          "newAttachmentPoint_1",
-          "BIN_WON_Sultan_Ahmet_Camii",
-          -0.523599
+          "main",
+          "MESH_Hagia_Sophia",
+          0.0
         ],
         [
           "Road_CP_E",
@@ -74,12 +74,79 @@
     }
   ],
   "units": [],
-  "meshes": [],
+  "meshes": [
+    {
+      "asset": "MESH_Hagia_Sophia",
+      "buffer": "GB_HAGIA_SOPHIA_MB",
+      "buffer_size": 149168,
+      "vertex_offset": 0,
+      "vertex_count": 5020,
+      "index_start": 25100,
+      "primitive_count": 4064,
+      "min_index": 0,
+      "max_index": 5019,
+      "bounds": [
+        -12.13,
+        -10.0,
+        0.0,
+        12.13,
+        10.0,
+        25.8
+      ],
+      "wrapper_scale": 1.0,
+      "material": "HAGIA_SOPHIA_MATERIAL"
+    }
+  ],
   "soundbanks": [],
   "audioEvents": [],
   "clones": [],
   "uiTextures": [],
-  "materials": [],
+  "materials": [
+    {
+      "name": "HAGIA_SOPHIA_MATERIAL",
+      "kind": "aniso",
+      "slots": {
+        "base_color": "TEXTURE_HAGIA_SOPHIA_B",
+        "normal": "TEXTURE_HAGIA_SOPHIA_N",
+        "orm": "TEXTURE_HAGIA_SOPHIA_ORM"
+      }
+    }
+  ],
+  "materialTextures": [
+    {
+      "name": "TEXTURE_HAGIA_SOPHIA_B",
+      "size": 2796216,
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "fmt": 71,
+      "tex_class": "Model_BaseColor",
+      "flags": 130,
+      "slot": "base_color"
+    },
+    {
+      "name": "TEXTURE_HAGIA_SOPHIA_N",
+      "size": 4194304,
+      "width": 2048,
+      "height": 2048,
+      "mips": 1,
+      "fmt": 83,
+      "tex_class": "Model_Normal",
+      "flags": 130,
+      "slot": "normal"
+    },
+    {
+      "name": "TEXTURE_HAGIA_SOPHIA_ORM",
+      "size": 2796216,
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "fmt": 71,
+      "tex_class": "Model_Occlusion",
+      "flags": 130,
+      "slot": "orm"
+    }
+  ],
   "donors": {
     "StandardAsset": "DLC/joseon/Platforms/Mac/BLPs/StandardAsset.blp"
   }
