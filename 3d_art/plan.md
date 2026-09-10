@@ -85,7 +85,12 @@ Texture blobs are stored in `Platforms/<OS>/BLPs/SHARED_DATA/` with names matchi
 
 ### Step 2: Texture Baking & Compression
 1. Bake or paint Albedo, Normal (DirectX Tangent), and ORM maps.
-2. Compress images to DDS using `texconv` (DirectXTex) or AMD Compressonator:
+2. Compress images to DDS using `texconv` (DirectXTex) or AMD Compressonator.
+   **`texconv` is Windows-only**; on macOS this repo used hand-rolled encoders in
+   `3d_art/src/`. Whatever writes them, verify the result with
+   `3d_art/src/check_dds.py` - a BaseColor written with a legacy `DXT1` FourCC ships as
+   `BC1_UNORM` (71) rather than `BC1_UNORM_SRGB` (72) and renders with the wrong gamma,
+   silently. Getting 72 needs a DX10 extended header.
    ```bash
    # BaseColor
    texconv -f BC1_UNORM_SRGB -m 10 -y -o dds/ basecolor.png
@@ -187,11 +192,16 @@ Define the asset in the project manifest (e.g., `<Mod>/dlc/civart.json`):
 ```
 
 ### Step 6: Build Package with `civart`
-Run the build command:
-```bash
-civart build --project MyModArt --no-browser
-```
-This compiles `StandardAsset.blp`, `Material.blp`, `.dep`, and places the GPU buffers into `SHARED_DATA/` under `<Mod>/dlc/MyModArt/Platforms/Mac/` and `Platforms/Windows/`.
+
+> **Correction (2026-09-09).** There is no `civart build` subcommand. `civart` only starts
+> the web UI (`civart [--host H] [--port N] [--no-browser]`). Build programmatically with
+> `civ7_art_studio.build.build(project, game_root)`, or with the per-package CLIs under
+> `tools/civ7-art-studio/civ7_art_studio/blp/` (`build_blp.py`, `validate.py`). Note that
+> `build()` writes to `<project>/built/DLC/<name>/Platforms/Windows/BLPs`, which is not the
+> repo's `<Mod>/dlc/<Group>/Platforms/{Mac,Windows}/` layout - both platform trees have to
+> be populated afterwards.
+
+The build compiles `StandardAsset.blp`, `Material.blp`, `.dep`, and places the GPU buffers into `SHARED_DATA/` under `<Mod>/dlc/MyModArt/Platforms/Mac/` and `Platforms/Windows/`.
 
 ### Step 7: Deployment & In-Game Test
 1. Mirror DLC assets to the game root:

@@ -8,8 +8,9 @@ packages actually mounted on the last run.
 
 Usage: tools/check-art.py <ModFolder> [--asset NAME] [--game <Resources dir>]
 
-  --asset NAME   also report every log line mentioning NAME, for checking that one
-                 mesh or material resolved (e.g. --asset MESH_Hagia_Sophia)
+  --asset NAME   search every log for NAME. Note up front: Civ 7 logs *packages*, not
+                 individual art assets, so silence here proves nothing - it is a
+                 courtesy search, never a pass/fail gate.
 
 Exit status is 1 if anything is wrong, so it can gate a release script.
 """
@@ -122,7 +123,7 @@ def check_package(mod, group, game):
     return good, dst
 
 
-def check_log(group, asset=None):
+def check_log(group):
     path = os.path.join(LOGS, ARTDEF)
     print("\n%s" % ARTDEF)
     if not os.path.isfile(path):
@@ -146,16 +147,41 @@ def check_log(group, asset=None):
     else:
         good &= fail("never mentioned - <UpdateArt> did not fire, or the game was not restarted")
 
-    if asset:
-        hits = [l for l in lines if asset.lower() in l.lower()]
-        print("\nasset %s" % asset)
-        if hits:
-            ok("%d mention(s) in %s, latest:" % (len(hits), ARTDEF))
-            print("       %s" % hits[-1].strip()[:160])
-        else:
-            fail("not mentioned - it is not in the package, or nothing asked for it yet")
-            good = False
     return good
+
+
+def search_asset(asset):
+    """Search every log for an asset name.
+
+    Deliberately not a pass/fail check. Civ 7's logs name packages and never individual
+    meshes, materials or textures - grepping the whole Logs/ folder for a shipped asset
+    name returns nothing even when the model is on screen. So absence is not evidence,
+    and reporting it as a failure (which this tool used to do) is just wrong.
+    """
+    print("\nasset %s" % asset)
+    if not os.path.isdir(LOGS):
+        print("  note no log folder at %s" % LOGS)
+        return
+    hits = []
+    for name in sorted(os.listdir(LOGS)):
+        path = os.path.join(LOGS, name)
+        if not os.path.isfile(path):
+            continue
+        try:
+            for line in open(path, errors="ignore"):
+                if asset.lower() in line.lower():
+                    hits.append((name, line.strip()))
+                    break
+        except OSError:
+            continue
+    if hits:
+        print("  found in %d log(s):" % len(hits))
+        for name, line in hits[:4]:
+            print("       %-24s %s" % (name, line[:120]))
+    else:
+        print("  note not mentioned in any log - expected. Civ 7 does not log art asset")
+        print("       resolution, so this cannot confirm or deny that the model rendered.")
+        print("       Build it in game and look at it.")
 
 
 def main():
@@ -191,7 +217,10 @@ def main():
     for g in groups:
         pkg_ok, _ = check_package(mod, g, a.game)
         good &= pkg_ok
-        good &= check_log(g, a.asset)
+        good &= check_log(g)
+
+    if a.asset:
+        search_asset(a.asset)
 
     print("\n%s" % ("all checks passed" if good else "problems above"))
     sys.exit(0 if good else 1)
