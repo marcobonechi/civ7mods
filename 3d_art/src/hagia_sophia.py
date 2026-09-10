@@ -36,11 +36,11 @@ NAVE, NAVE_TOP = 12.0, 15.5                        # central block under the dru
 DRUM_R, DRUM_TOP = 5.9, 19.0
 DRUM_WINDOWS = 24
 
-DOME_R, DOME_RISE = 6.0, 6.3
+DOME_R, DOME_RISE = 6.0, 3.8
 DOME_SEGS, DOME_RINGS = 32, 7
 DOME_FLUTE = 0.05                                  # alternate meridians pushed out
 
-HALF_R, HALF_SPRING, HALF_RISE = 5.9, 13.5, 5.0     # east/west half-domes
+HALF_R, HALF_SPRING, HALF_RISE = 5.9, 13.5, 4.2     # east/west half-domes
 
 TOWER, TOWER_TOP = 3.2, 15.0                        # corner buttress towers
 TOWER_X, TOWER_Y = 9.2, 7.4
@@ -180,23 +180,22 @@ def arch_points(w, h, segs=7):
     return pts
 
 
-def arch_cutter(bm, origin, u_dir, v_dir, n_dir, w, h, depth, segs=7, out=0.6):
+def arch_cutter(bm, origin, u_dir, v_dir, n_dir, w, h, depth=0.15, segs=5, out=0.15):
     """A closed arch prism used as boolean cutter: starts proud of the wall, ends `depth` in."""
     o, u, v, n = Vector(origin), Vector(u_dir), Vector(v_dir), Vector(n_dir)
     pts = arch_points(w, h, segs)
     front = [bm.verts.new(o + u * p[0] + v * p[1] + n * out) for p in pts]
     back = [bm.verts.new(o + u * p[0] + v * p[1] - n * depth) for p in pts]
     bm.verts.ensure_lookup_table()
-    faces = [bm.faces.new((front[i], front[(i + 1) % len(front)],
-                           back[(i + 1) % len(back)], back[i])) for i in range(len(front))]
+    faces = [bm.faces.new((front[(i + 1) % len(front)], front[i],
+                           back[i], back[(i + 1) % len(back)])) for i in range(len(front))]
     faces.append(bm.faces.new(tuple(front)))
     faces.append(bm.faces.new(tuple(reversed(back))))
-    for f in faces:
-        f.normal_update()
+    bmesh.ops.recalc_face_normals(bm, faces=faces)
     _tag(faces, "dark")
 
 
-def arch_row(bm, fixed, sign, z0, w, h, count, span, depth, axis="y", segs=7):
+def arch_row(bm, fixed, sign, z0, w, h, count, span, depth=0.15, axis="y", segs=5):
     """A row of `count` arch cutters across a wall facing +/- `axis`."""
     for i in range(count):
         t = -span * 0.5 + span * (i + 0.5) / count
@@ -233,49 +232,49 @@ def build_solid(bm):
 def build_cutters(bm):
     """Every opening, as a solid to subtract.
 
-    Kept deliberately modest: at the distance Civ 7 draws a wonder, generous arches
-    read as holes punched in the mass rather than as architecture.
+    Kept shallow and clean so shadow depth is preserved without wasting triangles
+    on hidden interior cavities.
     """
     # Ground-floor arcade: five bays on the long faces, four on the short ones.
     for sy in (-1, 1):
         arch_row(bm, sy * AISLE_Y * 0.5, sy, BASE_Z + 0.5, 1.7, 3.9, 5,
-                 AISLE_X - 6.6, 0.5, "y", 9)
+                 AISLE_X - 6.6, 0.2, "y", 5)
     for sx in (-1, 1):
         arch_row(bm, sx * AISLE_X * 0.5, sx, BASE_Z + 0.5, 1.6, 3.7, 4,
-                 AISLE_Y - 6.0, 0.5, "x", 9)
+                 AISLE_Y - 6.0, 0.2, "x", 5)
 
     # Attic windows.
     for sy in (-1, 1):
         arch_row(bm, sy * ATTIC_Y * 0.5, sy, AISLE_TOP + 0.85, 0.9, 1.9, 7,
-                 ATTIC_X - 5.2, 0.3, "y", 6)
+                 ATTIC_X - 5.2, 0.15, "y", 4)
     for sx in (-1, 1):
         arch_row(bm, sx * ATTIC_X * 0.5, sx, AISLE_TOP + 0.85, 0.9, 1.9, 5,
-                 ATTIC_Y - 4.8, 0.3, "x", 6)
+                 ATTIC_Y - 4.8, 0.15, "x", 4)
 
     # A blind arch on each outward face of the buttress towers.
     for sx in (-1, 1):
         for sy in (-1, 1):
             x, y = sx * TOWER_X, sy * TOWER_Y
             arch_cutter(bm, (x, y + sy * TOWER * 0.5, AISLE_TOP + 0.7),
-                        (1, 0, 0), (0, 0, 1), (0, sy, 0), 1.3, 2.9, 0.3, 7)
+                        (1, 0, 0), (0, 0, 1), (0, sy, 0), 1.3, 2.9, 0.15, 4)
             arch_cutter(bm, (x + sx * TOWER * 0.5, y, AISLE_TOP + 0.7),
-                        (0, 1, 0), (0, 0, 1), (sx, 0, 0), 1.3, 2.9, 0.3, 7)
+                        (0, 1, 0), (0, 0, 1), (sx, 0, 0), 1.3, 2.9, 0.15, 4)
 
     # The tympanum over each long face of the nave: three windows, not one void.
     for sy in (-1, 1):
         arch_row(bm, sy * NAVE * 0.5, sy, ATTIC_TOP + 0.7, 1.5, 3.1, 3,
-                 NAVE - 4.2, 0.35, "y", 8)
+                 NAVE - 4.2, 0.15, "y", 5)
 
     # Drum: the ring of windows.
     for i in range(DRUM_WINDOWS):
         a = math.tau * i / DRUM_WINDOWS
         c, s_ = math.cos(a), math.sin(a)
         arch_cutter(bm, (c * DRUM_R, s_ * DRUM_R, NAVE_TOP + 0.45),
-                    (-s_, c, 0), (0, 0, 1), (c, s_, 0), 0.5, 2.1, 0.35, 5)
+                    (-s_, c, 0), (0, 0, 1), (c, s_, 0), 0.5, 2.1, 0.15, 3)
 
     # Main portal on the south face.
     arch_cutter(bm, (0, -AISLE_Y * 0.5, BASE_Z), (1, 0, 0), (0, 0, 1), (0, -1, 0),
-                2.5, 5.2, 0.75, 11)
+                2.5, 5.2, 0.25, 7)
 
 
 def build_added(bm):
@@ -322,8 +321,9 @@ def _object_from(bm, name, mats):
 
 def make(name="HagiaSophia"):
     for ob in list(bpy.data.objects):
-        if ob.name.startswith(("HagiaSophia", "_HS")):
-            bpy.data.objects.remove(ob, do_unlink=True)
+        bpy.data.objects.remove(ob, do_unlink=True)
+    for m in list(bpy.data.meshes):
+        bpy.data.meshes.remove(m, do_unlink=True)
     mats = _materials()
 
     bm = bmesh.new(); build_solid(bm)
@@ -411,5 +411,64 @@ def report(ob):
           % ((max(xs) - min(xs)) * g, (max(ys) - min(ys)) * g, (max(zs) - min(zs)) * g))
 
 
+def render_previews():
+    scene = bpy.context.scene
+    scene.render.resolution_x = 1024
+    scene.render.resolution_y = 1024
+
+    # Ground plane
+    bpy.ops.mesh.primitive_plane_add(size=50, location=(0, 0, 0))
+    gp = bpy.context.active_object
+    gp.name = "Ground"
+    mat = bpy.data.materials.new("GroundMat")
+    mat.use_nodes = True
+    mat.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.50, 0.55, 0.52, 1.0)
+    mat.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 0.95
+    gp.data.materials.append(mat)
+
+    # Sun light
+    light_data = bpy.data.lights.new("Sun", "SUN")
+    light_data.energy = 3.5
+    light_ob = bpy.data.objects.new("Sun", light_data)
+    bpy.context.collection.objects.link(light_ob)
+    light_ob.rotation_euler = (math.radians(52), math.radians(18), math.radians(-38))
+
+    # Fill light
+    fill_data = bpy.data.lights.new("Fill", "SUN")
+    fill_data.energy = 1.0
+    fill_data.color = (0.75, 0.85, 1.0)
+    fill_ob = bpy.data.objects.new("Fill", fill_data)
+    bpy.context.collection.objects.link(fill_ob)
+    fill_ob.rotation_euler = (math.radians(45), math.radians(-20), math.radians(140))
+
+    # Camera
+    cam_data = bpy.data.cameras.new("Camera")
+    cam_data.lens = 55
+    cam = bpy.data.objects.new("Camera", cam_data)
+    bpy.context.collection.objects.link(cam)
+    scene.camera = cam
+
+    def render(pos, target, path):
+        cam.location = Vector(pos)
+        d = Vector(target) - Vector(pos)
+        cam.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
+        scene.render.filepath = path
+        bpy.ops.render.render(write_still=True)
+
+    render((3.8, -4.2, 3.8), (0, 0, 1.2), "3d_art/preview/hagia_sophia_hero.png")
+    render((0.0, -5.5, 1.4), (0, 0, 1.4), "3d_art/preview/hagia_sophia_elevation.png")
+    render((-4.2, -3.8, 3.8), (0, 0, 1.2), "3d_art/preview/hagia_sophia_side.png")
+
+    # Clean up render helpers
+    bpy.data.objects.remove(gp, do_unlink=True)
+    bpy.data.objects.remove(light_ob, do_unlink=True)
+    bpy.data.objects.remove(fill_ob, do_unlink=True)
+    bpy.data.objects.remove(cam, do_unlink=True)
+
+
 if __name__ == "__main__" or True:
-    report(make())
+    ob = make()
+    report(ob)
+    render_previews()
+    bpy.ops.wm.save_as_mainfile(filepath="3d_art/src/hagia_sophia.blend")
+

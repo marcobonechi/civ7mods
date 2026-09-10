@@ -23,6 +23,10 @@ scratch/
 
 # Python environment for the 3d_art pipeline. Recreate with the commands in 3d_art/README.md.
 3d_art/.venv/
+__pycache__/
+*.pyc
+*.blend1
 
 # Reference renders of the custom models are art, not screenshots.
 !3d_art/preview/*.png
+
