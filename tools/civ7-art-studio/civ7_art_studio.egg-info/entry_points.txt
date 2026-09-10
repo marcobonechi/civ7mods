@@ -1,0 +1,2 @@
+[console_scripts]
+civart = civ7_art_studio.__main__:main

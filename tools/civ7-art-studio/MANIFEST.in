@@ -1,0 +1,7 @@
+# test_data/ is fixtures for the test suite -- real DDS, .wem and .glb files a modder
+# would import. They are megabytes each and no use to an installed copy, so they are
+# excluded from the sdist. The wheel never had them: they live beside the package
+# rather than inside it, so package discovery does not see them.
+prune test_data
+prune tests
+exclude vendor_tools.py

@@ -1,0 +1,1622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Civ7 Art Studio</title>
+<style>
+  :root {
+    --bg: #14171c; --panel: #1c2027; --panel2: #232832; --line: #2e343f;
+    --text: #dfe3ea; --dim: #8b93a1; --accent: #6ea8fe; --warn: #e0a458;
+    --error: #e06c75; --ok: #7fb069; --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 system-ui, sans-serif; background: var(--bg);
+         color: var(--text); height: 100vh; display: flex; flex-direction: column; }
+  header { display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+           background: var(--panel); border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+  header .sp { flex: 1; }
+  .badge { font: 12px/1 var(--mono); padding: 5px 9px; border-radius: 5px;
+           background: var(--panel2); color: var(--dim); border: 1px solid var(--line); }
+  .badge.bad { color: var(--error); border-color: var(--error); }
+  main { flex: 1; display: flex; min-height: 0; }
+  nav { width: 190px; background: var(--panel); border-right: 1px solid var(--line);
+        padding: 10px 0; overflow-y: auto; flex-shrink: 0; }
+  nav button { display: block; width: 100%; text-align: left; background: none;
+    border: 0; color: var(--dim); padding: 8px 16px; cursor: pointer; font: inherit;
+    border-left: 2px solid transparent; }
+  nav button:hover { color: var(--text); background: var(--panel2); }
+  nav button.on { color: var(--accent); border-left-color: var(--accent);
+                  background: var(--panel2); }
+  nav .grp { font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+             color: #5b626f; padding: 14px 16px 4px; }
+  section.page { flex: 1; overflow-y: auto; padding: 20px 24px; display: none; }
+  section.page.on { display: block; }
+  h2 { font-size: 17px; margin: 0 0 4px; font-weight: 600; }
+  .sub { color: var(--dim); margin: 0 0 18px; max-width: 68ch; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+          padding: 14px 16px; margin-bottom: 14px; }
+  label { display: block; font-size: 12px; color: var(--dim); margin-bottom: 4px; }
+  input, select, textarea { width: 100%; background: var(--bg); color: var(--text);
+    border: 1px solid var(--line); border-radius: 5px; padding: 7px 9px; font: inherit; }
+  input:focus, select:focus { outline: 0; border-color: var(--accent); }
+  .row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+  .row > div { flex: 1; min-width: 130px; }
+  .row > div.narrow { flex: 0 0 90px; min-width: 90px; }
+  button.act { background: var(--accent); color: #101319; border: 0; border-radius: 5px;
+    padding: 8px 14px; font: 600 14px/1 inherit; cursor: pointer; }
+  button.act:hover { filter: brightness(1.1); }
+  button.act[disabled] { opacity: .45; cursor: not-allowed; }
+  button.ghost { background: var(--panel2); color: var(--text); border: 1px solid var(--line);
+    border-radius: 5px; padding: 7px 12px; font: inherit; cursor: pointer; }
+  button.ghost:hover { border-color: var(--accent); }
+  button.tiny { background: none; border: 0; color: var(--dim); cursor: pointer;
+    font: inherit; padding: 2px 6px; }
+  button.tiny:hover { color: var(--error); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--dim);
+       letter-spacing: .06em; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 6px 8px; border-bottom: 1px solid var(--line); font-family: var(--mono);
+       font-size: 12.5px; vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  .muted { color: var(--dim); }
+  .mono { font-family: var(--mono); font-size: 12.5px; }
+  .finding { display: flex; gap: 8px; padding: 7px 10px; border-radius: 5px;
+             margin-bottom: 6px; background: var(--panel2); align-items: baseline; }
+  .finding .lv { font: 11px/1.4 var(--mono); text-transform: uppercase; flex-shrink: 0; }
+  .finding.warning .lv { color: var(--warn); }
+  .finding.error .lv { color: var(--error); }
+  .finding .wh { font-family: var(--mono); font-size: 12px; color: var(--dim);
+                 flex-shrink: 0; }
+  pre.log { background: #0f1216; border: 1px solid var(--line); border-radius: 6px;
+    padding: 12px; font: 12px/1.55 var(--mono); max-height: 380px; overflow: auto;
+    white-space: pre-wrap; margin: 0; }
+  .hits { max-height: 320px; overflow-y: auto; border: 1px solid var(--line);
+          border-radius: 6px; }
+  .hit { display: flex; gap: 10px; padding: 6px 10px; cursor: pointer;
+         border-bottom: 1px solid var(--line); align-items: baseline; }
+  .hit:last-child { border-bottom: 0; }
+  .hit:hover { background: var(--panel2); }
+  .hit .n { font-family: var(--mono); font-size: 12.5px; flex: 1; }
+  .hit .r { font-size: 11px; color: var(--dim); }
+  .path { font-family: var(--mono); font-size: 12px; color: var(--accent);
+          word-break: break-all; }
+  .empty { color: var(--dim); font-style: italic; padding: 10px 0; }
+  .note { border-left: 2px solid var(--accent); padding: 4px 0 4px 12px;
+          color: var(--dim); margin: 10px 0; max-width: 70ch; }
+  .split { display: flex; gap: 14px; align-items: flex-start; }
+  .split > * { flex: 1; min-width: 0; }
+  .grp-head { display: flex; align-items: baseline; gap: 8px; padding: 8px 0 4px;
+              border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+  .grp-head .nm { font-weight: 600; flex: 1; }
+  .grp-head .ct { font-size: 12px; color: var(--dim); }
+  .inc { display: flex; align-items: baseline; gap: 8px; padding: 3px 0 3px 4px; }
+  .inc input { width: auto; margin: 0; }
+  .inc .nm { font-family: var(--mono); font-size: 12.5px; }
+  .inc.off .nm { color: var(--dim); text-decoration: line-through; }
+  .inc .why { font-size: 11px; color: var(--dim); }
+  .with-browse { display: flex; gap: 6px; }
+  .with-browse input { flex: 1; }
+  /* picker */
+  .veil { position: fixed; inset: 0; background: rgba(8,10,13,.72); display: none;
+          align-items: center; justify-content: center; z-index: 50; }
+  .veil.on { display: flex; }
+  .picker { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    width: min(860px, 92vw); height: min(620px, 88vh); display: flex; flex-direction: column;
+    overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+  .picker header { background: var(--panel2); gap: 10px; }
+  .picker .cur { font-family: var(--mono); font-size: 12.5px; color: var(--accent);
+                 flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+                 direction: rtl; text-align: left; }
+  .picker .body { flex: 1; display: flex; min-height: 0; }
+  .picker .roots { width: 210px; border-right: 1px solid var(--line); overflow-y: auto;
+                   flex-shrink: 0; padding: 6px 0; }
+  .picker .roots button { display: block; width: 100%; text-align: left; background: none;
+    border: 0; color: var(--text); padding: 7px 12px; cursor: pointer; font: inherit; }
+  .picker .roots button:hover { background: var(--panel2); }
+  .picker .roots .lbl { font-size: 11px; color: var(--dim); }
+  .picker .roots .pth { font-family: var(--mono); font-size: 11.5px; color: var(--dim);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .picker .listing { flex: 1; overflow-y: auto; }
+  .picker .ent { display: flex; gap: 8px; padding: 6px 12px; cursor: pointer;
+                 align-items: baseline; border-bottom: 1px solid var(--line); }
+  .picker .ent:hover { background: var(--panel2); }
+  .picker .ent.sel { background: var(--panel2); outline: 1px solid var(--accent);
+                     outline-offset: -1px; }
+  .picker .ent .ic { width: 14px; color: var(--dim); flex-shrink: 0; }
+  .picker .ent .nm { flex: 1; font-family: var(--mono); font-size: 12.5px; }
+  .picker .ent .tag { font-size: 11px; color: var(--ok); }
+  .picker .ent .sz { font-size: 11px; color: var(--dim); }
+  .picker footer { display: flex; gap: 10px; align-items: center; padding: 10px 14px;
+    background: var(--panel2); border-top: 1px solid var(--line); }
+  .picker footer .msg { flex: 1; font-size: 12px; color: var(--dim); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Civ7 Art Studio</h1>
+  <span class="badge" id="b-project">no project</span>
+  <span class="badge" id="b-game">no game path</span>
+  <span class="sp"></span>
+  <button class="act" id="btn-build" disabled>Build</button>
+</header>
+
+<main>
+  <nav>
+    <div class="grp">Setup</div>
+    <button data-page="projects" class="on">Projects</button>
+    <div class="grp">Content</div>
+    <button data-page="buildings">Buildings</button>
+    <button data-page="improvements">Improvements</button>
+    <button data-page="wonders">Wonders</button>
+    <button data-page="units">Units</button>
+    <button data-page="audio">Audio</button>
+    <button data-page="meshes">3D assets</button>
+    <button data-page="textures">UI textures</button>
+    <button data-page="materials">Materials</button>
+    <button data-page="clones">Reuse an asset</button>
+    <div class="grp">Reference</div>
+    <button data-page="browser">Asset browser</button>
+    <button data-page="build">Build &amp; deploy</button>
+  </nav>
+
+  <!-- Projects -->
+  <section class="page on" id="p-projects">
+    <h2>Projects</h2>
+    <p class="sub">On disk your project is its raw files you provide, and its build output. Its under
+      <span class="mono" id="root-path"></span>.</p>
+
+    <div class="card">
+      <label>Game install folder</label>
+      <div class="row">
+        <div><input id="game-path" placeholder="…/steamapps/common/Sid Meier's Civilization VII"></div>
+        <div class="narrow" style="flex:0 0 auto"><button class="ghost" id="btn-game">Use</button></div>
+      </div>
+      <div class="note">Needs the folder containing `Base` and
+        <span class="mono">DLC/</span>.</div>
+      <div id="game-msg"></div>
+      <div id="game-suggest"></div>
+    </div>
+
+    <div class="card">
+      <label>New project</label>
+      <div class="row">
+        <div><input id="new-name" placeholder="MyCivMod"></div>
+        <div><input id="new-author" placeholder="author (optional)"></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-create">Create</button></div>
+      </div>
+      <div class="note">The name becomes the folder installed under
+        <span class="mono">DLC/</span>, so letters, digits, dashes and underscores only.</div>
+      <div id="create-msg"></div>
+    </div>
+
+    <div class="card">
+      <label>Open existing</label>
+      <div id="project-list"><div class="empty">No projects yet.</div></div>
+    </div>
+  </section>
+
+  <!-- Buildings -->
+  <section class="page" id="p-buildings">
+    <h2>Buildings</h2>
+    <p class="sub">Make a new building looks like an existing one.</p>
+
+    <div class="card">
+      <div class="row">
+        <div><label>Building type</label>
+          <input id="bld-type" placeholder="BUILDING_MY_TEMPLE"></div>
+        <div><label>Renders as</label>
+          <input id="bld-target" placeholder="BIN_Monument_Scaled" autocomplete="off"></div>
+        <div class="narrow"><label>Priority</label>
+          <input id="bld-prio" type="number" value="1"></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-add-building">Add</button></div>
+      </div>
+      <div class="hits" id="bld-hits" style="display:none;margin-top:10px"></div>
+      <div class="note">Priority 1 is the base convention. To override existing assignments, use the source priority + 50. Base game only uses +1 or +5.</div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="margin-bottom:10px">
+        <strong style="flex:1">Entries (<span id="bld-count">0</span>)</strong>
+        <input id="bld-filter" placeholder="filter…" style="flex:0 0 220px">
+      </div>
+      <table><thead><tr><th>Building</th><th>Renders as</th><th>Pri</th><th></th></tr></thead>
+        <tbody id="bld-rows"></tbody></table>
+    </div>
+  </section>
+
+  <!-- Improvements / Wonders share a renderer -->
+  <section class="page" id="p-improvements">
+    <h2>Improvements</h2>
+    <p class="sub">Copy attachments from an existing improvement. You can name the asset whatever you like, as long as its unique, i would recommend a modder prefix. Important to note that some improvements have a requirement of adjacent hexes. Like for example, the Shore Battery improvement needs an adjacent MARINE_BIOME to face, otherwise it wont show. In future, will support that sort of thing too, and custom rotation.</p>
+    <div class="card">
+      <div class="row">
+        <div><label>Constructible type</label><input id="imp-type" placeholder="IMPROVEMENT_MY_THING"></div>
+        <div><label>Asset name</label><input id="imp-asset" placeholder="IMP_My_Thing"></div>
+        <div><label>Copy attachments from</label><input id="imp-copy" placeholder="IMP_Hillfort"></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-add-imp">Add</button></div>
+      </div>
+      <div class="hits" id="imp-hits" style="display:none;margin-top:10px"></div>
+      <div id="imp-msg"></div>
+    </div>
+    <div class="card"><table>
+      <thead><tr><th>Type</th><th>Asset</th><th>Attachments</th><th>Hexes</th><th></th></tr></thead>
+      <tbody id="imp-rows"></tbody></table></div>
+  </section>
+
+  <section class="page" id="p-wonders">
+    <h2>Wonders</h2>
+    <p class="sub">Wonders seem to flatten the the terrain underneath. Remapping also gets you the sound of the wonder placement.</p>
+    <div class="card">
+      <div class="row">
+        <div><label>Wonder type</label><input id="won-type" placeholder="WONDER_MY_THING"></div>
+        <div><label>Asset name</label><input id="won-asset" placeholder="WONDER_My_Thing"></div>
+        <div><label>Copy attachments from</label><input id="won-copy" placeholder="WONDER_Mausoleum_Halicarnassus"></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-add-won">Add</button></div>
+      </div>
+      <div class="hits" id="won-hits" style="display:none;margin-top:10px"></div>
+      <div class="note">If a custom wonder shows the pyramids, then it failed and has fallen back to <span class="mono">WONDER_FALLBACK</span></div>
+      <div id="won-msg"></div>
+    </div>
+    <div class="card"><table>
+      <thead><tr><th>Type</th><th>Asset</th><th>Attachments</th><th>Base layer</th><th></th></tr></thead>
+      <tbody id="won-rows"></tbody></table></div>
+  </section>
+
+  <!-- Audio -->
+  <section class="page" id="p-audio">
+    <h2>Audio</h2>
+    <p class="sub">Wwise 2022.1 converted <span class="mono">.wem</span> files only. This software is free at https://www.audiokinetic.com/en/download.</p>
+    <div class="card">
+      <strong>Converting in Wwise 2022.1</strong>
+      <div class="note">Import as <b>Sound SFX</b> in Actor-Mixer Hierarchy.· conversion
+        <b>Vorbis</b>, quality 8, mono · <b>uncheck Stream</b> · right-click →
+        Convert · take the file from
+        <span class="mono">&lt;Project&gt;/.cache/Windows/SFX/</span>. Will have a more detailed guide in future.<br>
+        </div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div><label>.wem file</label><input id="aud-path" placeholder="…/FIRST_MEET_0E3DDC9D.wem"></div>
+        <div><label>Event name</label><input id="aud-name" placeholder="Play_My_Civ_First_Meet"></div>
+        <div class="narrow" style="flex:0 0 130px"><label>Donor bank</label>
+          <select id="aud-donor">
+            <option value="3d">3D / world</option>
+            <option value="2d">2D / UI</option>
+          </select></div>
+        <div style="flex:0 0 auto"><button class="ghost" id="btn-check-wem">Check</button></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-import-wem">Import</button></div>
+      </div>
+      <div class="note">The donor supplies bus routing. Pick <b>2D / UI</b> for voice
+        lines and interface sounds; <b>3D / world</b> positions the sound in the world,
+        which is right for ambience and wrong for a line played from a menu.</div>
+      <div id="aud-msg"></div>
+    </div>
+    <div class="card"><table>
+      <thead><tr><th>Soundbank</th><th>Size</th><th></th></tr></thead>
+      <tbody id="aud-rows"></tbody></table></div>
+  </section>
+
+  <!-- simple manifest-listing pages -->
+  <section class="page" id="p-units"><h2>Units</h2>
+    <p class="sub">Points a UnitType using a metadata asset that holds the member list. WIP. Currently something causes crashes if you go beyond the 10 basic references copied, so units will walk on water, and not have custom animations for sleep/heal, fortify.</p>
+
+    <div class="card">
+      <div class="row">
+        <div><label>New unit type</label>
+          <input id="unt-name" placeholder="UNIT_MY_ARCHER"></div>
+        <div><label>Copy from</label>
+          <input id="unt-donor" placeholder="UNIT_ARCHER" autocomplete="off"></div>
+      </div>
+      <div class="hits" id="unt-hits" style="display:none;margin-top:10px"></div>
+      <div id="unt-donor-info" style="margin-top:10px"></div>
+    </div>
+
+    <div class="card">
+      <label style="margin-bottom:8px">Members</label>
+      <div class="row">
+        <div><label>Member asset</label>
+          <input id="unt-member" placeholder="Blank to keep original" autocomplete="off"></div>
+        <div class="narrow"><label>Count</label>
+          <input id="unt-count" type="number" min="1" placeholder="donor's"></div>
+        <div class="narrow"><label>Scale</label>
+          <input id="unt-scale" type="number" step="0.05" placeholder="1.0"></div>
+        <div class="narrow"><label>Promotion</label>
+          <input id="unt-promo" type="number" min="0" placeholder="1"></div>
+        <div class="narrow" style="flex:0 0 180px"><label>Parameters</label>
+          <select id="unt-profile">
+            <option value="minimal">Essential only (10)</option>
+            <option value="full">Everything the donor has</option>
+          </select></div>
+        <div style="flex:0 0 auto"><label>&nbsp;</label>
+          <button class="act" id="btn-add-unit">Create</button></div>
+      </div>
+      <div class="hits" id="unt-mhits" style="display:none;margin-top:10px"></div>
+      <div class="note">Keep blank to copy the donor unit. Not currently supporting customisation for movement,
+          formation, embark and heal references.</div>
+      <div id="unt-msg"></div>
+    </div>
+
+    <div class="card"><table>
+      <thead><tr><th>Unit</th><th>From</th><th>Members</th><th>Formation</th><th></th></tr></thead>
+      <tbody id="unit-rows"></tbody></table></div></section>
+
+  <section class="page" id="p-meshes"><h2>3D assets</h2>
+    <p class="sub">Imported from glTF. Z is up and a world unit is about a tenth of a
+      metre, so a person is roughly 18 units tall.</p>
+    <div class="card">
+      <strong>Exporting from Blender</strong>
+      <div class="note">Format <b>glTF Binary (.glb)</b> · <b>+Y Up</b> on · compression
+        <b>off</b>.Normals and UVs on. Skinned meshes import
+        their geometry, but bone weights are not written yet.</div>
+    </div>
+    <div class="card">
+      <div class="row">
+        <div><label>.glb file</label><input id="msh-path" placeholder="…/my_model.glb"></div>
+        <div><label>Asset name</label><input id="msh-name" placeholder="MY_MODEL"></div>
+        <div class="narrow"><label>Scale</label><input id="msh-scale" type="number" value="10" step="0.5"></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <div><label>Material</label><input id="msh-material" placeholder="Without this set, mesh be white." autocomplete="off"></div>
+        <div class="narrow"><label>Wrapper scale</label><input id="msh-wscale" type="number" value="1" step="0.01"></div>
+        <div style="flex:0 0 auto"><label>&nbsp;</label>
+          <button class="ghost" id="btn-flip">winding: normal</button></div>
+        <div style="flex:0 0 auto"><label>&nbsp;</label>
+          <button class="act" id="btn-import-glb">Import</button></div>
+      </div>
+      <div class="note">Blender Metres to game Units. 10 metres makes a human 1.8m model 18 units.
+        makes a 1.8 m model about 18 units. Currently dropping the model so its lowest point
+        rests on the ground. This may be an option in future for building foundations handling rough terrain/elevation.</div>
+      <div id="msh-msg"></div>
+    </div>
+    <div class="card"><table>
+      <thead><tr><th>Asset</th><th>Verts</th><th>Tris</th><th>Height</th><th>Material</th><th></th></tr></thead>
+      <tbody id="mesh-rows"></tbody></table></div></section>
+
+  <section class="page" id="p-textures"><h2>UI textures</h2>
+    <p class="sub">Import BC7-compressed DDS.</p>
+    <div class="card">
+      <div class="row">
+        <div><label>.dds file</label><input id="tex-path" placeholder="…/my_icon_BC7.dds"></div>
+        <div><label>Texture name</label><input id="tex-name" placeholder="civ_sym_my_civ"></div>
+        <div style="flex:0 0 auto"><button class="ghost" id="btn-check-dds">Check</button></div>
+        <div style="flex:0 0 auto"><button class="act" id="btn-import-dds">Import</button></div>
+      </div>
+      <div class="note">Don't include file extension in name when referencing.</div>
+      <div id="tex-msg"></div>
+    </div>
+    <div class="card"><table>
+      <thead><tr><th>Name</th><th>Size</th><th>Mips</th><th>Format</th><th>Bytes</th><th></th></tr></thead>
+      <tbody id="tex-rows"></tbody></table></div></section>
+
+  <section class="page" id="p-materials"><h2>Materials</h2>
+    <p class="sub">A material is a combination of several texture maps. This includes a BaseColor, Tint (for leader colour), Normal map for 3d like effect, RoughMetal and Ambient Occlusion.</p>
+
+    <div class="card">
+      <label style="margin-bottom:8px">Add a texture to this package</label>
+      <div class="row">
+        <div class="narrow" style="flex:0 0 190px"><label>Slot it is for</label>
+          <select id="mtx-slot"></select></div>
+        <div><label>Source</label>
+          <select id="mtx-source">
+            <option value="borrow">Borrow one from the game</option>
+            <option value="import">Import my own DDS</option>
+          </select></div>
+      </div>
+
+      <div id="mtx-borrow" style="margin-top:10px">
+        <label>Search shipped textures for this slot</label>
+        <input id="mtx-q" placeholder="granary, heian, autogen…" autocomplete="off">
+        <div class="hits" id="mtx-hits" style="margin-top:8px"></div>
+      </div>
+
+      <div id="mtx-import" style="margin-top:10px;display:none">
+        <div class="row">
+          <div><label>.dds file</label><input id="mtx-path" placeholder="…/my_orm.dds"></div>
+          <div><label>Texture name</label><input id="mtx-name" placeholder="MY_ORM"></div>
+          <div style="flex:0 0 auto"><label>&nbsp;</label>
+            <button class="act" id="btn-mtx-import">Import</button></div>
+        </div>
+        <div class="note" id="mtx-format-hint"></div>
+      </div>
+      <div id="mtx-msg"></div>
+    </div>
+
+    <div class="card">
+      <label style="margin-bottom:8px">Textures in this package
+        (<span id="mtx-count">0</span>)</label>
+      <div class="note">Materials can only use textures declared here, even if they exist in base game.</div>
+      <table><thead><tr><th>Texture</th><th>Class</th><th>Size</th><th>Format</th>
+        <th>Source</th><th></th></tr></thead>
+        <tbody id="mtx-rows"></tbody></table>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div><label>Material name</label>
+          <input id="mat-name" placeholder="MY_MATERIAL"></div>
+        <div class="narrow" style="flex:0 0 150px"><label>Kind</label>
+          <select id="mat-kind">
+            <option value="standard">Standard</option>
+            <option value="aniso">Anisotropic</option>
+          </select></div>
+        <div class="narrow"><label>Tint mode</label>
+          <input id="mat-tint" type="number" placeholder="auto"></div>
+        <div style="flex:0 0 auto"><label>&nbsp;</label>
+          <button class="act" id="btn-add-mat">Create</button></div>
+      </div>
+      <div id="mat-slots" style="margin-top:10px"></div>
+      <div id="mat-msg"></div>
+    </div>
+
+    <div class="card"><table><thead><tr><th>Material</th><th>Kind</th><th>Tint</th>
+      <th>Slots</th><th></th></tr></thead>
+      <tbody id="mat-rows"></tbody></table></div></section>
+
+  <section class="page" id="p-clones"><h2>Reuse an asset</h2>
+    <p class="sub">Take a existing model asset: its mesh, animations and states, and copies it with a new material. Useful for civ banners.</p>
+
+    <div class="card">
+      <div class="row">
+        <div><label>Your name for the copy</label>
+          <input id="cln-name" placeholder="CIVILIZATION_MY_CIV_BANNER_GAME_ASSET"></div>
+        <div><label>Asset to reuse</label>
+          <input id="cln-asset" placeholder="CIVILIZATION_HEIAN_BANNER_GAME_ASSET" autocomplete="off"></div>
+        <div class="narrow" style="flex:0 0 170px"><label>Register as</label>
+          <select id="cln-list">
+            <option value="assets">General asset</option>
+            <option value="leaders">Leader / banner</option>
+            <option value="">Do not register</option>
+          </select></div>
+      </div>
+      <div class="hits" id="cln-hits" style="display:none;margin-top:10px"></div>
+    </div>
+
+    <div class="card" id="cln-detail" style="display:none">
+      <label style="margin-bottom:8px">What this asset contains</label>
+      <div id="cln-summary" class="mono"></div>
+      <div style="margin-top:12px">
+        <label>Materials it uses.</label>
+        <div id="cln-materials"></div>
+      </div>
+      <div style="margin-top:12px">
+        <label>Blobs it brings</label>
+        <div id="cln-blobs" class="mono"></div>
+      </div>
+      <div style="margin-top:12px">
+        <button class="act" id="btn-add-clone">Add to project</button>
+      </div>
+      <div id="cln-msg"></div>
+    </div>
+
+    <div class="card"><table>
+      <thead><tr><th>Copy</th><th>From</th><th>Materials repointed</th>
+        <th>Registered</th><th></th></tr></thead>
+      <tbody id="clone-rows"></tbody></table></div></section>
+
+  <!-- Asset browser -->
+  <section class="page" id="p-browser">
+    <h2>Asset browser</h2>
+    <p class="sub">The names of assets and containers and such</p>
+    <div class="card">
+      <div class="row">
+        <div><input id="br-q" placeholder="monument, harbor, MEMBER_, WONDER_…" autocomplete="off"></div>
+        <div class="narrow" style="flex:0 0 150px"><select id="br-role">
+          <option value="">any kind</option><option value="bin">bin</option>
+          <option value="asset">asset</option><option value="metadata">metadata</option>
+          <option value="bin modifier">bin modifier</option></select></div>
+      </div>
+      <div class="muted" style="margin-top:8px;font-size:12px" id="br-total"></div>
+    </div>
+    <div class="split">
+      <div class="card"><div class="hits" id="br-hits" style="border:0"></div></div>
+      <div class="card" id="br-detail"><div class="empty">Select an asset.</div></div>
+    </div>
+  </section>
+
+  <!-- Build -->
+  <section class="page" id="p-build">
+    <h2>Build &amp; deploy</h2>
+    <p class="sub">Builds and validates what you have assigned
+      result, writing folders so you can copy it to your DLC and Mods folder respectively.</p>
+    <div class="card">
+      <div class="row" style="margin-bottom:6px">
+        <strong style="flex:1">What to include</strong>
+        <button class="ghost" id="btn-all-on">All on</button>
+      </div>
+      <div class="note">Disable items to be built.</div>
+      <div id="include-groups"></div>
+    </div>
+
+    <div class="card">
+      <button class="act" id="btn-build2">Build now</button>
+      <span class="muted" style="margin-left:10px" id="build-state"></span>
+      <div id="include-msg"></div>
+    </div>
+    <div class="card" id="deploy-card" style="display:none">
+      <strong>Copy these two folders</strong>
+      <div style="margin-top:10px">
+        <label>into your game install's DLC folder</label>
+        <div class="path" id="dlc-path"></div>
+      </div>
+      <div style="margin-top:10px">
+        <label>into your user Mods folder</label>
+        <div class="path" id="mods-path"></div>
+      </div>
+      <div class="note">The reason for this, is that art packages are not looked for by the game in Mods, so put them in
+        <span class="mono">DLC/</span>. </div>
+    </div>
+    <div class="card" id="missing-card" style="display:none">
+      <strong>Blobs still missing</strong>
+      <div class="note">These are erroring entries, where there are references to files not in SHARED_DATA. So likely missing assets in game.</div>
+      <div id="missing-list" class="mono"></div>
+    </div>
+    <div class="card"><strong>Log</strong><pre class="log" id="build-log">Not built yet.</pre></div>
+  </section>
+</main>
+
+<div class="veil" id="picker-veil">
+  <div class="picker">
+    <header>
+      <button class="ghost" id="pk-up">↑ Up</button>
+      <span class="cur" id="pk-cur"></span>
+    </header>
+    <div class="body">
+      <div class="roots" id="pk-roots"></div>
+      <div class="listing" id="pk-list"></div>
+    </div>
+    <footer>
+      <span class="msg" id="pk-msg"></span>
+      <button class="ghost" id="pk-cancel">Cancel</button>
+      <button class="act" id="pk-use">Use this folder</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (t, c, x) => { const n = document.createElement(t);
+  if (c) n.className = c; if (x !== undefined) n.textContent = x; return n; };
+
+let M = null;            // the manifest
+let SETTINGS = {};
+
+async function api(path, opts) {
+  const r = await fetch('/api' + path, opts);
+  return r.json();
+}
+async function post(path, body) {
+  return api(path, { method: 'POST', headers: {'Content-Type': 'application/json'},
+                     body: JSON.stringify(body || {}) });
+}
+
+// --- path picker --------------------------------------------------------
+// The browser cannot see server-side paths, so browsing happens over the API. Folders
+// that are themselves a game install are marked, because the commonest way to get this
+// wrong is stopping one level too high — at the Steam folder or at `common`.
+const PK = { resolve: null, mode: 'dir', files: '', path: null, chosenFile: null };
+
+async function pickPath(opts = {}) {
+  PK.mode = opts.mode || 'dir';
+  PK.files = opts.files || '';
+  PK.chosenFile = null;
+  $('#pk-use').textContent = PK.mode === 'file' ? 'Use this file' : 'Use this folder';
+  $('#pk-msg').textContent = opts.hint || '';
+  $('#picker-veil').classList.add('on');
+
+  const roots = await api('/fs/roots');
+  const box = $('#pk-roots'); box.innerHTML = '';
+  (roots.roots || []).forEach(r => {
+    const b = el('button');
+    b.appendChild(el('div', 'lbl', r.label));
+    b.appendChild(el('div', 'pth', r.path));
+    b.onclick = () => pkGo(r.path);
+    box.appendChild(b);
+  });
+
+  await pkGo(opts.start || (roots.roots[0] && roots.roots[0].path) || '');
+  return new Promise(res => { PK.resolve = res; });
+}
+
+async function pkGo(path) {
+  const qs = new URLSearchParams({ path });
+  if (PK.files) qs.set('files', PK.files);
+  const r = await api('/fs/list?' + qs);
+  const list = $('#pk-list'); list.innerHTML = '';
+  if (!r.ok) { list.appendChild(el('div', 'empty', r.error)); return; }
+
+  PK.path = r.path;
+  PK.chosenFile = null;
+  $('#pk-cur').textContent = r.path;
+  $('#pk-up').disabled = !r.parent;
+  $('#pk-up').onclick = () => r.parent && pkGo(r.parent);
+
+  if (r.isGame) $('#pk-msg').textContent = 'This folder is a Civ VII install.';
+
+  r.dirs.forEach(d => {
+    const row = el('div', 'ent');
+    row.appendChild(el('span', 'ic', '▸'));
+    row.appendChild(el('span', 'nm', d.name));
+    if (d.isGame) row.appendChild(el('span', 'tag', 'Civ VII install'));
+    row.onclick = () => pkGo(r.path.replace(/[\\/]$/, '') + pkSep(r.path) + d.name);
+    list.appendChild(row);
+  });
+
+  (r.files || []).forEach(f => {
+    const row = el('div', 'ent');
+    row.appendChild(el('span', 'ic', '·'));
+    row.appendChild(el('span', 'nm', f.name));
+    row.appendChild(el('span', 'sz', (f.size / 1024).toFixed(0) + ' KB'));
+    row.onclick = () => {
+      list.querySelectorAll('.ent').forEach(e => e.classList.remove('sel'));
+      row.classList.add('sel');
+      PK.chosenFile = r.path.replace(/[\\/]$/, '') + pkSep(r.path) + f.name;
+    };
+    row.ondblclick = () => { PK.chosenFile = r.path.replace(/[\\/]$/, '')
+      + pkSep(r.path) + f.name; pkDone(); };
+    list.appendChild(row);
+  });
+
+  if (!r.dirs.length && !(r.files || []).length)
+    list.appendChild(el('div', 'empty', 'Nothing here.'));
+}
+
+// Windows paths use backslashes and the API echoes back whatever the OS uses, so the
+// separator is taken from the path itself rather than assumed.
+function pkSep(path) { return path.includes('\\') ? '\\' : '/'; }
+
+function pkDone() {
+  const value = PK.mode === 'file' ? PK.chosenFile : PK.path;
+  if (PK.mode === 'file' && !value) {
+    $('#pk-msg').textContent = 'Select a file first.'; return;
+  }
+  $('#picker-veil').classList.remove('on');
+  if (PK.resolve) PK.resolve(value);
+  PK.resolve = null;
+}
+$('#pk-use').onclick = pkDone;
+$('#pk-cancel').onclick = () => {
+  $('#picker-veil').classList.remove('on');
+  if (PK.resolve) PK.resolve(null);
+  PK.resolve = null;
+};
+$('#picker-veil').onclick = e => {
+  if (e.target === $('#picker-veil')) $('#pk-cancel').click();
+};
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && $('#picker-veil').classList.contains('on'))
+    $('#pk-cancel').click();
+});
+
+/** Attach a Browse button to a text input. */
+function browseInto(inputSel, opts) {
+  const input = $(inputSel);
+  const btn = el('button', 'ghost', 'Browse…');
+  btn.type = 'button';
+  const wrap = el('div', 'with-browse');
+  input.parentNode.insertBefore(wrap, input);
+  wrap.appendChild(input);
+  wrap.appendChild(btn);
+  btn.onclick = async () => {
+    const chosen = await pickPath({ ...opts, start: input.value.trim() || undefined });
+    if (chosen) { input.value = chosen; input.dispatchEvent(new Event('change')); }
+  };
+}
+
+// --- navigation ---------------------------------------------------------
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav button').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('section.page').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  $('#p-' + b.dataset.page).classList.add('on');
+  if (b.dataset.page === 'build') { refreshBuildStatus(); renderInclude(); }
+});
+
+// --- settings and projects ----------------------------------------------
+async function loadSettings() {
+  SETTINGS = await api('/settings');
+  $('#root-path').textContent = SETTINGS.root;
+  $('#game-path').value = SETTINGS.game || '';
+  const g = $('#b-game');
+  g.textContent = SETTINGS.gameValid ? 'game ok' : 'no game path';
+  g.classList.toggle('bad', !SETTINGS.gameValid);
+  const p = $('#b-project');
+  p.textContent = SETTINGS.project || 'no project';
+  p.classList.toggle('bad', !SETTINGS.project);
+  $('#btn-build').disabled = !(SETTINGS.project && SETTINGS.gameValid);
+  renderProjectList(SETTINGS.projects || []);
+  renderGameSuggestions();
+}
+
+// Offer anything found automatically or used before, so the path only has to be
+// located once ever — it is remembered in the user's config directory from then on.
+function renderGameSuggestions() {
+  const box = $('#game-suggest'); box.innerHTML = '';
+  const seen = new Set(SETTINGS.game ? [SETTINGS.game] : []);
+  const offer = [];
+  (SETTINGS.detected || []).forEach(p => { if (!seen.has(p)) { seen.add(p); offer.push(p); } });
+  (SETTINGS.recentGames || []).forEach(p => { if (!seen.has(p)) { seen.add(p); offer.push(p); } });
+  if (!offer.length) return;
+  box.appendChild(el('label', '', 'Found on this machine'));
+  offer.forEach(p => {
+    const row = el('div', 'hit');
+    row.appendChild(el('span', 'n', p));
+    row.onclick = async () => {
+      await post('/settings', { game: p });
+      await loadSettings();
+    };
+    box.appendChild(row);
+  });
+}
+
+function renderProjectList(list) {
+  const box = $('#project-list');
+  box.innerHTML = '';
+  if (!list.length) { box.appendChild(el('div', 'empty', 'No projects yet.')); return; }
+  list.forEach(p => {
+    const row = el('div', 'hit');
+    row.appendChild(el('span', 'n', p.name));
+    row.appendChild(el('span', 'r', new Date(p.modified * 1000).toLocaleDateString()));
+    row.onclick = async () => {
+      const r = await post('/projects/open', { path: p.path });
+      if (r.ok) { M = r.project; await loadSettings(); renderAll(); }
+    };
+    box.appendChild(row);
+  });
+}
+
+$('#btn-game').onclick = async () => {
+  const r = await post('/settings', { game: $('#game-path').value.trim() });
+  $('#game-msg').innerHTML = '';
+  if (!r.ok) $('#game-msg').appendChild(finding({level: 'error', message: r.error}));
+  await loadSettings();
+};
+
+$('#btn-create').onclick = async () => {
+  const r = await post('/projects/create', { name: $('#new-name').value.trim(),
+                                             author: $('#new-author').value.trim() });
+  $('#create-msg').innerHTML = '';
+  if (!r.ok) { $('#create-msg').appendChild(finding({level: 'error', message: r.error})); return; }
+  M = r.project; $('#new-name').value = '';
+  await loadSettings(); renderAll();
+};
+
+async function save() {
+  if (!M) return;
+  const r = await post('/manifest', { project: M });
+  renderAll();
+  return r;
+}
+
+// --- findings -----------------------------------------------------------
+function finding(f) {
+  const d = el('div', 'finding ' + (f.level || 'warning'));
+  d.appendChild(el('span', 'lv', f.level || 'warning'));
+  if (f.where) d.appendChild(el('span', 'wh', f.where));
+  d.appendChild(el('span', '', f.message));
+  return d;
+}
+
+// --- asset autocomplete -------------------------------------------------
+function autocomplete(input, hitsBox, opts) {
+  let timer = null;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    const q = input.value.trim();
+    if (q.length < 2) { hitsBox.style.display = 'none'; return; }
+    timer = setTimeout(async () => {
+      const qs = new URLSearchParams({ q, limit: 12, ...(opts || {}) });
+      const r = await api('/assets/search?' + qs);
+      hitsBox.innerHTML = '';
+      if (!r.ok || !r.results.length) { hitsBox.style.display = 'none'; return; }
+      r.results.forEach(h => {
+        const row = el('div', 'hit');
+        row.appendChild(el('span', 'n', h.name));
+        row.appendChild(el('span', 'r', h.role));
+        row.onclick = () => { input.value = h.name; hitsBox.style.display = 'none'; };
+        hitsBox.appendChild(row);
+      });
+      hitsBox.style.display = '';
+    }, 160);
+  });
+}
+
+// --- buildings ----------------------------------------------------------
+$('#btn-add-building').onclick = async () => {
+  const type = $('#bld-type').value.trim(), target = $('#bld-target').value.trim();
+  if (!type || !target) return;
+  M.buildings = M.buildings || [];
+  M.buildings.push({ target,
+    expression: type.startsWith('[') ? type : `[BUILDING:${type}]`,
+    priority: parseInt($('#bld-prio').value, 10) || 1, weight: 1.0 });
+  $('#bld-type').value = ''; $('#bld-target').value = '';
+  await save();
+};
+
+$('#bld-filter').addEventListener('input', renderBuildings);
+
+function renderBuildings() {
+  const body = $('#bld-rows'); body.innerHTML = '';
+  const rows = (M && M.buildings) || [];
+  $('#bld-count').textContent = rows.length;
+  const f = $('#bld-filter').value.toLowerCase();
+  rows.forEach((b, i) => {
+    if (f && !(b.expression + b.target).toLowerCase().includes(f)) return;
+    const tr = el('tr');
+    tr.appendChild(el('td', '', b.expression));
+    tr.appendChild(el('td', '', b.target));
+    tr.appendChild(el('td', '', String(b.priority)));
+    const td = el('td');
+    const x = el('button', 'tiny', 'remove');
+    x.onclick = async () => { M.buildings.splice(i, 1); await save(); };
+    td.appendChild(x); tr.appendChild(td);
+    body.appendChild(tr);
+  });
+}
+
+// --- improvements / wonders --------------------------------------------
+async function addRegion(kind) {
+  const p = kind === 'imp' ? 'imp' : 'won';
+  const type = $(`#${p}-type`).value.trim();
+  const asset = $(`#${p}-asset`).value.trim();
+  const from = $(`#${p}-copy`).value.trim();
+  const msg = $(`#${p}-msg`); msg.innerHTML = '';
+  if (!type || !asset) return;
+
+  let attachments = [];
+  if (from) {
+    const r = await api('/assets/' + encodeURIComponent(from));
+    if (!r.ok) { msg.appendChild(finding({level: 'error', message: r.error})); return; }
+    attachments = r.asset.attachments.map(a => [a.point, a.target, a.rotation[2]]);
+    if (!attachments.length)
+      msg.appendChild(finding({level: 'warning',
+        message: `${from} has no attachments, so nothing to copy, so this will render nothing.`}));
+  }
+  const list = kind === 'imp' ? (M.improvements = M.improvements || [])
+                              : (M.wonders = M.wonders || []);
+  const entry = { asset, type, attachments, hexes: {} };
+  if (kind === 'won') entry.baseLayer = 'TER_EDIT_Flatten_Hex';
+  list.push(entry);
+  $(`#${p}-type`).value = ''; $(`#${p}-asset`).value = '';
+  await save();
+}
+$('#btn-add-imp').onclick = () => addRegion('imp');
+$('#btn-add-won').onclick = () => addRegion('won');
+
+function renderRegions() {
+  const ib = $('#imp-rows'); ib.innerHTML = '';
+  ((M && M.improvements) || []).forEach((x, i) => {
+    const tr = el('tr');
+    tr.appendChild(el('td', '', x.type));
+    tr.appendChild(el('td', '', x.asset));
+    tr.appendChild(el('td', '', String((x.attachments || []).length)));
+    tr.appendChild(el('td', '', Object.keys(x.hexes || {}).join(', ') || '—'));
+    const td = el('td'); const b = el('button', 'tiny', 'remove');
+    b.onclick = async () => { M.improvements.splice(i, 1); await save(); };
+    td.appendChild(b); tr.appendChild(td); ib.appendChild(tr);
+  });
+  const wb = $('#won-rows'); wb.innerHTML = '';
+  ((M && M.wonders) || []).forEach((x, i) => {
+    const tr = el('tr');
+    tr.appendChild(el('td', '', x.type));
+    tr.appendChild(el('td', '', x.asset));
+    tr.appendChild(el('td', '', String((x.attachments || []).length)));
+    tr.appendChild(el('td', '', x.baseLayer || '—'));
+    const td = el('td'); const b = el('button', 'tiny', 'remove');
+    b.onclick = async () => { M.wonders.splice(i, 1); await save(); };
+    td.appendChild(b); tr.appendChild(td); wb.appendChild(tr);
+  });
+}
+
+// --- audio / textures inspection ---------------------------------------
+$('#btn-check-wem').onclick = async () => {
+  const box = $('#aud-msg'); box.innerHTML = '';
+  const r = await post('/inspect', { path: $('#aud-path').value.trim(), kind: 'audio' });
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (r.info) box.appendChild(el('div', 'mono',
+    `${r.info.channels}ch ${r.info.rate} Hz · ${r.info.size} bytes · fmt ext ${r.info.fmt_ext}B. Working .wem`));
+};
+
+$('#btn-check-dds').onclick = async () => {
+  const box = $('#tex-msg'); box.innerHTML = '';
+  const name = $('#tex-name').value.trim();
+  const r = await post('/inspect', { path: $('#tex-path').value.trim(),
+                                     kind: 'textures', name });
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (r.info) box.appendChild(el('div', 'mono',
+    `${r.info.width}x${r.info.height} · ${r.info.mips} mips · DXGI ${r.info.dxgi} · ${r.info.size} bytes`));
+};
+
+// --- units --------------------------------------------------------------
+// Only 93 of the game's 118 unit types have an art asset, so the donor list comes from
+// the index rather than from a list of unit types -- the ones without art are not
+// choices, they are just absent.
+let untTimer = null;
+$('#unt-donor').addEventListener('input', () => {
+  clearTimeout(untTimer);
+  const q = $('#unt-donor').value.trim();
+  const box = $('#unt-hits');
+  if (q.length < 2) { box.style.display = 'none'; return; }
+  untTimer = setTimeout(async () => {
+    const r = await api('/units/donors?q=' + encodeURIComponent(q));
+    box.innerHTML = '';
+    if (!r.ok || !r.units.length) { box.style.display = 'none'; return; }
+    r.units.slice(0, 12).forEach(n => {
+      const row = el('div', 'hit');
+      row.appendChild(el('span', 'n', n));
+      row.onclick = () => { $('#unt-donor').value = n; box.style.display = 'none';
+                            showDonor(n); };
+      box.appendChild(row);
+    });
+    box.style.display = '';
+  }, 160);
+});
+$('#unt-donor').addEventListener('change', () => showDonor($('#unt-donor').value.trim()));
+
+async function showDonor(name) {
+  const box = $('#unt-donor-info'); box.innerHTML = '';
+  if (!name) return;
+  const r = await api('/units/donors/' + encodeURIComponent(name));
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  const u = r.unit;
+  box.appendChild(el('div', 'mono',
+    `${u.memberCount} x ${u.memberAsset} · ${u.formation} · ` +
+    `speed ${u.maxSpeed} · ${u.ageStyle || 'no style'} · ${u.params} parameters`));
+  // Prefill the count so the form shows what will actually happen if nothing is typed.
+  if (!$('#unt-count').value) $('#unt-count').placeholder = String(u.memberCount);
+  $('#unt-member').placeholder = `(keep ${u.memberAsset})`;
+}
+
+// Member assets are ordinary indexed assets, so the shared asset search finds
+// them -- typing 'archer' surfaces MEMBER_ARCHER.
+autocomplete($('#unt-member'), $('#unt-mhits'), {});
+
+$('#btn-add-unit').onclick = async () => {
+  const box = $('#unt-msg'); box.innerHTML = '';
+  const r = await post('/units', {
+    donor: $('#unt-donor').value.trim(),
+    name: $('#unt-name').value.trim(),
+    memberAsset: $('#unt-member').value.trim(),
+    memberCount: $('#unt-count').value,
+    scale: $('#unt-scale').value,
+    promotion: $('#unt-promo').value,
+    profile: $('#unt-profile').value,
+  });
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (!r.created) return;
+  M = r.project;
+  $('#unt-name').value = '';
+  renderAll();
+  box.appendChild(el('div', 'mono',
+    `${r.row.name} — ${r.row.memberCount} x ${r.row.memberAsset}, ` +
+    `${r.row.params} parameters (${r.row.profile}), from ${r.row.copiedFrom}`));
+};
+
+async function renderUnits() {
+  const body = $('#unit-rows'); body.innerHTML = '';
+  const r = await api('/units');
+  const rows = (r.ok && r.units) || [];
+  if (!rows.length) {
+    const tr = el('tr'), td = el('td'); td.colSpan = 5;
+    td.appendChild(el('span', 'empty', 'Nothing yet.'));
+    tr.appendChild(td); body.appendChild(tr); return;
+  }
+  rows.forEach(u => {
+    const tr = el('tr');
+    tr.appendChild(el('td', '', u.name));
+    tr.appendChild(el('td', '', u.copiedFrom || '—'));
+    tr.appendChild(el('td', '', `${u.memberCount} x ${u.memberAsset}`));
+    tr.appendChild(el('td', '', `${u.formation || '—'}  ·  ${u.params} params`));
+    const td = el('td'), b = el('button', 'tiny', 'remove');
+    b.onclick = async () => {
+      const d = await fetch('/api/units/' + encodeURIComponent(u.name),
+                            { method: 'DELETE' }).then(x => x.json());
+      if (d.ok) { M = d.project; renderAll(); }
+    };
+    td.appendChild(b); tr.appendChild(td); body.appendChild(tr);
+  });
+}
+
+// --- reusing an asset ---------------------------------------------------
+// Inspecting first is the point: you cannot decide what to repoint until you know
+// which materials the asset actually uses, and those are stored as bare hashes.
+let CLONE_INFO = null;
+
+autocomplete($('#cln-asset'), $('#cln-hits'), {});
+$('#cln-asset').addEventListener('change', () => inspectClone($('#cln-asset').value.trim()));
+$('#cln-hits').addEventListener('click', () =>
+  setTimeout(() => inspectClone($('#cln-asset').value.trim()), 30));
+
+async function inspectClone(name) {
+  const card = $('#cln-detail');
+  if (!name) { card.style.display = 'none'; return; }
+  const r = await api('/clones/inspect/' + encodeURIComponent(name));
+  const msg = $('#cln-msg'); msg.innerHTML = '';
+  if (!r.ok || !r.asset) {
+    card.style.display = 'none';
+    (r.findings || [{level: 'error', message: r.error}]).forEach(
+      f => msg.appendChild(finding(f)));
+    return;
+  }
+  CLONE_INFO = r.asset;
+  card.style.display = '';
+
+  $('#cln-summary').textContent =
+    `${r.asset.allocations} allocations · ${r.asset.geometry} geometry · ` +
+    `${r.asset.animation} animation · ${r.asset.stateSets} state sets · ` +
+    `from ${r.asset.package}`;
+
+  // One row per material the asset points at, each with a dropdown of this project's
+  // materials. Leaving one unchanged keeps the shipped material.
+  const mats = $('#cln-materials'); mats.innerHTML = '';
+  if (!r.asset.materials.length) {
+    mats.appendChild(el('div', 'empty', 'This asset references no materials.'));
+  }
+  r.asset.materials.forEach(m => {
+    const row = el('div', 'row');
+    row.style.marginBottom = '6px';
+    const left = el('div');
+    left.appendChild(el('label', '', m.name || `unresolved ${m.hash}`));
+    const sel = document.createElement('select');
+    sel.className = 'cln-mat-select';
+    sel.dataset.from = m.name || '';
+    sel.disabled = !m.name;
+    const keep = document.createElement('option');
+    keep.value = ''; keep.textContent = m.name ? '(keep the shipped one)' : 'unresolved';
+    sel.appendChild(keep);
+    ((M && M.materials) || []).forEach(pm => {
+      const o = document.createElement('option');
+      o.value = pm.name; o.textContent = pm.name;
+      sel.appendChild(o);
+    });
+    left.appendChild(sel);
+    row.appendChild(left);
+    mats.appendChild(row);
+  });
+
+  // Owned blobs get renamed with the asset; shared ones deliberately do not.
+  const blobs = $('#cln-blobs'); blobs.innerHTML = '';
+  const owned = r.asset.blobs.filter(b => b.owned);
+  const shared = r.asset.blobs.filter(b => !b.owned);
+  if (owned.length) {
+    blobs.appendChild(el('div', '', 'renamed with the copy: ' +
+      owned.map(b => b.name).join(', ')));
+  }
+  if (shared.length) {
+    blobs.appendChild(el('div', 'muted', `shared, kept as-is: ${shared.length} ` +
+      `(${shared.slice(0, 3).map(b => b.name).join(', ')}` +
+      `${shared.length > 3 ? ', …' : ''})`));
+  }
+  if (!r.asset.blobs.length) blobs.appendChild(el('span', 'muted', 'none'));
+}
+
+$('#btn-add-clone').onclick = async () => {
+  const msg = $('#cln-msg'); msg.innerHTML = '';
+  const mats = {};
+  document.querySelectorAll('.cln-mat-select').forEach(sel => {
+    if (sel.value && sel.dataset.from) mats[sel.dataset.from] = sel.value;
+  });
+  const r = await post('/clones', {
+    asset: $('#cln-asset').value.trim(),
+    newName: $('#cln-name').value.trim(),
+    assetList: $('#cln-list').value,
+    materials: mats });
+  if (!r.ok) { msg.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => msg.appendChild(finding(f)));
+  if (!r.created) return;
+  M = r.project;
+  $('#cln-name').value = '';
+  renderAll();
+  msg.appendChild(el('div', 'mono',
+    `${r.row.newName} — ${Object.keys(r.row.renames).length} names rewritten, ` +
+    `${Object.keys(r.row.materials).length} material(s) repointed`));
+};
+
+function renderClones() {
+  const body = $('#clone-rows'); body.innerHTML = '';
+  const rows = (M && M.clones) || [];
+  if (!rows.length) {
+    const tr = el('tr'), td = el('td'); td.colSpan = 5;
+    td.appendChild(el('span', 'empty', 'Nothing yet.'));
+    tr.appendChild(td); body.appendChild(tr); return;
+  }
+  rows.forEach(c => {
+    const name = c.newName || c.renames?.[c.asset] || c.asset;
+    const tr = el('tr');
+    tr.appendChild(el('td', '', name));
+    tr.appendChild(el('td', '', c.asset));
+    tr.appendChild(el('td', '', Object.entries(c.materials || {})
+      .map(([a, b]) => `${a} → ${b}`).join(', ') || '—'));
+    tr.appendChild(el('td', '', c.assetList || 'not registered'));
+    const td = el('td'), b = el('button', 'tiny', 'remove');
+    b.onclick = async () => {
+      const d = await fetch('/api/clones/' + encodeURIComponent(name),
+                            { method: 'DELETE' }).then(x => x.json());
+      if (d.ok) { M = d.project; renderAll(); }
+    };
+    td.appendChild(b); tr.appendChild(td); body.appendChild(tr);
+  });
+}
+
+// --- materials ----------------------------------------------------------
+// Slots come from the server rather than being hardcoded here, because the two kinds
+// have different ones and the emitter's table is the authority.
+let MAT_SLOTS = [];
+
+async function loadMatSlots() {
+  const kind = $('#mat-kind').value;
+  const r = await api('/materials/slots?kind=' + kind);
+  MAT_SLOTS = (r.ok && r.slots) || [];
+
+  const sel = $('#mtx-slot'); sel.innerHTML = '';
+  MAT_SLOTS.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s.slot;
+    o.textContent = s.format ? `${s.slot} — ${s.format}` : s.slot;
+    sel.appendChild(o);
+  });
+  renderMatSlots();
+  slotFormatHint();
+}
+$('#mat-kind').addEventListener('change', loadMatSlots);
+
+// One row per slot, each a dropdown over the textures declared in this package --
+// that constraint is the package-local rule made visible rather than explained.
+function renderMatSlots() {
+  const box = $('#mat-slots'); box.innerHTML = '';
+  const declared = (M && M.materialTextures) || [];
+  MAT_SLOTS.forEach(s => {
+    const row = el('div', 'row');
+    row.style.marginBottom = '6px';
+    const left = el('div');
+    left.appendChild(el('label', '',
+      `${s.slot} — ${s.textureClass}` + (s.format ? ` · wants ${s.format}` : '')));
+    const sel = document.createElement('select');
+    sel.dataset.slot = s.slot;
+    sel.className = 'mat-slot-select';
+    const none = document.createElement('option');
+    none.value = ''; none.textContent = '(none)';
+    sel.appendChild(none);
+    declared.forEach(t => {
+      const o = document.createElement('option');
+      o.value = t.name; o.textContent = t.name;
+      if (t.tex_class !== s.textureClass) o.textContent += `  — ${t.tex_class}`;
+      sel.appendChild(o);
+    });
+    // Pre-select a texture that was imported for exactly this slot.
+    const match = declared.find(t => t.slot === s.slot);
+    if (match) sel.value = match.name;
+    left.appendChild(sel);
+    row.appendChild(left);
+    box.appendChild(row);
+  });
+}
+
+function slotFormatHint() {
+  const slot = $('#mtx-slot').value;
+  const s = MAT_SLOTS.find(x => x.slot === slot);
+  $('#mtx-format-hint').textContent = s
+    ? `Wants ${s.format || 'a block-compressed DDS'}` +
+      (s.formats && s.formats.length > 1 ? ` (${s.formats.join(' or ')} accepted)` : '') +
+      `. Every shipped ${s.textureClass} is ${s.format || 'block-compressed'}, so that ` +
+      `is what your DDS is checked against — not BC7.`
+    : '';
+}
+$('#mtx-slot').addEventListener('change', () => { slotFormatHint(); searchShipped(); });
+
+$('#mtx-source').addEventListener('change', () => {
+  const borrow = $('#mtx-source').value === 'borrow';
+  $('#mtx-borrow').style.display = borrow ? '' : 'none';
+  $('#mtx-import').style.display = borrow ? 'none' : '';
+});
+
+let mtxTimer = null;
+$('#mtx-q').addEventListener('input', () => {
+  clearTimeout(mtxTimer);
+  mtxTimer = setTimeout(searchShipped, 180);
+});
+
+async function searchShipped() {
+  const box = $('#mtx-hits'); box.innerHTML = '';
+  const qs = new URLSearchParams({ q: $('#mtx-q').value.trim(),
+                                   slot: $('#mtx-slot').value, limit: 25 });
+  const r = await api('/materials/textures/search?' + qs);
+  if (!r.ok) { box.appendChild(el('div', 'empty', r.error)); return; }
+  if (!r.results.length) { box.appendChild(el('div', 'empty', 'No matches.')); return; }
+  r.results.forEach(t => {
+    const row = el('div', 'hit');
+    row.appendChild(el('span', 'n', t.name));
+    row.appendChild(el('span', 'r', `${t.width}x${t.height} · ${t.mips} mips`));
+    row.onclick = () => addMatTexture({ borrow: t.name, slot: $('#mtx-slot').value });
+    box.appendChild(row);
+  });
+}
+
+$('#btn-mtx-import').onclick = () => addMatTexture({
+  path: $('#mtx-path').value.trim(), name: $('#mtx-name').value.trim(),
+  slot: $('#mtx-slot').value });
+
+async function addMatTexture(body) {
+  const box = $('#mtx-msg'); box.innerHTML = '';
+  const r = await post('/materials/textures', body);
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (!r.added) return;
+  M = r.project;
+  renderAll();
+  box.appendChild(el('div', 'mono',
+    `${r.row.name} — ${r.row.width}x${r.row.height}, ${r.row.mips} mips, ` +
+    `${r.row.tex_class}` + (r.row.copyFromShipped ? ' (borrowed)' : ' (yours)')));
+}
+
+$('#btn-add-mat').onclick = async () => {
+  const box = $('#mat-msg'); box.innerHTML = '';
+  const slots = {};
+  document.querySelectorAll('.mat-slot-select').forEach(sel => {
+    if (sel.value) slots[sel.dataset.slot] = sel.value;
+  });
+  const r = await post('/materials', {
+    name: $('#mat-name').value.trim(), kind: $('#mat-kind').value,
+    tintMode: $('#mat-tint').value, slots });
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (!r.created) return;
+  M = r.project;
+  $('#mat-name').value = '';
+  renderAll();
+  box.appendChild(el('div', 'mono',
+    `${r.row.name} — ${Object.keys(r.row.slots).length} slots, tint mode ${r.row.tint_mode}`));
+};
+
+function renderMatTextures() {
+  const rows = (M && M.materialTextures) || [];
+  $('#mtx-count').textContent = rows.length;
+  const body = $('#mtx-rows'); body.innerHTML = '';
+  if (!rows.length) {
+    const tr = el('tr'), td = el('td'); td.colSpan = 6;
+    td.appendChild(el('span', 'empty', 'Nothing yet.'));
+    tr.appendChild(td); body.appendChild(tr); return;
+  }
+  rows.forEach(t => {
+    const tr = el('tr');
+    tr.appendChild(el('td', '', t.name));
+    tr.appendChild(el('td', '', t.tex_class));
+    tr.appendChild(el('td', '', `${t.width}x${t.height}`));
+    tr.appendChild(el('td', '', String(t.fmt)));
+    tr.appendChild(el('td', '', t.copyFromShipped ? 'borrowed' : 'yours'));
+    const td = el('td'), b = el('button', 'tiny', 'remove');
+    b.onclick = async () => {
+      const d = await fetch('/api/materials/textures/' + encodeURIComponent(t.name),
+                            { method: 'DELETE' }).then(x => x.json());
+      if (d.ok) { M = d.project; renderAll(); }
+    };
+    td.appendChild(b); tr.appendChild(td); body.appendChild(tr);
+  });
+}
+
+// --- imports ------------------------------------------------------------
+// An import writes a blob and a manifest row together; the row describes the blob and
+// nothing checks the two agree later, so the server measures rather than trusting the
+// form. Findings come back either way and are shown whether or not it succeeded.
+async function runImport(kind, body, msgSel, okText) {
+  const box = $(msgSel); box.innerHTML = '';
+  const btn = document.activeElement;
+  if (btn) btn.disabled = true;
+  const r = await post('/import', { kind, ...body });
+  if (btn) btn.disabled = false;
+
+  if (!r.ok) { box.appendChild(finding({level: 'error', message: r.error})); return; }
+  (r.findings || []).forEach(f => box.appendChild(finding(f)));
+  if (!r.imported) {
+    box.appendChild(finding({level: 'error',
+      message: 'Not imported. nothing was written.'}));
+    return;
+  }
+  M = r.project;
+  renderAll();
+  box.appendChild(el('div', 'mono', okText(r.row)));
+}
+
+$('#btn-import-wem').onclick = () => runImport('audio', {
+    path: $('#aud-path').value.trim(),
+    name: $('#aud-name').value.trim(),
+    donor: $('#aud-donor').value,
+  }, '#aud-msg',
+  row => `${row.name}: ${row.size} bytes. Test in-game with ` +
+         `Sound.play('${row.name.replace('SOUNDBANK_', '')}')`);
+
+$('#btn-import-dds').onclick = () => runImport('texture', {
+    path: $('#tex-path').value.trim(),
+    name: $('#tex-name').value.trim(),
+  }, '#tex-msg',
+  row => `${row.ui_name}: ${row.width}x${row.height}, ${row.mips} mips, ` +
+         `DXGI ${row.fmt}, ${row.size} bytes`);
+
+let flipWinding = false;
+$('#btn-flip').onclick = () => {
+  flipWinding = !flipWinding;
+  $('#btn-flip').textContent = 'winding: ' + (flipWinding ? 'flipped' : 'normal');
+};
+
+$('#btn-import-glb').onclick = () => runImport('mesh', {
+    path: $('#msh-path').value.trim(),
+    name: $('#msh-name').value.trim(),
+    scale: parseFloat($('#msh-scale').value) || 10,
+    material: $('#msh-material').value.trim(),
+    wrapperScale: parseFloat($('#msh-wscale').value) || 1,
+    flipWinding, ground: true,
+  }, '#msh-msg',
+  row => `${row.asset}: ${row.vertex_count} verts, ${row.primitive_count} tris, ` +
+         `${(row.bounds[5] - row.bounds[2]).toFixed(1)} units tall ` +
+         `(a person is ~18)`);
+
+// --- plain listings -----------------------------------------------------
+function fillRows(id, rows, cells, remove) {
+  const body = $(id); body.innerHTML = '';
+  if (!rows.length) {
+    const tr = el('tr'); const td = el('td'); td.colSpan = 6;
+    td.appendChild(el('span', 'empty', 'Nothing yet.'));
+    tr.appendChild(td); body.appendChild(tr); return;
+  }
+  rows.forEach(r => {
+    const tr = el('tr');
+    cells(r).forEach(v => tr.appendChild(el('td', '', v)));
+    if (remove) {
+      const td = el('td'), b = el('button', 'tiny', 'remove');
+      b.onclick = () => remove(r);
+      td.appendChild(b); tr.appendChild(td);
+    }
+    body.appendChild(tr);
+  });
+}
+
+// Deleting an import removes its blob too. Dropping only the manifest row would leave
+// the file in SHARED_DATA, where it ships as dead weight and sync_blobs calls it stray.
+function removeImport(kind, name) {
+  return async () => {
+    const r = await fetch(`/api/import/${kind}/${encodeURIComponent(name)}`,
+                          { method: 'DELETE' }).then(x => x.json());
+    if (r.ok) { M = r.project; renderAll(); }
+  };
+}
+
+function renderListings() {
+  fillRows('#aud-rows', (M && M.soundbanks) || [], s => [s.name, String(s.size)],
+           s => removeImport('audio', s.name)());
+  fillRows('#mesh-rows', (M && M.meshes) || [], m => [m.asset,
+    String(m.vertex_count), String(m.primitive_count),
+    m.bounds ? (m.bounds[5] - m.bounds[2]).toFixed(1) + ' units' : ':',
+    m.material || 'none (white)'],
+    m => removeImport('mesh', m.asset)());
+  fillRows('#tex-rows', (M && M.uiTextures) || [], t => [t.ui_name,
+    `${t.width}x${t.height}`, String(t.mips), String(t.fmt), String(t.size)],
+    t => removeImport('texture', t.ui_name)());
+}
+
+// --- asset browser ------------------------------------------------------
+let brTimer = null;
+function browserSearch() {
+  clearTimeout(brTimer);
+  brTimer = setTimeout(async () => {
+    const qs = new URLSearchParams({ q: $('#br-q').value.trim(), limit: 60,
+                                     role: $('#br-role').value });
+    const r = await api('/assets/search?' + qs);
+    const box = $('#br-hits'); box.innerHTML = '';
+    if (!r.ok) { box.appendChild(el('div', 'empty', r.error)); return; }
+    $('#br-total').textContent = `${r.total.toLocaleString()} assets indexed`;
+    if (!r.results.length) { box.appendChild(el('div', 'empty', 'No matches.')); return; }
+    r.results.forEach(h => {
+      const row = el('div', 'hit');
+      row.appendChild(el('span', 'n', h.name));
+      row.appendChild(el('span', 'r', h.role));
+      row.onclick = () => showAsset(h.name);
+      box.appendChild(row);
+    });
+  }, 180);
+}
+$('#br-q').addEventListener('input', browserSearch);
+$('#br-role').addEventListener('change', browserSearch);
+
+async function showAsset(name) {
+  const box = $('#br-detail');
+  box.innerHTML = '';
+  box.appendChild(el('div', 'mono', name));
+  const r = await api('/assets/' + encodeURIComponent(name));
+  if (!r.ok) { box.appendChild(el('div', 'empty', r.error)); return; }
+  const a = r.asset;
+  box.appendChild(el('div', 'muted', a.type));
+  box.appendChild(el('div', 'muted', a.packages.join(', ')));
+  if (a.components.length) {
+    box.appendChild(el('label', '', 'Components'));
+    a.components.forEach(c => box.appendChild(el('div', 'mono', c)));
+  }
+  if (a.attachments.length) {
+    box.appendChild(el('label', '', 'Pulls in'));
+    const t = el('table');
+    a.attachments.forEach(at => {
+      const tr = el('tr');
+      tr.appendChild(el('td', '', at.point));
+      tr.appendChild(el('td', at.targetResolved ? '' : 'muted', at.target));
+      tr.appendChild(el('td', '', 'rotZ ' + at.rotation[2].toFixed(4)));
+      t.appendChild(tr);
+    });
+    box.appendChild(t);
+  }
+}
+
+
+// --- what to include ----------------------------------------------------
+// Bisection tool: switch pieces off, rebuild, see if the problem goes. Disabled items
+// stay in the manifest, so this is reversible and nothing has to be re-imported.
+async function renderInclude() {
+  const box = $('#include-groups');
+  const r = await api('/build/items');
+  box.innerHTML = '';
+  if (!r.ok) { box.appendChild(el('div', 'empty', r.error)); return; }
+  if (!r.groups.length) { box.appendChild(el('div', 'empty', 'Nothing in this project yet.')); return; }
+
+  r.groups.forEach(g => {
+    const head = el('div', 'grp-head');
+    head.appendChild(el('span', 'nm', g.label));
+    head.appendChild(el('span', 'ct', `${g.enabled} of ${g.total}`));
+    const all = el('button', 'tiny', g.enabled ? 'none' : 'all');
+    all.onclick = () => toggleInclude({ kind: g.kind, group: true,
+                                        enabled: g.enabled === 0 });
+    head.appendChild(all);
+    box.appendChild(head);
+
+    g.items.forEach(i => {
+      const row = el('div', 'inc' + (i.enabled ? '' : ' off'));
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = i.enabled;
+      // Locked means something switched on still needs it. Disabling the checkbox is
+      // clearer than letting the click fail with an error each time.
+      cb.disabled = i.enabled && i.lockedBy.length > 0;
+      cb.onchange = () => toggleInclude({ kind: i.kind, key: i.key,
+                                          enabled: cb.checked });
+      row.appendChild(cb);
+      row.appendChild(el('span', 'nm', i.label));
+      if (cb.disabled) {
+        row.appendChild(el('span', 'why',
+          'needed by ' + i.lockedBy.map(b => b.key).join(', ')));
+      }
+      box.appendChild(row);
+    });
+  });
+}
+
+async function toggleInclude(body) {
+  const msg = $('#include-msg'); msg.innerHTML = '';
+  const r = await post('/build/items', body);
+  if (!r.ok) { msg.appendChild(finding({level: 'error', message: r.error})); return; }
+  if (r.error) msg.appendChild(finding({level: 'warning', message: r.error}));
+  (r.errors || []).forEach(e => msg.appendChild(finding({level: 'warning', message: e})));
+  if (r.project) M = r.project;
+  renderInclude();
+}
+
+$('#btn-all-on').onclick = async () => {
+  // Innermost first is not needed when turning things on, but the server handles
+  // ordering either way.
+  const r = await api('/build/items');
+  for (const g of (r.groups || [])) {
+    await post('/build/items', { kind: g.kind, group: true, enabled: true });
+  }
+  renderInclude();
+};
+
+// --- build --------------------------------------------------------------
+async function doBuild() {
+  const log = $('#build-log');
+  $('#btn-build').disabled = $('#btn-build2').disabled = true;
+  $('#build-state').textContent = 'building…';
+  log.textContent = 'Building…';
+  const r = await post('/build');
+  $('#btn-build').disabled = $('#btn-build2').disabled = false;
+  if (!r.ok) { log.textContent = r.error; $('#build-state').textContent = ''; return; }
+  log.textContent = r.log.join('\n');
+  const off = Object.entries(r.skipped || {})
+    .map(([k, n]) => `${n} ${k}`).join(', ');
+  $('#build-state').textContent = (r.built
+    ? `built ${r.packages.join(', ')}` : 'build failed')
+    + (off ? ` — with ${off} switched off` : '');
+  $('#deploy-card').style.display = r.built ? '' : 'none';
+  $('#dlc-path').textContent = r.dlcDir;
+  $('#mods-path').textContent = r.modsDir;
+  showMissing(r.missingBlobs || []);
+}
+$('#btn-build').onclick = () => {
+  document.querySelector('nav button[data-page="build"]').click();
+  doBuild();
+};
+$('#btn-build2').onclick = doBuild;
+
+function showMissing(list) {
+  $('#missing-card').style.display = list.length ? '' : 'none';
+  const box = $('#missing-list'); box.innerHTML = '';
+  list.forEach(m => box.appendChild(el('div', '', m)));
+}
+
+async function refreshBuildStatus() {
+  const r = await api('/build/status');
+  if (!r.ok) return;
+  $('#dlc-path').textContent = r.dlcDir;
+  $('#mods-path').textContent = r.modsDir;
+  $('#deploy-card').style.display = r.packages.length ? '' : 'none';
+  showMissing(r.missingBlobs || []);
+}
+
+// --- wire up ------------------------------------------------------------
+function renderMaterials() {
+  const body = $('#mat-rows'); body.innerHTML = '';
+  const rows = (M && M.materials) || [];
+  if (!rows.length) {
+    const tr = el('tr'), td = el('td'); td.colSpan = 5;
+    td.appendChild(el('span', 'empty', 'Nothing yet.'));
+    tr.appendChild(td); body.appendChild(tr); return;
+  }
+  rows.forEach(m => {
+    const tr = el('tr');
+    tr.appendChild(el('td', '', m.name));
+    tr.appendChild(el('td', '', m.kind || 'aniso'));
+    tr.appendChild(el('td', '', String(m.tint_mode ?? '')));
+    tr.appendChild(el('td', '', Object.keys(m.slots || {}).join(', ') || '—'));
+    const td = el('td'), b = el('button', 'tiny', 'remove');
+    b.onclick = async () => {
+      const d = await fetch('/api/materials/' + encodeURIComponent(m.name),
+                            { method: 'DELETE' }).then(x => x.json());
+      if (d.ok) { M = d.project; renderAll(); }
+    };
+    td.appendChild(b); tr.appendChild(td); body.appendChild(tr);
+  });
+}
+
+function renderAll() {
+  renderBuildings();
+  renderRegions();
+  renderListings();
+  renderUnits();
+  renderMaterials();
+  renderMatTextures();
+  renderMatSlots();
+  renderClones();
+}
+
+browseInto('#game-path', { mode: 'dir',
+  hint: 'Find the folder containing Base/ and DLC/ — marked "Civ VII install".' });
+browseInto('#aud-path', { mode: 'file', files: '.wem' });
+browseInto('#tex-path', { mode: 'file', files: '.dds' });
+browseInto('#msh-path', { mode: 'file', files: '.glb,.gltf' });
+browseInto('#mtx-path', { mode: 'file', files: '.dds' });
+
+autocomplete($('#bld-target'), $('#bld-hits'), { suffix: '_Scaled' });
+autocomplete($('#imp-copy'), $('#imp-hits'), {});
+autocomplete($('#won-copy'), $('#won-hits'), {});
+
+// material names come from the manifest, not the game index -- a mesh must point
+// at a material this package declares.
+$('#msh-material').addEventListener('focus', () => {
+  const names = ((M && M.materials) || []).map(m => m.name);
+  $('#msh-material').setAttribute('list', 'mat-names');
+  let dl = document.getElementById('mat-names');
+  if (!dl) { dl = document.createElement('datalist'); dl.id = 'mat-names';
+             document.body.appendChild(dl); }
+  dl.innerHTML = '';
+  names.forEach(n => { const o = document.createElement('option'); o.value = n;
+                       dl.appendChild(o); });
+});
+
+(async () => {
+  await loadSettings();
+  await loadMatSlots();
+  const r = await api('/manifest');
+  if (r.ok) { M = r.project; renderAll(); }
+})();
+</script>
+</body>
+</html>

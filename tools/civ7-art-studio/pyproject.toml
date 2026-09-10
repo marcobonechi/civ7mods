@@ -1,0 +1,30 @@
+[project]
+name = "civ7-art-studio"
+version = "0.1.0"
+description = "Author Civilization VII binary art packages without editing Python"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "starlette>=0.37",
+    "uvicorn>=0.27",
+    "platformdirs>=4.0",
+]
+
+[project.scripts]
+civart = "civ7_art_studio.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+# test_data/ and tests/ are deliberately outside this: fixtures and tests are
+# not part of what a user installs, and the fixtures are megabytes apiece.
+include = ["civ7_art_studio*"]
+
+# The web UI and the vendored binary-format tools are data, not importable modules in
+# their own right, so they have to be named explicitly or a wheel silently omits them
+# and the app 500s on its first request.
+[tool.setuptools.package-data]
+civ7_art_studio = ["web/*.html", "blp/*.py"]
