@@ -9,21 +9,23 @@ This directory contains documentation, specifications, and pipeline guides for a
 
 ## Models
 
-### Hagia Sophia (`src/hagia_sophia.py`)
+There are **two** Hagia Sophias here, built by opposite routes. The one that ships is
+the second.
 
-The Justinianic church. It **replaced** the borrowed Ottoman Blue Mosque
-(`BIN_WON_Sultan_Ahmet_Camii`) that used to stand in for `WONDER_HAGIA_SOPHIA`;
-`Byzantium/dlc/civart.json` now attaches `MESH_Hagia_Sophia` directly. Art direction
-follows the wonder icon
+### A. Procedural, from scratch (`src/hagia_sophia.py`) - the alternative
+
+The Justinianic church, modelled from nothing. Art direction follows the wonder icon
 (`Byzantium/icons/src/wondericon_hagia_sophia.svg`), whose palette the materials sample
 directly: terracotta brick, lead-grey ribbed dome, marble string courses, gold cross, and
 no minarets.
 
 It is a **generator script, not a hand-modelled `.blend`** — every dimension is a named
 constant in game units, so the proportions can be retuned and the mesh rebuilt in a second.
-`src/hagia_sophia.blend` is a build output of that script; `export/hagia_sophia.glb` comes
-from `src/export_glb.py`, which flattens the baked materials to the single primitive the
-manifest requires.
+`src/hagia_sophia.blend` is a build output of that script, and `src/export_glb.py` flattens
+the baked materials to the single primitive the manifest requires.
+
+**This route is not what ships.** `export/hagia_sophia.glb` now holds route B's mesh, so
+re-export before measuring or building from route A. The generator still runs unchanged.
 
 ```bash
 blender -b --factory-startup --python 3d_art/src/hagia_sophia.py
@@ -38,13 +40,44 @@ blender -b --factory-startup --python 3d_art/src/hagia_sophia.py
 | UVs | smart-projected into 0-1, as the stride-20 vertex layout requires |
 | Manifest bounds | `[-12.13, -10.0, 0.0, 12.13, 10.0, 25.8]` |
 
-Those numbers are read back out of the shipped `.glb`, not remembered - regenerate them
-with `3d_art/.venv/bin/python 3d_art/src/check_glb.py 3d_art/export/hagia_sophia.glb`.
+Regenerate these from any `.glb` with
+`3d_art/.venv/bin/python 3d_art/src/check_glb.py <file> --scale 10.0`. (Route A is modelled
+in Blender metres, hence scale 10.)
 
 Openings are cut with a boolean rather than painted on as dark panels, so every arch has
 real depth and catches shadow at the angle the game camera uses. The dome's ribs come free:
 alternate meridians of the sphere are pushed out by `DOME_FLUTE` and the mesh is shaded
 smooth-by-angle, so the flutes crease while the rings stay round — no extra geometry.
+
+### B. Morphed from the Blue Mosque (`src/create_alt_hagia_sophia.py`) - **shipping**
+
+Firaxis' Ottoman Blue Mosque, surgically edited: geometry pulled straight out of the game's
+`.blp` by `src/extract_blue_mosque_submeshes.py`, the six minarets and the terrain skirts
+deleted by submesh name, domes recoloured Byzantine imperial red, a gold cross added, then
+re-grounded and re-baked.
+
+| | |
+|---|---|
+| Footprint | 18.8 × 27.6 units |
+| Height | 18.5 units |
+| Geometry | 111,118 verts, 46,750 triangles, 1 mesh / 1 primitive / 1 material |
+| Manifest bounds | `[-9.39, -13.8, 0.0, 9.39, 13.8, 18.5]` |
+
+```bash
+3d_art/.venv/bin/python 3d_art/src/check_glb.py 3d_art/export/hagia_sophia.glb --scale 1.0
+```
+
+**`--scale 1.0`, not 10.** Extracted geometry comes out of a GPU buffer already in game
+units; scaling it again gives a 276-unit wonder. `check_glb.py` prints a hint when it sees
+a footprint that far out.
+
+The trade: route B inherits Civ 7's art style for free, because it *is* Civ 7 art, and its
+scale and grounding are correct by construction. It costs an order of magnitude more
+triangles than route A (46,750 vs 4,064), and the result still reads as the Blue Mosque -
+the rectangular courtyard plan is the donor's, not Justinian's.
+
+Full method, record layouts and traps: **[the civ7-3d-model skill](../.claude/skills/civ7-3d-model/)**,
+`SKILL.md` §*Two ways to get geometry* and `reference.md` §8.
 
 Scale is worth restating, because it is not intuitive. A Civ 7 hex is only ~24-28 units
 across while a human unit is 18-19 units tall, so a wonder cannot be modelled to real
@@ -52,19 +85,22 @@ proportions: the true building is 82 m long and 55 m to the dome, which would be
 This model is compressed to roughly a square elevation, matching the icon, and made taller
 than a unit so it reads as monumental.
 
-**Status: Fully Complete & Deployed (2026-09-09)**:
+### Both routes: what is deployed
 
-* **Geometry**: shallow Byzantine pendentive dome (`DOME_RISE = 3.8`), outward normals on every arch cutter, 4,064 triangles.
-* **Unified PBR textures baked**: 2048x2048 texture atlas generated (`hagia_sophia_B.png`, `hagia_sophia_N.png`, `hagia_sophia_ORM.png`) and compressed to DDS format (`BC1_UNORM`, `BC5_UNORM`, `BC1_UNORM`).
-* **Single-primitive glTF exported**: `export/hagia_sophia.glb` exports as 1 mesh, 1 primitive, 1 material (`M_Hagia_Sophia`).
-* **Civ 7 GPU Blobs compiled**: Converted via `import_gltf.py` and `make_texture.py` into `GB_HAGIA_SOPHIA_MB` and `TEXTURE_HAGIA_SOPHIA_*` blobs in `SHARED_DATA/`.
-* **Manifest & Packages built**: `civart.json` defines `MESH_Hagia_Sophia`, `HAGIA_SOPHIA_MATERIAL`, and binds to `WONDER_Byzantium_Hagia_Sophia`. `StandardAsset.blp`, `Material.blp`, and `ByzantiumArt.dep` built and structurally validated (`validate.py`).
-* **Deployed**: mirrored into the game install (`DLC/ByzantiumArt`) via `./install.sh Byzantium`; `tools/check-art.py` confirms the package **mounts**.
+`Byzantium/dlc/civart.json` attaches `MESH_Hagia_Sophia` (currently route B's geometry) to
+`WONDER_Byzantium_Hagia_Sophia`, replacing the borrowed `BIN_WON_Sultan_Ahmet_Camii` remap.
+Textures are a unified 2048² atlas (`_B`, `_N`, `_ORM`) compressed to DDS and wrapped as
+`TEXTURE_HAGIA_SOPHIA_*` blobs; geometry is `GB_HAGIA_SOPHIA_MB`. `StandardAsset.blp`,
+`Material.blp` and `ByzantiumArt.dep` are built, validated, and mirrored into the game
+install by `./install.sh Byzantium`.
 
-**Not yet confirmed**: that the wonder actually *renders*. Civ 7 logs packages, never
-individual assets, so a mount is as far as the logs can take you - see *Testing* below.
-An audit on 2026-09-09 also found two texture defects that are still unfixed; they are
-listed in the skill's `reference.md` §7, and `src/check_dds.py` reproduces them.
+Verified: manifest guards clean, both packages pass `validate.py`, `tools/check-art.py`
+confirms the package **mounts**.
+
+**Not yet confirmed: that the wonder renders.** Civ 7 logs packages, never individual
+assets, so a mount is as far as the logs reach — see *Testing* below. One texture defect is
+also outstanding: the normal map has a single mip where BaseColor and ORM have 12, so expect
+shimmering at distance. `src/check_dds.py` reproduces it.
 
 ## Testing whether the game loads a model
 

@@ -45,7 +45,7 @@ def make_mat(name, color, rough, metal):
     bsdf.inputs["Metallic"].default_value = metal
     return mat
 
-mat_red_dome = make_mat("M_RedDome", (0.65, 0.12, 0.08, 1.0), 0.45, 0.15)       # Byzantine Imperial Red
+mat_dome = make_mat("M_Dome", (0.65, 0.12, 0.08, 1.0), 0.45, 0.15)       # Byzantine Imperial Red
 mat_wall     = make_mat("M_TerracottaWall", (0.62, 0.32, 0.22, 1.0), 0.80, 0.0) # Terracotta brick/stone
 mat_marble   = make_mat("M_CreamMarble", (0.85, 0.78, 0.68, 1.0), 0.55, 0.0)    # Antique marble
 mat_dark     = make_mat("M_DarkInterior", (0.08, 0.04, 0.03, 1.0), 0.95, 0.0)   # Shadow cutout
@@ -55,7 +55,7 @@ for o in bpy.context.scene.objects:
     o.data.materials.clear()
     prefix = o.name[:10]
     if prefix in dome_submeshes:
-        o.data.materials.append(mat_red_dome)
+        o.data.materials.append(mat_dome)
     elif prefix in marble_submeshes:
         o.data.materials.append(mat_marble)
     elif prefix in dark_submeshes:

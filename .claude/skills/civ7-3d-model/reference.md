@@ -160,18 +160,72 @@ floating), hex footprint, normal direction, specular on curved surfaces.
 
 `UI.log`'s `Failed loading resource: blp:<name>` is a different layer - 2D UI textures.
 
-## 7. Known issues in the shipped Hagia Sophia
+## 7. State of the shipped Hagia Sophia
 
-Found by audit on 2026-09-09, **not yet fixed** - they need a re-encode plus a package
-rebuild and redeploy:
+What ships now is the **route B** asset - Blue Mosque geometry, minarets removed, domes
+recoloured imperial red, gold cross added (`src/create_alt_hagia_sophia.py`). The route A
+procedural model (`src/hagia_sophia.py`) is kept as the alternative; its generator still
+runs, but `export/hagia_sophia.glb` now holds the route B mesh.
 
-1. **BaseColor ships as `BC1_UNORM` (71), not `BC1_UNORM_SRGB` (72)** - the sRGB trap above.
-   Expect the albedo to read too bright/washed. Fix: re-encode `hagia_sophia_B.dds` with a
-   DX10 header declaring 72, re-run `make_texture.py`, rebuild, redeploy.
-2. **The normal map has 1 mip; BaseColor and ORM have 12.** `make_normal_dds.py` writes only
-   the base level. Expect shimmering at distance.
-3. **The wonder has never been confirmed to render.** The package mounts, but nothing has
-   requested the asset yet, and mounting is not rendering.
+Verified 2026-09-09 against the deployed package:
+
+| | |
+|---|---|
+| Geometry | 111,118 verts, 46,750 tris, 1 mesh / 1 primitive / 1 material |
+| Bounds | `[-9.39, -13.8, 0.0, 9.39, 13.8, 18.5]` - footprint 18.8 × 27.6, height 18.5 |
+| Contract | passes `check_glb.py --scale 1.0` on every hard check |
+| Manifest | guards clean; `StandardAsset.blp` and `Material.blp` both validate |
+| In game | package **mounts**; the model has never been confirmed to render |
+
+Open items:
+
+1. **The normal map has 1 mip; BaseColor and ORM have 12.** `make_normal_dds.py` writes only
+   the base level, so expect shimmering at distance. (The earlier BaseColor sRGB defect -
+   shipping as `BC1_UNORM` 71 instead of `BC1_UNORM_SRGB` 72 - **is fixed**; it now reports
+   72. `check_dds.py` guards both.)
+2. **46,750 triangles is heavy** for something drawn at ~150 px on a hex - about 11× the
+   procedural version. Fine if it performs; worth measuring before adding more wonders this
+   way.
+3. **It still reads as the Blue Mosque.** The rectangular courtyard plan is the donor's, not
+   Justinian's. That is the standing trade-off of route B, not a bug.
+
+## 8. Reading geometry back out of a shipped package
+
+The reverse of `import_gltf.py`, with no supplied tool. Reference implementation:
+`3d_art/src/extract_blue_mosque_submeshes.py`.
+
+Open the donor `StandardAsset.blp` with `civ7_art_studio.blp.blp.BLP` and walk its allocs
+for typename `AssetPackage_Geometry_Mesh_Lod5`. Each alloc's raw bytes are an array of
+**56-byte submesh records**:
+
+| Offset | Type | Field |
+|---|---|---|
+| +0 | `uint64` | pointer to the GPU-buffer alloc; its name is a string at +8 in that alloc |
+| +16 | `uint32` | material name hash |
+| +20 | `uint32` | vertex byte offset into the buffer |
+| +24 | `uint16` | vertex stride (20 for static meshes) |
+| +28 | `uint32` | primitive (triangle) count |
+| +32 | `uint32` | min index |
+| +36 | `uint32` | max index |
+| +40 | `uint32` | index start, **in 4-byte words** - multiply by 4 for the byte offset |
+
+Keep the records whose GPU-buffer name matches the asset you want, then read
+`SHARED_DATA/GB_<NAME>_MB`. **The blob has a 16-byte header**; the payload starts at 16.
+
+Per vertex, at `v_off + i * v_stride`: position is `<3e` (three `float16`) at +0, UV is
+`<2e` at +12 - the stride-20 layout from §2. Indices are `uint32` at `idx_start * 4`,
+`prim_count * 3` of them.
+
+**Submeshes come in LOD pairs.** Consecutive records sharing a vertex offset are the same
+surface at two detail levels; take the one with the higher `prim_count` or you export the
+low-poly LOD. Some pairs are exact duplicates - dedupe on `(v_off, prim_count, idx_start)`.
+
+Write each submesh as its own named OBJ group (`o submesh_07_mat_0x...`). Deleting a minaret
+then means deleting a named object, not a lasso selection. Watch for terrain skirts - they
+are ordinary submeshes and leave stray flanges if kept.
+
+Licence: this reads Firaxis art out of the user's own game install. Fine for a local mod
+that requires the DLC; do not redistribute the extracted geometry.
 
 ## Corrections
 
@@ -185,3 +239,6 @@ Things this repo's own docs got wrong, so the mistake is not repeated:
 - `tools/check-art.py --asset NAME` originally grepped `ArtDef.log`, which never contains
   asset names, so it always reported failure. It now searches every log and reports honestly
   that absence proves nothing.
+- `check_glb.py` defaults to `--scale 10.0`, which is right only for geometry modelled in
+  Blender metres. Extracted geometry is already in game units and needs `--scale 1.0`;
+  running the default on it reports a 187-unit footprint and a spurious failure.

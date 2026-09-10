@@ -23,7 +23,10 @@ UNIT_TALL = 18.0    # a human unit, for the "reads as monumental" note
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("glb")
-    ap.add_argument("--scale", type=float, default=10.0)
+    ap.add_argument("--scale", type=float, default=10.0,
+                    help="10.0 (default) for geometry modelled in Blender metres; "
+                         "1.0 for geometry extracted from a shipped .blp, which is "
+                         "already in game units")
     a = ap.parse_args()
 
     g = GLTF2().load(a.glb)
@@ -74,6 +77,16 @@ def main():
             bad += 1
         else:
             print("  note %s -- not met" % label)
+
+    # A footprint this far out is nearly always the wrong --scale rather than a genuinely
+    # oversized model: geometry pulled out of a .blp is already in game units, so the
+    # default factor of 10 inflates it exactly tenfold.
+    span = max(gx[1] - gx[0], gy[1] - gy[0])
+    if bad and span > HEX_RADIUS * 4 and a.scale != 1.0:
+        print()
+        print("  hint  %.0f units across is about %.0fx a hex. If this mesh was extracted"
+              % (span, span / (HEX_RADIUS * 2)))
+        print("        from a shipped .blp it is already in game units - re-run with --scale 1.0")
 
     print()
     print("  manifest bounds: [%.2f, %.2f, %.2f, %.2f, %.2f, %.2f]"

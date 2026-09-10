@@ -1,13 +1,13 @@
 ---
 name: civ7-3d-model
-description: Author a custom 3D model (wonder, building, improvement or prop) for a Civilization VII mod in this repository and ship it as a binary art package - procedural Blender geometry, baked PBR atlas, DDS compression, Civ 7 GPU blobs, civart.json manifest, .blp/.dep build, deploy and verify. Use when asked to create, replace, texture, rebuild or debug a Civ 7 3D model or art package.
+description: Author a custom 3D model (wonder, building, improvement or prop) for a Civilization VII mod in this repository and ship it as a binary art package. Covers both routes - modelling procedurally in Blender, and extracting a shipped Firaxis asset from a .blp to edit or morph into something else - plus baked PBR atlas, DDS compression, Civ 7 GPU blobs, civart.json manifest, .blp/.dep build, deploy and verify. Use when asked to create, replace, retexture, rebuild, extract, morph or debug a Civ 7 3D model or art package.
 ---
 
 # Custom 3D model for Civilization VII
 
-Worked example, complete and shipped: the Hagia Sophia in `3d_art/`, which replaced the
-borrowed Ottoman Blue Mosque for `WONDER_HAGIA_SOPHIA`. Read `reference.md` in this folder
-for the engine specs, texture formats and the traps that cost real time.
+Two worked examples in `3d_art/`, both for `WONDER_HAGIA_SOPHIA`, built by opposite
+routes - read *Two ways to get geometry* below before choosing. `reference.md` in this
+folder has the engine specs, texture formats and the traps that cost real time.
 
 The one thing to understand before anything else: **the game loads binary `.blp` packages
 from its own install's `DLC/`, never from `Mods/`.** The mod folder only holds the switch
@@ -33,6 +33,48 @@ from its own install's `DLC/`, never from `Mods/`.** The mod folder only holds t
 `civart build` subcommand; `plan.md` used to claim one. Build through `build.build()` or the
 per-package CLIs.
 
+## Two ways to get geometry
+
+**A. Build it from scratch** - `src/hagia_sophia.py`, a procedural generator. Total control,
+tiny mesh (4,064 tris), and the proportions are named constants you can retune. But you are
+hand-rolling the art style, and matching Firaxis by eye is hard.
+
+**B. Edit a shipped asset** - `src/extract_blue_mosque_submeshes.py` +
+`src/create_alt_hagia_sophia.py`. Pull real game geometry out of a `.blp`, delete what does
+not belong, add what does, recolour, re-export. The Hagia Sophia now shipping took the
+Ottoman Blue Mosque (`GB_WON_Sultan_Ahmet_Camii_HB_MB`), removed the six minarets and the
+terrain skirts, recoloured the domes Byzantine imperial red and added a gold cross.
+
+| | A: from scratch | B: edit a shipped asset |
+|---|---|---|
+| Art-style fit | you have to earn it | **free - it is Firaxis art** |
+| Scale and grounding | you set them, and can get them wrong | already correct |
+| Triangles | 4,064 | 46,750 - an order of magnitude more |
+| Silhouette | whatever you want | the donor's plan, which may be the wrong building |
+| Retuning | edit a constant, rebuild | re-do the surgery |
+
+B is usually the better default for a wonder that has a close cousin in the game, and it is
+what the base game's own modders reach for. Its honest cost is that the result still reads
+as the donor: the shipped Hagia Sophia has the Blue Mosque's rectangular courtyard plan, not
+Justinian's. Use A when nothing in the game resembles the subject, or when the triangle
+budget matters.
+
+### Extracting geometry from a shipped package
+
+`import_gltf.py` goes one way; there is no supplied tool for the other. The reader in
+`src/extract_blue_mosque_submeshes.py` is the reference implementation - see `reference.md`
+§8 for the record layout it walks. In outline: open the donor `StandardAsset.blp` with
+`civ7_art_studio.blp.blp.BLP`, find allocs of type `AssetPackage_Geometry_Mesh_Lod5`, keep
+the submesh records whose GPU-buffer name matches, then cut vertices and indices out of the
+matching `SHARED_DATA/GB_*_MB` blob.
+
+Two things that will bite: submeshes come in **LOD pairs**, so take the higher
+`prim_count` of each pair or you will export the low-detail mesh; and the blob has a
+**16-byte header** before the payload.
+
+Write each submesh as its own named OBJ group. That is what makes the surgery tractable -
+deleting a minaret becomes deleting `submesh_46`, not a lasso selection in Blender.
+
 ## Scale, which is the thing everyone gets wrong
 
 1 game unit = 0.1 m. A hex is only ~24-28 units across, but a human unit is 18-19 units
@@ -40,6 +82,18 @@ per-package CLIs.
 long, which would be 820 units. Compress the elevation to roughly square, match the wonder
 icon's silhouette, and make it taller than a unit so it reads as monumental. Model in
 Blender metres (`UNIT = 0.1`) and let `--scale 10` convert back.
+
+**The conversion scale depends on where the geometry came from, and getting it wrong is a
+silent factor-of-ten error:**
+
+| Provenance | `import_gltf.py --scale` | `check_glb.py --scale` |
+|---|---|---|
+| Modelled in Blender metres (route A) | `10.0` | `10.0` (the default) |
+| Extracted from a shipped `.blp` (route B) | **`1.0`** | **`1.0`** |
+
+Extracted geometry is already in game units - it came out of a GPU buffer - so scaling it
+again by 10 gives a wonder 187 units across. Check the numbers against the hex, not against
+the exit status.
 
 Hard requirements: centred on the origin in XY, lowest vertex exactly at Z = 0, footprint
 inside a 12-14 unit hex radius, UVs present (the stride-20 vertex layout has UV and UV2).
@@ -49,11 +103,14 @@ inside a 12-14 unit hex radius, UVs present (the stride-20 vertex layout has UV 
 1. **Art direction.** If the mod already has a wonder icon, it *is* the brief - sample its
    palette and match its silhouette. `Byzantium/icons/src/wondericon_hagia_sophia.svg` set
    the terracotta/lead/marble/gold palette for the model.
-2. **Model as a generator script**, not a hand-built `.blend`: `3d_art/src/<name>.py`, every
-   dimension a named constant in game units. Retuning proportions then costs one edit and a
-   rebuild. Run headless: `blender -b --factory-startup --python 3d_art/src/<name>.py`.
-   Cut openings with a boolean so arches have real depth; a dark panel laid on the wall is
-   invisible, because the wall face draws over it.
+2. **Get the geometry** by route A or B above, as a script either way, so it is repeatable:
+   `blender -b --factory-startup --python 3d_art/src/<name>.py`.
+   - *Route A*: every dimension a named constant in game units. Cut openings with a boolean
+     so arches have real depth; a dark panel laid on the wall is invisible, because the wall
+     face draws over it.
+   - *Route B*: extract to per-submesh OBJ groups, then delete, add and recolour by group
+     name. Check the donor for terrain skirts - they are separate submeshes and will show as
+     stray flanges if left in.
 3. **Look at it.** Render a three-quarter view and a flat elevation, and also render at
    ~150 px - that is roughly the size the game draws a wonder, and it is the only honest
    readability test. Iterate here; it is far cheaper than iterating after the bake.

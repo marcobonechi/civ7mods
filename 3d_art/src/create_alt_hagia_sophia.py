@@ -1,7 +1,12 @@
 """Create alternative Hagia Sophia from Ottoman Blue Mosque geometry.
 
-Removes minarets, recolors domes/ceilings Byzantine imperial red, adds gold cross,
-grounds at Z=0, and bakes unified 2K PBR texture atlas.
+Keeps only the domed prayer hall. The shipped Blue Mosque asset is a whole complex:
+the prayer hall (+Y), an arcaded courtyard of the same size again (-Y), and a
+three-domed annex off the -X side. Only the prayer hall reads as Hagia Sophia, so the
+other two are sliced away - see CUT_Y / CUT_X.
+
+Also removes the minarets, recolors domes/ceilings a lead-azure blue, adds a gold
+cross, grounds at Z=0, and bakes a unified 2K PBR texture atlas.
 """
 
 import os
@@ -44,6 +49,14 @@ minarets_xy = [
 
 def dist_to_minaret(x, y):
     return min(((x - mx)**2 + (y - my)**2)**0.5 for mx, my in minarets_xy)
+
+# Slice planes, in the source asset's own units (before SCALE_FACTOR).
+# The prayer hall runs y = -1.8 .. 25.3 - its corners are the minaret pairs at those
+# y values - so -3.0 keeps its north facade intact and drops everything beyond.
+# The annex sits entirely at x < -16; -15.0 clears it without touching the hall,
+# whose west wall is at x = -13.5.
+CUT_Y = -3.0
+CUT_X = -15.0
 
 # Remove terrain skirts
 skirts = ["submesh_28", "submesh_29", "submesh_58", "submesh_59"]
@@ -146,7 +159,11 @@ def create_pbr_mat(name, color_img, norm_img, rough_img, tint_hex, tint_fac, sca
 
 # Create materials:
 # 1. Red Domes/Ceiling: Byzantine Imperial Terracotta/Crimson Red (#a82d1d)
-mat_red_dome = create_pbr_mat("M_RedDome", lead_c, lead_n, lead_r, "a82d1d", 0.70, 0.8, 0.4, 0.1)
+# Dome tint. #1d6ea8 is #a82d1d hue-rotated from red (7 deg) to azure (205 deg) with its
+# lightness (38.6%) and saturation (70.6%) left alone, so the roof keeps exactly the tonal
+# weight it had against the brick and marble. Mixed at 0.70 over the lead texture, which
+# lifts and greys it further, so it reads lighter on screen than the raw hex looks.
+mat_dome = create_pbr_mat("M_Dome", lead_c, lead_n, lead_r, "1d6ea8", 0.70, 0.8, 0.4, 0.1)
 # 2. Byzantine Terracotta Brick Walls (#b5563d)
 mat_wall = create_pbr_mat("M_Wall", brick_c, brick_n, brick_r, "b5563d", 0.25, 1.2, 0.7, 0.0)
 # 3. Cream Antique Marble Trim (#e8cfa6)
@@ -163,7 +180,7 @@ for o in bpy.context.scene.objects:
     o.data.materials.clear()
     prefix = o.name[:10]
     if prefix in dome_submeshes:
-        o.data.materials.append(mat_red_dome)
+        o.data.materials.append(mat_dome)
     elif prefix in marble_submeshes:
         o.data.materials.append(mat_marble)
     elif prefix in dark_submeshes:
@@ -180,7 +197,7 @@ ob = bpy.context.active_object
 ob.name = "HagiaSophiaAlt"
 
 # Ensure all 5 materials are in the mesh material list
-for m in [mat_red_dome, mat_wall, mat_marble, mat_dark, mat_gold]:
+for m in [mat_dome, mat_wall, mat_marble, mat_dark, mat_gold]:
     if m.name not in ob.data.materials:
         ob.data.materials.append(m)
 
@@ -202,9 +219,26 @@ bmesh.ops.delete(bm, geom=del_faces, context='FACES')
 loose = [v for v in bm.verts if not v.link_faces]
 bmesh.ops.delete(bm, geom=loose, context='VERTS')
 
-# Cap the minaret stumps with marble cornice slabs
+# Slice off the courtyard and the annex.
+# bisect_plane rather than deleting faces by centre: a centre test leaves a ragged
+# fringe of part-crossing faces along the seam, which showed as spikes hanging off
+# the cut edge. Bisecting splits faces exactly on the plane and gives a flat edge.
+def slice_off(plane_co, plane_no, what):
+    before = len(bm.faces)
+    geom = list(bm.verts) + list(bm.edges) + list(bm.faces)
+    bmesh.ops.bisect_plane(bm, geom=geom, dist=1e-4,
+                           plane_co=plane_co, plane_no=plane_no,
+                           clear_outer=True, clear_inner=False)
+    print(f"Sliced off {what}: {before - len(bm.faces)} faces")
+
+slice_off((0.0, CUT_Y, 0.0), (0.0, -1.0, 0.0), "courtyard")
+slice_off((CUT_X, 0.0, 0.0), (-1.0, 0.0, 0.0), "annex")
+bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+
+# Cap the minaret stumps with marble cornice slabs. Only the four that survive the
+# slice - capping a cut-away minaret would leave a quad floating in mid-air.
 marble_idx = ob.data.materials.find("M_Marble")
-for mx, my in minarets_xy:
+for mx, my in [(mx, my) for mx, my in minarets_xy if my > CUT_Y and mx > CUT_X]:
     r = 2.0
     v1 = bm.verts.new((mx - r, my - r, 8.5))
     v2 = bm.verts.new((mx + r, my - r, 8.5))
@@ -249,20 +283,63 @@ SCALE_FACTOR = 0.65
 for v in ob.data.vertices:
     v.co *= SCALE_FACTOR
 
-coords = [Vector(corner) for corner in ob.bound_box]
-xs = [c.x for c in coords]; ys = [c.y for c in coords]; zs = [c.z for c in coords]
+def mesh_bounds():
+    """Bounds straight from the vertices.
+
+    Not ob.bound_box: that is cached from before the bmesh write, so after slicing the
+    courtyard away it still reports the whole complex - which silently centred the model
+    on the old extents and left the prayer hall off-centre on its hex.
+    """
+    vs = ob.data.vertices
+    xs = [v.co.x for v in vs]; ys = [v.co.y for v in vs]; zs = [v.co.z for v in vs]
+    return xs, ys, zs
+
+xs, ys, zs = mesh_bounds()
 min_z = min(zs)
-print(f"Shift Z by {-min_z:.2f} to ground at 0.0, center XY")
+cx = (min(xs) + max(xs)) * 0.5
+cy = (min(ys) + max(ys)) * 0.5
+print(f"Shift Z by {-min_z:.2f} to ground at 0.0, centre XY by ({-cx:.2f}, {-cy:.2f})")
 for v in ob.data.vertices:
     v.co.z -= min_z
-    v.co.x -= (min(xs) + max(xs)) * 0.5
-    v.co.y -= (min(ys) + max(ys)) * 0.5
+    v.co.x -= cx
+    v.co.y -= cy
 
 ob.data.update()
-coords = [Vector(corner) for corner in ob.bound_box]
-xs = [c.x for c in coords]; ys = [c.y for c in coords]; zs = [c.z for c in coords]
+xs, ys, zs = mesh_bounds()
 print(f"Final bounds: X={min(xs):.2f}..{max(xs):.2f}, Y={min(ys):.2f}..{max(ys):.2f}, Z={min(zs):.2f}..{max(zs):.2f}")
 print(f"Footprint: {max(xs)-min(xs):.2f} x {max(ys)-min(ys):.2f} units, height {max(zs)-min(zs):.2f} units")
+
+# ---------------------------------------------------------------------------
+# 4b. Repair the roof material assignment
+# ---------------------------------------------------------------------------
+# The per-submesh categorisation above is coarse: the shipped asset splits a single
+# dome across several submeshes, and only some of them landed in dome_submeshes. Roughly
+# half of all roof-facing area was left on M_Wall. That was invisible while the dome tint
+# was imperial red, because brick (#b5563d) and that red (#a82d1d) are neighbours - it
+# only showed up as blotching once the domes went blue.
+#
+# So reassign by geometry rather than by submesh: anything brick, above the roofline and
+# facing upwards, is roof. Marble stays put (it is the cornice banding) and so does the
+# gold cross; vertical brick - the great dome's drum and the turret shafts - is excluded
+# by the normal test and stays brick, which is how the asset is meant to read.
+dome_idx = ob.data.materials.find("M_Dome")
+wall_idx = ob.data.materials.find("M_Wall")
+ROOF_Z = 4.2          # grounded units; below this is facade, not roof
+ROOF_NORMAL = 0.15    # how much a face must look upward to count as roof
+
+repaired = 0
+for poly in ob.data.polygons:
+    if poly.material_index != wall_idx:
+        continue
+    if poly.center.z <= ROOF_Z or poly.normal.z <= ROOF_NORMAL:
+        continue
+    # Flat slabs low down are terrace floor, not roof.
+    if poly.normal.z > 0.99 and poly.center.z < 6.0:
+        continue
+    poly.material_index = dome_idx
+    repaired += 1
+print(f"Roof repair: moved {repaired} brick faces to M_Dome")
+ob.data.update()
 
 # Unwrap into UV atlas
 bpy.context.view_layer.objects.active = ob
@@ -317,9 +394,9 @@ def render_view(pos, target, filename):
     print("Saved", scene.render.filepath)
 
 # 3 camera angles: Hero (isometric), Elevation (front), Overhead
-render_view((30.0, -36.0, 26.0), (0, 0, 8.0), "alt_hagia_sophia_hero.png")
-render_view((0.0, -42.0, 10.0), (0, 0, 8.0), "alt_hagia_sophia_elevation.png")
-render_view((-32.0, -30.0, 28.0), (0, 0, 8.0), "alt_hagia_sophia_side.png")
+render_view((23.0, -27.0, 20.0), (0, 0, 7.0), "alt_hagia_sophia_hero.png")
+render_view((0.0, -50.0, 15.0), (0, 0, 8.5), "alt_hagia_sophia_elevation.png")
+render_view((-25.0, -23.0, 21.0), (0, 0, 7.0), "alt_hagia_sophia_side.png")
 
 # Cleanup render helpers
 bpy.data.objects.remove(gp, do_unlink=True)

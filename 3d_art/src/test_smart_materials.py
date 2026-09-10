@@ -6,7 +6,7 @@ bpy.ops.wm.open_mainfile(filepath=blend_path)
 
 ob = bpy.data.objects["HagiaSophiaAlt"]
 
-red_idx = [i for i, m in enumerate(ob.data.materials) if m.name == "M_RedDome"][0]
+red_idx = [i for i, m in enumerate(ob.data.materials) if m.name == "M_Dome"][0]
 wall_idx = [i for i, m in enumerate(ob.data.materials) if m.name == "M_Wall"][0]
 marble_idx = [i for i, m in enumerate(ob.data.materials) if m.name == "M_Marble"][0]
 dark_idx = [i for i, m in enumerate(ob.data.materials) if m.name == "M_Dark"][0]
@@ -30,7 +30,7 @@ for p in ob.data.polygons:
                 p.material_index = red_idx
                 reassigned += 1
 
-print(f"Reassigned {reassigned} dome/roof faces to M_RedDome")
+print(f"Reassigned {reassigned} dome/roof faces to M_Dome")
 
 # Save blend
 bpy.ops.wm.save_as_mainfile(filepath=blend_path)

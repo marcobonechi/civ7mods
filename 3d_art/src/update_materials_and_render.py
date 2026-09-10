@@ -31,8 +31,8 @@ def _hex_linear(h):
     return tuple(c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in rgb) + (1.0,)
 
 # 2. Material fine-tuning:
-# M_RedDome: Deep imperial Byzantine red with MULTIPLY blend on lead seams
-mat_red = bpy.data.materials.get("M_RedDome")
+# M_Dome: Deep imperial Byzantine red with MULTIPLY blend on lead seams
+mat_red = bpy.data.materials.get("M_Dome")
 if mat_red:
     nodes = mat_red.node_tree.nodes
     mix = [n for n in nodes if n.type == "MIX"]
