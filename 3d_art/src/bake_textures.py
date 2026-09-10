@@ -94,8 +94,27 @@ def bake():
 
     bpy.ops.object.bake(type="AO", margin=16)
 
-    # Clean bake nodes
+    # 4b. Metallic bake via emission
+    print("Baking Metallic...")
+    img_metal = bpy.data.images.new("HS_Bake_Metal", width=WIDTH, height=HEIGHT, alpha=False)
     for mat in ob.data.materials:
+        bsdfs = [n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED"]
+        if bsdfs:
+            m = bsdfs[0].inputs["Metallic"].default_value
+            bsdfs[0].inputs["Emission Color"].default_value = (m, m, m, 1.0)
+            bsdfs[0].inputs["Emission Strength"].default_value = 1.0
+        node = mat.node_tree.nodes.get("_BakeNode")
+        node.image = img_metal
+        mat.node_tree.nodes.active = node
+
+    scene.cycles.samples = 1
+    bpy.ops.object.bake(type="EMIT", margin=16)
+
+    # Reset emission and clean bake nodes
+    for mat in ob.data.materials:
+        bsdfs = [n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED"]
+        if bsdfs:
+            bsdfs[0].inputs["Emission Strength"].default_value = 0.0
         node = mat.node_tree.nodes.get("_BakeNode")
         if node:
             mat.node_tree.nodes.remove(node)
@@ -103,9 +122,6 @@ def bake():
     # 5. Assemble ORM Map (R=AO, G=Roughness, B=Metallic)
     print("Assembling ORM map...")
     num_pixels = WIDTH * HEIGHT
-    b_pixels = np.empty(num_pixels * 4, dtype=np.float32)
-    img_b.pixels.foreach_get(b_pixels)
-    b_pixels = b_pixels.reshape((num_pixels, 4))
 
     ao_pixels = np.empty(num_pixels * 4, dtype=np.float32)
     img_ao.pixels.foreach_get(ao_pixels)
@@ -115,20 +131,14 @@ def bake():
     img_rough.pixels.foreach_get(rough_pixels)
     rough_pixels = rough_pixels.reshape((num_pixels, 4))
 
-    # Metallic: gold is 1.0, lead is 0.2
-    # Identify gold: R > 0.75, G > 0.55, B < 0.45
-    r, g, b = b_pixels[:, 0], b_pixels[:, 1], b_pixels[:, 2]
-    gold_mask = (r > 0.75) & (g > 0.55) & (b < 0.45)
-    lead_mask = (b > 0.55) & (g > 0.50) & ~gold_mask
-
-    metal = np.zeros(num_pixels, dtype=np.float32)
-    metal[gold_mask] = 1.0
-    metal[lead_mask] = 0.2
+    metal_pixels = np.empty(num_pixels * 4, dtype=np.float32)
+    img_metal.pixels.foreach_get(metal_pixels)
+    metal_pixels = metal_pixels.reshape((num_pixels, 4))
 
     orm = np.empty((num_pixels, 4), dtype=np.float32)
     orm[:, 0] = ao_pixels[:, 0]     # R: Ambient Occlusion
     orm[:, 1] = rough_pixels[:, 0]  # G: Roughness
-    orm[:, 2] = metal               # B: Metallic
+    orm[:, 2] = metal_pixels[:, 0]  # B: Metallic
     orm[:, 3] = 1.0                 # Alpha
 
     img_orm = bpy.data.images.new("HS_Bake_ORM", width=WIDTH, height=HEIGHT, alpha=False)
