@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Etruscans mod is enabled: Etruria also leads to Byzantium. -->
+<Database>
+    <CivilizationUnlocks>
+        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ETRUSCANS" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+    </CivilizationUnlocks>
+    <LeaderUnlocks>
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_BYZANTIUM" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_BYZANTIUM_NAME" Description="LOC_CIVILIZATION_BYZANTIUM_DESCRIPTION" Icon="CIVILIZATION_BYZANTIUM"/>
+    </LeaderUnlocks>
+    <LeaderCivilizationBias>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" LeaderDomain="StandardLeaders" LeaderType="LEADER_PORSENNA" Bias="1" ReasonType="LOC_UNLOCK_PLAY_AS_PORSENNA_BYZANTIUM_TOOLTIP" ChoiceType="LOC_CREATE_GAME_GEOGRAPHIC_CHOICE"/>
+    </LeaderCivilizationBias>
+</Database>

@@ -36,6 +36,12 @@
         <Criteria id="ottomans-shell">
             <ModIsEnabled>ottomans</ModIsEnabled>
         </Criteria>
+        <Criteria id="etruscans-current">
+            <ModInUse>etruscans</ModInUse>
+        </Criteria>
+        <Criteria id="etruscans-shell">
+            <ModIsEnabled>etruscans</ModIsEnabled>
+        </Criteria>
     </ActionCriteria>
     <ActionGroups>
         <!-- Icons are plain PNGs brought in with ImportFiles; the game and the shell each load them. -->
@@ -167,6 +173,16 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
+        <ActionGroup id="byzantium-etruscans" scope="game" criteria="etruscans-current">
+            <Properties>
+                <LoadOrder>20</LoadOrder>
+            </Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/unlocks-etruscans.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
         <ActionGroup id="byzantium-shell" scope="shell" criteria="always">
             <Actions>
                 <ImportFiles>
@@ -213,6 +229,16 @@
                     <Item>text/en_us/UnitText.xml</Item>
                     <Item>text/en_us/UnlockText.xml</Item>
                 </UpdateText>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="byzantium-shell-etruscans" scope="shell" criteria="etruscans-shell">
+            <Properties>
+                <LoadOrder>20</LoadOrder>
+            </Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>config/config-etruscans.xml</Item>
+                </UpdateDatabase>
             </Actions>
         </ActionGroup>
         <ActionGroup id="byzantium-shell-ottomans" scope="shell" criteria="ottomans-shell">

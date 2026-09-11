@@ -571,3 +571,33 @@ the lock was the mountains, not the neighbour.
 New tool: **`tools/land-reach.mjs`** — flood-fills walkable land from a lon/lat on any of the three
 geo files at any grid size, offline. Verified across every grid size and four seeds for all three
 maps; every one now reaches the map's northern edge.
+
+### 2026-09-11 — Etruria led nowhere: the age-transition unlocks
+
+Marco finished Antiquity as Etruria (with Lorenzo) and the Exploration screen would not let him
+take Tuscany or Byzantium. `GameCore.log` shows what he took instead — Norman — and that is the
+useful half of the evidence: the Etruscans→Norman unlock *did* fire, so the requirement machinery
+(`REQSET_CIV_IS_ETRUSCANS`, `UnlockRequirements`, the config `CivilizationUnlocks` row) works.
+Two separate gaps, then, not one broken mechanism.
+
+**Byzantium was never connected to Etruria at all.** Its unlock list is Rome, Greece, Augustus,
+Catherine, Charlemagne, Xerxes and three Ancient Walls — no Etruscan entry anywhere, in gameplay
+or in the shell config. It was locked because it was supposed to be. Now wired, in the shape
+Byzantium already uses for the Ottomans DLC: a `ModInUse etruscans` game group loading
+`data/unlocks-etruscans.xml`, a `ModIsEnabled etruscans` shell group loading
+`config/config-etruscans.xml`, and two new tooltips. Etruria and Porsenna both lead to Byzantium —
+Etruscan ships worked the same sea as the Greek east, and the Exarchate later ruled the Tuscan
+coast from Ravenna.
+
+**Tuscany was missing its own leader from the shell `LeaderUnlocks` table.** `Tuscany/config/
+config.xml` listed Machiavelli, Isabella and Ibn Battuta — three borrowed leaders — and not
+Lorenzo, who is Tuscany's own. The age-transition screen reads that table (`age-civ-select-model.js`
+queries `LeaderUnlocks` and `CivilizationUnlocks` from the config database) to decide who has
+unlocked what, so a Lorenzo game arrived in the Exploration Age with Tuscany still locked even
+though the gameplay-side `REQSET_LEADER_IS_LORENZO` row was correct. Added.
+
+Worth remembering, because it cost an hour: **an unlock has to be written twice** — once in the
+gameplay database (`Unlocks` + `UnlockRequirements` + `UnlockConfigurationValues`, evaluated by
+requirement sets) and once in the shell config database (`CivilizationUnlocks` / `LeaderUnlocks`,
+which is what the transition UI actually reads and renders as the tick-list on the civ card). Get
+one and miss the other and the civ shows up on the screen with a padlock and no explanation.

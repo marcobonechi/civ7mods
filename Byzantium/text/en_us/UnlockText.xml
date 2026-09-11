@@ -22,6 +22,18 @@
         <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_OTTOMANS_TOOLTIP">
             <Text>The [B]Ottomans[/B] took Constantinople and ruled from [B]Byzantium's[/B] capital.</Text>
         </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION">
+            <Text>Play as the [B]Etruscans[/B].</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_BYZANTIUM_TOOLTIP">
+            <Text>[B]Etruscan[/B] ships worked the same sea as the Greek east, and the Exarchate later ruled the Tuscan coast from Ravenna.</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION">
+            <Text>Play as [B]Porsenna[/B].</Text>
+        </Row>
+        <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_BYZANTIUM_TOOLTIP">
+            <Text>[B]Porsenna[/B] built to last, and nothing built to last longer than [B]Byzantium[/B].</Text>
+        </Row>
         <Row Tag="LOC_UNLOCK_PLAY_AS_ROME_BYZANTIUM_TOOLTIP">
             <Text>[B]Byzantium[/B] was the eastern half of [B]Rome[/B], and outlived the western.</Text>
         </Row>

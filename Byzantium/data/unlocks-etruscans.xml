@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only loaded when the Etruscans mod is in use: Etruria also leads to Byzantium.
+     The Etruscans were the western end of the same sea trade that ran through the Greek east,
+     and the Exarchate later ruled the Tuscan coast from Ravenna. -->
+<Database>
+    <UnlockRequirements>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" RequirementSetId="REQSET_CIV_IS_ETRUSCANS" Description="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_ETRUSCANS_BYZANTIUM_TOOLTIP"/>
+        <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" RequirementSetId="REQSET_LEADER_IS_PORSENNA" Description="LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION" Tooltip="LOC_UNLOCK_PLAY_AS_PORSENNA_BYZANTIUM_TOOLTIP"/>
+    </UnlockRequirements>
+    <CivilizationSyncretismUnlocks>
+        <Row CivilizationType="CIVILIZATION_ETRUSCANS" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+    </CivilizationSyncretismUnlocks>
+    <LeaderSyncretismUnlocks>
+        <Row LeaderType="LEADER_PORSENNA" UnlockCivilizationType="CIVILIZATION_BYZANTIUM"/>
+    </LeaderSyncretismUnlocks>
+</Database>

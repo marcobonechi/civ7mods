@@ -36,6 +36,10 @@
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" AgeDomain="StandardAges" AgeType="AGE_MODERN" Type="CIVILIZATION_FRENCH_EMPIRE" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_FRENCH_EMPIRE_NAME" Description="LOC_CIVILIZATION_FRENCH_EMPIRE_DESCRIPTION" Icon="CIVILIZATION_FRENCH_EMPIRE"/>
     </CivilizationUnlocks>
     <LeaderUnlocks>
+        <!-- Lorenzo is Tuscany's own leader and was missing here, while three borrowed leaders
+             were present: the age-transition screen reads this table to decide who has unlocked
+             what, so a Lorenzo game reached the Exploration Age with Tuscany still locked. -->
+        <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_LORENZO" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
         <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_MACHIAVELLI" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
         <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_ISABELLA" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
         <Row LeaderDomain="StandardLeaders" LeaderType="LEADER_IBN_BATTUTA" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
