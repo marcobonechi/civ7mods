@@ -96,8 +96,15 @@
             s = s.replace(/^fs:\/\/game\//, "");
             s = s.replace(/^TEXTURE_/, "");
             s = s.substring(s.lastIndexOf("/") + 1);     // flat and per-mod forms both end here
-            s = s.replace(/\.png$/i, "");
-            return shared.textures.get(s.toLowerCase()) || null;
+            // Strip *repeated* .png, not one. core/ui/utilities/utilities-image.js:
+            //   getLeaderPortraitIcon() = UI.getIconURL(leader, "LEADER") + size + mood + ".png"
+            // For a shipped leader the icon row is a package name with no extension, so that
+            // lands on a real texture. Ours is a loose file and already ends in .png, so the
+            // city banners and the diplomacy ribbon asked for lp_hex_<leader>_256.png.png and
+            // got a blank circle. The mood suffix (_h friendly, _a hostile) is dropped too:
+            // we ship one portrait, not three.
+            s = s.replace(/(\.png)+$/i, "").toLowerCase();
+            return shared.textures.get(s) || shared.textures.get(s.replace(/_(h|a)$/, "")) || null;
         };
 
         // Rewrite a CSS value, keeping the url(...) wrapper if it had one.

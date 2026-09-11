@@ -601,3 +601,45 @@ gameplay database (`Unlocks` + `UnlockRequirements` + `UnlockConfigurationValues
 requirement sets) and once in the shell config database (`CivilizationUnlocks` / `LeaderUnlocks`,
 which is what the transition UI actually reads and renders as the tick-list on the civ card). Get
 one and miss the other and the civ shows up on the screen with a padlock and no explanation.
+
+### 2026-09-11 (later) — the leader portraits, and what UI.log had been saying all along
+
+Marco: the new leaders' faces do not appear on the map next to city names. `UI.log` had the
+answer written in it, twice per game load:
+
+```
+Failed to open file - .../Mods/Tuscany/lp_hex_lorenzo_256.png.png
+```
+
+Two `.png`. From `core/ui/utilities/utilities-image.js`:
+
+```js
+const iconName = UI.getIconURL(leader.LeaderType, "LEADER") + sizeSuffix + relationshipSuffix + ".png";
+```
+
+`getLeaderPortraitIcon()` glues `.png` onto whatever the icon row returns. Neither we nor Firaxis
+define a `LEADER` context row, so the lookup falls back to the default row — and for a shipped
+leader that is `blp:lp_hex_ada_lovelace_256`, a package name with **no extension**, so the glued
+`.png` lands on a real texture. Ours is a loose file and the row already ends in `.png`, so every
+caller of `getLeaderPortraitIcon` — city banners, the diplomacy ribbon — asked for a file that
+cannot exist and drew an empty circle.
+
+Fixed twice over, because the two halves fail independently:
+
+- **`icons.xml`** now carries a `Context=LEADER` row per leader whose `Path` deliberately omits the
+  extension, so the engine's own concatenation produces a valid URL with no JavaScript involved.
+- **The UI scripts** now strip *repeated* `.png` in `lookup()` rather than one, and fall back past
+  a trailing `_h` / `_a` mood suffix. That covers the other two readers of the `LEADER` context,
+  `panel-victory-points.js` and `panel-unit-combat-preview.js`, which use the value verbatim and so
+  need the extension put back.
+
+Worth keeping in mind: `blp:` package names and `fs://` loose files are not interchangeable at the
+end of a path. Anywhere the engine builds a URL by concatenation, a loose file's extension is one
+too many.
+
+While reading `UI.log` for this, a red herring worth naming: hundreds of lines attributed to
+`byzantium-images.js:125` and `:145`. Those are engine warnings from unrelated UI code —
+"Trying to set height to invalid value: undefined", HTML parser errors — attributed to our hook
+only because `Element.prototype.setAttribute` is the innermost named frame on the stack. Our
+prototype hooks sit in the path of every attribute write in the game, so they will collect
+attribution for everyone else's warnings forever. Not a bug, but do not go hunting it again.

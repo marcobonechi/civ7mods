@@ -27,6 +27,20 @@
             <Path>fs://game/etruscans/lp_hex_porsenna_256.png</Path>
             <IconSize>256</IconSize>
         </Row>
+        <!-- The LEADER context, with no file extension on purpose.
+             core/ui/utilities/utilities-image.js getLeaderPortraitIcon() builds its URL as
+             UI.getIconURL(leader, "LEADER") + size + mood + ".png", so whatever this row
+             returns gets ".png" glued onto it. A shipped leader's icon row is a package name
+             with no extension, which is why it works for them; with the extension already here
+             the city banners and the diplomacy ribbon asked for ...256.png.png and drew an
+             empty circle. The two other readers of this context - panel-victory-points.js and
+             panel-unit-combat-preview.js - use the value verbatim, and ui/etruscans-images.js puts the
+             extension back for them. -->
+        <Row>
+            <ID>LEADER_PORSENNA</ID>
+            <Path>fs://game/etruscans/lp_hex_porsenna_256</Path>
+            <Context>LEADER</Context>
+        </Row>
         <Row>
             <ID>LEADER_PORSENNA</ID>
             <Path>fs://game/etruscans/lp_hex_porsenna_128.png</Path>
