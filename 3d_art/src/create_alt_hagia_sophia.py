@@ -5,7 +5,7 @@ the prayer hall (+Y), an arcaded courtyard of the same size again (-Y), and a
 three-domed annex off the -X side. Only the prayer hall reads as Hagia Sophia, so the
 other two are sliced away - see CUT_Y / CUT_X.
 
-Also removes the minarets, recolors domes/ceilings a lead-azure blue, adds a gold
+Also removes the minarets, recolors domes/ceilings Byzantine imperial red, adds a gold
 cross, grounds at Z=0, and bakes a unified 2K PBR texture atlas.
 """
 
@@ -159,11 +159,11 @@ def create_pbr_mat(name, color_img, norm_img, rough_img, tint_hex, tint_fac, sca
 
 # Create materials:
 # 1. Red Domes/Ceiling: Byzantine Imperial Terracotta/Crimson Red (#a82d1d)
-# Dome tint. #1d6ea8 is #a82d1d hue-rotated from red (7 deg) to azure (205 deg) with its
-# lightness (38.6%) and saturation (70.6%) left alone, so the roof keeps exactly the tonal
-# weight it had against the brick and marble. Mixed at 0.70 over the lead texture, which
-# lifts and greys it further, so it reads lighter on screen than the raw hex looks.
-mat_dome = create_pbr_mat("M_Dome", lead_c, lead_n, lead_r, "1d6ea8", 0.70, 0.8, 0.4, 0.1)
+# Dome tint: Byzantine imperial red. A blue (#1d6ea8, the same hue-rotated to azure with
+# lightness and saturation untouched) was tried and reverted - keep that hex to hand if it
+# is wanted again. Mixed at 0.70 over the lead texture, which lifts and greys it, so it
+# reads lighter on screen than the raw hex looks.
+mat_dome = create_pbr_mat("M_Dome", lead_c, lead_n, lead_r, "a82d1d", 0.70, 0.8, 0.4, 0.1)
 # 2. Byzantine Terracotta Brick Walls (#b5563d)
 mat_wall = create_pbr_mat("M_Wall", brick_c, brick_n, brick_r, "b5563d", 0.25, 1.2, 0.7, 0.0)
 # 3. Cream Antique Marble Trim (#e8cfa6)
