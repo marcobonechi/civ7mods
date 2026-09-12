@@ -9,6 +9,10 @@ Reports, without touching the game:
   4. Type-like identifiers (CIVILIZATION_*, UNIT_*, MOD_*, REQSET_* ...) referenced in the
      mod that are neither introduced by the mod nor known to the game.
   5. Identifiers declared in <Types> that no concrete table (Units, Traditions ...) defines.
+  6. LOC_ text tags this mod defines that a --with companion also defines. Two mods that
+     define the same tag is a duplicate key in the localization database: the second file to
+     load fails, the game rolls the whole database back, and *every* installed mod disappears
+     from the game. It cost a launch to find out.
 
 Usage: tools/check-mod.py <ModFolder> [--with <OtherModFolder>] [--game <Resources dir>] [--refresh]
 
@@ -127,7 +131,7 @@ def scan_companion(mod):
     return idents, tags
 
 
-def check(mod, game_idents, game_tags):
+def check(mod, game_idents, game_tags, companion_tags=None):
     problems = 0
     mod = os.path.abspath(mod)
     modinfos = [f for f in os.listdir(mod) if f.endswith(".modinfo")]
@@ -217,6 +221,13 @@ def check(mod, game_idents, game_tags):
                     for m in LOC.finditer(row.text):
                         referenced_tags.setdefault(m.group(0), rel)
 
+    # 6. A tag two mods both define takes the whole database down (see the header).
+    clashes = sorted((t, who) for t, who in (companion_tags or {}).items() if t in defined_tags)
+    for t, who in clashes:
+        print(f"ERROR: text tag {t} is defined by this mod and also by {who}; "
+              f"a duplicate tag fails the localization database and unloads every mod")
+    problems += len(clashes)
+
     missing_tags = sorted(t for t in referenced_tags if t not in defined_tags and t not in game_tags)
     for t in missing_tags:
         print(f"ERROR: text tag {t} (first used in {referenced_tags[t]}) is defined nowhere")
@@ -255,6 +266,7 @@ def main():
         print(f"game data not found at {args.game}; pass --game", file=sys.stderr)
         return 2
     idents, tags = scan_game(args.game, args.refresh)
+    companion_tags = {}
     for companion in args.companions:
         if not os.path.isdir(companion):
             print(f"companion mod folder not found: {companion}", file=sys.stderr)
@@ -262,7 +274,9 @@ def main():
         ci, ct = scan_companion(companion)
         idents |= ci
         tags |= ct
-    return check(args.mod, idents, tags)
+        for t in ct:
+            companion_tags.setdefault(t, os.path.basename(os.path.normpath(companion)))
+    return check(args.mod, idents, tags, companion_tags)
 
 
 if __name__ == "__main__":

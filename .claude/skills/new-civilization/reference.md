@@ -296,6 +296,13 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
+- **Never define the same `LOC_` tag in two mods.** The localization database keys on the tag,
+  so the second file to load fails, the game rolls the *whole* database back, and every
+  installed mod vanishes from the game - not just yours. This bites exactly where it is
+  tempting: mod A adds an unlock that mod B owns, and writes a `..._DESCRIPTION` tag mod B
+  already had. The tag belongs to whichever mod is always present when the row that uses it
+  loads; a cross-mod file behind a `ModInUse` criteria can rely on the other mod's tags.
+  `tools/check-mod.py <Mod> --with <Other>` reports the clash.
 - **A leader's icon rows are not one image.** Copy `DLC/ada-lovelace/modules/data/icons/
   leader-icons.xml`: nine rows per leader, the default rows and the `LEADER_HAPPY` /
   `LEADER_ANGRY` contexts pointing at a **hex** crop with an explicit `IconSize`, and

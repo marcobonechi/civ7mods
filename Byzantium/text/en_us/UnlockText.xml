@@ -22,14 +22,13 @@
         <Row Tag="LOC_UNLOCK_PLAY_AS_BYZANTIUM_OTTOMANS_TOOLTIP">
             <Text>The [B]Ottomans[/B] took Constantinople and ruled from [B]Byzantium's[/B] capital.</Text>
         </Row>
-        <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION">
-            <Text>Play as the [B]Etruscans[/B].</Text>
-        </Row>
+        <!-- Only the two _BYZANTIUM_TOOLTIP tags belong here. The Etruscans mod already defines
+             LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION and LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION,
+             and the rows that use them only load when that mod is present. Defining them twice
+             is a duplicate key in the localization database, which fails the file, which rolls
+             the whole database back and takes every installed mod down with it. -->
         <Row Tag="LOC_UNLOCK_PLAY_AS_ETRUSCANS_BYZANTIUM_TOOLTIP">
             <Text>[B]Etruscan[/B] ships worked the same sea as the Greek east, and the Exarchate later ruled the Tuscan coast from Ravenna.</Text>
-        </Row>
-        <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION">
-            <Text>Play as [B]Porsenna[/B].</Text>
         </Row>
         <Row Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_BYZANTIUM_TOOLTIP">
             <Text>[B]Porsenna[/B] built to last, and nothing built to last longer than [B]Byzantium[/B].</Text>

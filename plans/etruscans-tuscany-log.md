@@ -643,3 +643,30 @@ While reading `UI.log` for this, a red herring worth naming: hundreds of lines a
 only because `Element.prototype.setAttribute` is the innermost named frame on the stack. Our
 prototype hooks sit in the path of every attribute write in the game, so they will collect
 attribution for everyone else's warnings forever. Not a bug, but do not go hunting it again.
+
+### 2026-09-11 (later still) — one duplicate tag unloaded every mod
+
+Marco launched a new game and *no* mods were visible. `Modding.log`:
+
+```
+Warning: Failed to load .../Mods/Etruscans/text/en_us/UnlockText.xml
+ERROR: There were errors loading 'text/en_us/UnlockText.xml' that require a rollback.
+ERROR: Failed to apply enabled components.
+ERROR: Rolling back database to a good state.
+```
+
+My fault, from the Byzantium unlock work an hour earlier. Wiring Etruria to Byzantium needed two
+tooltips, and I wrote four tags into `Byzantium/text/en_us/UnlockText.xml` — the two tooltips plus
+`LOC_UNLOCK_PLAY_AS_ETRUSCANS_DESCRIPTION` and `LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION`, which the
+Etruscans mod already defines. The localization database keys on the tag. Byzantium loaded first,
+Etruscans' file hit the duplicate and failed, and the game rolled the **whole** database back —
+taking all twenty-odd of Marco's mods down with it, not just ours.
+
+The two descriptions were never needed here: the rows that use them live in
+`data/unlocks-etruscans.xml`, which only loads when the Etruscans mod is present, so that mod's own
+text is always there. Removed, leaving only the two `..._BYZANTIUM_TOOLTIP` tags.
+
+`tools/check-mod.py` now has check 6: any tag this mod defines that a `--with` companion also
+defines is an error, with the consequence spelled out. Verified it catches the exact bug. The rule
+is also in the skill reference now: **a text tag belongs to exactly one mod**, and a cross-mod file
+behind a `ModInUse` criteria can rely on the other mod's tags being present.
