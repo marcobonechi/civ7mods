@@ -19,8 +19,8 @@
         <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" Name="LOC_BUILDING_WALLS_THEODOSIUS_NAME" Description="LOC_BUILDING_WALLS_THEODOSIUS_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_THEODOSIUS_TOOLTIP" ConstructibleClass="BUILDING" Cost="150" Population="0" Age="AGE_EXPLORATION" Defense="2" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true"/>
     </Constructibles>
     <Buildings>
-        <Row ConstructibleType="BUILDING_HIPPODROME" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
-        <Row ConstructibleType="BUILDING_GREAT_PALACE" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_HIPPODROME" Movable="false" Town="true" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" Movable="false" Town="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" Movable="false" MultiplePerCity="true" Purchasable="false" Town="true" TraitType="TRAIT_BYZANTIUM"/>
     </Buildings>
     <Wonders>
@@ -93,6 +93,7 @@
         <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_CULTURE_PER_TRADITION"/>
         <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_GOLD"/>
         <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_INFLUENCE"/>
+        <Row UniqueQuarterType="QUARTER_AUGUSTAION" ModifierId="MOD_BYZANTIUM_AUGUSTAION_CULTURE_PER_THEODOSIUS_WALLS"/>
     </UniqueQuarterModifiers>
     <ConstructibleModifiers>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_RELIC"/>

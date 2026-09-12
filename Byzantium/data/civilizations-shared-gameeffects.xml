@@ -53,4 +53,23 @@
         <Argument name="Amount">30</Argument>
         <Argument name="Tooltip">LOC_BUILDING_WALLS_TROJAN_NAME</Argument>
     </Modifier>
+    <!-- Hippodrome and Great Palace purchasable in towns for about 600 Gold: +93% Gold towards the
+         purchase, calibrated to the engine's default of four Gold per Production (290 x 4 = 1160,
+         1160 / 1.93 = 601). Adjust the percent if the shown price differs. -->
+    <Modifier id="MOD_BYZANTIUM_TOWN_PRICE_HIPPODROME" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+        </SubjectRequirements>
+        <Argument name="BuildingType">BUILDING_HIPPODROME</Argument>
+        <Argument name="Percent">93</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
+    </Modifier>
+    <Modifier id="MOD_BYZANTIUM_TOWN_PRICE_GREAT_PALACE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+        </SubjectRequirements>
+        <Argument name="BuildingType">BUILDING_GREAT_PALACE</Argument>
+        <Argument name="Percent">93</Argument>
+        <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
+    </Modifier>
 </GameEffects>

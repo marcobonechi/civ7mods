@@ -59,7 +59,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="YieldType">YIELD_GOLD</Argument>
-        <Argument name="Amount">2</Argument>
+        <Argument name="Amount">4</Argument>
         <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
     </Modifier>
     <Modifier id="MOD_BYZANTIUM_AUGUSTAION_INFLUENCE" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
@@ -69,7 +69,7 @@
             </Requirement>
         </SubjectRequirements>
         <Argument name="YieldType">YIELD_DIPLOMACY</Argument>
-        <Argument name="Amount">1</Argument>
+        <Argument name="Amount">2</Argument>
         <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
     </Modifier>
     <!-- Hagia Sophia, event bonuses. The effect system has no "on religion spread" or "on unit
@@ -340,5 +340,17 @@
         </OwnerRequirements>
         <Argument name="UnitType">UNIT_MISSIONARY</Argument>
         <Argument name="Amount">1</Argument>
+    </Modifier>
+    <!-- Augustaion: every Walls of Theodosius in the quarter's city yields +1 Culture. -->
+    <Modifier id="MOD_BYZANTIUM_AUGUSTAION_CULTURE_PER_THEODOSIUS_WALLS" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_UNIQUE_QUARTER">
+                <Argument name="UniqueQuarterType">QUARTER_AUGUSTAION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="ConstructibleType">BUILDING_WALLS_THEODOSIUS</Argument>
+        <Argument name="YieldType">YIELD_CULTURE</Argument>
+        <Argument name="Amount">1</Argument>
+        <Argument name="Tooltip">LOC_QUARTER_AUGUSTAION_NAME</Argument>
     </Modifier>
 </GameEffects>

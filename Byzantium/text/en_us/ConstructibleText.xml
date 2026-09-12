@@ -5,7 +5,7 @@
             <Text>Hippodrome</Text>
         </Row>
         <Row Tag="LOC_BUILDING_HIPPODROME_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +8 [icon:YIELD_CULTURE] Culture, and +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire. +1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Great Palace.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +8 [icon:YIELD_CULTURE] Culture, and +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire. +1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Great Palace. Can be purchased in Towns for about 600 [icon:YIELD_GOLD] Gold.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_HIPPODROME_TOOLTIP">
             <Text>+1 [icon:YIELD_CULTURE] Culture for each adjacent [TIP:LOC_PEDIA_CONCEPTS_QUARTER_TOOLTIP]Quarter[/TIP] and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>
@@ -14,7 +14,7 @@
             <Text>Great Palace</Text>
         </Row>
         <Row Tag="LOC_BUILDING_GREAT_PALACE_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_DIPLOMACY] Influence, +6 [icon:YIELD_GOLD] Gold and +3 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Hippodrome.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_DIPLOMACY] Influence, +6 [icon:YIELD_GOLD] Gold and +3 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Hippodrome. Can be purchased in Towns for about 600 [icon:YIELD_GOLD] Gold.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_GREAT_PALACE_TOOLTIP">
             <Text>+1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>
@@ -23,7 +23,7 @@
             <Text>Augustaion</Text>
         </Row>
         <Row Tag="LOC_QUARTER_AUGUSTAION_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_QUARTER_TOOLTIP]Unique Quarter[/TIP], formed by a Hippodrome and a Great Palace. +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] displayed here. +2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_DIPLOMACY] Influence, and +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_QUARTER_TOOLTIP]Unique Quarter[/TIP], formed by a Hippodrome and a Great Palace. +2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Work[/TIP] displayed here. +4 [icon:YIELD_GOLD] Gold and +2 [icon:YIELD_DIPLOMACY] Influence, +1 [icon:YIELD_CULTURE] Culture for every Tradition slotted in your empire, and +1 [icon:YIELD_CULTURE] Culture on every Walls of Theodosius in this Settlement.</Text>
         </Row>
         <Row Tag="LOC_QUARTER_AUGUSTAION_TOOLTIP">
             <Text>+2 [icon:YIELD_HAPPINESS] Happiness in this Settlement for each [icon:NAR_REW_GREATWORK] Great Work displayed here.</Text>
