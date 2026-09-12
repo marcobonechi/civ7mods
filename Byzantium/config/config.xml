@@ -2,7 +2,7 @@
 <!-- Shell (game setup) side of Byzantium. One Civilizations row per age domain: the picker only
      offers a civ in an age it has a row for (SetupParameters overrides PlayerCivilization's domain
      with Ages.PlayerCivilizationDomain). Exploration is the apex age; the Antiquity row is
-     labelled "Byzantium (Time-Tested)" so it reads as an out-of-age option next to Rome, and the
+     labelled "Eastern Roman Empire", the empire of Constantine, next to Rome, and the
      Modern row keeps a late start possible. The game side handles both through
      TRAIT_ANACHRONISTIC_CIV (base-standard/data/ages-post-process.sql). -->
 <Database>

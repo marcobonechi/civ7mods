@@ -5,7 +5,7 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | Folder | Mod | Status |
 |---|---|---|
 | `EuropeMediterranean/` | Europe & Mediterranean map scripts (this page) | released |
-| `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Byzantium (Time-Tested)" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1, see [Byzantium](#byzantium) below |
+| `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Eastern Roman Empire" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1, see [Byzantium](#byzantium) below |
 | `Etruscans/` | The Etruscans, an Antiquity Age civilization of engineers and banqueters, with Lars Porsenna of Clusium | version 1, see [Etruscans](#etruscans) below |
 | `Tuscany/` | Tuscany, an Exploration Age civilization of bankers, navigators and painters, with Lorenzo il Magnifico and the Maestri | version 1, see [Tuscany](#tuscany) below |
 

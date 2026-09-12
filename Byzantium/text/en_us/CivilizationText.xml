@@ -2,10 +2,10 @@
 <Database>
     <EnglishText>
         <Row Tag="LOC_CIVILIZATION_BYZANTIUM_TIME_TESTED_NAME">
-            <Text>Byzantium (Time-Tested)</Text>
+            <Text>Eastern Roman Empire</Text>
         </Row>
         <Row Tag="LOC_CIVILIZATION_BYZANTIUM_TIME_TESTED_FULLNAME">
-            <Text>Byzantium, Time-Tested in Antiquity</Text>
+            <Text>Eastern Roman Empire</Text>
         </Row>
         <Row Tag="LOC_TRAIT_BYZANTIUM_ABILITY_NAME">
             <Text>Queen of Cities</Text>

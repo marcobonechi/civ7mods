@@ -25,7 +25,7 @@ Lesson from Byzantium: the picker lists exactly the civs that have a row in that
 (`SetupParameters` overrides `PlayerCivilization`'s domain with `Ages.PlayerCivilizationDomain`),
 and a plain row in an earlier age reads as "this is an Antiquity civ" beside Rome. For
 Time-Tested play in an earlier age keep the row but give it its own `CivilizationName`
-("Byzantium (Time-Tested)"); reach the age normally through `CivilizationUnlocks` from the
+("Eastern Roman Empire" for Byzantium's Antiquity row); reach the age normally through `CivilizationUnlocks` from the
 predecessors. Firaxis's own out-of-age content is small: an Origins node in
 `TREE_CIVICS_AQ_TEST_OF_TIME` with `_I` traditions, the ability's `TraitModifiers`, a
 self-syncretism tradition; no unique units (Syncretism lends an apex civ's unit). Byzantium
