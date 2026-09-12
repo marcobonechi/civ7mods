@@ -100,5 +100,8 @@
         <Row Tag="LOC_PEDIA_PAGE_BUILDING_WALLS_THEODOSIUS_CHAPTER_HISTORY_PARA_1">
             <Text>Built under Theodosius II between 408 and 413 and rebuilt after the earthquake of 447 in sixty days, the land walls of Constantinople ran six kilometres from the Golden Horn to the Sea of Marmara: a moat, an outer wall and an inner wall twelve metres high with ninety-six towers. They turned back Attila, the Avars, the Arabs twice, the Bulgars and the Rus, and fell only to Ottoman cannon in 1453.</Text>
         </Row>
+        <Row Tag="LOC_PEDIA_PAGE_BUILDING_WALLS_TROJAN_CHAPTER_HISTORY_PARA_1">
+            <Text>The walls of Troy, on the Asian shore of the Hellespont a few days' sail from the Bosporus, were the most famous fortification of the ancient Aegean: sloping limestone bastions ten metres high, rebuilt nine times over two thousand years and remembered in the poem that every Greek and Roman schoolboy learned by heart. Constantine considered Troy itself for his new capital before choosing Byzantium.</Text>
+        </Row>
     </EnglishText>
 </Database>

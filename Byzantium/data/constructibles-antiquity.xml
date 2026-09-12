@@ -7,14 +7,17 @@
         <Row Type="BUILDING_CISTERN" Kind="KIND_CONSTRUCTIBLE"/>
         <Row Type="BUILDING_MILION" Kind="KIND_CONSTRUCTIBLE"/>
         <Row Type="QUARTER_MESE" Kind="KIND_QUARTER"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Kind="KIND_CONSTRUCTIBLE"/>
     </Types>
     <Constructibles>
         <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="55" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="95" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" Name="LOC_BUILDING_WALLS_TROJAN_NAME" Description="LOC_BUILDING_WALLS_TROJAN_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_TROJAN_TOOLTIP" ConstructibleClass="BUILDING" Cost="60" Population="0" Age="AGE_ANTIQUITY" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="20"/>
     </Constructibles>
     <Buildings>
         <Row ConstructibleType="BUILDING_CISTERN" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
         <Row ConstructibleType="BUILDING_MILION" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" Movable="false" MultiplePerCity="true" Purchasable="false" Town="true" TraitType="TRAIT_BYZANTIUM"/>
     </Buildings>
     <TypeTags>
         <Row Type="BUILDING_CISTERN" Tag="FOOD"/>
@@ -23,12 +26,20 @@
         <Row Type="BUILDING_MILION" Tag="CULTURE"/>
         <Row Type="BUILDING_MILION" Tag="UNIQUE"/>
         <Row Type="BUILDING_MILION" Tag="AGELESS"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Tag="IGNORE_DISTRICT_PLACEMENT_CAP"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Tag="LINK_ADJACENT"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Tag="DISTRICT_WALL"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Tag="FORTIFICATION"/>
+        <Row Type="BUILDING_WALLS_TROJAN" Tag="UNIQUE"/>
     </TypeTags>
     <Constructible_ValidDistricts>
         <Row ConstructibleType="BUILDING_CISTERN" DistrictType="DISTRICT_CITY_CENTER"/>
         <Row ConstructibleType="BUILDING_CISTERN" DistrictType="DISTRICT_URBAN"/>
         <Row ConstructibleType="BUILDING_MILION" DistrictType="DISTRICT_CITY_CENTER"/>
         <Row ConstructibleType="BUILDING_MILION" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" DistrictType="DISTRICT_WONDER"/>
     </Constructible_ValidDistricts>
     <Constructible_YieldChanges>
         <Row ConstructibleType="BUILDING_CISTERN" YieldType="YIELD_FOOD" YieldChange="3"/>
@@ -71,10 +82,17 @@
         <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_CULTURE_PER_SETTLEMENT_TOWN"/>
         <Row UniqueQuarterType="QUARTER_MESE" ModifierId="MOD_BYZANTIUM_MESE_HAPPINESS_PER_SETTLEMENT_TOWN"/>
     </UniqueQuarterModifiers>
+    <Constructible_ValidTerrains>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" TerrainType="TERRAIN_FLAT"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" TerrainType="TERRAIN_HILL"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" TerrainType="TERRAIN_COAST"/>
+    </Constructible_ValidTerrains>
     <Constructible_Advisories>
         <Row ConstructibleType="BUILDING_CISTERN" AdvisoryClassType="ADVISORY_CLASS_FOOD"/>
         <Row ConstructibleType="BUILDING_CISTERN" AdvisoryClassType="ADVISORY_CLASS_HAPPINESS"/>
         <Row ConstructibleType="BUILDING_MILION" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
         <Row ConstructibleType="BUILDING_MILION" AdvisoryClassType="ADVISORY_CLASS_DIPLOMACY"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" AdvisoryClassType="ADVISORY_CLASS_DEFENSE"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
     </Constructible_Advisories>
 </Database>

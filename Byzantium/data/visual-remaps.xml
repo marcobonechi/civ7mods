@@ -65,5 +65,12 @@
             <From>BUILDING_WALLS_THEODOSIUS</From>
             <To>BUILDING_MEDIEVAL_WALLS</To>
         </Row>
+        <Row>
+            <ID>REMAP_BYZANTIUM_WALLS_TROJAN</ID>
+            <DisplayName>LOC_REMAP_BYZANTIUM_WALLS_TROJAN</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_WALLS_TROJAN</From>
+            <To>BUILDING_ANCIENT_WALLS</To>
+        </Row>
     </VisualRemaps>
 </Database>

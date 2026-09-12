@@ -88,5 +88,17 @@
         <Row Tag="LOC_REMAP_BYZANTIUM_WALLS_THEODOSIUS">
             <Text>Walls of Theodosius</Text>
         </Row>
+        <Row Tag="LOC_BUILDING_WALLS_TROJAN_NAME">
+            <Text>Trojan Walls</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_WALLS_TROJAN_DESCRIPTION">
+            <Text>Byzantine unique Antiquity Age [TIP:LOC_PEDIA_CONCEPTS_WALL_TOOLTIP]Wall[/TIP], available from the Origins civic instead of Masonry. Turns the District into a [TIP:LOC_PEDIA_CONCEPTS_FORTIFIED_DISTRICTS_TOOLTIP]Fortified District[/TIP], adding 100 [icon:Action_Heal] HP and giving it a defense strength when attacked.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_WALLS_TROJAN_TOOLTIP">
+            <Text>Walls in the manner of Troy, the fortress of the Hellespont that held out for ten years.</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_WALLS_TROJAN">
+            <Text>Trojan Walls</Text>
+        </Row>
     </EnglishText>
 </Database>
