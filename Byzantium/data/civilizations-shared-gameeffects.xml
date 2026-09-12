@@ -30,4 +30,27 @@
         <Argument name="Amount">20</Argument>
         <Argument name="Tooltip">LOC_TRAIT_BYZANTIUM_ABILITY_NAME</Argument>
     </Modifier>
+    <!-- Walls of Theodosius: twice the district health of ordinary walls. One modifier per player
+         (a ConstructibleModifier would attach once per wall and stack). -->
+    <Modifier id="MOD_BYZANTIUM_THEODOSIUS_WALLS_HEALTH" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_TOTAL_HEALTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+                <Argument name="ConstructibleType">BUILDING_WALLS_THEODOSIUS</Argument>
+                <Argument name="CurrentAgeOnly">false</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">100</Argument>
+        <Argument name="Tooltip">LOC_BUILDING_WALLS_THEODOSIUS_NAME</Argument>
+    </Modifier>
+    <!-- Trojan Walls: 130 district health instead of 100. -->
+    <Modifier id="MOD_BYZANTIUM_TROJAN_WALLS_HEALTH" collection="COLLECTION_PLAYER_DISTRICTS" effect="EFFECT_DISTRICT_ADJUST_TOTAL_HEALTH">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+                <Argument name="ConstructibleType">BUILDING_WALLS_TROJAN</Argument>
+                <Argument name="CurrentAgeOnly">false</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="Amount">30</Argument>
+        <Argument name="Tooltip">LOC_BUILDING_WALLS_TROJAN_NAME</Argument>
+    </Modifier>
 </GameEffects>

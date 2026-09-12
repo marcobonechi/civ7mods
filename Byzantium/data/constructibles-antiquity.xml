@@ -12,7 +12,7 @@
     <Constructibles>
         <Row ConstructibleType="BUILDING_CISTERN" Name="LOC_BUILDING_CISTERN_NAME" Description="LOC_BUILDING_CISTERN_DESCRIPTION" Tooltip="LOC_BUILDING_CISTERN_TOOLTIP" ConstructibleClass="BUILDING" Cost="55" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="BUILDING_MILION" Name="LOC_BUILDING_MILION_NAME" Description="LOC_BUILDING_MILION_DESCRIPTION" Tooltip="LOC_BUILDING_MILION_TOOLTIP" ConstructibleClass="BUILDING" Cost="95" Population="1" Age="AGE_ANTIQUITY" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
-        <Row ConstructibleType="BUILDING_WALLS_TROJAN" Name="LOC_BUILDING_WALLS_TROJAN_NAME" Description="LOC_BUILDING_WALLS_TROJAN_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_TROJAN_TOOLTIP" ConstructibleClass="BUILDING" Cost="60" Population="0" Age="AGE_ANTIQUITY" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="20"/>
+        <Row ConstructibleType="BUILDING_WALLS_TROJAN" Name="LOC_BUILDING_WALLS_TROJAN_NAME" Description="LOC_BUILDING_WALLS_TROJAN_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_TROJAN_TOOLTIP" ConstructibleClass="BUILDING" Cost="30" Population="0" Age="AGE_ANTIQUITY" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="30"/>
     </Constructibles>
     <Buildings>
         <Row ConstructibleType="BUILDING_CISTERN" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
