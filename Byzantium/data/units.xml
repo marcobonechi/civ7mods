@@ -13,7 +13,7 @@
         <Row UnitType="UNIT_CATAPHRACT" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row UnitType="UNIT_CATAPHRACT_2" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_2_DESCRIPTION" Tier="2" Maintenance="4" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
         <Row UnitType="UNIT_CATAPHRACT_3" Name="LOC_UNIT_CATAPHRACT_NAME" Description="LOC_UNIT_CATAPHRACT_3_DESCRIPTION" Tier="3" Maintenance="5" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
-        <Row UnitType="UNIT_DROMON" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
+        <Row UnitType="UNIT_DROMON" Name="LOC_UNIT_DROMON_NAME" Description="LOC_UNIT_DROMON_DESCRIPTION" Tier="3" Maintenance="3" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_BYZANTIUM"/>
     </Units>
     <Unit_Stats>
         <Row UnitType="UNIT_CATAPHRACT" Combat="44"/>
@@ -30,13 +30,12 @@
     <UnitUpgrades>
         <Row Unit="UNIT_CATAPHRACT" UpgradeUnit="UNIT_CATAPHRACT_2"/>
         <Row Unit="UNIT_CATAPHRACT_2" UpgradeUnit="UNIT_CATAPHRACT_3"/>
-        <Row Unit="UNIT_DROMON" UpgradeUnit="UNIT_CARRACK"/>
     </UnitUpgrades>
     <UnitReplaces>
         <Row CivUniqueUnitType="UNIT_CATAPHRACT" ReplacesUnitType="UNIT_COURSER"/>
         <Row CivUniqueUnitType="UNIT_CATAPHRACT_2" ReplacesUnitType="UNIT_KNIGHT"/>
         <Row CivUniqueUnitType="UNIT_CATAPHRACT_3" ReplacesUnitType="UNIT_LANCER"/>
-        <Row CivUniqueUnitType="UNIT_DROMON" ReplacesUnitType="UNIT_COG"/>
+        <Row CivUniqueUnitType="UNIT_DROMON" ReplacesUnitType="UNIT_GALLEON"/>
     </UnitReplaces>
     <Tags>
         <Row Tag="UNIT_CLASS_CATAPHRACT" Category="UNIT_CLASS"/>
@@ -63,6 +62,8 @@
         <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_NAVAL"/>
         <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_RANGED"/>
         <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_HEAVY"/>
+        <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_ELITE_NAVAL"/>
+        <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_AUTOEXPLORE"/>
         <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_DROMON"/>
         <Row Type="UNIT_DROMON" Tag="UNIT_CLASS_UNIQUE"/>
     </TypeTags>
