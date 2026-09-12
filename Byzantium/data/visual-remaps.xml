@@ -58,5 +58,12 @@
             <From>UNIT_LIBURNA</From>
             <To>UNIT_GALLEY</To>
         </Row>
+        <Row>
+            <ID>REMAP_BYZANTIUM_WALLS_THEODOSIUS</ID>
+            <DisplayName>LOC_REMAP_BYZANTIUM_WALLS_THEODOSIUS</DisplayName>
+            <Kind>BUILDING</Kind>
+            <From>BUILDING_WALLS_THEODOSIUS</From>
+            <To>BUILDING_MEDIEVAL_WALLS</To>
+        </Row>
     </VisualRemaps>
 </Database>

@@ -67,5 +67,9 @@
             <ID>BUILDING_MILION</ID>
             <Path>fs://game/byzantium/buildicon_milion.png</Path>
         </Row>
+        <Row>
+            <ID>BUILDING_WALLS_THEODOSIUS</ID>
+            <Path>blp:buildicon_medievalwalls</Path>
+        </Row>
     </IconDefinitions>
 </Database>

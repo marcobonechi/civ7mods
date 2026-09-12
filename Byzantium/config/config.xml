@@ -25,6 +25,7 @@
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="QUARTER_AUGUSTAION" Kind="KIND_QUARTER" Name="LOC_QUARTER_AUGUSTAION_NAME" Description="LOC_QUARTER_AUGUSTAION_DESCRIPTION" Icon="city_uniquequarter"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_HIPPODROME" Kind="KIND_BUILDING" Name="LOC_BUILDING_HIPPODROME_NAME" Description="LOC_BUILDING_HIPPODROME_DESCRIPTION" Icon="BUILDING_HIPPODROME"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_GREAT_PALACE" Kind="KIND_BUILDING" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Icon="BUILDING_GREAT_PALACE"/>
+        <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" Type="BUILDING_WALLS_THEODOSIUS" Kind="KIND_BUILDING" Name="LOC_BUILDING_WALLS_THEODOSIUS_NAME" Description="LOC_BUILDING_WALLS_THEODOSIUS_DESCRIPTION" Icon="BUILDING_WALLS_THEODOSIUS"/>
     </CivilizationItems>
     <CivilizationTags>
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_BYZANTIUM" TagType="TAG_TRAIT_CULTURAL"/>

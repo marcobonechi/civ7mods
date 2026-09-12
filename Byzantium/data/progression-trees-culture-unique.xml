@@ -22,6 +22,7 @@
     <ProgressionTreeNodeUnlocks>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_HIPPODROME" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_GREAT_PALACE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_WALLS_THEODOSIUS" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_THEMATA" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_THEMATA" TargetKind="KIND_MODIFIER" TargetType="MOD_EX_SETTLEMENT_CAP_INCREASE" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_EX_BYZANTIUM_PENTARCHY" TargetKind="KIND_TRADITION" TargetType="TRADITION_BYZANTIUM_PENTARCHY" UnlockDepth="1"/>

@@ -97,5 +97,8 @@
         <Row Tag="LOC_PEDIA_PAGE_BUILDING_MILION_CHAPTER_HISTORY_PARA_1">
             <Text>The Milion was a domed tetrapylon at the head of the Mese, Constantinople's main avenue, raised by Constantine as the zero point of the empire's roads. Distances to every city were inscribed on it, and emperors passed beneath it in triumph.</Text>
         </Row>
+        <Row Tag="LOC_PEDIA_PAGE_BUILDING_WALLS_THEODOSIUS_CHAPTER_HISTORY_PARA_1">
+            <Text>Built under Theodosius II between 408 and 413 and rebuilt after the earthquake of 447 in sixty days, the land walls of Constantinople ran six kilometres from the Golden Horn to the Sea of Marmara: a moat, an outer wall and an inner wall twelve metres high with ninety-six towers. They turned back Attila, the Avars, the Arabs twice, the Bulgars and the Rus, and fell only to Ottoman cannon in 1453.</Text>
+        </Row>
     </EnglishText>
 </Database>

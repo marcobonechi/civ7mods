@@ -19,6 +19,7 @@
              wonder unlock here too (harmless duplicate for games that carried them over). -->
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_HIPPODROME" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_GREAT_PALACE" UnlockDepth="1"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_CONSTRUCTIBLE" TargetType="BUILDING_WALLS_THEODOSIUS" UnlockDepth="1"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_MO_BYZANTIUM_MODERNIZATION" TargetKind="KIND_CONSTRUCTIBLE" TargetType="WONDER_HAGIA_SOPHIA" UnlockDepth="1" AIIgnoreUnlockValue="true"/>
     </ProgressionTreeNodeUnlocks>
     <ProgressionTreeNodeTraits>

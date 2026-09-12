@@ -6,6 +6,7 @@
         <Row Type="BUILDING_HIPPODROME" Kind="KIND_CONSTRUCTIBLE"/>
         <Row Type="BUILDING_GREAT_PALACE" Kind="KIND_CONSTRUCTIBLE"/>
         <Row Type="WONDER_HAGIA_SOPHIA" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Kind="KIND_CONSTRUCTIBLE"/>
         <Row Type="QUARTER_AUGUSTAION" Kind="KIND_QUARTER"/>
     </Types>
     <TypeQuotes>
@@ -15,10 +16,12 @@
         <Row ConstructibleType="BUILDING_HIPPODROME" Name="LOC_BUILDING_HIPPODROME_NAME" Description="LOC_BUILDING_HIPPODROME_DESCRIPTION" Tooltip="LOC_BUILDING_HIPPODROME_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Tooltip="LOC_BUILDING_GREAT_PALACE_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" Name="LOC_WONDER_HAGIA_SOPHIA_NAME" Description="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION" Tooltip="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP" ConstructibleClass="WONDER" Cost="750" Population="0" ImmuneDamage="true" Age="AGE_EXPLORATION" RequiresUnlock="true"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" Name="LOC_BUILDING_WALLS_THEODOSIUS_NAME" Description="LOC_BUILDING_WALLS_THEODOSIUS_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_THEODOSIUS_TOOLTIP" ConstructibleClass="BUILDING" Cost="150" Population="0" Age="AGE_EXPLORATION" Defense="1" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="20"/>
     </Constructibles>
     <Buildings>
         <Row ConstructibleType="BUILDING_HIPPODROME" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" Movable="false" TraitType="TRAIT_BYZANTIUM"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" Movable="false" MultiplePerCity="true" Purchasable="false" Town="true" TraitType="TRAIT_BYZANTIUM"/>
     </Buildings>
     <Wonders>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" MaxWorldInstances="1" BuildOnFrontier="true"/>
@@ -32,6 +35,11 @@
         <Row Type="BUILDING_GREAT_PALACE" Tag="AGELESS"/>
         <Row Type="WONDER_HAGIA_SOPHIA" Tag="GREATWORK"/>
         <Row Type="WONDER_HAGIA_SOPHIA" Tag="AGELESS"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Tag="IGNORE_DISTRICT_PLACEMENT_CAP"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Tag="LINK_ADJACENT"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Tag="DISTRICT_WALL"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Tag="FORTIFICATION"/>
+        <Row Type="BUILDING_WALLS_THEODOSIUS" Tag="UNIQUE"/>
     </TypeTags>
     <Constructible_ValidDistricts>
         <Row ConstructibleType="BUILDING_HIPPODROME" DistrictType="DISTRICT_CITY_CENTER"/>
@@ -39,6 +47,9 @@
         <Row ConstructibleType="BUILDING_GREAT_PALACE" DistrictType="DISTRICT_CITY_CENTER"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" DistrictType="DISTRICT_URBAN"/>
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" DistrictType="DISTRICT_WONDER"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" DistrictType="DISTRICT_CITY_CENTER"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" DistrictType="DISTRICT_WONDER"/>
     </Constructible_ValidDistricts>
     <Constructible_YieldChanges>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_CULTURE" YieldChange="8"/>
@@ -107,8 +118,15 @@
         <Row ConstructibleType="WONDER_HAGIA_SOPHIA" ModifierId="MOD_HAGIA_SOPHIA_MISSIONARY_12"/>
         <Row ConstructibleType="BUILDING_HIPPODROME" ModifierId="MOD_BYZANTIUM_HIPPODROME_CULTURE_PER_TRADITION"/>
     </ConstructibleModifiers>
+    <Constructible_ValidTerrains>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" TerrainType="TERRAIN_FLAT"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" TerrainType="TERRAIN_HILL"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" TerrainType="TERRAIN_COAST"/>
+    </Constructible_ValidTerrains>
     <Constructible_Advisories>
         <Row ConstructibleType="BUILDING_HIPPODROME" AdvisoryClassType="ADVISORY_CLASS_CULTURE"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" AdvisoryClassType="ADVISORY_CLASS_DIPLOMACY"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+        <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" AdvisoryClassType="ADVISORY_CLASS_DEFENSE"/>
     </Constructible_Advisories>
 </Database>

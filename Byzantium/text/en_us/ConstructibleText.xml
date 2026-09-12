@@ -76,5 +76,17 @@
         <Row Tag="LOC_QUARTER_MESE_TOOLTIP">
             <Text>The colonnaded avenue of Constantinople, lined with forums and shops, with the great cisterns beneath.</Text>
         </Row>
+        <Row Tag="LOC_BUILDING_WALLS_THEODOSIUS_NAME">
+            <Text>Walls of Theodosius</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_WALLS_THEODOSIUS_DESCRIPTION">
+            <Text>Byzantine unique [TIP:LOC_PEDIA_CONCEPTS_WALL_TOOLTIP]Wall[/TIP], available from the Themata civic instead of Castles. Turns the District into a [TIP:LOC_PEDIA_CONCEPTS_FORTIFIED_DISTRICTS_TOOLTIP]Fortified District[/TIP], adding 100 [icon:Action_Heal] HP and giving it a defense strength when attacked. Can be built on every District of a Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_WALLS_THEODOSIUS_TOOLTIP">
+            <Text>The triple land walls of Constantinople, unbreached for a thousand years.</Text>
+        </Row>
+        <Row Tag="LOC_REMAP_BYZANTIUM_WALLS_THEODOSIUS">
+            <Text>Walls of Theodosius</Text>
+        </Row>
     </EnglishText>
 </Database>
