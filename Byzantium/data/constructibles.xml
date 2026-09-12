@@ -65,17 +65,17 @@
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_GOLD" Amount="3"/>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_HAPPINESS" Amount="3"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_GOLD" Amount="3"/>
-        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_HAPPINESS" Amount="3"/>
     </Constructible_Maintenances>
     <Constructible_Adjacencies>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldChangeId="HippodromeQuarterCulture"/>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldChangeId="WonderCulture"/>
-        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="WonderDiplomacy"/>
-        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="GreatPalaceCoastDiplomacy"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="GreatPalaceCoastCulture"/>
+        <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldChangeId="GreatPalaceRiverCulture"/>
     </Constructible_Adjacencies>
     <Adjacency_YieldChanges>
         <Row ID="HippodromeQuarterCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentQuarter="true"/>
-        <Row ID="GreatPalaceCoastDiplomacy" YieldType="YIELD_DIPLOMACY" YieldChange="1" TilesRequired="1" AdjacentTerrain="TERRAIN_COAST"/>
+        <Row ID="GreatPalaceCoastCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentTerrain="TERRAIN_COAST"/>
+        <Row ID="GreatPalaceRiverCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" AdjacentRiver="true"/>
     </Adjacency_YieldChanges>
     <Constructible_Plunders>
         <Row ConstructibleType="BUILDING_HIPPODROME" PlunderType="PLUNDER_CULTURE" Amount="80"/>

@@ -14,7 +14,7 @@
             <Text>Great Palace</Text>
         </Row>
         <Row Tag="LOC_BUILDING_GREAT_PALACE_DESCRIPTION">
-            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_DIPLOMACY] Influence, +6 [icon:YIELD_GOLD] Gold and +3 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonder[/TIP]. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Hippodrome. Can be purchased in Towns for about 600 [icon:YIELD_GOLD] Gold.</Text>
+            <Text>Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP]. +6 [icon:YIELD_DIPLOMACY] Influence, +6 [icon:YIELD_GOLD] Gold and +3 [icon:YIELD_HAPPINESS] Happiness. +1 [icon:YIELD_CULTURE] Culture for each adjacent Coast or River tile. [TIP:LOC_PEDIA_CONCEPTS_AGELESS_TOOLTIP]Ageless[/TIP]. Forms the Augustaion with the Hippodrome. Can be purchased in Towns for about 600 [icon:YIELD_GOLD] Gold.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_GREAT_PALACE_TOOLTIP">
             <Text>+1 [icon:YIELD_DIPLOMACY] Influence for each adjacent Coast tile and [icon:WONDER] Wonder.[N]Byzantine [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Building[/TIP].</Text>
