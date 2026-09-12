@@ -26,10 +26,10 @@
             <Text>Dromon</Text>
         </Row>
         <Row Tag="LOC_UNIT_DROMON_DESCRIPTION">
-            <Text>Byzantine Unique Naval Unit that replaces the Galleon and is available from the start of the Age. Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+            <Text>Byzantine Unique Naval Unit that replaces the Galleon and is available from the start of the Age. Greek fire: +8 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP]. +1 additional attack per turn if [icon:Action_Move] Movement allows.</Text>
         </Row>
         <Row Tag="LOC_ABILITY_DROMON_DESCRIPTION">
-            <Text>Greek fire: +5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP].</Text>
+            <Text>Greek fire: +8 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] against [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP]. +1 additional attack per turn if [icon:Action_Move] Movement allows.</Text>
         </Row>
         <Row Tag="LOC_ABILITY_DROMON_PREVIEW">
             <Text>+{1_Amount} Greek fire</Text>

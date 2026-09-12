@@ -17,7 +17,12 @@
                 <Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
             </Requirement>
         </SubjectRequirements>
-        <Argument name="Amount">5</Argument>
+        <Argument name="Amount">8</Argument>
         <String context="Preview">LOC_ABILITY_DROMON_PREVIEW</String>
+    </Modifier>
+    <!-- Two attacks per turn, the Chola Kalam's characteristic (KALAM_MOD_TWO_ATTACKS). -->
+    <Modifier id="DROMON_TWO_ATTACKS" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_UNIT_NUM_ATTACKS">
+        <Argument name="Amount">1</Argument>
+        <String context="Preview">LOC_KALAM_MOD_TWO_ATTACKS_DESCRIPTION</String>
     </Modifier>
 </GameEffects>
