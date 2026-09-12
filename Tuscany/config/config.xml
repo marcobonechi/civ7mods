@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Shell (game setup) side of Tuscany. One Civilizations row per age domain; Exploration is the
-     apex age, the other two are labelled "Tuscany (Time-Tested)". -->
+<!-- Shell (game setup) side of Tuscany. One Civilizations row, in the Exploration domain only:
+     Tuscany belongs to its own age and is not Time-Tested, so there is no Antiquity or Modern
+     row and no "Tuscany (Time-Tested)" name. -->
 <Database>
     <Civilizations>
-        <Row Domain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" CivilizationName="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_NAME" CivilizationFullName="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" CivilizationIcon="CIVILIZATION_TUSCANY" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_TUSCANY"/>
         <Row Domain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" CivilizationName="LOC_CIVILIZATION_TUSCANY_NAME" CivilizationFullName="LOC_CIVILIZATION_TUSCANY_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" CivilizationIcon="CIVILIZATION_TUSCANY" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_TUSCANY"/>
-        <Row Domain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" CivilizationName="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_NAME" CivilizationFullName="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_FULLNAME" CivilizationDescription="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" CivilizationIcon="CIVILIZATION_TUSCANY" CivilizationIntroText="LOC_LOADING_CIV_INTRO_TEXT_TUSCANY"/>
     </Civilizations>
     <CivilizationItems>
-        <Row CivilizationDomain="AntiquityAgeCivilizations" AgeType="AGE_ANTIQUITY" CivilizationType="CIVILIZATION_TUSCANY" Type="TRAIT_TUSCANY_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_TUSCANY_ABILITY_NAME" Description="LOC_TRAIT_TUSCANY_ABILITY_AQ_DESCRIPTION"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" AgeType="AGE_EXPLORATION" CivilizationType="CIVILIZATION_TUSCANY" Type="TRAIT_TUSCANY_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_TUSCANY_ABILITY_NAME" Description="LOC_TRAIT_TUSCANY_ABILITY_DESCRIPTION"/>
-        <Row CivilizationDomain="ModernAgeCivilizations" AgeType="AGE_MODERN" CivilizationType="CIVILIZATION_TUSCANY" Type="TRAIT_TUSCANY_ABILITY" Kind="KIND_TRAIT" Name="LOC_TRAIT_TUSCANY_ABILITY_NAME" Description="LOC_TRAIT_TUSCANY_ABILITY_MO_DESCRIPTION"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" Type="UNIT_MAESTRO" Kind="KIND_UNIT" Name="LOC_UNIT_MAESTRO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" Icon="UNIT_MAESTRO"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" Type="UNIT_CONDOTTIERO" Kind="KIND_UNIT" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_BASE_DESCRIPTION" Icon="UNIT_CONDOTTIERO"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" Type="UNIT_GALEA_SANTO_STEFANO" Kind="KIND_UNIT" Name="LOC_UNIT_GALEA_SANTO_STEFANO_NAME" Description="LOC_UNIT_GALEA_SANTO_STEFANO_DESCRIPTION" Icon="UNIT_GALEA_SANTO_STEFANO"/>
@@ -19,16 +16,14 @@
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" Type="BUILDING_BANCO" Kind="KIND_BUILDING" Name="LOC_BUILDING_BANCO_NAME" Description="LOC_BUILDING_BANCO_DESCRIPTION" Icon="BUILDING_BANCO"/>
     </CivilizationItems>
     <CivilizationTags>
-        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_ECONOMIC"/>
-        <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_ECONOMIC"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_CULTURAL"/>
         <Row CivilizationDomain="ExplorationAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_APEX_AGE_EXPLORATION"/>
-        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_ECONOMIC"/>
-        <Row CivilizationDomain="ModernAgeCivilizations" CivilizationType="CIVILIZATION_TUSCANY" TagType="TAG_TRAIT_CULTURAL"/>
     </CivilizationTags>
     <CivilizationUnlocks>
-        <!-- Antiquity civs that lead to Tuscany. The Etruscans are added by the Etruscans mod. -->
+        <!-- Antiquity civs that lead to Tuscany. The Etruscans are added by the Etruscans mod.
+             CivilizationDomain here is the *unlocking* civ's domain, not Tuscany's: these are
+             paths into Tuscany and stay even though Tuscany itself is Exploration-only. -->
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_ROME" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
         <Row CivilizationDomain="AntiquityAgeCivilizations" CivilizationType="CIVILIZATION_GREECE" AgeDomain="StandardAges" AgeType="AGE_EXPLORATION" Type="CIVILIZATION_TUSCANY" Kind="KIND_CIVILIZATION" Name="LOC_CIVILIZATION_TUSCANY_NAME" Description="LOC_CIVILIZATION_TUSCANY_DESCRIPTION" Icon="CIVILIZATION_TUSCANY"/>
         <!-- Modern civs Tuscany leads to. -->

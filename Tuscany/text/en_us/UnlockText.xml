@@ -8,7 +8,7 @@
             <Text>Play as Lorenzo</Text>
         </Row>
         <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_TUSCANY_TOOLTIP">
-            <Text>Tuscany keeps its own civilization across the ages.</Text>
+            <Text>[B]Tuscany[/B] is already yours to keep.</Text>
         </Row>
         <Row Tag="LOC_UNLOCK_PLAY_AS_TUSCANY_AMERICA_TOOLTIP">
             <Text>A Florentine navigator gave the hemisphere its name.</Text>

@@ -4,22 +4,10 @@
         <Row Tag="LOC_CIVILIZATION_TUSCANY_DESCRIPTION">
             <Text>A republic of bankers and wool merchants on the Arno that spent its money on painters, architects and Greek manuscripts, and sent its navigators west to find out what was there.</Text>
         </Row>
-        <Row Tag="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_NAME">
-            <Text>Tuscany (Time-Tested)</Text>
-        </Row>
-        <Row Tag="LOC_CIVILIZATION_TUSCANY_TIME_TESTED_FULLNAME">
-            <Text>The Florentine Republic, Time-Tested</Text>
-        </Row>
         <Row Tag="LOC_TRAIT_TUSCANY_ABILITY_NAME">
             <Text>Rinascimento</Text>
         </Row>
         <Row Tag="LOC_TRAIT_TUSCANY_ABILITY_DESCRIPTION">
-            <Text>+2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements. +1 [icon:YIELD_CULTURE] Culture for each Great Work in a Settlement. +45% [icon:YIELD_PRODUCTION] Production toward Santa Maria del Fiore.</Text>
-        </Row>
-        <Row Tag="LOC_TRAIT_TUSCANY_ABILITY_AQ_DESCRIPTION">
-            <Text>+2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements. +1 [icon:YIELD_CULTURE] Culture for each Great Work in a Settlement.</Text>
-        </Row>
-        <Row Tag="LOC_TRAIT_TUSCANY_ABILITY_MO_DESCRIPTION">
             <Text>+2 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements. +1 [icon:YIELD_CULTURE] Culture for each Great Work in a Settlement. +45% [icon:YIELD_PRODUCTION] Production toward Santa Maria del Fiore.</Text>
         </Row>
         <Row Tag="LOC_TRAIT_TUSCANY_ABILITY_PREVIEW">

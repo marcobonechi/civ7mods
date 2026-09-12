@@ -12,10 +12,6 @@
         <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockCivilizationType="CIVILIZATION_AMERICA"/>
         <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockCivilizationType="CIVILIZATION_FRENCH_EMPIRE"/>
     </CivilizationSyncretismUnlocks>
-    <CivSelfSyncretismUnlocks>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_TUSCANY_SYNCRETISM_ANTIQUITY" Kind="KIND_TRADITION" Age="AGE_ANTIQUITY" ModifierID="MOD_UNLOCK_TUSCANY_SYNCRETISM_ANTIQUITY"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_CULTURE_SLOT" Kind="KIND_CULTURE_SLOT" Age="AGE_ANTIQUITY" ModifierID="MOD_SELF_SYNCRETISM_GRANT_TRADITION_SLOT"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_TUSCANY_SYNCRETISM_MODERN" Kind="KIND_TRADITION" Age="AGE_MODERN" ModifierID="MOD_UNLOCK_TUSCANY_SYNCRETISM_MODERN"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" UnlockType="TRADITION_CULTURE_SLOT" Kind="KIND_CULTURE_SLOT" Age="AGE_MODERN" ModifierID="MOD_SELF_SYNCRETISM_GRANT_TRADITION_SLOT"/>
-    </CivSelfSyncretismUnlocks>
+    <!-- No CivSelfSyncretismUnlocks: that table is what lets a civilization be taken again in a
+         later age, and Tuscany belongs to the Exploration Age alone. -->
 </Database>

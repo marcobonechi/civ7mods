@@ -129,11 +129,25 @@ Traditions:
 Test of Time nodes: `NODE_CIVIC_AQ_TUSCANY_ORIGINS` (cost 150) and
 `NODE_CIVIC_MO_TUSCANY_GRANDUCATO` (cost 2000), wired like Byzantium's.
 
-## 2. Playable in every age
+## 2. Exploration Age only
 
-Same as Byzantium: shell rows in all three domains, the non-apex two labelled "Tuscany
-(Time-Tested)"; ability modifiers in every age; Test of Time nodes; self-syncretism traditions.
-No out-of-age unique units in v1.
+Tuscany is **not** Time-Tested, unlike Byzantium and the Etruscans. It belongs to the Exploration
+Age and nothing else: one `Civilizations` row in the shell config (`ExplorationAgeCivilizations`),
+one set of `CivilizationItems` and `CivilizationTags`, ability modifiers wired only in
+`civilizations-exploration.xml`, no `TRAIT_ATTRIBUTE_*_TOT_AQ` / `_TOT_MO`, no nodes in the
+Antiquity or Modern Test of Time trees, and no `CivSelfSyncretismUnlocks` — that last table is
+precisely what lets a civilization be taken again in a later age.
+
+What does stay, and is easy to mistake for the same thing:
+
+- The `CivilizationUnlocks` rows whose `CivilizationDomain` is `AntiquityAgeCivilizations`. Those
+  are Rome and Greece (and, from the Etruscans mod, Etruria) leading *into* Tuscany — the domain
+  is the unlocking civ's, not Tuscany's.
+- `exploration-age-persist` in the modinfo, which spans Exploration **and** Modern. The Piazza,
+  Santa Maria del Fiore and the traditions that name them are AGELESS and have to survive into
+  the Modern Age even though Tuscany itself cannot be chosen there.
+- Lorenzo's `TRAIT_AQ_ECONOMIC_VICTORY` and `TRAIT_MO_CULTURE_VICTORY`. A leader plays every age
+  whatever civ they are wearing.
 
 ## 3. Leader: Lorenzo il Magnifico
 
@@ -141,16 +155,29 @@ No out-of-age unique units in v1.
 twelve years and paid for the workshops that trained Michelangelo. Attributes **Cultural +
 Economic** (tags `TAG_TRAIT_CULTURAL`, `TAG_TRAIT_ECONOMIC`, `TAG_GENDER_MALE`).
 
-Ability **Il Magnifico** (`TRAIT_LEADER_LORENZO_ABILITY`):
-1. +2 Gold per Great Work in a Settlement (`EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK`).
-2. +1 Happiness per Great Work in a Settlement (same effect, Happiness).
-3. +1 Culture in every Settlement (`EFFECT_CITY_ADJUST_YIELD`).
+Ability **Il Magnifico** (`TRAIT_LEADER_LORENZO_ABILITY`), ten modifiers:
+
+*The workshops.* +3 Gold and +1 Happiness per Great Work in a Settlement
+(`EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK`), +1 Culture in every Settlement.
+
+*Wonders.* +20% Production toward Wonders (`EFFECT_CITY_ADJUST_WONDER_PRODUCTION`) — above the 15%
+at the top of the base game's range, because it is his headline.
+
+*The bank.* +50% Trade Route income (`EFFECT_CITY_ADJUST_TRADE_YIELD`), +3 Gold per Trade Route,
++1 Trade capacity, and 15% off building purchases.
+
+*Freedom of thought.* +1 Science in every Settlement — deliberately the smallest number on the
+sheet; Florence did not fund laboratories, it left Leonardo and Vespucci alone to think.
+
+*Agenda.* **Patron of Workshops**, weighing `DIPLOMACY_AGENDA_COMPARE_NUM_GREAT_WORKS`. Every
+shipped leader has an agenda and the AI reads it.
 
 Victory traits: `TRAIT_AQ_ECONOMIC_VICTORY`, `TRAIT_EX_CULTURE_VICTORY`, `TRAIT_MO_CULTURE_VICTORY`.
 Leader unlocks: Tuscany in Exploration, America in Modern.
 
-**Art**: same limitation as Porsenna — 2D PNGs we ship, and `BasePersonaType` pointed at an
-existing leader (`LEADER_MACHIAVELLI`, a Florentine already in the game) for the 3D persona.
+**Art**: same limitation as Porsenna — 2D PNGs we ship, and the 3D model borrowed from
+`LEADER_MACHIAVELLI` (a Florentine already in the game) by rewriting the asset name in
+`ui/tuscany-images.js`. `BasePersonaType` is kept in step with it but supplies no model of its own.
 
 ## 4. Files
 

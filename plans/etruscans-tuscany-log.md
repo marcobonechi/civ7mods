@@ -714,3 +714,34 @@ Two lessons from one afternoon, both the same shape: **a single bad row does not
 bad icon Context drops every icon in the mod; a duplicate text tag drops every mod in the game.
 `Database.log` and `Modding.log` name the file each time, and they are the first place to look —
 before any theorising about the UI.
+
+### 2026-09-11 (evening) — Tuscany is Exploration-only
+
+Marco: make Tuscany an Exploration Age civ, not Time-Tested. Removed, in the shell config, the
+`Civilizations` / `CivilizationItems` / `CivilizationTags` rows for the Antiquity and Modern
+domains; in the gameplay data, `civilizations-antiquity.xml`, `civilizations-modern.xml` and the
+two Test of Time civic-tree files, the `TRAIT_ATTRIBUTE_*_TOT_AQ` / `_TOT_MO` grants, the
+`CivSelfSyncretismUnlocks` block (that table is *the* time-tested mechanism — it is what lets a
+civilization be taken again in a later age), the two other-age traditions (Fiorino I, Umanesimo II)
+and the two self-syncretism traditions with their modifiers; and the now-dead text tags, including
+`LOC_CIVILIZATION_TUSCANY_TIME_TESTED_NAME`. Two `ActionGroups` and two `Criteria` came out of the
+modinfo with them.
+
+Three things look like they belong to the other ages and do not:
+
+- The `CivilizationUnlocks` rows with `CivilizationDomain="AntiquityAgeCivilizations"`. Those are
+  Rome and Greece leading *into* Tuscany; the domain is the unlocking civ's, not Tuscany's. I
+  deleted them by pattern and had to put them back — which is the whole argument for reading the
+  diff rather than trusting the filter.
+- `exploration-age-persist`, which spans Exploration and Modern. The Piazza, Santa Maria del Fiore
+  and the traditions naming them are AGELESS and have to outlive the age.
+- Lorenzo's `TRAIT_AQ_ECONOMIC_VICTORY` and `TRAIT_MO_CULTURE_VICTORY`. A leader plays every age
+  whatever civ they are wearing.
+
+One more line-filter casualty worth recording: dropping every line containing
+`TRADITION_TUSCANY_FIORINO_I` also took out the Exploration-age `TRADITION_TUSCANY_FIORINO` row,
+because that row carried `ObsoletesTraditionType="TRADITION_TUSCANY_FIORINO_I"`. Restored, minus
+the obsoletes attribute, which now points at nothing.
+
+`plans/tuscany.md` §2 rewritten from "Playable in every age" to "Exploration Age only", and §3
+brought up to date with Lorenzo's ten modifiers while I was in there.

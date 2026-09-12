@@ -17,15 +17,12 @@
         <Criteria id="always">
             <AlwaysMet></AlwaysMet>
         </Criteria>
-        <Criteria id="antiquity-age-current">
-            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
-        </Criteria>
         <Criteria id="exploration-age-current">
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
         </Criteria>
-        <Criteria id="modern-age-current">
-            <AgeInUse>AGE_MODERN</AgeInUse>
-        </Criteria>
+        <!-- The quarter, the wonder and the traditions that name them are AGELESS, so they have
+             to survive into the Modern Age even though Tuscany itself is only playable in the
+             Exploration Age. -->
         <Criteria id="exploration-age-persist" any="true">
             <AgeInUse>AGE_EXPLORATION</AgeInUse>
             <AgeInUse>AGE_MODERN</AgeInUse>
@@ -144,28 +141,6 @@
                     <Item>data/greatpeople-gameeffects.xml</Item>
                     <Item>data/greatpeople.xml</Item>
                     <Item>data/progression-trees-tech.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="tuscany-antiquity" scope="game" criteria="antiquity-age-current">
-            <Properties>
-                <LoadOrder>10</LoadOrder>
-            </Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/civilizations-antiquity.xml</Item>
-                    <Item>data/progression-trees-culture-unique-aq.xml</Item>
-                </UpdateDatabase>
-            </Actions>
-        </ActionGroup>
-        <ActionGroup id="tuscany-modern" scope="game" criteria="modern-age-current">
-            <Properties>
-                <LoadOrder>10</LoadOrder>
-            </Properties>
-            <Actions>
-                <UpdateDatabase>
-                    <Item>data/civilizations-modern.xml</Item>
-                    <Item>data/progression-trees-culture-unique-mo.xml</Item>
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>

@@ -17,11 +17,7 @@
         <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_TUSCANY"/>
         <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_TUSCANY_ABILITY"/>
         <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_ECONOMIC"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_ECONOMIC_TOT_AQ"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_ECONOMIC_TOT_MO"/>
         <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_CULTURAL"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_CULTURAL_TOT_AQ"/>
-        <Row CivilizationType="CIVILIZATION_TUSCANY" TraitType="TRAIT_ATTRIBUTE_CULTURAL_TOT_MO"/>
     </CivilizationTraits>
     <LeaderCivPriorities>
         <Row Leader="LEADER_LORENZO" Civilization="CIVILIZATION_TUSCANY" Priority="3"/>
