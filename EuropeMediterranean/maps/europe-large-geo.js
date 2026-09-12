@@ -993,7 +993,12 @@ export const GEO = {
         CIVILIZATION_FRENCH_EMPIRE: [2.35, 48.85],
         CIVILIZATION_PRUSSIA: [13.4, 52.5],
         CIVILIZATION_RUSSIA: [37.6, 55.75],
-        CIVILIZATION_GREAT_BRITAIN: [0.48, 51.41]
+        CIVILIZATION_GREAT_BRITAIN: [0.48, 51.41],
+        // Not shipped by the base game or by any mod in this repo yet - the start lookup only
+        // reads GEO.tsl[civ] for civs alive in the game, so these sit inert until the civs exist.
+        CIVILIZATION_SCYTHIA: [34.40, 47.50],   // Kamianka, the Dnieper bend in the Pontic steppe
+        CIVILIZATION_KUSH: [33.70, 16.90],      // Meroe, on the Nile south of Egypt
+        CIVILIZATION_SUMER: [46.10, 30.90]      // Ur, the lower Euphrates near the Gulf
     },
 
     // Fallback start sites, best first: Morocco and Scandinavia are ranked high on this map
@@ -1032,7 +1037,8 @@ export const GEO = {
         [43.47, 11.36, "Zeila"],
         // --- Ukraine, the Pontic steppe and the western Rus ---
         [24.03, 49.84, "Lviv"], [28.86, 47.01, "Chisinau"], [30.73, 46.48, "Odesa"],
-        [35.14, 47.84, "Zaporizhzhia"], [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
+        [35.14, 47.84, "Zaporizhzhia"], [34.40, 47.50, "Kamianka"], [46.10, 30.90, "Ur"],
+            [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
         [32.05, 54.78, "Smolensk"]
     ]
 };

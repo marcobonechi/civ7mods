@@ -670,3 +670,47 @@ text is always there. Removed, leaving only the two `..._BYZANTIUM_TOOLTIP` tags
 defines is an error, with the consequence spelled out. Verified it catches the exact bug. The rule
 is also in the skill reference now: **a text tag belongs to exactly one mod**, and a cross-mod file
 behind a `ModInUse` criteria can rely on the other mod's tags being present.
+
+### 2026-09-11 (again) — the invented icon context, and what it really explains
+
+Marco launched again: no errors in `Modding.log` this time, but the mod civilizations were gone
+from the setup screen. `Database.log` had it:
+
+```
+[IconManager] ERROR: FOREIGN KEY constraint failed
+While executing - insert into IconDefinitions('ID','Path','Context')
+  values ('LEADER_PORSENNA','fs://game/etruscans/lp_hex_porsenna_256','LEADER');
+[IconManager]: .../Mods/Etruscans/data/icons/icons.xml
+```
+
+The `Context=LEADER` row I added an hour ago for the city-banner portraits is invalid.
+`IconDefinitions.Context` is a foreign key — `IconDefinitions` → `Icons` → `IconContexts` — and the
+only contexts the game defines are `DEFAULT`, `CIRCLE_MASK`, `PORTRAIT_MASK`, `LEADER_HAPPY`,
+`LEADER_ANGRY`, `BACKGROUND`, `BACKGROUND_VERT`, `BACKGROUND_HORIZ`, `BUBBLE`, `PLAYER`, `BADGE`,
+`OUTLINE`, `FOW`, `FONTICON`. There is **no `LEADER` context**, even though `utilities-image.js`
+asks for one — that call simply always falls through to the default row, which is exactly why
+Firaxis's extensionless `blp:` default path works for their leaders and our `.png` one does not.
+The bad row failed, and with it the whole `icons.xml` for both mods. Reverted; the portrait fix now
+rests entirely on the JavaScript side, which is where it belonged.
+
+And this is very probably **the answer to bug 1 as well**. `age-civ-select-model.js`:
+
+```js
+const image = GameSetup.resolveString(civData.icon);
+if (!image) { console.error(...); continue; }   // <- the civ is not added to the list at all
+```
+
+A civ whose icon will not resolve is *skipped*, not shown locked. That is precisely "Tuscany was
+not even shown as locked at transition" — a dropped icons file makes a civ vanish rather than
+appear greyed out. Whether Tuscany's file was already being dropped for some other reason on the
+earlier run, I cannot now tell: `Database.log` had rolled over by the time I looked. But the
+mechanism is confirmed, and `[IconManager]` in `Database.log` is where it is written down.
+
+`tools/check-mod.py` gains check 6: any `<Context>` in `<IconDefinitions>` outside that list is an
+error, with the consequence spelled out. Verified against the exact row. Both rules — this one and
+yesterday's duplicate-tag rule — are in the skill reference now.
+
+Two lessons from one afternoon, both the same shape: **a single bad row does not fail alone.** A
+bad icon Context drops every icon in the mod; a duplicate text tag drops every mod in the game.
+`Database.log` and `Modding.log` name the file each time, and they are the first place to look —
+before any theorising about the UI.

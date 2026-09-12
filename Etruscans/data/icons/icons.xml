@@ -38,11 +38,6 @@
              extension back for them. -->
         <Row>
             <ID>LEADER_PORSENNA</ID>
-            <Path>fs://game/etruscans/lp_hex_porsenna_256</Path>
-            <Context>LEADER</Context>
-        </Row>
-        <Row>
-            <ID>LEADER_PORSENNA</ID>
             <Path>fs://game/etruscans/lp_hex_porsenna_128.png</Path>
             <IconSize>128</IconSize>
         </Row>

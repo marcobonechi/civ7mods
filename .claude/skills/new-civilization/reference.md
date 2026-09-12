@@ -296,6 +296,14 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
+- **`IconDefinitions.Context` is a foreign key** (`IconDefinitions` -> `Icons` -> `IconContexts`),
+  and the only values the game defines are `DEFAULT`, `CIRCLE_MASK`, `PORTRAIT_MASK`,
+  `LEADER_HAPPY`, `LEADER_ANGRY`, `BACKGROUND`, `BACKGROUND_VERT`, `BACKGROUND_HORIZ`, `BUBBLE`,
+  `PLAYER`, `BADGE`, `OUTLINE`, `FOW`, `FONTICON`. There is **no `LEADER` context**, even though
+  `utilities-image.js` asks for one - that call always falls through to the default row. Invent a
+  context and the row fails, the whole icons file is dropped, and the civ then *disappears* from
+  the setup and age-transition screens: `age-civ-select-model.js` skips any civ whose icon does
+  not resolve. `Database.log` names it under `[IconManager]`.
 - **Never define the same `LOC_` tag in two mods.** The localization database keys on the tag,
   so the second file to load fails, the game rolls the *whole* database back, and every
   installed mod vanishes from the game - not just yours. This bites exactly where it is

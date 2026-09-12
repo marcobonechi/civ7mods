@@ -9,7 +9,11 @@ Reports, without touching the game:
   4. Type-like identifiers (CIVILIZATION_*, UNIT_*, MOD_*, REQSET_* ...) referenced in the
      mod that are neither introduced by the mod nor known to the game.
   5. Identifiers declared in <Types> that no concrete table (Units, Traditions ...) defines.
-  6. LOC_ text tags this mod defines that a --with companion also defines. Two mods that
+  6. <IconDefinitions> rows with a Context the game does not define. Context is a foreign key
+     to IconContexts; an unknown one fails the row, and the icons file is then dropped whole -
+     which strips the civ of its symbol and makes it vanish from the setup and age-transition
+     screens, because those skip any civ whose icon will not resolve.
+  7. LOC_ text tags this mod defines that a --with companion also defines. Two mods that
      define the same tag is a duplicate key in the localization database: the second file to
      load fails, the game rolls the whole database back, and *every* installed mod disappears
      from the game. It cost a launch to find out.
@@ -26,6 +30,14 @@ import re
 import sys
 import time
 import xml.etree.ElementTree as ET
+
+# Every Context the shipped IconDefinitions actually use, plus the implicit default. Context is
+# a foreign key (IconDefinitions -> Icons -> IconContexts), so anything else fails the row.
+# Notably there is no "LEADER" context: core/ui/utilities/utilities-image.js asks for one and
+# always falls through to the default row.
+ICON_CONTEXTS = {"DEFAULT", "CIRCLE_MASK", "PORTRAIT_MASK", "LEADER_HAPPY", "LEADER_ANGRY",
+                 "BACKGROUND", "BACKGROUND_VERT", "BACKGROUND_HORIZ", "BUBBLE", "PLAYER",
+                 "BADGE", "OUTLINE", "FOW", "FONTICON"}
 
 DEFAULT_GAME = os.path.expanduser(
     "~/Library/Application Support/Steam/steamapps/common/"
@@ -221,7 +233,24 @@ def check(mod, game_idents, game_tags, companion_tags=None):
                     for m in LOC.finditer(row.text):
                         referenced_tags.setdefault(m.group(0), rel)
 
-    # 6. A tag two mods both define takes the whole database down (see the header).
+    # 6. An unknown icon Context fails the row and drops the whole icons file.
+    for path, root in parsed.items():
+        rel = os.path.relpath(path, mod)
+        for table in root:
+            if table.tag.split("}")[-1] != "IconDefinitions":
+                continue
+            for row in table:
+                for child in row:
+                    if child.tag.split("}")[-1] == "Context" and child.text:
+                        ctx = child.text.strip()
+                        if ctx not in ICON_CONTEXTS:
+                            ident = next((c.text.strip() for c in row
+                                          if c.tag.split("}")[-1] == "ID" and c.text), "?")
+                            print(f"ERROR: {rel}: icon Context {ctx} (on {ident}) is not one the "
+                                  f"game defines; the row fails and the whole icons file is dropped")
+                            problems += 1
+
+    # 7. A tag two mods both define takes the whole database down (see the header).
     clashes = sorted((t, who) for t, who in (companion_tags or {}).items() if t in defined_tags)
     for t, who in clashes:
         print(f"ERROR: text tag {t} is defined by this mod and also by {who}; "
