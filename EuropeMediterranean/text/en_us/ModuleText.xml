@@ -2,10 +2,10 @@
 <Database>
     <EnglishText>
         <Row Tag="LOC_MODULE_EUROPE_MED_NAME">
-            <Text>Europe &amp; Mediterranean</Text>
+            <Text>Europe, Mediterranean, North Africa</Text>
         </Row>
         <Row Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION">
-            <Text>Adds the "Europe &amp; Mediterranean" map: the Mediterranean world and Europe from the Urals to Iceland and from Morocco to the Sinai, with true start locations for civilizations from the region.</Text>
+            <Text>Adds the "Europe, Mediterranean, North Africa" map: the Mediterranean world, Europe from the Urals to Iceland, and North Africa from Morocco to the Sinai, with true start locations for civilizations from the region.</Text>
         </Row>
     </EnglishText>
 </Database>

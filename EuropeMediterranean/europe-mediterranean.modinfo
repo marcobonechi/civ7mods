@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mod id="europe-mediterranean-map" version="53" xmlns="ModInfo">
     <Properties>
-        <Name>LOC_MODULE_EUROPE_MED_NAME</Name>
-        <Description>LOC_MODULE_EUROPE_MED_DESCRIPTION</Description>
+        <Name>Europe, Mediterranean, North Africa</Name>
+        <Description>Adds the "Europe, Mediterranean, North Africa" map: the Mediterranean world, Europe from the Urals to Iceland, and North Africa from Morocco to the Sinai, with true start locations for civilizations from the region.</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
         <Version>53</Version>
