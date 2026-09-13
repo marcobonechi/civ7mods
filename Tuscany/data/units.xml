@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Exploration Age uniques: the Condottiero line, the Galea di Santo Stefano, and the Maestro,
-     the trainable half of Tuscany's unique Great Person class (see greatpeople.xml). -->
+     the trainable half of Tuscany's unique Great Person class (see greatpeople.xml).
+
+     Condottiero combat is +5 over the Swordsman / Man-at-Arms / Pikeman it replaces, which is the
+     ceiling the base game uses for a unique unit: across all 130 unique/base pairs the median
+     difference is 0 and only one outlier goes past +5. That puts every tier level with the *next*
+     standard unit - the tier 1 fights a Man-at-Arms evenly, the tier 2 a Pikeman, the tier 3 a
+     Lancer. It was +2 before, which made it a Swordsman that cost more, and it died to everything.
+     The price of that is upkeep one above the line at every tier: a condottiere was hired, and
+     went home when the pay stopped. -->
 <Database>
     <Types>
         <Row Type="UNIT_CONDOTTIERO" Kind="KIND_UNIT"/>
@@ -23,8 +31,8 @@
     </Types>
     <Units>
         <Row UnitType="UNIT_CONDOTTIERO" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
-        <Row UnitType="UNIT_CONDOTTIERO_2" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_2_DESCRIPTION" Tier="2" Maintenance="4" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
-        <Row UnitType="UNIT_CONDOTTIERO_3" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_3_DESCRIPTION" Tier="3" Maintenance="5" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_2_DESCRIPTION" Tier="2" Maintenance="5" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" Name="LOC_UNIT_CONDOTTIERO_NAME" Description="LOC_UNIT_CONDOTTIERO_3_DESCRIPTION" Tier="3" Maintenance="7" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
         <Row UnitType="UNIT_GALEA_SANTO_STEFANO" Name="LOC_UNIT_GALEA_SANTO_STEFANO_NAME" Description="LOC_UNIT_GALEA_SANTO_STEFANO_DESCRIPTION" Tier="1" Maintenance="3" BaseSightRange="3" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_NAVAL" Domain="DOMAIN_SEA" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_NAVAL" ZoneOfControl="true" TraitType="TRAIT_TUSCANY"/>
         <Row UnitType="UNIT_MAESTRO" Name="LOC_UNIT_MAESTRO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY"/>
         <Row UnitType="UNIT_MAESTRO_LEONARDO" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_LEONARDO_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
@@ -39,9 +47,9 @@
         <Row UnitType="UNIT_MAESTRO_VESPUCCI" Name="LOC_GREAT_PERSON_INDIVIDUAL_MAESTRO_VESPUCCI_NAME" Description="LOC_UNIT_MAESTRO_DESCRIPTION" BaseSightRange="1" BaseMoves="5" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_CIVILIAN" FormationClass="FORMATION_CLASS_CIVILIAN" ZoneOfControl="false" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES" CostProgressionParam1="40" TraitType="TRAIT_TUSCANY" CanTrain="false" CanPurchase="false"/>
     </Units>
     <Unit_Stats>
-        <Row UnitType="UNIT_CONDOTTIERO" Combat="37"/>
-        <Row UnitType="UNIT_CONDOTTIERO_2" Combat="42"/>
-        <Row UnitType="UNIT_CONDOTTIERO_3" Combat="47"/>
+        <Row UnitType="UNIT_CONDOTTIERO" Combat="40"/>
+        <Row UnitType="UNIT_CONDOTTIERO_2" Combat="45"/>
+        <Row UnitType="UNIT_CONDOTTIERO_3" Combat="50"/>
         <Row UnitType="UNIT_GALEA_SANTO_STEFANO" Combat="30" RangedCombat="35" Bombard="30" Range="2"/>
     </Unit_Stats>
     <Unit_Costs>

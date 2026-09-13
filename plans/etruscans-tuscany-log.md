@@ -745,3 +745,37 @@ the obsoletes attribute, which now points at nothing.
 
 `plans/tuscany.md` §2 rewritten from "Playable in every age" to "Exploration Age only", and §3
 brought up to date with Lorenzo's ten modifiers while I was in there.
+
+### 2026-09-12 — the Condottiero was a Swordsman that cost more
+
+Marco: the Condottiero dies to everything. He is right, and the numbers say why.
+
+It was Combat 37 / 42 / 47 against the Swordsman / Man-at-Arms / Pikeman it replaces (35 / 40 / 45)
+— **+2** — while costing 140 / 180 / 230 against their 130 / 170 / 220. Those are exactly Spain's
+Tercio numbers, except the Tercio costs the standard 130 / 170 / 220. So we had shipped a unit that
+was a Tercio in strength and dearer in production, and a tier-1 unique at 37 in the Exploration Age
+is a unit every opponent's Man-at-Arms beats.
+
+Measured the real budget rather than guessing: across all 130 `CivUniqueUnitReplaces` pairs in the
+base game and DLC, the median strength difference between a unique and the unit it replaces is
+**0**, and **+5 is the ceiling** — only the Yumi's second tier goes further, on single-digit archer
+numbers. (Script in the session, worth rebuilding if this comes up again: parse `Unit_Stats`,
+`UnitReplaces`, `Unit_Costs` and `Maintenance` out of every `units.xml`, join, sort by delta.)
+
+So: **40 / 45 / 50**, +5, the top of the range. Every tier is now level with the *next* standard
+unit — the first fights a Man-at-Arms evenly, the second a Pikeman, the third a Lancer. Production
+cost stays at the 10-over premium; upkeep goes to **3 / 5 / 7**, one above the standard line at
+every tier, which is where the strength is paid for and is the right flavour besides: a condottiere
+was hired, and went home when the pay stopped. Tuscany is the civ that can afford him.
+
+The *Contratto* ability (+4 attacking) is unchanged, so a tier-1 Condottiero attacks at 44.
+
+Two documentation errors found and fixed in `plans/tuscany.md` §1.3 while checking: the ability was
+written up as "+4 when at full health" when the modifier has always used
+`REQUIREMENT_PLAYER_IS_ATTACKING`, and the tier unlocks were listed as `NODE_TECH_EX_CASTLES` /
+`NODE_TECH_EX_METALLURGY` when the data says `NODE_TECH_EX_HERALDRY` / `NODE_TECH_EX_METAL_CASTING`.
+
+One loose end: Marco reported the strength as 35, and 35 is the Swordsman, not the 37 the
+Condottiero had. Nothing in the data explains a 35 — `UnitReplaces`, `Unit_Stats` and the action
+group all check out — so it was most likely a glance at the wrong tooltip. Worth confirming the
+unit now reads 40 in game.
