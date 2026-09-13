@@ -66,6 +66,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>TuscanyArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/tuscany-images.js</Item>
                 </UIScripts>
@@ -185,6 +188,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>TuscanyArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/tuscany-images.js</Item>
                 </UIScripts>

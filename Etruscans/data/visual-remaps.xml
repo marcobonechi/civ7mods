@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- Custom types borrow the models of shipped ones. From = our type, To = the type whose art is
-     shown. Remaps are keyed by ID and each is a toggle in the game's Options screen. -->
+     shown. Remaps are keyed by ID and each is a toggle in the game's Options screen.
+     Units and wonders only: `To` has to name something that exists in the art data, and unit
+     and wonder assets are named after their type (UNIT_CHARIOT, WONDER_ORACLE) while buildings
+     are not - a building's art is picked by a rule in BIN_Hero_Building_Footprint keyed on
+     [BUILDING:<type>], so a remap has nothing to point at. The Cuniculus and the Tumulus get
+     their models from that table instead, in dlc/civart.json. -->
 <Database>
     <VisualRemaps>
         <Row>
@@ -16,20 +21,6 @@
             <Kind>UNIT</Kind>
             <From>UNIT_TYRRHENIAN_GALLEY</From>
             <To>UNIT_GALLEY</To>
-        </Row>
-        <Row>
-            <ID>REMAP_ETRUSCANS_CUNICULUS</ID>
-            <DisplayName>LOC_REMAP_ETRUSCANS_CUNICULUS</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>BUILDING_CUNICULUS</From>
-            <To>BUILDING_BATH</To>
-        </Row>
-        <Row>
-            <ID>REMAP_ETRUSCANS_TUMULUS</ID>
-            <DisplayName>LOC_REMAP_ETRUSCANS_TUMULUS</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>BUILDING_TUMULUS</From>
-            <To>BUILDING_MONUMENT</To>
         </Row>
         <Row>
             <ID>REMAP_ETRUSCANS_FANUM_VOLTUMNAE</ID>

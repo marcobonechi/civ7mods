@@ -1,0 +1,37 @@
+{
+  "project": {
+    "name": "TuscanyArt",
+    "guid": "84E4D3CF-E73F-44A3-BB60-70D214254378",
+    "displayName": "Tuscany Art",
+    "author": "marcob",
+    "version": "1"
+  },
+  "buildings": [
+    {
+      "target": "BIN_Guildhall_Scaled",
+      "expression": "[BUILDING:BUILDING_BOTTEGA]",
+      "priority": 1,
+      "weight": 1.0
+    },
+    {
+      "target": "BIN_Bank_Scaled",
+      "expression": "[BUILDING:BUILDING_BANCO]",
+      "priority": 1,
+      "weight": 1.0
+    }
+  ],
+  "binArt": [],
+  "improvements": [],
+  "wonders": [],
+  "units": [],
+  "meshes": [],
+  "soundbanks": [],
+  "audioEvents": [],
+  "clones": [],
+  "uiTextures": [],
+  "materials": [],
+  "materialTextures": [],
+  "donors": {
+    "StandardAsset": "DLC/shawnee-tecumseh/Platforms/Mac/BLPs/StandardAsset.blp"
+  }
+}

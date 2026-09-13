@@ -32,8 +32,11 @@ Recipe: `.claude/skills/new-civilization/` (`SKILL.md` + `reference.md`). Worked
 - **Etruscans lead to Tuscany.** Rome and Greece also lead to Tuscany; Etruscans also lead to
   Norman. Tuscany leads to America (Amerigo Vespucci gave the hemisphere its name) and to the
   French Empire (Napoleon's Kingdom of Italy).
-- **No art packages.** Byzantium needed one for the Hagia Sophia; these two use `VisualRemaps`
-  only, so they install by copying a folder and need nothing inside the game bundle.
+- **One small art package each, for the buildings only.** Units and wonders borrow models through
+  `VisualRemaps`; buildings cannot, because a remap's `To` must name an asset in the art data and
+  building models are chosen by a rule keyed on `[BUILDING:<type>]` instead (2026-09-12 entry
+  below). `Tuscany/dlc/TuscanyArt/` and `Etruscans/dlc/EtruscansArt/` are ~40 KB packages carrying
+  four such rules and no geometry, so the mods now do put one folder inside the game install.
 - **Leader 3D is borrowed, not shipped.** The shell asks the engine for
   `<LEADER_TYPE>_GAME_ASSET`; a mod cannot add one. `Leaders.BasePersonaType` is Firaxis's own
   mechanism for alternate personas and is the closest thing to a fallback; failing that the engine
@@ -831,3 +834,92 @@ Checked against eight cases before shipping: ours rewritten and quoted, another 
 base `blp:` values untouched, an already-quoted value untouched, registry lookups still resolving,
 `blp:fs://` still unwrapped, and a non-URL value skipped by the guard. Both rules are in the skill
 reference now.
+
+### 2026-09-12 (later) — the unique buildings were never on the map
+
+Marco noticed the Bottega had no model. Every unique building in both mods had the same defect,
+and the `VisualRemaps` rows meant to fix it could never have worked.
+
+Building art is not addressed by type name. `grep -x` across every `StandardAsset*.blp` in `Base/`
+and all sixty-odd shipped DLC finds assets literally called `UNIT_SWORDSMAN` and
+`WONDER_NOTRE_DAME` — and nothing called `BUILDING_GUILDHALL`. What the packages hold instead are
+bins (`BIN_Guildhall_Scaled`) plus a rule whose expression is `[BUILDING:BUILDING_GUILDHALL]`. The
+rules all live in one bin, `BIN_Hero_Building_Footprint`, which the art toolchain's own notes call
+the engine's dispatch table for constructible art and the only `BIN_` name that appears as a string
+in the game binary. **Its fallback is empty, which is why a building with no entry renders nothing.**
+
+So a `VisualRemap` works for units and wonders because their assets are named after their type, and
+cannot work for a building because there is no asset of that name to point `To` at. The base game's
+one building remap, `BUILDING_PALACE` → `BUILDING_PALACE_FOUNDER`, is a swap between two names that
+both exist in the Founder-edition art, not a way to borrow another building's model.
+
+Four rules were added, one art package per mod, geometry borrowed from the shipped bins:
+
+| building | renders as | why |
+|---|---|---|
+| Bottega | `BIN_Guildhall_Scaled` | the Exploration-age European guild hall — a workshop under an arcade |
+| Banco | `BIN_Bank_Scaled` | the Exploration-age bank, same age and culture as the Medici original |
+| Cuniculus | `BIN_Bath_Scaled` | Antiquity, Mediterranean, water infrastructure; Byzantium's Cistern uses it too |
+| Tumulus | `BIN_Mastaba_Scaled` | the only Antiquity *tomb* in the game; a masonry burial mound, like Cerveteri |
+
+A bin carries the whole construction / completed / pillaged matrix and the per-`BUILDING_CULTURE`
+variants, so pointing a new building at one inherits all of that free. The Tumulus is the one
+judgement call — a mastaba is rectangular where a tumulus is round, and `BIN_Motte_Scaled` is a
+truer earth mound but medieval and topped by a keep. Swapping is one word in `dlc/civart.json`.
+
+`tools/build-byzantium-art.py` became `tools/build-art.py <Mod>...` (or `--all`), which builds
+`Material.blp` only when the manifest declares materials and pins the donor on first build.
+Rebuilding `ByzantiumArt` through it reproduces the committed bytes exactly, which is the check
+that the generalisation changed nothing.
+
+Verified: both packages pass `validate.py`, carry the four expressions, mount at startup
+(`ArtDef.log`, and `tools/check-art.py Tuscany|Etruscans` passes end to end), and both mods still
+pass `check-mod.py`. Not verified: that the models actually appear — Civ 7 logs packages, never
+individual assets, so that needs a Bottega built in a real game.
+
+The dead remap rows and their `LOC_REMAP_*` text are gone; the wonder remaps (Santa Maria del
+Fiore → Notre Dame, Fanum Voltumnae → Oracle) stay, because those do work. Byzantium still has one
+of these dead rows, `BUILDING_GREAT_PALACE` → `BUILDING_GUILDHALL`, and needs the same treatment.
+
+### 2026-09-12 (later) — the black portrait: not an icon at all
+
+Marco sent a screenshot of Byzantium's Liburna selected: name, health, movement all correct, and a
+black square where the unit should be. Which icon is missing? **None.** That panel never asks for
+an icon.
+
+`unit-actions.js:664` and `army-panel.js:311`:
+
+```js
+WorldUI.requestPortrait(unitType, unitType, isUnique ? "UnitPortraitsBG_UNIQUE" : "UnitPortraitsBG_BASE");
+this.portraitImage.style.backgroundImage = `url("live:/${unitType}")`;
+```
+
+The engine renders the unit's **3D asset** into a live texture. A modded unit has no asset of its
+own, and the `VisualRemaps` row that gives it one in the world does not reach that call — so the
+model is right on the map and the portrait is an empty box. Nothing in any log, again: no file is
+ever requested.
+
+Fixed the way the leader model was: proxy `WorldUI.requestPortrait` in the shared hook and swap the
+**second** argument — the asset to render — for the base unit the remap points at, leaving the
+first alone, because that is the texture key the CSS is about to ask for. The pairs live in each
+mod's UI script as `unitPortraits`, mirroring `visual-remaps.xml`.
+
+**Correction to the previous entry.** Yesterday I read Marco's "the Condottiero has no icon inside
+an army commander" as `army-panel.js:398`, the `--button-icon` path, and fixed the unquoted
+`url(fs://...)` there. That bug is real and the fix stands — but the units *inside* a commander are
+drawn at line 311 by `requestPortrait`, not at 398. So the quoting fix was a fix for a different
+screen, and this is the one he was actually looking at. Both were needed; I should have read the
+whole file before claiming the first one was the answer.
+
+Two gaps the work turned up:
+
+- I left `UNIT_MAESTRO_GALILEO` out of the Tuscany map. The new checker caught it within a minute
+  of being written, which is the argument for writing it.
+- **The ten named Maestri have no `VisualRemaps` row at all**, only the generic `UNIT_MAESTRO`
+  does. Their portraits are handled here, but they will have no model on the map. Not fixed: each
+  remap row becomes a player-toggleable checkbox in Options, so ten rows means ten entries all
+  labelled "Tuscan Maestro". Marco's call whether that is worth it.
+
+`tools/check-mod.py` gains check 7: every `VisualRemaps` Kind=UNIT row must have a matching
+`unitPortraits` entry with the same target, and a declared unit with no entry is a warning.
+Verified by breaking an entry two ways and watching it fire.

@@ -13,7 +13,13 @@ Reports, without touching the game:
      to IconContexts; an unknown one fails the row, and the icons file is then dropped whole -
      which strips the civ of its symbol and makes it vanish from the setup and age-transition
      screens, because those skip any civ whose icon will not resolve.
-  7. LOC_ text tags this mod defines that a --with companion also defines. Two mods that
+  7. The `unitPortraits` map in the mod's UI script against `<VisualRemaps>` Kind=UNIT rows.
+     The selected-unit and army panels draw a unit by calling WorldUI.requestPortrait and
+     showing url("live:/<UnitType>"), which renders the unit's own 3D asset - a modded unit has
+     none, and the VisualRemap that gives it one in the world does not reach that call, so the
+     portrait is a black box. The UI script patches it by swapping the asset, and that map has
+     to agree with the remaps.
+  8. LOC_ text tags this mod defines that a --with companion also defines. Two mods that
      define the same tag is a duplicate key in the localization database: the second file to
      load fails, the game rolls the whole database back, and *every* installed mod disappears
      from the game. It cost a launch to find out.
@@ -232,6 +238,42 @@ def check(mod, game_idents, game_tags, companion_tags=None):
                             referenced_idents.setdefault(ident, rel)
                     for m in LOC.finditer(row.text):
                         referenced_tags.setdefault(m.group(0), rel)
+
+    # 7. The portrait stand-in map has to agree with the VisualRemaps (see the header).
+    unit_remaps, declared_units = {}, set()
+    for path, root in parsed.items():
+        for table in root:
+            ttag = table.tag.split("}")[-1]
+            if ttag == "VisualRemaps":
+                for row in table:
+                    kind = row.findtext("Kind")
+                    if kind == "UNIT":
+                        unit_remaps[row.findtext("From")] = row.findtext("To")
+            elif ttag == "Types":
+                for row in table:
+                    if row.get("Kind") == "KIND_UNIT" and row.get("Type"):
+                        declared_units.add(row.get("Type"))
+    portrait_map, script_name = {}, None
+    for name in sorted(os.listdir(os.path.join(mod, "ui"))) if os.path.isdir(os.path.join(mod, "ui")) else []:
+        if not name.endswith(".js"):
+            continue
+        body = open(os.path.join(mod, "ui", name), encoding="utf-8", errors="ignore").read()
+        block = re.search(r"unitPortraits:\s*\{(.*?)\n\s*\},", body, re.S)
+        if block:
+            script_name = "ui/" + name
+            portrait_map.update(dict(re.findall(r"(UNIT_\w+):\s*\"(UNIT_\w+)\"", block.group(1))))
+    if script_name:
+        for unit, to in sorted(unit_remaps.items()):
+            if unit not in portrait_map:
+                print(f"ERROR: {unit} has a VisualRemap to {to} but no entry in {script_name}'s "
+                      f"unitPortraits; its portrait will render as an empty box")
+                problems += 1
+            elif portrait_map[unit] != to:
+                print(f"ERROR: {unit} remaps to {to} but {script_name} renders its portrait as "
+                      f"{portrait_map[unit]}; the two should agree")
+                problems += 1
+        for unit in sorted(declared_units - set(portrait_map)):
+            print(f"WARN: {unit} has no entry in {script_name}'s unitPortraits")
 
     # 6. An unknown icon Context fails the row and drops the whole icons file.
     for path, root in parsed.items():

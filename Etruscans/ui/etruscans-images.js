@@ -45,6 +45,11 @@
         // lsl_<leader> by name, never through IconDefinitions.
         // model: the shipped leader whose 3D asset Porsenna borrows. Augustus wears the toga
         // the Romans took from the Etruscans, which is as close as the game gets to a lucumo.
+        // Portraits: see the note in tuscany-images.js. Mirrors data/visual-remaps.xml (Kind=UNIT).
+        unitPortraits: {
+            UNIT_BIGA: "UNIT_CHARIOT",
+            UNIT_TYRRHENIAN_GALLEY: "UNIT_GALLEY",
+        },
         leaders: [{ id: "porsenna", type: "LEADER_PORSENNA", model: "LEADER_AUGUSTUS",
                     portrait: "lsl_porsenna.png" }],
     };
@@ -52,6 +57,7 @@
     const KEY = "__civ7modsCivArt";
     const shared = window[KEY] || (window[KEY] = { textures: new Map(), panels: new Map(), hooked: false });
     if (!shared.leaderAssets) shared.leaderAssets = new Map();
+    if (!shared.unitAssets) shared.unitAssets = new Map();
 
     const url = (file) => "fs://game/" + CONFIG.modId + "/" + file;
 
@@ -63,6 +69,7 @@
     register("bg_card_" + CONFIG.civ, CONFIG.card);
     register("civ_sym_" + CONFIG.civ, CONFIG.symbol);
     register("lsbg_" + CONFIG.civ + "_vert", CONFIG.vert);
+    for (const k in CONFIG.unitPortraits || {}) shared.unitAssets.set(k, CONFIG.unitPortraits[k]);
     // addBackgroundLayer is given the bare texture name, never a URL.
     shared.panels.set("bg-panel-" + CONFIG.civ, url(CONFIG.panel));
     shared.panels.set("bg_panel_" + CONFIG.civ, url(CONFIG.panel));
@@ -249,7 +256,21 @@
             }
         } catch (e) { /* ignore */ }
 
-        // 5. Leader models. A mod cannot ship one: leader-select asks the engine for
+        // 5. Unit portraits. WorldUI.requestPortrait(name, unitType, background) renders a unit's
+        //    3D asset into the live texture the panel then shows as url("live:/<name>"). Leave the
+        //    first argument alone - it is the texture key the CSS is about to ask for - and swap
+        //    only the second, which is the asset to render.
+        try {
+            if (window.WorldUI && WorldUI.requestPortrait) {
+                const original = WorldUI.requestPortrait.bind(WorldUI);
+                WorldUI.requestPortrait = function (name, unitType, background) {
+                    const stand = typeof unitType === "string" ? shared.unitAssets.get(unitType) : null;
+                    return original(name, stand || unitType, background);
+                };
+            }
+        } catch (e) { /* ignore */ }
+
+        // 6. Leader models. A mod cannot ship one: leader-select asks the engine for
         //    `<LEADER_TYPE>_GAME_ASSET`, gets null back, and falls through to the faceless
         //    LEADER_FALLBACK_GAME_ASSET -
         //    core/ui/shell/leader-select/leader-select-model-manager.js:151-162. Leaders'
@@ -280,7 +301,7 @@
             }
         } catch (e) { /* ignore */ }
 
-        // 6. Last net: HTML that arrives with an inline style or src already set. This does not
+        // 7. Last net: HTML that arrives with an inline style or src already set. This does not
         //    catch programmatic changes (see the note at the top) - the prototype hooks do.
         try {
             const fixElement = (el) => {

@@ -49,12 +49,6 @@
         <Row Tag="LOC_REMAP_TUSCANY_MAESTRO">
             <Text>Tuscan Maestro</Text>
         </Row>
-        <Row Tag="LOC_REMAP_TUSCANY_BOTTEGA">
-            <Text>Tuscan Bottega</Text>
-        </Row>
-        <Row Tag="LOC_REMAP_TUSCANY_BANCO">
-            <Text>Tuscan Banco</Text>
-        </Row>
         <Row Tag="LOC_REMAP_TUSCANY_SANTA_MARIA_DEL_FIORE">
             <Text>Santa Maria del Fiore</Text>
         </Row>

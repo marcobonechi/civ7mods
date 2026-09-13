@@ -31,12 +31,6 @@
         <Row Tag="LOC_REMAP_ETRUSCANS_TYRRHENIAN_GALLEY">
             <Text>Etruscan Tyrrhenian Galley</Text>
         </Row>
-        <Row Tag="LOC_REMAP_ETRUSCANS_CUNICULUS">
-            <Text>Etruscan Cuniculus</Text>
-        </Row>
-        <Row Tag="LOC_REMAP_ETRUSCANS_TUMULUS">
-            <Text>Etruscan Tumulus</Text>
-        </Row>
         <Row Tag="LOC_REMAP_ETRUSCANS_FANUM_VOLTUMNAE">
             <Text>Fanum Voltumnae</Text>
         </Row>

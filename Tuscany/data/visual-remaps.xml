@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- Custom types borrow the models of shipped ones. From = our type, To = the type whose art is
-     shown. The Maestro rides on the Abbasid Alim, the other Exploration-age scholar on foot. -->
+     shown. The Maestro rides on the Abbasid Alim, the other Exploration-age scholar on foot.
+     Units and wonders only: `To` has to name something that exists in the art data, and unit
+     and wonder assets are named after their type (UNIT_SWORDSMAN, WONDER_NOTRE_DAME) while
+     buildings are not - a building's art is picked by a rule in BIN_Hero_Building_Footprint
+     keyed on [BUILDING:<type>], so a remap has nothing to point at. The Bottega and the Banco
+     get their models from that table instead, in dlc/civart.json. -->
 <Database>
     <VisualRemaps>
         <Row>
@@ -37,20 +42,6 @@
             <Kind>UNIT</Kind>
             <From>UNIT_MAESTRO</From>
             <To>UNIT_ALIM</To>
-        </Row>
-        <Row>
-            <ID>REMAP_TUSCANY_BOTTEGA</ID>
-            <DisplayName>LOC_REMAP_TUSCANY_BOTTEGA</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>BUILDING_BOTTEGA</From>
-            <To>BUILDING_GUILDHALL</To>
-        </Row>
-        <Row>
-            <ID>REMAP_TUSCANY_BANCO</ID>
-            <DisplayName>LOC_REMAP_TUSCANY_BANCO</DisplayName>
-            <Kind>BUILDING</Kind>
-            <From>BUILDING_BANCO</From>
-            <To>BUILDING_BANK</To>
         </Row>
         <Row>
             <ID>REMAP_TUSCANY_SANTA_MARIA_DEL_FIORE</ID>

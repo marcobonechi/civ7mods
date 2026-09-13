@@ -71,6 +71,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>EtruscansArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/etruscans-images.js</Item>
                 </UIScripts>
@@ -194,6 +197,9 @@
                 <UpdateVisualRemaps>
                     <Item>data/visual-remaps.xml</Item>
                 </UpdateVisualRemaps>
+                <UpdateArt>
+                    <Item>EtruscansArt</Item>
+                </UpdateArt>
                 <UIScripts>
                     <Item>ui/etruscans-images.js</Item>
                 </UIScripts>

@@ -296,6 +296,15 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
+- **The selected-unit panel and the army panel do not draw the unit icon at all.** They call
+  `WorldUI.requestPortrait(unitType, unitType, "UnitPortraitsBG_UNIQUE"|"..._BASE")` and read the
+  result back as ``url("live:/<UnitType>")`` — the engine renders the unit's own **3D asset** into
+  a live texture (`unit-actions.js:664`, `army-panel.js:311`). A modded unit has no asset of its
+  own, and the `VisualRemaps` row that gives it one in the world does **not** reach that call, so
+  the portrait comes back an empty black box while the map model is fine. Fix it in the UI script:
+  proxy `WorldUI.requestPortrait` and swap the **second** argument for the base unit the remap
+  points at, leaving the first alone — that one is the texture key the CSS is about to ask for.
+  `tools/check-mod.py` check 7 keeps that map in step with `visual-remaps.xml`.
 - **An unquoted `url()` holding an `fs://` path does not parse in this engine.** The base game only
   ever writes `url(<x>)` unquoted where `x` is a `blp:` package name - which contains no `//` - and
   always quotes an `fs://` path. Compare `Icon.getCivSymbolCSSFromCivilizationType`, which returns

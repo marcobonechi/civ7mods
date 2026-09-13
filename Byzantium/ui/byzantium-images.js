@@ -41,12 +41,27 @@
         card: "bg-card-byzantium.png",
         symbol: "civ_sym_byzantium.png",
         vert: "lsbg_byzantium_vert.png",
+        // Portraits. The selected-unit panel and the army panel do not draw the unit *icon*:
+        // they call WorldUI.requestPortrait(unitType, unitType, ...) and read the result back as
+        // url("live:/<unitType>"), i.e. the engine renders the unit's 3D asset into a live
+        // texture. A modded unit has no asset of its own, and the VisualRemaps that give it one
+        // in the world do not reach that call - so the portrait comes back an empty black box.
+        // These pairs mirror data/visual-remaps.xml (Kind=UNIT); keep them in step.
+        unitPortraits: {
+            UNIT_CATAPHRACT: "UNIT_KESHIG",
+            UNIT_CATAPHRACT_2: "UNIT_KESHIG_2",
+            UNIT_CATAPHRACT_3: "UNIT_KESHIG_3",
+            UNIT_DROMON: "UNIT_TREASURE_FLEET",
+            UNIT_CLIBANARII: "UNIT_HORSEMAN",
+            UNIT_LIBURNA: "UNIT_GALLEY",
+        },
         leaders: [],                             // Byzantium ships no leader of its own
     };
 
     const KEY = "__civ7modsCivArt";
     const shared = window[KEY] || (window[KEY] = { textures: new Map(), panels: new Map(), hooked: false });
     if (!shared.leaderAssets) shared.leaderAssets = new Map();
+    if (!shared.unitAssets) shared.unitAssets = new Map();
 
     const url = (file) => "fs://game/" + CONFIG.modId + "/" + file;
 
@@ -58,6 +73,7 @@
     register("bg_card_" + CONFIG.civ, CONFIG.card);
     register("civ_sym_" + CONFIG.civ, CONFIG.symbol);
     register("lsbg_" + CONFIG.civ + "_vert", CONFIG.vert);
+    for (const k in CONFIG.unitPortraits || {}) shared.unitAssets.set(k, CONFIG.unitPortraits[k]);
     // addBackgroundLayer is given the bare texture name, never a URL.
     shared.panels.set("bg-panel-" + CONFIG.civ, url(CONFIG.panel));
     shared.panels.set("bg_panel_" + CONFIG.civ, url(CONFIG.panel));
@@ -244,7 +260,21 @@
             }
         } catch (e) { /* ignore */ }
 
-        // 5. Leader models. A mod cannot ship one: leader-select asks the engine for
+        // 5. Unit portraits. WorldUI.requestPortrait(name, unitType, background) renders a unit's
+        //    3D asset into the live texture the panel then shows as url("live:/<name>"). Leave the
+        //    first argument alone - it is the texture key the CSS is about to ask for - and swap
+        //    only the second, which is the asset to render.
+        try {
+            if (window.WorldUI && WorldUI.requestPortrait) {
+                const original = WorldUI.requestPortrait.bind(WorldUI);
+                WorldUI.requestPortrait = function (name, unitType, background) {
+                    const stand = typeof unitType === "string" ? shared.unitAssets.get(unitType) : null;
+                    return original(name, stand || unitType, background);
+                };
+            }
+        } catch (e) { /* ignore */ }
+
+        // 6. Leader models. A mod cannot ship one: leader-select asks the engine for
         //    `<LEADER_TYPE>_GAME_ASSET`, gets null back, and falls through to the faceless
         //    LEADER_FALLBACK_GAME_ASSET -
         //    core/ui/shell/leader-select/leader-select-model-manager.js:151-162. Leaders'
@@ -275,7 +305,7 @@
             }
         } catch (e) { /* ignore */ }
 
-        // 6. Last net: HTML that arrives with an inline style or src already set. This does not
+        // 7. Last net: HTML that arrives with an inline style or src already set. This does not
         //    catch programmatic changes (see the note at the top) - the prototype hooks do.
         try {
             const fixElement = (el) => {

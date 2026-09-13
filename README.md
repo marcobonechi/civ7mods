@@ -62,10 +62,11 @@ xattr -dr com.apple.quarantine ~/Library/Application\ Support/Civilization\ VII/
 The game reads mods **only at startup**, so restart it after installing. In game setup, pick one of
 the three map types below.
 
-Byzantium also ships a binary art package (the Hagia Sophia wonder model). The game finds art
-packages only inside its own install, so the install scripts mirror `Byzantium/dlc/ByzantiumArt/`
-into `<game>/DLC/ByzantiumArt/`. That is the one thing installed outside the Mods folder; set
-`CIV7_GAME_ROOT` if the game is not in a default Steam library.
+The three civilization mods also ship a binary art package each (`<Mod>/dlc/<Mod>Art/`), which is
+what puts their unique buildings and the Hagia Sophia on the map. The game finds art packages only
+inside its own install, so the install scripts mirror each one into `<game>/DLC/<Mod>Art/`. That is
+the one thing installed outside the Mods folder; set `CIV7_GAME_ROOT` if the game is not in a
+default Steam library.
 
 ### Removing the mods
 
@@ -377,9 +378,17 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   player stays in Italy. Etruria and Tuscany are meant to be played one after the other rather
   than side by side.
 - **Art is placeholder.** Icons and loading screens are flat generated PNGs
-  (`tools/make-icons.py`, `tools/make-backgrounds.py`); units, buildings and wonders borrow the
-  models of what they replace through `data/visual-remaps.xml`. Neither mod ships a binary art
-  package, so neither touches the game install.
+  (`tools/make-icons.py`, `tools/make-backgrounds.py`); units and wonders borrow the models of what
+  they replace through `data/visual-remaps.xml`. Buildings cannot: a `VisualRemap`'s `To` has to
+  name something in the art data, and unit and wonder assets are named after their type while a
+  building's model is chosen by a rule in `BIN_Hero_Building_Footprint` keyed on
+  `[BUILDING:<type>]`. So each mod ships a small binary art package
+  (`Tuscany/dlc/TuscanyArt/`, `Etruscans/dlc/EtruscansArt/`, ~40 KB, no geometry of its own) that
+  adds those rules: the Bottega renders as the Guildhall and the Banco as the Bank, the Cuniculus
+  as the Bath and the Tumulus as the Mastaba. Rebuild either with
+  `python3 tools/build-art.py Tuscany Etruscans`, and check a deployed one with
+  `tools/check-art.py <Mod>`. Because it is an art package it installs into the game's `DLC/`
+  folder rather than `Mods/` — the install scripts do that, and `uninstall.ps1` removes it.
 - **The shell finds that art through a UI script.** `ui/<mod>-images.js` rewrites the
   naming-convention lookups the shell uses for civ and leader art (`bg-panel-<civ>`,
   `bg-card-<civ>`, `civ_sym_<civ>`, `lp_circ_<leader>_256` and the rest) to the
