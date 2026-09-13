@@ -762,13 +762,17 @@ base game and DLC, the median strength difference between a unique and the unit 
 numbers. (Script in the session, worth rebuilding if this comes up again: parse `Unit_Stats`,
 `UnitReplaces`, `Unit_Costs` and `Maintenance` out of every `units.xml`, join, sort by delta.)
 
-So: **40 / 45 / 50**, +5, the top of the range. Every tier is now level with the *next* standard
-unit — the first fights a Man-at-Arms evenly, the second a Pikeman, the third a Lancer. Production
-cost stays at the 10-over premium; upkeep goes to **3 / 5 / 7**, one above the standard line at
-every tier, which is where the strength is paid for and is the right flavour besides: a condottiere
-was hired, and went home when the pay stopped. Tuscany is the civ that can afford him.
+First pass went to 40 / 45 / 50 (+5, the ceiling). Marco asked for less extreme, so it settled at
+**38 / 43 / 48** — **+3**, above the median and short of the top — with production down to
+**135 / 175 / 225**, a +5 premium over the standard line rather than +10. Upkeep stays at
+**3 / 5 / 7**, one above the line at every tier: that is where the strength is paid for now, and it
+is the right flavour besides — a condottiere was hired, and went home when the pay stopped.
 
-The *Contratto* ability (+4 attacking) is unchanged, so a tier-1 Condottiero attacks at 44.
+The *Contratto* ability (+4 attacking) is unchanged, so against its own tier the Condottiero is
+**+3 defending and +7 attacking**. Worth writing down because Marco asked and the answer is not
+obvious from the ability text: the attack bonus sits on top of an above-average body, it is not
+traded against defence. The old +2 was the whole story on defence, which is what made a 37
+Condottiero lose to a 40 Man-at-Arms while its attack bonus did nothing to help.
 
 Two documentation errors found and fixed in `plans/tuscany.md` §1.3 while checking: the ability was
 written up as "+4 when at full health" when the modifier has always used

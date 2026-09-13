@@ -5,7 +5,7 @@
             <Text>Condottiero</Text>
         </Row>
         <Row Tag="LOC_UNIT_CONDOTTIERO_BASE_DESCRIPTION">
-            <Text>Tuscan unique Exploration Age infantry line. Replaces the Swordsman, the Man-at-Arms and the Pikeman. +5 [icon:COMBAT] Combat Strength over each of them, and stronger again when attacking, at a higher [icon:YIELD_GOLD] Gold upkeep.</Text>
+            <Text>Tuscan unique Exploration Age infantry line. Replaces the Swordsman, the Man-at-Arms and the Pikeman. +3 [icon:COMBAT] Combat Strength over each of them, and stronger again when attacking, at a higher [icon:YIELD_GOLD] Gold upkeep.</Text>
         </Row>
         <Row Tag="LOC_UNIT_CONDOTTIERO_DESCRIPTION">
             <Text>Tuscan unique Exploration Age infantry unit. Replaces the Swordsman.</Text>

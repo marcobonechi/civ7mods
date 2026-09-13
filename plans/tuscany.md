@@ -78,20 +78,19 @@ in `data/greatpeople-gameeffects.xml` using a proven effect shape.
 ### 1.3 The other unique units
 
 **Condottiero** (`UNIT_CONDOTTIERO`, `_2`, `_3`) — the mercenary captains who fought Italy's wars
-for pay. Replaces Swordsman / Man-at-Arms / Pikeman. Combat **40 / 45 / 50**, i.e. **+5** over each
-of them; cost 140 / 180 / 230; upkeep **3 / 5 / 7**, one above the standard line at every tier;
-moves 2. Ability *Contratto*: +4 Combat Strength when attacking
+for pay. Replaces Swordsman / Man-at-Arms / Pikeman. Combat **38 / 43 / 48**, i.e. **+3** over each
+of them; cost **135 / 175 / 225**, +5 over the standard line; upkeep **3 / 5 / 7**, one above it at
+every tier; moves 2. Ability *Contratto*: +4 Combat Strength when attacking
 (`REQUIREMENT_PLAYER_IS_ATTACKING`). Tier 2 unlocks at `NODE_TECH_EX_HERALDRY`, tier 3 at
 `NODE_TECH_EX_METAL_CASTING` (where the Man-at-Arms and the Pikeman unlock). Visual remaps to
 `UNIT_SWORDSMAN`, `UNIT_MAN_AT_ARMS`, `UNIT_PIKEMAN`.
 
-+5 is the ceiling the base game uses: across its 130 unique/base unit pairs the median difference
-is 0 and only the Yumi's second tier goes past +5, on single-digit archer numbers. At 40 / 45 / 50
-each Condottiero tier is level with the *next* standard unit — the first fights a Man-at-Arms
-evenly, the second a Pikeman, the third a Lancer. It was +2 before (37 / 42 / 47, the Tercio's
-numbers) while costing 10 more production and the same upkeep, which is a Swordsman that costs more
-and dies to everything. The upkeep is where the strength is paid for: a condottiere was hired, and
-went home when the pay stopped — and Tuscany is the civilization that can afford him.
+On the base game's scale a unique runs from +0 — the median across its 130 unique/base unit pairs —
+to +5 at the ceiling, so +3 sits above the middle without topping it. Against its own tier that is
++3 defending and +7 attacking. It shipped at +2 while costing 10 more production than the standard
+line, which is a Swordsman that costs more and dies to everything; the production premium is down
+to +5 and the strength is paid for in upkeep instead, which is the right flavour besides — a
+condottiere was hired, and went home when the pay stopped.
 
 **Galea di Santo Stefano** (`UNIT_GALEA_SANTO_STEFANO`) — the galleys of the Tuscan military order
 based at Livorno and Pisa. Replaces Cog, upgrades to Carrack. Combat 30, Ranged 35, Bombard 30,
