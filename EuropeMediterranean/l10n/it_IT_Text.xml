@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="it_IT">
-            <Text>Europa e Mediterraneo</Text>
+            <Text>Europa, Mediterraneo, Nord Africa</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="it_IT">
-            <Text>Una mappa dell'Europa e del bacino del Mediterraneo, dagli Urali all'Islanda e dal Marocco al Sinai. Posizioni di partenza storiche per le civiltà della regione; le altre civiltà partono da posizioni selezionate.[n]Compatibile con le dimensioni standard della mappa.</Text>
+            <Text>Una mappa dell'Europa, del bacino del Mediterraneo e del Nord Africa, dagli Urali all'Islanda e dal Marocco al Sinai. Posizioni di partenza storiche per le civiltà della regione; le altre civiltà partono da posizioni selezionate.[n]Compatibile con le dimensioni standard della mappa.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="it_IT">
             <Text>Europa, Mediterraneo e Sahel (Grande, Terre lontane)</Text>

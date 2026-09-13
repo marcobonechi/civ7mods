@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="fr_FR">
-            <Text>Europe et Méditerranée</Text>
+            <Text>Europe, Méditerranée, Afrique du Nord</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="fr_FR">
-            <Text>Une carte de l'Europe et du bassin méditerranéen, de l'Oural à l'Islande et du Maroc au Sinaï. Emplacements de départ historiques pour les civilisations de la région ; les autres civilisations commencent sur des sites dédiés.[n]Fonctionne avec les tailles de carte standard.</Text>
+            <Text>Une carte de l'Europe, du bassin méditerranéen et de l'Afrique du Nord, de l'Oural à l'Islande et du Maroc au Sinaï. Emplacements de départ historiques pour les civilisations de la région ; les autres civilisations démarrent sur des sites choisis.[n]Compatible avec les tailles de carte standard.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="fr_FR">
             <Text>Europe, Méditerranée et Sahel (Grande, Terres lointaines)</Text>

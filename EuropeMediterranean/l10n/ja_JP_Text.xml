@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="ja_JP">
-            <Text>ヨーロッパ＆地中海</Text>
+            <Text>ヨーロッパ、地中海、北アフリカ</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="ja_JP">
-            <Text>ウラル山脈からアイスランド、モロッコからシナイ半島に至るヨーロッパと地中海盆地のマップ。地域文明には史実準拠の開始地点を用意。その他の文明は厳選された地点から開始します。[n]標準マップサイズに対応。</Text>
+            <Text>ウラル山脈からアイスランド、モロッコからシナイ半島に至るヨーロッパ、地中海盆地、北アフリカのマップ。該当地域の文明には史実準拠のスタート地点を用意。他の文明は厳選された地点からスタートします。[n]標準マップサイズに対応。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ja_JP">
             <Text>ヨーロッパ、地中海＆サヘル（大型、遥かなる地）</Text>

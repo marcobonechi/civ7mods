@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="ko_KR">
-            <Text>유럽 및 지중해</Text>
+            <Text>유럽, 지중해, 북아프리카</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="ko_KR">
-            <Text>우랄산맥부터 아이슬란드, 모로코부터 시나이반도에 이르는 유럽과 지중해 분지의 지도입니다. 해당 지역 문명을 위한 역사적 시작 위치가 제공되며, 그 외 문명은 엄선된 지점에서 시작합니다.[n]표준 지도 크기를 지원합니다.</Text>
+            <Text>우랄산맥에서 아이슬란드, 모로코에서 시나이반도에 이르는 유럽, 지중해 분지 및 북아프리카 지도입니다. 해당 지역 문명을 위한 역사적 시작 위치를 제공하며, 기타 문명은 엄선된 위치에서 시작합니다.[n]표준 지도 크기와 호환됩니다.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ko_KR">
             <Text>유럽, 지중해 및 사헬 (대형, 머나먼 땅)</Text>

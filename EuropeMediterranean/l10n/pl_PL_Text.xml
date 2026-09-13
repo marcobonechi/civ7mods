@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="pl_PL">
-            <Text>Europa i Morze Śródziemne</Text>
+            <Text>Europa, Morze Śródziemne i Afryka Północna</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="pl_PL">
-            <Text>Mapa Europy i basenu Morza Śródziemnego, od Uralu po Islandię oraz od Maroka po Synaj. Historyczne pozycje startowe dla cywilizacji z regionu; pozostałe cywilizacje rozpoczynają w wyselekcjonowanych miejscach.[n]Działa ze standardowymi rozmiarami map.</Text>
+            <Text>Mapa Europy, basenu Morza Śródziemnego i Afryki Północnej, od Uralu po Islandię oraz od Maroka po Synaj. Historyczne miejsca startowe dla cywilizacji z tego regionu; inne cywilizacje rozpoczynają w wyselekcjonowanych miejscach.[n]Działa ze standardowymi rozmiarami map.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="pl_PL">
             <Text>Europa, Morze Śródziemne i Sahel (Duża, Odległe krainy)</Text>

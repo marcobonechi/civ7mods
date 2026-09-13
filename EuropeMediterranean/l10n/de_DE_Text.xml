@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="de_DE">
-            <Text>Europa &amp; Mittelmeer</Text>
+            <Text>Europa, Mittelmeer, Nordafrika</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="de_DE">
-            <Text>Eine Karte von Europa und dem Mittelmeerraum, vom Ural bis nach Island und von Marokko bis zum Sinai. Historische Startpositionen für Zivilisationen der Region; andere Zivilisationen starten an ausgewählten Orten.[n]Kompatibel mit den Standard-Kartengrößen.</Text>
+            <Text>Eine Karte von Europa, dem Mittelmeerraum und Nordafrika, vom Ural bis nach Island und von Marokko bis zum Sinai. Historische Startpositionen für Zivilisationen aus dieser Region; andere Zivilisationen starten an ausgewählten Orten.[n]Kompatibel mit Standard-Kartengrößen.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="de_DE">
             <Text>Europa, Mittelmeer &amp; Sahel (Groß, Ferne Länder)</Text>

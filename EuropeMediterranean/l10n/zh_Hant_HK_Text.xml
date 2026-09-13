@@ -2,10 +2,10 @@
 <Database>
     <LocalizedText>
         <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="zh_Hant_HK">
-            <Text>歐洲與地中海</Text>
+            <Text>歐洲、地中海與北非</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="zh_Hant_HK">
-            <Text>一張涵蓋歐洲與地中海盆地的地圖，從烏拉山脈延伸至冰島，從摩洛哥延伸至西奈半島。該地區文明擁有真實歷史起始位置；其他文明則於精選地點展開旅程。[n]支援標準地圖尺寸。</Text>
+            <Text>一張歐洲、地中海盆地與北非地圖，涵蓋從烏拉山脈到冰島、從摩洛哥到西奈半島的區域。該區域文明擁有真實歷史起始位置；其他文明則在精選位置起始。[n]適用於標準地圖尺寸。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="zh_Hant_HK">
             <Text>歐洲、地中海與薩赫爾（大型地圖，遙遠土地）</Text>
