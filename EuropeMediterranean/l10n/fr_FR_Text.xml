@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="fr_FR">
+            <Text>Europe et Méditerranée</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="fr_FR">
+            <Text>Une carte de l'Europe et du bassin méditerranéen, de l'Oural à l'Islande et du Maroc au Sinaï. Emplacements de départ historiques pour les civilisations de la région ; les autres civilisations commencent sur des sites dédiés.[n]Fonctionne avec les tailles de carte standard.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="fr_FR">
+            <Text>Europe, Méditerranée et Sahel (Grande, Terres lointaines)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="fr_FR">
+            <Text>Une version agrandie de l'Europe et de la Méditerranée qui s'étend vers le sud jusqu'au Sahel, à l'Éthiopie et à l'Arabie. Plus de cases par pays (l'Italie et la Sicile peuvent accueillir plusieurs villes), une Russie plus rigoureuse, un Arctique et un Sahara condensés, ainsi que des départs historiques pour Aksoum et les Songhaï.[n][n]L'Afrique constitue des Terres lointaines de l'autre côté de la Méditerranée, de sorte que les flottes aux trésors de l'Âge de l'exploration et les voies de l'héritage associées fonctionnent ici.[n]Trois tailles : 112x98, 128x112 et 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="fr_FR">
+            <Text>Europe, Méditerranée et Sahel (Grande, Masse continentale unique)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="fr_FR">
+            <Text>La même géographie qu'Europe, Méditerranée et Sahel (Grande), mais sans Terres lointaines : l'Afrique et l'Eurasie forment un continent unifié, permettant d'atteindre et de contacter toutes les civilisations par voie terrestre dès le premier tour.[n][n]Contrainte : les voies de l'héritage économique (flotte aux trésors) et militaire de l'Âge de l'exploration ne marquant des points que dans les Terres lointaines, aucune ne peut être accomplie sur cette version. Choisissez la Grande carte standard si vous souhaitez les utiliser.[n]Trois tailles : 112x98, 128x112 et 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="fr_FR">
+            <Text>Europe et Méditerranée (Variante)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="fr_FR">
+            <Text>Une copie distincte de la géographie grande d'Europe, Méditerranée et Sahel, conservée à part pour être personnalisée sans modifier l'originale. Identique au départ ; modifiez maps/europe-alt-geo.js pour la façonner à votre guise.[n]Trois tailles : 112x98, 128x112 et 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="fr_FR">
+            <Text>Europe Grande 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="fr_FR">
+            <Text>Europe, Méditerranée et Sahel sur une grille de 112x98, 10 joueurs par défaut.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="fr_FR">
+            <Text>Europe Grande 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="fr_FR">
+            <Text>Europe, Méditerranée et Sahel sur une grille de 128x112, 12 joueurs par défaut.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="fr_FR">
+            <Text>Europe Grande 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="fr_FR">
+            <Text>Europe, Méditerranée et Sahel sur une grille de 144x126, 12 joueurs par défaut. Tours prolongés sur les configurations anciennes.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

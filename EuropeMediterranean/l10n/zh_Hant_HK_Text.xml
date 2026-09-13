@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="zh_Hant_HK">
+            <Text>歐洲與地中海</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>一張涵蓋歐洲與地中海盆地的地圖，從烏拉山脈延伸至冰島，從摩洛哥延伸至西奈半島。該地區文明擁有真實歷史起始位置；其他文明則於精選地點展開旅程。[n]支援標準地圖尺寸。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="zh_Hant_HK">
+            <Text>歐洲、地中海與薩赫爾（大型地圖，遙遠土地）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>規模更宏大的歐洲與地中海地圖，向南延伸至薩赫爾、衣索比亞與阿拉伯半島。每個國家擁有更多六角格（義大利與西西里島有空間容納數座城市），環境更嚴酷的俄羅斯，壓縮的北極與撒哈拉沙漠，並為阿克蘇姆和桑海提供了真實歷史起始點。[n][n]非洲隔地中海被視為遙遠土地，因此探索時代的寶藏艦隊與遙遠土地傳承路線皆可在此運作。[n]提供三種尺寸：112x98、128x112 與 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="zh_Hant_HK">
+            <Text>歐洲、地中海與薩赫爾（大型地圖，單一陸塊）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>與「歐洲、地中海與薩赫爾（大型地圖）」相同的地理配置，但無遙遠土地設定：非洲與歐亞大陸共用一整片陸塊，所有文明從第一回合起即可藉由陸路進行探索與接觸。[n][n]取捨：由於探索時代的經濟（寶藏艦隊）與軍事傳承路線僅在遙遠土地計分，因此在此版本中均無法達成。若想體驗上述路線，請選擇標準大型地圖。[n]提供三種尺寸：112x98、128x112 與 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="zh_Hant_HK">
+            <Text>歐洲與地中海（變體）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>歐洲、地中海與薩赫爾大型地理的獨立複本，分開保存以供自由調整而不影響原版。初始狀態與原版相同；可編輯 maps/europe-alt-geo.js 自訂屬於您的地貌。[n]提供三種尺寸：112x98、128x112 與 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hant_HK">
+            <Text>歐洲大型地圖 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>112x98 網格的歐洲、地中海與薩赫爾地圖，預設 10 名玩家。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="zh_Hant_HK">
+            <Text>歐洲大型地圖 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>128x112 網格的歐洲、地中海與薩赫爾地圖，預設 12 名玩家。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="zh_Hant_HK">
+            <Text>歐洲大型地圖 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>144x126 網格的歐洲、地中海與薩赫爾地圖，預設 12 名玩家。舊款配備可能需要較長的回合時間。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="ja_JP">
+            <Text>ヨーロッパ＆地中海</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="ja_JP">
+            <Text>ウラル山脈からアイスランド、モロッコからシナイ半島に至るヨーロッパと地中海盆地のマップ。地域文明には史実準拠の開始地点を用意。その他の文明は厳選された地点から開始します。[n]標準マップサイズに対応。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ja_JP">
+            <Text>ヨーロッパ、地中海＆サヘル（大型、遥かなる地）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ja_JP">
+            <Text>ヨーロッパと地中海をさらに広大に描き、南はサヘル、エチオピア、アラビアまで網羅。国ごとのヘックス数が増加し（イタリアとシチリアには複数の都市を建設可能）、厳しいロシアの気候、圧縮された北極圏とサハラ砂漠、そしてアクスムやソンガイの史実スタート地点も備えています。[n][n]地中海を越えたアフリカは「遥かなる地」として扱われるため、探検の時代の財宝船団や遥かなる地のレガシールートが機能します。[n]3つのサイズ：112x98、128x112、144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ja_JP">
+            <Text>ヨーロッパ、地中海＆サヘル（大型、単一陸塊）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ja_JP">
+            <Text>「ヨーロッパ、地中海＆サヘル（大型）」と同じ地理ですが、「遥かなる地」が存在しません。アフリカとユーラシアが単一の大陸を共有するため、第1ターンからすべての文明と陸路で接触可能です。[n][n]トレードオフ：探検の時代の経済（財宝船団）および軍事のレガシールートは「遥かなる地」でのみスコアを獲得できるため、このバージョンでは達成できません。これらを利用したい場合は通常の大型マップを選択してください。[n]3つのサイズ：112x98、128x112、144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="ja_JP">
+            <Text>ヨーロッパ＆地中海（バリアント）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="ja_JP">
+            <Text>ヨーロッパ、地中海、サヘルの大型地理の独立した複製で、オリジナルを変更することなく地形をカスタマイズできるように用意されています。初期状態は同一です。maps/europe-alt-geo.js を編集して自由にアレンジしてください。[n]3つのサイズ：112x98、128x112、144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ja_JP">
+            <Text>ヨーロッパ 大型 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="ja_JP">
+            <Text>112x98グリッドのヨーロッパ、地中海、サヘル。デフォルト10人プレイ。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="ja_JP">
+            <Text>ヨーロッパ 大型 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="ja_JP">
+            <Text>128x112グリッドのヨーロッパ、地中海、サヘル。デフォルト12人プレイ。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="ja_JP">
+            <Text>ヨーロッパ 大型 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="ja_JP">
+            <Text>144x126グリッドのヨーロッパ、地中海、サヘル。デフォルト12人プレイ。低スペック環境ではターン進行に時間がかかる場合があります。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

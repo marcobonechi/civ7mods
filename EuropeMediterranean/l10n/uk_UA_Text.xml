@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="uk_UA">
+            <Text>Європа та Середземномор'я</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="uk_UA">
+            <Text>Мапа Європи та басейну Середземного моря, від Уралу до Ісландії та від Марокко до Синаю. Історичні стартові позиції для цивілізацій регіону; інші цивілізації починають у ретельно підібраних місцях.[n]Підтримує стандартні розміри мап.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="uk_UA">
+            <Text>Європа, Середземномор'я та Сахель (Велика, Далекі землі)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="uk_UA">
+            <Text>Збільшена версія Європи та Середземномор'я, яка простягається на південь до Сахелю, Ефіопії та Аравії. Більше гексів для кожної країни (в Італії та Сицилії вистачає місця для кількох міст), суворіша Росія, стиснуті Арктика та Сахара, а також історичні старти для Аксуму та Сонгаю.[n][n]Африка вважається Далекими землями через Середземне море, тож срібні флоти Епохи досліджень та відповідні шляхи спадщини тут діють.[n]Три розміри: 112x98, 128x112 та 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="uk_UA">
+            <Text>Європа, Середземномор'я та Сахель (Велика, Єдиний материк)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="uk_UA">
+            <Text>Та сама географія, що й у мапі Європа, Середземномор'я та Сахель (Велика), але без Далеких земель: Африка та Євразія утворюють єдиний масив суходолу, тож із будь-якою цивілізацією можна встановити контакт сушею з першого ходу.[n][n]Особливість: оскільки в Епоху досліджень як економічний (срібний флот), так і військовий шляхи спадщини зараховують бали лише в Далеких землях, жоден із них не може бути завершений на цій версії. Оберіть стандартну Велику мапу, якщо плануєте їх використовувати.[n]Три розміри: 112x98, 128x112 та 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="uk_UA">
+            <Text>Європа та Середземномор'я (Варіант)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="uk_UA">
+            <Text>Окрема копія великої географії Європи, Середземномор'я та Сахелю, створена для того, щоб її можна було змінювати без впливу на оригінал. Початково ідентична; відредагуйте maps/europe-alt-geo.js, щоб створити власну версію.[n]Три розміри: 112x98, 128x112 та 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="uk_UA">
+            <Text>Європа велика 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="uk_UA">
+            <Text>Європа, Середземномор'я та Сахель на сітці 112x98, за замовчуванням 10 гравців.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="uk_UA">
+            <Text>Європа велика 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="uk_UA">
+            <Text>Європа, Середземномор'я та Сахель на сітці 128x112, за замовчуванням 12 гравців.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="uk_UA">
+            <Text>Європа велика 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="uk_UA">
+            <Text>Європа, Середземномор'я та Сахель на сітці 144x126, за замовчуванням 12 гравців. Довгі ходи на старіших комп'ютерах.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

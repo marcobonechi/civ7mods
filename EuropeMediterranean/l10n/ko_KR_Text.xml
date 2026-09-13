@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="ko_KR">
+            <Text>유럽 및 지중해</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="ko_KR">
+            <Text>우랄산맥부터 아이슬란드, 모로코부터 시나이반도에 이르는 유럽과 지중해 분지의 지도입니다. 해당 지역 문명을 위한 역사적 시작 위치가 제공되며, 그 외 문명은 엄선된 지점에서 시작합니다.[n]표준 지도 크기를 지원합니다.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ko_KR">
+            <Text>유럽, 지중해 및 사헬 (대형, 머나먼 땅)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ko_KR">
+            <Text>남쪽으로 사헬, 에티오피아, 아라비아까지 확장된 더 넓은 유럽 및 지중해 지도입니다. 국가당 더 많은 타일(이탈리아와 시칠리아에 여러 도시를 건설할 공간 확보), 더 험준한 러시아, 압축된 북극과 사하라, 그리고 악숨과 송가이를 위한 역사적 시작 위치도 포함됩니다.[n][n]지중해 건너 아프리카는 '머나먼 땅'으로 분류되어, 탐험 시대의 보물 함대와 머나먼 땅 유산 경로가 정상 작동합니다.[n]세 가지 크기: 112x98, 128x112, 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ko_KR">
+            <Text>유럽, 지중해 및 사헬 (대형, 단일 대륙)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ko_KR">
+            <Text>'유럽, 지중해 및 사헬 (대형)'과 동일한 지형이지만 머나먼 땅이 없습니다: 아프리카와 유라시아가 하나의 대륙을 공유하여 첫 턴부터 모든 문명과 육로로 접촉할 수 있습니다.[n][n]참고사항: 탐험 시대의 경제(보물 함대) 및 군사 유산 경로는 머나먼 땅에서만 점수를 획득하므로, 이 버전에서는 완료할 수 없습니다. 해당 경로를 원하시면 표준 대형 지도를 선택하세요.[n]세 가지 크기: 112x98, 128x112, 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="ko_KR">
+            <Text>유럽 및 지중해 (변형판)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="ko_KR">
+            <Text>유럽, 지중해 및 사헬 대형 지도의 독립된 사본으로, 원본을 변경하지 않고 자유롭게 수정할 수 있습니다. 초기 상태는 동일하며, maps/europe-alt-geo.js를 편집하여 원하는 지형으로 바꿀 수 있습니다.[n]세 가지 크기: 112x98, 128x112, 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ko_KR">
+            <Text>유럽 대형 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="ko_KR">
+            <Text>112x98 격자의 유럽, 지중해 및 사헬 지도, 기본 10인 플레이.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="ko_KR">
+            <Text>유럽 대형 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="ko_KR">
+            <Text>128x112 격자의 유럽, 지중해 및 사헬 지도, 기본 12인 플레이.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="ko_KR">
+            <Text>유럽 대형 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="ko_KR">
+            <Text>144x126 격자의 유럽, 지중해 및 사헬 지도, 기본 12인 플레이. 사양이 낮은 PC에서는 턴 진행 시간이 길어질 수 있습니다.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

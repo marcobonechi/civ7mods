@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="it_IT">
+            <Text>Europa e Mediterraneo</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="it_IT">
+            <Text>Una mappa dell'Europa e del bacino del Mediterraneo, dagli Urali all'Islanda e dal Marocco al Sinai. Posizioni di partenza storiche per le civiltà della regione; le altre civiltà partono da posizioni selezionate.[n]Compatibile con le dimensioni standard della mappa.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="it_IT">
+            <Text>Europa, Mediterraneo e Sahel (Grande, Terre lontane)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="it_IT">
+            <Text>Una versione più ampia dell'Europa e del Mediterraneo che si estende a sud fino al Sahel, all'Etiopia e all'Arabia. Più caselle per paese (l'Italia e la Sicilia hanno spazio per diverse città), una Russia più aspra, Artico e Sahara compressi, e posizioni di partenza storiche anche per Axum e Songhai.[n][n]L'Africa è considerata Terre lontane attraverso il Mediterraneo, quindi le flotte del tesoro dell'Epoca delle esplorazioni e i relativi percorsi di eredità funzionano regolarmente.[n]Tre dimensioni: 112x98, 128x112 e 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="it_IT">
+            <Text>Europa, Mediterraneo e Sahel (Grande, Massa continentale unica)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="it_IT">
+            <Text>La stessa geografia di Europa, Mediterraneo e Sahel (Grande), ma senza Terre lontane: Africa ed Eurasia condividono una singola massa continentale, permettendo di raggiungere e contattare qualsiasi civiltà via terra fin dal primo turno.[n][n]Compromesso: poiché nell'Epoca delle esplorazioni sia il percorso di eredità Economico (flotta del tesoro) che quello Militare assegnano punti solo nelle Terre lontane, nessuno dei due può essere completato in questa versione. Scegli la mappa Grande standard se desideri utilizzarli.[n]Tre dimensioni: 112x98, 128x112 e 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="it_IT">
+            <Text>Europa e Mediterraneo (Variante)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="it_IT">
+            <Text>Una copia separata della geografia grande di Europa, Mediterraneo e Sahel, tenuta distinta per poter essere modificata senza alterare l'originale. Inizialmente identica; modifica maps/europe-alt-geo.js per personalizzarla.[n]Tre dimensioni: 112x98, 128x112 e 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="it_IT">
+            <Text>Europa grande 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="it_IT">
+            <Text>Europa, Mediterraneo e Sahel su una griglia 112x98, 10 giocatori predefiniti.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="it_IT">
+            <Text>Europa grande 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="it_IT">
+            <Text>Europa, Mediterraneo e Sahel su una griglia 128x112, 12 giocatori predefiniti.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="it_IT">
+            <Text>Europa grande 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="it_IT">
+            <Text>Europa, Mediterraneo e Sahel su una griglia 144x126, 12 giocatori predefiniti. Turni prolungati su sistemi meno recenti.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

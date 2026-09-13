@@ -25,13 +25,22 @@ if (-not $Names) {
 }
 if (-not $Names) { throw "no mod folders found (a mod folder holds a .modinfo)" }
 
+# robocopy reports what it did in its exit code: under 8 is success (1 means "files copied"),
+# 8 and over is a real failure. Left alone it would also become this script's own exit code, so
+# a normal install would look like a failure to anything checking it.
+$failed = 0
+function Copy-Mirror($from, $to, $label, $extra) {
+    robocopy $from $to /MIR /NFL /NDL /NJH /NJS /NP /XF .DS_Store ._* @extra | Out-Null
+    if ($LASTEXITCODE -lt 8) { Write-Host "$label $to" }
+    else { Write-Host "ROBOCOPY FAILED ($LASTEXITCODE) copying to $to"; $script:failed++ }
+}
+
 foreach ($name in $Names) {
     $src = Join-Path $PSScriptRoot $name
     $dst = Join-Path $mods $name
     if (-not (Test-Path $src)) { throw "source not found: $src" }
     if (-not (Get-ChildItem -Path $src -Filter *.modinfo -File)) { throw "no .modinfo in $src" }
-    robocopy $src $dst /MIR /NFL /NDL /NJH /NJS /NP /XF .DS_Store /XD dlc | Out-Null
-    if ($LASTEXITCODE -le 7) { Write-Host "installed to $dst" } else { Write-Host "robocopy failed with code $LASTEXITCODE" }
+    Copy-Mirror $src $dst "installed to" @("/XD", "dlc")
 
     # Binary art packages (<Mod>\dlc\<Group>\<Group>.dep + Platforms\Windows\BLPs) are only
     # found by the game inside its own install, under DLC\. Mirror each one there.
@@ -40,9 +49,10 @@ foreach ($name in $Names) {
         foreach ($group in Get-ChildItem -Path $dlcSrc -Directory) {
             if (-not (Get-ChildItem -Path $group.FullName -Filter *.dep -File)) { continue }
             if (-not $gameDlc) { Write-Host "  art package $($group.Name) not installed: game DLC folder not found (set CIV7_GAME_ROOT)"; continue }
-            $gdst = Join-Path $gameDlc $group.Name
-            robocopy $group.FullName $gdst /MIR /NFL /NDL /NJH /NJS /NP /XF .DS_Store | Out-Null
-            if ($LASTEXITCODE -le 7) { Write-Host "  art package installed to $gdst" } else { Write-Host "robocopy failed with code $LASTEXITCODE" }
+            Copy-Mirror $group.FullName (Join-Path $gameDlc $group.Name) "  art package installed to" @()
         }
     }
 }
+
+Write-Host "`nRestart the game; it reads mods only at startup. To undo: .\uninstall.ps1"
+exit $failed

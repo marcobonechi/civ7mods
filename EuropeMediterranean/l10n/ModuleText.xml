@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <!-- Italian -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="it_IT">
+            <Text>Mappa Europa e Mediterraneo</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="it_IT">
+            <Text>Aggiunge la mappa "Europa e Mediterraneo": il bacino del Mediterraneo e l'Europa dagli Urali all'Islanda e dal Marocco al Sinai, con posizioni di partenza storiche per le civiltà della regione.</Text>
+        </Replace>
+
+        <!-- Ukrainian -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="uk_UA">
+            <Text>Мапа Європи та Середземномор'я</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="uk_UA">
+            <Text>Додає мапу "Європа та Середземномор'я": басейн Середземного моря та Європу від Уралу до Ісландії та від Марокко до Синаю, з історичними стартовими позиціями для цивілізацій цього регіону.</Text>
+        </Replace>
+
+        <!-- German -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="de_DE">
+            <Text>Karte Europa &amp; Mittelmeer</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="de_DE">
+            <Text>Fügt die Karte "Europa &amp; Mittelmeer" hinzu: die Mittelmeerwelt und Europa vom Ural bis nach Island und von Marokko bis zum Sinai, mit historischen Startpositionen für Zivilisationen aus dieser Region.</Text>
+        </Replace>
+
+        <!-- French -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="fr_FR">
+            <Text>Carte Europe et Méditerranée</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="fr_FR">
+            <Text>Ajoute la carte "Europe et Méditerranée" : le monde méditerranéen et l'Europe de l'Oural à l'Islande et du Maroc au Sinaï, avec des emplacements de départ historiques pour les civilisations de la région.</Text>
+        </Replace>
+
+        <!-- Spanish -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="es_ES">
+            <Text>Mapa de Europa y el Mediterráneo</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="es_ES">
+            <Text>Añade el mapa "Europa y el Mediterráneo": la cuenca mediterránea y Europa desde los Urales hasta Islandia y desde Marruecos hasta el Sinaí, con ubicaciones de inicio históricas para las civilizaciones de la región.</Text>
+        </Replace>
+
+        <!-- Polish -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="pl_PL">
+            <Text>Mapa Europa i Morze Śródziemne</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="pl_PL">
+            <Text>Dodaje mapę „Europa i Morze Śródziemne”: basen Morza Śródziemnego i Europę od Uralu po Islandię oraz od Maroka po Synaj, z historycznymi miejscami startowymi dla cywilizacji z tego regionu.</Text>
+        </Replace>
+
+        <!-- Portuguese (Brazil) -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="pt_BR">
+            <Text>Mapa Europa e Mediterrâneo</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="pt_BR">
+            <Text>Adiciona o mapa "Europa e Mediterrâneo": o mundo mediterrâneo e a Europa dos Urais à Islândia e do Marrocos ao Sinai, com posições iniciais históricas para civilizações da região.</Text>
+        </Replace>
+
+        <!-- Simplified Chinese -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="zh_Hans_CN">
+            <Text>欧洲与地中海地图</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>添加“欧洲与地中海”地图：包含从乌拉尔山脉到冰岛、从摩洛哥到西奈半岛的欧洲及地中海地区，并为本区域文明提供真实历史起始位置。</Text>
+        </Replace>
+
+        <!-- Traditional Chinese -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="zh_Hant_HK">
+            <Text>歐洲與地中海地圖</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>新增「歐洲與地中海」地圖：涵蓋從烏拉山脈到冰島、從摩洛哥到西奈半島的地中海世界與歐洲，並為該區域文明提供真實歷史起始位置。</Text>
+        </Replace>
+
+        <!-- Japanese -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="ja_JP">
+            <Text>ヨーロッパ＆地中海マップ</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="ja_JP">
+            <Text>「ヨーロッパ＆地中海」マップを追加：ウラル山脈からアイスランド、モロッコからシナイ半島に至る地中海世界とヨーロッパを再現し、該当地域の文明に史実準拠のスタート地点を提供します。</Text>
+        </Replace>
+
+        <!-- Korean -->
+        <Replace Tag="LOC_MODULE_EUROPE_MED_NAME" Language="ko_KR">
+            <Text>유럽 및 지중해 지도</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION" Language="ko_KR">
+            <Text>"유럽 및 지중해" 지도를 추가합니다: 우랄산맥에서 아이슬란드, 모로코에서 시나이반도에 이르는 지중해 세계와 유럽을 배경으로 하며, 해당 지역 문명을 위한 역사적 시작 위치를 제공합니다.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

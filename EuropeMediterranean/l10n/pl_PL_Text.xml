@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="pl_PL">
+            <Text>Europa i Morze Śródziemne</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="pl_PL">
+            <Text>Mapa Europy i basenu Morza Śródziemnego, od Uralu po Islandię oraz od Maroka po Synaj. Historyczne pozycje startowe dla cywilizacji z regionu; pozostałe cywilizacje rozpoczynają w wyselekcjonowanych miejscach.[n]Działa ze standardowymi rozmiarami map.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="pl_PL">
+            <Text>Europa, Morze Śródziemne i Sahel (Duża, Odległe krainy)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="pl_PL">
+            <Text>Większe ujęcie Europy i Morza Śródziemnego sięgające na południe aż po Sahel, Etiopię i Arabię. Więcej pól na kraj (Włochy i Sycylia mieszczą kilka miast), surowsza Rosja, skondensowana Arktyka i Sahara oraz historyczne starty także dla Aksum i Songhaju.[n][n]Afryka leży w Odległych krainach za Morzem Śródziemnym, więc floty skarbów epoki eksploracji oraz powiązane ścieżki dziedzictwa działają bez przeszkód.[n]Trzy rozmiary: 112x98, 128x112 i 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="pl_PL">
+            <Text>Europa, Morze Śródziemne i Sahel (Duża, Jeden ląd)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="pl_PL">
+            <Text>Ta sama geografia co w mapie Europa, Morze Śródziemne i Sahel (Duża), lecz bez Odległych krain: Afryka i Eurazja tworzą jeden kontynent, dzięki czemu do każdej cywilizacji można dotrzeć lądem już od pierwszej tury.[n][n]Konsekwencja: ponieważ w epoce eksploracji zarówno ekonomiczna (flota skarbów), jak i militarna ścieżka dziedzictwa punktują wyłącznie w Odległych krainach, żadnej z nich nie można ukończyć w tej wersji. Wybierz standardową Dużą mapę, jeśli chcesz z nich skorzystać.[n]Trzy rozmiary: 112x98, 128x112 i 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="pl_PL">
+            <Text>Europa i Morze Śródziemne (Wariant)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="pl_PL">
+            <Text>Osobna kopia dużej geografii Europy, Morza Śródziemnego i Sahelu, zachowana osobno, aby można było ją modyfikować bez zmiany oryginału. Początkowo identyczna; edytuj maps/europe-alt-geo.js, aby nadać jej własny kształt.[n]Trzy rozmiary: 112x98, 128x112 i 144x126.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pl_PL">
+            <Text>Europa Duża 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="pl_PL">
+            <Text>Europa, Morze Śródziemne i Sahel na siatce 112x98, domyślnie 10 graczy.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="pl_PL">
+            <Text>Europa Duża 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="pl_PL">
+            <Text>Europa, Morze Śródziemne i Sahel na siatce 128x112, domyślnie 12 graczy.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="pl_PL">
+            <Text>Europa Duża 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="pl_PL">
+            <Text>Europa, Morze Śródziemne i Sahel na siatce 144x126, domyślnie 12 graczy. Dłuższe tury na starszych komputerach.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

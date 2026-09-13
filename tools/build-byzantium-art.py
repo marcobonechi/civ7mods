@@ -13,17 +13,33 @@ from civ7_art_studio import build
 from civ7_art_studio.blp import build_blp
 from civ7_art_studio.project import Project
 
-DEFAULT_GAME = os.path.join(
+MAC_GAME = os.path.join(
     os.path.expanduser("~"),
     "Library/Application Support/Steam/steamapps/common",
     "Sid Meier's Civilization VII/CivilizationVII.app/Contents/Resources"
 )
+LINUX_GAME = os.path.join(
+    os.path.expanduser("~"),
+    ".steam/steam/steamapps/common/Sid Meier's Civilization VII"
+)
+WINDOWS_GAMES = [
+    os.path.join(lib, "steamapps/common/Sid Meier's Civilization VII")
+    for lib in (os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)") + r"\Steam",
+                os.environ.get("ProgramFiles", r"C:\Program Files") + r"\Steam",
+                r"C:\SteamLibrary", r"D:\SteamLibrary", r"D:\Steam")
+]
+
+# The folder holding Base/ and DLC/. On macOS that is inside the app bundle; on Windows it is the
+# Steam library folder, which is not always the default one.
+DEFAULT_GAMES = {"darwin": [MAC_GAME], "win32": WINDOWS_GAMES}.get(sys.platform, [LINUX_GAME])
 
 
 def main():
-    game_root = os.environ.get("CIV7_GAME_ROOT") or DEFAULT_GAME
-    if not os.path.isdir(game_root):
-        sys.exit(f"Game root not found: {game_root}")
+    pinned = os.environ.get("CIV7_GAME_ROOT")
+    roots = [pinned] if pinned else DEFAULT_GAMES
+    game_root = next((r for r in roots if os.path.isdir(os.path.join(r, "DLC"))), None)
+    if not game_root:
+        sys.exit("Game root not found (set CIV7_GAME_ROOT), tried:\n  " + "\n  ".join(roots))
 
     manifest_path = os.path.join(REPO, "Byzantium", "dlc", "civart.json")
     with open(manifest_path, "r", encoding="utf-8") as f:

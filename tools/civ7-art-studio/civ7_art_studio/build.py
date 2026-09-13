@@ -25,6 +25,22 @@ class BuildResult:
         self.log.append(f'ERROR: {message}')
 
 
+def _donor_candidates(pinned):
+    """A pin names one platform's copy of a donor ('DLC/joseon/Platforms/Mac/BLPs/x.blp'), but a
+    game install only ships the platform it runs on. Offer the pin first, then the same path under
+    the other platform folders, so one manifest builds the same package on any OS."""
+    yield pinned
+    parts = pinned.replace(os.sep, '/').split('/')
+    if 'Platforms' not in parts:
+        return
+    i = parts.index('Platforms')
+    if i + 1 >= len(parts):
+        return
+    for plat in ('Windows', 'Mac', 'Linux'):
+        if parts[i + 1] != plat:
+            yield '/'.join(parts[:i + 1] + [plat] + parts[i + 2:])
+
+
 def _pick_donor(game_root, manifest, package, log):
     """
     To not have to fiddle with all the little bits, need a donor BLP package to use, from the base game.
@@ -41,10 +57,11 @@ def _pick_donor(game_root, manifest, package, log):
 
     pinned = (manifest.get('donors') or {}).get(package)
     if pinned:
-        path = pinned if os.path.isabs(pinned) else os.path.join(game_root, pinned)
-        if os.path.exists(path):
-            log(f'  donor {package}: {pinned} (pinned)')
-            return path
+        for cand in _donor_candidates(pinned):
+            path = cand if os.path.isabs(cand) else os.path.join(game_root, cand)
+            if os.path.exists(path):
+                log(f'  donor {package}: {cand} (pinned)')
+                return path
         log(f'  donor {package}: pinned {pinned} is missing, re-selecting')
 
     if package == 'StandardAsset':

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_MAP_EUROPE_MED_NAME" Language="zh_Hans_CN">
+            <Text>欧洲与地中海</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>一张涵盖欧洲和地中海盆地的地图，从乌拉尔山脉延伸至冰岛，从摩洛哥延伸至西奈半岛。本地区文明拥有真实历史起始位置；其他文明从精选地点出发。[n]支持标准地图尺寸。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="zh_Hans_CN">
+            <Text>欧洲、地中海与萨赫勒（大地图，远方土地）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>规模更大的欧洲与地中海地图，向南延伸至萨赫勒、埃塞俄比亚和阿拉伯半岛。各国六角格面积更大（意大利和西西里岛可容纳多座城市），更严酷的俄罗斯地区，压缩的北极与撒哈拉沙漠，并为阿克苏姆和桑海提供了历史起始点。[n][n]非洲隔地中海被视为远方土地，因此探索时代的宝藏舰队及远方土地传承路线可在此正常运作。[n]提供三种尺寸：112x98、128x112 和 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="zh_Hans_CN">
+            <Text>欧洲、地中海与萨赫勒（大地图，单一大陆）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>与“欧洲、地中海与萨赫勒（大地图）”拥有相同的地理风貌，但无远方土地设定：非洲与欧亚大陆同属一个陆地区域，所有文明从第一回合起均可通过陆路到达与建交。[n][n]权衡：由于探索时代的经济（宝藏舰队）和军事传承路线仅在远方土地计分，因此在此版本中均无法完成。若需要这些路线，请选择标准大地图版本。[n]提供三种尺寸：112x98、128x112 和 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="zh_Hans_CN">
+            <Text>欧洲与地中海（变体）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>欧洲、地中海与萨赫勒大地图的独立副本，便于在不影响原版的情况下进行自定义修改。初始设置与原版相同；可通过编辑 maps/europe-alt-geo.js 进行个性化重塑。[n]提供三种尺寸：112x98、128x112 和 144x126。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hans_CN">
+            <Text>欧洲大地图 112x98</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>112x98 网格的欧洲、地中海与萨赫勒地图，默认 10 名玩家。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="zh_Hans_CN">
+            <Text>欧洲大地图 128x112</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>128x112 网格的欧洲、地中海与萨赫勒地图，默认 12 名玩家。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="zh_Hans_CN">
+            <Text>欧洲大地图 144x126</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>144x126 网格的欧洲、地中海与萨赫勒地图，默认 12 名玩家。在配置较低的电脑上回合等待时间较长。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

@@ -59,6 +59,19 @@ xattr -dr com.apple.quarantine ~/Library/Application\ Support/Civilization\ VII/
 The game reads mods **only at startup**, so restart it after installing. In game setup, pick one of
 the three map types below.
 
+Byzantium also ships a binary art package (the Hagia Sophia wonder model). The game finds art
+packages only inside its own install, so the install scripts mirror `Byzantium/dlc/ByzantiumArt/`
+into `<game>/DLC/ByzantiumArt/`. That is the one thing installed outside the Mods folder; set
+`CIV7_GAME_ROOT` if the game is not in a default Steam library.
+
+### Removing the mods
+
+`uninstall.ps1` (Windows) removes every mod folder this repository installs, together with the art
+packages it mirrored into the game's `DLC/`. It never touches shipped game content: a `DLC/` folder
+is removed only when this repository declares an art package of that name *and* the installed copy
+carries the matching `.dep`. Run it with `-DryRun` to list what it would remove without removing
+anything, or name a single mod (`uninstall.ps1 Byzantium`). Restart the game afterwards.
+
 ---
 
 ## The three maps
