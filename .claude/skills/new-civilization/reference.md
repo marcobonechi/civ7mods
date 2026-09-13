@@ -13,7 +13,7 @@ on 2026-09-05. Paths are relative to
 | Game effects | `data/*-gameeffects.xml` (`<GameEffects xmlns="GameEffects">`) | Modifiers: `<Modifier id collection effect>` with `<Argument>`, `<SubjectRequirements>`, `<OwnerRequirements>`, `<String context="Preview|Description">`. |
 | Text | `text/en_us/*.xml` (`<Database><EnglishText><Row Tag>`) | Loaded in both scopes via `UpdateText`. |
 | Icons | `data/icons/icons.xml` (`<IconDefinitions><Row><ID/><Path/>`), `UpdateIcons` | ID = the type name. Path `blp:name` for shipped art, `fs://game/<modid>/<path>.png` for files brought in with `ImportFiles`. |
-| Visuals | `data/visual-remaps.xml`, `UpdateVisualRemaps` (game and shell) | `<VisualRemaps><Row><ID/><DisplayName/><Kind>UNIT|BUILDING|ART_BIN</Kind><From/><To/>` — `From` is your type, `To` the existing type whose model is used. Firaxis uses it for the Founder-edition scout/palace. Community tooling (izica/civ7-modding-tools `visualRemap`) uses it for custom units. Not verified in this repo yet: confirm in game the first time. |
+| Visuals | `data/visual-remaps.xml`, `UpdateVisualRemaps` (game and shell) | `<VisualRemaps><Row><ID/><DisplayName/><Kind>UNIT|BUILDING|ART_BIN</Kind><From/><To/>` — `From` is your type, `To` the existing type whose model is used. **Units and wonders only.** `To` has to name an asset that exists in the art data, and only unit and wonder assets are named after their type (`UNIT_SWORDSMAN`, `WONDER_NOTRE_DAME` are real asset names; `BUILDING_GUILDHALL` is not — grep any `StandardAsset*.blp`). A building's model comes from a rule keyed on `[BUILDING:<type>]` in `BIN_Hero_Building_Footprint`, whose fallback is empty, so a `Kind=BUILDING` remap of a *building* silently renders nothing. Give buildings art with an art package instead (below). Firaxis's own `BUILDING_PALACE` → `BUILDING_PALACE_FOUNDER` is a swap between two names that both exist in the Founder art, not a borrow. |
 | Age gating | `<ActionCriteria>` in the modinfo | `AgeInUse`, `ModInUse`, `ModIsEnabled`, `AlwaysMet`; a criteria with `any="true"` ORs its children. |
 | Map | `EuropeMediterranean/maps/*-geo.js` `tsl` | True start per `CIVILIZATION_*`; keyed by the game-side type via `GameInfo.Civilizations.lookup`. |
 
@@ -260,8 +260,17 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   paths (1920x1080 and 1280x720), and the same files go into `IconDefinitions` under
   `CIVILIZATION_X` with `Context` BACKGROUND (`IconSize` 1080 / 720) plus BACKGROUND_VERT for the
   tall civ-select card (Byzantium uses 1080x1920). Import them in both scopes.
-- 3D: `VisualRemaps` (section 1). No art package (`.dep`, `Platforms/`) is needed for a
-  data-only mod; the map mod proves that.
+- 3D: `VisualRemaps` (section 1) for units and wonders. No art package (`.dep`, `Platforms/`) is
+  needed for those; the map mod proves that. **Unique buildings are the exception and always need
+  one**, because their art is dispatched by `[BUILDING:<type>]` rules rather than by asset name —
+  a mod with no package renders every unique building as empty ground. The package is tiny when it
+  borrows a shipped bin: a `buildings` entry per building in `<Mod>/dlc/civart.json`
+  (`{"target": "BIN_Guildhall_Scaled", "expression": "[BUILDING:BUILDING_BOTTEGA]", "priority": 1,
+  "weight": 1.0}`), then `python3 tools/build-art.py <Mod>` — ~40 KB, no geometry, and the bin
+  brings its construction / completed / pillaged states and culture variants with it. Pick the bin
+  from `strings -a <game>/Base/Platforms/<OS>/BLPs/StandardAsset*.blp | grep -x 'BIN_.*_Scaled'`,
+  and keep the seat right: a land building on a water bin sits on the sea floor.
+  `tools/check-art.py <Mod>` checks the whole chain down to the game's own log.
 - What a mod can ship, learned from 18 Workshop civs (Sep 2026, see `plans/byzantium-art.md`):
   loose 2D PNGs, borrowed 3D through `VisualRemaps`, and 3D props placed from a UI script with
   `WorldUI.createModelGroup` (Austria-Hungary `ui/polder_model.js`, Custom Civ Art Fixes

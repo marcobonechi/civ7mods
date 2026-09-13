@@ -923,3 +923,33 @@ Two gaps the work turned up:
 `tools/check-mod.py` gains check 7: every `VisualRemaps` Kind=UNIT row must have a matching
 `unitPortraits` entry with the same target, and a declared unit with no entry is a warning.
 Verified by breaking an entry two ways and watching it fire.
+
+### 2026-09-14 — making the two invisible hooks say so
+
+Marco, reasonably: how do I verify the remapping worked? Until now the answer was "look at the
+box and judge". Both of the hooks that borrow art — the unit portrait and the leader model — fail
+*silently* by design: a portrait that does not resolve renders an empty box, a leader that does not
+resolve falls back to a generic figure, and in neither case is a file ever requested, so nothing
+appears in `UI.log`. That is the same trap as the icon quoting: the absence of a failure line is
+not evidence of success.
+
+Both now announce themselves once per subject, through `console.warn` so the line survives the
+default log level:
+
+```
+civ7mods: portrait UNIT_LIBURNA -> UNIT_GALLEY
+civ7mods: leader model LEADER_LORENZO_GAME_ASSET -> LEADER_MACHIAVELLI_GAME_ASSET
+```
+
+One line the first time each unit or leader is asked for, never repeated — portraits are requested
+on every selection, so the naive version would flood the log. `Logs/UI.log` now answers the
+question without anyone having to interpret pixels.
+
+A note on the Sokeman report that led here: not a bug. `LorenzoExp1`, the save Marco had loaded,
+is a **Norman** game — the header reads `LEADER_LORENZO` + `CIVILIZATION_NORMAN`, matching what
+`GameCore.log` recorded on the 11th, when Tuscany was still locked at the transition and he took
+Norman instead. The Sokeman is Norman's unique *Settler* (`FoundCity="true"`, replaces
+`UNIT_SETTLER`), not an infantry unit, so it was never competing with the Condottiero for a slot.
+Reading a save's civ is a useful trick worth keeping: `strings -a <save> | grep -oE
+'CIVILIZATION_[A-Z_]+|LEADER_[A-Z_]+' | head -2` gives the local player's leader and civ, verified
+against a game whose `GameCore.log` still existed.

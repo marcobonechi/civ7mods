@@ -264,11 +264,25 @@
         //    3D asset into the live texture the panel then shows as url("live:/<name>"). Leave the
         //    first argument alone - it is the texture key the CSS is about to ask for - and swap
         //    only the second, which is the asset to render.
+        //    Both swaps say so once per subject in Logs/UI.log. Neither of them can be checked
+        //    from outside the game - a portrait that fails renders an empty box and a leader
+        //    that fails falls back to a generic figure, and in both cases nothing is requested,
+        //    so no "failed to open file" line ever appears. One line each turns "does it look
+        //    right?" into something readable.
+        const announced = new Set();
+        const announce = (what, from, to) => {
+            if (announced.has(what + from)) return;
+            announced.add(what + from);
+            console.warn("civ7mods: " + what + " " + from + " -> " + to);
+        };
+        shared.announce = announce;
+
         try {
             if (window.WorldUI && WorldUI.requestPortrait) {
                 const original = WorldUI.requestPortrait.bind(WorldUI);
                 WorldUI.requestPortrait = function (name, unitType, background) {
                     const stand = typeof unitType === "string" ? shared.unitAssets.get(unitType) : null;
+                    if (stand) announce("portrait", unitType, stand);
                     return original(name, stand || unitType, background);
                 };
             }
@@ -291,7 +305,9 @@
                     if (!group || typeof group[method] !== "function" || group[method].__civ7mods) return;
                     const inner = group[method].bind(group);
                     const wrapped = function (asset) {
-                        return inner.apply(null, [swap(asset)].concat([].slice.call(arguments, 1)));
+                        const swapped = swap(asset);
+                        if (swapped !== asset) announce("leader model", asset, swapped);
+                        return inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
                     };
                     wrapped.__civ7mods = true;
                     group[method] = wrapped;

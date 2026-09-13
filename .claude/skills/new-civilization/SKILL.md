@@ -46,7 +46,9 @@ modules first and copy a working row.
    `data/visual-remaps.xml`). Every custom unit needs a `VisualRemaps` row pointing at an
    existing unit's art or it renders without a model. Verify in game.
 5. **Buildings, quarter, wonder** under the `exploration-age-persist` group so they survive
-   into the next age. Then the civic tree and traditions (shell copies of traditions and civic
+   into the next age. Unique buildings need an art package to appear on the map at all — a
+   `VisualRemaps` row cannot give a building a model (reference.md §1). `<Mod>/dlc/civart.json`
+   plus `tools/build-art.py <Mod>`, then verify with `tools/check-art.py <Mod>`. Then the civic tree and traditions (shell copies of traditions and civic
    nodes go in `config/config-traditions.xml`).
 6. **Other ages.** Add `Civilizations` rows for the other two domains in `config/config.xml`
    if the civ must be pickable at an Antiquity or Modern start; add a node to
