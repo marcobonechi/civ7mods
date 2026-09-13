@@ -783,3 +783,51 @@ One loose end: Marco reported the strength as 35, and 35 is the Swordsman, not t
 Condottiero had. Nothing in the data explains a 35 — `UnitReplaces`, `Unit_Stats` and the action
 group all check out — so it was most likely a glance at the wrong tooltip. Worth confirming the
 unit now reads 40 in game.
+
+### 2026-09-12 — the missing unit icons: an unquoted url()
+
+Marco: the Condottiero has no icon inside an army commander. Which icon is missing? None — the
+icon row is right and the PNG is imported in both scopes. What is missing is a pair of quotes.
+
+`army-panel.js:398`:
+
+```js
+const iconName = Icon.getUnitIconFromDefinition(unitDefinition);   // UI.getIconURL(type, "UNIT_FLAG")
+const iconCSS = iconName ? `url(${iconName})` : "";
+button.style.setProperty("--button-icon", iconCSS);
+```
+
+For a base unit that produces `url(blp:unitflag_swordsman)`. For ours it produces
+`url(fs://game/tuscany/unitflag_condottiero.png)` — and an **unquoted `url()` holding an `fs://`
+path does not parse here**. The evidence is in the base game's own habits: it writes `url(<x>)`
+unquoted only where `x` is a `blp:` package name, which contains no `//`, and quotes every `fs://`
+path it writes. The two halves of the same helper file make the contrast exactly —
+`Icon.getCivSymbolCSSFromCivilizationType` returns ``url('<x>')`` and works for our civ symbol,
+while `Icon.getUnitIconFromDefinition` returns a bare URL that its callers wrap unquoted.
+
+Which callers quote decides which screens work:
+
+| caller | wraps as | our icon |
+|---|---|---|
+| `city-banners.js:680` | ``url('${...}')`` | shows |
+| `unit-flags.js:356` | `url(${...})` | missing |
+| `army-panel.js:399` | `url(${...})` | missing |
+| `screen-diplomacy-target-select.js:192` | `url(${...})` | missing |
+
+Nothing about this reaches `UI.log`: the value never becomes a resource request, so there is no
+"failed to open file" line to find. That is worth remembering — the absence of a log line is not
+evidence the path is right.
+
+Two changes to the shared hook in all three UI scripts:
+
+- `fixCss` now quotes any bare `url(fs://...)`, for **every** mod's files, not just ours. Marco has
+  a dozen custom civs installed and they all lose their unit icons the same way.
+- The `setProperty` hook no longer filters on the property name. The army panel writes the icon to
+  a *custom property*, `--button-icon`, which the stylesheet reads back with
+  `background-image: var(--button-icon)`; a hook watching `background-image` never sees it. It now
+  runs on any value matching `/url\(|fs:\/\/|blp:/` — a cheap guard so the hot path stays cheap.
+
+Checked against eight cases before shipping: ours rewritten and quoted, another mod's rewritten,
+base `blp:` values untouched, an already-quoted value untouched, registry lookups still resolving,
+`blp:fs://` still unwrapped, and a non-URL value skipped by the guard. Both rules are in the skill
+reference now.

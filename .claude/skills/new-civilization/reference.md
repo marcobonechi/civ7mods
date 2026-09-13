@@ -296,6 +296,19 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
+- **An unquoted `url()` holding an `fs://` path does not parse in this engine.** The base game only
+  ever writes `url(<x>)` unquoted where `x` is a `blp:` package name - which contains no `//` - and
+  always quotes an `fs://` path. Compare `Icon.getCivSymbolCSSFromCivilizationType`, which returns
+  ``url('<x>')``, with `Icon.getUnitIconFromDefinition`, which returns a bare URL that its callers
+  wrap unquoted (`unit-flags.js`, `army-panel.js`, `screen-diplomacy-target-select.js`; only
+  `city-banners.js` quotes it). So a mod's loose PNG shows on the city banner and is invisible on
+  the map flag and inside an army commander. Nothing appears in `UI.log` - the value never becomes
+  a resource request. The fix belongs in the UI script: quote any bare `url(fs://...)` on its way
+  through `setProperty` and the `backgroundImage` accessor.
+- **Watch `setProperty` for every property, not just `background-image`.** The army panel puts the
+  unit icon in a *custom property* - `style.setProperty("--button-icon", ...)` - and the stylesheet
+  reads it back with `background-image: var(--button-icon)`, so a hook that filters on the property
+  name never sees it.
 - **`IconDefinitions.Context` is a foreign key** (`IconDefinitions` -> `Icons` -> `IconContexts`),
   and the only values the game defines are `DEFAULT`, `CIRCLE_MASK`, `PORTRAIT_MASK`,
   `LEADER_HAPPY`, `LEADER_ANGRY`, `BACKGROUND`, `BACKGROUND_VERT`, `BACKGROUND_HORIZ`, `BUBBLE`,

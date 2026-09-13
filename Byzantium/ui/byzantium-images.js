@@ -102,11 +102,23 @@
             return shared.textures.get(s) || shared.textures.get(s.replace(/_(h|a)$/, "")) || null;
         };
 
+        // Anything that might carry an asset path. Cheap guard so the hooks below can look at
+        // every property without running a regex over every style write in the game.
+        const MAYBE_URL = /url\(|fs:\/\/|blp:/i;
+
         // Rewrite a CSS value, keeping the url(...) wrapper if it had one.
         const fixCss = (value) => {
             if (!value || typeof value !== "string") return value;
             // The UI sometimes prepends blp: to a path it was given as fs://; that never opens.
             let out = value.indexOf("blp:fs://") >= 0 ? value.replace(/blp:(fs:\/\/)/g, "$1") : value;
+            // An unquoted url() holding an fs:// path does not parse here. The base game only ever
+            // writes url(<x>) unquoted where x is a blp: package name - no "//" in it - and always
+            // quotes an fs:// path; compare Icon.getCivSymbolCSSFromCivilizationType, which returns
+            // url('<x>'), with Icon.getUnitIconFromDefinition, which returns a bare URL that its
+            // callers wrap unquoted. So a mod's loose PNG survives the first and is dropped by the
+            // second: city banners show our unit icons, the army panel and the unit flags do not.
+            // Quoting is the whole fix, and it is worth doing for every mod's files, not just ours.
+            out = out.replace(/url\(\s*(fs:\/\/[^'\")\s]+)\s*\)/gi, "url('$1')");
             const hit = lookup(out);
             if (!hit) return out;
             return /url\(/.test(out) ? "url('" + hit + "')" : hit;
@@ -124,11 +136,16 @@
             return true;
         };
 
-        // 1. setProperty("background-image" | "background", ...)
+        // 1. setProperty(...) for any property whose value looks like it carries an asset. Not
+        //    just background-image: the army panel puts the unit icon in a custom property,
+        //    `button.style.setProperty("--button-icon", `url(${iconName})`)`, and the CSS then
+        //    reads it back with background-image: var(--button-icon). Watching only
+        //    background-image misses it, which is why a Condottiero inside a commander had no
+        //    icon while the same civ's symbol, set through a quoted url(), was fine.
         try {
             const original = CSSStyleDeclaration.prototype.setProperty;
             CSSStyleDeclaration.prototype.setProperty = function (prop, value, priority) {
-                if (prop === "background-image" || prop === "background") value = fixCss(value);
+                if (typeof value === "string" && MAYBE_URL.test(value)) value = fixCss(value);
                 return original.call(this, prop, value, priority);
             };
         } catch (e) { /* leave the engine alone if it will not take the hook */ }
