@@ -80,11 +80,17 @@ anything, or name a single mod (`uninstall.ps1 Byzantium`). Restart the game aft
 
 ## The three maps
 
-| Map type | Extent | Distant Lands | Grids |
+All three offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
+
+| Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
-| Europe & Mediterranean | Urals–Iceland, Morocco–Sinai (27.5N–71N) | none (one landmass) | standard sizes (Tiny 60x38 ... Huge 106x66) |
-| Europe, Mediterranean & Sahel (Large, Distant Lands) | same west/east, but 10N–71N | Africa | 112x98, 128x112, 144x126 |
-| Europe, Mediterranean & Sahel (Large, One Landmass) | identical geography | none | 112x98, 128x112, 144x126 |
+| Europe, Mediterranean & Sahel (Large, Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
+| Europe, Mediterranean & Sahel (Large, One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
+| Europe & Mediterranean (Variant) | identical geography, separate copy to reshape freely | Africa, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
+
+`maps/europe-map.js` and `maps/europe-geo.js` (the original smaller-extent map on the base game's
+sizes) are still in the repo but are no longer registered in `config/config.xml`, so they do not
+appear in the map picker.
 
 The two Large variants share all their geography and generation code (`maps/europe-large-core.js`);
 they differ only in `distantLandsAnchors`. Pick **Distant Lands** for the full Exploration Age —
@@ -236,6 +242,7 @@ instead of regenerating it (so nothing is silently dropped), the file being edit
 | `install.ps1` | `./install.sh` | mirrors every mod folder (or the named ones) into the Civ VII Mods folder |
 | `release.ps1` | `./release.sh` | bumps one mod's version and installs it |
 | *(none)* | `tools/check-mod.py` | static checks for a mod folder: XML syntax, modinfo file list, text tags and type ids against the game data |
+| *(none)* | `tools/check-map-sizes.mjs` | generates every grid size the mod ships and checks land share, Distant Lands split, start positions, sea connectivity and that the islands stay islands |
 | `preview/build-preview.ps1` | `preview/build-preview.sh` | rebuilds the standalone preview pages |
 | `preview/shots.ps1` | *(not ported)* | renders showcase PNGs of the large map into `EuropeMediterranean/screenshots/` with headless Edge (global, home/distant lands, regional close-ups) |
 | `editor/build-defaults.ps1` | *(no longer needed)* | the editor imports `maps/*-geo.js` live; there is no generated snapshot to rebuild |
@@ -251,6 +258,7 @@ instead of regenerating it (so nothing is silently dropped), the file being edit
 ./install.sh Byzantium          # install one mod
 ./release.sh EuropeMediterranean  # bump version + install
 python3 tools/check-mod.py Byzantium   # before installing a data mod
+node tools/check-map-sizes.mjs         # before shipping a map change
 ./preview/build-preview.sh --open
 ```
 

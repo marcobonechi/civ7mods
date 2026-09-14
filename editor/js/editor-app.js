@@ -22,13 +22,13 @@
 
     let canvasView = null;
 
-    // Grid sizes. 128x112 is the only size the mod ships (data/maps.xml); the rest
-    // are here so you can check how a change lands if that ever changes again.
+    // The three grids the mod ships (data/maps.xml, and SIZES in europe-large-core.js).
+    // Geography is pinned by lon/lat, so check a change at every size before shipping it:
+    // features that survive at 128x112 can merge or vanish on a coarser grid.
     const GRID_PRESETS = [
-        { label: '128 x 112 - shipped', w: 128, h: 112 },
-        { label: '112 x 98', w: 112, h: 98 },
-        { label: '144 x 126', w: 144, h: 126 },
-        { label: '84 x 54', w: 84, h: 54 }
+        { label: '128 x 112 - Large', w: 128, h: 112 },
+        { label: '112 x 98 - Standard', w: 112, h: 98 },
+        { label: '144 x 126 - Huge', w: 144, h: 126 }
     ];
 
     function init() {
