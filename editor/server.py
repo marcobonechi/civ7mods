@@ -12,6 +12,7 @@ import argparse
 import http.server
 import json
 import os
+import re
 import posixpath
 import socket
 import subprocess
@@ -28,9 +29,19 @@ if os.path.basename(CIV7_ROOT).startswith("EuropeMediterranean"):
     CIV7_ROOT = os.path.dirname(CIV7_ROOT)
 
 MAPS_PRIMARY = os.path.join(CIV7_ROOT, "EuropeMediterranean", "maps")
-MAPS_MIRROR = os.path.join(CIV7_ROOT, "EuropeMediterranean - Copy", "maps")
 PREVIEW_SCRIPT = os.path.join(CIV7_ROOT, "preview", "build-preview.sh")
 INSTALL_SCRIPT = os.path.join(CIV7_ROOT, "install.sh")
+
+# Which geography file the editor opens first. Set by --map; the browser can
+# switch to any other file /api/maps lists.
+SELECTED_MAP = None
+
+# Labels for the files we ship, so the picker reads better than a bare filename.
+MAP_LABELS = {
+    "europe-large-geo.js": "Europe, Mediterranean & Sahel (Large + United)",
+    "europe-alt-geo.js": "Europe Variant",
+    "europe-geo.js": "Europe & Mediterranean (Standard, not registered)",
+}
 
 MIME = {
     ".html": "text/html; charset=utf-8",
@@ -49,7 +60,44 @@ GREEN, YELLOW, RED, CYAN, GRAY, RESET = (
     if sys.stdout.isatty() else ("", "", "", "", "", "")
 )
 
-ALLOW_MIRROR = True
+
+
+def build_id():
+    """Newest mtime across the editor's own files.
+
+    Served with /api/status and injected into index.html, so the page can notice it
+    is a cached copy older than the server and say so instead of half-working.
+    """
+    newest = 0
+    for base, _dirs, names in os.walk(ROOT):
+        if os.sep + "." in base:
+            continue
+        for n in names:
+            if n.endswith((".html", ".css", ".js", ".py")):
+                try:
+                    newest = max(newest, os.path.getmtime(os.path.join(base, n)))
+                except OSError:
+                    pass
+    return str(int(newest))
+
+
+def geo_files():
+    """Editable geography files, nicest-named first."""
+    try:
+        names = sorted(n for n in os.listdir(MAPS_PRIMARY) if n.endswith("-geo.js"))
+    except OSError:
+        return []
+    order = list(MAP_LABELS)
+    names.sort(key=lambda n: (order.index(n) if n in order else 99, n))
+    return [{"file": n, "label": MAP_LABELS.get(n, n)} for n in names]
+
+
+TOP_KEY = re.compile(r"^    ([A-Za-z_$][A-Za-z0-9_$]*)\s*:", re.M)
+
+
+def top_level_keys(text):
+    """Top-level GEO keys, by the file's own 4-space house indent."""
+    return set(TOP_KEY.findall(text))
 
 
 def run_script(path):
@@ -77,6 +125,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
+        # Never cache. This is a local editing tool whose files change under the
+        # browser constantly, and a half-stale mix of page and scripts fails in
+        # confusing ways - a cached index.html asking for a script that has since
+        # been deleted leaves the editor up but with no map loaded at all.
+        self.send_header("Cache-Control", "no-store, must-revalidate")
         # Same-origin only: this server writes files and runs install scripts,
         # so it must not be reachable from an arbitrary page in the browser.
         origin = self.headers.get("Origin")
@@ -127,7 +180,16 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         path = urllib.parse.urlparse(self.path).path
         if path == "/api/status":
-            self._json(200, {"status": "ok", "version": "1.0.0"})
+            self._json(200, {"status": "ok", "version": "2.0.0", "build": build_id()})
+            return
+        if path == "/api/maps":
+            files = geo_files()
+            names = [f["file"] for f in files]
+            sel = SELECTED_MAP if SELECTED_MAP in names else (names[0] if names else None)
+            self._json(200, {"files": files, "selected": sel})
+            return
+        if path.startswith("/maps/"):
+            self.serve_map(path[len("/maps/"):])
             return
         self.serve_static(path)
 
@@ -145,37 +207,50 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._json(404, {"success": False, "error": "no such endpoint"})
 
     def api_save(self):
+        """Write a geography file back to the mod.
+
+        The browser sends the complete file text, produced by patching the text it
+        loaded (see js/geo-io.js), so comments and untouched keys are already
+        byte-identical. This is the backstop: if the incoming text has lost a
+        top-level key the file on disk has, refuse the write rather than let a
+        serializer regression quietly delete geography again.
+        """
         try:
             length = int(self.headers.get("Content-Length") or 0)
             data = json.loads(self.rfile.read(length).decode("utf-8"))
-            # basename strips any directory component the client sent
             filename = os.path.basename(data.get("filename") or "")
             content = data.get("content")
-            if not filename or not filename.endswith(".js") or content is None:
+            if not filename.endswith("-geo.js") or content is None:
                 self._json(400, {"success": False, "error": "bad filename or content"})
                 return
 
-            written = []
-            targets = [MAPS_PRIMARY]
-            if ALLOW_MIRROR:
-                targets.append(MAPS_MIRROR)
-            for d in targets:
-                if os.path.isdir(d):
-                    target = os.path.join(d, filename)
-                    with open(target, "w", encoding="utf-8", newline="\n") as fh:
-                        fh.write(content)
-                    written.append(target)
-
-            if not written:
-                self._json(500, {"success": False,
-                                 "error": "no maps directory found under %s" % CIV7_ROOT})
+            target = os.path.join(MAPS_PRIMARY, filename)
+            if not os.path.isfile(target):
+                self._json(404, {"success": False, "error": "no such map file: %s" % filename})
                 return
 
-            for w in written:
-                self.log_msg(GREEN, "SAVE", w.replace(CIV7_ROOT + os.sep, ""))
+            with open(target, "r", encoding="utf-8") as fh:
+                before = fh.read()
+
+            lost = sorted(top_level_keys(before) - top_level_keys(content))
+            if lost and not data.get("allowKeyLoss"):
+                self.log_msg(RED, "REFUSED", "%s would lose: %s" % (filename, ", ".join(lost)))
+                self._json(409, {"success": False, "keysLost": lost,
+                                 "error": "refusing to save: would drop %d top-level key(s): %s"
+                                          % (len(lost), ", ".join(lost))})
+                return
+
+            backup = target + ".bak"
+            with open(backup, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(before)
+            with open(target, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(content)
+
+            self.log_msg(GREEN, "SAVE", "%s  (previous kept as %s)"
+                         % (filename, os.path.basename(backup)))
             self._json(200, {"success": True,
-                             "message": "File saved to maps directory",
-                             "written": written})
+                             "message": "Saved %s (backup: %s)" % (filename, os.path.basename(backup)),
+                             "written": [target]})
         except Exception as exc:
             self.log_msg(RED, "ERROR", "save failed: %s" % exc)
             self._json(500, {"success": False, "error": str(exc)})
@@ -195,6 +270,20 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.log_msg(RED, "ERROR", "%s failed: %s" % (label, exc))
             self._json(500, {"success": False, "error": str(exc)})
 
+    def serve_map(self, rel):
+        """Read-only access to the mod's maps folder, so the page can import the
+        live rasterizer and geography modules instead of a stale generated copy."""
+        rel = posixpath.normpath(urllib.parse.unquote(rel)).lstrip("/")
+        full = os.path.abspath(os.path.join(MAPS_PRIMARY, *rel.split("/")))
+        if not full.startswith(MAPS_PRIMARY + os.sep) or not full.endswith(".js"):
+            self._send(403, b"Forbidden", "text/plain; charset=utf-8")
+            return
+        if not os.path.isfile(full):
+            self._send(404, b"File Not Found", "text/plain; charset=utf-8")
+            return
+        with open(full, "rb") as fh:
+            self._send(200, fh.read(), MIME[".js"])
+
     def serve_static(self, url_path):
         rel = urllib.parse.unquote(url_path).lstrip("/")
         if rel in ("", "index.html"):
@@ -210,7 +299,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return
         ctype = MIME.get(os.path.splitext(full)[1].lower(), "application/octet-stream")
         with open(full, "rb") as fh:
-            self._send(200, fh.read(), ctype)
+            body = fh.read()
+        if os.path.basename(full) == "index.html":
+            body = body.replace(b"__BUILD__", build_id().encode())
+        self._send(200, body, ctype)
 
 
 class Server(http.server.ThreadingHTTPServer):
@@ -218,26 +310,65 @@ class Server(http.server.ThreadingHTTPServer):
     allow_reuse_address = True
 
 
+def port_holder(port):
+    """Describe whatever already owns `port`, so the error can name it."""
+    try:
+        out = subprocess.run(["lsof", "-nP", "-tiTCP:%d" % port, "-sTCP:LISTEN"],
+                             capture_output=True, text=True).stdout.split()
+        if not out:
+            return ""
+        pid = out[0]
+        cmd = subprocess.run(["ps", "-o", "command=", "-p", pid],
+                             capture_output=True, text=True).stdout.strip()
+        return "  pid %s: %s" % (pid, cmd)
+    except Exception:
+        return ""
+
+
 def bind(preferred):
-    """Mirror the PowerShell fallback: try the wanted port, then the next few."""
-    for port in [preferred] + [preferred + n for n in range(1, 11)]:
-        try:
-            return Server(("127.0.0.1", port), Handler), port
-        except OSError as exc:
-            if exc.errno not in (48, 98):  # EADDRINUSE
-                raise
-    raise SystemExit("could not bind %d-%d" % (preferred, preferred + 10))
+    """Bind the requested port, or stop.
+
+    The PowerShell original quietly walked up to the next free port. That reads fine
+    in the startup banner and then wastes an afternoon: a second editor lands on
+    8081 while the browser tab still points at 8080, and the two disagree about what
+    is on disk. Refuse instead, and say what is holding the port.
+    """
+    try:
+        return Server(("127.0.0.1", preferred), Handler), preferred
+    except OSError as exc:
+        if exc.errno not in (48, 98):  # EADDRINUSE
+            raise
+    holder = port_holder(preferred)
+    raise SystemExit(
+        "port %d is already in use%s\n"
+        "Stop it first, or start on another port with --port <n>."
+        % (preferred, ("\n" + holder) if holder else "")
+    )
 
 
 def main():
-    global ALLOW_MIRROR
+    global SELECTED_MAP
     ap = argparse.ArgumentParser(description="Civ VII map editor companion server")
     ap.add_argument("--port", type=int, default=8080)
     ap.add_argument("--no-open", action="store_true", help="do not open a browser")
-    ap.add_argument("--no-mirror", action="store_true",
-                    help="save only to EuropeMediterranean/maps, not the ' - Copy' mirror")
+    ap.add_argument("--map", metavar="FILE", default=None,
+                    help="geography file to open first, e.g. europe-alt-geo.js "
+                         "(default: the first one listed; switchable in the browser)")
+    ap.add_argument("--no-mirror", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args()
-    ALLOW_MIRROR = not args.no_mirror
+
+    available = [f["file"] for f in geo_files()]
+    if not available:
+        raise SystemExit("no *-geo.js files in %s" % MAPS_PRIMARY)
+    if args.map:
+        want = os.path.basename(args.map)
+        if not want.endswith(".js"):
+            want += "-geo.js" if not want.endswith("-geo") else ".js"
+        if want not in available:
+            raise SystemExit("unknown map %r; available: %s" % (args.map, ", ".join(available)))
+        SELECTED_MAP = want
+    else:
+        SELECTED_MAP = available[0]
 
     httpd, port = bind(args.port)
     url = "http://localhost:%d/" % port
@@ -247,9 +378,8 @@ def main():
     print("%s  Civ VII Visual Map Editor Server Started%s" % (YELLOW, RESET))
     print("%s  URL: %s%s" % (GREEN, url, RESET))
     print("%s  serving:  %s%s" % (GRAY, ROOT, RESET))
-    print("%s  saving to: %s%s" % (GRAY, MAPS_PRIMARY, RESET))
-    if ALLOW_MIRROR and os.path.isdir(MAPS_MIRROR):
-        print("%s  mirror:    %s%s" % (GRAY, MAPS_MIRROR, RESET))
+    print("%s  maps:      %s%s" % (GRAY, MAPS_PRIMARY, RESET))
+    print("%s  editing:   %s%s" % (GRAY, SELECTED_MAP, RESET))
     print("%s  Press Ctrl+C to stop the server%s" % (GRAY, RESET))
     print("%s%s%s" % (CYAN, line, RESET))
 

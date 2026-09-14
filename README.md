@@ -164,7 +164,7 @@ steppe carry their own sets so those regions are not left empty when off-map civ
 4. Share it: see [Releasing](#releasing).
 
 There is also an interactive editor — `./run-editor.sh` starts a local server at
-http://localhost:8080 and opens a browser. It reads and writes the geography files directly.
+http://localhost:8080 and opens a browser. See *Editing maps in the editor* below.
 
 ### What the geography file contains (large map)
 
@@ -197,6 +197,7 @@ http://localhost:8080 and opens a browser. It reads and writes the geography fil
 | `volcanoes` | `[lon, lat, name]` |
 | `tsl` | true start location per civilization type |
 | `fallbackSites` | ranked start sites for civilizations without a true start |
+| `hexPatches` | single-hex overrides: `{ lon, lat, land?, terrain?, biome?, rain?, name? }`. Only the fields you give are pinned. `land` is applied before the coast, mountain and Distant Lands passes so the shape change is seen everywhere; `terrain`, `biome` and `rain` are applied after the biome blobs and before the rivers, so a river still carves through. Written by Hex Edit in the editor |
 
 ---
 
@@ -221,6 +222,13 @@ followed by `./install.sh`.
 The build and editor scripts were originally written for Windows PowerShell. The macOS/Linux ports
 sit alongside them; the originals are left in place, so the repo still works on Windows.
 
+**The visual map editor now works on macOS.** `./run-editor.sh` is a full port of the Windows
+launcher and server, and the editor itself has been brought back in line with the mod: it renders
+through the mod's own rasterizer rather than a stale copy of it, saving patches the geography file
+instead of regenerating it (so nothing is silently dropped), the file being edited is chosen with
+`--map` or from a dropdown, and single hexes can be edited directly with **Hex Edit**. See
+[Editing maps in the editor](#editing-maps-in-the-editor).
+
 | Windows | macOS / Linux | What it does |
 |---|---|---|
 | `run-editor.ps1` / `open-editor.bat` | `./run-editor.sh` | starts the editor server and opens the browser |
@@ -230,46 +238,101 @@ sit alongside them; the originals are left in place, so the repo still works on 
 | *(none)* | `tools/check-mod.py` | static checks for a mod folder: XML syntax, modinfo file list, text tags and type ids against the game data |
 | `preview/build-preview.ps1` | `preview/build-preview.sh` | rebuilds the standalone preview pages |
 | `preview/shots.ps1` | *(not ported)* | renders showcase PNGs of the large map into `EuropeMediterranean/screenshots/` with headless Edge (global, home/distant lands, regional close-ups) |
-| `editor/build-defaults.ps1` | `editor/build-defaults.sh` | regenerates `editor/js/default-maps.js` |
+| `editor/build-defaults.ps1` | *(no longer needed)* | the editor imports `maps/*-geo.js` live; there is no generated snapshot to rebuild |
 | `editor/setup-launchers.ps1` | *(not ported)* | one-off Windows workspace bootstrap, hardcoded `C:\` paths |
 
 ```bash
 ./run-editor.sh                 # editor at http://localhost:8080
+./run-editor.sh --map europe-alt-geo.js   # open this map instead of the first one
 ./run-editor.sh --port 9000     # different port
 ./run-editor.sh --no-open       # don't launch a browser
-./run-editor.sh --no-mirror     # skip the ' - Copy' mirror (no-op now it is gone)
 
 ./install.sh                    # install every mod into the game
 ./install.sh Byzantium          # install one mod
 ./release.sh EuropeMediterranean  # bump version + install
 python3 tools/check-mod.py Byzantium   # before installing a data mod
 ./preview/build-preview.sh --open
-./editor/build-defaults.sh
 ```
 
 **Requirements:** `python3` (server) and `rsync`, both of which ship with macOS. No third-party packages.
 
 ### Deliberate differences from the PowerShell originals
 
+- **The server refuses a port that is already in use**, naming the process holding it.
+  `server.ps1` walked up to the next free port instead, which reads fine in the startup
+  banner and then silently splits you in two: a second editor answers on 8081 while the
+  browser tab still points at 8080, and the two disagree about what is on disk.
+- **Nothing is cached** (`Cache-Control: no-store`), and the page carries a build stamp it
+  checks against `/api/status` on load. A page restored from the browser's disk cache shows
+  a banner saying so instead of coming up half-broken with no map. If in doubt, open the
+  editor on `http://127.0.0.1:<port>/` rather than `localhost` - the browser caches the two
+  as separate origins, so that sidesteps a stale entry without a hard reload.
 - **The server binds `127.0.0.1` only** and refuses API calls from another origin. It writes
   files and runs the installer, so it must not be drivable by an arbitrary page in your browser.
   `server.ps1` sent `Access-Control-Allow-Origin: *`.
 - **Static paths are contained** inside `editor/`. The original joined the request path
   onto the root without checking, so `..` escaped the directory.
-- **`build-defaults.sh` finds the maps folder** at `../maps` *or* `../EuropeMediterranean/maps`.
-  The PowerShell version only handled the first, which is why it silently read the stale
-  `EuropeMediterranean - Copy` geography once `editor/` moved to the project root.
-- **Output files are written without a UTF-8 BOM** (the PowerShell `build-defaults.ps1` emitted one).
+- **The editor reads the live map files.** It imports `maps/europe-raster.js` and the chosen
+  `maps/*-geo.js` over HTTP instead of a generated `default-maps.js` snapshot, so it cannot
+  drift from the mod. The old copies had fallen nine passes behind (`narrowStraits`, the
+  connected-landmass regions, `flatAreas`, `hillAreas`, `lowAreas`, `roughAreas`, `passes`,
+  `shallowLines`), which made the canvas draw a map the game would never generate.
+- **Saving patches the file instead of regenerating it** - see *Editing maps* below.
+- **Output files are written without a UTF-8 BOM** (the PowerShell scripts emitted one).
 - **`release.sh` bumps the version and installs**, leaving publication to git; `release.ps1` also
   writes a local archive next to the mod folder.
 - `robocopy /MIR` becomes `rsync -a --delete`; `.DS_Store` and `._*` are excluded everywhere.
 
-### Note on the mirror save
+### Editing maps in the editor
 
-`/api/save` writes to `EuropeMediterranean/maps`, and also to `EuropeMediterranean - Copy/maps`
-if that folder is ever recreated (matching the Windows behaviour). That folder was removed in
-2026-09, and everything it held is superseded by the current tree. With it gone, saves go to the
-primary folder only and `--no-mirror` is a no-op.
+`./run-editor.sh` serves the editor at http://localhost:8080. It lists every `*-geo.js` in
+`EuropeMediterranean/maps` in the dropdown at the top; `--map europe-alt-geo.js` picks which
+one opens first. Switching maps warns if the current one has unsaved changes.
+
+Two things make it safe to save from:
+
+- **It renders the real map.** The page imports `maps/europe-raster.js` and the chosen geography
+  module over HTTP, so the canvas runs the same passes the game does. It used to carry its own
+  copy of the rasterizer, which had drifted nine passes behind.
+- **Saving patches, it does not regenerate.** The page keeps the text it loaded and rewrites only
+  the smallest spans whose value actually changed, so moving one lake rewrites one
+  `[lon, lat, r, name]` and leaves the other 28 - and every comment in the file - byte for byte
+  as they were. The badge next to the map name names the top-level keys a save would touch.
+  Keys the editor does not model are never at risk, because they are never rewritten.
+
+  The old serializer rebuilt the whole file from an allow-list of keys it knew, so on every save
+  it silently dropped `distantLandsAnchors`, `narrowStraits`, `flatAreas`, `hillAreas`,
+  `lowAreas`, `roughAreas`, `passes`, `shallowLines`, `resourceAreas`, `wonders`,
+  `requestedWonders`, `baseHillProb` and `lonSqueezeWest`, along with every comment and optional
+  per-item field (`strength` on a river, `coastDist` on a shallow area). That is Distant Lands,
+  the one-hex Bosphorus, Italy's flatness, the natural wonders and every resource area.
+
+**Hex Edit** (the `⬡ Hex Edit` button, or `H`) turns clicks into hex picks instead of feature
+picks. Click any hex and the panel shows its terrain, biome, rainfall, land/water and region;
+set any of those and *Pin this hex* writes a `hexPatches` entry at that hex's own centre. The
+map redraws immediately and the panel re-reads the result, so you see what the generator
+actually produced rather than what you asked for. *Remove patch* takes it back out. Feature
+editing (dragging coastlines, rivers, ranges) works as before with the mode off.
+
+**Save** (leftmost in the toolbar, or Ctrl+S) writes the file in
+`EuropeMediterranean/maps` and nothing else. **Install to Game** is the separate step that
+rsyncs the whole mod into Civ VII's Mods folder, and it copies what is on disk - so save
+first. The game only reads mods at startup, so restart it afterwards.
+
+Undo works after a save: it rolls the map back and the badge lights up again, so saving once
+more writes the rollback to the file. A collection the editor created from nothing
+(`hexPatches`) is written back as `[]` rather than deleted, keeping the file's key set stable.
+The previous contents are always kept as `<file>.bak`.
+
+`node editor/test-geo-io.mjs` checks all of that against every `*-geo.js` in the maps folder:
+the key spans match what the module exports, a no-op save is byte-identical, an edit rewrites
+only the keys it touched, the thirteen keys above survive, and no comment is lost. Run it after
+changing anything in `editor/js/geo-io.js`.
+
+`/api/save` writes to `EuropeMediterranean/maps` only, keeps the previous contents as
+`<file>.bak`, and refuses the write outright if the incoming text has lost a top-level key the
+file on disk has. The `EuropeMediterranean - Copy` mirror was removed in 2026-09; `--no-mirror`
+is accepted and ignored.
 
 ---
 

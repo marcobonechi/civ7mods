@@ -1041,7 +1041,7 @@ export const GEO = {
         // --- Ukraine, the Pontic steppe and the western Rus ---
         [24.03, 49.84, "Lviv"], [28.86, 47.01, "Chisinau"], [30.73, 46.48, "Odesa"],
         [35.14, 47.84, "Zaporizhzhia"], [34.40, 47.50, "Kamianka"], [46.10, 30.90, "Ur"],
-            [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
+        [36.23, 49.99, "Kharkiv"], [31.29, 51.49, "Chernihiv"],
         [32.05, 54.78, "Smolensk"]
     ]
 };

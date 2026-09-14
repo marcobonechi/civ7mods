@@ -34,6 +34,22 @@
         strait: '#00ffff',
         lake: '#21739c'
     };
+    /** Two-element point that reads and writes lon/lat straight into a blob tuple. */
+    function blobPointView(blob) {
+        return new Proxy([blob[0], blob[1]], {
+            get(target, prop) {
+                if (prop === '0') return blob[0];
+                if (prop === '1') return blob[1];
+                return Reflect.get(target, prop);
+            },
+            set(target, prop, value) {
+                if (prop === '0') { blob[0] = value; return true; }
+                if (prop === '1') { blob[1] = value; return true; }
+                return Reflect.set(target, prop, value);
+            }
+        });
+    }
+
 
     class CivCanvasView {
         constructor(canvas, options = {}) {
@@ -85,6 +101,9 @@
             this.onFeatureSelect = options.onFeatureSelect || (() => {});
             this.onGeometryChange = options.onGeometryChange || (() => {});
             this.onCursorMove = options.onCursorMove || (() => {});
+            this.onHexSelect = options.onHexSelect || (() => {});
+            this.hexMode = false;          // clicks pick a hex instead of a feature
+            this.selectedHex = null;       // { x, y } of the picked hex
 
             this.initEvents();
             this.resize();
@@ -303,6 +322,14 @@
                 this.selectedVertexIndex = p2;
                 this.isDragging = true;
                 this.rebuildGrid();
+                return;
+            }
+
+            // Hex mode takes the click before any feature does: feature hit-testing is
+            // proximity-based, so on open terrain it usually misses and the user would
+            // not be able to tell whether a click was going to land on a hex or a shape.
+            if (this.hexMode) {
+                this.selectHexAt(sx, sy);
                 return;
             }
 
@@ -535,8 +562,11 @@
             if (type === 'fallbackSites') return [this.geo.fallbackSites[index]];
             if (type === 'volcanoes') return [this.geo.volcanoes[index]];
             if (['landBlobs', 'landBlobsLate', 'lakes', 'biomeBlobs'].includes(type)) {
-                const b = this.geo[type][index];
-                return [[b[0], b[1]]];
+                // A blob is [lon, lat, radius, ...], so its position is not a `pts`
+                // array we can hand out directly. Return a write-through view instead
+                // of a copy: the inspector's coordinate fields assign into pts[0][axis],
+                // and with a copy those edits were silently thrown away.
+                return [blobPointView(this.geo[type][index])];
             }
             if (['land', 'water', 'shallow', 'ranges', 'rivers', 'waterLines', 'biomeAreas', 'rainAreas'].includes(type)) {
                 return this.geo[type][index] ? this.geo[type][index].pts : null;
@@ -547,6 +577,39 @@
         isFeatureClosed(feat) {
             if (!feat) return false;
             return ['land', 'water', 'shallow', 'biomeAreas', 'rainAreas'].includes(feat.type);
+        }
+
+        setHexMode(on) {
+            this.hexMode = !!on;
+            if (!this.hexMode) this.selectedHex = null;
+            this.canvas.style.cursor = this.hexMode ? 'cell' : '';
+            this.render();
+        }
+
+        /** Pick the hex under the cursor and report its current state. */
+        selectHexAt(sx, sy) {
+            const [xf, yf] = this.screenToTile(sx, sy);
+            const y = Math.round(yf);
+            const x = Math.round(xf - 0.5 * (y & 1));
+            if (!this.grid || !this.grid.inBounds(x, y)) {
+                this.selectedHex = null;
+                this.onHexSelect(null);
+                this.render();
+                return;
+            }
+            const i = this.grid.idx(x, y);
+            this.selectedHex = { x, y };
+            this.selectFeature(null);
+            this.onHexSelect({
+                x, y,
+                lon: this.grid.lonC[i], lat: this.grid.latC[i],
+                terrain: this.grid.terrain[i],
+                biome: this.grid.biome[i],
+                rain: this.grid.rain[i],
+                isLand: this.grid.isLand[i],
+                region: this.grid.region[i]
+            });
+            this.render();
         }
 
         selectFeature(feat, vertexIndex = -1) {
@@ -679,6 +742,33 @@
                 this.renderEdgeInsertionIndicator(ctx);
             }
 
+            if (this.selectedHex) {
+                this.renderSelectedHex(ctx);
+            }
+
+            ctx.restore();
+        }
+
+        /** Outline the hex picked in hex mode. Drawn last so nothing hides it. */
+        renderSelectedHex(ctx) {
+            const s = this.baseTileS;
+            const { x, y } = this.selectedHex;
+            const [cx, cy] = this.tileToPixel(x + 0.5 * (y & 1), y);
+            ctx.save();
+            ctx.beginPath();
+            for (let k = 0; k < 6; k++) {
+                const a = (60 * k - 30) * Math.PI / 180;
+                const px = cx + s * Math.cos(a);
+                const py = cy + s * Math.sin(a);
+                k ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+            }
+            ctx.closePath();
+            ctx.lineWidth = 2.5 / this.scale;
+            ctx.strokeStyle = '#ffffff';
+            ctx.stroke();
+            ctx.lineWidth = 1 / this.scale;
+            ctx.strokeStyle = '#111111';
+            ctx.stroke();
             ctx.restore();
         }
 

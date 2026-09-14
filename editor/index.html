@@ -18,6 +18,8 @@
         </div>
 
         <div class="header-center">
+            <button id="btnSave" class="btn gold" title="Write your changes into the mod's map file (Ctrl+S)">💾 Save</button>
+
             <!-- Map Preset Selector -->
             <div class="control-group">
                 <select id="mapSelect" class="header-select">
@@ -35,6 +37,8 @@
 
             <!-- Quick Live Stats -->
             <div class="stats-badges">
+                <button id="btnHexMode" class="btn" title="Click a hex on the map to edit it (H)">⬡ Hex Edit</button>
+                <div id="dirtyIndicator" class="dirty-tag" title="">no changes</div>
                 <div class="stat-tag">Land: <strong id="statLandPct">--%</strong></div>
                 <div class="stat-tag">Mtns: <strong id="statMtnCount">--</strong></div>
                 <div id="statStartsStatus" class="status-tag ok">✓ Starts OK</div>
@@ -57,7 +61,6 @@
             <button id="btnExport" class="btn" title="Download formatted JS file">Export JS</button>
             <button id="btnBuildPreview" class="btn" title="Run preview\build-preview.ps1" style="display: none;">Rebuild Preview</button>
             <button id="btnInstallMod" class="btn success" title="Run install.ps1 to copy to Civ VII" style="display: none;">Install to Game</button>
-            <button id="btnSave" class="btn gold" title="Save changes directly to mod (Ctrl+S)">💾 Save to Mod</button>
         </div>
     </header>
 
@@ -191,12 +194,16 @@
     </div>
 
     <!-- Toast Notification Container -->
+    <div id="staleBanner" class="stale-banner" hidden></div>
     <div id="toast" class="toast"></div>
 
     <!-- Application Scripts -->
-    <script src="js/default-maps.js"></script>
-    <script src="js/rasterizer.js"></script>
-    <script src="js/serializer.js"></script>
+    <!-- The live rasterizer, imported straight from the mod (see raster-bridge.js).
+         Module scripts run after the classic ones below but before DOMContentLoaded,
+         so window.CivRasterizer is set by the time editor-app.js boots. -->
+    <script>window.CIV_EDITOR_PAGE_BUILD = "__BUILD__";</script>
+    <script type="module" src="js/raster-bridge.js"></script>
+    <script src="js/geo-io.js"></script>
     <script src="js/canvas-view.js"></script>
     <script src="js/editor-app.js"></script>
 </body>

@@ -33,3 +33,7 @@ __pycache__/
 
 # Map showcase screenshots ship inside the mod folder and are listed in its modinfo.
 !*/screenshots/*.png
+
+# Backups the map editor writes next to a geography file on every save (editor/server.py).
+# They are a local undo, not content - the file itself is the record.
+*-geo.js.bak

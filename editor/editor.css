@@ -44,14 +44,19 @@ body {
 
 /* Header Toolbar */
 .app-header {
-    height: 48px;
+    min-height: 48px;
     background: linear-gradient(180deg, #161f2c 0%, #0e141d 100%);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 5px 16px;
     z-index: 100;
+    /* Wrap onto more rows rather than overflowing off a narrow window. The body is
+       a column flex, so a taller header just gives the map less height. */
+    flex-wrap: wrap;
+    row-gap: 6px;
+    flex-shrink: 0;
 }
 
 .header-brand {
@@ -90,10 +95,11 @@ body {
 }
 
 .header-center {
+    flex-wrap: wrap;
+    row-gap: 6px;
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
 }
 
 .control-group {
@@ -122,6 +128,8 @@ body {
 }
 
 .stats-badges {
+    flex-wrap: wrap;
+    row-gap: 6px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -160,6 +168,8 @@ body {
 }
 
 .header-actions {
+    flex-wrap: wrap;
+    row-gap: 6px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -932,4 +942,82 @@ body {
 .toast.error {
     border-color: var(--danger);
     color: #ff6b81;
+}
+
+/* Unsaved-change indicator: which top-level GEO keys a save would rewrite. */
+.dirty-tag {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(255, 255, 255, 0.06);
+    color: #8b97a8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dirty-tag.dirty {
+    background: rgba(240, 173, 78, 0.14);
+    color: #f0ad4e;
+    border-color: rgba(240, 173, 78, 0.4);
+}
+
+/* Hex Edit mode */
+#btnHexMode.active {
+    background: rgba(90, 170, 255, 0.18);
+    color: #6cb6ff;
+    border-color: rgba(108, 182, 255, 0.55);
+}
+.hex-panel .hex-now {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3px 10px;
+    padding: 9px 11px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 11.5px;
+}
+.hex-panel .hex-now dt { color: #8b97a8; }
+.hex-panel .hex-now dd { margin: 0; color: #d6dde6; font-weight: 600; }
+.hex-panel .hex-patched {
+    background: rgba(240, 173, 78, 0.12);
+    border-color: rgba(240, 173, 78, 0.35);
+}
+.hex-panel .hex-actions { display: flex; gap: 8px; margin-top: 14px; }
+.hex-panel .hex-actions .btn { flex: 1; justify-content: center; }
+.hex-panel .hex-hint {
+    margin-top: 12px;
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: #7c879a;
+}
+
+/* Shown when the page came from the browser cache but the files on disk moved on. */
+.stale-banner {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 4000;
+    padding: 12px 18px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #2b1d00;
+    background: #f0ad4e;
+    border-top: 2px solid #c98b2d;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.35);
+}
+.stale-banner kbd {
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.16);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.stale-banner .btn {
+    margin-left: 10px;
+    background: #2b1d00;
+    color: #f7e2bd;
+    border-color: #2b1d00;
 }

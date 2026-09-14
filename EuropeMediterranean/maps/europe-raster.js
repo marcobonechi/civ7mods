@@ -427,6 +427,18 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
         }
     }
 
+    // 4b2. per-hex patches, land/water half. Applied here, before the straits and
+    // before the coast distances, mountains and landmass regions below, so a hex
+    // turned to land or water is seen by every pass that depends on the shape.
+    for (const h of GEO.hexPatches || []) {
+        if (h.land === undefined) continue;
+        const [x, y] = P.nearestTile(h.lon, h.lat);
+        if (!inBounds(x, y)) continue;
+        const i = idx(x, y);
+        isLand[i] = h.land ? 1 : 0;
+        if (h.land) isLake[i] = 0;
+    }
+
     // 5. map edge: keep the left/right columns water
     for (let y = 0; y < H; y++) { isLand[idx(0, y)] = 0; isLand[idx(W - 1, y)] = 0; }
 
@@ -671,6 +683,21 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
                 if (b[4] !== undefined) rain[idx(x, y)] = b[4];
             }
         }
+    }
+
+    // 8a2. per-hex patches, surface half: the last word on a single hex. Runs after
+    // the biome blobs and before the rivers, so a hand-set terrain cannot break a
+    // navigable river chain - the river still carves through.
+    const PATCH_TERRAIN = { flat: T.FLAT, hill: T.HILL, hills: T.HILL, mountain: T.MOUNTAIN };
+    for (const h of GEO.hexPatches || []) {
+        const [x, y] = P.nearestTile(h.lon, h.lat);
+        if (!inBounds(x, y)) continue;
+        const i = idx(x, y);
+        if (h.terrain && isLand[i] && PATCH_TERRAIN[h.terrain] !== undefined) {
+            terrain[i] = PATCH_TERRAIN[h.terrain];
+        }
+        if (h.biome) biome[i] = h.biome;
+        if (h.rain !== undefined) rain[i] = h.rain;
     }
 
     // 8b. hand-placed navigable rivers: a hex-connected chain of river terrain over land

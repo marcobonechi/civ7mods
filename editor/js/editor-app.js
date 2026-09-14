@@ -4,59 +4,94 @@
 (function() {
     // Application State
     const state = {
-        currentMapId: 'europe-large', // 'europe-large' | 'europe-std'
+        filename: null,       // the -geo.js file being edited, e.g. 'europe-large-geo.js'
+        sourceText: '',       // its text as loaded, the base every save is patched onto
+        origGeo: null,        // pristine parse of sourceText, to diff against on save
         geo: null,
-        gridW: 112,
-        gridH: 98,
+        gridW: 128,
+        gridH: 112,
         history: [],
         historyIndex: -1,
         maxHistory: 40,
         serverAvailable: false,
         activeTab: 'tree', // 'tree' | 'projection' | 'stats'
+        hexMode: false,
+        selectedHex: null,
         searchTerm: ''
     };
 
     let canvasView = null;
 
-    // Presets for grid sizes
-    const GRID_PRESETS = {
-        'europe-large': [
-            { label: 'Large (112 x 98) - Standard', w: 112, h: 98 },
-            { label: 'Large (128 x 112)', w: 128, h: 112 },
-            { label: 'Large (144 x 126) - Huge', w: 144, h: 126 },
-            { label: 'Standard (84 x 54)', w: 84, h: 54 }
-        ],
-        'europe-std': [
-            { label: 'Standard (84 x 54) - Normal', w: 84, h: 54 },
-            { label: 'Small (74 x 46)', w: 74, h: 46 },
-            { label: 'Tiny (60 x 38)', w: 60, h: 38 },
-            { label: 'Large (96 x 60)', w: 96, h: 60 },
-            { label: 'Huge (106 x 66)', w: 106, h: 66 }
-        ]
-    };
+    // Grid sizes. 128x112 is the only size the mod ships (data/maps.xml); the rest
+    // are here so you can check how a change lands if that ever changes again.
+    const GRID_PRESETS = [
+        { label: '128 x 112 - shipped', w: 128, h: 112 },
+        { label: '112 x 98', w: 112, h: 98 },
+        { label: '144 x 126', w: 144, h: 126 },
+        { label: '84 x 54', w: 84, h: 54 }
+    ];
 
     function init() {
         const canvas = document.getElementById('mapCanvas');
         canvasView = new CivCanvasView(canvas, {
             onFeatureSelect: handleFeatureSelect,
             onGeometryChange: handleGeometryChange,
-            onCursorMove: handleCursorMove
+            onCursorMove: handleCursorMove,
+            onHexSelect: handleHexSelect
         });
 
         window.addEventListener('resize', () => canvasView.resize());
 
         initUIEvents();
-        checkServerStatus().then(() => {
-            loadMap(state.currentMapId);
-        });
+        boot();
+    }
+
+    async function boot() {
+        await checkServerStatus();
+        if (!window.CivRasterizer) {
+            await new Promise(res => {
+                window.addEventListener('civ-raster-ready', res, { once: true });
+                setTimeout(res, 3000);
+            });
+        }
+        if (!window.CivRasterizer) {
+            showToast('Could not load maps/europe-raster.js - start the editor with ./run-editor.sh', true);
+            return;
+        }
+        const files = await loadMapList();
+        if (files.length) await loadMap(files.selected);
+    }
+
+    async function loadMapList() {
+        const select = document.getElementById('mapSelect');
+        try {
+            const resp = await fetch('/api/maps');
+            const data = await resp.json();
+            select.innerHTML = '';
+            data.files.forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = f.file;
+                opt.textContent = f.label;
+                if (f.file === data.selected) opt.selected = true;
+                select.appendChild(opt);
+            });
+            const out = data.files.slice();
+            out.selected = data.selected;
+            return out;
+        } catch (e) {
+            showToast('Could not list map files - is the server running?', true);
+            return [];
+        }
     }
 
     async function checkServerStatus() {
         try {
-            const resp = await fetch('/api/status', { method: 'GET' });
+            const resp = await fetch('/api/status', { method: 'GET', cache: 'no-store' });
             if (resp.ok) {
                 state.serverAvailable = true;
                 setServerIndicator(true);
+                const data = await resp.json().catch(() => ({}));
+                checkPageFreshness(data.build);
                 return;
             }
         } catch (e) {
@@ -64,6 +99,28 @@
         }
         state.serverAvailable = false;
         setServerIndicator(false);
+    }
+
+    /**
+     * The page may have come from the browser's disk cache while the files on disk
+     * have moved on. That used to fail silently - a cached index.html asking for
+     * scripts that no longer exist leaves the editor up with no map at all - so say
+     * so loudly instead. /api/status is fetched no-store, so its build is the truth.
+     */
+    function checkPageFreshness(serverBuild) {
+        const banner = document.getElementById('staleBanner');
+        const pageBuild = window.CIV_EDITOR_PAGE_BUILD;
+        console.log('Civ VII editor - page build ' + pageBuild + ', server build ' + serverBuild);
+        if (!banner || !serverBuild || !pageBuild || pageBuild === '__BUILD__') return;
+        if (pageBuild === serverBuild) return;
+        banner.innerHTML =
+            '<strong>This page is a cached copy.</strong> The editor on disk has changed since ' +
+            'your browser loaded this page, so what you see here is out of date and may not work. ' +
+            'Reload bypassing the cache: <kbd>\u2318\u21e7R</kbd> (macOS) or <kbd>Ctrl\u21e7R</kbd>. ' +
+            '<button id="btnStaleReload" class="btn">Reload now</button>';
+        banner.hidden = false;
+        const btn = document.getElementById('btnStaleReload');
+        if (btn) btn.onclick = () => location.reload(true);
     }
 
     function setServerIndicator(connected) {
@@ -82,25 +139,32 @@
         }
     }
 
-    function loadMap(mapId) {
-        state.currentMapId = mapId;
-
-        // Clone base data to prevent modifying default templates
-        let sourceGeo = null;
-        if (mapId === 'europe-large') {
-            sourceGeo = JSON.parse(JSON.stringify(window.DEFAULT_EUROPE_LARGE_GEO));
-            state.gridW = 112;
-            state.gridH = 98;
-        } else {
-            sourceGeo = JSON.parse(JSON.stringify(window.DEFAULT_EUROPE_GEO));
-            state.gridW = 84;
-            state.gridH = 54;
+    async function loadMap(file) {
+        // Import the file the mod actually uses, rather than a generated snapshot,
+        // and keep its text so saves can be patched onto it instead of regenerated.
+        let mod, text;
+        try {
+            const bust = '?t=' + Date.now();   // re-read from disk on every switch
+            [mod, text] = await Promise.all([
+                import('/maps/' + file + bust),
+                fetch('/maps/' + file).then(r => r.text())
+            ]);
+        } catch (e) {
+            showToast('Could not load ' + file + ': ' + e.message, true);
+            return;
+        }
+        if (!mod.GEO) {
+            showToast(file + ' does not export a GEO object', true);
+            return;
         }
 
-        state.geo = sourceGeo;
+        state.filename = file;
+        state.sourceText = text;
+        state.origGeo = structuredClone(mod.GEO);
+        state.geo = structuredClone(mod.GEO);
         state.history = [];
         state.historyIndex = -1;
-        pushHistory('Load initial map');
+        pushHistory('Load ' + file);
 
         updateGridSizeSelector();
         canvasView.setMapData(state.geo, state.gridW, state.gridH);
@@ -109,12 +173,13 @@
         renderProjectionKnobs();
         updateValidationAndStats();
         selectFeature(null);
+        setDirtyIndicator();
     }
 
     function updateGridSizeSelector() {
         const select = document.getElementById('gridSizeSelect');
         select.innerHTML = '';
-        const presets = GRID_PRESETS[state.currentMapId] || GRID_PRESETS['europe-large'];
+        const presets = GRID_PRESETS;
         presets.forEach(p => {
             const opt = document.createElement('option');
             opt.value = `${p.w}x${p.h}`;
@@ -140,6 +205,7 @@
             state.historyIndex++;
         }
         updateUndoRedoButtons();
+        setDirtyIndicator();
     }
 
     function undo() {
@@ -154,6 +220,8 @@
                 renderInspector(canvasView.selectedFeature);
             }
             updateUndoRedoButtons();
+            setDirtyIndicator();
+            refreshHexPanelFromGrid();
             showToast(`Undo: ${state.history[state.historyIndex].name}`);
         }
     }
@@ -170,6 +238,8 @@
                 renderInspector(canvasView.selectedFeature);
             }
             updateUndoRedoButtons();
+            setDirtyIndicator();
+            refreshHexPanelFromGrid();
             showToast(`Redo: ${state.history[state.historyIndex].name}`);
         }
     }
@@ -216,7 +286,13 @@
     function initUIEvents() {
         // Map Switcher
         document.getElementById('mapSelect').addEventListener('change', (e) => {
-            loadMap(e.target.value);
+            const next = e.target.value;
+            if (state.filename && hasUnsavedChanges() &&
+                !confirm('Discard unsaved changes to ' + state.filename + '?')) {
+                e.target.value = state.filename;
+                return;
+            }
+            loadMap(next);
         });
 
         // Grid Size
@@ -293,6 +369,14 @@
         // Add Feature Dropdown / Modal
         document.getElementById('btnAddFeature').addEventListener('click', () => {
             showAddFeatureModal();
+        });
+
+        document.getElementById('btnHexMode').addEventListener('click', () => toggleHexMode());
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'h' && e.key !== 'H') return;
+            const t = e.target;
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
+            toggleHexMode();
         });
     }
 
@@ -877,6 +961,220 @@
         }
     }
 
+    // ---- Hex Edit -------------------------------------------------------
+    // Single-hex overrides, stored as GEO.hexPatches and applied by the rasterizer
+    // as the last word on that hex. Everything here writes lon/lat taken from the
+    // hex's own centre, so a patch lands on the hex you clicked and nowhere else.
+
+    const BIOME_NAMES = { G: 'Grassland', P: 'Plains', D: 'Desert', T: 'Tundra', R: 'Tropical', M: 'Marine' };
+    const TERRAIN_NAMES = ['Ocean', 'Coast', 'Flat', 'Hills', 'Mountain', 'Navigable river'];
+    const TERRAIN_OF = { 2: 'flat', 3: 'hill', 4: 'mountain' };
+
+    /** After an undo/redo the grid has been rebuilt; re-read the pinned hex if one is open. */
+    function refreshHexPanelFromGrid() {
+        if (!state.hexMode || !state.selectedHex) return;
+        const g = canvasView.grid;
+        const { x, y } = state.selectedHex;
+        if (!g || !g.inBounds(x, y)) return;
+        const i = g.idx(x, y);
+        handleHexSelect({
+            x, y, lon: g.lonC[i], lat: g.latC[i],
+            terrain: g.terrain[i], biome: g.biome[i], rain: g.rain[i],
+            isLand: g.isLand[i], region: g.region[i]
+        });
+    }
+
+    function toggleHexMode(on) {
+        state.hexMode = on === undefined ? !state.hexMode : !!on;
+        document.getElementById('btnHexMode').classList.toggle('active', state.hexMode);
+        canvasView.setHexMode(state.hexMode);
+        if (!state.hexMode) {
+            state.selectedHex = null;
+            renderInspector(null);
+        } else {
+            renderHexPanel(null);
+        }
+    }
+
+    function handleHexSelect(info) {
+        state.selectedHex = info;
+        renderHexPanel(info);
+    }
+
+    /** The patch already covering this hex, if any. */
+    function findHexPatch(x, y) {
+        const list = state.geo && state.geo.hexPatches;
+        if (!list || !canvasView.grid) return -1;
+        const g = canvasView.grid;
+        for (let i = 0; i < list.length; i++) {
+            const t = g.P.nearestTile(list[i].lon, list[i].lat);
+            if (t[0] === x && t[1] === y) return i;
+        }
+        return -1;
+    }
+
+    function renderHexPanel(info) {
+        const container = document.getElementById('inspectorContent');
+        if (!container) return;
+
+        if (!info) {
+            container.innerHTML = `
+                <div class="empty-inspector">
+                    <div class="empty-icon">⬡</div>
+                    <div class="empty-text">Hex Edit is on</div>
+                    <div class="empty-subtext">Click any hex on the map to see what it is and change it.</div>
+                </div>`;
+            return;
+        }
+
+        const pi = findHexPatch(info.x, info.y);
+        const patch = pi >= 0 ? state.geo.hexPatches[pi] : null;
+        const terrainName = TERRAIN_NAMES[info.terrain] || '?';
+        const biomeName = BIOME_NAMES[info.biome] || info.biome || '-';
+        const landLabel = info.isLand ? 'Land' : 'Water';
+
+        container.innerHTML = `
+            <div class="hex-panel">
+                <div class="inspector-header">
+                    <span class="type-badge">HEX</span>
+                    <h3 class="inspector-title">(${info.x}, ${info.y})</h3>
+                </div>
+
+                <dl class="hex-now${patch ? ' hex-patched' : ''}">
+                    <dt>Position</dt><dd>${info.lon.toFixed(2)}°, ${info.lat.toFixed(2)}°</dd>
+                    <dt>Terrain</dt><dd>${terrainName}</dd>
+                    <dt>Biome</dt><dd>${biomeName}</dd>
+                    <dt>Rainfall</dt><dd>${info.rain}</dd>
+                    <dt>Land</dt><dd>${landLabel} &middot; region ${info.region === 'E' ? 'E (distant)' : 'W (home)'}</dd>
+                    ${patch ? `<dt>Patched</dt><dd>yes${patch.name ? ' &mdash; ' + escapeHtml(patch.name) : ''}</dd>` : ''}
+                </dl>
+
+                <div class="form-group">
+                    <label>Land or water</label>
+                    <select id="hexLand" class="form-select">
+                        <option value="">leave as generated (${landLabel})</option>
+                        <option value="true">Land</option>
+                        <option value="false">Water</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Terrain</label>
+                    <select id="hexTerrain" class="form-select">
+                        <option value="">leave as generated (${terrainName})</option>
+                        <option value="flat">Flat</option>
+                        <option value="hill">Hills</option>
+                        <option value="mountain">Mountain</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Biome</label>
+                    <select id="hexBiome" class="form-select">
+                        <option value="">leave as generated (${biomeName})</option>
+                        <option value="G">Grassland</option>
+                        <option value="P">Plains</option>
+                        <option value="D">Desert</option>
+                        <option value="T">Tundra</option>
+                        <option value="R">Tropical</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Rainfall <span id="hexRainVal">(leave as generated)</span></label>
+                    <input type="range" id="hexRain" class="slider" min="-5" max="200" step="5" value="-5">
+                </div>
+
+                <div class="form-group">
+                    <label>Note (optional)</label>
+                    <input type="text" id="hexName" class="form-input" placeholder="why this hex is pinned">
+                </div>
+
+                <div class="hex-actions">
+                    <button id="btnHexApply" class="btn primary">${patch ? 'Update hex' : 'Pin this hex'}</button>
+                    ${patch ? '<button id="btnHexClear" class="btn">Remove patch</button>' : ''}
+                </div>
+
+                <p class="hex-hint">Only the fields you set are pinned; the rest keep whatever the
+                generator produces. Land and water changes run before the coast, mountain and
+                Distant Lands passes, so they are picked up properly &mdash; but they can also
+                reshape a strait, so check the map after.</p>
+            </div>`;
+
+        if (patch) {
+            if (patch.land !== undefined) document.getElementById('hexLand').value = String(patch.land);
+            if (patch.terrain) document.getElementById('hexTerrain').value = patch.terrain;
+            if (patch.biome) document.getElementById('hexBiome').value = patch.biome;
+            if (patch.rain !== undefined) document.getElementById('hexRain').value = String(patch.rain);
+            if (patch.name) document.getElementById('hexName').value = patch.name;
+        }
+
+        const rain = document.getElementById('hexRain');
+        const rainVal = document.getElementById('hexRainVal');
+        const showRain = () => {
+            rainVal.textContent = Number(rain.value) < 0 ? '(leave as generated)' : '= ' + rain.value;
+        };
+        rain.addEventListener('input', showRain);
+        showRain();
+
+        document.getElementById('btnHexApply').onclick = () => applyHexPatch(info);
+        const clear = document.getElementById('btnHexClear');
+        if (clear) clear.onclick = () => removeHexPatch(info);
+    }
+
+    function applyHexPatch(info) {
+        const land = document.getElementById('hexLand').value;
+        const terrain = document.getElementById('hexTerrain').value;
+        const biome = document.getElementById('hexBiome').value;
+        const rain = parseInt(document.getElementById('hexRain').value, 10);
+        const name = document.getElementById('hexName').value.trim();
+
+        const patch = { lon: Math.round(info.lon * 100) / 100, lat: Math.round(info.lat * 100) / 100 };
+        if (land !== '') patch.land = land === 'true';
+        if (terrain) patch.terrain = terrain;
+        if (biome) patch.biome = biome;
+        if (rain >= 0) patch.rain = rain;
+        if (name) patch.name = name;
+
+        if (Object.keys(patch).length === 2) {
+            showToast('Nothing to pin - set at least one field', true);
+            return;
+        }
+
+        if (!state.geo.hexPatches) state.geo.hexPatches = [];
+        const at = findHexPatch(info.x, info.y);
+        if (at >= 0) state.geo.hexPatches[at] = patch;
+        else state.geo.hexPatches.push(patch);
+
+        canvasView.rebuildGrid();
+        pushHistory(at >= 0 ? 'Update hex patch' : 'Pin hex');
+        refreshAfterHexEdit(info);
+        showToast(`Hex (${info.x}, ${info.y}) pinned`);
+    }
+
+    function removeHexPatch(info) {
+        const at = findHexPatch(info.x, info.y);
+        if (at < 0) return;
+        state.geo.hexPatches.splice(at, 1);
+        canvasView.rebuildGrid();
+        pushHistory('Remove hex patch');
+        refreshAfterHexEdit(info);
+        showToast(`Hex (${info.x}, ${info.y}) released`);
+    }
+
+    /** Re-read the hex from the freshly rebuilt grid so the panel shows the result. */
+    function refreshAfterHexEdit(info) {
+        updateValidationAndStats();
+        const g = canvasView.grid;
+        if (!g || !g.inBounds(info.x, info.y)) { renderHexPanel(info); return; }
+        const i = g.idx(info.x, info.y);
+        handleHexSelect({
+            x: info.x, y: info.y, lon: g.lonC[i], lat: g.latC[i],
+            terrain: g.terrain[i], biome: g.biome[i], rain: g.rain[i],
+            isLand: g.isLand[i], region: g.region[i]
+        });
+    }
+
     // Add Feature Modal
     function showAddFeatureModal() {
         const modal = document.getElementById('addFeatureModal');
@@ -966,35 +1264,114 @@
     }
 
     // Save & Export Actions
+
+    // Collections the editor creates from nothing. If the user undoes past the point
+    // where one was created, it is written back as `[]` rather than deleted, so the
+    // file's top-level key set never shrinks.
+    const EDITOR_OWNED_KEYS = ['hexPatches'];
+
+    /** Build the new file text by patching only what changed. */
+    function buildFileText() {
+        if (!state.sourceText) {
+            return { text: window.CivGeoIO.serializeGeo(state.geo, state.filename), changed: [], added: [], dropped: [] };
+        }
+        return window.CivGeoIO.patchSource(state.sourceText, state.geo, state.origGeo, { emptiable: EDITOR_OWNED_KEYS });
+    }
+
+    function describeEdits(r) {
+        const parts = [];
+        if (r.changed.length) parts.push(r.changed.join(', '));
+        if (r.added.length) parts.push('+' + r.added.join(', +'));
+        return parts.join(', ');
+    }
+
     async function saveMap() {
-        const filename = state.currentMapId === 'europe-large' ? 'europe-large-geo.js' : 'europe-geo.js';
-        const code = window.CivSerializer.serializeGEO(state.geo, state.currentMapId === 'europe-large' ? "Europe, Mediterranean & Sahel (Large)" : "Europe & Mediterranean");
+        if (!state.filename) return;
+        let r;
+        try {
+            r = buildFileText();
+        } catch (e) {
+            showToast('Could not patch ' + state.filename + ': ' + e.message, true);
+            return;
+        }
+        if (!r.changed.length && !r.added.length) {
+            showToast('No changes to save');
+            return;
+        }
+        if (r.dropped.length) {
+            showToast('Refusing to save: ' + r.dropped.join(', ') + ' went missing', true);
+            return;
+        }
 
         if (state.serverAvailable) {
             try {
                 const resp = await fetch('/api/save', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ filename, content: code })
+                    body: JSON.stringify({ filename: state.filename, content: r.text })
                 });
-                if (resp.ok) {
-                    showToast(`Saved ${filename} directly to mod folder!`);
+                const data = await resp.json().catch(() => ({}));
+                if (resp.ok && data.success) {
+                    // the file on disk is now what we just sent: rebase, so the next
+                    // save patches onto it and reports only the next round of edits
+                    state.sourceText = r.text;
+                    state.origGeo = structuredClone(state.geo);
+                    setDirtyIndicator();
+                    showToast('Saved ' + state.filename + ' (' + describeEdits(r) + ')');
                     return;
                 }
+                showToast(data.error || ('Save failed (' + resp.status + ')'), true);
+                return;
             } catch (e) {
                 console.error('Save failed:', e);
+                showToast('Save failed: ' + e.message, true);
+                return;
             }
         }
 
-        // Fallback: download file
-        downloadFile(filename, code);
-        showToast(`Exported ${filename} to Downloads`);
+        downloadFile(state.filename, r.text);
+        showToast('Downloaded ' + state.filename + ' (no server)');
     }
 
     function exportMapFile() {
-        const filename = state.currentMapId === 'europe-large' ? 'europe-large-geo.js' : 'europe-geo.js';
-        const code = window.CivSerializer.serializeGEO(state.geo, state.currentMapId === 'europe-large' ? "Europe, Mediterranean & Sahel (Large)" : "Europe & Mediterranean");
-        downloadFile(filename, code);
+        if (!state.filename) return;
+        try {
+            downloadFile(state.filename, buildFileText().text);
+        } catch (e) {
+            showToast('Export failed: ' + e.message, true);
+        }
+    }
+
+    function hasUnsavedChanges() {
+        if (!state.sourceText || !state.origGeo) return false;
+        try {
+            const r = buildFileText();
+            return r.changed.length > 0 || r.added.length > 0 || r.dropped.length > 0;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    /** Show which top-level keys differ from the file on disk. */
+    function setDirtyIndicator() {
+        const el = document.getElementById('dirtyIndicator');
+        if (!el) return;
+        let r;
+        try {
+            r = state.sourceText ? buildFileText() : null;
+        } catch (e) {
+            r = null;
+        }
+        if (r && r.dropped.length) {
+            el.textContent = 'cannot save: ' + r.dropped.join(', ') + ' missing';
+            el.className = 'dirty-tag dirty';
+            el.title = 'These keys are in the file but not in the editor. Saving is blocked.';
+            return;
+        }
+        const n = r ? r.changed.length + r.added.length : 0;
+        el.textContent = n ? n + ' key' + (n === 1 ? '' : 's') + ' changed: ' + describeEdits(r) : 'no changes';
+        el.className = 'dirty-tag' + (n ? ' dirty' : '');
+        el.title = n ? 'These top-level keys will be rewritten; everything else keeps its exact bytes.' : '';
     }
 
     async function runBuildPreview() {
