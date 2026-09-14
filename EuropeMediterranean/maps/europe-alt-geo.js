@@ -1004,11 +1004,15 @@ export const GEO = {
         CIVILIZATION_SUMER: [46.10, 30.90]      // Ur, the lower Euphrates near the Gulf
     },
 
-    // Fallback start sites, best first: Morocco and Scandinavia are ranked high on this map
+    // Fallback start sites, best first. Pass 2 of assignEuropeStartPositions caps the
+    // distance term at 12 hexes, and every site near the top of this list is further than
+    // that from any Antiquity true start - so among them this order alone decides who gets
+    // settled. Britain leads it: no Antiquity civ has a true start there (Great Britain is
+    // a Modern civ), so without this the isles stayed empty in every Antiquity game.
     fallbackSites: [
-        [30.5, 50.4, "Kyiv"], [17.6, 59.9, "Uppsala"], [-5.0, 34.0, "Fez"], [19.9, 50.1, "Krakow"],
-        [10.4, 63.4, "Trondheim"], [12.6, 55.7, "Copenhagen"], [-8.0, 31.6, "Marrakesh"], [19.0, 47.5, "Budapest"],
-        [-6.64, 53.32, "Dublin"], [0.48, 51.41, "London"], [-9.1, 38.7, "Lisbon"], [-6.0, 37.4, "Seville"],
+        [0.48, 51.41, "London"], [-6.64, 53.32, "Dublin"], [30.5, 50.4, "Kyiv"], [17.6, 59.9, "Uppsala"],
+        [-5.0, 34.0, "Fez"], [19.9, 50.1, "Krakow"], [10.4, 63.4, "Trondheim"], [12.6, 55.7, "Copenhagen"],
+        [-8.0, 31.6, "Marrakesh"], [19.0, 47.5, "Budapest"], [-9.1, 38.7, "Lisbon"], [-6.0, 37.4, "Seville"],
         [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [44.8, 41.7, "Tbilisi"],
         [39.8, 21.4, "Mecca"], [44.2, 15.4, "Sanaa"], [33.7, 16.9, "Meroe"], [-3.0, 16.8, "Timbuktu"],
         [10.75, 59.9, "Oslo"], [-1.51, 55.82, "Edinburgh"], [49.1, 55.8, "Kazan"], [39.7, 47.2, "Rostov"],
