@@ -5,7 +5,7 @@
             <Text>Europe, Mediterranean, North Africa</Text>
         </Row>
         <Row Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION">
-            <Text>Europe, Mediterranean and Africa above the Equator, both single land and with distant lands of Africa, Iceland, Scandinavia.</Text>
+            <Text>Europe, Mediterranean and Africa above the Equator, both single land and with distant lands of Africa, Iceland, Scandinavia. True start locations: Rome (Rome), Etruscans (Populonia), Tuscany (Florence), Byzantium (Constantinople), Greece (Thermaic Gulf), Egypt (Memphis), Persia (Susa), Carthage (Carthage), Assyria (Nineveh), Aksum (Axum), Bulgaria (Pliska), Spain (Madrid), Normans (Rouen), Abbasids (Baghdad), Ottomans (Ankara), Iceland (Reykjavik), Qajar (Tehran), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Great Britain (London) and America (Dublin); Aksum and Songhai on the large maps only. Every other civilization starts on a curated site such as Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh, Budapest, Lisbon or Damascus, as far from the others as possible. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Text>
         </Row>
     </EnglishText>
 </Database>

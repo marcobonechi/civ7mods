@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Europe, Mediterranean, North Africa - a map mod for Civilization VII</title>
+<meta name="description" content="By genginsbon. Map scripts for Civilization VII covering Europe, the Mediterranean and Africa above the Equator, with historical start locations. Screenshots, map types, install steps.">
+<style>
+  :root { --bg:#0e1420; --panel:#162033; --text:#e6ebf2; --muted:#9fb0c7; --accent:#ffb454; --line:#26334a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color:var(--accent); }
+  header { padding:48px 24px 24px; text-align:center; background:linear-gradient(180deg,#0b1b33 0%, var(--bg) 100%); border-bottom:1px solid var(--line); }
+  header h1 { margin:0 0 8px; font-size:2.1rem; letter-spacing:.3px; }
+  header p { margin:0 auto; max-width:820px; color:var(--muted); }
+  .links { margin-top:18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:10px 18px; border-radius:8px; background:var(--accent); color:#1a1200; font-weight:600; text-decoration:none; }
+  .btn.alt { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  main { max-width:1180px; margin:0 auto; padding:24px; }
+  section { margin:36px 0; }
+  h2 { font-size:1.5rem; margin:0 0 12px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  h3 { font-size:1.1rem; margin:18px 0 6px; }
+  .hero img { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); display:block; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:18px; }
+  figure { margin:0; background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  figure img { width:100%; height:auto; display:block; }
+  figcaption { padding:10px 14px; color:var(--muted); font-size:.95rem; }
+  figcaption b { color:var(--text); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+  .card h3 { margin-top:0; }
+  .card p { margin:8px 0; color:var(--muted); }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; }
+  code { background:#0b1120; padding:2px 6px; border-radius:4px; font-size:.9em; }
+  pre { background:#0b1120; padding:12px 14px; border-radius:8px; overflow-x:auto; }
+  ol li, ul li { margin:4px 0; }
+  footer { text-align:center; color:var(--muted); padding:32px 24px; border-top:1px solid var(--line); font-size:.9rem; }
+  @media (max-width:600px) { header h1 { font-size:1.5rem; } main { padding:16px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Europe, Mediterranean, North Africa</h1>
+  <p>A map mod for Sid Meier's Civilization VII: Europe, the Mediterranean basin and Africa above the Equator on a hand-drawn hex map, with historical start locations for the civilizations of the region.</p>
+  <div class="links">
+    <a class="btn" href="https://github.com/marcobonechi/civ7mods">Get it on GitHub</a>
+    <a class="btn alt" href="../">All mods by genginsbon</a>
+    <a class="btn alt" href="#install">Install</a>
+    <a class="btn alt" href="#screenshots">Screenshots</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/01-global.png" alt="The whole map on the 112x98 grid, from Iceland and the Urals down to the Sahel and the Gulf of Guinea">
+  </section>
+
+  <section id="about">
+    <h2>What it is</h2>
+    <p>The mod adds map types that reproduce the real geography from the Urals to Iceland and from the Gulf of Guinea to the Persian Gulf. Coastlines, seas, straits, lakes, mountain ranges, biomes, rivers and volcanoes are drawn as longitude and latitude data and projected onto the hex grid when a game starts, so the same geography works at every supported grid size. The Arctic and the Sahara are compressed vertically to give Europe and the Mediterranean the room they deserve, and the Sahel, Ethiopia and Arabia are still there for Aksum, Songhai and the Middle East.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Europe, Mediterranean, North Africa</h3>
+        <p>Urals to Iceland, Morocco to the Sinai. Works with the standard map sizes (Tiny to Huge).</p>
+      </div>
+      <div class="card">
+        <h3>Europe, Mediterranean &amp; Sahel (Large, Distant Lands)</h3>
+        <p>Reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily fit several cities), a harsher Russia, historical starts for Aksum and Songhai. Africa counts as Distant Lands across the Mediterranean, so the Exploration Age treasure fleets and legacy paths work.</p>
+        <p>Three sizes: 112x98, 128x112 and 144x126.</p>
+      </div>
+      <div class="card">
+        <h3>Europe, Mediterranean &amp; Sahel (Large, One Landmass)</h3>
+        <p>The same geography with no Distant Lands: Africa and Eurasia share one landmass, so every civilization can be reached overland from turn one. The distant-lands legacy paths cannot be completed on this version.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="screenshots">
+    <h2>Screenshots</h2>
+    <p>Rendered from the mod's map preview on the 112x98 grid. Green is grassland, olive is plains, sand is desert, grey is tundra, dark green is tropical; dots mark hills, triangles mountains, red dots volcanoes, light blue the river courses. White circles are historical starts, orange circles the curated fallback sites.</p>
+    <div class="grid">
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/02-home-distant.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/02-home-distant.png" alt="Home lands tinted orange and distant lands tinted violet"></a><figcaption><b>Home and distant lands.</b> Europe and the Near East are the home landmass; Africa, Iceland and Scandinavia are Distant Lands.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/03-france.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/03-france.png" alt="France close-up"></a><figcaption><b>France.</b> Seine, Garonne and Rhone; the Normans at Rouen and the French Empire at Paris, with Great Britain across the Channel.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/04-italy.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/04-italy.png" alt="Italy close-up"></a><figcaption><b>Italy.</b> Room for Rome, the Etruscans and Tuscany; Alpine passes to France, Switzerland and Croatia; Vesuvius and Etna.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/05-greece.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/05-greece.png" alt="Greece close-up"></a><figcaption><b>Greece and the Aegean.</b> The Peloponnese joined to the mainland at Corinth, Athens, Santorini, and the straits to Anatolia.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/06-ukraine.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/06-ukraine.png" alt="Ukraine close-up"></a><figcaption><b>Ukraine and the Pontic steppe.</b> Dnieper, Don and the Sea of Azov; the Varangian river route from the Baltic to the Black Sea.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/07-egypt.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/07-egypt.png" alt="Egypt close-up"></a><figcaption><b>Egypt.</b> The Nile valley and delta, the Siwa oasis, the Sinai, and a canal through the Dead Sea to the Red Sea.</figcaption></figure>
+      <figure><a href="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/08-africa-sea-lane.png"><img src="https://raw.githubusercontent.com/marcobonechi/civ7mods/main/EuropeMediterranean/screenshots/08-africa-sea-lane.png" alt="West Africa close-up"></a><figcaption><b>West Africa.</b> The Sahel, the Niger and Senegal rivers, Songhai at Gao, and the sea lane that runs down the Atlantic coast and along the Gulf of Guinea, so ships can sail around the continent.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="starts">
+    <h2>Historical start locations</h2>
+    <p>Civilizations from the region begin where they did in history. Everyone else is placed on a curated site (Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh, Budapest, Dublin, Lisbon, Seville, Damascus, Belgrade, Tbilisi and more), as far from the other players as possible.</p>
+    <table>
+      <tr><th>Civilization</th><th>Start</th><th>Civilization</th><th>Start</th></tr>
+      <tr><td>Rome</td><td>Rome</td><td>Ottomans</td><td>Ankara</td></tr>
+      <tr><td>Etruscans</td><td>Populonia</td><td>Iceland</td><td>Reykjavik</td></tr>
+      <tr><td>Tuscany</td><td>Florence</td><td>Qajar</td><td>Tehran</td></tr>
+      <tr><td>Byzantium</td><td>Constantinople</td><td>Mongolia</td><td>Sarai, lower Volga</td></tr>
+      <tr><td>Greece</td><td>Thermaic Gulf</td><td>Songhai</td><td>Gao (large maps)</td></tr>
+      <tr><td>Egypt</td><td>Memphis</td><td>Pirate Republic</td><td>Algiers</td></tr>
+      <tr><td>Persia</td><td>Susa</td><td>French Empire</td><td>Paris</td></tr>
+      <tr><td>Carthage</td><td>Carthage</td><td>Prussia</td><td>Berlin</td></tr>
+      <tr><td>Assyria</td><td>Nineveh</td><td>Russia</td><td>Moscow</td></tr>
+      <tr><td>Aksum</td><td>Axum (large maps)</td><td>Great Britain</td><td>London</td></tr>
+      <tr><td>Bulgaria</td><td>Pliska</td><td>America</td><td>Dublin</td></tr>
+      <tr><td>Spain</td><td>Madrid</td><td>Normans</td><td>Rouen</td></tr>
+      <tr><td>Abbasids</td><td>Baghdad</td><td></td><td></td></tr>
+    </table>
+    <p>Byzantium, the Etruscans and Tuscany are civilizations from the same repository; their starts apply when those mods are installed.</p>
+  </section>
+
+  <section id="install">
+    <h2>Install</h2>
+    <ol>
+      <li>Get the files: <code>git clone https://github.com/marcobonechi/civ7mods.git</code>, or use <b>Code &rarr; Download ZIP</b> on GitHub and unpack it.</li>
+      <li>Copy the <code>EuropeMediterranean</code> folder into the game's Mods folder:
+        <pre>Windows:  %LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VII\Mods
+macOS:    ~/Library/Application Support/Civilization VII/Mods</pre></li>
+      <li>Restart the game. It reads mods only at startup and enables new ones automatically.</li>
+      <li>In game setup choose one of the map types listed above. The large maps bring their own three sizes; the standard map uses the game's usual sizes.</li>
+    </ol>
+    <p>The repository also holds the Byzantium, Etruscans and Tuscany civilizations, a browser-based geography editor with live preview, and the scripts that rebuild the previews and these screenshots.</p>
+  </section>
+</main>
+
+<footer>
+  Europe, Mediterranean, North Africa &middot; a Civilization VII mod by genginsbon &middot; <a href="https://github.com/marcobonechi/civ7mods">github.com/marcobonechi/civ7mods</a>
+</footer>
+</body>
+</html>

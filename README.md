@@ -18,6 +18,9 @@ Three map types, historical start locations, and a browser-based geography edito
 
 Current mod version: **52**.
 
+Project page with screenshots and the map types explained: https://marcobonechi.github.io/civ7mods/europe-mediterranean/
+(source in `docs/europe-mediterranean/index.html`; the `docs/` landing page lists all mods; GitHub Pages must serve the `docs` folder of `main`).
+
 ---
 
 ## Install
@@ -152,7 +155,8 @@ steppe carry their own sets so those regions are not left empty when off-map civ
    wheel zooms at the cursor, drag pans, the +/−/fit buttons do the same, and hovering a hex prints its
    grid coordinates, longitude/latitude, terrain, biome, rainfall, region, start and volcano. Zoomed in
    past about 2x the hex coordinates are drawn on the map. Append `?w=128&h=112` to the URL to preview
-   another grid size, `?seed=7` for a different random roll. Below the picture is a text dump of the grid:
+   another grid size, `?seed=7` for a different random roll. Screenshot mode: `?shot=1&cw=1600&ch=1100&view=lon0,lat0,lon1,lat1&regions=1&title=...`
+   hides the toolbar, frames a lon/lat box, tints home/distant lands and prints a caption (`preview/shots.ps1` uses it). Below the picture is a text dump of the grid:
    `.` ocean, `,` coast, `V` planned river course, `^` mountain, lowercase = flat, uppercase = hills, with
    `g` grassland, `p` plains, `d` desert, `t` tundra, `r` tropical.
 3. Install with `./install.sh` and restart the game (mods are read at startup only).
@@ -224,6 +228,7 @@ sit alongside them; the originals are left in place, so the repo still works on 
 | `release.ps1` | `./release.sh` | bumps one mod's version and installs it |
 | *(none)* | `tools/check-mod.py` | static checks for a mod folder: XML syntax, modinfo file list, text tags and type ids against the game data |
 | `preview/build-preview.ps1` | `preview/build-preview.sh` | rebuilds the standalone preview pages |
+| `preview/shots.ps1` | *(not ported)* | renders showcase PNGs of the large map into `EuropeMediterranean/screenshots/` with headless Edge (global, home/distant lands, regional close-ups) |
 | `editor/build-defaults.ps1` | `editor/build-defaults.sh` | regenerates `editor/js/default-maps.js` |
 | `editor/setup-launchers.ps1` | *(not ported)* | one-off Windows workspace bootstrap, hardcoded `C:\` paths |
 

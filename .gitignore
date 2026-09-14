@@ -30,3 +30,6 @@ __pycache__/
 # Reference renders of the custom models are art, not screenshots.
 !3d_art/preview/*.png
 
+
+# Map showcase screenshots ship inside the mod folder and are listed in its modinfo.
+!*/screenshots/*.png
