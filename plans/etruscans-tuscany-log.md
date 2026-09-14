@@ -953,3 +953,53 @@ Norman instead. The Sokeman is Norman's unique *Settler* (`FoundCity="true"`, re
 Reading a save's civ is a useful trick worth keeping: `strings -a <save> | grep -oE
 'CIVILIZATION_[A-Z_]+|LEADER_[A-Z_]+' | head -2` gives the local player's leader and civ, verified
 against a game whose `GameCore.log` still existed.
+
+### 2026-09-14 (later) — the logging earns its keep: both hooks fired and neither worked
+
+Marco, after a fresh game: the Condottiero portrait is still empty and neither leader loads a big
+figure. `UI.log`:
+
+```
+13:35:44  civ7mods: leader model LEADER_LORENZO_GAME_ASSET -> LEADER_MACHIAVELLI_GAME_ASSET
+13:38:35  civ7mods: portrait UNIT_CONDOTTIERO -> UNIT_SWORDSMAN
+```
+
+So both hooks ran. That is worth the whole diagnostic exercise: it rules out load order, scope,
+criteria and registration in one line each, and says the *substitution* is wrong rather than the
+plumbing.
+
+**The portrait, rewritten to remove the guess.** `WorldUI.requestPortrait(a, b, background)` is
+called by the base game with `a === b` in both of its two call sites, so which argument is the
+texture key and which is the asset to render **cannot be read off the code**. I guessed "first is
+the key" and swapped the second. If that guess is backwards, the engine renders our unit (nothing)
+into a texture named after the stand-in, and the panel — still asking for `live:/UNIT_CONDOTTIERO`
+— shows an empty box, which is exactly what we see.
+
+So stop guessing. The hook now calls `requestPortrait(stand, stand, background)` — both arguments
+the same, the identical shape the base game uses for its own units, which is correct under either
+reading — and `fixCss` rewrites the panel's `url("live:/UNIT_CONDOTTIERO")` to
+`url("live:/UNIT_SWORDSMAN")` on its way through. The CSS side is not ambiguous: we have read it,
+it is `background-image`, and our accessor hook already owns that path.
+
+**The leader model, instrumented rather than re-guessed.** `LEADER_MACHIAVELLI_GAME_ASSET` and
+`LEADER_AUGUSTUS_GAME_ASSET` are both real asset names — they appear in the 28,000-name
+`world-ui-asset-names.js` that ships with Custom Civ Art Fixes, which is a handy oracle for "is
+this a valid WorldUI asset". So the name is right and the swap happens, and still nothing renders.
+The remaining question is whether `addModel` *accepted* it, because leader-select falls back to
+`LEADER_FALLBACK_GAME_ASSET` when it returns null — and a borrowed model that was refused looks
+identical to one that was never attempted. The hook now reports which:
+
+```
+civ7mods: leader model LEADER_LORENZO_GAME_ASSET -> LEADER_MACHIAVELLI_GAME_ASSET (accepted)
+civ7mods: leader model LEADER_LORENZO_GAME_ASSET -> LEADER_MACHIAVELLI_GAME_ASSET (REFUSED - engine returned null)
+```
+
+"Refused" would mean the asset is real but not streamed in that context, and the fix would be to
+borrow a leader who is actually in the game rather than any leader at all. "Accepted" would mean
+the model loads and something else hides it. Either way the next round is a measurement, not
+another guess.
+
+Also ruled out along the way: `lsl_lorenzo.png` and `lsl_porsenna.png` are present, 720x1080, and
+installed beside `civ_sym_tuscany.png`, which resolves — so the 2D leader splash is not the
+problem. The `blp:.png` failures in the log are the create-game hub asking for
+`blp:${leaderImage()}.png` before any leader is chosen, with an empty name; harmless, and not ours.

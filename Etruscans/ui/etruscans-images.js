@@ -131,6 +131,10 @@
             // second: city banners show our unit icons, the army panel and the unit flags do not.
             // Quoting is the whole fix, and it is worth doing for every mod's files, not just ours.
             out = out.replace(/url\(\s*(fs:\/\/[^'\")\s]+)\s*\)/gi, "url('$1')");
+            // live:/<UnitType> is the texture WorldUI.requestPortrait renders into. Our units have
+            // no 3D asset, so the panel is pointed at the stand-in's texture instead - see the
+            // requestPortrait hook, which is what renders it.
+            out = out.replace(/live:\/(\w+)/g, function (m, t) { return "live:/" + (shared.unitAssets.get(t) || t); });
             const hit = lookup(out);
             if (!hit) return out;
             return /url\(/.test(out) ? "url('" + hit + "')" : hit;
@@ -278,8 +282,15 @@
                 const original = WorldUI.requestPortrait.bind(WorldUI);
                 WorldUI.requestPortrait = function (name, unitType, background) {
                     const stand = typeof unitType === "string" ? shared.unitAssets.get(unitType) : null;
-                    if (stand) announce("portrait", unitType, stand);
-                    return original(name, stand || unitType, background);
+                    if (!stand) return original(name, unitType, background);
+                    announce("portrait", unitType, stand);
+                    // Ask for the stand-in exactly the way the base game asks for its own units -
+                    // both arguments the same - instead of swapping one of them. The two are
+                    // interchangeable in every shipped call, so which is the texture key and
+                    // which is the asset cannot be read off the code, and guessing it wrong
+                    // renders nothing while still looking like the hook ran. fixCss then points
+                    // the panel's url("live:/<ours>") at the texture we know exists.
+                    return original(stand, stand, background);
                 };
             }
         } catch (e) { /* ignore */ }
@@ -302,8 +313,14 @@
                     const inner = group[method].bind(group);
                     const wrapped = function (asset) {
                         const swapped = swap(asset);
-                        if (swapped !== asset) announce("leader model", asset, swapped);
-                        return inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
+                        const model = inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
+                        // Report whether the engine actually took the asset. leader-select falls
+                        // back to LEADER_FALLBACK_GAME_ASSET when addModel returns null, so a
+                        // borrowed model that fails looks exactly like one that was never tried.
+                        if (swapped !== asset) {
+                            announce("leader model", asset, swapped + (model ? " (accepted)" : " (REFUSED - engine returned null)"));
+                        }
+                        return model;
                     };
                     wrapped.__civ7mods = true;
                     group[method] = wrapped;
