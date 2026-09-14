@@ -14,7 +14,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const MOD = path.join(HERE, '..', 'EuropeMediterranean');
 const MAPS = path.join(MOD, 'maps');
 
-const { buildEuropeGrid, hexNeighbors } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
+const { buildEuropeGrid, hexNeighbors, hexDistance } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
 
 // Sizes come from the mod's own gameplay data, so this cannot drift from what ships.
 const xml = fs.readFileSync(path.join(MOD, 'data', 'maps.xml'), 'utf8');
@@ -24,6 +24,24 @@ for (const a of process.argv.slice(2)) {
     const m = /^(\d+)x(\d+)$/.exec(a);
     if (m) shipped.push({ name: '(extra)', w: +m[1], h: +m[2] });
 }
+
+// Which civilizations can be in the same game. Ages never overlap, so a start is
+// only a clash if both civs belong to the same age.
+const AGE_CIVS = {
+    Antiquity: ['AKSUM','ASSYRIA','CARTHAGE','EGYPT','GREECE','HAN','HEIAN','KHMER','MAURYA','MAYA',
+                'MISSISSIPPIAN','PERSIA','ROME','SILLA','TONGA','ETRUSCANS','BYZANTIUM'],
+    Exploration: ['ABBASID','BULGARIA','CHOLA','DAI_VIET','GORYEO','HAWAII','ICELAND','INCA','MAJAPAHIT',
+                  'MING','MONGOLIA','NORMAN','PIRATE_REPUBLIC','SENGOKU','SHAWNEE','SONGHAI','SPAIN',
+                  'ETRUSCANS','BYZANTIUM','TUSCANY'],
+    Modern: ['AMERICA','BUGANDA','FRENCH_EMPIRE','GREAT_BRITAIN','JOSEON','MEIJI','MEXICO','MUGHAL','NEPAL',
+             'OTTOMANS','PRUSSIA','QAJAR','QING','RUSSIA','SIAM','ETRUSCANS','BYZANTIUM'],
+};
+
+// Pairs that are knowingly closer than TSL_SPACING. Etruria and Tuscany are the same
+// corner of Italy and there is nowhere else for either; europe-large-geo.js explains the
+// reasoning above CIVILIZATION_ETRUSCANS. When both are in a game one takes a fallback
+// site, which is the intended behaviour rather than a placement bug.
+const ALLOWED_CLOSE = new Set(['ETRUSCANS/TUSCANY']);
 
 const SEAS = { Med: [18.5, 34.8], Black: [34.0, 43.5], Baltic: [19.5, 57.5], Red: [38.5, 19.0], NorthSea: [3.0, 56.0] };
 const ISLANDS = { Britain: [-1.5, 52.5], Ireland: [-8.0, 53.3], Sicily: [14.2, 37.6], Crete: [24.9, 35.2],
@@ -74,13 +92,31 @@ for (const geoFile of geoFiles) {
         check(seam === 0, `no land seam between regions (${seam})`);
         check(eastPct > 25 && eastPct < 50, `Distant Lands hold ${eastPct.toFixed(1)}% of land`);
 
-        const seen = new Set();
-        for (const civ of Object.keys(GEO.tsl)) {
-            const t = g.findLandTile(...GEO.tsl[civ], 3, false);
-            if (t) seen.add(t[0] + ',' + t[1]);
+        // Only one age is ever live, so two ages may share a site on purpose - a
+        // clash only matters between civs that can be in the same game. The engine
+        // also needs starts at least TSL_SPACING apart (europe-large-core.js), or
+        // the later civ silently falls back to a generic site.
+        const TSL_SPACING = 5;
+        for (const [age, roster] of Object.entries(AGE_CIVS)) {
+            const live = roster.map(c => 'CIVILIZATION_' + c).filter(c => GEO.tsl[c]);
+            const pos = [];
+            const missing = [];
+            for (const c of live) {
+                const t = g.findLandTile(...GEO.tsl[c], 3, false);
+                t ? pos.push({ c, t }) : missing.push(c.replace('CIVILIZATION_', ''));
+            }
+            const tooClose = [];
+            for (let i = 0; i < pos.length; i++) for (let j = i + 1; j < pos.length; j++) {
+                const d = hexDistance(pos[i].t[0], pos[i].t[1], pos[j].t[0], pos[j].t[1]);
+                if (d >= TSL_SPACING) continue;
+                const pair = [pos[i].c, pos[j].c].map(c => c.replace('CIVILIZATION_', '')).sort().join('/');
+                if (!ALLOWED_CLOSE.has(pair)) tooClose.push(`${pair}=${d}`);
+            }
+            check(!missing.length && !tooClose.length,
+                  `${age}: ${pos.length}/${roster.length} civs pinned, all ${TSL_SPACING}+ hexes apart` +
+                  (missing.length ? ` (no land: ${missing.join(', ')})` : '') +
+                  (tooClose.length ? ` (too close: ${tooClose.join(', ')})` : ''));
         }
-        check(seen.size === Object.keys(GEO.tsl).length,
-              `${seen.size}/${Object.keys(GEO.tsl).length} true starts land on distinct hexes`);
 
         const st = g.P.nearestTile(...SEAS.Med), si = g.idx(st[0], st[1]);
         const q = [st], wet = new Uint8Array(N);

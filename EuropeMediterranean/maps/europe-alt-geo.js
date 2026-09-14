@@ -983,7 +983,11 @@ export const GEO = {
         CIVILIZATION_CARTHAGE: [10.3, 36.8],
         CIVILIZATION_ASSYRIA: [43.1, 36.3],
         CIVILIZATION_AKSUM: [38.7, 14.1],
-        CIVILIZATION_BULGARIA: [27.1, 43.4],
+        // Veliko Tarnovo rather than Pliska: Bulgaria is an Exploration-age civilization and
+        // Tarnovo was the Second Empire's capital, so it suits the age better - and Pliska sits
+        // only 4 hexes from Constantinople on the 112x98 grid, inside the 5-hex minimum, which
+        // pushed one of the two onto a generic fallback site whenever both were in a game.
+        CIVILIZATION_BULGARIA: [25.6, 43.85],
         CIVILIZATION_SPAIN: [-3.7, 40.4],
         CIVILIZATION_NORMAN: [1.1, 49.4],
         CIVILIZATION_ABBASID: [44.4, 33.3],
@@ -1001,7 +1005,44 @@ export const GEO = {
         // reads GEO.tsl[civ] for civs alive in the game, so these sit inert until the civs exist.
         CIVILIZATION_SCYTHIA: [34.40, 47.50],   // Kamianka, the Dnieper bend in the Pontic steppe
         CIVILIZATION_KUSH: [33.70, 16.90],      // Meroe, on the Nile south of Egypt
-        CIVILIZATION_SUMER: [46.10, 30.90]      // Ur, the lower Euphrates near the Gulf
+        CIVILIZATION_SUMER: [46.10, 30.90],     // Ur, the lower Euphrates near the Gulf
+
+        // ---- regional starts for civilizations with no European history -------
+        // Every civilization of every age now has a fixed home on this map, so you can
+        // pick the one that starts where you want your empire to end up. The game's own
+        // legacy table runs Rome -> Great Britain / America / Prussia / France and Greece
+        // -> Russia, so playing 'the British' in Antiquity was only ever possible from
+        // Italy. These fill the empty regions instead: each civ below sits on the city
+        // its later-age successor occupies, matched on terrain where the civ's own
+        // abilities care about it. Only one age is ever live, so ages may share a site.
+        // Antiquity:
+        CIVILIZATION_MISSISSIPPIAN:     [0.48, 51.41],        // London - Britain, the Thames - mound builders on a temperate river
+        CIVILIZATION_HEIAN:             [-6.64, 53.32],       // Dublin - Ireland - an island, coastal, off the mainland
+        CIVILIZATION_MAURYA:            [-3.7, 40.4],         // Toledo - Iberia - a big warm peninsula to unify
+        CIVILIZATION_HAN:               [2.35, 48.85],        // Paris - Gaul, the Seine - river valley agriculture
+        CIVILIZATION_MAYA:              [13.4, 52.5],         // Berlin - Germania - the north European plain
+        CIVILIZATION_KHMER:             [26.1, 44.4],         // Bucharest - the lower Danube - a wet river empire
+        CIVILIZATION_SILLA:             [32.9, 39.9],         // Ankara - central Anatolia - a mountainous peninsula
+        CIVILIZATION_TONGA:             [15.3, 37.1],         // Syracuse - Sicily - a maritime power in the middle sea
+        // Exploration:
+        CIVILIZATION_SENGOKU:           [0.48, 51.41],        // London - Britain - feudal lords on an island
+        CIVILIZATION_MAJAPAHIT:         [-6.64, 53.32],       // Dublin - Ireland - an island thalassocracy
+        CIVILIZATION_CHOLA:             [-9.1, 38.7],         // Lisbon - Portugal - an ocean-facing trading coast
+        CIVILIZATION_GORYEO:            [23.7, 38],           // Athens - Greece - a peninsula of harbours
+        CIVILIZATION_DAI_VIET:          [29.84, 31.78],       // Alexandria - the Nile delta - a river mouth
+        CIVILIZATION_INCA:              [44.8, 41.7],         // Tbilisi - the Caucasus - mountain settlements, which Inca unlock on
+        CIVILIZATION_HAWAII:            [15.3, 37.1],         // Syracuse - Sicily - island settlements, which Hawaii unlock on
+        CIVILIZATION_SHAWNEE:           [21, 52.2],           // Warsaw - the Vistula forests
+        CIVILIZATION_MING:              [37.6, 55.75],        // Moscow - the Russian rivers - a large continental empire
+        // Modern:
+        CIVILIZATION_MEXICO:            [-6, 37.4],           // Seville - Andalusia - the Atlantic side of Iberia
+        CIVILIZATION_JOSEON:            [23.7, 38],           // Athens - Greece - a peninsula
+        CIVILIZATION_MEIJI:             [17.6, 59.9],         // Uppsala - Scandinavia - an industrialising maritime north
+        CIVILIZATION_QING:              [16.4, 48.2],         // Vienna - the middle Danube - a continental empire
+        CIVILIZATION_SIAM:              [14.25, 40.85],       // Naples - southern Italy - a warm coastal kingdom
+        CIVILIZATION_MUGHAL:            [19, 47.5],           // Budapest - the Hungarian plain - a large land empire
+        CIVILIZATION_NEPAL:             [44.8, 41.7],         // Tbilisi - the Caucasus - mountain settlements, which Nepal unlock on
+        CIVILIZATION_BUGANDA:           [37.47, 12.6],        // Gondar - the Ethiopian highlands and lakes which Buganda unlock on
     },
 
     // Fallback start sites, best first. Pass 2 of assignEuropeStartPositions caps the
