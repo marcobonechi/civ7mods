@@ -305,15 +305,9 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   names and logs `Failed loading resource: blp:<name>` in `Logs/UI.log` when they miss: with the
   script installed our civs and leaders produce no such line, while mod civs without it still do.
   That log is the cheapest test there is - it needs no navigation, just a launch to the main menu.
-- **The selected-unit panel and the army panel do not draw the unit icon at all.** They call
-  `WorldUI.requestPortrait(unitType, unitType, "UnitPortraitsBG_UNIQUE"|"..._BASE")` and read the
-  result back as ``url("live:/<UnitType>")`` — the engine renders the unit's own **3D asset** into
-  a live texture (`unit-actions.js:664`, `army-panel.js:311`). A modded unit has no asset of its
-  own, and the `VisualRemaps` row that gives it one in the world does **not** reach that call, so
-  the portrait comes back an empty black box while the map model is fine. Fix it in the UI script:
-  proxy `WorldUI.requestPortrait` and swap the **second** argument for the base unit the remap
-  points at, leaving the first alone — that one is the texture key the CSS is about to ask for.
-  `tools/check-mod.py` check 7 keeps that map in step with `visual-remaps.xml`.
+- **The selected-unit panel and the army panel do not draw the unit icon at all** — they render
+  the unit's 3D asset into a live texture. See *Unit art: three systems* below; getting this wrong
+  is why a custom unit can look right on the map and be a black box in the panel.
 - **An unquoted `url()` holding an `fs://` path does not parse in this engine.** The base game only
   ever writes `url(<x>)` unquoted where `x` is a `blp:` package name - which contains no `//` - and
   always quotes an `fs://` path. Compare `Icon.getCivSymbolCSSFromCivilizationType`, which returns
@@ -392,6 +386,75 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   thresholded to a white mask, units kept as painted vignettes because a dark horse cannot be
   keyed off a purple background); `tools/switch-icons.sh <Mod> alt|vector` swaps sets and
   reinstalls, and `icons-vector/` keeps the rendered set safe.
+
+### Unit art: three systems, three fixes
+
+A custom unit needs art in **three unrelated places**, and each fails differently and silently.
+Getting one right tells you nothing about the others. Worked out the hard way over 2026-09-11..14;
+`Tuscany/ui/tuscany-images.js` is the reference implementation.
+
+| where | what draws it | how a custom unit gets it |
+|---|---|---|
+| Model on the map | the world renderer | `VisualRemaps` row, `Kind=UNIT`, `From`=yours `To`=a real unit asset |
+| Portrait in the selected-unit panel and inside an army commander | `WorldUI.requestPortrait` → `url("live:/<UnitType>")` | UI-script hook, below |
+| Flag icon on the map, in the army panel's slots, in the diplomacy target list | `IconDefinitions` → `Icon.getUnitIconFromDefinition` | an icons row **plus** the quoting hook, below |
+
+**1. The model.** One `VisualRemaps` row per unit. `To` must be a unit whose *asset* exists;
+unit assets are named after the type, so `UNIT_SWORDSMAN` is safe. Remember each row becomes a
+player-toggleable checkbox in Options, labelled with its `DisplayName` — ten rows sharing a name
+means ten identical checkboxes, which is why Tuscany's ten named Maestri have none.
+
+**2. The portrait.** `unit-actions.js:664` and `army-panel.js:311` do:
+
+```js
+WorldUI.requestPortrait(unitType, unitType, isUnique ? "UnitPortraitsBG_UNIQUE" : "UnitPortraitsBG_BASE");
+portraitImage.style.backgroundImage = `url("live:/${unitType}")`;
+```
+
+The engine renders the unit's own 3D asset into a live texture. A modded unit has none, and the
+`VisualRemaps` row does **not** reach this call, so the box is black while the map model is fine.
+
+Both shipped call sites pass the same value twice, so **which argument is the texture key and
+which is the asset cannot be read off the code** — do not try to swap one of them, that is a coin
+flip and it renders nothing when you lose it. Instead ask for the stand-in the way the base game
+asks for its own units, and redirect the CSS, which *is* unambiguous:
+
+```js
+// in the requestPortrait proxy
+if (!stand) return original(name, unitType, background);
+return original(stand, stand, background);          // both the same: right under either reading
+
+// in fixCss, on the way through the backgroundImage accessor
+out = out.replace(/live:\/(\w+)/g, (m, t) => "live:/" + (unitAssets.get(t) || t));
+```
+
+Keep the `unitPortraits` map in step with `visual-remaps.xml`; `tools/check-mod.py` check 7
+enforces it.
+
+**3. The icon.** An `IconDefinitions` row with an `fs://` path is necessary but not sufficient:
+`Icon.getUnitIconFromDefinition` returns a bare URL and most callers wrap it **unquoted**, which
+does not parse for an `fs://` path (see the bullet above). Quote it in `fixCss`, and watch
+`setProperty` for *every* property, because the army panel writes the icon into the custom
+property `--button-icon`.
+
+**Nothing reaches any log when these fail.** No file is requested, so there is no
+"failed to open" line — the absence of an error is not evidence of success. Make the hooks say so
+themselves; one `console.warn` per subject, first time only, is enough:
+
+```
+civ7mods: portrait UNIT_LIBURNA -> UNIT_GALLEY
+```
+
+That single habit separated "my fix is wrong" from "my fix never ran", which had been
+indistinguishable for three days.
+
+**Leaders are not solved.** The same trick — proxy `WorldUI.createModelGroup`, rewrite the asset
+name into `addModel` — makes leader-select accept the borrowed model (`addModel` returns non-null,
+confirmed by logging the return), and the figure still does not appear on the pedestal. The asset
+name is valid: every `LEADER_*_GAME_ASSET` can be checked against the 28,000-name
+`remap/world-ui-asset-names.js` shipped with the Custom Civ Art Fixes mod, a useful oracle. So the
+swap is accepted and something later hides it; the next thing to look at is
+`playLeaderAnimation("IDLE_CharSelect")`, which a borrowed asset may not have.
 
 ## 5. Map integration
 

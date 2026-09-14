@@ -1003,3 +1003,29 @@ Also ruled out along the way: `lsl_lorenzo.png` and `lsl_porsenna.png` are prese
 installed beside `civ_sym_tuscany.png`, which resolves — so the 2D leader splash is not the
 problem. The `blp:.png` failures in the log are the create-game hub asking for
 `blp:${leaderImage()}.png` before any leader is chosen, with an empty name; harmless, and not ours.
+
+### 2026-09-14 (resolved) — the unit portrait works; the leader model is accepted and still invisible
+
+Marco confirms the Condottiero now draws. The log from that run:
+
+```
+13:53:31  civ7mods: leader model LEADER_LORENZO_GAME_ASSET -> LEADER_MACHIAVELLI_GAME_ASSET (accepted)
+13:59:44  civ7mods: portrait UNIT_CONDOTTIERO -> UNIT_SWORDSMAN
+```
+
+So the portrait is fixed by asking for the stand-in with both arguments the same and redirecting
+`live:/` in the CSS — the parameter order never had to be settled.
+
+And the leader model is a different problem from the one I had assumed. `addModel` **accepted**
+`LEADER_MACHIAVELLI_GAME_ASSET` — it returned a model, so leader-select did not fall back — and the
+figure still does not appear. The asset name is valid (it is in the 28,000-name
+`world-ui-asset-names.js` oracle), the swap runs, the engine takes it, and nothing is drawn. Next
+lead, untested: `playLeaderAnimation("IDLE_CharSelect")` immediately after, which a borrowed asset
+may not carry; a model with no pose may be sitting at the origin or in a null transform. Marco is
+content to leave it ("good enough"), so it stays where it is, written down.
+
+Wrote the whole thing up in the skill: `.claude/skills/new-civilization/reference.md` gains
+**§4 "Unit art: three systems, three fixes"** — a table of the three unrelated places a custom
+unit needs art (world model, portrait, flag icon), the verified recipe for each, the warning not to
+guess `requestPortrait`'s parameter order, the note that none of these failures reach any log, and
+the leader-model status. The older bullet that carried the wrong portrait advice now points at it.
