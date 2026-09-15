@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="europe-mediterranean-map" version="56" xmlns="ModInfo">
+<Mod id="europe-mediterranean-map" version="57" xmlns="ModInfo">
     <Properties>
         <Name>Europe, Mediterranean, North Africa</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, at 112x98, 128x112 or 144x126. Three maps: Distant Lands (Africa, Scandinavia and Iceland across the water), One Landmass (the same geography with nothing distant), and a Variant kept apart so it can be reshaped without touching the originals.
@@ -17,7 +17,7 @@ Civilizations with no historical business in Europe are placed by terrain rather
 Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
-        <Version>56</Version>
+        <Version>57</Version>
     </Properties>
     <Dependencies>
         <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
