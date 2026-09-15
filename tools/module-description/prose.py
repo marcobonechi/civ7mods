@@ -3,7 +3,7 @@
 PROSE = {
 "de_DE": """Europa, das Mittelmeer und Afrika oberhalb des Äquators, auf 112x98, 128x112 oder 144x126. Drei Karten: Ferne Länder (Afrika, Skandinavien und Island jenseits des Wassers), Eine Landmasse (dieselbe Geografie ohne ferne Länder) und eine Variante, die getrennt gehalten wird und umgestaltet werden kann, ohne die Originale anzurühren.
 
-JEDE ZIVILISATION JEDES ZEITALTERS HAT EINEN HISTORISCHEN STARTPLATZ. Die Erbfolge des Spiels führt von Rom zu Großbritannien, Amerika, Preußen und Frankreich und von Griechenland zu Russland - wer auf Britannien hinspielen wollte, musste also in Italien beginnen und dort bleiben. Jetzt wartet in jeder Region eine Zivilisation jedes Zeitalters, sodass Sie diejenige wählen können, die dort beginnt, wo Ihr Reich enden soll: Beginnen Sie als Mississippi-Reich an der Themse und werden Sie in Britannien zu Großbritannien, oder als Maya in der norddeutschen Tiefebene und werden Sie in Deutschland zu Preußen. Nur ein Zeitalter ist je aktiv, deshalb teilen sich die Zeitalter ihre Plätze absichtlich.
+JEDE ZIVILISATION JEDES ZEITALTERS HAT EINEN HISTORISCHEN STARTPLATZ. Wählen Sie diejenige, die dort beginnt, wo Ihr Reich enden soll. Civilization VII 1.5 hat die Gallier, England und Babylon hinzugefügt, und sie stehen genau dort, wo sie hingehören - die britische Linie lässt sich also endlich dort spielen, wo sie sich wirklich abgespielt hat: Beginnen Sie als Gallier an der Seine, werden Sie England an der Themse und enden Sie als Großbritannien oder Amerika. Überall dort, wo das Spiel eine Lücke lässt, wartet trotzdem eine Zivilisation - etwa das Mississippi-Reich an der Themse oder die Maya in der norddeutschen Tiefebene, die in Deutschland zu Preußen werden. Nur ein Zeitalter ist je aktiv, deshalb teilen sich die Zeitalter ihre Plätze absichtlich.
 
 ANTIKE - {ant}.
 
@@ -17,7 +17,7 @@ Alle Übrigen siedeln auf einem kuratierten historischen Platz, zuerst London un
 
 "es_ES": """Europa, el Mediterráneo y África por encima del ecuador, en 112x98, 128x112 o 144x126. Tres mapas: Tierras Lejanas (África, Escandinavia e Islandia al otro lado del agua), Una Sola Masa Continental (la misma geografía sin nada lejano) y una Variante aparte que puede remodelarse sin tocar los originales.
 
-TODAS LAS CIVILIZACIONES DE TODAS LAS ERAS TIENEN POSICIÓN HISTÓRICA. La tabla de legados del propio juego lleva de Roma a Gran Bretaña, América, Prusia y Francia, y de Grecia a Rusia, así que jugar hacia Britania obligaba a empezar en Italia y quedarse allí. Ahora cada era tiene una civilización esperando en cada región, de modo que puedes elegir la que empieza donde quieres que acabe tu imperio: empieza como los misisipianos en el Támesis y conviértete en Gran Bretaña en Britania, o como los mayas en la llanura del norte de Europa y conviértete en Prusia en Alemania. Solo hay una era activa a la vez, así que las eras comparten sus emplazamientos a propósito.
+TODAS LAS CIVILIZACIONES DE TODAS LAS ERAS TIENEN POSICIÓN HISTÓRICA. Elige la que empieza donde quieres que acabe tu imperio. Civilization VII 1.5 añadió a los galos, Inglaterra y Babilonia, y están exactamente donde les corresponde, así que la línea británica ya puede jugarse desde donde ocurrió de verdad: empieza como los galos en el Sena, conviértete en Inglaterra en el Támesis y acaba como Gran Bretaña o América. Donde el juego deja un hueco sigue esperando una civilización: los misisipianos en el Támesis, o los mayas en la llanura del norte de Europa que se convierten en Prusia en Alemania. Solo hay una era activa a la vez, así que las eras comparten sus emplazamientos a propósito.
 
 ANTIGÜEDAD - {ant}.
 
@@ -31,7 +31,7 @@ Los demás se asientan en un emplazamiento histórico seleccionado, primero Lond
 
 "fr_FR": """L'Europe, la Méditerranée et l'Afrique au nord de l'équateur, en 112x98, 128x112 ou 144x126. Trois cartes : Terres lointaines (l'Afrique, la Scandinavie et l'Islande de l'autre côté de l'eau), Masse continentale unique (la même géographie sans rien de lointain) et une Variante tenue à l'écart, que l'on peut remodeler sans toucher aux originales.
 
-CHAQUE CIVILISATION DE CHAQUE ÈRE A UN DÉPART HISTORIQUE. La table des héritages du jeu mène de Rome à la Grande-Bretagne, à l'Amérique, à la Prusse et à la France, et de la Grèce à la Russie : jouer vers la Bretagne imposait donc de commencer en Italie et d'y rester. Désormais chaque ère a une civilisation qui attend dans chaque région, et vous pouvez choisir celle qui commence là où vous voulez que votre empire finisse : commencez comme les Mississippiens sur la Tamise et devenez la Grande-Bretagne en Bretagne, ou comme les Mayas dans la plaine d'Europe du Nord et devenez la Prusse en Allemagne. Une seule ère est active à la fois, les ères partagent donc leurs sites à dessein.
+CHAQUE CIVILISATION DE CHAQUE ÈRE A UN DÉPART HISTORIQUE. Choisissez celle qui commence là où vous voulez que votre empire finisse. Civilization VII 1.5 a ajouté les Gaulois, l'Angleterre et Babylone, et ils sont exactement à leur place : la lignée britannique se joue enfin là où elle s'est déroulée. Commencez comme les Gaulois sur la Seine, devenez l'Angleterre sur la Tamise, finissez en Grande-Bretagne ou en Amérique. Là où le jeu laisse un vide, une civilisation attend quand même : les Mississippiens sur la Tamise, ou les Mayas dans la plaine d'Europe du Nord qui deviennent la Prusse en Allemagne. Une seule ère est active à la fois, les ères partagent donc leurs sites à dessein.
 
 ANTIQUITÉ - {ant}.
 
@@ -45,7 +45,7 @@ Les autres s'installent sur un site historique sélectionné, Londres et Dublin 
 
 "it_IT": """Europa, Mediterraneo e Africa sopra l'Equatore, a 112x98, 128x112 o 144x126. Tre mappe: Terre Lontane (Africa, Scandinavia e Islanda oltre il mare), Terra Unica (la stessa geografia senza nulla di lontano) e una Variante tenuta a parte, che si può rimodellare senza toccare le originali.
 
-OGNI CIVILTÀ DI OGNI ERA HA UNA PARTENZA STORICA. La tavola delle eredità del gioco porta da Roma a Gran Bretagna, America, Prussia e Francia, e dalla Grecia alla Russia: giocare verso la Britannia voleva dire cominciare in Italia e restarci. Ora ogni era ha una civiltà che aspetta in ogni regione, così puoi scegliere quella che comincia dove vuoi che il tuo impero finisca: comincia come Mississippiani sul Tamigi e diventa Gran Bretagna in Britannia, oppure come Maya nella pianura nordeuropea e diventa Prussia in Germania. È viva una sola era per volta, quindi le ere condividono i siti di proposito.
+OGNI CIVILTÀ DI OGNI ERA HA UNA PARTENZA STORICA. Scegli quella che comincia dove vuoi che il tuo impero finisca. Civilization VII 1.5 ha aggiunto Galli, Inghilterra e Babilonia, e stanno esattamente dove devono stare: la linea britannica si può finalmente giocare da dove è successa davvero. Comincia come Galli sulla Senna, diventa Inghilterra sul Tamigi e finisci come Gran Bretagna o America. Dove il gioco lascia un vuoto una civiltà aspetta comunque: i Mississippiani sul Tamigi, o i Maya nella pianura nordeuropea che diventano Prussia in Germania. È viva una sola era per volta, quindi le ere condividono i siti di proposito.
 
 ANTICHITÀ - {ant}.
 
@@ -61,7 +61,7 @@ Tutti gli altri si insediano su un sito storico selezionato, prima Londra e Dubl
 PROSE.update({
 "pl_PL": """Europa, Morze Śródziemne i Afryka na północ od równika, w rozmiarach 112x98, 128x112 lub 144x126. Trzy mapy: Dalekie Ziemie (Afryka, Skandynawia i Islandia po drugiej stronie wody), Jeden Ląd (ta sama geografia bez niczego dalekiego) oraz Wariant trzymany osobno, który można przekształcać bez ruszania oryginałów.
 
-KAŻDA CYWILIZACJA KAŻDEJ ERY MA HISTORYCZNE MIEJSCE STARTU. Tablica dziedzictwa samej gry prowadzi od Rzymu do Wielkiej Brytanii, Ameryki, Prus i Francji, a od Grecji do Rosji - żeby grać w stronę Brytanii, trzeba było zacząć we Włoszech i tam zostać. Teraz w każdym regionie czeka cywilizacja z każdej ery, więc możesz wybrać tę, która zaczyna tam, gdzie chcesz, by skończyło twoje imperium: zacznij jako Missisipijczycy nad Tamizą i stań się Wielką Brytanią w Brytanii, albo jako Majowie na Nizinie Środkowoeuropejskiej i stań się Prusami w Niemczech. Naraz żyje tylko jedna era, więc ery dzielą swoje miejsca celowo.
+KAŻDA CYWILIZACJA KAŻDEJ ERY MA HISTORYCZNE MIEJSCE STARTU. Wybierz tę, która zaczyna tam, gdzie chcesz, by skończyło twoje imperium. Civilization VII 1.5 dodało Galów, Anglię i Babilon, a te stoją dokładnie tam, gdzie powinny - brytyjską linię można wreszcie rozegrać stamtąd, gdzie naprawdę się wydarzyła: zacznij jako Galowie nad Sekwaną, stań się Anglią nad Tamizą i skończ jako Wielka Brytania albo Ameryka. Tam, gdzie gra zostawia lukę, i tak czeka cywilizacja: Missisipijczycy nad Tamizą albo Majowie na Nizinie Środkowoeuropejskiej, którzy stają się Prusami w Niemczech. Naraz żyje tylko jedna era, więc ery dzielą swoje miejsca celowo.
 
 STAROŻYTNOŚĆ - {ant}.
 
@@ -75,7 +75,7 @@ Wszyscy pozostali osiedlają się w wybranym miejscu historycznym: najpierw Lond
 
 "pt_BR": """Europa, Mediterrâneo e África acima do Equador, em 112x98, 128x112 ou 144x126. Três mapas: Terras Distantes (África, Escandinávia e Islândia do outro lado da água), Massa Continental Única (a mesma geografia sem nada distante) e uma Variante mantida à parte, que pode ser remodelada sem tocar nas originais.
 
-TODAS AS CIVILIZAÇÕES DE TODAS AS ERAS TÊM POSIÇÃO HISTÓRICA. A tabela de legados do próprio jogo leva de Roma à Grã-Bretanha, América, Prússia e França, e da Grécia à Rússia - jogar rumo à Britânia exigia começar na Itália e ficar por lá. Agora cada era tem uma civilização esperando em cada região, para que você escolha aquela que começa onde quer que seu império termine: comece como os mississipianos no Tâmisa e torne-se a Grã-Bretanha na Britânia, ou como os maias na planície do norte europeu e torne-se a Prússia na Alemanha. Só uma era está viva de cada vez, então as eras compartilham seus locais de propósito.
+TODAS AS CIVILIZAÇÕES DE TODAS AS ERAS TÊM POSIÇÃO HISTÓRICA. Escolha aquela que começa onde você quer que seu império termine. O Civilization VII 1.5 acrescentou os gauleses, a Inglaterra e a Babilônia, e eles ficam exatamente onde devem - a linhagem britânica enfim pode ser jogada de onde realmente aconteceu: comece como os gauleses no Sena, torne-se a Inglaterra no Tâmisa e termine como Grã-Bretanha ou América. Onde o jogo deixa uma lacuna, ainda espera uma civilização: os mississipianos no Tâmisa, ou os maias na planície do norte europeu que se tornam a Prússia na Alemanha. Só uma era está viva de cada vez, então as eras compartilham seus locais de propósito.
 
 ANTIGUIDADE - {ant}.
 
@@ -89,7 +89,7 @@ Os demais se estabelecem em um sítio histórico selecionado, primeiro Londres e
 
 "uk_UA": """Європа, Середземномор'я та Африка на північ від екватора, у розмірах 112x98, 128x112 або 144x126. Три карти: Далекі землі (Африка, Скандинавія та Ісландія за водою), Єдиний материк (та сама географія без нічого далекого) і Варіант, що тримається окремо й може бути перероблений, не торкаючись оригіналів.
 
-КОЖНА ЦИВІЛІЗАЦІЯ КОЖНОЇ ЕПОХИ МАЄ ІСТОРИЧНИЙ СТАРТ. Таблиця спадку самої гри веде від Риму до Великої Британії, Америки, Пруссії та Франції, а від Греції до Росії, тож грати в бік Британії означало починати в Італії та там і лишатися. Тепер у кожному регіоні чекає цивілізація кожної епохи, тож ви можете обрати ту, що починає там, де хочете бачити свою імперію: почніть як міссісіпська культура на Темзі й станьте Великою Британією у Британії, або як мая на Північноєвропейській рівнині й станьте Пруссією в Німеччині. Жива лише одна епоха за раз, тому епохи свідомо ділять свої місця.
+КОЖНА ЦИВІЛІЗАЦІЯ КОЖНОЇ ЕПОХИ МАЄ ІСТОРИЧНИЙ СТАРТ. Оберіть ту, що починає там, де ви хочете бачити свою імперію. Civilization VII 1.5 додала галлів, Англію та Вавилон, і вони стоять саме там, де їм належить, тож британську лінію нарешті можна грати звідти, де вона справді сталася: почніть як галли на Сені, станьте Англією на Темзі й завершіть як Велика Британія або Америка. Там, де гра лишає порожнечу, цивілізація все одно чекає: міссісіпська культура на Темзі або мая на Північноєвропейській рівнині, що стає Пруссією в Німеччині. Жива лише одна епоха за раз, тому епохи свідомо ділять свої місця.
 
 АНТИЧНІСТЬ - {ant}.
 
@@ -105,7 +105,7 @@ Os demais se estabelecem em um sítio histórico selecionado, primeiro Londres e
 PROSE.update({
 "ja_JP": """赤道以北のヨーロッパ、地中海、アフリカ。112x98、128x112、144x126 の3サイズ。マップは3種類：遠方の地（アフリカ、スカンディナヴィア、アイスランドが海の向こう）、単一大陸（同じ地形で遠方の地なし）、そして原本に手を触れず作り替えられるよう別に保たれたバリアント。
 
-すべての時代のすべての文明に歴史的な開始地点があります。ゲーム自身の継承表はローマからイギリス、アメリカ、プロイセン、フランスへ、ギリシャからロシアへとつながっており、ブリテンを目指すにはイタリアで始めてそこに留まるほかありませんでした。今はどの地域にもどの時代の文明かが待っているので、自分の帝国を終わらせたい場所で始まる文明を選べます。テムズ川のミシシッピで始めてブリテンでイギリスになる、あるいは北ヨーロッパ平原のマヤで始めてドイツでプロイセンになる、といった具合です。生きている時代は常にひとつだけなので、時代どうしは意図的に同じ地点を共有します。
+すべての時代のすべての文明に歴史的な開始地点があります。自分の帝国を終わらせたい場所で始まる文明を選べます。Civilization VII 1.5 でガリア、イングランド、バビロンが加わり、いずれも本来あるべき場所に配置されているため、ブリテンの系譜を実際の舞台どおりに辿れるようになりました。セーヌ川のガリアで始め、テムズ川でイングランドとなり、イギリスまたはアメリカで終える、という流れです。ゲームが空けたままの地域にも文明は控えています。テムズ川のミシシッピ、あるいは北ヨーロッパ平原のマヤで始めてドイツでプロイセンになる、といった具合です。生きている時代は常にひとつだけなので、時代どうしは意図的に同じ地点を共有します。
 
 古代 - {ant}。
 
@@ -119,7 +119,7 @@ PROSE.update({
 
 "ko_KR": """적도 이북의 유럽, 지중해, 아프리카. 112x98, 128x112, 144x126 크기로 제공됩니다. 지도는 세 종류입니다. 먼 땅(아프리카, 스칸디나비아, 아이슬란드가 바다 건너편), 단일 대륙(같은 지형에 먼 땅 없음), 그리고 원본을 건드리지 않고 다시 빚을 수 있도록 따로 둔 변형판입니다.
 
-모든 시대의 모든 문명에 역사적 시작 위치가 있습니다. 게임 자체의 계승 표는 로마에서 영국, 아메리카, 프로이센, 프랑스로, 그리스에서 러시아로 이어집니다. 그래서 브리튼을 목표로 하려면 이탈리아에서 시작해 그곳에 머무는 수밖에 없었습니다. 이제는 모든 지역에 시대마다 문명이 기다리고 있으므로, 제국이 끝나기를 바라는 곳에서 시작하는 문명을 고를 수 있습니다. 템스강의 미시시피로 시작해 브리튼에서 영국이 되거나, 북유럽 평원의 마야로 시작해 독일에서 프로이센이 되는 식입니다. 한 번에 한 시대만 살아 있으므로 시대들은 의도적으로 같은 자리를 공유합니다.
+모든 시대의 모든 문명에 역사적 시작 위치가 있습니다. 제국이 끝나기를 바라는 곳에서 시작하는 문명을 고르십시오. Civilization VII 1.5에서 갈리아, 잉글랜드, 바빌론이 추가되었고 모두 제자리에 놓였으므로, 브리튼의 계보를 실제 무대 그대로 따라갈 수 있습니다. 센강의 갈리아로 시작해 템스강에서 잉글랜드가 되고 영국이나 아메리카로 마무리하는 식입니다. 게임이 비워 둔 지역에도 문명이 기다립니다. 템스강의 미시시피, 또는 북유럽 평원의 마야로 시작해 독일에서 프로이센이 되는 식입니다. 한 번에 한 시대만 살아 있으므로 시대들은 의도적으로 같은 자리를 공유합니다.
 
 고대 - {ant}.
 
@@ -133,7 +133,7 @@ PROSE.update({
 
 "zh_Hans_CN": """赤道以北的欧洲、地中海与非洲，提供 112x98、128x112、144x126 三种尺寸。共三张地图：远方大陆（非洲、斯堪的纳维亚与冰岛隔海相望）、单一大陆（地形相同，没有远方大陆），以及单独保留、可随意重塑而不影响原版的变体。
 
-每个时代的每个文明都有历史起始点。游戏自带的传承表将罗马连向英国、美国、普鲁士与法国，将希腊连向俄罗斯，因此想走向不列颠就只能从意大利开局并留在那里。现在每个地区都有各个时代的文明等候，你可以挑选在你希望帝国终点的位置开局的那一个：在泰晤士河畔以密西西比开局，然后在不列颠成为英国；或在北欧平原以玛雅开局，然后在德意志成为普鲁士。同一时间只有一个时代在运作，所以各时代是刻意共用地点的。
+每个时代的每个文明都有历史起始点。挑选在你希望帝国终点的位置开局的那一个。《文明7》1.5 加入了高卢、英格兰与巴比伦，且都安置在其本来的位置，因此不列颠一脉终于可以从史实发生的地方走完：在塞纳河畔以高卢开局，在泰晤士河畔成为英格兰，最后成为英国或美国。游戏留白之处仍有文明等候：泰晤士河畔的密西西比，或在北欧平原以玛雅开局、在德意志成为普鲁士。同一时间只有一个时代在运作，所以各时代是刻意共用地点的。
 
 上古时代 - {ant}。
 
@@ -147,7 +147,7 @@ PROSE.update({
 
 "zh_Hant_HK": """赤道以北的歐洲、地中海與非洲，提供 112x98、128x112、144x126 三種尺寸。共三張地圖：遠方大陸（非洲、斯堪的納維亞與冰島隔海相望）、單一大陸（地形相同，沒有遠方大陸），以及單獨保留、可隨意重塑而不影響原版的變體。
 
-每個時代的每個文明都有歷史起始點。遊戲自帶的傳承表將羅馬連向英國、美國、普魯士與法國，將希臘連向俄羅斯，因此想走向不列顛就只能從意大利開局並留在那裡。現在每個地區都有各個時代的文明等候，你可以挑選在你希望帝國終點的位置開局的那一個：在泰晤士河畔以密西西比開局，然後在不列顛成為英國；或在北歐平原以馬雅開局，然後在德意志成為普魯士。同一時間只有一個時代在運作，所以各時代是刻意共用地點的。
+每個時代的每個文明都有歷史起始點。挑選在你希望帝國終點的位置開局的那一個。《文明7》1.5 加入了高盧、英格蘭與巴比倫，且都安置在其本來的位置，因此不列顛一脈終於可以從史實發生的地方走完：在塞納河畔以高盧開局，在泰晤士河畔成為英格蘭，最後成為英國或美國。遊戲留白之處仍有文明等候：泰晤士河畔的密西西比，或在北歐平原以馬雅開局、在德意志成為普魯士。同一時間只有一個時代在運作，所以各時代是刻意共用地點的。
 
 上古時代 - {ant}。
 

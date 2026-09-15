@@ -1019,13 +1019,13 @@ export const GEO = {
         CIVILIZATION_MISSISSIPPIAN:     [0.48, 51.41],        // London - Britain, the Thames - mound builders on a temperate river
         CIVILIZATION_HEIAN:             [-6.64, 53.32],       // Dublin - Ireland - an island, coastal, off the mainland
         CIVILIZATION_MAURYA:            [-3.7, 40.4],         // Toledo - Iberia - a big warm peninsula to unify
-        CIVILIZATION_HAN:               [2.35, 48.85],        // Paris - Gaul, the Seine - river valley agriculture
+        CIVILIZATION_HAN:               [30.5, 50.4],         // Kyiv - the Dnieper, a great river valley (was Paris, now Gaul’s)
         CIVILIZATION_MAYA:              [13.4, 52.5],         // Berlin - Germania - the north European plain
         CIVILIZATION_KHMER:             [26.1, 44.4],         // Bucharest - the lower Danube - a wet river empire
         CIVILIZATION_SILLA:             [32.9, 39.9],         // Ankara - central Anatolia - a mountainous peninsula
         CIVILIZATION_TONGA:             [15.3, 37.1],         // Syracuse - Sicily - a maritime power in the middle sea
         // Exploration:
-        CIVILIZATION_SENGOKU:           [0.48, 51.41],        // London - Britain - feudal lords on an island
+        CIVILIZATION_SENGOKU:           [12.6, 55.7],         // Denmark - feudal lords among islands (was London, now England’s)
         CIVILIZATION_MAJAPAHIT:         [-6.64, 53.32],       // Dublin - Ireland - an island thalassocracy
         CIVILIZATION_CHOLA:             [-9.1, 38.7],         // Lisbon - Portugal - an ocean-facing trading coast
         CIVILIZATION_GORYEO:            [23.7, 38],           // Athens - Greece - a peninsula of harbours
@@ -1042,7 +1042,15 @@ export const GEO = {
         CIVILIZATION_SIAM:              [14.25, 40.85],       // Naples - southern Italy - a warm coastal kingdom
         CIVILIZATION_MUGHAL:            [19, 47.5],           // Budapest - the Hungarian plain - a large land empire
         CIVILIZATION_NEPAL:             [44.8, 41.7],         // Tbilisi - the Caucasus - mountain settlements, which Nepal unlock on
-        CIVILIZATION_BUGANDA:           [37.47, 12.6],        // Gondar - the Ethiopian highlands and lakes which Buganda unlock on
+        CIVILIZATION_BUGANDA:           [37.47, 12.6],
+
+        // Added in Civilization VII 1.5. Gaul and England are historically exact and take the
+        // regions two stand-ins were holding; Babylon sits on its own river. Gaul leads to England
+        // and to the French Empire, and England to Great Britain and America, so the whole British
+        // line can now be played from where it actually happened.
+        CIVILIZATION_GAUL:              [2.35, 48.85],        // Paris - Gaul is France
+        CIVILIZATION_ENGLAND:           [0.48, 51.41],        // London - and England unlocks on island cities
+        CIVILIZATION_BABYLON:           [44.42, 32.54],       // Babylon on the Euphrates, south of Baghdad,        // Gondar - the Ethiopian highlands and lakes which Buganda unlock on
     },
 
     // Fallback start sites, best first. Pass 2 of assignEuropeStartPositions caps the

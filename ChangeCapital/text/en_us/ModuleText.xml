@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_MODULE_CHANGE_CAPITAL_NAME">
+            <Text>Change Capital</Text>
+        </Row>
+        <Row Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION">
+            <Text>Lets you pick any settlement as your new capital at every age transition, with no trade-route restriction, and adds a button to relocate your capital at any time by spending Diplomacy points.</Text>
+        </Row>
+    </EnglishText>
+</Database>

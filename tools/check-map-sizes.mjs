@@ -28,11 +28,11 @@ for (const a of process.argv.slice(2)) {
 // Which civilizations can be in the same game. Ages never overlap, so a start is
 // only a clash if both civs belong to the same age.
 const AGE_CIVS = {
-    Antiquity: ['AKSUM','ASSYRIA','CARTHAGE','EGYPT','GREECE','HAN','HEIAN','KHMER','MAURYA','MAYA',
-                'MISSISSIPPIAN','PERSIA','ROME','SILLA','TONGA','ETRUSCANS','BYZANTIUM'],
-    Exploration: ['ABBASID','BULGARIA','CHOLA','DAI_VIET','GORYEO','HAWAII','ICELAND','INCA','MAJAPAHIT',
-                  'MING','MONGOLIA','NORMAN','PIRATE_REPUBLIC','SENGOKU','SHAWNEE','SONGHAI','SPAIN',
-                  'ETRUSCANS','BYZANTIUM','TUSCANY'],
+    Antiquity: ['AKSUM','ASSYRIA','BABYLON','CARTHAGE','EGYPT','GAUL','GREECE','HAN','HEIAN','KHMER',
+                'MAURYA','MAYA','MISSISSIPPIAN','PERSIA','ROME','SILLA','TONGA','ETRUSCANS','BYZANTIUM'],
+    Exploration: ['ABBASID','BULGARIA','CHOLA','DAI_VIET','ENGLAND','GORYEO','HAWAII','ICELAND','INCA',
+                  'MAJAPAHIT','MING','MONGOLIA','NORMAN','PIRATE_REPUBLIC','SENGOKU','SHAWNEE','SONGHAI',
+                  'SPAIN','ETRUSCANS','BYZANTIUM','TUSCANY'],
     Modern: ['AMERICA','BUGANDA','FRENCH_EMPIRE','GREAT_BRITAIN','JOSEON','MEIJI','MEXICO','MUGHAL','NEPAL',
              'OTTOMANS','PRUSSIA','QAJAR','QING','RUSSIA','SIAM','ETRUSCANS','BYZANTIUM'],
 };

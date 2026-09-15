@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="europe-mediterranean-map" version="57" xmlns="ModInfo">
+<Mod id="europe-mediterranean-map" version="58" xmlns="ModInfo">
     <Properties>
         <Name>Europe, Mediterranean, North Africa</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, at 112x98, 128x112 or 144x126. Three maps: Distant Lands (Africa, Scandinavia and Iceland across the water), One Landmass (the same geography with nothing distant), and a Variant kept apart so it can be reshaped without touching the originals.
 
-EVERY CIVILIZATION OF EVERY AGE HAS A TRUE START. The game's own legacy table runs Rome to Great Britain, America, Prussia and France, and Greece to Russia, so playing toward Britain used to mean starting in Italy and staying there. Now each age has a civilization waiting in every region, so you can pick the one that starts where you want your empire to end up: begin as the Mississippians on the Thames and become Great Britain in Britain, or as the Maya on the north European plain and become Prussia in Germany. Only one age is ever live, so the ages share their sites on purpose.
+EVERY CIVILIZATION OF EVERY AGE HAS A TRUE START. Pick the one that begins where you want your empire to end up. Civilization VII 1.5 added Gaul, England and Babylon, and they sit exactly where they belong, so the British line can now be played from where it actually happened: begin as Gaul on the Seine, become England on the Thames, and end as Great Britain or America. Everywhere the game leaves empty, a civilization still waits - begin as the Mississippians on the Thames, or as the Maya on the north European plain and become Prussia in Germany. Only one age is ever live, so the ages share their sites on purpose.
 
-ANTIQUITY - Rome (Rome), Etruscans (Populonia), Greece (the Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Paris), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse).
+ANTIQUITY - Rome (Rome), Gaul (Paris), Etruscans (Populonia), Greece (Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Babylon (Babylon), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Kyiv), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse).
 
-EXPLORATION - Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (London), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow).
+EXPLORATION - England (London), Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (Copenhagen), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow).
 
 MODERN - Great Britain (London), America (Dublin), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Ottomans (Ankara), Qajar (Tehran), Byzantium (Constantinople), Etruscans (Populonia), Mexico (Seville), Joseon (Athens), Meiji (Uppsala), Qing (Vienna), Siam (Naples), Mughal (Budapest), Nepal (Tbilisi), Buganda (Gondar).
 
@@ -17,7 +17,7 @@ Civilizations with no historical business in Europe are placed by terrain rather
 Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
-        <Version>57</Version>
+        <Version>58</Version>
     </Properties>
     <Dependencies>
         <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>

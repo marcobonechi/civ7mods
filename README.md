@@ -144,13 +144,13 @@ first and hills flattened only if that was not enough, and never more than half 
 islands such as Iceland keep their shape. On the large map this changes about 36 tiles, under 0.5%
 of the land.
 
-**Every playable civilization of every age has a true start**: 17 of 17 in Antiquity, 20 of 20 in
-Exploration, 17 of 17 in Modern. The game's own legacy table (`civilizations-legacy.xml`) runs Rome
-to Great Britain, America, Prussia and France, and Greece to Russia, so playing toward Britain used
-to mean starting in Italy and staying there. Each age now has a civilization waiting in every
-region instead, so you can pick the one that starts where you want to end up - the Mississippians
-on the Thames become Great Britain in Britain, the Maya on the north European plain become Prussia
-in Germany. Only one age is ever live, so the ages share sites deliberately: Mississippian, Sengoku
+**Every playable civilization of every age has a true start**: 19 of 19 in Antiquity, 21 of 21 in
+Exploration, 17 of 17 in Modern (Civilization VII 1.5 rosters). The game's own legacy table (`civilizations-legacy.xml`) runs Rome
+to Great Britain, America, Prussia and France, and Greece to Russia. Civilization VII 1.5 added
+Gaul, England and Babylon, which sit exactly where they belong, so the British line can now be
+played from where it happened: Gaul on the Seine, England on the Thames, then Great Britain or
+America. Everywhere the game still leaves empty, a stand-in waits - the Mississippians on the
+Thames, the Maya on the north European plain who become Prussia in Germany. Only one age is ever live, so the ages share sites deliberately: Mississippian, Sengoku
 and Great Britain all start at London.
 
 Civilizations with no historical business in Europe are placed by terrain rather than by story, and
