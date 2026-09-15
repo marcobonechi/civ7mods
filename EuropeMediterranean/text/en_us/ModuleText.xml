@@ -5,7 +5,19 @@
             <Text>Europe, Mediterranean, North Africa</Text>
         </Row>
         <Row Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION">
-            <Text>Europe, Mediterranean and Africa above the Equator, both single land and with distant lands of Africa, Iceland, Scandinavia. True start locations: Rome (Rome), Etruscans (Populonia), Tuscany (Florence), Byzantium (Constantinople), Greece (Thermaic Gulf), Egypt (Memphis), Persia (Susa), Carthage (Carthage), Assyria (Nineveh), Aksum (Axum), Bulgaria (Pliska), Spain (Madrid), Normans (Rouen), Abbasids (Baghdad), Ottomans (Ankara), Iceland (Reykjavik), Qajar (Tehran), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Great Britain (London) and America (Dublin); Aksum and Songhai on the large maps only. Every other civilization starts on a curated site such as Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh, Budapest, Lisbon or Damascus, as far from the others as possible. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Text>
+            <Text>Europe, the Mediterranean and Africa above the Equator, at 112x98, 128x112 or 144x126. Three maps: Distant Lands (Africa, Scandinavia and Iceland across the water), One Landmass (the same geography with nothing distant), and a Variant kept apart so it can be reshaped without touching the originals.
+
+EVERY CIVILIZATION OF EVERY AGE HAS A TRUE START. The game's own legacy table runs Rome to Great Britain, America, Prussia and France, and Greece to Russia, so playing toward Britain used to mean starting in Italy and staying there. Now each age has a civilization waiting in every region, so you can pick the one that starts where you want your empire to end up: begin as the Mississippians on the Thames and become Great Britain in Britain, or as the Maya on the north European plain and become Prussia in Germany. Only one age is ever live, so the ages share their sites on purpose.
+
+ANTIQUITY - Rome (Rome), Etruscans (Populonia), Greece (the Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Paris), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse).
+
+EXPLORATION - Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (London), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow).
+
+MODERN - Great Britain (London), America (Dublin), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Ottomans (Ankara), Qajar (Tehran), Byzantium (Constantinople), Etruscans (Populonia), Mexico (Seville), Joseon (Athens), Meiji (Uppsala), Qing (Vienna), Siam (Naples), Mughal (Budapest), Nepal (Tbilisi), Buganda (Gondar).
+
+Civilizations with no historical business in Europe are placed by terrain rather than by story, and matched to what their abilities care about where that applies: Inca and Nepal in the Caucasus, which unlock on mountain settlements; Hawaii on Sicily, which unlocks on island settlements; Buganda in the Ethiopian highlands, which unlocks on lakes.
+
+Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Text>
         </Row>
     </EnglishText>
 </Database>

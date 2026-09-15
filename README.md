@@ -144,11 +144,26 @@ first and hills flattened only if that was not enough, and never more than half 
 islands such as Iceland keep their shape. On the large map this changes about 36 tiles, under 0.5%
 of the land.
 
-Civilizations from the region start at historical sites (Rome, Athens, Memphis, Carthage, Nineveh,
-Susa, Pliska, Toledo, Rouen, Baghdad, Bursa, Reykjavik, Tehran, Sarai, Algiers, Paris, Berlin,
-Moscow, London). Other civilizations are placed on curated sites (81 of them: Kyiv, Krakow, Budapest, Uppsala,
-Dublin, Lisbon, ...) as far apart as possible. The Sahel, the Horn of Africa and the Ukrainian
-steppe carry their own sets so those regions are not left empty when off-map civilizations play.
+**Every playable civilization of every age has a true start**: 17 of 17 in Antiquity, 20 of 20 in
+Exploration, 17 of 17 in Modern. The game's own legacy table (`civilizations-legacy.xml`) runs Rome
+to Great Britain, America, Prussia and France, and Greece to Russia, so playing toward Britain used
+to mean starting in Italy and staying there. Each age now has a civilization waiting in every
+region instead, so you can pick the one that starts where you want to end up - the Mississippians
+on the Thames become Great Britain in Britain, the Maya on the north European plain become Prussia
+in Germany. Only one age is ever live, so the ages share sites deliberately: Mississippian, Sengoku
+and Great Britain all start at London.
+
+Civilizations with no historical business in Europe are placed by terrain rather than by story, and
+matched to their unlock conditions where those are geographic: Inca and Nepal in the Caucasus
+(mountain settlements), Hawaii on Sicily (island settlements), Buganda in the Ethiopian highlands
+(lakes). The full list is in `GEO.tsl` and in the mod description.
+
+Anyone left over is placed on a curated site - 96 of them, London and Dublin first, then Kyiv,
+Uppsala, Fez, Krakow and the rest. Pass 2 caps its distance term at 12 hexes, and the sites near the
+top of the list are all further than that from any Antiquity start, so that order alone decides who
+gets settled; Britain leads it because the isles were otherwise empty in every Antiquity game. The
+Sahel, the Horn of Africa and the Ukrainian steppe carry their own sets so those regions are not
+left empty when off-map civilizations play.
 
 ---
 
