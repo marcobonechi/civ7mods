@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <!-- German -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="de_DE">
+            <Text>Hauptstadt wechseln</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="de_DE">
+            <Text>Verlege deine Hauptstadt: frei bei jedem Zeitalterwechsel (keine Handelsroute mehr nötig, um eine Siedlung als neue Hauptstadt zu wählen), oder jederzeit gegen Bezahlung - ein Projekt "Zur Hauptstadt machen" erscheint in der Produktionsliste jeder anderen Stadt und kostet Diplomatie-Punkte (Einfluss), die mit dem aktuellen Zeitalter steigen (100 in der Antike, 200 im Zeitalter der Erkundung, 300 in der Moderne).
+
+Kompatibilitätshinweis: Dieser Mod ersetzt die gesamte Datei base-standard/ui/production-chooser/production-chooser-helpers.js, um die Projektzeile "Zur Hauptstadt machen" hinzuzufügen (dieselbe Technik wie der Mod "Move Building" [MovableBuildings]). Es kann immer nur die Kopie eines einzigen Mods für eine bestimmte Datei aktiv sein - falls ein anderer Mod außer Move Building dieselbe Datei ebenfalls ersetzt, gewinnt automatisch der zuletzt geladene, und die Änderungen des anderen (möglicherweise auch die dieses Mods) hören stillschweigend auf zu funktionieren. Dieser Mod ist speziell auf Kompatibilität mit Move Building ausgelegt; Kompatibilität mit jedem anderen Mod, der dieselbe Datei verändert, ist nicht garantiert.</Text>
+        </Replace>
+
+        <!-- Spanish -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="es_ES">
+            <Text>Cambiar Capital</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="es_ES">
+            <Text>Traslada tu capital: libremente en cada transición de era (sin restricción de ruta comercial terrestre para elegir el nuevo asentamiento capital), o en cualquier momento por un precio: aparece un proyecto "Hacer Capital" en la pantalla de producción de cualquier otra ciudad, con un coste en puntos de Diplomacia (Influencia) que aumenta según la era actual (100 en la Antigüedad, 200 en la Exploración, 300 en la Moderna).
+
+Nota de compatibilidad: este mod reemplaza por completo el archivo base-standard/ui/production-chooser/production-chooser-helpers.js para añadir la fila de proyecto "Hacer Capital" (la misma técnica que usa el mod "Move Building" [MovableBuildings]). Solo la copia de un mod puede estar activa para un archivo dado; si otro mod además de Move Building también reemplaza este mismo archivo, gana el que se cargue en último lugar, y los cambios del otro (posiblemente incluidos los de este mod) dejan de funcionar sin aviso. Este mod está construido para ser compatible específicamente con Move Building; la compatibilidad con cualquier otro mod que toque este mismo archivo no está garantizada.</Text>
+        </Replace>
+
+        <!-- French -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="fr_FR">
+            <Text>Changer de Capitale</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="fr_FR">
+            <Text>Déplacez votre capitale : librement à chaque transition d'ère (plus besoin d'une route commerciale terrestre pour choisir la nouvelle colonie capitale), ou à tout moment moyennant un coût - un projet "Faire Capitale" apparaît dans l'écran de production de chacune de vos autres villes, coûtant des points de Diplomatie (Influence) qui augmentent avec l'ère actuelle (100 à l'Antiquité, 200 à l'Exploration, 300 à l'époque Moderne).
+
+Note de compatibilité : ce mod remplace entièrement le fichier base-standard/ui/production-chooser/production-chooser-helpers.js pour ajouter la ligne de projet "Faire Capitale" (la même technique que le mod "Move Building" [MovableBuildings]). Un seul mod peut avoir sa copie active pour un fichier donné - si un autre mod que Move Building remplace aussi ce même fichier, celui chargé en dernier l'emporte entièrement, et les changements de l'autre (y compris peut-être ceux de ce mod) cessent silencieusement de fonctionner. Ce mod est conçu pour rester compatible spécifiquement avec Move Building ; la compatibilité avec tout autre mod touchant ce même fichier n'est pas garantie.</Text>
+        </Replace>
+
+        <!-- Italian -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="it_IT">
+            <Text>Cambia Capitale</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="it_IT">
+            <Text>Sposta la tua capitale: liberamente a ogni transizione di era (senza più bisogno di una rotta commerciale terrestre per scegliere il nuovo insediamento capitale), oppure in qualsiasi momento a un costo - un progetto "Rendi Capitale" appare nella schermata di produzione di ogni altra tua città, al costo di punti Diplomazia (Influenza) che aumenta con l'era corrente (100 nell'Antichità, 200 nell'Esplorazione, 300 nell'età Moderna).
+
+Nota sulla compatibilità: questa mod sostituisce interamente il file base-standard/ui/production-chooser/production-chooser-helpers.js per aggiungere la riga di progetto "Rendi Capitale" (la stessa tecnica usata dalla mod "Move Building" [MovableBuildings]). Per un dato file può essere attiva solo la copia di una mod alla volta: se un'altra mod oltre a Move Building sostituisce anch'essa questo stesso file, vince quella caricata per ultima, e le modifiche dell'altra (comprese forse quelle di questa mod) smettono di funzionare senza alcun avviso. Questa mod è pensata per restare compatibile in modo specifico con Move Building; la compatibilità con qualsiasi altra mod che tocchi lo stesso file non è garantita.</Text>
+        </Replace>
+
+        <!-- Japanese -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="ja_JP">
+            <Text>首都を変更</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="ja_JP">
+            <Text>首都を移転できます。時代の変わり目ではいつでも自由に(新しい首都となる都市に陸上交易路がある必要はもうありません)、あるいはいつでも代償を払って - 「首都にする」というプロジェクトが、他のすべての都市の生産画面に表示され、現在の時代に応じて増加する外交(影響力)ポイントを消費します(古代100、探検時代200、近代300)。
+
+互換性に関する注意: このMODは、「首都にする」プロジェクト項目を追加するために、ファイル base-standard/ui/production-chooser/production-chooser-helpers.js を完全に置き換えます(「Move Building」[MovableBuildings] MODと同じ手法です)。特定のファイルについては、有効になれるのは1つのMODのコピーだけです。Move Building以外の別のMODも同じファイルを置き換える場合、最後に読み込まれたものが優先され、もう一方の変更(このMODの変更も含まれる可能性があります)は警告なく機能しなくなります。このMODはMove Buildingとの互換性を特に考慮して作られていますが、同じファイルを変更する他のMODとの互換性は保証されません。</Text>
+        </Replace>
+
+        <!-- Korean -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="ko_KR">
+            <Text>수도 변경</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="ko_KR">
+            <Text>수도를 이전할 수 있습니다. 시대가 전환될 때마다 자유롭게(새 수도가 될 정착지에 육상 교역로가 있어야 한다는 제한이 사라집니다), 또는 언제든 대가를 치르고 - 다른 모든 도시의 생산 화면에 "수도로 만들기" 프로젝트가 나타나며, 현재 시대에 따라 증가하는 외교(영향력) 포인트를 소모합니다(고대 100, 탐험 시대 200, 근대 300).
+
+호환성 참고: 이 모드는 "수도로 만들기" 프로젝트 항목을 추가하기 위해 base-standard/ui/production-chooser/production-chooser-helpers.js 파일 전체를 대체합니다("Move Building"[MovableBuildings] 모드와 동일한 방식입니다). 특정 파일에 대해서는 한 번에 하나의 모드 사본만 활성화될 수 있습니다. Move Building 외의 다른 모드가 동일한 파일을 대체하면, 나중에 로드된 쪽이 완전히 우선하며 다른 쪽의 변경 사항(이 모드의 변경 사항일 수도 있음)은 아무 경고 없이 작동을 멈춥니다. 이 모드는 Move Building과의 호환성을 목표로 제작되었으며, 동일한 파일을 건드리는 다른 모드와의 호환성은 보장되지 않습니다.</Text>
+        </Replace>
+
+        <!-- Polish -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="pl_PL">
+            <Text>Zmień Stolicę</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="pl_PL">
+            <Text>Przenieś swoją stolicę: swobodnie przy każdej zmianie ery (bez ograniczenia szlaku handlowego dla wyboru nowej osady na stolicę), albo w dowolnym momencie za cenę - projekt "Uczyń Stolicą" pojawia się na ekranie produkcji każdego innego miasta, kosztując punkty Dyplomacji (Wpływów), które rosną wraz z obecną erą (100 w Starożytności, 200 w Epoce Odkryć, 300 we Współczesności).
+
+Uwaga o kompatybilności: ten mod całkowicie zastępuje plik base-standard/ui/production-chooser/production-chooser-helpers.js, aby dodać wiersz projektu "Uczyń Stolicą" (ta sama technika, której używa mod "Move Building" [MovableBuildings]). Dla danego pliku może być aktywna tylko kopia jednego moda - jeśli inny mod poza Move Building również zastępuje ten sam plik, wygrywa ten wczytany jako ostatni, a zmiany drugiego (w tym być może tego moda) po cichu przestają działać. Ten mod jest zbudowany z myślą o kompatybilności konkretnie z Move Building; kompatybilność z jakimkolwiek innym modem dotykającym tego samego pliku nie jest gwarantowana.</Text>
+        </Replace>
+
+        <!-- Portuguese (Brazil) -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="pt_BR">
+            <Text>Mudar Capital</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="pt_BR">
+            <Text>Realoque sua capital: livremente a cada transição de era (sem mais restrição de rota comercial terrestre para escolher o novo assentamento capital), ou a qualquer momento por um preço - um projeto "Tornar Capital" aparece na tela de produção de qualquer outra cidade, custando pontos de Diplomacia (Influência) que aumentam conforme a era atual (100 na Antiguidade, 200 na Exploração, 300 na Moderna).
+
+Nota de compatibilidade: este mod substitui inteiramente o arquivo base-standard/ui/production-chooser/production-chooser-helpers.js para adicionar a linha de projeto "Tornar Capital" (a mesma técnica usada pelo mod "Move Building" [MovableBuildings]). Apenas a cópia de um mod pode estar ativa para um determinado arquivo - se outro mod além do Move Building também substituir esse mesmo arquivo, o que for carregado por último prevalece totalmente, e as mudanças do outro (possivelmente incluindo as deste mod) param de funcionar silenciosamente. Este mod foi construído para permanecer compatível especificamente com o Move Building; a compatibilidade com qualquer outro mod que toque nesse mesmo arquivo não é garantida.</Text>
+        </Replace>
+
+        <!-- Ukrainian -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="uk_UA">
+            <Text>Змінити столицю</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="uk_UA">
+            <Text>Перенесіть свою столицю: вільно під час кожного переходу епохи (більше не потрібен сухопутний торговий шлях, щоб обрати нове поселення столицею), або в будь-який момент за певну ціну - проєкт "Зробити столицею" з'являється на екрані виробництва будь-якого іншого вашого міста, коштуючи очки Дипломатії (Впливу), які зростають залежно від поточної епохи (100 в Античності, 200 в епоху Досліджень, 300 в Модерні).
+
+Примітка щодо сумісності: цей мод повністю замінює файл base-standard/ui/production-chooser/production-chooser-helpers.js, щоб додати рядок проєкту "Зробити столицею" (та сама техніка, яку використовує мод "Move Building" [MovableBuildings]). Для певного файлу може бути активною лише копія одного мода - якщо інший мод, окрім Move Building, також замінює цей самий файл, перемагає той, що завантажився останнім, а зміни іншого (можливо, включно зі змінами цього мода) мовчки перестають працювати. Цей мод створено сумісним саме з Move Building; сумісність з будь-яким іншим модом, що торкається цього самого файлу, не гарантується.</Text>
+        </Replace>
+
+        <!-- Simplified Chinese -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="zh_Hans_CN">
+            <Text>更换首都</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>迁移你的首都：在每次时代过渡时自由选择(不再要求新首都定居点与旧首都之间有陆上贸易路线连接)，或随时付出代价进行迁移——你的每座其他城市的生产界面都会出现"定为首都"项目，花费外交(影响力)点数，费用随当前时代增加(远古时代100，探索时代200，现代300)。
+
+兼容性说明：本模组会完整替换文件 base-standard/ui/production-chooser/production-chooser-helpers.js，以添加"定为首都"项目条目(与"Move Building"[MovableBuildings]模组使用的技术相同)。对于某个特定文件，同一时间只能有一个模组的版本生效——如果除Move Building之外的其他模组也替换了这同一个文件，最后加载的那个会完全胜出，另一个模组的改动(可能也包括本模组的改动)会在没有任何提示的情况下停止生效。本模组专门为与Move Building兼容而构建；与其他修改同一文件的模组的兼容性不作保证。</Text>
+        </Replace>
+
+        <!-- Traditional Chinese (Hong Kong) -->
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_NAME" Language="zh_Hant_HK">
+            <Text>更換首都</Text>
+        </Replace>
+        <Replace Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>遷移你的首都：在每次時代過渡時自由選擇(不再要求新首都聚落與舊首都之間有陸上貿易路線連接)，或隨時付出代價進行遷移——你的每座其他城市的生產畫面都會出現「定為首都」項目，花費外交(影響力)點數，費用隨目前時代增加(遠古時代100，探索時代200，現代300)。
+
+相容性說明：本模組會完整取代檔案 base-standard/ui/production-chooser/production-chooser-helpers.js，以加入「定為首都」項目條目(與「Move Building」[MovableBuildings]模組使用的技術相同)。對於某個特定檔案，同一時間只能有一個模組的版本生效——如果除Move Building之外的其他模組也取代了這同一個檔案，最後載入的那個會完全勝出，另一個模組的變更(可能也包括本模組的變更)會在沒有任何提示下停止生效。本模組專為與Move Building相容而設計；與其他修改同一檔案的模組的相容性不獲保證。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

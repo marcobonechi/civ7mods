@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
     <EnglishText>
-        <Row Tag="LOC_CHANGE_CAPITAL_BUTTON">
+        <Row Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME">
+            <Text>Make Capital</Text>
+        </Row>
+        <Row Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION">
+            <Text>Make this settlement your capital. Costs {1_Cost} Influence.</Text>
+        </Row>
+        <Row Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE">
+            <Text>Relocate Capital?</Text>
+        </Row>
+        <Row Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY">
+            <Text>Make {1_CityName} your new capital for {2_Cost} Influence? You have {3_Balance}.</Text>
+        </Row>
+        <Row Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES">
             <Text>Relocate Capital</Text>
         </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_BUTTON_TOOLTIP">
-            <Text>Spend [icon:YIELD_DIPLOMACY] Influence to make one of your other settlements your capital.</Text>
-        </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_DIALOG_TITLE">
-            <Text>Choose a New Capital</Text>
-        </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_DIALOG_SUBTITLE">
-            <Text>Costs {1_Cost} [icon:YIELD_DIPLOMACY] Influence. You have {2_Balance}.</Text>
-        </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_CURRENT_CAPITAL">
-            <Text>{1_CityName} (current capital)</Text>
+        <Row Tag="LOC_CHANGE_CAPITAL_CLOSE">
+            <Text>Cancel</Text>
         </Row>
         <Row Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS">
-            <Text>Not enough [icon:YIELD_DIPLOMACY] Influence. You need {1_Cost} but only have {2_Balance}.</Text>
+            <Text>Not enough Influence. You need {1_Cost} but only have {2_Balance}.</Text>
         </Row>
         <Row Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE">
             <Text>{1_CityName} cannot become your capital right now.</Text>
         </Row>
         <Row Tag="LOC_CHANGE_CAPITAL_SUCCESS">
             <Text>{1_CityName} is now your capital.</Text>
-        </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_NO_OTHER_CITIES">
-            <Text>You have no other settlements to make your capital.</Text>
-        </Row>
-        <Row Tag="LOC_CHANGE_CAPITAL_CLOSE">
-            <Text>Cancel</Text>
         </Row>
     </EnglishText>
 </Database>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="uk_UA">
+            <Text>Зробити столицею</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="uk_UA">
+            <Text>Зробити це поселення вашою столицею. Коштує {1_Cost} Впливу.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="uk_UA">
+            <Text>Перенести столицю?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="uk_UA">
+            <Text>Зробити {1_CityName} вашою новою столицею за {2_Cost} Впливу? У вас є {3_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="uk_UA">
+            <Text>Перенести столицю</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="uk_UA">
+            <Text>Скасувати</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="uk_UA">
+            <Text>Недостатньо Впливу. Потрібно {1_Cost}, а у вас лише {2_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="uk_UA">
+            <Text>{1_CityName} зараз не може стати столицею.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="uk_UA">
+            <Text>{1_CityName} тепер ваша столиця.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

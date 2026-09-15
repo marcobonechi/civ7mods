@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="pt_BR">
+            <Text>Tornar Capital</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="pt_BR">
+            <Text>Torne este assentamento sua capital. Custa {1_Cost} de Influência.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="pt_BR">
+            <Text>Realocar a capital?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="pt_BR">
+            <Text>Tornar {1_CityName} sua nova capital por {2_Cost} de Influência? Você tem {3_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="pt_BR">
+            <Text>Realocar Capital</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="pt_BR">
+            <Text>Cancelar</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="pt_BR">
+            <Text>Influência insuficiente. Você precisa de {1_Cost}, mas tem apenas {2_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="pt_BR">
+            <Text>{1_CityName} não pode se tornar sua capital agora.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="pt_BR">
+            <Text>{1_CityName} agora é sua capital.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

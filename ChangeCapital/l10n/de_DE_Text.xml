@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="de_DE">
+            <Text>Zur Hauptstadt machen</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="de_DE">
+            <Text>Mache diese Siedlung zu deiner Hauptstadt. Kostet {1_Cost} Einfluss.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="de_DE">
+            <Text>Hauptstadt verlegen?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="de_DE">
+            <Text>{1_CityName} für {2_Cost} Einfluss zur neuen Hauptstadt machen? Du hast {3_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="de_DE">
+            <Text>Hauptstadt verlegen</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="de_DE">
+            <Text>Abbrechen</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="de_DE">
+            <Text>Nicht genug Einfluss. Du brauchst {1_Cost}, hast aber nur {2_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="de_DE">
+            <Text>{1_CityName} kann jetzt nicht zur Hauptstadt werden.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="de_DE">
+            <Text>{1_CityName} ist jetzt deine Hauptstadt.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

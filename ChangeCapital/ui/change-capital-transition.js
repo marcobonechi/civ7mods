@@ -15,7 +15,6 @@
 // that every Cities object it hands back answers getPotentialSwitchCapitalCityIds() with the
 // full list of owned settlements instead of the restricted one.
 (function () {
-    console.warn("change-capital: transition script loaded, Players=" + (typeof Players !== "undefined"));
     if (typeof Players === "undefined" || typeof Players.get !== "function" || Players.get.__changeCapitalPatched) {
         return;
     }

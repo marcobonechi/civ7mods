@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Database>
+	<IconDefinitions>
+		<Row>
+			<ID>CHANGE_CAPITAL_RELOCATE_ACTION</ID>
+			<Path>blp:ntf_select_capital</Path>
+		</Row>
+	</IconDefinitions>
+</Database>

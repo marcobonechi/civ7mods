@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="zh_Hans_CN">
+            <Text>定为首都</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>将此定居点定为你的首都。花费{1_Cost}点影响力。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="zh_Hans_CN">
+            <Text>迁移首都?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="zh_Hans_CN">
+            <Text>花费{2_Cost}点影响力，将{1_CityName}定为新首都吗?你现有{3_Balance}点。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="zh_Hans_CN">
+            <Text>迁移首都</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="zh_Hans_CN">
+            <Text>取消</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="zh_Hans_CN">
+            <Text>影响力不足。你需要{1_Cost}点，但只有{2_Balance}点。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="zh_Hans_CN">
+            <Text>{1_CityName}目前无法成为你的首都。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="zh_Hans_CN">
+            <Text>{1_CityName}现在是你的首都了。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

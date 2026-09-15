@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="ja_JP">
+            <Text>首都にする</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="ja_JP">
+            <Text>この都市を首都にします。影響力{1_Cost}を消費します。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="ja_JP">
+            <Text>首都を移転しますか?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="ja_JP">
+            <Text>影響力{2_Cost}を消費して{1_CityName}を新しい首都にしますか? 現在の所持数: {3_Balance}。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="ja_JP">
+            <Text>首都を移転する</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="ja_JP">
+            <Text>キャンセル</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="ja_JP">
+            <Text>影響力が不足しています。{1_Cost}必要ですが、{2_Balance}しかありません。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="ja_JP">
+            <Text>{1_CityName}は今は首都にできません。</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="ja_JP">
+            <Text>{1_CityName}が新しい首都になりました。</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

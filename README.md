@@ -8,6 +8,7 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | `Byzantium/` | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Eastern Roman Empire" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1, see [Byzantium](#byzantium) below |
 | `Etruscans/` | The Etruscans, an Antiquity Age civilization of engineers and banqueters, with Lars Porsenna of Clusium | version 1, see [Etruscans](#etruscans) below |
 | `Tuscany/` | Tuscany, an Exploration Age civilization of bankers, navigators and painters, with Lorenzo il Magnifico and the Maestri | version 1, see [Tuscany](#tuscany) below |
+| `ChangeCapital/` | Relocate your capital freely at every age transition, or any time for a price | version 1, see [Change Capital](#change-capital) below |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
 
@@ -491,3 +492,35 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   [`plans/etruscans.md`](plans/etruscans.md), [`plans/tuscany.md`](plans/tuscany.md),
   [`plans/etruscans-tuscany-log.md`](plans/etruscans-tuscany-log.md),
   [`plans/etruscans-tuscany-art.md`](plans/etruscans-tuscany-art.md).
+
+---
+
+# Change Capital — relocate your capital, freely or for a price
+
+<img src="ChangeCapital/icons/change_capital_icon.png" width="96" height="96" alt="Change Capital icon">
+
+A small gameplay mod, not a civilization. Two ways to move your capital:
+
+1. **Free reselection at every age transition.** The stock "pick your new capital" step no longer
+   restricts candidates to settlements connected to the old capital by a land trade route - every
+   owned settlement is offered.
+2. **Relocate any time, for a price.** A "Make Capital" project appears in the production/purchase
+   screen of any of your other cities. Confirming spends Diplomacy (Influence) points and makes
+   that city your capital immediately. Cost scales with the current age: 100 in Antiquity, 200 in
+   Exploration, 300 in Modern.
+
+![Make Capital project, with a confirmation dialog open](ChangeCapital/screenshots/make-capital-project.png)
+![Confirming a capital relocation](ChangeCapital/screenshots/confirm-dialog.png)
+
+**Compatibility warning: this mod can conflict with other mods.** Mechanic 2 works by shipping a
+full replacement of the stock file
+`base-standard/ui/production-chooser/production-chooser-helpers.js` - the same technique the
+Workshop mod *Move Building* (MovableBuildings) uses to add its own entries to this same screen.
+This mod's copy is based on Move Building's own modified file, so the two stay compatible with
+each other specifically. But a mod's file at a given path is winner-takes-all: if any *other* mod
+also ships a file at this exact path, only one copy loads (highest `LoadOrder` wins) and the
+other's entire set of changes silently stops working - there is no merging. Install alongside Move
+Building freely; install alongside anything else that touches this same file at your own risk.
+
+Design notes, the exact native APIs this relies on, and the open verification items:
+[`plans/change-capital.md`](plans/change-capital.md).

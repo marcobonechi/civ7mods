@@ -1,0 +1,34 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#2a2718"/>
+      <stop offset="100%" stop-color="#14120c"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3d878"/>
+      <stop offset="55%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#8a6a17"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="128" cy="128" r="124" fill="url(#bg)" stroke="#7a6a3a" stroke-width="5"/>
+
+  <!-- relocation arrows circling the star -->
+  <g fill="none" stroke="url(#gold)" stroke-width="10" stroke-linecap="round">
+    <path d="M 62 92 A 78 78 0 0 1 150 44">
+    </path>
+    <path d="M 194 164 A 78 78 0 0 1 106 212">
+    </path>
+  </g>
+  <g fill="url(#gold)">
+    <path d="M150 44 l 20 -4 l -6 20 z"/>
+    <path d="M106 212 l -20 4 l 6 -20 z"/>
+  </g>
+
+  <!-- capital star -->
+  <path fill="url(#gold)" stroke="#5c4712" stroke-width="3" stroke-linejoin="round"
+        d="M128 62
+           l16.5 40.5 l43.7 3.3 l-33.3 28.4 l10.4 42.6
+           l-37.3 -23.4 l-37.3 23.4 l10.4 -42.6
+           l-33.3 -28.4 l43.7 -3.3 z"/>
+</svg>

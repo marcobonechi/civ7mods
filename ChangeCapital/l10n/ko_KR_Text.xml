@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="ko_KR">
+            <Text>수도로 만들기</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="ko_KR">
+            <Text>이 정착지를 수도로 만듭니다. 영향력 {1_Cost} 소모.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="ko_KR">
+            <Text>수도를 이전하시겠습니까?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="ko_KR">
+            <Text>영향력 {2_Cost}을 사용해 {1_CityName}을(를) 새 수도로 만드시겠습니까? 보유량: {3_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="ko_KR">
+            <Text>수도 이전</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="ko_KR">
+            <Text>취소</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="ko_KR">
+            <Text>영향력이 부족합니다. {1_Cost}이 필요하지만 {2_Balance}만 있습니다.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="ko_KR">
+            <Text>{1_CityName}은(는) 지금 수도가 될 수 없습니다.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="ko_KR">
+            <Text>{1_CityName}이(가) 이제 수도입니다.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

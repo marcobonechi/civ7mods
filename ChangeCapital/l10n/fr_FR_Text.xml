@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_NAME" Language="fr_FR">
+            <Text>Faire Capitale</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION" Language="fr_FR">
+            <Text>Faites de cette colonie votre capitale. Coûte {1_Cost} points d'Influence.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_TITLE" Language="fr_FR">
+            <Text>Déplacer la capitale ?</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_BODY" Language="fr_FR">
+            <Text>Faire de {1_CityName} votre nouvelle capitale pour {2_Cost} points d'Influence ? Vous avez {3_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CONFIRM_YES" Language="fr_FR">
+            <Text>Déplacer la Capitale</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CLOSE" Language="fr_FR">
+            <Text>Annuler</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_INSUFFICIENT_FUNDS" Language="fr_FR">
+            <Text>Pas assez d'Influence. Il vous faut {1_Cost} mais vous n'avez que {2_Balance}.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_CANNOT_RELOCATE" Language="fr_FR">
+            <Text>{1_CityName} ne peut pas devenir votre capitale pour le moment.</Text>
+        </Replace>
+        <Replace Tag="LOC_CHANGE_CAPITAL_SUCCESS" Language="fr_FR">
+            <Text>{1_CityName} est maintenant votre capitale.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>
