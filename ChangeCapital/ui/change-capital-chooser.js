@@ -122,9 +122,10 @@
     // ------------------------------------------------------------------- the chooser row
 
     function makeCapitalItem() {
-        // showTurns/showCost are false because this screen only knows how to render a
-        // Production-turns or a Gold cost badge, and this one is paid in Influence - the amount
-        // is stated in the description instead.
+        // cost/turns 0: relocating is instant, so a turn badge reading 0 is accurate. The
+        // Influence price cannot go in that badge - in the production tab this screen renders
+        // `cost` against a turn-timer icon, and only Production-turns or Gold belong there - so
+        // the price is stated in the description instead.
         return {
             name: loc("LOC_CHANGE_CAPITAL_PROJECT_NAME"),
             description: loc("LOC_CHANGE_CAPITAL_PROJECT_DESCRIPTION", currentCost()),
@@ -146,6 +147,10 @@
         // also covers looking at another player's city.
         if (city.owner !== GameContext.localPlayerID) return;
         if (city.isCapital) return;
+        // Only a city can be a capital, so do not offer the row in towns: the engine would
+        // refuse the relocation on confirm, and an option that always fails is worse than no
+        // option at all.
+        if (city.isTown) return;
         // Production tab only: the purchase tab prices everything in Gold, which this is not.
         if (component.isPurchase) return;
 
@@ -215,6 +220,22 @@
         afterAttach() { }
         beforeDetach() { }
         afterDetach() { }
+    }
+
+    // The row's tooltip prices our row itself: production-tooltip.js turns the item's type into a
+    // hash via Game.getHash() and calls getProjectProductionCost() on it. Our sentinel is not a
+    // real project, so that returns -1 and the tooltip showed "-1" against a Production icon -
+    // nonsense next to an Influence price. The tooltip already handles "no such project"
+    // correctly, skipping the cost entirely when the hash is falsy, so hash the sentinel to 0,
+    // which is what "no such type" means anyway. Only this one exact string is affected; every
+    // other lookup passes straight through to the engine.
+    if (typeof Game !== "undefined" && typeof Game.getHash === "function"
+        && !Game.getHash.__changeCapitalPatched) {
+        const originalGetHash = Game.getHash.bind(Game);
+        const patchedGetHash = (value) =>
+            (value === CHANGE_CAPITAL_PROJECT_TYPE ? 0 : originalGetHash(value));
+        patchedGetHash.__changeCapitalPatched = true;
+        Game.getHash = patchedGetHash;
     }
 
     Controls.decorate("panel-production-chooser", (component) => new ChangeCapitalDecorator(component));
