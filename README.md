@@ -523,4 +523,7 @@ other's entire set of changes silently stops working - there is no merging. Inst
 Building freely; install alongside anything else that touches this same file at your own risk.
 
 Design notes, the exact native APIs this relies on, and the open verification items:
-[`plans/change-capital.md`](plans/change-capital.md).
+[`plans/change-capital.md`](plans/change-capital.md). The general technique - overriding a stock
+file to add a production/purchase chooser entry, and the two rules for a hand-built dialog that
+actually renders text and receives clicks - is written up as a standalone, reusable skill:
+[`skills/civ7-production-chooser/`](skills/civ7-production-chooser/).
