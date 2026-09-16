@@ -42,36 +42,38 @@ Mechanic 1 is an **additive** script: it patches the global `Players.get` functi
 style of reassignment `Etruscans/ui/etruscans-images.js` already does for `WorldUI.*`/`UI.*`),
 loaded via `<UIScripts>`. No stock file is touched.
 
-Mechanic 2 is a **same-path file override**: the Workshop mod `MovableBuildings` (already
-installed) proves this game's modding VFS lets a mod override a stock file outright, by shipping
-one of its own at the exact same path via `<ImportFiles>`. `ChangeCapital` ships its own copy of
-`base-standard/ui/production-chooser/production-chooser-helpers.js` — based on the copy
-`MovableBuildings` already ships (not the pristine stock file), so both mods' changes keep
-working together regardless of load order — with:
-- `GetProductionItems` pushes a synthetic "Make Capital" entry into the `projects` category for
-  any of the player's own non-capital cities. The item's icon is a real, existing game asset
-  (`data/icons.xml` maps the sentinel type to `blp:ntf_select_capital`, the same icon the base
-  game uses for its own "select capital" notification) — no new art needed.
-- `Construct` (the click handler every item in this screen goes through) special-cases that
-  entry's sentinel type (`CHANGE_CAPITAL_RELOCATE_ACTION`, which deliberately doesn't exist in
-  `GameInfo.Types`) before the stock code's own type lookup, and shows a confirmation dialog
-  instead of dispatching a real production/purchase operation.
-- The confirmation dialog is built from **flat, independent sibling elements appended directly
-  to `document.body`** (title, body text, and each button as separate top-level elements), not
-  nested inside one wrapper `div`. An earlier nested-wrapper version rendered its border/
-  background correctly but left every piece of text invisible in this engine, for reasons not
-  worth chasing once the flat structure was confirmed to reliably show text (matching this mod's
-  original floating button and its toast notifications, which are likewise flat single elements).
+Mechanic 2 is also **additive — it overrides no stock file** (`ui/change-capital-chooser.js`),
+using two official extension points:
 
-**Compatibility caveat, inherent to same-path overrides, not a bug:** the game's modding
-filesystem serves exactly one file per path. If any *other* mod also ships a file at
-`base-standard/ui/production-chooser/production-chooser-helpers.js` with a higher `LoadOrder`
-than this mod's (currently `1700`, above `MovableBuildings`' `1666`), that mod's file wins
-outright and this mod's entire "Make Capital" feature silently stops loading — no error, it just
-never runs (and vice versa: a mod with an even higher `LoadOrder` would silently drop this mod's
-changes). There is no way to "merge" three or more mods that all touch this same file short of
-manually combining their changes into one shipped copy. This is stated plainly in the mod's own
-in-game description (`LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION`), not just here.
+- **`Controls.decorate("panel-production-chooser", provider)`.** The engine stores decorator
+  providers in a *list* per component (`core/ui/component-support.js`, `addDecorator`), so mods
+  stack instead of clobbering. The Workshop mod *Purchase All Walls* decorates this very same
+  panel, which is the proof two mods can do so side by side. The decorator:
+  - wraps the panel's `items` accessor pair (found by walking the prototype chain — the accessor
+    is on the prototype, not the instance) and pushes a synthetic "Make Capital" entry into the
+    `projects` category for the player's own non-capital cities, production tab only;
+  - wraps `doOrConfirmConstruction(category, type, cb)`, the click entry point every row goes
+    through, and handles the sentinel type itself instead of delegating to the stock path.
+- **The game's own dialog**, reached by dynamic `import("/core/ui/dialog-box/manager-dialog-box.js")`
+  from a plain (non-module) UIScript: `DialogManager.createDialog_ConfirmCancel({title, body,
+  callback})`, with the callback comparing against `DialogBoxAction.Confirm`. This inherits the
+  game's styling, input routing, controller navigation and Escape-to-close — all of which the
+  earlier hand-built DOM dialog had to fight for, and only partly won (Escape never worked).
+
+The item's icon is a real, existing game asset: `data/icons.xml` maps the sentinel type
+(`CHANGE_CAPITAL_RELOCATE_ACTION`, deliberately absent from `GameInfo.Types` so it can never
+collide with a real type) to `blp:ntf_select_capital`, the icon the base game uses for its own
+"select capital" notification — no new art needed.
+
+**Superseded approach, kept in the history (the commit that first added this mod):** the first working
+version shipped a whole modified copy of
+`base-standard/ui/production-chooser/production-chooser-helpers.js` at the stock file's path
+(the technique *Move Building* uses), patching `GetProductionItems` and `Construct` directly. It
+worked, but a path is winner-takes-all — any third mod shipping that path would silently erase
+this feature or have its own erased — and it forced a hand-built DOM dialog with two hard-won
+rules (flat sibling elements, since a nested wrapper rendered backgrounds but invisible text; and
+plain pixel positioning, since `calc(50vw …)` rendered correctly but never received clicks).
+Both of those problems disappear with the native dialog.
 
 ## Localization
 

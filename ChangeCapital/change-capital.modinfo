@@ -24,6 +24,7 @@
             <Actions>
                 <UIScripts>
                     <Item>ui/change-capital-transition.js</Item>
+                    <Item>ui/change-capital-chooser.js</Item>
                 </UIScripts>
                 <UpdateText>
                     <Item>text/en_us/ModuleText.xml</Item>
@@ -55,24 +56,6 @@
                     <Item>text/en_us/ModuleText.xml</Item>
                     <Item>l10n/ModuleText.xml</Item>
                 </UpdateText>
-            </Actions>
-        </ActionGroup>
-        <!-- Same-path file override (see the comment at the top of the shipped file): this mod
-             ships its own copy of production-chooser-helpers.js, based on the copy the
-             MovableBuildings mod already ships, so a "Make Capital" project row appears in the
-             production/purchase chooser the same way Move Building's own entry does. A higher
-             LoadOrder than MovableBuildings' (1666) makes ours the one the game actually loads
-             if both are present; either way only one same-path file can win, which is an
-             inherent limitation of this technique, not something a LoadOrder fully solves for
-             every possible combination of mods. -->
-        <ActionGroup id="change-capital-production-chooser" scope="game" criteria="always">
-            <Properties>
-                <LoadOrder>1700</LoadOrder>
-            </Properties>
-            <Actions>
-                <ImportFiles>
-                    <Item>base-standard/ui/production-chooser/production-chooser-helpers.js</Item>
-                </ImportFiles>
             </Actions>
         </ActionGroup>
     </ActionGroups>

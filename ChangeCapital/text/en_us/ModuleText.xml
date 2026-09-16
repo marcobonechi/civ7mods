@@ -7,7 +7,7 @@
         <Row Tag="LOC_MODULE_CHANGE_CAPITAL_DESCRIPTION">
             <Text>Relocate your capital: freely at every age transition (no more land-trade-route restriction on which settlement can become your new capital), or at any time for a price - a "Make Capital" project appears in any of your other cities' production screen, costing Diplomacy (Influence) points that scale with the current age (100 in Antiquity, 200 in Exploration, 300 in Modern).
 
-Compatibility note: this mod replaces the entire file base-standard/ui/production-chooser/production-chooser-helpers.js to add the "Make Capital" project row (the same technique the Move Building [MovableBuildings] mod uses). Only one mod's copy of a given file can ever be active - if another mod besides Move Building also replaces this exact file, whichever one loads last wins outright, and the other's changes (including possibly this mod's own) silently stop working. This mod is built to remain compatible specifically with Move Building; compatibility with any other mod that touches this same file is not guaranteed.</Text>
+Built to play nicely with other mods: it replaces no game files at all. The "Make Capital" row is added through the game's own component decorator API, which keeps a list of every mod's decorator rather than letting one replace another, so other mods that add their own entries to the same production screen keep working alongside this one.</Text>
         </Row>
     </EnglishText>
 </Database>

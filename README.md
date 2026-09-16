@@ -512,18 +512,24 @@ A small gameplay mod, not a civilization. Two ways to move your capital:
 ![Make Capital project, with a confirmation dialog open](ChangeCapital/screenshots/make-capital-project.png)
 ![Confirming a capital relocation](ChangeCapital/screenshots/confirm-dialog.png)
 
-**Compatibility warning: this mod can conflict with other mods.** Mechanic 2 works by shipping a
-full replacement of the stock file
-`base-standard/ui/production-chooser/production-chooser-helpers.js` - the same technique the
-Workshop mod *Move Building* (MovableBuildings) uses to add its own entries to this same screen.
-This mod's copy is based on Move Building's own modified file, so the two stay compatible with
-each other specifically. But a mod's file at a given path is winner-takes-all: if any *other* mod
-also ships a file at this exact path, only one copy loads (highest `LoadOrder` wins) and the
-other's entire set of changes silently stops working - there is no merging. Install alongside Move
-Building freely; install alongside anything else that touches this same file at your own risk.
+**Replaces no game files, so it does not fight other mods.** The "Make Capital" row is added
+through `Controls.decorate("panel-production-chooser", ...)`, the engine's own component
+decorator API. The engine keeps a *list* of decorator providers per component
+(`core/ui/component-support.js`, `addDecorator`), so every mod that decorates the same panel gets
+its decorator constructed — they stack rather than clobber. The confirmation is the game's own
+dialog (`DialogBoxManager.createDialog_ConfirmCancel`, reached by dynamic `import()` of the stock
+module), so it inherits the game's styling, input routing, controller navigation and
+Escape-to-close instead of reimplementing them.
+
+An earlier version did this by shipping a modified copy of
+`base-standard/ui/production-chooser/production-chooser-helpers.js` at the stock file's own path.
+That works — it is what the Workshop mod *Move Building* does — but a file path is
+winner-takes-all: whichever mod loads last wins outright and the other's whole file silently
+stops running. That version is in the history, in the commit that first added this mod.
 
 Design notes, the exact native APIs this relies on, and the open verification items:
-[`plans/change-capital.md`](plans/change-capital.md). The general technique - overriding a stock
-file to add a production/purchase chooser entry, and the two rules for a hand-built dialog that
-actually renders text and receives clicks - is written up as a standalone, reusable skill:
-[`skills/civ7-production-chooser/`](skills/civ7-production-chooser/).
+[`plans/change-capital.md`](plans/change-capital.md). The general technique - the game's three
+additive UI extension points (`Controls.decorate`, the seven `ModdingRegistry` mod slots, and
+dynamic `import()` for things like the native dialog manager), and why overwriting a stock file
+is a last resort - is written up as a standalone, reusable skill:
+[`skills/civ7-ui-extension/`](skills/civ7-ui-extension/).
