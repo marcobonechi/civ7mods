@@ -497,6 +497,7 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
 
 # Change Capital — relocate your capital, freely or for a price
 
+<img src="ChangeCapital/icons/change_capital_medallion.png" width="180" height="180" alt="Change Capital medallion artwork" align="right">
 <img src="ChangeCapital/icons/change_capital_icon.png" width="96" height="96" alt="Change Capital icon">
 
 A small gameplay mod, not a civilization. Two ways to move your capital:
@@ -509,7 +510,6 @@ A small gameplay mod, not a civilization. Two ways to move your capital:
    that city your capital immediately. Cost scales with the current age: 100 in Antiquity, 200 in
    Exploration, 300 in Modern.
 
-![Make Capital project, with a confirmation dialog open](ChangeCapital/screenshots/make-capital-project.png)
 ![Confirming a capital relocation](ChangeCapital/screenshots/confirm-dialog.png)
 
 **Replaces no game files, so it does not fight other mods.** The "Make Capital" row is added
