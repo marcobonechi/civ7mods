@@ -510,7 +510,6 @@ function generateMap() {
 
     TerrainBuilder.modelRivers(5, 15, globals.g_NavigableRiverTerrain);
     TerrainBuilder.validateAndFixTerrain();
-    TerrainBuilder.defineNamedRivers();
 
     applyBiomes(grid);
     boostStartFood(grid);

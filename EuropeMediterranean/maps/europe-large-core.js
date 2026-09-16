@@ -843,7 +843,6 @@ function generateMap() {
     steerRiverRainfall(grid);
     TerrainBuilder.modelRivers(5, 30, globals.g_NavigableRiverTerrain);   // 15 in the base maps: more minor rivers
     TerrainBuilder.validateAndFixTerrain();
-    TerrainBuilder.defineNamedRivers();
     applyRainfall(grid);   // back to the real rainfall for biomes and features
     reportRivers(grid);
     dumpRivers(iWidth, iHeight);
