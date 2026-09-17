@@ -121,8 +121,12 @@ true starts for Aksum (Axum) and Songhai (Gao). Its fallback ranking favours Mor
 - `maps/europe-rivers.js` plans every river hex by hex - the drawn courses, a little per-game
   variance, and generated minor rivers - and the map script paints it with
   `TerrainBuilder.setRiverInfo()` and `finalizeRivers()`, the way the base game's Earth map does,
-  instead of letting `modelRivers()` pick courses. `node tools/check-rivers.mjs` plans every map at
-  every shipped size over several seeds and checks each river drains to the sea.
+  instead of letting `modelRivers()` pick courses. `finalizeRivers()` drops any river hex that runs
+  uphill and keeps only part of the navigable network (a different part each game), so the script
+  first carves valleys (navigable hexes one elevation unit above the hex below, as on the Earth map),
+  then after finalizing puts the plan back and sets navigable-river terrain itself.
+  `node tools/check-rivers.mjs` plans every map at every shipped size over several seeds and checks
+  each river drains to the sea and runs downhill.
 
 Distant Lands: landmass regions are assigned to whole water-separated landmasses, never by
 longitude. The engine treats a region change as a distant-lands boundary, so a boundary running

@@ -32,7 +32,7 @@ const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'check-rivers-'));
 const plannerSrc = fs.readFileSync(path.join(MAPS, 'europe-rivers.js'), 'utf8')
     .replace("'/europe-mediterranean-map/maps/europe-raster.js'", JSON.stringify(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href));
 fs.writeFileSync(path.join(tmp, 'europe-rivers.mjs'), plannerSrc);
-const { planRivers, directionName, RIVER_NAME_TAGS, RIVER_NAVIGABLE } = await import(pathToFileURL(path.join(tmp, 'europe-rivers.mjs')).href);
+const { planRivers, carveRiverValleys, directionName, RIVER_NAME_TAGS, RIVER_NAVIGABLE } = await import(pathToFileURL(path.join(tmp, 'europe-rivers.mjs')).href);
 
 let failures = 0;
 const check = (cond, msg) => { if (!cond) { console.log('    FAIL ' + msg); failures++; } return cond; };
@@ -88,6 +88,17 @@ for (const geoFile of geoFiles) {
             });
 
             const label = `${W}x${H} seed ${seed}`;
+            // Carve the valleys the way the map script does, then every river hex must sit strictly
+            // above the land hex it drains into (finalizeRivers() drops rivers that run uphill).
+            const elev = new Int32Array(W * H);
+            for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) elev[y * W + x] = isWater(x, y) ? 0 : elevation(x, y);
+            carveRiverValleys(plan, elev, W, isWater);
+            for (const t of plan.tiles.values()) {
+                const [tx, ty] = t.to;
+                const rise = elev[t.y * W + t.x] - elev[ty * W + tx];
+                check(rise > 0, `${label}: ${t.river || 'minor'} (${t.x},${t.y}) runs uphill after carving`);
+                if (t.type === RIVER_NAVIGABLE) check(rise === 1, `${label}: navigable ${t.river} (${t.x},${t.y}) climbs ${rise}, not 1`);
+            }
             let bad = 0;
             for (const t of plan.tiles.values()) {
                 const [tx, ty] = t.to;

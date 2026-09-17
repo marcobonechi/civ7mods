@@ -8,7 +8,7 @@
 // function below still reads it as a module-level value.
 
 import { buildEuropeGrid, hexDistance, hexNeighbors, T, B } from '/europe-mediterranean-map/maps/europe-raster.js';
-import { planRivers, directionName, RIVER_NAVIGABLE } from '/europe-mediterranean-map/maps/europe-rivers.js';
+import { planRivers, carveRiverValleys, directionName, RIVER_NAVIGABLE } from '/europe-mediterranean-map/maps/europe-rivers.js';
 import * as globals from '/base-standard/maps/map-globals.js';
 import { addNaturalWonders } from '/base-standard/maps/natural-wonder-generator.js';
 import { addFeatures } from '/base-standard/maps/feature-biome-generator.js';
@@ -730,9 +730,18 @@ function assignEuropeStartPositions(grid) {
 // ---------------------------------------------------------------------------
 
 // Rivers the way the base game's Earth map paints them (Civilization VII 1.5): every river hex is
-// set with TerrainBuilder.setRiverInfo() - the neighbour it drains into, navigable or minor - and
-// finalizeRivers() turns that into rivers without modelRivers() choosing courses of its own. The
-// plan, including the per-game variance, comes from europe-rivers.js.
+// set with TerrainBuilder.setRiverInfo() - the neighbour it drains into, navigable or minor - instead
+// of modelRivers() choosing courses. The plan, with its per-game variance, comes from europe-rivers.js.
+//
+// What the engine does with it, measured in game on the 112x98 map:
+//  - setRiverInfo() stores the plan exactly, but gives navigable hexes no river terrain;
+//  - finalizeRivers() gives them TERRAIN_NAVIGABLE_RIVER, but first drops every hex that runs uphill
+//    and then keeps only part of the navigable network (15-50% of it, a different part each game,
+//    mouths included, even with the Earth map's one-unit climb per hex);
+//  - setRiverInfo() again afterwards restores the plan, and setting the terrain on the navigable
+//    hexes by hand makes them real navigable rivers (isNavigableRiver, drawn as wide water), which
+//    validateAndFixTerrain() and storeWaterData() leave alone.
+// So: carve valleys so finalizeRivers() drops nothing, finalize, then put the plan back on top.
 function paintRivers(grid, rnd, reserved) {
     const plan = planRivers(grid.riverChains || [], {
         W: grid.W, H: grid.H, rnd, reserved,
@@ -741,19 +750,38 @@ function paintRivers(grid, rnd, reserved) {
         elevation: (x, y) => GameplayMap.getElevation(x, y),
         rain: (x, y) => grid.rain[grid.idx(x, y)],
     });
-    let navigable = 0, minor = 0;
-    for (const t of plan.tiles.values()) {
-        const nav = t.type === RIVER_NAVIGABLE;
-        TerrainBuilder.setRiverInfo(t.x, t.y, DirectionTypes[directionName(t.x, t.y, t.to)],
-            nav ? RiverTypes.RIVER_NAVIGABLE : RiverTypes.RIVER_MINOR);
-        if (nav) navigable++; else minor++;
-    }
+    const elevation = new Array(grid.W * grid.H);
+    for (let y = 0; y < grid.H; y++) for (let x = 0; x < grid.W; x++) elevation[y * grid.W + x] = GameplayMap.getElevation(x, y);
+    const carved = carveRiverValleys(plan, elevation, grid.W, (x, y) => GameplayMap.isWater(x, y));
+    TerrainBuilder.setElevation(elevation);
+
+    const apply = () => {
+        for (const t of plan.tiles.values()) {
+            TerrainBuilder.setRiverInfo(t.x, t.y, DirectionTypes[directionName(t.x, t.y, t.to)],
+                t.type === RIVER_NAVIGABLE ? RiverTypes.RIVER_NAVIGABLE : RiverTypes.RIVER_MINOR);
+        }
+    };
+    apply();
     // No aesthetic pass: it prunes and reshapes rivers, which is what this replaces.
     TerrainBuilder.finalizeRivers(false, 25, 2, 2);
+    let keptByEngine = 0;
+    for (const t of plan.tiles.values()) if (t.type === RIVER_NAVIGABLE && GameplayMap.isNavigableRiver(t.x, t.y)) keptByEngine++;
+    apply();
+    let navigable = 0, minor = 0;
+    for (const t of plan.tiles.values()) {
+        if (t.type === RIVER_NAVIGABLE) {
+            TerrainBuilder.setTerrainType(t.x, t.y, globals.g_NavigableRiverTerrain);
+            navigable++;
+        } else {
+            minor++;
+        }
+    }
+
     const r = plan.report;
-    console.log("Europe large map: rivers painted - " + navigable + " navigable hexes, " + minor + " minor (" +
-        r.minorRivers + " generated minor rivers), " + r.bends + " bends, " + r.bridged + " bridge hexes, " +
-        r.headwaters + " headwater hexes");
+    console.log("Europe large map: rivers painted - " + navigable + " navigable hexes (" + keptByEngine +
+        " kept by finalizeRivers, the rest restored), " + minor + " minor (" + r.minorRivers +
+        " generated minor rivers), " + r.bends + " bends, " + r.bridged + " bridge hexes, " + r.headwaters +
+        " headwater hexes, " + carved + " hexes lowered into valleys");
     if (r.unresolved.length) console.log("Europe large map: rivers left out - " + r.unresolved.join(", "));
     return plan;
 }

@@ -270,6 +270,39 @@ export function planRivers(chains, env) {
     return { tiles, names, report };
 }
 
+// finalizeRivers() re-traces every river against elevation. Verified in game: setRiverInfo() alone
+// stores the plan exactly; after finalizeRivers() a hex that runs uphill loses its river, and a
+// navigable hex whose climb from the hex below is more than a unit becomes a minor river. The base
+// game's Earth map hand-sets its elevation to match: 158 of its 165 navigable hexes sit exactly one
+// unit above the hex they drain into, its minor rivers 1 or 20 units. This does the same, from each
+// mouth upstream: a navigable hex goes exactly one unit above the hex below it, a minor hex at most
+// VALLEY_STEP above and never below that (so valleys are carved, never raised, where the land allows).
+// `elevation` is a row-major W*H array (index y * W + x), modified in place; returns hexes changed.
+const VALLEY_STEP = 8;
+export function carveRiverValleys(plan, elevation, W, isWater) {
+    const at = (x, y) => y * W + x;
+    const upstream = new Map();
+    const roots = [];
+    for (const t of plan.tiles.values()) {
+        const [tx, ty] = t.to;
+        if (isWater(tx, ty)) { roots.push(t); continue; }
+        const k = tx + "," + ty;
+        if (!upstream.has(k)) upstream.set(k, []);
+        upstream.get(k).push(t);
+    }
+    let changed = 0;
+    const queue = roots.map((t) => [t, isWater(t.to[0], t.to[1]) ? elevation[at(t.to[0], t.to[1])] : null]);
+    for (let q = 0; q < queue.length; q++) {
+        const [t, below] = queue[q];
+        const i = at(t.x, t.y);
+        const floor = (below === null ? 0 : below) + 1;
+        const want = t.type === RIVER_NAVIGABLE ? floor : Math.max(floor, Math.min(elevation[i], floor - 1 + VALLEY_STEP));
+        if (want !== elevation[i]) { elevation[i] = want; changed++; }
+        for (const u of upstream.get(t.x + "," + t.y) || []) queue.push([u, want]);
+    }
+    return changed;
+}
+
 // The engine's DirectionTypes name, for the neighbour `to` of (x, y). Rows count upwards (north),
 // odd rows sit half a hex to the east, as in hexNeighbors().
 export function directionName(x, y, to) {
