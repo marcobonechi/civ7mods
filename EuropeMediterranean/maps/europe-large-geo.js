@@ -292,7 +292,7 @@ export const GEO = {
         { name: "Dnieper", pts: [[32.0, 46.5], [33.5, 47.5], [35.1, 47.8], [35.0, 48.5], [34.0, 49.5], [30.5, 50.4], [30.9, 51.6], [30.9, 52.5], [30.3, 53.5], [30.4, 54.15]] },
         // Europe
         { name: "Tiber", strength: 0.2, pts: [[12.3, 41.75], [12.5, 41.9], [12.8, 42.3]] },
-        { name: "Po", pts: [[12.4, 44.95], [11.6, 45.0], [10.6, 45.05], [9.2, 45.1], [7.9, 45.0]] },
+        { name: "Po", navigable: 2, pts: [[12.4, 44.95], [11.6, 45.0], [10.6, 45.05], [9.2, 45.1], [7.9, 45.0]] },
         { name: "Seine", pts: [[0.2, 49.45], [1.1, 49.4], [2.35, 48.85], [3.5, 48.4]] },
         { name: "Thames", pts: [[1.5, 51.4], [0.91, 51.41], [0.0, 51.5], [-0.7, 51.7]] },
         { name: "Rhine", pts: [[4.34, 52.35], [4.5, 51.9], [6.0, 51.8], [6.95, 50.95], [8.3, 50.0], [7.8, 48.6], [7.6, 47.6], [8.6, 47.6]] },
@@ -645,6 +645,9 @@ export const GEO = {
         { name: "Gulf of Messenia", pts: [[22.2, 36.35], [22.2, 36.6]] },
         { name: "Saronic Gulf", pts: [[23.3, 37.45], [23.6, 37.7], [23.95, 37.4], [24.2, 37.2]] },
         { name: "White Sea mouth", pts: [[40.5, 66.8], [39.0, 66.1], [37.0, 65.3]] },
+        // North Cape passage: Norway's Arctic coast reached the top row of the map, so no ship could
+        // sail from the Norwegian Sea to the Barents Sea, the White Sea and the Karelian passage.
+        { name: "North Cape passage", pts: [[15.0, 69.8], [18.0, 70.4], [22.0, 70.4], [26.0, 70.4], [29.0, 70.3], [32.5, 70.1]] },
         { name: "Gulf of Finland", pts: [[24.0, 59.9], [27.0, 59.85], [29.5, 60.0]] },
         { name: "Gulf of Riga", pts: [[22.8, 57.6], [23.6, 57.6]] },
         { name: "Irbe Strait (Gulf of Riga mouth)", pts: [[21.3, 57.95], [22.3, 57.85], [23.0, 57.7]] },
@@ -707,7 +710,7 @@ export const GEO = {
         // The Tigris rose 4 hexes from the nearest peak; this is the Hakkari edge it really drains.
         { name: "Hakkari", core: 0.6, fringe: 1.1, pts: [[42.8, 37.0], [43.8, 36.8]] },
         { name: "Cotswolds", core: 0.5, fringe: 0.9, pts: [[-1.17, 51.89], [-1.17, 51.89]] },
-        { name: "Alps", core: 1.05, fringe: 1.9, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
+        { name: "Alps", core: 0.66, fringe: 1.3, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
         { name: "Pyrenees", core: 0.8, fringe: 1.5, pts: [[-1.9, 43.2], [-0.5, 42.85], [1.0, 42.65], [2.6, 42.5]] },
         { name: "Cantabrian", core: 0.55, fringe: 1.3, pts: [[-7.0, 43.1], [-5.5, 43.05], [-4.0, 43.1]] },
         { name: "Central System", core: 0.3, fringe: 1.2, pts: [[-6.0, 40.3], [-4.0, 40.7], [-2.0, 41.5]] },

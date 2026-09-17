@@ -232,6 +232,7 @@ http://localhost:8080 and opens a browser. See *Editing maps in the editor* belo
 | `biomeBlobs` | circular biome patches `[lon, lat, radius, biome, rainfall, name]` (oases) |
 | `rivers` | river courses as `[lon, lat]` lists, drawn in either direction (the end on the sea, or failing that the end meeting another river, becomes the mouth). Each becomes a hex-connected flat valley carrying exactly that river, navigable from the mouth. Per game a course bends through a neighbouring hex here and there, its navigable stretch can end up to two hexes short of the head, and a short minor headwater can continue uphill. A course drawn a hex or so short of the coast is bridged to it |
 | `rivers[].strength` | optional 0..1 (default 1). Below 0.5 the whole course is a minor river instead of a navigable one. Currently: Tiber 0.2, Garonne 0.35, Don 0.25 |
+| `rivers[].navigable` | optional hex count: only that many hexes from the mouth are navigable, the rest of the course is a minor river. Currently: Po 2 |
 | `riverAreas` | `{ name, minorShare, pts }` polygons scaling how many generated minor rivers may start inside (0.5 = half as many sources; drawn courses are unaffected). Currently: Ukraine 0.45 |
 | `resourceAreas` | (large map) historical resources per region: polygon, resource types, `density` = hexes per resource; placed in-game after the engine's random pass, which is then thinned or topped up to a 20% share |
 | `resourceScale` | (large map, optional) multiplies every area's `density`; 1.5 places a third fewer resources everywhere, 0.8 a quarter more |

@@ -8,7 +8,8 @@
 //
 // What comes out:
 //  - the hand-drawn courses in GEO.rivers (rasterized into grid.riverChains) as they are drawn,
-//    navigable, or minor when a river's `strength` is below MINOR_STRENGTH;
+//    navigable, or minor when a river's `strength` is below MINOR_STRENGTH, or navigable only for the
+//    first `navigable` hexes from the mouth;
 //  - slight per-game variance: a course bends through a neighbouring hex here and there, the
 //    navigable stretch ends a hex or two short of the drawn head (the rest stays a minor river),
 //    and a short minor headwater can climb beyond it;
@@ -85,7 +86,7 @@ export function planRivers(chains, env) {
     chains.forEach((chain, ci) => {
         const hexes = chain.tiles.filter(([x, y]) => land(x, y) && !env.isMountain(x, y));
         for (const [x, y] of hexes) owner.set(key(x, y), ci);
-        courses.push({ name: chain.name, strength: chain.strength === undefined ? 1 : chain.strength, hexes });
+        courses.push({ name: chain.name, strength: chain.strength === undefined ? 1 : chain.strength, navigable: chain.navigable, hexes });
     });
 
     // Orientation: the end on the sea (or a lake) is the mouth; failing that, the end that meets
@@ -179,9 +180,11 @@ export function planRivers(chains, env) {
         const navigable = c.strength >= MINOR_STRENGTH && c.hexes.length >= 2;
         const n = c.hexes.length;
         const headMinor = navigable && n >= HEAD_MINOR_MIN_LENGTH ? Math.floor(rnd() * (HEAD_MINOR_MAX + 1)) : 0;
+        // `navigable: N` on a river: only the N hexes nearest the mouth are navigable.
+        const navigableHexes = c.navigable !== undefined ? c.navigable : n - headMinor;
         for (let k = 0; k < n; k++) {
             const [x, y] = c.hexes[k];
-            const type = navigable && k < n - headMinor ? RIVER_NAVIGABLE : RIVER_MINOR;
+            const type = navigable && k < navigableHexes ? RIVER_NAVIGABLE : RIVER_MINOR;
             const prev = k > 0 ? c.hexes[k - 1] : null;
             let to = null;
             if (prev && hexDistance(x, y, prev[0], prev[1]) === 1 && tiles.has(key(prev[0], prev[1]))) to = prev;

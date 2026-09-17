@@ -707,7 +707,7 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
         let prev = null;
         // `strength` (0..1, default 1): below 0.5 europe-rivers.js paints the course as a minor
         // river rather than a navigable one.
-        const chain = { name: river.name, strength: river.strength, tiles: [] };
+        const chain = { name: river.name, strength: river.strength, navigable: river.navigable, tiles: [] };
         riverChains.push(chain);
         const markRiver = (x, y) => {
             if (!inBounds(x, y) || x < 1 || x >= W - 1) return;
