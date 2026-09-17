@@ -15,7 +15,7 @@
     <Constructibles>
         <Row ConstructibleType="BUILDING_HIPPODROME" Name="LOC_BUILDING_HIPPODROME_NAME" Description="LOC_BUILDING_HIPPODROME_DESCRIPTION" Tooltip="LOC_BUILDING_HIPPODROME_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" Name="LOC_BUILDING_GREAT_PALACE_NAME" Description="LOC_BUILDING_GREAT_PALACE_DESCRIPTION" Tooltip="LOC_BUILDING_GREAT_PALACE_TOOLTIP" ConstructibleClass="BUILDING" Cost="290" Population="1" Age="AGE_EXPLORATION" CostProgressionModel="COST_PROGRESSION_PREVIOUS_BUILDINGS_CITY"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" Name="LOC_WONDER_HAGIA_SOPHIA_NAME" Description="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION" Tooltip="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP" ConstructibleClass="WONDER" Cost="750" Population="0" ImmuneDamage="true" Age="AGE_EXPLORATION" RequiresUnlock="true"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" Name="LOC_WONDER_HAGIA_SOPHIA_NAME" Description="LOC_WONDER_HAGIA_SOPHIA_DESCRIPTION" Tooltip="LOC_WONDER_HAGIA_SOPHIA_TOOLTIP" ConstructibleClass="WONDER" Cost="600" Population="0" ImmuneDamage="true" Age="AGE_EXPLORATION" RequiresUnlock="true"/>
         <Row ConstructibleType="BUILDING_WALLS_THEODOSIUS" Name="LOC_BUILDING_WALLS_THEODOSIUS_NAME" Description="LOC_BUILDING_WALLS_THEODOSIUS_DESCRIPTION" Tooltip="LOC_BUILDING_WALLS_THEODOSIUS_TOOLTIP" ConstructibleClass="BUILDING" Cost="150" Population="0" Age="AGE_EXPLORATION" Defense="2" ExistingDistrictOnly="true" Repairable="false" DistrictDefense="true"/>
     </Constructibles>
     <Buildings>
@@ -56,10 +56,9 @@
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_DIPLOMACY" YieldChange="6"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_GOLD" YieldChange="6"/>
         <Row ConstructibleType="BUILDING_GREAT_PALACE" YieldType="YIELD_HAPPINESS" YieldChange="3"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="5"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="3"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_GOLD" YieldChange="2"/>
-        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_SCIENCE" YieldChange="1"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_CULTURE" YieldChange="2"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_DIPLOMACY" YieldChange="1"/>
+        <Row ConstructibleType="WONDER_HAGIA_SOPHIA" YieldType="YIELD_GOLD" YieldChange="1"/>
     </Constructible_YieldChanges>
     <Constructible_Maintenances>
         <Row ConstructibleType="BUILDING_HIPPODROME" YieldType="YIELD_GOLD" Amount="3"/>
