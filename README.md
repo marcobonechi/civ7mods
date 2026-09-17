@@ -172,7 +172,7 @@ of the land.
 Exploration, 17 of 17 in Modern (Civilization VII 1.5 rosters). The game's own legacy table (`civilizations-legacy.xml`) runs Rome
 to Great Britain, America, Prussia and France, and Greece to Russia. Civilization VII 1.5 added
 Gaul, England and Babylon, which sit exactly where they belong, so the British line can now be
-played from where it happened: Gaul on the Seine, England on the Thames, then Great Britain or
+played from where it happened: Gaul on Lake Geneva, England on the Thames, then Great Britain or
 America. Everywhere the game still leaves empty, a stand-in waits - the Mississippians on the
 Thames, the Maya on the north European plain who become Prussia in Germany. Only one age is ever live, so the ages share sites deliberately: Mississippian, Sengoku
 and Great Britain all start at London.
