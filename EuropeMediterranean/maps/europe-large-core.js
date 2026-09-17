@@ -780,6 +780,7 @@ function paintRivers(grid, rnd, reserved) {
         }
     }
 
+    grid.riverPlan = plan;
     const r = plan.report;
     console.log("Europe large map: rivers painted - " + navigable + " navigable hexes (" + keptByEngine +
         " kept by finalizeRivers, the rest restored), " + minor + " minor (" + r.minorRivers +
@@ -787,6 +788,21 @@ function paintRivers(grid, rnd, reserved) {
         " headwater hexes, " + carved + " hexes lowered to keep rivers downhill");
     if (r.unresolved.length) console.log("Europe large map: rivers left out - " + r.unresolved.join(", "));
     return plan;
+}
+
+// Ships reach a navigable river only if the engine counts it as connected to the ocean, which
+// storeWaterData() works out from the finished rivers. Measured on all three sizes: every drawn river is,
+// once its direction is right. Anything listed here flows the wrong way or ends in a lake.
+function reportRiversOffTheOcean(plan) {
+    if (typeof MapRivers === "undefined" || typeof MapRivers.isRiverConnectedToOcean !== "function") return;
+    const off = {};
+    for (const t of plan.tiles.values()) {
+        if (t.type !== RIVER_NAVIGABLE || !t.river) continue;
+        if (!MapRivers.isRiverConnectedToOcean(GameplayMap.getIndexFromXY(t.x, t.y))) off[t.river] = (off[t.river] || 0) + 1;
+    }
+    const names = Object.keys(off);
+    console.log("Europe large map: navigable rivers not connected to the ocean - " +
+        (names.length ? names.map((n) => n + " " + off[n]).join(", ") : "none"));
 }
 
 function nameRivers(plan) {
@@ -936,6 +952,7 @@ function generateMap() {
     TerrainBuilder.validateAndFixTerrain();
     AreaBuilder.recalculateAreas();
     TerrainBuilder.storeWaterData();
+    if (grid.riverPlan) reportRiversOffTheOcean(grid.riverPlan);
     generateArcticSnow(grid);
 
     dumpContinents(iWidth, iHeight);

@@ -118,6 +118,25 @@ for (const geoFile of geoFiles) {
                 check(cur && steps < W * H, `${where} never reaches water`) || bad++;
                 if (bad > 10) break;
             }
+            // A named river must not drain into a small lake while its other end meets another river:
+            // that is a course running backwards from its source lake (the Blue Nile into Lake Tana).
+            const waterComp = new Int32Array(W * H).fill(-1), compSize = [];
+            for (let y0 = 0; y0 < H; y0++) for (let x0 = 0; x0 < W; x0++) {
+                if (!isWater(x0, y0) || waterComp[g.idx(x0, y0)] >= 0) continue;
+                const id = compSize.length; let size = 0; const stack = [[x0, y0]]; waterComp[g.idx(x0, y0)] = id;
+                while (stack.length) { const [x, y] = stack.pop(); size++;
+                    for (const [a, b] of raster.hexNeighbors(x, y)) if (inB(a, b) && isWater(a, b) && waterComp[g.idx(a, b)] < 0) { waterComp[g.idx(a, b)] = id; stack.push([a, b]); } }
+                compSize.push(size);
+            }
+            const LAKE_MAX = 60;
+            const riverHex = new Map([...plan.tiles.values()].map((t) => [t.x + ',' + t.y, t]));
+            for (const t of plan.tiles.values()) {
+                if (!t.river || !isWater(t.to[0], t.to[1])) continue;
+                if (compSize[waterComp[g.idx(t.to[0], t.to[1])]] > LAKE_MAX) continue;
+                const meetsAnother = [...plan.tiles.values()].some((u) => u.river === t.river &&
+                    raster.hexNeighbors(u.x, u.y).some(([a, b]) => { const v = riverHex.get(a + ',' + b); return v && v.river && v.river !== t.river; }));
+                check(!meetsAnother, `${label}: ${t.river} drains into a lake at (${t.to}) but meets another river - backwards? set mouth in GEO.rivers`);
+            }
             check(!plan.report.unresolved.length, `${label}: unresolved course hexes ${plan.report.unresolved.join(', ')}`);
             let nav = 0, minor = 0;
             for (const t of plan.tiles.values()) t.type === RIVER_NAVIGABLE ? nav++ : minor++;

@@ -86,18 +86,21 @@ export function planRivers(chains, env) {
     chains.forEach((chain, ci) => {
         const hexes = chain.tiles.filter(([x, y]) => land(x, y) && !env.isMountain(x, y));
         for (const [x, y] of hexes) owner.set(key(x, y), ci);
-        courses.push({ name: chain.name, strength: chain.strength === undefined ? 1 : chain.strength, navigable: chain.navigable, hexes });
+        courses.push({ name: chain.name, strength: chain.strength === undefined ? 1 : chain.strength, navigable: chain.navigable, mouth: chain.mouth, hexes });
     });
 
-    // Orientation: the end on the sea (or a lake) is the mouth; failing that, the end that meets
-    // another course is a confluence. Courses come out mouth first.
+    // Orientation: `mouth: "first"` or `"last"` on a river says which end of its points is the mouth.
+    // Otherwise the end on the sea (or a lake) is the mouth; failing that, the end that meets another
+    // course is a confluence. A river whose source is a lake needs `mouth`, or it flows into the lake.
+    // Courses come out mouth first.
     const endScore = (ci, [x, y]) => {
         if (touchesWater(x, y)) return 2;
         return neighbors(x, y).some(([a, b]) => owner.has(key(a, b)) && owner.get(key(a, b)) !== ci) ? 1 : 0;
     };
     courses.forEach((c, ci) => {
         const n = c.hexes.length;
-        if (n > 1 && endScore(ci, c.hexes[n - 1]) > endScore(ci, c.hexes[0])) c.hexes.reverse();
+        if (n < 2) return;
+        if (c.mouth === "last" || (c.mouth !== "first" && endScore(ci, c.hexes[n - 1]) > endScore(ci, c.hexes[0]))) c.hexes.reverse();
     });
 
     // Hexes a tributary meets, and the ends themselves, keep their place so confluences survive.
