@@ -75,12 +75,12 @@ export const GEO = {
         // floodplain out to bare desert. Listed before the grassland blobs below, which are
         // narrower and therefore overwrite the middle of this band.
         // Nile skirt
-        [31.0, 31.2, 3.0, "P", 60, "Nile skirt"], [31.2, 30.0, 3.0, "P", 60, "Nile skirt"], [31.2, 29.07, 3.0, "P", 60, "Nile skirt"],
-        [31.2, 28.13, 3.0, "P", 60, "Nile skirt"], [31.2, 27.2, 3.0, "P", 60, "Nile skirt"], [31.9, 26.45, 3.0, "P", 60, "Nile skirt"],
-        [32.6, 25.7, 3.0, "P", 60, "Nile skirt"], [32.9, 24.1, 3.0, "P", 60, "Nile skirt"], [32.2, 22.95, 3.0, "P", 60, "Nile skirt"],
-        [31.5, 21.8, 3.0, "P", 60, "Nile skirt"], [31.15, 20.6, 3.0, "P", 60, "Nile skirt"], [30.8, 19.4, 3.0, "P", 60, "Nile skirt"],
-        [31.4, 18.5, 3.0, "P", 60, "Nile skirt"], [32.0, 17.6, 3.0, "P", 60, "Nile skirt"], [32.25, 16.6, 3.0, "P", 60, "Nile skirt"],
-        [32.5, 15.6, 3.0, "P", 60, "Nile skirt"],
+        [31.0, 31.2, 2.0, "P", 60, "Nile skirt"], [31.2, 30.0, 2.0, "P", 60, "Nile skirt"], [31.2, 29.07, 2.0, "P", 60, "Nile skirt"],
+        [31.2, 28.13, 2.0, "P", 60, "Nile skirt"], [31.2, 27.2, 2.0, "P", 60, "Nile skirt"], [31.9, 26.45, 2.0, "P", 60, "Nile skirt"],
+        [32.6, 25.7, 2.0, "P", 60, "Nile skirt"], [32.9, 24.1, 2.0, "P", 60, "Nile skirt"], [32.2, 22.95, 2.0, "P", 60, "Nile skirt"],
+        [31.5, 21.8, 2.0, "P", 60, "Nile skirt"], [31.15, 20.6, 2.0, "P", 60, "Nile skirt"], [30.8, 19.4, 2.0, "P", 60, "Nile skirt"],
+        [31.4, 18.5, 2.0, "P", 60, "Nile skirt"], [32.0, 17.6, 2.0, "P", 60, "Nile skirt"], [32.25, 16.6, 2.0, "P", 60, "Nile skirt"],
+        [32.5, 15.6, 2.0, "P", 60, "Nile skirt"],
         // White Nile skirt
         [31.75, 15.1, 3.0, "P", 60, "White Nile skirt"], [31.0, 14.6, 3.0, "P", 60, "White Nile skirt"], [30.15, 14.3, 3.0, "P", 60, "White Nile skirt"],
         [29.3, 14.0, 3.0, "P", 60, "White Nile skirt"], [28.4, 13.9, 3.0, "P", 60, "White Nile skirt"], [27.5, 13.8, 3.0, "P", 60, "White Nile skirt"],
@@ -103,14 +103,16 @@ export const GEO = {
         // river courses in `rivers`, so the green ribbon cannot drift off the water the way a
         // hand-drawn corridor did. Radius 1.7 hexes with rainfall 90 - a deliberate game-balance
         // choice, since flat desert yields no food and these regions fed the first great cities.
+        // The Nile is narrower (1.1 hexes, rainfall 70): its river is navigable now, and its
+        // floodplains feed Egypt, so the old width read as one continuous green band.
         // // Nile
-        [31.0, 31.2, 1.7, "G", 90, "Nile valley"], [31.2, 30.0, 1.7, "G", 90, "Nile valley"], [31.2, 29.3, 1.7, "G", 90, "Nile valley"],
-        [31.2, 28.6, 1.7, "G", 90, "Nile valley"], [31.2, 27.9, 1.7, "G", 90, "Nile valley"], [31.2, 27.2, 1.7, "G", 90, "Nile valley"],
-        [31.9, 26.45, 1.7, "G", 90, "Nile valley"], [32.6, 25.7, 1.7, "G", 90, "Nile valley"], [32.75, 24.9, 1.7, "G", 90, "Nile valley"],
-        [32.9, 24.1, 1.7, "G", 90, "Nile valley"], [32.43, 23.33, 1.7, "G", 90, "Nile valley"], [31.97, 22.57, 1.7, "G", 90, "Nile valley"],
-        [31.5, 21.8, 1.7, "G", 90, "Nile valley"], [31.27, 21.0, 1.7, "G", 90, "Nile valley"], [31.03, 20.2, 1.7, "G", 90, "Nile valley"],
-        [30.8, 19.4, 1.7, "G", 90, "Nile valley"], [31.2, 18.8, 1.7, "G", 90, "Nile valley"], [31.6, 18.2, 1.7, "G", 90, "Nile valley"],
-        [32.0, 17.6, 1.7, "G", 90, "Nile valley"], [32.25, 16.6, 1.7, "G", 90, "Nile valley"], [32.5, 15.6, 1.7, "G", 90, "Nile valley"],
+        [31.0, 31.2, 1.1, "G", 70, "Nile valley"], [31.2, 30.0, 1.1, "G", 70, "Nile valley"], [31.2, 29.3, 1.1, "G", 70, "Nile valley"],
+        [31.2, 28.6, 1.1, "G", 70, "Nile valley"], [31.2, 27.9, 1.1, "G", 70, "Nile valley"], [31.2, 27.2, 1.1, "G", 70, "Nile valley"],
+        [31.9, 26.45, 1.1, "G", 70, "Nile valley"], [32.6, 25.7, 1.1, "G", 70, "Nile valley"], [32.75, 24.9, 1.1, "G", 70, "Nile valley"],
+        [32.9, 24.1, 1.1, "G", 70, "Nile valley"], [32.43, 23.33, 1.1, "G", 70, "Nile valley"], [31.97, 22.57, 1.1, "G", 70, "Nile valley"],
+        [31.5, 21.8, 1.1, "G", 70, "Nile valley"], [31.27, 21.0, 1.1, "G", 70, "Nile valley"], [31.03, 20.2, 1.1, "G", 70, "Nile valley"],
+        [30.8, 19.4, 1.1, "G", 70, "Nile valley"], [31.2, 18.8, 1.1, "G", 70, "Nile valley"], [31.6, 18.2, 1.1, "G", 70, "Nile valley"],
+        [32.0, 17.6, 1.1, "G", 70, "Nile valley"], [32.25, 16.6, 1.1, "G", 70, "Nile valley"], [32.5, 15.6, 1.1, "G", 70, "Nile valley"],
         // White Nile
         [31.75, 15.1, 1.7, "G", 90, "White Nile valley"], [31.0, 14.6, 1.7, "G", 90, "White Nile valley"], [30.15, 14.3, 1.7, "G", 90, "White Nile valley"],
         [29.3, 14.0, 1.7, "G", 90, "White Nile valley"], [28.4, 13.9, 1.7, "G", 90, "White Nile valley"], [27.5, 13.8, 1.7, "G", 90, "White Nile valley"],
@@ -130,8 +132,8 @@ export const GEO = {
 
         // The delta last of all, so the plains skirt above does not cut into it: this is the
         // richest farmland on the map by design.
-        [30.3, 31.2, 2.0, "G", 120, "Delta west"], [31.0, 31.3, 2.2, "G", 120, "Delta centre"],
-        [31.7, 31.2, 2.0, "G", 120, "Delta east"], [30.9, 30.5, 2.2, "G", 110, "Delta south"],
+        [30.4, 31.3, 1.3, "G", 90, "Delta west"], [31.0, 31.3, 1.5, "G", 90, "Delta centre"],
+        [31.6, 31.3, 1.3, "G", 90, "Delta east"], [31.0, 30.6, 1.2, "G", 80, "Delta south"],
     ],
 
     // Mountains turned into hills: central and southern Italy (Tuscany and the Alps keep theirs;
@@ -327,7 +329,10 @@ export const GEO = {
     // inside the polygon. Ukraine's steppe is watered at rain 100 for its biomes, which on its own
     // filled it with streams; the drawn Dnieper, Dniester and Don are not affected.
     riverAreas: [
-        { name: "Ukraine", minorShare: 0.45, pts: [[22.0, 44.0], [40.5, 44.0], [40.5, 52.5], [22.0, 52.5]] }
+        { name: "Ukraine", minorShare: 0.45, pts: [[22.0, 44.0], [40.5, 44.0], [40.5, 52.5], [22.0, 52.5]] },
+        // The Nile has no tributaries between Khartoum and the sea; its irrigated rainfall must not
+        // grow streams across the desert.
+        { name: "Egypt and Nubia", minorShare: 0, pts: [[24.0, 15.5], [37.0, 15.5], [37.0, 32.5], [24.0, 32.5]] }
     ],
 
 
@@ -816,7 +821,6 @@ export const GEO = {
         { name: "Somali plains", biome: "P", pts: [[42.0, 7.0], [52.0, 7.0], [52.0, 12.5], [45.0, 11.3], [43.5, 11.0]] },
         { name: "Yemen Highlands", biome: "P", pts: [[43.0, 13.0], [45.8, 13.0], [45.8, 17.0], [43.0, 17.5]] },
         { name: "Arabian interior (Nejd)", biome: "P", pts: [[41.5, 18.5], [47.5, 17.5], [50.5, 22.0], [47.0, 26.5], [42.0, 25.0]] },
-        { name: "Nile Valley", biome: "G", pts: [[32.1, 15.3], [33.0, 15.3], [34.4, 17.6], [33.7, 19.6], [31.9, 21.6], [33.7, 24.0], [33.6, 25.8], [32.1, 27.2], [32.4, 29.6], [32.5, 30.2], [32.5, 31.3], [30.0, 31.4], [30.2, 30.3], [30.3, 27.0], [31.8, 25.6], [32.1, 24.2], [30.5, 21.6], [32.9, 19.4], [33.6, 17.7], [32.1, 16.2]] },
         { name: "Blue Nile", biome: "G", pts: [[32.5, 15.3], [33.5, 15.3], [37.3, 12.6], [36.7, 11.6]] },
         { name: "Sinai coast", biome: "G", pts: [[32.3, 30.6], [34.6, 30.8], [34.6, 31.5], [32.3, 31.7]] },
         { name: "Levant", biome: "P", pts: [[34.2, 31.2], [36.0, 31.2], [36.6, 33.0], [36.8, 36.0], [35.9, 37.0], [34.5, 36.5], [34.2, 32.5]] },
@@ -862,11 +866,11 @@ export const GEO = {
         // along the rivers and the fertile coasts, with the deserts around them untouched.
         // Listed last, so they win over the Sahara and Arabian bands above.
         { name: "Nile valley", biome: "G", pts: [
-            [31.7, 31.4], [31.9, 30.0], [31.9, 27.2], [33.3, 25.7], [33.6, 24.1], [32.2, 21.8],
-            [31.5, 19.4], [32.7, 17.6], [33.2, 15.4],
-            [31.8, 15.4], [31.3, 17.6], [30.1, 19.4], [30.8, 21.8], [31.9, 24.1], [31.9, 25.7],
-            [30.5, 27.2], [30.5, 30.0], [30.3, 31.4]] },
-        { name: "Nile delta", biome: "G", pts: [[29.4, 29.9], [32.5, 29.9], [32.5, 32.3], [29.4, 32.3]] },
+            [31.5, 30.6], [31.6, 30.0], [31.6, 27.2], [33.0, 25.7], [33.3, 24.1], [31.9, 21.8],
+            [31.2, 19.4], [32.4, 17.6], [32.9, 15.4],
+            [32.1, 15.4], [31.6, 17.6], [30.4, 19.4], [31.1, 21.8], [32.5, 24.1], [32.2, 25.7],
+            [30.8, 27.2], [30.8, 30.0], [30.9, 30.6]] },
+        { name: "Nile delta", biome: "G", pts: [[29.9, 32.3], [32.3, 32.3], [32.0, 31.3], [31.2, 30.2], [30.4, 31.3]] },
         { name: "Mesopotamia (Tigris-Euphrates)", biome: "G", pts: [
             [37.5, 37.4], [44.5, 37.4], [49.0, 30.2], [47.2, 29.6], [43.0, 33.8], [39.5, 35.8], [37.2, 36.8]] },
         { name: "Levant coast and Jordan", biome: "G", pts: [[34.2, 30.8], [36.8, 30.8], [37.2, 37.0], [35.0, 37.0]] },
@@ -900,7 +904,6 @@ export const GEO = {
         { name: "Yemen Highlands", rain: 90, pts: [[43.0, 13.0], [45.8, 13.0], [45.8, 17.0], [43.0, 17.5]] },
         { name: "Arabian interior (Nejd)", rain: 40, pts: [[41.5, 18.5], [47.5, 17.5], [50.5, 22.0], [47.0, 26.5], [42.0, 25.0]] },
         { name: "Sinai coast", rain: 60, pts: [[32.3, 30.6], [34.6, 30.8], [34.6, 31.5], [32.3, 31.7]] },
-        { name: "Nile Valley", rain: 60, pts: [[32.1, 15.3], [33.0, 15.3], [34.4, 17.6], [33.7, 19.6], [31.9, 21.6], [33.7, 24.0], [33.6, 25.8], [32.1, 27.2], [32.4, 29.6], [32.5, 30.2], [32.5, 31.3], [30.0, 31.4], [30.2, 30.3], [30.3, 27.0], [31.8, 25.6], [32.1, 24.2], [30.5, 21.6], [32.9, 19.4], [33.6, 17.7], [32.1, 16.2]] },
         { name: "Atlantic Europe", rain: 150, pts: [[-11.0, 47.5], [-11.0, 59.0], [-4.0, 62.5], [6.0, 66.0], [9.0, 63.0], [6.0, 58.0], [3.0, 51.0], [-1.0, 47.0]] },
         { name: "Alpine-Dinaric", rain: 140, pts: [[5.5, 44.0], [15.5, 47.5], [20.5, 42.0], [19.0, 40.5], [14.0, 44.5], [6.0, 43.6]] },
         { name: "Iberian Meseta", rain: 45, pts: [[-8.0, 37.5], [-1.0, 38.0], [-1.0, 42.0], [-8.0, 42.0]] },
@@ -920,12 +923,12 @@ export const GEO = {
         { name: "Persia (vegetated)", rain: 100, pts: [[44.0, 27.0], [60.0, 27.0], [60.0, 40.0], [44.0, 40.0]] },
         { name: "Yemen and Oman coast (vegetated)", rain: 100, pts: [[42.0, 12.5], [56.0, 12.5], [56.0, 19.5], [42.0, 19.5]] },
         // Cradles of civilization: enough rain for features on the irrigated corridors above.
-        { name: "Nile valley (irrigated)", rain: 90, pts: [
-            [31.7, 31.4], [31.9, 30.0], [31.9, 27.2], [33.3, 25.7], [33.6, 24.1], [32.2, 21.8],
-            [31.5, 19.4], [32.7, 17.6], [33.2, 15.4],
-            [31.8, 15.4], [31.3, 17.6], [30.1, 19.4], [30.8, 21.8], [31.9, 24.1], [31.9, 25.7],
-            [30.5, 27.2], [30.5, 30.0], [30.3, 31.4]] },
-        { name: "Nile delta (irrigated)", rain: 120, pts: [[29.4, 29.9], [32.5, 29.9], [32.5, 32.3], [29.4, 32.3]] },
+        { name: "Nile valley (irrigated)", rain: 70, pts: [
+            [31.5, 30.6], [31.6, 30.0], [31.6, 27.2], [33.0, 25.7], [33.3, 24.1], [31.9, 21.8],
+            [31.2, 19.4], [32.4, 17.6], [32.9, 15.4],
+            [32.1, 15.4], [31.6, 17.6], [30.4, 19.4], [31.1, 21.8], [32.5, 24.1], [32.2, 25.7],
+            [30.8, 27.2], [30.8, 30.0], [30.9, 30.6]] },
+        { name: "Nile delta (irrigated)", rain: 90, pts: [[29.9, 32.3], [32.3, 32.3], [32.0, 31.3], [31.2, 30.2], [30.4, 31.3]] },
         { name: "Mesopotamia (irrigated)", rain: 90, pts: [
             [37.5, 37.4], [44.5, 37.4], [49.0, 30.2], [47.2, 29.6], [43.0, 33.8], [39.5, 35.8], [37.2, 36.8]] },
         { name: "Levant coast and Jordan", rain: 95, pts: [[34.2, 30.8], [36.8, 30.8], [37.2, 37.0], [35.0, 37.0]] },
