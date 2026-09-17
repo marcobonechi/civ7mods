@@ -325,7 +325,7 @@ export const GEO = {
     // inside the polygon. Ukraine's steppe is watered at rain 100 for its biomes, which on its own
     // filled it with streams; the drawn Dnieper, Dniester and Don are not affected.
     riverAreas: [
-        { name: "Ukraine", minorShare: 0.5, pts: [[22.0, 44.0], [40.5, 44.0], [40.5, 52.5], [22.0, 52.5]] }
+        { name: "Ukraine", minorShare: 0.45, pts: [[22.0, 44.0], [40.5, 44.0], [40.5, 52.5], [22.0, 52.5]] }
     ],
 
 
