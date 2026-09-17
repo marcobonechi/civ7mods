@@ -348,7 +348,11 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   figure - when it resolves to nothing; `BasePersonaType` is read by the alternate-persona
   system, not by that lookup. Borrow a shipped leader's model in the UI script instead: proxy
   `WorldUI.createModelGroup` and wrap `addModel` / `addModelAtPos` on the group it returns,
-  rewriting the asset name on the way in. See `Etruscans/ui/etruscans-images.js`.
+  rewriting the asset name on the way in, and wrap `setAssetName` on every model those return.
+  Since 1.5 the create-game screens (`core/ui-next/components/scene-3d.js`) add the leader model
+  once and rename it on each selection; an unswapped `<LEADER_TYPE>_GAME_ASSET` sent through
+  `setAssetName` crashes the game. See `Etruscans/ui/etruscans-images.js`; the block is shared
+  (installed once by whichever civ script loads first), so keep it identical in every civ mod.
 - **Every shipped leader has a diplomatic agenda** (`EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE`, one
   `TraitModifiers` row, no other table involved) and the AI reads it; a leader without one is
   diplomatically inert. Copy the argument set from `MACHIAVELLI_MOD_AGENDA_THE_SPIDER` and pick

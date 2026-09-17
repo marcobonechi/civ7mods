@@ -316,30 +316,50 @@
         } catch (e) { /* ignore */ }
 
         // 6. Leader models. A mod cannot ship one: leader-select asks the engine for
-        //    `<LEADER_TYPE>_GAME_ASSET`, gets null back, and falls through to the faceless
-        //    LEADER_FALLBACK_GAME_ASSET -
-        //    core/ui/shell/leader-select/leader-select-model-manager.js:151-162. Leaders'
-        //    BasePersonaType does not help; that is read by the alternate-persona system, not
-        //    by this lookup. So borrow a shipped leader's model by rewriting the asset name on
-        //    its way into the model group, which covers leader select and every other screen
-        //    that builds its models the same way.
+        //    `<LEADER_TYPE>_GAME_ASSET`, and nothing checks that the asset exists.
+        //    Leaders' BasePersonaType does not help; that is read by the alternate-persona
+        //    system, not by this lookup. So borrow a shipped leader's model by rewriting the
+        //    asset name on its way to the engine. There are two ways in, and both must be covered:
+        //    - addModel / addModelAtPos on a model group (the old leader-select, diplomacy);
+        //    - setAssetName on a model already placed. Since 1.5 the create-game screens
+        //      (core/ui-next/components/scene-3d.js, Model3d) add the model once and rename it
+        //      on every leader change, so an unswapped name reaches the engine, and a missing
+        //      asset there crashes the game instead of falling back.
         try {
             if (window.WorldUI && WorldUI.createModelGroup) {
                 const original = WorldUI.createModelGroup.bind(WorldUI);
                 const swap = (name) => (typeof name === "string"
                     && shared.leaderAssets.get(name.toUpperCase())) || name;
+                // Report whether the engine actually took the asset. leader-select falls
+                // back to LEADER_FALLBACK_GAME_ASSET when addModel returns null, so a
+                // borrowed model that fails looks exactly like one that was never tried.
+                const report = (asset, swapped, ok) => {
+                    if (swapped !== asset) {
+                        announce("leader model", asset, swapped + (ok ? " (accepted)" : " (REFUSED - engine returned null)"));
+                    }
+                };
+                const wrapModel = (model) => {
+                    if (!model || typeof model.setAssetName !== "function" || model.setAssetName.__civ7mods) return;
+                    try {
+                        const inner = model.setAssetName.bind(model);
+                        const wrapped = function (asset) {
+                            const swapped = swap(asset);
+                            const result = inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
+                            report(asset, swapped, true);
+                            return result;
+                        };
+                        wrapped.__civ7mods = true;
+                        model.setAssetName = wrapped;
+                    } catch (e) { /* ignore */ }
+                };
                 const wrapMethod = (group, method) => {
                     if (!group || typeof group[method] !== "function" || group[method].__civ7mods) return;
                     const inner = group[method].bind(group);
                     const wrapped = function (asset) {
                         const swapped = swap(asset);
                         const model = inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
-                        // Report whether the engine actually took the asset. leader-select falls
-                        // back to LEADER_FALLBACK_GAME_ASSET when addModel returns null, so a
-                        // borrowed model that fails looks exactly like one that was never tried.
-                        if (swapped !== asset) {
-                            announce("leader model", asset, swapped + (model ? " (accepted)" : " (REFUSED - engine returned null)"));
-                        }
+                        report(asset, swapped, !!model);
+                        wrapModel(model);
                         return model;
                     };
                     wrapped.__civ7mods = true;
