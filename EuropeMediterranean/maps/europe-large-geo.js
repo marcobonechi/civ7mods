@@ -321,6 +321,13 @@ export const GEO = {
         { name: "Sebou", pts: [[-6.7, 34.3], [-5.9, 34.2], [-5.0, 34.0]] }
     ],
 
+    // Generated minor rivers per area (europe-rivers.js): minorShare scales how many may start
+    // inside the polygon. Ukraine's steppe is watered at rain 100 for its biomes, which on its own
+    // filled it with streams; the drawn Dnieper, Dniester and Don are not affected.
+    riverAreas: [
+        { name: "Ukraine", minorShare: 0.5, pts: [[22.0, 44.0], [40.5, 44.0], [40.5, 52.5], [22.0, 52.5]] }
+    ],
+
 
     // ---- land polygons -----------------------------------------------
     land: [

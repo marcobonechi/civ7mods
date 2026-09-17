@@ -735,13 +735,14 @@ function assignEuropeStartPositions(grid) {
 //
 // What the engine does with it, measured in game on the 112x98 map:
 //  - setRiverInfo() stores the plan exactly, but gives navigable hexes no river terrain;
-//  - finalizeRivers() gives them TERRAIN_NAVIGABLE_RIVER, but first drops every hex that runs uphill
-//    and then keeps only part of the navigable network (15-50% of it, a different part each game,
-//    mouths included, even with the Earth map's one-unit climb per hex);
+//  - finalizeRivers() gives them TERRAIN_NAVIGABLE_RIVER, but first drops every hex that is not
+//    downhill of the hex above it, and then keeps only part of the navigable network (15-50% of it,
+//    a different part each game, mouths included, even with the Earth map's one-unit climb per hex);
 //  - setRiverInfo() again afterwards restores the plan, and setting the terrain on the navigable
 //    hexes by hand makes them real navigable rivers (isNavigableRiver, drawn as wide water), which
 //    validateAndFixTerrain() and storeWaterData() leave alone.
-// So: carve valleys so finalizeRivers() drops nothing, finalize, then put the plan back on top.
+// So: lower the few hexes that are not downhill so finalizeRivers() drops nothing, finalize, then put
+// the plan back on top.
 function paintRivers(grid, rnd, reserved) {
     const plan = planRivers(grid.riverChains || [], {
         W: grid.W, H: grid.H, rnd, reserved,
@@ -749,6 +750,8 @@ function paintRivers(grid, rnd, reserved) {
         isMountain: (x, y) => GameplayMap.isMountain(x, y),
         elevation: (x, y) => GameplayMap.getElevation(x, y),
         rain: (x, y) => grid.rain[grid.idx(x, y)],
+        lonLat: (x, y) => [grid.lonC[grid.idx(x, y)], grid.latC[grid.idx(x, y)]],
+        riverAreas: GEO.riverAreas,
     });
     const elevation = new Array(grid.W * grid.H);
     for (let y = 0; y < grid.H; y++) for (let x = 0; x < grid.W; x++) elevation[y * grid.W + x] = GameplayMap.getElevation(x, y);
@@ -781,7 +784,7 @@ function paintRivers(grid, rnd, reserved) {
     console.log("Europe large map: rivers painted - " + navigable + " navigable hexes (" + keptByEngine +
         " kept by finalizeRivers, the rest restored), " + minor + " minor (" + r.minorRivers +
         " generated minor rivers), " + r.bends + " bends, " + r.bridged + " bridge hexes, " + r.headwaters +
-        " headwater hexes, " + carved + " hexes lowered into valleys");
+        " headwater hexes, " + carved + " hexes lowered to keep rivers downhill");
     if (r.unresolved.length) console.log("Europe large map: rivers left out - " + r.unresolved.join(", "));
     return plan;
 }

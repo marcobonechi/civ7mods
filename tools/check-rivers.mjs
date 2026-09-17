@@ -85,6 +85,8 @@ for (const geoFile of geoFiles) {
                 W, H, rnd, reserved, isWater, elevation,
                 isMountain: (x, y) => terrainAt(x, y) === T.MOUNTAIN,
                 rain: (x, y) => g.rain[g.idx(x, y)],
+                lonLat: (x, y) => [g.lonC[g.idx(x, y)], g.latC[g.idx(x, y)]],
+                riverAreas: GEO.riverAreas,
             });
 
             const label = `${W}x${H} seed ${seed}`;
@@ -92,12 +94,14 @@ for (const geoFile of geoFiles) {
             // above the land hex it drains into (finalizeRivers() drops rivers that run uphill).
             const elev = new Int32Array(W * H);
             for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) elev[y * W + x] = isWater(x, y) ? 0 : elevation(x, y);
-            carveRiverValleys(plan, elev, W, isWater);
+            const before = elev.slice();
+            const carved = carveRiverValleys(plan, elev, W, isWater);
+            let deepest = 0;
+            for (let i = 0; i < elev.length; i++) deepest = Math.max(deepest, before[i] - elev[i]);
             for (const t of plan.tiles.values()) {
                 const [tx, ty] = t.to;
                 const rise = elev[t.y * W + t.x] - elev[ty * W + tx];
                 check(rise > 0, `${label}: ${t.river || 'minor'} (${t.x},${t.y}) runs uphill after carving`);
-                if (t.type === RIVER_NAVIGABLE) check(rise === 1, `${label}: navigable ${t.river} (${t.x},${t.y}) climbs ${rise}, not 1`);
             }
             let bad = 0;
             for (const t of plan.tiles.values()) {
@@ -119,7 +123,7 @@ for (const geoFile of geoFiles) {
             for (const t of plan.tiles.values()) t.type === RIVER_NAVIGABLE ? nav++ : minor++;
             if (seed === 1) {
                 const r = plan.report;
-                console.log(`  ${W}x${H} ${name}: navigable ${nav}, minor ${minor} (${r.minorRivers} generated rivers, ${r.minorHexes}/${r.minorTarget} hexes), ${r.bends} bends, ${r.bridged} bridged, ${r.headwaters} headwater hexes, ${plan.names.length} names`);
+                console.log(`  ${W}x${H} ${name}: navigable ${nav}, minor ${minor} (${r.minorRivers} generated rivers, ${r.minorHexes}/${r.minorTarget} hexes), ${r.bends} bends, ${r.bridged} bridged, ${r.headwaters} headwater hexes, ${plan.names.length} names, ${carved} hexes lowered (deepest ${deepest})`);
             }
             if (dumpSize === `${W}x${H}` && seed === 1) {
                 for (let y = H - 1; y >= 0; y--) {

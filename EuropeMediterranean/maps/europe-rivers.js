@@ -12,11 +12,21 @@
 //  - slight per-game variance: a course bends through a neighbouring hex here and there, the
 //    navigable stretch ends a hex or two short of the drawn head (the rest stays a minor river),
 //    and a short minor headwater can climb beyond it;
-//  - minor rivers everywhere else, walked downhill from wet high ground to the sea or a river.
+//  - minor rivers everywhere else, walked downhill from wet high ground to the sea or a river,
+//    thinned inside GEO.riverAreas.
 
 import { hexNeighbors, hexDistance } from '/europe-mediterranean-map/maps/europe-raster.js';
 
 export const RIVER_NAVIGABLE = "navigable";
+
+function insidePolygon(lon, lat, pts) {
+    let inside = false;
+    for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+        const [xi, yi] = pts[i], [xj, yj] = pts[j];
+        if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+}
 export const RIVER_MINOR = "minor";
 
 const MINOR_STRENGTH = 0.5;        // `strength` below this: the whole course is a minor river
@@ -48,7 +58,11 @@ export const RIVER_NAME_TAGS = {
 };
 
 // env: { W, H, rnd() in [0,1), isWater(x,y), isMountain(x,y), elevation(x,y), rain(x,y),
-//        reserved: Set of "x,y" hexes no river may take (start sites) }
+//        reserved: Set of "x,y" hexes no river may take (start sites),
+//        lonLat(x,y) -> [lon, lat], riverAreas: GEO.riverAreas (optional) }
+// GEO.riverAreas: [{ name, minorShare, pts: [[lon, lat], ...] }] scales how often a generated minor
+// river may start inside the polygon (0.5 = half as many; the last matching area wins). Drawn
+// courses are never affected.
 // Returns { tiles: Map "x,y" -> { x, y, to: [x, y], type, river }, names: [{ x, y, tag }], report }
 export function planRivers(chains, env) {
     const { W, H, rnd } = env;
@@ -58,6 +72,13 @@ export function planRivers(chains, env) {
     const neighbors = (x, y) => hexNeighbors(x, y).filter(([a, b]) => inside(a, b));
     const touchesWater = (x, y) => neighbors(x, y).some(([a, b]) => env.isWater(a, b));
     const pick = (arr) => arr[Math.floor(rnd() * arr.length)];
+    const minorShareAt = (x, y) => {
+        let share = 1;
+        if (!env.lonLat) return share;
+        const [lon, lat] = env.lonLat(x, y);
+        for (const area of env.riverAreas || []) if (insidePolygon(lon, lat, area.pts)) share = area.minorShare;
+        return share;
+    };
 
     const owner = new Map();   // "x,y" -> course index, for every hex on a hand-drawn course
     const courses = [];
@@ -237,6 +258,7 @@ export function planRivers(chains, env) {
     for (const [sx, sy] of sources) {
         if (minorHexes >= minorTarget) break;
         if (!freeHex(sx, sy) || neighbors(sx, sy).some(([a, b]) => taken.has(key(a, b)))) continue;
+        if (rnd() >= minorShareAt(sx, sy)) continue;
         const path = [[sx, sy]];
         const onPath = new Set([key(sx, sy)]);
         let end = null;
@@ -270,35 +292,39 @@ export function planRivers(chains, env) {
     return { tiles, names, report };
 }
 
-// finalizeRivers() re-traces every river against elevation. Verified in game: setRiverInfo() alone
-// stores the plan exactly; after finalizeRivers() a hex that runs uphill loses its river, and a
-// navigable hex whose climb from the hex below is more than a unit becomes a minor river. The base
-// game's Earth map hand-sets its elevation to match: 158 of its 165 navigable hexes sit exactly one
-// unit above the hex they drain into, its minor rivers 1 or 20 units. This does the same, from each
-// mouth upstream: a navigable hex goes exactly one unit above the hex below it, a minor hex at most
-// VALLEY_STEP above and never below that (so valleys are carved, never raised, where the land allows).
+// finalizeRivers() drops every river hex that is not lower than the hex upstream of it (measured in
+// game). The map script restores the rest of the plan after finalizing, so the only job here is to
+// keep each hex strictly downhill of the hexes flowing into it, and to touch the land as little as
+// possible: an earlier version cut navigable rivers to one unit per hex up from the sea, as the
+// Earth map does, and rendered every river as a gorge. Working from the headwaters down, a hex is
+// lowered only when it is not already below everything that flows into it, and then only to one
+// unit below the lowest of those; a mouth stays above the water it drains into.
 // `elevation` is a row-major W*H array (index y * W + x), modified in place; returns hexes changed.
-const VALLEY_STEP = 8;
 export function carveRiverValleys(plan, elevation, W, isWater) {
     const at = (x, y) => y * W + x;
-    const upstream = new Map();
-    const roots = [];
+    const key = (x, y) => x + "," + y;
+    const inflows = new Map();
     for (const t of plan.tiles.values()) {
         const [tx, ty] = t.to;
-        if (isWater(tx, ty)) { roots.push(t); continue; }
-        const k = tx + "," + ty;
-        if (!upstream.has(k)) upstream.set(k, []);
-        upstream.get(k).push(t);
+        if (!isWater(tx, ty)) inflows.set(key(tx, ty), (inflows.get(key(tx, ty)) || 0) + 1);
     }
+    const ceiling = new Map();   // lowest elevation among the hexes that flow into a hex
+    const queue = [...plan.tiles.values()].filter((t) => !inflows.has(key(t.x, t.y)));
     let changed = 0;
-    const queue = roots.map((t) => [t, isWater(t.to[0], t.to[1]) ? elevation[at(t.to[0], t.to[1])] : null]);
     for (let q = 0; q < queue.length; q++) {
-        const [t, below] = queue[q];
+        const t = queue[q];
         const i = at(t.x, t.y);
-        const floor = (below === null ? 0 : below) + 1;
-        const want = t.type === RIVER_NAVIGABLE ? floor : Math.max(floor, Math.min(elevation[i], floor - 1 + VALLEY_STEP));
+        const k = key(t.x, t.y);
+        const [tx, ty] = t.to;
+        let want = elevation[i];
+        if (ceiling.has(k)) want = Math.min(want, ceiling.get(k) - 1);
+        if (isWater(tx, ty)) want = Math.max(want, elevation[at(tx, ty)] + 1);
         if (want !== elevation[i]) { elevation[i] = want; changed++; }
-        for (const u of upstream.get(t.x + "," + t.y) || []) queue.push([u, want]);
+        if (isWater(tx, ty)) continue;
+        const dk = key(tx, ty);
+        ceiling.set(dk, Math.min(ceiling.has(dk) ? ceiling.get(dk) : Infinity, want));
+        inflows.set(dk, inflows.get(dk) - 1);
+        if (inflows.get(dk) === 0) queue.push(plan.tiles.get(dk));
     }
     return changed;
 }
