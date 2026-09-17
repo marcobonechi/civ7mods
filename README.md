@@ -464,6 +464,16 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   fallback site; Populonia, Tarquinia and Florence are all in the fallback list, so a displaced
   player stays in Italy. Etruria and Tuscany are meant to be played one after the other rather
   than side by side.
+- **True starts on the base game's Earth map too** (Civilization VII 1.5, Antiquity starts only):
+  Byzantium at Constantinople (58,46, the tile the game gives the Ottomans), the Etruscans at
+  Populonia (50,45) and Tuscany at Florence (50,46), with Rome at (51,44). The game hard-codes those
+  starts in its map script and reads no table, so each of the three civ mods (Byzantium included)
+  ships the same patched copy of `base-standard/maps/EarthMaps/Earth_Huge.js`, a same-path override.
+  Another mod replacing that file wins or loses as a whole, and a game patch that changes the stock
+  script needs `python3 tools/earth-tsl.py` rerun (`--check` reports a stale copy). The map's own
+  spacing check moves anyone within 3 hexes of another start to a random site, so Rome, Etruria and
+  Tuscany in one game means only one of them stays in Italy — the same trade the game already makes
+  for Babylon and Assyria.
 - **Art is placeholder.** Icons and loading screens are flat generated PNGs
   (`tools/make-icons.py`, `tools/make-backgrounds.py`); units and wonders borrow the models of what
   they replace through `data/visual-remaps.xml`. Buildings cannot: a `VisualRemap`'s `To` has to
