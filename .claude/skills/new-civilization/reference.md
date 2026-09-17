@@ -342,6 +342,33 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   `CIRCLE_MASK` / `PORTRAIT_MASK` pointing at a **circle** crop. Pointing all of them at one
   square PNG is what makes a modded leader show up square in Leader Select while every shipped
   leader is round with a frame.
+- **The `PORTRAIT_MASK` image (`lp_circ_<leader>_140`) is not a full-bleed circle.** Since 1.5
+  the leader-select grid (`core/ui-next/screens/create-game/leader-select-button.js`) stacks
+  three layers the size of the button: the `leader_box` square, the `PORTRAIT_MASK` icon at
+  full button size (`.leader-button-portrait`, 7.78rem), and the XP ring (`LeaderXpRing`), whose
+  `leaderselect_xp_well` background is the dark frame and whose bubble shows the level. Shipped
+  portraits leave a transparent margin for that ring: the face disc is roughly 71-74% of the
+  canvas (measured off a screenshot; the shipped textures are Oodle-compressed and cannot be
+  read). A disc cropped edge to edge draws about a third larger than its neighbours and covers
+  the box.
+  The ring only renders when `level > 0`, and `level` comes from
+  `Online.Metaprogression.getLegendPathsData()` (`LEGEND_PATH_<LEADER>`, 2K's online
+  progression), which a mod cannot add to. A modded leader therefore never gets the frame or the
+  level bubble. Do not fake the legend data: the same call feeds the profile page, legends
+  manager, main menu and victories screens. Bake the frame into the image instead. Recipe used
+  for Porsenna and Lorenzo, starting from the full-bleed 256 circle crop:
+
+  ```bash
+  magick icons/lp_circ_<leader>_256.png -resize 100x100 \
+    \( -size 100x100 xc:none -fill white -draw "circle 49.5,49.5 49.5,0" \) -compose DstIn -composite /tmp/disc.png
+  magick -size 140x140 xc:none -fill "rgba(24,26,32,1)" -draw "circle 69.5,69.5 69.5,17" \
+    -stroke "rgba(92,96,108,0.9)" -strokewidth 1 -fill none -draw "circle 69.5,69.5 69.5,17.5" \
+    /tmp/disc.png -gravity center -compose over -composite -depth 8 PNG32:icons/lp_circ_<leader>_140.png
+  ```
+
+  Only the 140 file gets this; the 256/128/64 `CIRCLE_MASK` crops stay full-bleed (other screens
+  use them, and nothing there has shown a problem). Compare the result in the grid next to a
+  shipped leader such as Pachacuti.
 - **A mod cannot ship a leader 3D model, and `Leaders.BasePersonaType` does not substitute for
   one.** `core/ui/shell/leader-select/leader-select-model-manager.js` asks the engine for
   `<LEADER_TYPE>_GAME_ASSET` and falls through to `LEADER_FALLBACK_GAME_ASSET` - a faceless

@@ -519,10 +519,15 @@ Florence. Pickable at an Antiquity or Modern start as "Tuscany (Time-Tested)".
   style changes here and the age-transition screens assign `style.backgroundImage` directly. The
   same file, with a different CONFIG block, is in all three civ mods and they share one set of
   hooks. `plans/byzantium-art.md` §4 has the detail.
-- **The leaders borrow a persona.** A mod cannot add a leader model: the shell asks the engine for
-  `<LEADER_TYPE>_GAME_ASSET` and falls back to a generic one. `Leaders.BasePersonaType` points
-  Porsenna at Xerxes and Lorenzo at Machiavelli, which is the mechanism Firaxis's own alternate
-  personas use; whether it carries the model through is the first thing to check in game.
+- **The leaders borrow a model.** A mod cannot add a leader model: the shell asks the engine for
+  `<LEADER_TYPE>_GAME_ASSET`, and `Leaders.BasePersonaType` does not change that lookup. The UI
+  script rewrites the name instead, so Porsenna is shown with Augustus's model and Lorenzo with
+  Machiavelli's. Since Civilization VII 1.5 leader select switches models with `setAssetName`,
+  which the script also rewrites; without that, picking either leader crashed the game.
+- **Leader-select portraits carry their own frame.** Shipped leaders get a dark frame and a level
+  badge from 2K's online legend progression, which a mod cannot add to. `lp_circ_<leader>_140.png`
+  is therefore drawn smaller than the button with the frame painted in, so it lines up with its
+  neighbours.
 - Design sheets, the running work log, and the art brief with a generation prompt for every PNG:
   [`plans/etruscans.md`](plans/etruscans.md), [`plans/tuscany.md`](plans/tuscany.md),
   [`plans/etruscans-tuscany-log.md`](plans/etruscans-tuscany-log.md),
