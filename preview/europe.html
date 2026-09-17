@@ -361,7 +361,22 @@ const GEO = {
         { name: "Peloponnese", core: 0.0, fringe: 1.0, pts: [[22.2, 37.6], [22.5, 37.2]] },
         { name: "Balkan Mountains", core: 0.5, fringe: 1.2, pts: [[22.5, 43.0], [24.0, 42.75], [25.5, 42.75], [27.0, 42.9]] },
         { name: "Rhodope", core: 0.6, fringe: 1.2, pts: [[23.0, 42.1], [24.5, 41.7], [25.8, 41.6]] },
-        { name: "Carpathians", core: 0.55, fringe: 1.4, pts: [[17.0, 49.4], [19.0, 49.4], [20.5, 49.2], [22.0, 49.0], [23.5, 48.4], [24.5, 47.7], [25.5, 47.0], [26.0, 46.2], [25.8, 45.5], [24.8, 45.4], [23.5, 45.4], [22.5, 45.4]] },
+        // The Carpathians in segments rather than one uniform line, as on the Large maps: high in a
+        // couple of places and moderate everywhere else, which is what the range is - crossed all
+        // along by low passes (the Moravian Gate at 310m, Dukla at 500m, Uzhok, Prislop).
+        //
+        // The cores here are lower than the Large maps' (0.35/0.4/0.55 against 0.3/0.35/0.8),
+        // because this map has no rangeScale: authored values are taken literally on a 78-column
+        // grid where one hex is a full degree of longitude, so a core of 0.8 would render the
+        // Fagaras as a thicker wall than the single line it replaced, not a thinner one. Capping
+        // every segment at the old 0.55 keeps the high places high and thins the rest.
+        { name: "Carpathians (Beskids)", core: 0.35, fringe: 1.1, pts: [[17.0, 49.4], [19.0, 49.4], [20.5, 49.2], [22.0, 49.0], [23.5, 48.4]] },
+        { name: "Carpathians (eastern)", core: 0.4, fringe: 1.15, pts: [[23.5, 48.4], [24.5, 47.7], [25.5, 47.0], [26.0, 46.2], [25.8, 45.5]] },
+        // The two genuinely high places. Southern Carpathians: Fagaras (Moldoveanu 2544m), Parang
+        // and Retezat, an unbroken 2000m+ wall above the Wallachian plain. Rodna and Chornohora:
+        // Pietrosul 2303m and Hoverla 2061m, the roof of the eastern arc.
+        { name: "Carpathians (southern - Fagaras and Retezat)", core: 0.55, fringe: 1.5, pts: [[25.8, 45.5], [24.8, 45.4], [23.5, 45.4], [22.5, 45.4]] },
+        { name: "Rodna and Chornohora", core: 0.55, fringe: 1.3, pts: [[24.5, 48.15], [25.0, 47.6]] },
         { name: "Tatra", core: 0.85, fringe: 1.5, pts: [[19.5, 49.2], [20.3, 49.2]] },
         { name: "Sudetes", core: 0.2, fringe: 1.1, pts: [[12.5, 50.4], [13.5, 50.5], [15.0, 50.7], [16.5, 50.4]] },
         { name: "Bohemian Forest", core: 0.0, fringe: 1.0, pts: [[12.8, 49.0], [13.8, 48.8]] },
@@ -498,8 +513,19 @@ const GEO = {
     flatAreas: [
         { name: "Po valley", prob: 1.0, pts: [[7.6, 44.9], [7.7, 45.6], [9.2, 46.0], [11.2, 46.05],
             [12.5, 45.85], [12.6, 45.2], [12.35, 44.75], [11.2, 44.62], [9.6, 44.68], [8.2, 44.72]] },
-        { name: "Latium and the Tuscan Maremma", prob: 0.75, pts: [[10.4, 41.2], [13.3, 41.2], [13.3, 43.4], [10.4, 43.4]] },
-        { name: "Campania and the Tavoliere", prob: 0.7, pts: [[13.8, 40.2], [17.6, 40.2], [17.6, 41.9], [13.8, 41.9]] }
+        // The coastal plains, drawn as coastal plains. These were two rectangles spanning the whole
+        // width of the peninsula, so they flattened the Apennine interior along with the shore.
+        // Now each is a ribbon along the sea it belongs to and the spine keeps its hills; Rome,
+        // Populonia, Naples and Taranto all still sit on flat ground.
+        { name: "Tyrrhenian plains (Maremma, Latium, Campania)", prob: 0.8, pts: [
+            [10.45, 42.95], [10.80, 42.90], [11.10, 42.70], [11.20, 42.40], [11.80, 42.05], [12.20, 41.70],
+            [12.60, 41.42], [13.25, 41.25], [13.60, 41.18], [14.25, 40.80], [14.80, 40.62], [15.05, 40.38],
+            [15.25, 40.55], [14.90, 40.92], [14.35, 41.22], [13.80, 41.48], [13.15, 41.68], [12.85, 41.98],
+            [12.35, 42.20], [11.75, 42.45], [11.55, 42.78], [11.15, 43.00]] },
+        { name: "Tavoliere (the Foggia plain)", prob: 0.75, pts: [
+            [15.25, 41.85], [16.05, 41.95], [16.20, 41.35], [15.70, 41.15], [15.30, 41.35]] },
+        { name: "Apulia, the Murge and the Salento", prob: 0.65, pts: [
+            [16.30, 41.30], [17.30, 41.15], [18.50, 40.15], [18.00, 39.85], [17.20, 40.40], [16.50, 40.55], [16.20, 40.95]] }
     ],
 
     // Hills and mountains flattened outright (after every other terrain step): the Asian shore of the

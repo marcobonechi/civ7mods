@@ -209,8 +209,21 @@ export const GEO = {
         // peninsula hilly and short of food. These are the real lowlands, flattened back.
         { name: "Po valley", prob: 1.0, pts: [[7.6, 44.9], [7.7, 45.6], [9.2, 46.0], [11.2, 46.05],
             [12.5, 45.85], [12.6, 45.2], [12.35, 44.75], [11.2, 44.62], [9.6, 44.68], [8.2, 44.72]] },
-        { name: "Latium and the Tuscan Maremma", prob: 0.75, pts: [[10.4, 41.2], [13.3, 41.2], [13.3, 43.4], [10.4, 43.4]] },
-        { name: "Campania and the Tavoliere", prob: 0.7, pts: [[13.8, 40.2], [17.6, 40.2], [17.6, 41.9], [13.8, 41.9]] },
+        // The coastal plains, drawn as coastal plains. These were two rectangles spanning the whole
+        // width of the peninsula, so at 0.70-0.75 they flattened the Apennine interior along with
+        // the shore: measured by distance from the crest, the ring 0.8-1.6 hexes out came back 69%
+        // flat when the range's own gradient wanted about 64% hills there. Now each one is a ribbon
+        // along the sea it belongs to, and the spine keeps the hills the fringe gives it. Rome,
+        // Populonia, Naples and Taranto all still sit on flat ground.
+        { name: "Tyrrhenian plains (Maremma, Latium, Campania)", prob: 0.8, pts: [
+            [10.45, 42.95], [10.80, 42.90], [11.10, 42.70], [11.20, 42.40], [11.80, 42.05], [12.20, 41.70],
+            [12.60, 41.42], [13.25, 41.25], [13.60, 41.18], [14.25, 40.80], [14.80, 40.62], [15.05, 40.38],
+            [15.25, 40.55], [14.90, 40.92], [14.35, 41.22], [13.80, 41.48], [13.15, 41.68], [12.85, 41.98],
+            [12.35, 42.20], [11.75, 42.45], [11.55, 42.78], [11.15, 43.00]] },
+        { name: "Tavoliere (the Foggia plain)", prob: 0.75, pts: [
+            [15.25, 41.85], [16.05, 41.95], [16.20, 41.35], [15.70, 41.15], [15.30, 41.35]] },
+        { name: "Apulia, the Murge and the Salento", prob: 0.65, pts: [
+            [16.30, 41.30], [17.30, 41.15], [18.50, 40.15], [18.00, 39.85], [17.20, 40.40], [16.50, 40.55], [16.20, 40.95]] },
         { name: "Maghreb (Tell Atlas coast)", prob: 0.45, pts: [
             [-9.8, 33.2], [-5.5, 34.6], [-1.0, 35.2], [3.5, 36.0], [8.0, 36.3], [11.5, 33.5], [11.5, 38.0], [-9.8, 38.0]] },
         { name: "Greece", prob: 0.65, pts: [[19.3, 35.5], [27.5, 35.5], [27.5, 41.8], [19.3, 41.8]] },
@@ -745,13 +758,33 @@ export const GEO = {
         { name: "Massif Central", core: 0.3, fringe: 1.4, pts: [[2.0, 44.5], [3.0, 45.3], [4.0, 45.5]] },
         { name: "Vosges-Jura-Black Forest", core: 0.2, fringe: 1.1, pts: [[6.3, 46.7], [7.0, 48.2], [8.0, 48.5], [9.5, 48.5]] },
         { name: "Ardennes", core: 0.0, fringe: 0.9, pts: [[4.5, 50.0], [6.0, 50.2]] },
-        { name: "Apennines", core: 0.55, fringe: 1.05, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
+        // The spine of Italy, as a wide band of hills rather than a ridge on a plain: at fringe
+        // 1.05 the belt from Liguria to Calabria measured half flat, which is not what the
+        // peninsula looks like. 1.65 (2.4 hexes after rangeScale, ~130km) carries hills most of
+        // the way to both coasts, dense along the crest and thinning outwards, and the coastal
+        // plains in flatAreas - the Maremma, Latium, Campania, the Tavoliere - cut back in from
+        // the sea. The core stays 0.55, and hillAreas still turns central and southern Italy's
+        // mountains into hills, so only the northern Apennines keep a rock crest.
+        { name: "Apennines", core: 0.55, fringe: 1.65, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
         { name: "Dinaric Alps", core: 0.7, fringe: 1.5, pts: [[14.0, 45.8], [15.3, 45.0], [16.5, 44.2], [17.5, 43.6], [18.6, 43.0], [19.5, 42.5], [20.2, 42.0]] },
         { name: "Pindus", core: 0.6, fringe: 1.3, pts: [[20.4, 41.5], [20.8, 40.5], [21.2, 39.8], [21.6, 39.0], [22.2, 38.6]] },
         { name: "Peloponnese", core: 0.0, fringe: 1.0, pts: [[22.2, 37.6], [22.5, 37.2]] },
         { name: "Balkan Mountains", core: 0.5, fringe: 1.2, pts: [[22.5, 43.0], [24.0, 42.75], [25.5, 42.75], [27.0, 42.9]] },
         { name: "Rhodope", core: 0.6, fringe: 1.2, pts: [[23.0, 42.1], [24.5, 41.7], [25.8, 41.6]] },
-        { name: "Carpathians", core: 0.55, fringe: 1.4, pts: [[17.0, 49.4], [19.0, 49.4], [20.5, 49.2], [22.0, 49.0], [23.5, 48.4], [24.5, 47.7], [25.5, 47.0], [26.0, 46.2], [25.8, 45.5], [24.8, 45.4], [23.5, 45.4], [22.5, 45.4]] },
+        // The Carpathians in three segments instead of one. As a single line at core 0.55 /
+        // fringe 1.4 the whole arc came out 68% mountain in the west and 57% in the south - a
+        // uniform wall, which is not the range: the Carpathians are high in a couple of places
+        // and moderate everywhere else, with low crossings all along them (the Moravian Gate at
+        // 310m, Dukla at 500m, Uzhok, Prislop). The Beskids and the Eastern Carpathians drop to
+        // core 0.3-0.35, so they stay a ridge but a crossable one; the high knots keep their
+        // height as their own entries below.
+        { name: "Carpathians (Beskids)", core: 0.3, fringe: 1.1, pts: [[17.0, 49.4], [19.0, 49.4], [20.5, 49.2], [22.0, 49.0], [23.5, 48.4]] },
+        { name: "Carpathians (eastern)", core: 0.35, fringe: 1.15, pts: [[23.5, 48.4], [24.5, 47.7], [25.5, 47.0], [26.0, 46.2], [25.8, 45.5]] },
+        // The two genuinely high places. Southern Carpathians: Fagaras (Moldoveanu 2544m),
+        // Parang and Retezat, an unbroken 2000m+ wall above the Wallachian plain. Rodna and
+        // Chornohora: Pietrosul 2303m and Hoverla 2061m, the roof of the eastern arc.
+        { name: "Carpathians (southern - Fagaras and Retezat)", core: 0.8, fringe: 1.6, pts: [[25.8, 45.5], [24.8, 45.4], [23.5, 45.4], [22.5, 45.4]] },
+        { name: "Rodna and Chornohora", core: 0.75, fringe: 1.4, pts: [[24.5, 48.15], [25.0, 47.6]] },
         { name: "Tatra", core: 0.85, fringe: 1.5, pts: [[19.5, 49.2], [20.3, 49.2]] },
         { name: "Sudetes", core: 0.2, fringe: 1.1, pts: [[12.5, 50.4], [13.5, 50.5], [15.0, 50.7], [16.5, 50.4]] },
         { name: "Bohemian Forest", core: 0.0, fringe: 1.0, pts: [[12.8, 49.0], [13.8, 48.8]] },
