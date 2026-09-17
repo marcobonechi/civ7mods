@@ -793,6 +793,51 @@ function nameRivers(plan) {
     for (const n of plan.names) TerrainBuilder.setCustomRiverName(n.x, n.y, n.tag);
 }
 
+// paintRivers() needs calls Civilization VII added in 1.5 for its Earth map. Detect the calls rather
+// than a version number: an older game lacks them, and a later patch that renames one also lands here.
+function canPaintRivers() {
+    return typeof TerrainBuilder.setRiverInfo === "function" &&
+        typeof TerrainBuilder.finalizeRivers === "function" &&
+        typeof TerrainBuilder.setElevation === "function" &&
+        typeof RiverTypes !== "undefined" && typeof DirectionTypes !== "undefined";
+}
+
+// Rivers for games before 1.5 (and the fallback if painting fails): the drawn courses are drenched in
+// rainfall while the engine models rivers, so its biggest flows follow them. Less exact - the engine
+// still decides which rivers are navigable - but it only uses calls every version has.
+const LEGACY_COURSE_RAIN = 2500;
+const LEGACY_HEAD_RAIN = 3500;
+
+function paintRiversLegacy(grid) {
+    const { W, H } = grid;
+    const touchesWater = (x, y) => hexNeighbors(x, y).some(([a, b]) =>
+        a >= 0 && b >= 0 && a < W && b < H && GameplayMap.isWater(a, b));
+    for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+            if (!GameplayMap.isWater(x, y)) TerrainBuilder.setRainfall(x, y, 0);
+        }
+    }
+    for (const chain of grid.riverChains || []) {
+        const tiles = chain.tiles, n = tiles.length;
+        if (!n) continue;
+        const firstIsMouth = touchesWater(tiles[0][0], tiles[0][1]);
+        const lastIsMouth = touchesWater(tiles[n - 1][0], tiles[n - 1][1]);
+        const headLen = Math.max(2, Math.floor(n / 4));
+        const strength = chain.strength === undefined ? 1 : chain.strength;
+        for (let k = 0; k < n; k++) {
+            const [x, y] = tiles[k];
+            if (GameplayMap.isWater(x, y)) continue;
+            let rain = LEGACY_COURSE_RAIN * strength;
+            if (firstIsMouth && !lastIsMouth && k >= n - headLen) rain = LEGACY_HEAD_RAIN * strength;
+            if (lastIsMouth && !firstIsMouth && k < headLen) rain = LEGACY_HEAD_RAIN * strength;
+            TerrainBuilder.setRainfall(x, y, Math.round(rain));
+        }
+    }
+    TerrainBuilder.modelRivers(5, 30, globals.g_NavigableRiverTerrain);
+    applyRainfall(grid);   // back to the real rainfall for biomes and features
+    console.log("Europe large map: rivers modelled by the engine along the drawn courses (pre-1.5 method)");
+}
+
 function reportRivers(grid) {
     let nav = 0, minor = 0, none = 0;
     const perRiver = [];
@@ -858,9 +903,21 @@ function generateMap() {
     TerrainBuilder.buildElevation();
     applyRainfall(grid);
 
-    const rivers = paintRivers(grid, rnd, startSites);
+    let rivers = null;
+    if (canPaintRivers()) {
+        try {
+            rivers = paintRivers(grid, rnd, startSites);
+        } catch (e) {
+            // A later patch could keep these calls but change them; fall back instead of aborting
+            // map generation. modelRivers() overwrites whatever was painted.
+            console.log("Europe large map: painting rivers failed (" + e + "), using the pre-1.5 rivers");
+        }
+    } else {
+        console.log("Europe large map: no TerrainBuilder.setRiverInfo in this game (before 1.5), using the pre-1.5 rivers");
+    }
+    if (!rivers) paintRiversLegacy(grid);
     TerrainBuilder.validateAndFixTerrain();
-    nameRivers(rivers);
+    if (rivers && typeof TerrainBuilder.setCustomRiverName === "function") nameRivers(rivers);
     reportRivers(grid);
     dumpRivers(iWidth, iHeight);
 

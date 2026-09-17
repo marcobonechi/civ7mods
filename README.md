@@ -69,6 +69,18 @@ inside its own install, so the install scripts mirror each one into `<game>/DLC/
 the one thing installed outside the Mods folder; set `CIV7_GAME_ROOT` if the game is not in a
 default Steam library.
 
+### Game version
+
+The map mod is written for **Civilization VII 1.5**, which added the calls it uses to draw every
+river exactly where the geography file puts it. On an older game it does not crash: it checks for
+those calls (`canPaintRivers()` in `maps/europe-large-core.js`) and, when they are missing or fail,
+falls back to the pre-1.5 rivers, where the engine models rivers along the drawn courses and picks
+the navigable ones itself. Everything else in the map works the same on either version. For a game
+older than 1.5 the last release built for it is [v6](https://github.com/marcobonechi/civ7mods/releases/tag/v6).
+
+The civilization mods need no particular version. Their true starts on the base game's Earth map
+(1.5) are a replacement for that map's script, which an older game never loads.
+
 ### Removing the mods
 
 `uninstall.ps1` (Windows) removes every mod folder this repository installs, together with the art
@@ -85,15 +97,15 @@ All three offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
-| Europe, Mediterranean & Sahel (Large, Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
-| Europe, Mediterranean & Sahel (Large, One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
+| Europe & Mediterranean (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
+| Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
 | Europe & Mediterranean (Variant) | identical geography, separate copy to reshape freely | Africa, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
 
 `maps/europe-map.js` and `maps/europe-geo.js` (the original smaller-extent map on the base game's
 sizes) are still in the repo but are no longer registered in `config/config.xml`, so they do not
 appear in the map picker.
 
-The two Large variants share all their geography and generation code (`maps/europe-large-core.js`);
+The Distant Lands and One Landmass maps share all their geography and generation code (`maps/europe-large-core.js`);
 they differ only in `distantLandsAnchors`. Pick **Distant Lands** for the full Exploration Age —
 Africa sits across the Mediterranean, so treasure fleets and the distant-lands legacy paths work.
 Pick **One Landmass** if you would rather reach every civilization overland from turn one; the

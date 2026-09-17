@@ -8,40 +8,40 @@
             <Text>Eine Karte von Europa, dem Mittelmeerraum und Nordafrika, vom Ural bis nach Island und von Marokko bis zum Sinai. Historische Startpositionen für Zivilisationen aus dieser Region; andere Zivilisationen starten an ausgewählten Orten.[n]Kompatibel mit Standard-Kartengrößen.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="de_DE">
-            <Text>Europa, Mittelmeer &amp; Sahel (Groß, Ferne Länder)</Text>
+            <Text>Europa &amp; Mittelmeer (Ferne Länder)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="de_DE">
-            <Text>Eine größere Umsetzung von Europa und dem Mittelmeer, die nach Süden bis in den Sahel, nach Äthiopien und Arabien reicht. Mehr Geländefelder pro Land (Italien und Sizilien bieten Platz für mehrere Städte), ein raueres Russland, komprimierte Arktis und Sahara sowie historische Starts für Aksum und Songhai.[n][n]Afrika zählt über das Mittelmeer als Ferne Länder, sodass die Schatzflotten und Vermächtnispfade des Zeitalters der Erkundung hier funktionieren.[n]Drei Größen: 112x98, 128x112 und 144x126.</Text>
+            <Text>Europa, der Mittelmeerraum und Nordafrika bis zum Sahel, mit historischen Startpositionen und Flüssen dort, wo sie wirklich fließen. Afrika, Skandinavien und Island sind Ferne Länder.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="de_DE">
-            <Text>Europa, Mittelmeer &amp; Sahel (Groß, Eine Landmasse)</Text>
+            <Text>Europa &amp; Mittelmeer (Eine Landmasse)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="de_DE">
-            <Text>Dieselbe Geografie wie Europa, Mittelmeer &amp; Sahel (Groß), jedoch ohne Ferne Länder: Afrika und Eurasien teilen sich eine zusammenhängende Landmasse, sodass jede Zivilisation vom ersten Zug an über Land erreicht und kontaktiert werden kann.[n][n]Kompromiss: Da im Zeitalter der Erkundung sowohl der wirtschaftliche (Schatzflotte) als auch der militärische Vermächtnispfad nur in Fernen Ländern gewertet werden, kann keiner von beiden auf dieser Version abgeschlossen werden. Wähle die normale Große Karte, wenn du diese Pfade nutzen möchtest.[n]Drei Größen: 112x98, 128x112 und 144x126.</Text>
+            <Text>Dieselbe Karte ohne Ferne Länder: Jede Zivilisation ist über Land erreichbar. Die Schatz- und Militär-Vermächtnispfade des Zeitalters der Erkundung bringen hier keine Punkte.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="de_DE">
             <Text>Europa &amp; Mittelmeer (Variante)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="de_DE">
-            <Text>Eine separate Kopie der großen Geografie von Europa, Mittelmeer und Sahel, die unabhängig angepasst werden kann, ohne das Original zu verändern. Beginnt identisch; bearbeite maps/europe-alt-geo.js, um sie anzupassen.[n]Drei Größen: 112x98, 128x112 und 144x126.</Text>
+            <Text>Eine separate Kopie der Karte, die sich im Editor umgestalten lässt, ohne die anderen beiden zu verändern.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="de_DE">
             <Text>Europa Groß 112x98</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" Language="de_DE">
-            <Text>Europa, Mittelmeer und Sahel auf einem 112x98-Raster, standardmäßig 10 Spieler.</Text>
+            <Text>112x98-Raster, standardmäßig 12 Spieler.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Language="de_DE">
             <Text>Europa Groß 128x112</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" Language="de_DE">
-            <Text>Europa, Mittelmeer und Sahel auf einem 128x112-Raster, standardmäßig 12 Spieler.</Text>
+            <Text>128x112-Raster, standardmäßig 14 Spieler.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Language="de_DE">
             <Text>Europa Groß 144x126</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" Language="de_DE">
-            <Text>Europa, Mittelmeer und Sahel auf einem 144x126-Raster, standardmäßig 12 Spieler. Längere Rundenzeiten auf älteren Systemen.</Text>
+            <Text>144x126-Raster, standardmäßig 15 Spieler. Lange Züge auf älteren Rechnern.</Text>
         </Replace>
     </LocalizedText>
 </Database>

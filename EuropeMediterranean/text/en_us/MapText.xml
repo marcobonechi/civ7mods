@@ -8,40 +8,40 @@
             <Text>A map of Europe, the Mediterranean basin and North Africa, from the Urals to Iceland and from Morocco to the Sinai. Historical start locations for civilizations from the region; other civilizations start at curated sites.[n]Works with the standard map sizes.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME">
-            <Text>Europe, Mediterranean &amp; Sahel (Large, Distant Lands)</Text>
+            <Text>Europe &amp; Mediterranean (Distant Lands)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION">
-            <Text>A larger take on Europe and the Mediterranean that reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily have room for several cities), a harsher Russia, a compressed Arctic and Sahara, and historical starts for Aksum and Songhai as well.[n][n]Africa is Distant Lands across the Mediterranean, so Exploration Age treasure fleets and the distant-lands legacy paths work here.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+            <Text>Europe, the Mediterranean and North Africa down to the Sahel, with historical starts and rivers where they really run. Africa, Scandinavia and Iceland are Distant Lands.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME">
-            <Text>Europe, Mediterranean &amp; Sahel (Large, One Landmass)</Text>
+            <Text>Europe &amp; Mediterranean (One Landmass)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION">
-            <Text>The same geography as Europe, Mediterranean &amp; Sahel (Large), but with no Distant Lands: Africa and Eurasia share one landmass region, so every civilization can be reached and contacted overland from the first turn.[n][n]Trade-off: because the Exploration Age Economic (treasure fleet) and Military legacy paths both score only in Distant Lands, neither can be completed on this version. Pick the standard Large map if you want those.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+            <Text>The same map with no Distant Lands: every civilization is reachable overland. The Exploration Age treasure and military legacy paths cannot score here.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_NAME">
             <Text>Europe &amp; Mediterranean (Variant)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION">
-            <Text>A separate copy of the large Europe, Mediterranean and Sahel geography, kept apart so it can be reshaped without changing the original. It starts out identical; edit maps/europe-alt-geo.js to take it somewhere else.[n]Three sizes: 112x98, 128x112 and 144x126.</Text>
+            <Text>A separate copy of the map, to reshape in the editor without touching the other two.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION">
-            <Text>Europe, Mediterranean and Sahel on a 112x98 grid, 10 players by default.</Text>
+            <Text>112x98 grid, 12 players by default.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME">
             <Text>Europe Large 128x112</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION">
-            <Text>Europe, Mediterranean and Sahel on a 128x112 grid, 12 players by default.</Text>
+            <Text>128x112 grid, 14 players by default.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME">
             <Text>Europe Large 144x126</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION">
-            <Text>Europe, Mediterranean and Sahel on a 144x126 grid, 12 players by default. Long turns on older machines.</Text>
+            <Text>144x126 grid, 15 players by default. Slow turns on older machines.</Text>
         </Replace>
     </EnglishText>
 </Database>
