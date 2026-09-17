@@ -479,13 +479,16 @@ civ7mods: portrait UNIT_LIBURNA -> UNIT_GALLEY
 That single habit separated "my fix is wrong" from "my fix never ran", which had been
 indistinguishable for three days.
 
-**Leaders are not solved.** The same trick — proxy `WorldUI.createModelGroup`, rewrite the asset
-name into `addModel` — makes leader-select accept the borrowed model (`addModel` returns non-null,
-confirmed by logging the return), and the figure still does not appear on the pedestal. The asset
-name is valid: every `LEADER_*_GAME_ASSET` can be checked against the 28,000-name
-`remap/world-ui-asset-names.js` shipped with the Custom Civ Art Fixes mod, a useful oracle. So the
-swap is accepted and something later hides it; the next thing to look at is
-`playLeaderAnimation("IDLE_CharSelect")`, which a borrowed asset may not have.
+**Leaders work, with one more wrapper since 1.5.** The same trick — proxy
+`WorldUI.createModelGroup`, rewrite the asset name into `addModel` / `addModelAtPos` — gets the
+borrowed model accepted, but the 1.5 create-game screens place the leader once and switch it with
+`model.setAssetName(...)` (`core/ui-next/components/scene-3d.js`). Wrap `setAssetName` on every
+model the group returns as well. With all three covered, Leader Select shows Augustus for Porsenna
+and Machiavelli for Lorenzo (seen in game 2026-09-16, Civilization VII 1.5.0); without the
+`setAssetName` wrapper the unknown `LEADER_<X>_GAME_ASSET` reaches the engine and the game crashes
+(SIGBUS on a `MainWorker` thread, the fault address in the GPU carveout range) a moment after the
+leader is picked. To check an asset name before borrowing it, the 28,000-name
+`remap/world-ui-asset-names.js` shipped with the Custom Civ Art Fixes mod lists every valid one.
 
 ## 5. Map integration
 
