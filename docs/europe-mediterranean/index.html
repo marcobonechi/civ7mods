@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Europe, Mediterranean, North Africa - a map mod for Civilization VII</title>
-<meta name="description" content="By genginsbon. Map scripts for Civilization VII covering Europe, the Mediterranean and Africa above the Equator, with historical start locations. Screenshots, map types, install steps.">
+<meta name="description" content="By genginsbon. Map scripts for Civilization VII 1.5 covering Europe, the Mediterranean and Africa above the Equator, with true starts for every civilization of every age and rivers painted where they really run. Screenshots, map types, install steps.">
 <style>
   :root { --bg:#0e1420; --panel:#162033; --text:#e6ebf2; --muted:#9fb0c7; --accent:#ffb454; --line:#26334a; }
   * { box-sizing:border-box; }
@@ -48,6 +48,7 @@
     <a class="btn" href="https://github.com/marcobonechi/civ7mods">Get it on GitHub</a>
     <a class="btn alt" href="../">All mods by genginsbon</a>
     <a class="btn alt" href="#install">Install</a>
+    <a class="btn alt" href="#compatibility">Game version</a>
     <a class="btn alt" href="#screenshots">Screenshots</a>
   </div>
 </header>
@@ -60,21 +61,42 @@
   <section id="about">
     <h2>What it is</h2>
     <p>The mod adds map types that reproduce the real geography from the Urals to Iceland and from the Gulf of Guinea to the Persian Gulf. Coastlines, seas, straits, lakes, mountain ranges, biomes, rivers and volcanoes are drawn as longitude and latitude data and projected onto the hex grid when a game starts, so the same geography works at every supported grid size. The Arctic and the Sahara are compressed vertically to give Europe and the Mediterranean the room they deserve, and the Sahel, Ethiopia and Arabia are still there for Aksum, Songhai and the Middle East.</p>
+    <p>All three map types come in three sizes of their own: <b>112x98</b> (12 players by default), <b>128x112</b> (14) and <b>144x126</b> (15).</p>
     <div class="cards">
       <div class="card">
-        <h3>Europe, Mediterranean, North Africa</h3>
-        <p>Urals to Iceland, Morocco to the Sinai. Works with the standard map sizes (Tiny to Huge).</p>
-      </div>
-      <div class="card">
         <h3>Europe &amp; Mediterranean (Distant Lands)</h3>
-        <p>Reaches south to the Sahel, Ethiopia and Arabia. More hexes per country (Italy and Sicily fit several cities), a harsher Russia, historical starts for Aksum and Songhai. Africa counts as Distant Lands across the Mediterranean, so the Exploration Age treasure fleets and legacy paths work.</p>
-        <p>Three sizes: 112x98, 128x112 and 144x126.</p>
+        <p>Europe, the Mediterranean and North Africa down to the Sahel, Ethiopia and Arabia. Africa, Scandinavia and Iceland are Distant Lands across the water, so the Exploration Age treasure fleets and distant-lands legacy paths work as the game intends.</p>
       </div>
       <div class="card">
         <h3>Europe &amp; Mediterranean (One Landmass)</h3>
-        <p>The same geography with no Distant Lands: Africa and Eurasia share one landmass, so every civilization can be reached overland from turn one. The distant-lands legacy paths cannot be completed on this version.</p>
+        <p>The same map with no Distant Lands: every civilization can be reached overland from turn one. The Exploration Age treasure and military legacy paths cannot score here, because both count only in Distant Lands.</p>
+      </div>
+      <div class="card">
+        <h3>Europe &amp; Mediterranean (Variant)</h3>
+        <p>A separate copy of the map, identical to start with, kept apart so it can be reshaped in the editor without touching the other two.</p>
       </div>
     </div>
+  </section>
+
+  <section id="rivers">
+    <h2>Rivers</h2>
+    <p>On Civilization VII 1.5 every river is painted hex by hex, the way the game's own Earth map draws its rivers, instead of being left to the random river generator. The great rivers run where they really run and are navigable from their mouths: the Nile and its Rosetta branch, the Niger, Danube, Rhine, Seine, Thames, Rhone, Vistula, Oder, Dnieper, Dniester, Daugava, Volga, Tagus, Ebro, Guadalquivir, Euphrates and Tigris, among others. Rivers that were never great waterways stay minor: the Tiber, Garonne and Don, and the Po is navigable only near its mouth.</p>
+    <ul>
+      <li><b>No two games alike.</b> A course bends through a neighbouring hex here and there, the navigable stretch can end a hex or two short of the source, and short minor headwaters sometimes climb beyond it.</li>
+      <li><b>Minor rivers</b> are generated from wet high ground and run downhill to the sea or into a bigger river. There are fewer across the Ukrainian steppe, and none in the Egyptian and Nubian desert, where the Nile has no tributaries.</li>
+      <li><b>Gentle valleys.</b> Rivers sit at the level of the land around them rather than in gorges; the ground is lowered only where a river would otherwise run uphill.</li>
+      <li>Rivers survive saving and reloading, and ships sail up the navigable ones.</li>
+    </ul>
+  </section>
+
+  <section id="geography">
+    <h2>Recent geography</h2>
+    <ul>
+      <li><b>North Cape passage.</b> A coastal channel along Norway's Arctic coast, so ships can sail from the Norwegian Sea to the Barents and White Seas and on through the Karelian passage to the Gulf of Finland.</li>
+      <li><b>The Alps</b> are a clean line two mountain rows deep through Switzerland, with the Simplon-Gotthard crossing still open between Milan and the north.</li>
+      <li><b>The Nile valley</b> is a green ribbon about one hex either side of the river, and the delta a triangle from Memphis to the coast, instead of a broad green band through the desert. The navigable Nile and its floodplains keep Egypt well fed.</li>
+      <li><b>Ukraine</b> keeps the Dnieper, Dniester and Don but has fewer small streams.</li>
+    </ul>
   </section>
 
   <section id="screenshots">
@@ -93,24 +115,22 @@
 
   <section id="starts">
     <h2>Historical start locations</h2>
-    <p>Civilizations from the region begin where they did in history. Everyone else is placed on a curated site (Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh, Budapest, Dublin, Lisbon, Seville, Damascus, Belgrade, Tbilisi and more), as far from the other players as possible.</p>
+    <p>Every civilization of every age has a true start: pick the one that begins where you want your empire to end up. Only one age is ever live, so the ages share their sites on purpose. Civilizations with no historical business in Europe are placed by terrain and matched to what their abilities care about: Inca and Nepal in the Caucasus (mountain settlements), Hawaii on Sicily (island settlements), Buganda in the Ethiopian highlands (lakes). Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more.</p>
     <table>
-      <tr><th>Civilization</th><th>Start</th><th>Civilization</th><th>Start</th></tr>
-      <tr><td>Rome</td><td>Rome</td><td>Ottomans</td><td>Ankara</td></tr>
-      <tr><td>Etruscans</td><td>Populonia</td><td>Iceland</td><td>Reykjavik</td></tr>
-      <tr><td>Tuscany</td><td>Florence</td><td>Qajar</td><td>Tehran</td></tr>
-      <tr><td>Byzantium</td><td>Constantinople</td><td>Mongolia</td><td>Sarai, lower Volga</td></tr>
-      <tr><td>Greece</td><td>Thermaic Gulf</td><td>Songhai</td><td>Gao (large maps)</td></tr>
-      <tr><td>Egypt</td><td>Memphis</td><td>Pirate Republic</td><td>Algiers</td></tr>
-      <tr><td>Persia</td><td>Susa</td><td>French Empire</td><td>Paris</td></tr>
-      <tr><td>Carthage</td><td>Carthage</td><td>Prussia</td><td>Berlin</td></tr>
-      <tr><td>Assyria</td><td>Nineveh</td><td>Russia</td><td>Moscow</td></tr>
-      <tr><td>Aksum</td><td>Axum (large maps)</td><td>Great Britain</td><td>London</td></tr>
-      <tr><td>Bulgaria</td><td>Pliska</td><td>America</td><td>Dublin</td></tr>
-      <tr><td>Spain</td><td>Madrid</td><td>Normans</td><td>Rouen</td></tr>
-      <tr><td>Abbasids</td><td>Baghdad</td><td></td><td></td></tr>
+      <tr><th>Age</th><th>Civilizations and their starts</th></tr>
+      <tr><td>Antiquity</td><td>Rome (Rome), Gaul (Paris), Etruscans (Populonia), Greece (Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Babylon (Babylon), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Kyiv), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse)</td></tr>
+      <tr><td>Exploration</td><td>England (London), Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (Copenhagen), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow)</td></tr>
+      <tr><td>Modern</td><td>Great Britain (London), America (Dublin), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Ottomans (Ankara), Qajar (Tehran), Byzantium (Constantinople), Etruscans (Populonia), Mexico (Seville), Joseon (Athens), Meiji (Uppsala), Qing (Vienna), Siam (Naples), Mughal (Budapest), Nepal (Tbilisi), Buganda (Gondar)</td></tr>
     </table>
-    <p>Byzantium, the Etruscans and Tuscany are civilizations from the same repository; their starts apply when those mods are installed.</p>
+    <p>Gaul, England and Babylon arrived with Civilization VII 1.5 and sit exactly where they belong, so the British line can be played from where it happened: Gaul on the Seine, England on the Thames, then Great Britain or America.</p>
+    <p>Byzantium, the Etruscans and Tuscany are civilizations from the same repository; their starts apply when those mods are installed. Those three mods also give their civilizations true starts on the base game's own Earth map.</p>
+  </section>
+
+  <section id="compatibility">
+    <h2>Game version</h2>
+    <p>The map is built for <b>Civilization VII 1.5.0</b>, which added the calls the map uses to paint each river where the geography puts it. It still works on older versions: the map checks for those calls when it generates, and if they are missing it falls back to the rivers it used before 1.5, where the game models rivers along the drawn courses and decides for itself which ones are navigable. Everything else about the map is the same on either version. For a game older than 1.5, the last release built for it is <a href="https://github.com/marcobonechi/civ7mods/releases/tag/v6">v6</a>.</p>
+    <p><b>Known issue:</b> Civilization VII 1.5 wraps this map east to west even though the map asks it not to, so a ship that sails off the Atlantic edge comes out at the far east of the map. The map script cannot turn that off.</p>
+    <p>The map texts are translated into all twelve languages the game ships.</p>
   </section>
 
   <section id="install">
@@ -120,10 +140,10 @@
       <li>Copy the <code>EuropeMediterranean</code> folder into the game's Mods folder:
         <pre>Windows:  %LOCALAPPDATA%\Firaxis Games\Sid Meier's Civilization VII\Mods
 macOS:    ~/Library/Application Support/Civilization VII/Mods</pre></li>
-      <li>Restart the game. It reads mods only at startup and enables new ones automatically.</li>
+      <li>Restart the game. It reads mods only at startup and enables new ones automatically. After updating the mod, check <b>Additional Content &rarr; Add-Ons</b>: the game can leave an updated mod switched off.</li>
       <li>In game setup choose one of the map types listed above. The large maps bring their own three sizes; the standard map uses the game's usual sizes.</li>
     </ol>
-    <p>The repository also holds the Byzantium, Etruscans and Tuscany civilizations, a browser-based geography editor with live preview, and the scripts that rebuild the previews and these screenshots.</p>
+    <p>The repository also holds the Byzantium, Etruscans and Tuscany civilizations, a browser-based geography editor with live preview, and the scripts that rebuild the previews and these screenshots. The screenshots above come from that preview, which draws the drawn river courses but not which parts are navigable.</p>
   </section>
 </main>
 
