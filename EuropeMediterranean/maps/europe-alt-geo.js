@@ -1015,11 +1015,20 @@ export const GEO = {
         CIVILIZATION_PRUSSIA: [13.4, 52.5],
         CIVILIZATION_RUSSIA: [37.6, 55.75],
         CIVILIZATION_GREAT_BRITAIN: [0.48, 51.41],
-        // Not shipped by the base game or by any mod in this repo yet - the start lookup only
-        // reads GEO.tsl[civ] for civs alive in the game, so these sit inert until the civs exist.
-        CIVILIZATION_SCYTHIA: [34.40, 47.50],   // Kamianka, the Dnieper bend in the Pontic steppe
-        CIVILIZATION_KUSH: [33.70, 16.90],      // Meroe, on the Nile south of Egypt
-        CIVILIZATION_SUMER: [46.10, 30.90],     // Ur, the lower Euphrates near the Gulf
+        // Civilizations from other people's mods. The start lookup only reads GEO.tsl[civ] for civs
+        // alive in the game, so an entry for a mod nobody has sits inert and costs nothing. The keys
+        // must match the mod exactly: the three plain names below never matched anything, because the
+        // Steam Workshop mods use their own suffixed keys (read from the installed mods). Both are
+        // kept, in case another mod takes the plain name.
+        CIVILIZATION_SCYTHIA: [34.40, 47.50],          // Kamianka, the Dnieper bend in the Pontic steppe
+        CIVILIZATION_SCYTHIA_CUSTOM: [34.40, 47.50],   // "Scythia Civilization" (Workshop 3790256675)
+        CIVILIZATION_KUSH: [33.70, 16.90],             // Meroe, on the Nile south of Egypt
+        CIVILIZATION_KUSH_CLEAN: [33.70, 16.90],       // "Kush (Nubian) Civilization" (Workshop 3784966596)
+        CIVILIZATION_SUMER: [46.10, 30.90],            // Ur, the lower Euphrates near the Gulf
+        CIVILIZATION_SUMER_TEST: [46.10, 30.90],       // "Sumer Civilization" (Workshop 3797321182)
+        // Vienna, the Habsburg capital. The Qing stand-in also starts there; when both are in one
+        // game the later one takes a fallback site, as with any shared site.
+        CIVILIZATION_DEVONISLAND_AUSTRIA_HUNGARY: [16.4, 48.2],   // "DevonIsLand's Austria-Hungary" (Workshop 3775909417)
 
         // ---- regional starts for civilizations with no European history -------
         // Every civilization of every age now has a fixed home on this map, so you can
