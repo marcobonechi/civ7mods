@@ -65,6 +65,7 @@ Anyone left over settles a curated historical site, London and Dublin first, the
                     <Item>maps/europe-large-united-map.js</Item>
                     <Item>maps/europe-map.js</Item>
                     <Item>maps/europe-raster.js</Item>
+                    <Item>maps/europe-rivers.js</Item>
                 </ImportFiles>
                 <UpdateText>
                     <Item>text/en_us/MapText.xml</Item>

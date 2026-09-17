@@ -702,11 +702,11 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
 
     // 8b. hand-placed navigable rivers: a hex-connected chain of river terrain over land
     const riverTiles = [];
-    const riverChains = [];   // per river: { name, tiles } in course order (the game steers the engine's rivers along them)
+    const riverChains = [];   // per river: { name, tiles } in course order (europe-rivers.js paints the river along them)
     for (const river of GEO.rivers || []) {
         let prev = null;
-        // `strength` (0..1, default 1) scales the rainfall the map script pours along this
-        // course. Lower it to make a river less likely to win the engine's navigable-river pass.
+        // `strength` (0..1, default 1): below 0.5 europe-rivers.js paints the course as a minor
+        // river rather than a navigable one.
         const chain = { name: river.name, strength: river.strength, tiles: [] };
         riverChains.push(chain);
         const markRiver = (x, y) => {

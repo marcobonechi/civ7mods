@@ -116,8 +116,13 @@ true starts for Aksum (Axum) and Songhai (Gao). Its fallback ranking favours Mor
 - `maps/europe-geo.js` holds the geography as longitude/latitude data: coastlines, inland seas,
   straits, lakes, mountain ranges, biome and rainfall zones, volcanoes, and true start locations.
 - `maps/europe-raster.js` projects that data onto the hex grid at generation time (any grid size).
-- `maps/europe-map.js` applies the grid through the engine and then runs the base-game generators
-  for rivers, natural wonders, features, resources and discoveries.
+- `maps/europe-large-core.js` applies the grid through the engine and then runs the base-game
+  generators for natural wonders, features, resources and discoveries.
+- `maps/europe-rivers.js` plans every river hex by hex - the drawn courses, a little per-game
+  variance, and generated minor rivers - and the map script paints it with
+  `TerrainBuilder.setRiverInfo()` and `finalizeRivers()`, the way the base game's Earth map does,
+  instead of letting `modelRivers()` pick courses. `node tools/check-rivers.mjs` plans every map at
+  every shipped size over several seeds and checks each river drains to the sea.
 
 Distant Lands: landmass regions are assigned to whole water-separated landmasses, never by
 longitude. The engine treats a region change as a distant-lands boundary, so a boundary running
@@ -207,8 +212,8 @@ http://localhost:8080 and opens a browser. See *Editing maps in the editor* belo
 | `biomeAreas` | biome overrides in order; add `prob: 0.4` for random patches (`G` grassland, `P` plains, `D` desert, `T` tundra, `R` tropical) |
 | `rainAreas` | rainfall overrides (more rain = more forest/jungle features) |
 | `biomeBlobs` | circular biome patches `[lon, lat, radius, biome, rainfall, name]` (oases) |
-| `rivers` | navigable river courses as `[lon, lat]` lists; each becomes a hex-connected flat valley that is drenched in rainfall while the engine models rivers, so the engine's own navigable rivers follow it (painting river terrain directly only looks like a river: the engine keeps no river data for it) |
-| `rivers[].strength` | optional 0..1 (default 1) scaling the rainfall poured along that course. Lower values make the engine much less likely to pick the river as navigable, while still carving its flat valley. Currently: Tiber 0.2, Garonne 0.35, Don 0.35 |
+| `rivers` | river courses as `[lon, lat]` lists, drawn in either direction (the end on the sea, or failing that the end meeting another river, becomes the mouth). Each becomes a hex-connected flat valley carrying exactly that river, navigable from the mouth. Per game a course bends through a neighbouring hex here and there, its navigable stretch can end up to two hexes short of the head, and a short minor headwater can continue uphill. A course drawn a hex or so short of the coast is bridged to it |
+| `rivers[].strength` | optional 0..1 (default 1). Below 0.5 the whole course is a minor river instead of a navigable one. Currently: Tiber 0.2, Garonne 0.35, Don 0.25 |
 | `resourceAreas` | (large map) historical resources per region: polygon, resource types, `density` = hexes per resource; placed in-game after the engine's random pass, which is then thinned or topped up to a 20% share |
 | `resourceScale` | (large map, optional) multiplies every area's `density`; 1.5 places a third fewer resources everywhere, 0.8 a quarter more |
 | `resourceAreas[].fill` | catch-all area (the two open-sea areas): places only on hexes no specific area of the same kind covers, so no hex is under more than two areas (`node tools/resource-overlap.mjs large` checks) |

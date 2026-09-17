@@ -1,13 +1,14 @@
 // europe-large-core.js
 // Shared map generator for the large Europe/Mediterranean/Sahel variants.
 // The geography is supplied by the entry script (see europe-large-map.js and
-// europe-large-united-map.js), rasterized by europe-raster.js; rivers, natural wonders,
-// features, resources and discoveries use the base game generators.
+// europe-large-united-map.js), rasterized by europe-raster.js; rivers are planned hex by hex by
+// europe-rivers.js; natural wonders, features, resources and discoveries use the base game generators.
 //
 // GEO is set once by initEuropeLargeMap() before either engine handler can run, so every
 // function below still reads it as a module-level value.
 
 import { buildEuropeGrid, hexDistance, hexNeighbors, T, B } from '/europe-mediterranean-map/maps/europe-raster.js';
+import { planRivers, directionName, RIVER_NAVIGABLE } from '/europe-mediterranean-map/maps/europe-rivers.js';
 import * as globals from '/base-standard/maps/map-globals.js';
 import { addNaturalWonders } from '/base-standard/maps/natural-wonder-generator.js';
 import { addFeatures } from '/base-standard/maps/feature-biome-generator.js';
@@ -79,7 +80,7 @@ function terrainIndex(code) {
         case T.COAST: return globals.g_CoastTerrain;
         case T.HILL: return globals.g_HillTerrain;
         case T.MOUNTAIN: return globals.g_MountainTerrain;
-        case T.RIVER: return globals.g_FlatTerrain;   // river courses are flat valleys; the engine's river modeller makes them navigable
+        case T.RIVER: return globals.g_FlatTerrain;   // river courses are flat valleys; paintRivers() puts the river on them
         default: return globals.g_FlatTerrain;
     }
 }
@@ -728,49 +729,37 @@ function assignEuropeStartPositions(grid) {
 
 // ---------------------------------------------------------------------------
 
-// Rainfall used only while the engine models rivers (the YnAMP Earth maps steer rivers the same
-// way): the hand-drawn courses get a torrent and the headwaters even more, so the engine's flow
-// accumulation picks those courses for its navigable rivers. Real rainfall is re-applied afterwards.
-const RIVER_COURSE_RAIN = 2500;
-const RIVER_HEAD_RAIN = 3500;
-
-function touchesWater(x, y) {
-    for (const n of hexNeighbors(x, y)) {
-        if (n[0] < 0 || n[1] < 0 || n[0] >= GameplayMap.getGridWidth() || n[1] >= GameplayMap.getGridHeight()) continue;
-        if (GameplayMap.isWater(n[0], n[1])) return true;
+// Rivers the way the base game's Earth map paints them (Civilization VII 1.5): every river hex is
+// set with TerrainBuilder.setRiverInfo() - the neighbour it drains into, navigable or minor - and
+// finalizeRivers() turns that into rivers without modelRivers() choosing courses of its own. The
+// plan, including the per-game variance, comes from europe-rivers.js.
+function paintRivers(grid, rnd, reserved) {
+    const plan = planRivers(grid.riverChains || [], {
+        W: grid.W, H: grid.H, rnd, reserved,
+        isWater: (x, y) => GameplayMap.isWater(x, y),
+        isMountain: (x, y) => GameplayMap.isMountain(x, y),
+        elevation: (x, y) => GameplayMap.getElevation(x, y),
+        rain: (x, y) => grid.rain[grid.idx(x, y)],
+    });
+    let navigable = 0, minor = 0;
+    for (const t of plan.tiles.values()) {
+        const nav = t.type === RIVER_NAVIGABLE;
+        TerrainBuilder.setRiverInfo(t.x, t.y, DirectionTypes[directionName(t.x, t.y, t.to)],
+            nav ? RiverTypes.RIVER_NAVIGABLE : RiverTypes.RIVER_MINOR);
+        if (nav) navigable++; else minor++;
     }
-    return false;
+    // No aesthetic pass: it prunes and reshapes rivers, which is what this replaces.
+    TerrainBuilder.finalizeRivers(false, 25, 2, 2);
+    const r = plan.report;
+    console.log("Europe large map: rivers painted - " + navigable + " navigable hexes, " + minor + " minor (" +
+        r.minorRivers + " generated minor rivers), " + r.bends + " bends, " + r.bridged + " bridge hexes, " +
+        r.headwaters + " headwater hexes");
+    if (r.unresolved.length) console.log("Europe large map: rivers left out - " + r.unresolved.join(", "));
+    return plan;
 }
 
-function steerRiverRainfall(grid) {
-    // Dry out everything else first: with rainfall elsewhere the engine chose long rivers in the
-    // Urals and Scandinavia as its navigable ones and left the courses as minor rivers.
-    const W = GameplayMap.getGridWidth(), H = GameplayMap.getGridHeight();
-    for (let y = 0; y < H; y++) {
-        for (let x = 0; x < W; x++) {
-            if (!GameplayMap.isWater(x, y)) TerrainBuilder.setRainfall(x, y, 0);
-        }
-    }
-    for (const chain of grid.riverChains || []) {
-
-        const tiles = chain.tiles;
-        const n = tiles.length;
-        if (!n) continue;
-        // The end that touches the sea is the mouth; the other end is the headwater.
-        const firstIsMouth = touchesWater(tiles[0][0], tiles[0][1]);
-        const lastIsMouth = touchesWater(tiles[n - 1][0], tiles[n - 1][1]);
-        const headLen = Math.max(2, Math.floor(n / 4));
-        for (let k = 0; k < n; k++) {
-            const [x, y] = tiles[k];
-            if (GameplayMap.isWater(x, y)) continue;
-            const strength = chain.strength === undefined ? 1 : chain.strength;
-            let rain = RIVER_COURSE_RAIN * strength;
-            if (firstIsMouth && !lastIsMouth && k >= n - headLen) rain = RIVER_HEAD_RAIN * strength;
-            if (lastIsMouth && !firstIsMouth && k < headLen) rain = RIVER_HEAD_RAIN * strength;
-            rain = Math.round(rain);
-            TerrainBuilder.setRainfall(x, y, rain);
-        }
-    }
+function nameRivers(plan) {
+    for (const n of plan.names) TerrainBuilder.setCustomRiverName(n.x, n.y, n.tag);
 }
 
 function reportRivers(grid) {
@@ -820,10 +809,11 @@ function generateMap() {
     const grid = buildEuropeGrid(iWidth, iHeight, GEO, rnd);
 
     // Reserve start sites before terrain goes in, so they are flat and not walled in.
+    const startSites = new Set();
     for (const civ in GEO.tsl) {
         const ll = GEO.tsl[civ];
         const t = grid.findLandTile(ll[0], ll[1], 2, false);
-        if (t) grid.prepareStartTile(t[0], t[1]);
+        if (t) { grid.prepareStartTile(t[0], t[1]); startSites.add(t[0] + "," + t[1]); }
     }
 
     applyTerrain(grid);
@@ -837,13 +827,9 @@ function generateMap() {
     TerrainBuilder.buildElevation();
     applyRainfall(grid);
 
-    // Hand-placed navigable-river terrain only looks like a river: the engine keeps no river data
-    // for it (isNavigableRiver is false, settlers can even start on it). Instead the courses are flat
-    // valleys drenched in rainfall while the engine models rivers, so its biggest flows follow them.
-    steerRiverRainfall(grid);
-    TerrainBuilder.modelRivers(5, 30, globals.g_NavigableRiverTerrain);   // 15 in the base maps: more minor rivers
+    const rivers = paintRivers(grid, rnd, startSites);
     TerrainBuilder.validateAndFixTerrain();
-    applyRainfall(grid);   // back to the real rainfall for biomes and features
+    nameRivers(rivers);
     reportRivers(grid);
     dumpRivers(iWidth, iHeight);
 
