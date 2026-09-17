@@ -171,6 +171,17 @@ export const GEO = {
     // Random hills everywhere away from the ranges: one flat hex in seven
     baseHillProb: 0.143,
     roughAreas: [
+        // The Alpine foreland, in three steps down from the crest. The Alps are one line of
+        // mountains by design, so all of their height has to live in the ground around them;
+        // without these bands Switzerland, Austria and southern Germany were flat country with a
+        // wall through the middle. North of the range the land steps down 0.8 -> 0.5 -> 0.28, and
+        // the three cities that sit in the basins beyond - Stuttgart on the Neckar (48.8), Munich
+        // on its gravel plain (48.1) and Vienna in its basin (16.4E) - fall outside every band, so
+        // they stay low and the high ground reads as ending at them. The southern edge stops at
+        // 46.2N: the Po valley below is flattened outright and must not be re-roughened here.
+        { name: "Swiss plateau and Alpine rim", prob: 0.8, pts: [[6.0, 46.2], [16.0, 46.2], [16.0, 47.5], [6.0, 47.5]] },
+        { name: "Bavarian and Austrian foreland", prob: 0.5, pts: [[7.0, 47.5], [15.6, 47.5], [15.6, 47.9], [7.0, 47.9]] },
+        { name: "Danube and Swabian step", prob: 0.28, pts: [[8.0, 47.9], [15.2, 47.9], [15.2, 48.0], [8.0, 48.0]] },
         { name: "African jungle (rough grassland)", prob: 0.15, biome: "G", pts: [[-18, -5], [44, -5], [44, 12.5], [-18, 12.5]] },
         { name: "France", prob: 0.12, pts: [[-5.0, 42.6], [8.0, 42.6], [8.0, 51.2], [-5.0, 51.2]] },
         { name: "Germany and Poland", prob: 0.12, pts: [[6.0, 47.3], [24.0, 47.3], [24.0, 55.3], [6.0, 55.3]] },
@@ -185,6 +196,15 @@ export const GEO = {
         { name: "Bosporus Asian shore", pts: [[29.0, 40.5], [33.2, 40.5], [33.2, 41.75], [29.0, 41.75]] }
     ],
     flatAreas: [
+        // The basins where the Alpine foreland ends. The wider Alps fringe and the foreland bands
+        // in roughAreas would otherwise carry hills straight over all three: Stuttgart sits in the
+        // Neckar valley between the Black Forest and the Swabian Alb, Munich on the flat gravel
+        // plain its rivers laid down, Vienna in its own basin below the Wienerwald. Flattened back
+        // so the high ground visibly stops at them. (flatAreas runs before roughAreas, so the
+        // "Germany and Poland" band still puts a light 12% sprinkle of hills back in each.)
+        { name: "Neckar basin (Stuttgart)", prob: 0.85, pts: [[8.7, 48.5], [9.8, 48.5], [9.8, 49.2], [8.7, 49.2]] },
+        { name: "Munich gravel plain", prob: 0.85, pts: [[10.9, 48.0], [12.4, 48.0], [12.4, 48.6], [10.9, 48.6]] },
+        { name: "Vienna basin and the Danube below Linz", prob: 0.8, pts: [[14.0, 48.0], [16.9, 48.0], [16.9, 48.6], [14.0, 48.6]] },
         // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
         // peninsula hilly and short of food. These are the real lowlands, flattened back.
         { name: "Po valley", prob: 1.0, pts: [[7.6, 44.9], [7.7, 45.6], [9.2, 46.0], [11.2, 46.05],
@@ -711,7 +731,12 @@ export const GEO = {
         // The Tigris rose 4 hexes from the nearest peak; this is the Hakkari edge it really drains.
         { name: "Hakkari", core: 0.6, fringe: 1.1, pts: [[42.8, 37.0], [43.8, 36.8]] },
         { name: "Cotswolds", core: 0.5, fringe: 0.9, pts: [[-1.17, 51.89], [-1.17, 51.89]] },
-        { name: "Alps", core: 0.66, fringe: 1.3, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
+        // One line of mountains with a broad hill flank either side. The core stays narrow -
+        // 0.66 * rangeScale is about one hex, which is the single crest the passes cut through -
+        // but the fringe was only 1.3 (1.9 hexes, ~55km), so the highest range in Europe sat in
+        // flat country. At 2.0 the hill gradient runs about 120km out from the crest, which is
+        // what makes the range read as high ground rather than as a wall on a plain.
+        { name: "Alps", core: 0.66, fringe: 2.0, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
         { name: "Pyrenees", core: 0.8, fringe: 1.5, pts: [[-1.9, 43.2], [-0.5, 42.85], [1.0, 42.65], [2.6, 42.5]] },
         { name: "Cantabrian", core: 0.55, fringe: 1.3, pts: [[-7.0, 43.1], [-5.5, 43.05], [-4.0, 43.1]] },
         { name: "Central System", core: 0.3, fringe: 1.2, pts: [[-6.0, 40.3], [-4.0, 40.7], [-2.0, 41.5]] },
