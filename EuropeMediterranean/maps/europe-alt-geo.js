@@ -161,12 +161,10 @@ export const GEO = {
         [31.6, 31.3, 1.3, "G", 90, "Delta east"], [31.0, 30.6, 1.2, "G", 80, "Delta south"],
     ],
 
-    // Mountains turned into hills: central and southern Italy (Tuscany and the Alps keep theirs;
-    // volcanoes are stamped afterwards so Vesuvius and Etna survive)
+    // Mountains turned into hills in areas. Italy is not here any more: the Apennines are drawn as
+    // a ridge of hills (peaks 0.12) and the Alps as a solid wall with passes (see ranges).
     hillAreas: [
-        { name: "Central and southern Italy", prob: 1.0, pts: [[11.8, 36.5], [19.0, 36.5], [19.0, 42.6], [14.6, 43.5], [12.6, 43.3], [11.8, 42.2]] },
         { name: "Persia (Zagros and Alborz)", prob: 0.5, pts: [[44.0, 27.0], [58.0, 27.0], [58.0, 38.0], [44.0, 38.0]] },
-        { name: "Eastern Alps", prob: 0.3, pts: [[10.0, 45.5], [16.5, 45.5], [16.5, 48.0], [10.0, 48.0]] },
         { name: "Around Axum", prob: 0.5, pts: [[36.0, 12.0], [41.0, 12.0], [41.0, 16.5], [36.0, 16.5]] },
         // Anatolia at 33%, except the central massifs around Erciyes (33-37.5E, 37.5-40N) which keep theirs
         { name: "Anatolia (west)", prob: 0.33, pts: [[26.0, 36.0], [33.0, 36.0], [33.0, 42.2], [26.0, 42.2]] },
@@ -180,7 +178,6 @@ export const GEO = {
     // Mountain passes: mountains within the radius (tiles) of these lines become hills
     passes: [
         { name: "Riviera coast (Genoa-Nice)", radius: 0.7, pts: [[6.9, 43.65], [8.2, 44.0]] },
-        { name: "Mont Cenis (Turin-Lyon)", radius: 0.6, pts: [[6.6, 45.1], [7.4, 45.2]] },
         { name: "Simplon-Gotthard (Milan-Switzerland)", radius: 0.6, pts: [[8.2, 46.0], [8.6, 46.55]] },
         { name: "Brenner (Verona-Innsbruck)", radius: 0.6, pts: [[11.3, 46.6], [11.5, 47.2]] },
         { name: "Trieste-Postojna gate (Italy-Croatia)", radius: 0.7, pts: [[13.6, 45.75], [14.5, 45.5]] },
@@ -200,17 +197,6 @@ export const GEO = {
     // Random hills everywhere away from the ranges: one flat hex in seven
     baseHillProb: 0.143,
     roughAreas: [
-        // The Alpine foreland, in three steps down from the crest. The Alps are one line of
-        // mountains by design, so all of their height has to live in the ground around them;
-        // without these bands Switzerland, Austria and southern Germany were flat country with a
-        // wall through the middle. North of the range the land steps down 0.8 -> 0.5 -> 0.28, and
-        // the three cities that sit in the basins beyond - Stuttgart on the Neckar (48.8), Munich
-        // on its gravel plain (48.1) and Vienna in its basin (16.4E) - fall outside every band, so
-        // they stay low and the high ground reads as ending at them. The southern edge stops at
-        // 46.2N: the Po valley below is flattened outright and must not be re-roughened here.
-        { name: "Swiss plateau and Alpine rim", prob: 0.8, pts: [[6.0, 46.2], [16.0, 46.2], [16.0, 47.5], [6.0, 47.5]] },
-        { name: "Bavarian and Austrian foreland", prob: 0.5, pts: [[7.0, 47.5], [15.6, 47.5], [15.6, 47.9], [7.0, 47.9]] },
-        { name: "Danube and Swabian step", prob: 0.28, pts: [[8.0, 47.9], [15.2, 47.9], [15.2, 48.0], [8.0, 48.0]] },
         { name: "African jungle (rough grassland)", prob: 0.15, biome: "G", pts: [[-18, -5], [44, -5], [44, 12.5], [-18, 12.5]] },
         { name: "France", prob: 0.12, pts: [[-5.0, 42.6], [8.0, 42.6], [8.0, 51.2], [-5.0, 51.2]] },
         { name: "Germany and Poland", prob: 0.12, pts: [[6.0, 47.3], [24.0, 47.3], [24.0, 55.3], [6.0, 55.3]] },
@@ -225,14 +211,10 @@ export const GEO = {
         { name: "Bosporus Asian shore", pts: [[29.0, 40.5], [33.2, 40.5], [33.2, 41.75], [29.0, 41.75]] }
     ],
     flatAreas: [
-        // The basins where the Alpine foreland ends. The wider Alps fringe and the foreland bands
-        // in roughAreas would otherwise carry hills straight over all three: Stuttgart sits in the
-        // Neckar valley between the Black Forest and the Swabian Alb, Munich on the flat gravel
-        // plain its rivers laid down, Vienna in its own basin below the Wienerwald. Flattened back
-        // so the high ground visibly stops at them. (flatAreas runs before roughAreas, so the
-        // "Germany and Poland" band still puts a light 12% sprinkle of hills back in each.)
+        // Stuttgart on the Neckar and Vienna in its basin, flattened back at the outer edge of
+        // the Alps' hill band. (Flat areas run before rough areas, so the "Germany and Poland"
+        // band still puts a light 12% sprinkle of hills back in each.)
         { name: "Neckar basin (Stuttgart)", prob: 0.85, pts: [[8.7, 48.5], [9.8, 48.5], [9.8, 49.2], [8.7, 49.2]] },
-        { name: "Munich gravel plain", prob: 0.85, pts: [[10.9, 48.0], [12.4, 48.0], [12.4, 48.6], [10.9, 48.6]] },
         { name: "Vienna basin and the Danube below Linz", prob: 0.8, pts: [[14.0, 48.0], [16.9, 48.0], [16.9, 48.6], [14.0, 48.6]] },
         // Italy: the Apennine mountains become hills (see hillAreas), which left the whole
         // peninsula hilly and short of food. These are the real lowlands, flattened back.
@@ -807,12 +789,19 @@ export const GEO = {
         // The Tigris rose 4 hexes from the nearest peak; this is the Hakkari edge it really drains.
         { name: "Hakkari", core: 0.6, fringe: 1.1, pts: [[42.8, 37.0], [43.8, 36.8]] },
         { name: "Cotswolds", core: 0.5, fringe: 0.9, pts: [[-1.17, 51.89], [-1.17, 51.89]] },
-        // One line of mountains with a broad hill flank either side. The core stays narrow -
-        // 0.66 * rangeScale is about one hex, which is the single crest the passes cut through -
-        // but the fringe was only 1.3 (1.9 hexes, ~55km), so the highest range in Europe sat in
-        // flat country. At 2.0 the hill gradient runs about 120km out from the crest, which is
-        // what makes the range read as high ground rather than as a wall on a plain.
-        { name: "Alps", core: 0.66, fringe: 2.0, pts: [[6.0, 44.1], [6.9, 45.1], [7.5, 45.9], [8.5, 46.4], [9.8, 46.5], [11.2, 46.8], [12.7, 47.0], [13.9, 47.1], [15.0, 47.3]] },
+        // The Alps as a wall round the top of Italy, not a line through the middle of Europe: the
+        // crest along the French-Italian and Swiss/Austrian-Italian borders, from the Maritime Alps
+        // at the coast by Menton round to the Karst above Trieste. solid: every core hex is a
+        // mountain, so the wall has no random gaps and no river can cross it; the only ways
+        // through are the passes (the Riviera coast into France, the Simplon-Gotthard into
+        // Switzerland, the Brenner into Austria, the Trieste gate into Istria). Italy's side keeps
+        // a narrow fringe down to the Po; the far side - France, Switzerland, Austria, Slovenia -
+        // is a band of high hill country about six hexes deep at every grid size (far.fringe 4.8
+        // times rangeScale 1.45, ~7 hexes from the crest line, 92% hills).
+        { name: "Alps", core: 0.6, fringe: 1.2, solid: true, far: { side: "left", fringe: 4.8, hill: 0.92 },
+          pts: [[7.45, 43.95], [7.3, 44.2], [7.1, 44.7], [6.95, 45.25], [6.9, 45.8], [7.4, 45.95], [7.9, 46.0],
+                [8.3, 46.35], [8.6, 46.55], [9.4, 46.5], [10.0, 46.4], [10.6, 46.55], [11.0, 46.85], [11.5, 47.0],
+                [12.2, 46.95], [12.8, 46.65], [13.5, 46.45], [13.85, 46.3], [14.0, 45.95]] },
         { name: "Pyrenees", core: 0.8, fringe: 1.5, pts: [[-1.9, 43.2], [-0.5, 42.85], [1.0, 42.65], [2.6, 42.5]] },
         { name: "Cantabrian", core: 0.55, fringe: 1.3, pts: [[-7.0, 43.1], [-5.5, 43.05], [-4.0, 43.1]] },
         { name: "Central System", core: 0.3, fringe: 1.2, pts: [[-6.0, 40.3], [-4.0, 40.7], [-2.0, 41.5]] },
@@ -821,14 +810,11 @@ export const GEO = {
         { name: "Massif Central", core: 0.3, fringe: 1.4, pts: [[2.0, 44.5], [3.0, 45.3], [4.0, 45.5]] },
         { name: "Vosges-Jura-Black Forest", core: 0.2, fringe: 1.1, pts: [[6.3, 46.7], [7.0, 48.2], [8.0, 48.5], [9.5, 48.5]] },
         { name: "Ardennes", core: 0.0, fringe: 0.9, pts: [[4.5, 50.0], [6.0, 50.2]] },
-        // The spine of Italy, as a wide band of hills rather than a ridge on a plain: at fringe
-        // 1.05 the belt from Liguria to Calabria measured half flat, which is not what the
-        // peninsula looks like. 1.65 (2.4 hexes after rangeScale, ~130km) carries hills most of
-        // the way to both coasts, dense along the crest and thinning outwards, and the coastal
-        // plains in flatAreas - the Maremma, Latium, Campania, the Tavoliere - cut back in from
-        // the sea. The core stays 0.55, and hillAreas still turns central and southern Italy's
-        // mountains into hills, so only the northern Apennines keep a rock crest.
-        { name: "Apennines", core: 0.55, fringe: 1.65, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
+        // The Apennines as a thin ridge of hills down Italy with a rock here and there: the core
+        // (0.42 x rangeScale, about one hex) is hills with 12% mountains, the fringe barely wider, so the
+        // spine reads on the map without walling off the Adriatic, and the rest of the peninsula
+        // stays open farmland.
+        { name: "Apennines", core: 0.42, fringe: 0.55, peaks: 0.12, pts: [[8.3, 44.35], [9.5, 44.45], [10.5, 44.2], [11.5, 43.8], [12.6, 43.2], [13.3, 42.6], [13.8, 42.2], [14.3, 41.7], [15.0, 41.1], [15.8, 40.5], [16.1, 39.9], [16.3, 39.3], [16.0, 38.6]] },
         { name: "Dinaric Alps", core: 0.7, fringe: 1.5, pts: [[14.0, 45.8], [15.3, 45.0], [16.5, 44.2], [17.5, 43.6], [18.6, 43.0], [19.5, 42.5], [20.2, 42.0]] },
         { name: "Pindus", core: 0.6, fringe: 1.3, pts: [[20.4, 41.5], [20.8, 40.5], [21.2, 39.8], [21.6, 39.0], [22.2, 38.6]] },
         { name: "Peloponnese", core: 0.0, fringe: 1.0, pts: [[22.2, 37.6], [22.5, 37.2]] },

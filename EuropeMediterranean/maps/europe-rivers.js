@@ -60,6 +60,8 @@ export const RIVER_NAME_TAGS = {
 
 // env: { W, H, rnd() in [0,1), isWater(x,y), isMountain(x,y), elevation(x,y), rain(x,y),
 //        reserved: Set of "x,y" hexes no river may take (start sites),
+//        noRiver: optional Set of "x,y" hexes no river may take either (pass corridors, so no
+//                 river crosses a range through its pass), treated like mountains,
 //        lonLat(x,y) -> [lon, lat], riverAreas: GEO.riverAreas (optional) }
 // GEO.riverAreas: [{ name, minorShare, pts: [[lon, lat], ...] }] scales how often a generated minor
 // river may start inside the polygon (0.5 = half as many; the last matching area wins). Drawn
@@ -68,6 +70,7 @@ export const RIVER_NAME_TAGS = {
 export function planRivers(chains, env) {
     const { W, H, rnd } = env;
     const key = (x, y) => x + "," + y;
+    const noRiver = env.noRiver || new Set();
     const inside = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
     const land = (x, y) => inside(x, y) && !env.isWater(x, y);
     const neighbors = (x, y) => hexNeighbors(x, y).filter(([a, b]) => inside(a, b));
@@ -84,7 +87,7 @@ export function planRivers(chains, env) {
     const owner = new Map();   // "x,y" -> course index, for every hex on a hand-drawn course
     const courses = [];
     chains.forEach((chain, ci) => {
-        const hexes = chain.tiles.filter(([x, y]) => land(x, y) && !env.isMountain(x, y));
+        const hexes = chain.tiles.filter(([x, y]) => land(x, y) && !env.isMountain(x, y) && !noRiver.has(key(x, y)));
         for (const [x, y] of hexes) owner.set(key(x, y), ci);
         courses.push({ name: chain.name, strength: chain.strength === undefined ? 1 : chain.strength, navigable: chain.navigable, mouth: chain.mouth, hexes });
     });
@@ -116,7 +119,7 @@ export function planRivers(chains, env) {
     });
 
     const taken = new Set(owner.keys());
-    const freeHex = (x, y) => land(x, y) && !env.isMountain(x, y) && !taken.has(key(x, y)) && !env.reserved.has(key(x, y));
+    const freeHex = (x, y) => land(x, y) && !env.isMountain(x, y) && !noRiver.has(key(x, y)) && !taken.has(key(x, y)) && !env.reserved.has(key(x, y));
 
     // Variance 1: bends. Swap an interior hex for a free neighbour of both its course neighbours.
     let bends = 0;

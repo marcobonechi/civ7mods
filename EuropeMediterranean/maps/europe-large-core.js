@@ -745,7 +745,7 @@ function assignEuropeStartPositions(grid) {
 // the plan back on top.
 function paintRivers(grid, rnd, reserved) {
     const plan = planRivers(grid.riverChains || [], {
-        W: grid.W, H: grid.H, rnd, reserved,
+        W: grid.W, H: grid.H, rnd, reserved, noRiver: grid.passHexes,
         isWater: (x, y) => GameplayMap.isWater(x, y),
         isMountain: (x, y) => GameplayMap.isMountain(x, y),
         elevation: (x, y) => GameplayMap.getElevation(x, y),

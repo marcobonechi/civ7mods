@@ -88,7 +88,7 @@ for (const { script, geoFile, united } of maps) {
                 if (t) reserved.add(t[0] + ',' + t[1]);
             }
             const plan = planRivers(g.riverChains, {
-                W, H, rnd, reserved, isWater, elevation,
+                W, H, rnd, reserved, noRiver: g.passHexes, isWater, elevation,
                 isMountain: (x, y) => terrainAt(x, y) === T.MOUNTAIN,
                 rain: (x, y) => g.rain[g.idx(x, y)],
                 lonLat: (x, y) => [g.lonC[g.idx(x, y)], g.latC[g.idx(x, y)]],
@@ -117,6 +117,7 @@ for (const { script, geoFile, united } of maps) {
                 check(isWater(tx, ty) || plan.tiles.has(tx + ',' + ty), `${where} drains onto dry land (${tx},${ty})`) || bad++;
                 check(!isWater(t.x, t.y), `${where} is on water`) || bad++;
                 check(!reserved.has(t.x + ',' + t.y), `${where} takes a true start`) || bad++;
+                check(!g.passHexes.has(t.x + ',' + t.y), `${where} runs through a mountain pass`) || bad++;
                 directionName(t.x, t.y, t.to);
                 // follow the flow to the sea
                 let cur = t, steps = 0;
