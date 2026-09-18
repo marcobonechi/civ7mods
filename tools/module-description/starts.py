@@ -75,7 +75,7 @@ STARTS = {
             ("ETRUSCANS", "Populonia", None),
         ],
         "standin": [
-            ("MEXICO", "Seville", "mexico"),
+            ("MEXICO", "Rabat", "mexico"),
             ("JOSEON", "Athens", "joseon"),
             ("MEIJI", "Uppsala", "meiji"),
             ("QING", "Vienna", "qing"),
@@ -113,6 +113,7 @@ CITY_LL = {
     "Kamianka": (34.40, 47.50),
     "Ur": (46.10, 30.90),
     "Amsterdam": (4.90, 52.37),
+    "Rabat": (-6.84, 34.02),
 }
 
 # The fallback sites the description names; the rest are counted.

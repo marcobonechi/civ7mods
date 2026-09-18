@@ -85,3 +85,10 @@ CITY.setdefault("ja_JP", {})["Amsterdam"] = "アムステルダム"
 CITY.setdefault("ko_KR", {})["Amsterdam"] = "암스테르담"
 CITY.setdefault("zh_Hans_CN", {})["Amsterdam"] = "阿姆斯特丹"
 CITY.setdefault("zh_Hant_HK", {})["Amsterdam"] = "阿姆斯特丹"
+
+# Rabat, for Mexico.
+CITY.setdefault("uk_UA", {})["Rabat"] = "Рабат"
+CITY.setdefault("ja_JP", {})["Rabat"] = "ラバト"
+CITY.setdefault("ko_KR", {})["Rabat"] = "라바트"
+CITY.setdefault("zh_Hans_CN", {})["Rabat"] = "拉巴特"
+CITY.setdefault("zh_Hant_HK", {})["Rabat"] = "拉巴特"
