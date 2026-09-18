@@ -1084,6 +1084,10 @@ export const GEO = {
         // Vienna, the Habsburg capital. The Qing stand-in also starts there; when both are in one
         // game the later one takes a fallback site, as with any shared site.
         CIVILIZATION_DEVONISLAND_AUSTRIA_HUNGARY: [16.4, 48.2],   // "DevonIsLand's Austria-Hungary" (Workshop 3775909417)
+        // Amsterdam, the Republic's commercial capital. An Exploration-age civilization: 9-12 hexes from
+        // England's London and 11-14 from the Normans' Rouen across the three sizes, clear of the
+        // large maps' spacing.
+        CIVILIZATION_ICTH_DUTCH_REPUBLIC: [4.90, 52.37],   // "Dutch Republic" (Workshop 3623432341)
 
         // ---- regional starts for civilizations with no European history -------
         // Every civilization of every age now has a fixed home on this map, so you can

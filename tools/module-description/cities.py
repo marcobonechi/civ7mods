@@ -63,16 +63,25 @@ EN_CIVS = {
 
 # Civilizations from other people's Workshop mods, which the game's files do not name.
 WORKSHOP_CIVS = {
-"en_US": {"SCYTHIA": "Scythia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Hungary"},
-"de_DE": {"SCYTHIA": "Skythien", "KUSH": "Kusch", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Österreich-Ungarn"},
-"es_ES": {"SCYTHIA": "Escitia", "KUSH": "Kush", "SUMER": "Sumeria", "AUSTRIA_HUNGARY": "Austria-Hungría"},
-"fr_FR": {"SCYTHIA": "Scythie", "KUSH": "Koush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Autriche-Hongrie"},
-"it_IT": {"SCYTHIA": "Scizia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Ungheria"},
-"pl_PL": {"SCYTHIA": "Scytia", "KUSH": "Kusz", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austro-Węgry"},
-"pt_BR": {"SCYTHIA": "Cítia", "KUSH": "Kush", "SUMER": "Suméria", "AUSTRIA_HUNGARY": "Áustria-Hungria"},
-"uk_UA": {"SCYTHIA": "Скіфія", "KUSH": "Куш", "SUMER": "Шумер", "AUSTRIA_HUNGARY": "Австро-Угорщина"},
-"ja_JP": {"SCYTHIA": "スキタイ", "KUSH": "クシュ", "SUMER": "シュメール", "AUSTRIA_HUNGARY": "オーストリア＝ハンガリー"},
-"ko_KR": {"SCYTHIA": "스키타이", "KUSH": "쿠시", "SUMER": "수메르", "AUSTRIA_HUNGARY": "오스트리아-헝가리"},
-"zh_Hans_CN": {"SCYTHIA": "斯基泰", "KUSH": "库施", "SUMER": "苏美尔", "AUSTRIA_HUNGARY": "奥匈帝国"},
-"zh_Hant_HK": {"SCYTHIA": "斯基泰", "KUSH": "庫施", "SUMER": "蘇美爾", "AUSTRIA_HUNGARY": "奧匈帝國"},
+"en_US": {"SCYTHIA": "Scythia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Hungary", "DUTCH_REPUBLIC": "Dutch Republic"},
+"de_DE": {"SCYTHIA": "Skythien", "KUSH": "Kusch", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Österreich-Ungarn", "DUTCH_REPUBLIC": "Niederländische Republik"},
+"es_ES": {"SCYTHIA": "Escitia", "KUSH": "Kush", "SUMER": "Sumeria", "AUSTRIA_HUNGARY": "Austria-Hungría", "DUTCH_REPUBLIC": "República Neerlandesa"},
+"fr_FR": {"SCYTHIA": "Scythie", "KUSH": "Koush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Autriche-Hongrie", "DUTCH_REPUBLIC": "Provinces-Unies"},
+"it_IT": {"SCYTHIA": "Scizia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Ungheria", "DUTCH_REPUBLIC": "Repubblica olandese"},
+"pl_PL": {"SCYTHIA": "Scytia", "KUSH": "Kusz", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austro-Węgry", "DUTCH_REPUBLIC": "Republika Zjednoczonych Prowincji"},
+"pt_BR": {"SCYTHIA": "Cítia", "KUSH": "Kush", "SUMER": "Suméria", "AUSTRIA_HUNGARY": "Áustria-Hungria", "DUTCH_REPUBLIC": "República Neerlandesa"},
+"uk_UA": {"SCYTHIA": "Скіфія", "KUSH": "Куш", "SUMER": "Шумер", "AUSTRIA_HUNGARY": "Австро-Угорщина", "DUTCH_REPUBLIC": "Республіка Об'єднаних провінцій"},
+"ja_JP": {"SCYTHIA": "スキタイ", "KUSH": "クシュ", "SUMER": "シュメール", "AUSTRIA_HUNGARY": "オーストリア＝ハンガリー", "DUTCH_REPUBLIC": "ネーデルラント連邦共和国"},
+"ko_KR": {"SCYTHIA": "스키타이", "KUSH": "쿠시", "SUMER": "수메르", "AUSTRIA_HUNGARY": "오스트리아-헝가리", "DUTCH_REPUBLIC": "네덜란드 공화국"},
+"zh_Hans_CN": {"SCYTHIA": "斯基泰", "KUSH": "库施", "SUMER": "苏美尔", "AUSTRIA_HUNGARY": "奥匈帝国", "DUTCH_REPUBLIC": "荷兰共和国"},
+"zh_Hant_HK": {"SCYTHIA": "斯基泰", "KUSH": "庫施", "SUMER": "蘇美爾", "AUSTRIA_HUNGARY": "奧匈帝國", "DUTCH_REPUBLIC": "荷蘭共和國"},
 }
+
+# Amsterdam, for the Dutch Republic (Workshop).
+CITY.setdefault("es_ES", {})["Amsterdam"] = "Ámsterdam"
+CITY.setdefault("pt_BR", {})["Amsterdam"] = "Amsterdã"
+CITY.setdefault("uk_UA", {})["Amsterdam"] = "Амстердам"
+CITY.setdefault("ja_JP", {})["Amsterdam"] = "アムステルダム"
+CITY.setdefault("ko_KR", {})["Amsterdam"] = "암스테르담"
+CITY.setdefault("zh_Hans_CN", {})["Amsterdam"] = "阿姆斯特丹"
+CITY.setdefault("zh_Hant_HK", {})["Amsterdam"] = "阿姆斯特丹"

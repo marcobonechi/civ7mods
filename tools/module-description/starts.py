@@ -93,6 +93,7 @@ WORKSHOP = [
     ("KUSH_CLEAN", "KUSH", "Meroe"),
     ("SUMER_TEST", "SUMER", "Ur"),
     ("DEVONISLAND_AUSTRIA_HUNGARY", "AUSTRIA_HUNGARY", "Vienna"),
+    ("ICTH_DUTCH_REPUBLIC", "DUTCH_REPUBLIC", "Amsterdam"),
 ]
 
 # Where each city is, for the check against GEO.tsl. Cities that are also fallback sites are
@@ -111,6 +112,7 @@ CITY_LL = {
     "Gondar": (37.47, 12.6),
     "Kamianka": (34.40, 47.50),
     "Ur": (46.10, 30.90),
+    "Amsterdam": (4.90, 52.37),
 }
 
 # The fallback sites the description names; the rest are counted.
