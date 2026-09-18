@@ -100,7 +100,12 @@ for (const { script, geoFile, united } of maps) {
         // that once stopped a Roman scout entering Greece.
         check(seam === 0, `no land seam between regions (${seam})`);
         if (united) check(east === 0, `no Distant Lands (${eastPct.toFixed(1)}% of land)`);
-        else check(eastPct > 25 && eastPct < 50, `Distant Lands hold ${eastPct.toFixed(1)}% of land`);
+        else {
+            // A geo file may declare its own expected share (GEO.distantLandsShare: [min, max]):
+            // Eurasia Compressed adds East Asia to the distant lands, so it runs higher.
+            const [lo, hi] = GEO.distantLandsShare || [25, 50];
+            check(eastPct > lo && eastPct < hi, `Distant Lands hold ${eastPct.toFixed(1)}% of land (expected ${lo}-${hi}%)`);
+        }
         const landOf = (ll) => {
             const t = g.findLandTile(ll[0], ll[1], 3, true);
             const seen = new Set([t.join()]), q = [t];

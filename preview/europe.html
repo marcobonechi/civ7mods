@@ -849,7 +849,10 @@ function buildEuropeGrid(W, H, GEO, rnd) {
     const idx = (x, y) => y * W + x;
     const inBounds = (x, y) => x >= 0 && x < W && y >= 0 && y < H;
 
-    const landPolys = prepPolys(GEO.land);
+    // Land polygons marked `late` are painted after the water polygons, so a landmass can sit
+    // inside a sea drawn over what used to be land (Eurasia Compressed's East Asia).
+    const landPolys = prepPolys((GEO.land || []).filter((p) => !p.late));
+    const lateLandPolys = prepPolys((GEO.land || []).filter((p) => p.late));
     const waterPolys = prepPolys(GEO.water);
     const shallowPolys = prepPolys(GEO.shallow);
     const biomePolys = prepPolys(GEO.biomeAreas);
@@ -904,6 +907,16 @@ function buildEuropeGrid(W, H, GEO, rnd) {
                     if (count >= 4) water = true;
                 }
                 if (water) land = false;
+            }
+            if (!land && lateLandPolys.length) {
+                land = inAny(lon, lat, lateLandPolys);
+                if (!land) {
+                    let count = 0;
+                    for (const s of samples) {
+                        if (inAny(lon + s[0] * dLon, lat + s[1] * dLatRow, lateLandPolys)) count++;
+                    }
+                    if (count >= 2) land = true;
+                }
             }
             isLand[i] = land ? 1 : 0;
         }

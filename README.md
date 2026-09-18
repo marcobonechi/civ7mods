@@ -99,7 +99,7 @@ All three offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x
 |---|---|---|---|
 | Europe & Mediterranean (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
 | Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
-| Eurasia Compressed | its own copy of the geography, reshaped separately | Africa, Scandinavia, Iceland | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
+| Eurasia Compressed | Russia, the North Caucasus and the Caspian become an Eastern Ocean; China, Korea, Mongolia and Japan fill the space | Africa, Scandinavia, Iceland, East Asia | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
 
 `maps/europe-map.js` and `maps/europe-geo.js` (the original smaller-extent map on the base game's
 sizes) are still in the repo but are no longer registered in `config/config.xml`, so they do not
@@ -118,6 +118,12 @@ Africa sits across the Mediterranean, so treasure fleets and the distant-lands l
 Pick **One Landmass** if you would rather reach every civilization overland from turn one; the
 cost is that the Exploration Age Economic (treasure) and Military legacy paths cannot score,
 because both award victory points only in distant lands.
+
+**Eurasia Compressed** has its own geography file. Its East Asia is not drawn by hand: `tools/eurasia-compressed/east-asia.mjs` holds real coastlines, ranges, rivers, biomes, resources and starts for China, Korea, Mongolia and Japan, fits them into the space the Eastern Ocean frees, and writes plain coordinates into the `// @east-asia` blocks of `maps/europe-alt-geo.js`, so the file stays data the editor can open. Edit the script, then run it and rebuild the preview:
+
+```bash
+node tools/eurasia-compressed/east-asia.mjs && ./preview/build-preview.sh
+```
 
 Note: the engine takes the grid from the map-size database rows (`data/maps.xml`), not from the
 map script, so the first map renders on whatever standard size is picked and the large map declares
