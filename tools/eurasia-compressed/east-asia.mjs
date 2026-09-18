@@ -224,6 +224,12 @@ const STARTS = {
     CIVILIZATION_JOSEON: [126.98, 37.57, "Hanseong (Seoul) - the Joseon capital"],
     CIVILIZATION_MONGOLIA: [102.80, 47.20, "Karakorum, on the Orkhon - the Mongol capital"],
     CIVILIZATION_DAI_VIET: [105.85, 21.03, "Thang Long (Hanoi), on the Red River - the Dai Viet capital"],
+    // Khmer and Siam come home to Southeast Asia on this map. Cambodia and Thailand lie south of the
+    // 104E cut, so they take the nearest land that is theirs in spirit: the Red River delta (an
+    // Antiquity start, so it can share Thang Long's country with Exploration-age Dai Viet) and the
+    // warm South China coast.
+    CIVILIZATION_KHMER: [106.30, 20.60, "the Red River delta - a wet river empire, as Angkor was"],
+    CIVILIZATION_SIAM: [113.26, 23.13, "Guangzhou, on the South China coast - a warm coastal kingdom"],
 };
 // fallback sites, appended after Europe's
 const SITES = [[113.26, 23.13, "Guangzhou"], [114.30, 30.59, "Wuhan"], [120.15, 30.27, "Hangzhou"], [114.31, 34.80, "Kaifeng"],

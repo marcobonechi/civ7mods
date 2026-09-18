@@ -92,3 +92,16 @@ CITY.setdefault("ja_JP", {})["Rabat"] = "ラバト"
 CITY.setdefault("ko_KR", {})["Rabat"] = "라바트"
 CITY.setdefault("zh_Hans_CN", {})["Rabat"] = "拉巴特"
 CITY.setdefault("zh_Hant_HK", {})["Rabat"] = "拉巴特"
+
+# Lagos (Chola) and Mallorca (Tonga).
+CITY.setdefault("de_DE", {}).update({"Lagos": "Lagos", "Mallorca": "Mallorca"})
+CITY.setdefault("es_ES", {}).update({"Lagos": "Lagos", "Mallorca": "Mallorca"})
+CITY.setdefault("fr_FR", {}).update({"Lagos": "Lagos", "Mallorca": "Majorque"})
+CITY.setdefault("it_IT", {}).update({"Lagos": "Lagos", "Mallorca": "Maiorca"})
+CITY.setdefault("pl_PL", {}).update({"Lagos": "Lagos", "Mallorca": "Majorka"})
+CITY.setdefault("pt_BR", {}).update({"Lagos": "Lagos", "Mallorca": "Maiorca"})
+CITY.setdefault("uk_UA", {}).update({"Lagos": "Лагос", "Mallorca": "Мальорка"})
+CITY.setdefault("ja_JP", {}).update({"Lagos": "ラゴス", "Mallorca": "マヨルカ"})
+CITY.setdefault("ko_KR", {}).update({"Lagos": "라고스", "Mallorca": "마요르카"})
+CITY.setdefault("zh_Hans_CN", {}).update({"Lagos": "拉各斯", "Mallorca": "马略卡"})
+CITY.setdefault("zh_Hant_HK", {}).update({"Lagos": "拉各斯", "Mallorca": "馬略卡"})

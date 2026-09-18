@@ -32,7 +32,7 @@ STARTS = {
             ("MAYA", "Berlin", "maya"),
             ("KHMER", "Bucharest", "khmer"),
             ("SILLA", "Ankara", "silla"),
-            ("TONGA", "Syracuse", "tonga"),
+            ("TONGA", "Mallorca", "tonga"),
         ],
     },
     "Exploration": {
@@ -53,7 +53,7 @@ STARTS = {
         "standin": [
             ("SENGOKU", "Copenhagen", "sengoku"),
             ("MAJAPAHIT", "Dublin", "majapahit"),
-            ("CHOLA", "Lisbon", "chola"),
+            ("CHOLA", "Lagos", "chola"),
             ("GORYEO", "Athens", "goryeo"),
             ("DAI_VIET", "Alexandria", "daiviet"),
             ("INCA", "Tbilisi", "inca"),
@@ -114,6 +114,8 @@ CITY_LL = {
     "Ur": (46.10, 30.90),
     "Amsterdam": (4.90, 52.37),
     "Rabat": (-6.84, 34.02),
+    "Lagos": (3.4, 6.45),
+    "Mallorca": (2.9, 39.6),
 }
 
 # The fallback sites the description names; the rest are counted.
