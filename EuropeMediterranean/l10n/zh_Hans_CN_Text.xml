@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="zh_Hans_CN">
             <Text>没有远方土地的同一张地图：所有文明都可经陆路抵达。探索时代的宝藏与军事传承之路在此无法得分。</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="zh_Hans_CN">
+            <Text>压缩欧亚大陆</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>地图的独立副本，可在编辑器中改造，不影响另外两张地图。</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hans_CN">
             <Text>欧洲大地图 112x98</Text>
         </Replace>

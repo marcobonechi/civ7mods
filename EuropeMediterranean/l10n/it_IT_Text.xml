@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="it_IT">
             <Text>La stessa mappa senza Terre lontane: ogni civiltà è raggiungibile via terra. I percorsi eredità del tesoro e militare dell'Era delle Esplorazioni qui non danno punti.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="it_IT">
+            <Text>Eurasia compressa</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="it_IT">
+            <Text>Una copia separata della mappa, da rimodellare nell'editor senza toccare le altre due.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="it_IT">
             <Text>Europa grande 112x98</Text>
         </Replace>

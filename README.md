@@ -91,14 +91,15 @@ anything, or name a single mod (`uninstall.ps1 Byzantium`). Restart the game aft
 
 ---
 
-## The two maps
+## The three maps
 
-Both offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
+All three offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
 | Europe & Mediterranean (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
 | Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
+| Eurasia Compressed | its own copy of the geography, reshaped separately | Africa, Scandinavia, Iceland | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
 
 `maps/europe-map.js` and `maps/europe-geo.js` (the original smaller-extent map on the base game's
 sizes) are still in the repo but are no longer registered in `config/config.xml`, so they do not

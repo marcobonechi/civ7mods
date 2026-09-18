@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ja_JP">
             <Text>遥かなる地のない同じマップ。すべての文明に陸路で到達できます。探検の時代の財宝と軍事のレガシーパスはここでは得点できません。</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="ja_JP">
+            <Text>圧縮ユーラシア</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="ja_JP">
+            <Text>他の2つに影響を与えずにエディターで作り変えられる、マップの独立したコピー。</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ja_JP">
             <Text>ヨーロッパ 大型 112x98</Text>
         </Replace>

@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="fr_FR">
             <Text>La même carte sans Terres lointaines : chaque civilisation est accessible par voie terrestre. Les voies d'héritage du trésor et militaire de l'Âge de l'Exploration ne rapportent aucun point ici.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="fr_FR">
+            <Text>Eurasie compressée</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="fr_FR">
+            <Text>Une copie séparée de la carte, à remodeler dans l'éditeur sans toucher aux deux autres.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="fr_FR">
             <Text>Europe Grande 112x98</Text>
         </Replace>

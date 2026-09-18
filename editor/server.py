@@ -39,6 +39,7 @@ SELECTED_MAP = None
 # Labels for the files we ship, so the picker reads better than a bare filename.
 MAP_LABELS = {
     "europe-large-geo.js": "Europe, Mediterranean & Sahel (Distant Lands + One Landmass)",
+    "europe-alt-geo.js": "Eurasia Compressed",
     "europe-geo.js": "Europe & Mediterranean (Standard, not registered)",
 }
 
@@ -351,7 +352,7 @@ def main():
     ap.add_argument("--port", type=int, default=8080)
     ap.add_argument("--no-open", action="store_true", help="do not open a browser")
     ap.add_argument("--map", metavar="FILE", default=None,
-                    help="geography file to open first, e.g. europe-geo.js "
+                    help="geography file to open first, e.g. europe-alt-geo.js "
                          "(default: the first one listed; switchable in the browser)")
     ap.add_argument("--no-mirror", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args()

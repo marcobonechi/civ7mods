@@ -4,7 +4,7 @@
 # macOS/Linux port of run-editor.ps1 / open-editor.bat.
 #
 #   ./run-editor.sh                            # opens the first map in the list
-#   ./run-editor.sh --map europe-geo.js        # opens that one instead
+#   ./run-editor.sh --map europe-alt-geo.js    # opens that one instead
 #   ./run-editor.sh --port 8090 --no-open
 #
 # Any *-geo.js in EuropeMediterranean/maps can also be picked from the dropdown

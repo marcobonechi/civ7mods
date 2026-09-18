@@ -8,7 +8,7 @@
 // thirty-seven tiles with no land route to the rest of Europe at any grid size. Nothing in the
 // map output says so; you have to flood-fill for it.
 //
-//   node tools/land-reach.mjs <europe|large|united> <W> <H> <lon> <lat> [seed]
+//   node tools/land-reach.mjs <europe|large|united|alt> <W> <H> <lon> <lat> [seed]
 //
 // Prints the walkable-tile count and the northernmost latitude reached. On a healthy start the
 // count is in the thousands and the map's own northern edge comes back as the latitude.
@@ -22,9 +22,9 @@ import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const [geoName, W, H, lon, lat, seedArg] = process.argv.slice(2);
-if (!lat) { console.error("usage: land-reach.mjs <europe|large|united> W H lon lat [seed]"); process.exit(2); }
+if (!lat) { console.error("usage: land-reach.mjs <europe|large|united|alt> W H lon lat [seed]"); process.exit(2); }
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "EuropeMediterranean", "maps");
-const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js" }[geoName];
+const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js", alt: "europe-alt-geo.js" }[geoName];
 if (!geoFile) { console.error("unknown geo: " + geoName); process.exit(2); }
 // The map files are ES modules with a .js extension; copy them as .mjs so node accepts them.
 const tmp = mkdtempSync(join(tmpdir(), "civ7-reach-"));

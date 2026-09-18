@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION">
             <Text>The same map with no Distant Lands: every civilization is reachable overland. The Exploration Age treasure and military legacy paths cannot score here.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME">
+            <Text>Eurasia Compressed</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION">
+            <Text>A separate copy of the map, to reshape in the editor without touching the other two.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>
         </Replace>

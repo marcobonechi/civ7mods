@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="de_DE">
             <Text>Dieselbe Karte ohne Ferne Länder: Jede Zivilisation ist über Land erreichbar. Die Schatz- und Militär-Vermächtnispfade des Zeitalters der Erkundung bringen hier keine Punkte.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="de_DE">
+            <Text>Eurasien komprimiert</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="de_DE">
+            <Text>Eine separate Kopie der Karte, die sich im Editor umgestalten lässt, ohne die anderen beiden zu verändern.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="de_DE">
             <Text>Europa Groß 112x98</Text>
         </Replace>

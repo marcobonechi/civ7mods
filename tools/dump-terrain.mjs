@@ -9,9 +9,9 @@ import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const [geoName, W, H, lon1, lat1, lon2, lat2, seedArg] = process.argv.slice(2);
-if (!lat2) { console.error("usage: dump-terrain.mjs <europe|large|united> W H lon1 lat1 lon2 lat2 [seed]"); process.exit(2); }
+if (!lat2) { console.error("usage: dump-terrain.mjs <europe|large|united|alt> W H lon1 lat1 lon2 lat2 [seed]"); process.exit(2); }
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "EuropeMediterranean", "maps");
-const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js" }[geoName];
+const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js", alt: "europe-alt-geo.js" }[geoName];
 // The map files are ES modules with a .js extension; copy them as .mjs so node accepts them.
 const tmp = mkdtempSync(join(tmpdir(), "civ7-dump-"));
 copyFileSync(join(root, "europe-raster.js"), join(tmp, "europe-raster.mjs"));

@@ -19,6 +19,12 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="es_ES">
             <Text>El mismo mapa sin Tierras lejanas: todas las civilizaciones son accesibles por tierra. Las rutas de legado del tesoro y militar de la Era de la Exploración no puntúan aquí.</Text>
         </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="es_ES">
+            <Text>Eurasia comprimida</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="es_ES">
+            <Text>Una copia separada del mapa, para modificarla en el editor sin tocar los otros dos.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="es_ES">
             <Text>Europa Grande 112x98</Text>
         </Replace>

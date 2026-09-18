@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Count how many regional resource areas cover each hex of a Europe map, offline.
-// Usage: node tools/resource-overlap.mjs <large|united> [W H]
+// Usage: node tools/resource-overlap.mjs <large|united|alt> [W H]
 // Water areas (only sea resources) count on water hexes, land areas on land hexes.
 import { mkdtempSync, copyFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -8,7 +8,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 const [geoName, W = "128", H = "112"] = process.argv.slice(2);
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "EuropeMediterranean", "maps");
-const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js" }[geoName];
+const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js", alt: "europe-alt-geo.js" }[geoName];
 const tmp = mkdtempSync(join(tmpdir(), "civ7-ov-"));
 copyFileSync(join(root, "europe-raster.js"), join(tmp, "europe-raster.mjs"));
 copyFileSync(join(root, geoFile), join(tmp, "geo.mjs"));
