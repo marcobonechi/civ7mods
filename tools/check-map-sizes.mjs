@@ -115,10 +115,16 @@ for (const { script, geoFile, united } of maps) {
             }
             return seen;
         };
-        for (const [name, a, b] of JOINS) {
-            const tb = g.findLandTile(b[0], b[1], 3, true), joined = landOf(a).has(tb.join());
+        const at = (p) => typeof p === 'string' ? GEO.tsl[p] : p;
+        const joinedBy = (a, b) => { const tb = g.findLandTile(...at(b), 3, true); return landOf(at(a)).has(tb.join()); };
+        // The Distant Lands / One Landmass pair share one geography, so these two joins tell them apart.
+        if (geoFile === 'europe-large-geo.js') for (const [name, a, b] of JOINS) {
+            const joined = joinedBy(a, b);
             check(joined === united, `${name} ${joined ? 'joined by land' : 'apart by sea'}`);
         }
+        // Any geography can declare its own (GEO.expectLand: { joined: [...], apart: [...] }).
+        for (const [name, a, b] of (GEO.expectLand || {}).joined || []) check(joinedBy(a, b), `${name} joined by land`);
+        for (const [name, a, b] of (GEO.expectLand || {}).apart || []) check(!joinedBy(a, b), `${name} apart by sea`);
 
         // Only one age is ever live, so two ages may share a site on purpose - a
         // clash only matters between civs that can be in the same game. The engine

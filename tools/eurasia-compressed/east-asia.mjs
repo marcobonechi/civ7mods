@@ -31,12 +31,16 @@ const { GEO } = await import(pathToFileURL(GEO_FILE).href + "?" + Date.now());
 // ---- the fit ---------------------------------------------------------------------------------
 const W = 128, H = 112;
 const P = makeProjection(GEO, W, H);
-const REAL_LAT = [18, 58.5], ROWS = [51, 104];        // real latitude -> row
+// real latitude -> row, stepped rather than even: China proper (30-42N) gets about half again
+// as many rows per degree, Mongolia is pushed north into what was Siberia, and Siberia itself,
+// which has no part in the game's history, is cut at 55N and squeezed into the top rows.
+const LAT_ROWS = [[18, 51], [30, 65], [42, 90], [50, 99.5], [55, 105]];
 const WEST_LON = 104;                                   // everything west of this is cut
+const KNEE = 121.5, KNEE_FRAC = 0.40;                   // the China coast, and its share of the row
 const EAST_LON = [[18, 123], [25, 123], [30, 132], [34, 141.5], [41, 142.5], [45, 146], [58.5, 146]];
 const RIGHT = 125.0;                                    // east end of the land, in columns
 const LEFT = [[40, 118.5], [53, 118], [57, 114], [62, 109], [69, 105], [76, 100.5],
-              [81, 96.5], [88, 92.5], [95, 90], [112, 90]];   // moat edge, row -> column
+              [81, 97], [88, 94.5], [95, 95], [112, 95]];   // moat edge, row -> column (clear of Karelia)
 const lerpTable = (tab, v) => {
     if (v <= tab[0][0]) return tab[0][1];
     for (let i = 1; i < tab.length; i++) if (v <= tab[i][0]) {
@@ -46,9 +50,17 @@ const lerpTable = (tab, v) => {
     return tab[tab.length - 1][1];
 };
 const toTile = (lon, lat) => {
-    const row = ROWS[0] + (lat - REAL_LAT[0]) * (ROWS[1] - ROWS[0]) / (REAL_LAT[1] - REAL_LAT[0]);
+    const row = lerpTable(LAT_ROWS, lat);
     const east = lerpTable(EAST_LON, lat), left = lerpTable(LEFT, row);
-    return [left + (lon - WEST_LON) / (east - WEST_LON) * (RIGHT - left), row];
+    // Longitude is split at the China coast (KNEE): from 31N up, the east of it - Korea, Japan,
+    // the Sea of Japan - gets 60% of the row rather than its share by degrees, so Korea and Japan
+    // come out larger than true scale. Below 28N the row is plain linear; in between it blends.
+    const linear = (KNEE - WEST_LON) / (east - WEST_LON);
+    const w = Math.max(0, Math.min(1, (lat - 28) / 3));
+    const kf = Math.min(linear, linear * (1 - w) + KNEE_FRAC * w);
+    const f = lon <= KNEE ? (lon - WEST_LON) / (KNEE - WEST_LON) * kf
+                          : kf + (lon - KNEE) / Math.max(0.1, east - KNEE) * (1 - kf);
+    return [left + f * (RIGHT - left), row];
 };
 // hex space -> map lon/lat (north of 33N there is no southern warp, so a row is a latitude)
 const toMap = (xf, yf) => {
@@ -57,7 +69,28 @@ const toMap = (xf, yf) => {
     for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (P.toTile(mid, lat)[0] < xf) lo = mid; else hi = mid; }
     return [+((lo + hi) / 2).toFixed(2), +lat.toFixed(2)];
 };
-const fit = ([lon, lat]) => toMap(...toTile(lon, lat));
+// Korea and Japan are enlarged on top of the knee: points inside each box are pushed away from
+// a centre in hex space. Korea grows from its neck on the Yalu, so it stays joined to the
+// mainland; Japan grows about its middle and is then nudged to keep off the map edge.
+const GROW = [
+    { name: "Korea", box: [124.3, 33.5, 131.0, 40.6], centre: [127.3, 40.4], k: 1.35, shift: [-1.3, 0.3] },
+    // Honshu, Kyushu and Shikoku grow about a centre near the Inland Sea, so they spread north-east
+    // rather than into the East China Sea; Hokkaido only in place, because
+    // growing it with the rest pushed it north into Sakhalin and joined Japan to the Amur coast.
+    { name: "Japan", box: [129.3, 30.5, 142.5, 41.35], centre: [134.5, 34.8], k: 1.4, shift: [0.6, 0.6] },
+    { name: "Hokkaido", box: [139.5, 41.4, 146.5, 46.0], centre: [142.6, 43.4], k: 1.15, shift: [-0.6, -0.8] },
+];
+const grown = (lon, lat) => {
+    let [x, y] = toTile(lon, lat);
+    for (const g of GROW) {
+        const [a, b, c, d] = g.box;
+        if (lon < a || lon > c || lat < b || lat > d) continue;
+        const [cx, cy] = toTile(...g.centre);
+        x = cx + (x - cx) * g.k + g.shift[0]; y = cy + (y - cy) * g.k + g.shift[1];
+    }
+    return [x, y];
+};
+const fit = ([lon, lat]) => toMap(...grown(lon, lat));
 // Long edges are subdivided before fitting: the fit is not linear, so a straight edge in real
 // coordinates (the 104E cut, the 58.5N cut, a polygon box) must follow it rather than cut a chord.
 const densify = (pts, step = 0.75, closed = true) => {
@@ -75,7 +108,7 @@ const fitAll = (pts, closed = true) => densify(pts, 0.75, closed).map(fit);
 
 // ---- real geography --------------------------------------------------------------------------
 // Coastlines simplified to a few dozen points each; the mainland's west side is the 104E cut and
-// its north side the 58.5N cut, both of which become the moat and the Arctic shore.
+// its north side the 55N cut, both of which become the moat and the Arctic shore.
 const MAINLAND = [
     [104.0, 17.8], [106.6, 17.5], [105.9, 18.8], [105.8, 19.6], [106.2, 20.2], [106.8, 20.8], [107.5, 21.3],
     [108.3, 21.6], [109.0, 21.5], [109.7, 21.5], [110.1, 20.9], [110.2, 20.3], [110.6, 20.9], [111.3, 21.5],
@@ -94,9 +127,8 @@ const MAINLAND = [
     // Primorye, the Amur mouth and the Okhotsk shore
     [131.2, 42.6], [131.9, 43.1], [132.4, 42.8], [133.2, 42.7], [134.2, 43.2], [135.3, 43.9], [136.3, 44.7],
     [137.3, 45.6], [138.2, 46.7], [138.8, 47.5], [139.6, 48.4], [140.3, 49.2], [140.5, 50.2], [140.6, 51.3],
-    [141.4, 52.3], [141.2, 53.2], [140.2, 53.6], [139.0, 54.1], [137.8, 54.3], [136.8, 54.6], [137.4, 55.3],
-    [138.2, 56.2], [139.5, 57.2], [141.0, 58.0], [142.0, 58.5],
-    [104.0, 58.5],
+    [141.4, 52.3], [141.2, 53.2], [140.2, 53.6], [139.0, 54.1], [137.8, 54.3], [136.8, 54.6], [136.4, 55.0],
+    [104.0, 55.0],
 ];
 const ISLANDS = {
     "Honshu": [[130.9, 34.0], [131.5, 34.5], [132.4, 35.3], [133.3, 35.6], [134.4, 35.6], [135.3, 35.7], [136.0, 35.9],
@@ -134,7 +166,7 @@ const RANGES = [
     ["Nanling", 0.2, 1.1, [[110.0, 25.0], [113.0, 25.2], [116.0, 24.8]]],
     ["Wuyi", 0.3, 1.1, [[116.5, 26.5], [118.0, 27.8], [119.0, 28.8]]],
     ["Khentii", 0.3, 1.0, [[107.5, 48.0], [109.5, 48.8]]],
-    ["Stanovoy", 0.15, 1.1, [[112.0, 56.5], [122.0, 56.0], [130.0, 56.5], [136.0, 57.0]]],
+    ["Stanovoy", 0.15, 1.0, [[112.0, 54.0], [122.0, 53.8], [130.0, 54.0]]],
     ["Taebaek", 0.35, 1.0, [[128.3, 38.6], [128.8, 37.0], [129.0, 35.8]]],
     ["Japanese Alps", 0.6, 1.1, [[136.8, 35.6], [137.6, 36.3], [138.2, 37.0]]],
     ["Ou Mountains", 0.35, 0.9, [[140.6, 37.5], [140.9, 39.5], [140.9, 41.0]]],
@@ -153,14 +185,14 @@ const RIVERS = [
 ];
 // [name, biome or null, rain or null, prob, polygon] - appended after the European areas, so they win
 const BIOMES = [
-    ["East Asia", "G", 110, undefined, [[103, 17], [147, 17], [147, 59], [103, 59]]],
+    ["East Asia", "G", 110, undefined, [[103, 17], [147, 17], [147, 56], [103, 56]]],
     ["South China (subtropical)", "G", 150, undefined, [[103, 17], [124, 17], [124, 30], [103, 30]]],
     ["South China coast (tropical)", "R", 160, 0.6, [[103, 17], [124, 17], [124, 23.5], [103, 23.5]]],
     ["North China Plain and the Loess", "P", 70, undefined, [[104, 33.5], [118, 33.5], [122, 40.5], [112, 41], [104, 40]]],
     ["Mongolian steppe", "P", 45, undefined, [[104, 40.5], [117, 42], [119.5, 44], [119.5, 50], [104, 52]]],
     ["Gobi", "D", 15, undefined, [[104, 40.3], [111, 41.8], [113.5, 44], [108, 45.8], [104, 45]]],
     ["Manchuria", "G", 100, undefined, [[119.5, 41], [135, 42], [135, 50], [119.5, 50]]],
-    ["Siberian taiga", "T", 90, 0.7, [[103, 53], [147, 53], [147, 59], [103, 59]]],
+    ["Siberian taiga", "T", 90, 0.7, [[103, 52], [147, 52], [147, 56], [103, 56]]],
 ];
 // first match wins in resourceAreas, so these are written at the top of the list
 const RESOURCES = [
@@ -171,9 +203,9 @@ const RESOURCES = [
         [[103, 17], [124, 17], [124, 30.5], [103, 30.5]]],
     ["North China", 9, ["RESOURCE_SILK", "RESOURCE_IRON", "RESOURCE_COAL", "RESOURCE_SALT", "RESOURCE_HORSES", "RESOURCE_COTTON", "RESOURCE_KAOLIN"],
         [[103, 30.5], [124.5, 30.5], [124.5, 41], [103, 41]]],
-    ["Mongolia", 11, ["RESOURCE_HORSES", "RESOURCE_HIDES", "RESOURCE_WOOL", "RESOURCE_SALT", "RESOURCE_CAMELS"], [[103, 41], [119.5, 41], [119.5, 53], [103, 53]]],
+    ["Mongolia", 11, ["RESOURCE_HORSES", "RESOURCE_HIDES", "RESOURCE_WOOL", "RESOURCE_SALT", "RESOURCE_CAMELS"], [[103, 41], [119.5, 41], [119.5, 52], [103, 52]]],
     ["Manchuria and the Amur", 11, ["RESOURCE_FURS", "RESOURCE_HARDWOOD", "RESOURCE_HIDES", "RESOURCE_WILD_GAME", "RESOURCE_GOLD", "RESOURCE_IRON"],
-        [[119.5, 41], [147, 41], [147, 59], [103, 59], [103, 53], [119.5, 53]]],
+        [[119.5, 41], [147, 41], [147, 56], [103, 56], [103, 52], [119.5, 52]]],
 ];
 // true starts (real coordinates); the geo file's own entries for these keys are removed once
 const STARTS = {
@@ -192,7 +224,7 @@ const STARTS = {
 const SITES = [[113.26, 23.13, "Guangzhou"], [114.30, 30.59, "Wuhan"], [120.15, 30.27, "Hangzhou"], [114.31, 34.80, "Kaifeng"],
     [123.43, 41.80, "Shenyang"], [126.63, 45.75, "Harbin"], [125.75, 39.02, "Pyongyang"], [129.04, 35.10, "Busan"],
     [140.87, 38.27, "Sendai"], [141.35, 43.06, "Sapporo"], [130.40, 33.59, "Fukuoka"], [121.56, 25.04, "Taipei"],
-    [131.90, 43.12, "Vladivostok"], [105.85, 21.03, "Hanoi"], [118.59, 24.91, "Quanzhou"], [113.30, 40.08, "Datong"],
+    [105.85, 21.03, "Hanoi"], [118.59, 24.91, "Quanzhou"], [113.30, 40.08, "Datong"],
     [111.67, 40.82, "Hohhot"]];
 
 // ---- Eastern Ocean (map coordinates, not fitted) ------------------------------------------
@@ -202,9 +234,11 @@ const SITES = [[113.26, 23.13, "Guangzhou"], [114.30, 30.59, "Wuhan"], [120.15, 
 // the Greater Caucasus crest (north of Elbrus), down Azerbaijan's Caspian shore, along Iran's
 // Caspian coast and the Kopet Dag, and out past the map's east edge.
 const OCEAN = [
-    [30.9, 75.0], [30.9, 69.75], [28.9, 69.05], [28.4, 68.5], [29.5, 68.0], [30.0, 67.7], [29.1, 66.9], [30.1, 65.7],
-    [29.7, 64.8], [30.5, 64.2], [30.0, 63.7], [31.5, 62.9], [31.0, 62.2], [29.6, 61.3], [28.6, 60.9], [27.8, 60.55],
-    [28.05, 59.45], [28.1, 59.0], [27.7, 58.0], [27.5, 57.52], [27.9, 57.2], [28.1, 56.6], [28.2, 56.15],
+    // Kola and the White Sea are sea; Karelia (up to the White Sea's west shore and round Onega),
+    // the Karelian isthmus and St Petersburg stay land, so Finland joins Estonia overland.
+    [30.9, 75.0], [30.9, 69.75], [28.9, 69.05], [28.4, 68.5], [29.5, 68.0], [30.0, 67.7], [29.1, 66.9],
+    [32.3, 66.9], [32.8, 66.6], [33.8, 66.3], [34.6, 65.0], [34.8, 64.5], [35.6, 63.8], [36.4, 62.9],
+    [36.3, 61.6], [35.3, 60.8], [33.5, 59.9], [31.5, 59.3], [29.5, 59.0], [28.1, 59.0], [27.7, 58.0], [27.5, 57.52], [27.9, 57.2], [28.1, 56.6], [28.2, 56.15],
     [29.4, 55.95], [30.9, 55.6], [31.2, 54.6], [31.8, 53.8], [32.7, 53.3], [32.3, 52.8], [31.8, 52.1],
     [33.2, 52.35], [34.1, 51.9], [34.4, 51.3], [35.3, 51.1], [35.6, 50.4], [36.6, 50.2], [37.5, 50.3],
     [38.2, 49.95], [39.2, 49.8], [40.1, 49.6], [40.0, 48.9], [39.8, 48.3],
@@ -220,15 +254,17 @@ const OCEAN = [
 
 // Russian features the ocean replaces: removed from the geo file once, by name.
 const REMOVE = {
-    lakes: ["Ladoga", "Onega", "Ilmen", "Beloye", "Imandra"],
+    lakes: ["Ilmen", "Beloye", "Imandra"],
     landBlobs: ["Kolguyev"],
     rivers: ["Volga", "Don"],
+    waterLines: ["Karelian passage"],
     ranges: ["Valdai Hills", "Central Russian Upland", "Urals", "Valdai", "Volga Upland", "Timan Ridge", "Khibiny"],
     fallbackSites: ["Moscow", "Kazan", "Novgorod", "Petersburg", "Sarai", "Smolensk"],
     tsl: Object.keys(STARTS).concat(["CIVILIZATION_RUSSIA"]),
 };
 // Russia keeps a European start on the one piece of Russia left: Rostov-on-Don, on the strip.
-const RUSSIA = [39.72, 47.23, "Rostov-on-Don, the one piece of Russia the Eastern Ocean leaves"];
+// Russia starts at Vladivostok, its Pacific port - the one Russia the map now has room for.
+const RUSSIA = [131.90, 43.12, "Vladivostok, Russia's Pacific port"];
 
 // ---- writing ---------------------------------------------------------------------------------
 const f = (n) => +n.toFixed(2);
@@ -241,6 +277,7 @@ const blocks = {
         ...Object.entries(ISLANDS).map(([n, p]) => `${I}{ name: ${q(n)}, late: true, pts: ${pts(fitAll(p))} },`),
     ],
     water: [`${I}{ name: "Eastern Ocean", pts: ${pts(OCEAN)} },`],
+    lakes: [`${I}[31.3, 60.85, 1.0, "Ladoga"], [35.4, 61.9, 0.8, "Onega"],`],
     distantLandsAnchors: Object.entries(ANCHORS).map(([n, p]) => { const [x, y] = fit(p); return `${I}[${x}, ${y}],   // ${n}`; }),
     ranges: RANGES.map(([n, c, fr, p]) => `${I}{ name: ${q(n)}, core: ${c}, fringe: ${fr}, pts: ${pts(densify(p, 2.0, false).map(fit))} },`),
     rivers: RIVERS.map(([n, p]) => `${I}{ name: ${q(n)}, pts: ${pts(p.map(fit))} },`),
@@ -249,11 +286,11 @@ const blocks = {
     rainAreas: BIOMES.filter((b) => b[2] !== null).map(([n, , r, , p]) => `${I}{ name: ${q(n)}, rain: ${r}, pts: ${pts(densify(p, 2.0).map(fit))} },`),
     resourceAreas: RESOURCES.map(([n, d, r, p]) => `${I}{ name: ${q(n)}, density: ${d}, resources: ${JSON.stringify(r).replace(/","/g, '", "')}, pts: ${pts(densify(p, 2.0).map(fit))} },`),
     tsl: [...Object.entries(STARTS).map(([k, [lo, la, c]]) => { const [x, y] = fit([lo, la]); return `${I}${k}: [${x}, ${y}],   // ${c}`; }),
-          `${I}CIVILIZATION_RUSSIA: [${RUSSIA[0]}, ${RUSSIA[1]}],   // ${RUSSIA[2]}`],
+          (() => { const [x, y] = fit(RUSSIA); return `${I}CIVILIZATION_RUSSIA: [${x}, ${y}],   // ${RUSSIA[2]}`; })()],
     fallbackSites: [SITES.map(([lo, la, n]) => { const [x, y] = fit([lo, la]); return `[${x}, ${y}, ${q(n)}]`; }).join(", ") + ","].map((l) => I + l),
 };
 // where each block goes: "start" of the array/object, or "end" (for lists where later entries win)
-const PLACE = { land: "start", water: "start", distantLandsAnchors: "end", ranges: "start", rivers: "start", volcanoes: "end",
+const PLACE = { lakes: "start", land: "start", water: "start", distantLandsAnchors: "end", ranges: "start", rivers: "start", volcanoes: "end",
                  biomeAreas: "end", rainAreas: "end", resourceAreas: "start", tsl: "start", fallbackSites: "end" };
 
 let text = fs.readFileSync(GEO_FILE, "utf8");
