@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Mod id="europe-mediterranean-map" version="61" xmlns="ModInfo">
     <Properties>
-        <Name>Europe, Mediterranean, North Africa</Name>
+        <Name>TSL (1) Europe, Med Africa (2) Eurasia Compressed</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
 Updated to 1.5 with quasi-fixed Navigable Rivers, and Hall of History (Gauls, England, Babylon) 
