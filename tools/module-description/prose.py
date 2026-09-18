@@ -1,161 +1,726 @@
 # -*- coding: utf-8 -*-
-# {ant} {exp} {mod} are filled with the per-age start lists.
-PROSE = {
-"de_DE": """Europa, das Mittelmeer und Afrika oberhalb des Äquators, auf 112x98, 128x112 oder 144x126. Drei Karten: Ferne Länder (Afrika, Skandinavien und Island jenseits des Wassers), Eine Landmasse (dieselbe Geografie ohne ferne Länder) und eine Variante, die getrennt gehalten wird und umgestaltet werden kann, ohne die Originale anzurühren.
+# The hand-written text of the mod description, per language. build.py lays it out:
+#
+#   intro
+#
+#   MAPS HEADING
+#   - one line per map
+#   sizes
+#
+#   TRUE STARTS HEADING
+#   paragraphs
+#
+#   AGE HEADING                      (x3)
+#   home label
+#   - Civilization (City): reason
+#   stand-in label
+#   - Civilization (City): reason
+#
+#   WORKSHOP HEADING / line
+#   EVERYONE ELSE HEADING / line
+#   link
+#
+# The game shows the description as plain text: no markup, no bullets of its own, and leading
+# spaces are not guaranteed to survive. So the layout is carried entirely by newlines, blank
+# lines between sections, capitals for headings and a "- " at the start of each list line.
 
-JEDE ZIVILISATION JEDES ZEITALTERS HAT EINEN HISTORISCHEN STARTPLATZ. Wählen Sie diejenige, die dort beginnt, wo Ihr Reich enden soll. Civilization VII 1.5 hat die Gallier, England und Babylon hinzugefügt, und sie stehen genau dort, wo sie hingehören - die britische Linie lässt sich also endlich dort spielen, wo sie sich wirklich abgespielt hat: Beginnen Sie als Gallier an der Seine, werden Sie England an der Themse und enden Sie als Großbritannien oder Amerika. Überall dort, wo das Spiel eine Lücke lässt, wartet trotzdem eine Zivilisation - etwa das Mississippi-Reich an der Themse oder die Maya in der norddeutschen Tiefebene, die in Deutschland zu Preußen werden. Nur ein Zeitalter ist je aktiv, deshalb teilen sich die Zeitalter ihre Plätze absichtlich.
+LANG = {}
 
-ANTIKE - {ant}.
+LANG["en_US"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.",
+    maps_head="THREE MAPS",
+    maps=["Distant Lands: Africa, Scandinavia and Iceland lie across the water",
+          "One Landmass: the same geography, with nothing distant",
+          "Variant: a separate copy you can reshape without touching the other two"],
+    sizes="Sizes 112x98, 128x112 and 144x126.",
+    starts_head="TRUE STARTS",
+    starts=["Every civilization of every age has a fixed home, so pick the one that begins where you want your empire to end up. Only one age is live at a time, so the ages share their cities on purpose.",
+            "The British line plays out where it happened: begin as Gaul on Lake Geneva, become England on the Thames, end as Great Britain or America.",
+            "Civilizations with no history in Europe are stand-ins. Each holds a region the map would otherwise leave empty, chosen by terrain and, where it matters, by what the civilization unlocks on."],
+    age={"Antiquity": "ANTIQUITY", "Exploration": "EXPLORATION", "Modern": "MODERN"},
+    home="Historical homes:",
+    standin="Stand-ins:",
+    workshop_head="WORKSHOP CIVILIZATIONS",
+    workshop="Placed too, if you have them installed: {list}.",
+    others_head="EVERYONE ELSE",
+    others="A civilization without a start, or one whose start another player already holds, settles a curated historical site: London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and {more} more.",
+    link="Screenshots and details: {url}",
+)
 
-ERKUNDUNG - {exp}.
+LANG["de_DE"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europa, das Mittelmeer und Afrika oberhalb des Äquators, mit einem historischen Startplatz für jede Zivilisation jedes Zeitalters und Flüssen dort, wo sie wirklich fließen.",
+    maps_head="DREI KARTEN",
+    maps=["Ferne Länder: Afrika, Skandinavien und Island liegen jenseits des Wassers",
+          "Eine Landmasse: dieselbe Geografie, ohne ferne Länder",
+          "Variante: eine eigene Kopie, die sich umgestalten lässt, ohne die anderen beiden anzurühren"],
+    sizes="Größen 112x98, 128x112 und 144x126.",
+    starts_head="HISTORISCHE STARTPLÄTZE",
+    starts=["Jede Zivilisation jedes Zeitalters hat einen festen Startplatz - wählen Sie diejenige, die dort beginnt, wo Ihr Reich enden soll. Es ist immer nur ein Zeitalter aktiv, deshalb teilen sich die Zeitalter ihre Städte absichtlich.",
+            "Die britische Linie spielt dort, wo sie sich zugetragen hat: Beginnen Sie als Gallier am Genfersee, werden Sie England an der Themse und enden Sie als Großbritannien oder Amerika.",
+            "Zivilisationen ohne europäische Geschichte sind Platzhalter. Jede hält eine Region, die die Karte sonst leer ließe - gewählt nach Gelände und, wo es zählt, nach der Freischaltbedingung der Zivilisation."],
+    age={"Antiquity": "ANTIKE", "Exploration": "ERKUNDUNG", "Modern": "MODERNE"},
+    home="Historische Heimat:",
+    standin="Platzhalter:",
+    workshop_head="ZIVILISATIONEN AUS DEM WORKSHOP",
+    workshop="Ebenfalls platziert, wenn installiert: {list}.",
+    others_head="ALLE ÜBRIGEN",
+    others="Eine Zivilisation ohne Startplatz, oder deren Platz schon ein anderer Spieler hält, siedelt auf einem kuratierten historischen Platz: zuerst London und Dublin, dann Kyjiw, Uppsala, Fès, Krakau, Trondheim, Kopenhagen, Marrakesch und {more} weitere.",
+    link="Screenshots und Details: {url}",
+)
 
-MODERNE - {mod}.
+LANG["es_ES"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europa, el Mediterráneo y África por encima del ecuador, con una posición histórica para cada civilización de cada era y ríos trazados por donde corren de verdad.",
+    maps_head="TRES MAPAS",
+    maps=["Tierras Lejanas: África, Escandinavia e Islandia al otro lado del agua",
+          "Una Sola Masa Continental: la misma geografía, sin nada lejano",
+          "Variante: una copia aparte que puedes remodelar sin tocar las otras dos"],
+    sizes="Tamaños 112x98, 128x112 y 144x126.",
+    starts_head="POSICIONES HISTÓRICAS",
+    starts=["Cada civilización de cada era tiene un lugar fijo: elige la que empieza donde quieres que acabe tu imperio. Solo hay una era activa a la vez, así que las eras comparten sus ciudades a propósito.",
+            "La línea británica se juega donde ocurrió: empieza como los galos en el lago de Ginebra, conviértete en Inglaterra en el Támesis y acaba como Gran Bretaña o América.",
+            "Las civilizaciones sin historia en Europa son suplentes. Cada una ocupa una región que el mapa dejaría vacía, elegida por el terreno y, cuando importa, por lo que la civilización necesita para desbloquearse."],
+    age={"Antiquity": "ANTIGÜEDAD", "Exploration": "EXPLORACIÓN", "Modern": "ERA MODERNA"},
+    home="Hogar histórico:",
+    standin="Suplentes:",
+    workshop_head="CIVILIZACIONES DEL WORKSHOP",
+    workshop="También se colocan, si las tienes instaladas: {list}.",
+    others_head="LAS DEMÁS",
+    others="Una civilización sin posición, o cuya posición ya ocupa otro jugador, se asienta en un emplazamiento histórico seleccionado: primero Londres y Dublín, luego Kiev, Upsala, Fez, Cracovia, Trondheim, Copenhague, Marrakech y {more} más.",
+    link="Capturas de pantalla y detalles: {url}",
+)
 
-Zivilisationen ohne historischen Bezug zu Europa werden nach Gelände statt nach Geschichte gesetzt und dort, wo es zählt, an ihre Freischaltbedingungen angepasst: Inka und Nepal im Kaukasus, die über Bergsiedlungen freigeschaltet werden; Hawaii auf Sizilien, das über Inselsiedlungen freigeschaltet wird; Buganda im äthiopischen Hochland, das über Seen freigeschaltet wird.
+LANG["fr_FR"] = dict(
+    bullet="- ", colon=" : ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="L'Europe, la Méditerranée et l'Afrique au nord de l'équateur, avec un départ historique pour chaque civilisation de chaque ère et des fleuves tracés là où ils coulent vraiment.",
+    maps_head="TROIS CARTES",
+    maps=["Terres lointaines : l'Afrique, la Scandinavie et l'Islande de l'autre côté de l'eau",
+          "Masse continentale unique : la même géographie, sans rien de lointain",
+          "Variante : une copie à part, à remodeler sans toucher aux deux autres"],
+    sizes="Tailles 112x98, 128x112 et 144x126.",
+    starts_head="DÉPARTS HISTORIQUES",
+    starts=["Chaque civilisation de chaque ère a un point de départ fixe : choisissez celle qui commence là où vous voulez que votre empire finisse. Une seule ère est active à la fois, les ères partagent donc leurs villes à dessein.",
+            "La lignée britannique se joue là où elle s'est déroulée : commencez comme les Gaulois sur le lac Léman, devenez l'Angleterre sur la Tamise, finissez en Grande-Bretagne ou en Amérique.",
+            "Les civilisations sans passé européen sont des remplaçantes. Chacune occupe une région que la carte laisserait vide, choisie selon le terrain et, quand cela compte, selon ce qui débloque la civilisation."],
+    age={"Antiquity": "ANTIQUITÉ", "Exploration": "EXPLORATION", "Modern": "ÈRE MODERNE"},
+    home="Berceau historique :",
+    standin="Remplaçantes :",
+    workshop_head="CIVILISATIONS DU WORKSHOP",
+    workshop="Placées aussi, si vous les avez installées : {list}.",
+    others_head="TOUTES LES AUTRES",
+    others="Une civilisation sans départ, ou dont le départ est déjà pris par un autre joueur, s'installe sur un site historique sélectionné : Londres et Dublin d'abord, puis Kyiv, Uppsala, Fès, Cracovie, Trondheim, Copenhague, Marrakech et {more} autres.",
+    link="Captures d'écran et détails : {url}",
+)
 
-Alle Übrigen siedeln auf einem kuratierten historischen Platz, zuerst London und Dublin, dann Kyjiw, Uppsala, Fès, Krakau, Trondheim, Kopenhagen, Marrakesch und neunzig weitere. Screenshots und Details: {url}""",
+LANG["it_IT"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europa, Mediterraneo e Africa sopra l'Equatore, con una partenza storica per ogni civiltà di ogni era e fiumi tracciati dove scorrono davvero.",
+    maps_head="TRE MAPPE",
+    maps=["Terre Lontane: Africa, Scandinavia e Islanda oltre il mare",
+          "Terra Unica: la stessa geografia, senza nulla di lontano",
+          "Variante: una copia a parte, da rimodellare senza toccare le altre due"],
+    sizes="Dimensioni 112x98, 128x112 e 144x126.",
+    starts_head="PARTENZE STORICHE",
+    starts=["Ogni civiltà di ogni era ha un punto di partenza fisso: scegli quella che comincia dove vuoi che il tuo impero finisca. È viva una sola era per volta, quindi le ere condividono le città di proposito.",
+            "La linea britannica si gioca dove è successa davvero: comincia come Galli sul lago di Ginevra, diventa Inghilterra sul Tamigi e finisci come Gran Bretagna o America.",
+            "Le civiltà senza storia europea fanno da sostitute. Ognuna occupa una regione che la mappa lascerebbe vuota, scelta in base al terreno e, dove conta, a ciò con cui la civiltà si sblocca."],
+    age={"Antiquity": "ANTICHITÀ", "Exploration": "ESPLORAZIONE", "Modern": "ERA MODERNA"},
+    home="Patria storica:",
+    standin="Sostitute:",
+    workshop_head="CIVILTÀ DEL WORKSHOP",
+    workshop="Collocate anche queste, se installate: {list}.",
+    others_head="TUTTE LE ALTRE",
+    others="Una civiltà senza partenza, o la cui partenza è già occupata da un altro giocatore, si insedia su un sito storico selezionato: prima Londra e Dublino, poi Kiev, Uppsala, Fez, Cracovia, Trondheim, Copenaghen, Marrakech e altri {more}.",
+    link="Screenshot e dettagli: {url}",
+)
 
-"es_ES": """Europa, el Mediterráneo y África por encima del ecuador, en 112x98, 128x112 o 144x126. Tres mapas: Tierras Lejanas (África, Escandinavia e Islandia al otro lado del agua), Una Sola Masa Continental (la misma geografía sin nada lejano) y una Variante aparte que puede remodelarse sin tocar los originales.
+LANG["pl_PL"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europa, Morze Śródziemne i Afryka na północ od równika, z historyczną pozycją startową dla każdej cywilizacji każdej epoki i rzekami tam, gdzie naprawdę płyną.",
+    maps_head="TRZY MAPY",
+    maps=["Dalekie Ziemie: Afryka, Skandynawia i Islandia po drugiej stronie wody",
+          "Jeden Ląd: ta sama geografia, bez niczego dalekiego",
+          "Wariant: osobna kopia, którą można przekształcać bez ruszania dwóch pozostałych"],
+    sizes="Rozmiary 112x98, 128x112 i 144x126.",
+    starts_head="HISTORYCZNE POZYCJE STARTOWE",
+    starts=["Każda cywilizacja każdej epoki ma stałe miejsce startu: wybierz tę, która zaczyna tam, gdzie chcesz, by twoje imperium się skończyło. Naraz trwa tylko jedna epoka, więc epoki celowo dzielą się miastami.",
+            "Linia brytyjska rozgrywa się tam, gdzie się wydarzyła: zacznij jako Galowie nad Jeziorem Genewskim, zostań Anglią nad Tamizą i skończ jako Wielka Brytania lub Ameryka.",
+            "Cywilizacje bez europejskiej historii są zastępcami. Każda zajmuje region, który mapa zostawiłaby pusty, wybrany według terenu, a tam, gdzie to ma znaczenie, według tego, czym cywilizacja się odblokowuje."],
+    age={"Antiquity": "STAROŻYTNOŚĆ", "Exploration": "EPOKA ODKRYĆ", "Modern": "NOWOŻYTNOŚĆ"},
+    home="Historyczna ojczyzna:",
+    standin="Zastępcy:",
+    workshop_head="CYWILIZACJE Z WARSZTATU",
+    workshop="Również rozmieszczane, jeśli są zainstalowane: {list}.",
+    others_head="WSZYSCY POZOSTALI",
+    others="Cywilizacja bez pozycji startowej albo taka, której pozycję zajmuje już inny gracz, osiedla się w wybranym miejscu historycznym: najpierw Londyn i Dublin, potem Kijów, Uppsala, Fez, Kraków, Trondheim, Kopenhaga, Marrakesz i {more} innych.",
+    link="Zrzuty ekranu i szczegóły: {url}",
+)
 
-TODAS LAS CIVILIZACIONES DE TODAS LAS ERAS TIENEN POSICIÓN HISTÓRICA. Elige la que empieza donde quieres que acabe tu imperio. Civilization VII 1.5 añadió a los galos, Inglaterra y Babilonia, y están exactamente donde les corresponde, así que la línea británica ya puede jugarse desde donde ocurrió de verdad: empieza como los galos en el Sena, conviértete en Inglaterra en el Támesis y acaba como Gran Bretaña o América. Donde el juego deja un hueco sigue esperando una civilización: los misisipianos en el Támesis, o los mayas en la llanura del norte de Europa que se convierten en Prusia en Alemania. Solo hay una era activa a la vez, así que las eras comparten sus emplazamientos a propósito.
+LANG["pt_BR"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Europa, Mediterrâneo e África acima do Equador, com uma posição histórica para cada civilização de cada era e rios traçados por onde realmente correm.",
+    maps_head="TRÊS MAPAS",
+    maps=["Terras Distantes: África, Escandinávia e Islândia do outro lado da água",
+          "Massa Continental Única: a mesma geografia, sem nada distante",
+          "Variante: uma cópia à parte, para remodelar sem tocar nas outras duas"],
+    sizes="Tamanhos 112x98, 128x112 e 144x126.",
+    starts_head="POSIÇÕES HISTÓRICAS",
+    starts=["Cada civilização de cada era tem um lugar fixo: escolha a que começa onde você quer que seu império termine. Só uma era fica ativa por vez, então as eras compartilham suas cidades de propósito.",
+            "A linhagem britânica se joga onde aconteceu: comece como os gauleses no lago de Genebra, torne-se a Inglaterra no Tâmisa e termine como Grã-Bretanha ou América.",
+            "Civilizações sem história na Europa são substitutas. Cada uma ocupa uma região que o mapa deixaria vazia, escolhida pelo terreno e, quando importa, pelo que desbloqueia a civilização."],
+    age={"Antiquity": "ANTIGUIDADE", "Exploration": "EXPLORAÇÃO", "Modern": "ERA MODERNA"},
+    home="Lar histórico:",
+    standin="Substitutas:",
+    workshop_head="CIVILIZAÇÕES DO WORKSHOP",
+    workshop="Também posicionadas, se estiverem instaladas: {list}.",
+    others_head="TODAS AS OUTRAS",
+    others="Uma civilização sem posição, ou cuja posição outro jogador já ocupa, se instala em um local histórico selecionado: primeiro Londres e Dublin, depois Kiev, Uppsala, Fez, Cracóvia, Trondheim, Copenhague, Marrakech e mais {more}.",
+    link="Capturas de tela e detalhes: {url}",
+)
 
-ANTIGÜEDAD - {ant}.
+LANG["uk_UA"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="Європа, Середземномор'я та Африка на північ від екватора, з історичною стартовою позицією для кожної цивілізації кожної доби та річками там, де вони справді течуть.",
+    maps_head="ТРИ КАРТИ",
+    maps=["Далекі землі: Африка, Скандинавія та Ісландія за водою",
+          "Єдиний материк: та сама географія, без нічого далекого",
+          "Варіант: окрема копія, яку можна переробляти, не торкаючись двох інших"],
+    sizes="Розміри 112x98, 128x112 і 144x126.",
+    starts_head="ІСТОРИЧНІ СТАРТОВІ ПОЗИЦІЇ",
+    starts=["Кожна цивілізація кожної доби має сталу стартову позицію: оберіть ту, що починає там, де ви хочете завершити свою імперію. Водночас триває лише одна доба, тож доби навмисно ділять між собою міста.",
+            "Британська лінія розгортається там, де вона справді відбулася: почніть галлами на Женевському озері, станьте Англією на Темзі й завершіть Великою Британією або Америкою.",
+            "Цивілізації без європейської історії - це замінники. Кожна тримає регіон, який карта інакше залишила б порожнім, обраний за місцевістю, а там, де це важливо, - за умовою, якою відкривається цивілізація."],
+    age={"Antiquity": "АНТИЧНІСТЬ", "Exploration": "ДОБА ДОСЛІДЖЕНЬ", "Modern": "НОВА ДОБА"},
+    home="Історична батьківщина:",
+    standin="Замінники:",
+    workshop_head="ЦИВІЛІЗАЦІЇ З МАЙСТЕРНІ",
+    workshop="Також розміщуються, якщо встановлені: {list}.",
+    others_head="УСІ ІНШІ",
+    others="Цивілізація без стартової позиції або та, чию позицію вже займає інший гравець, селиться на дібраному історичному місці: спершу Лондон і Дублін, потім Київ, Уппсала, Фес, Краків, Тронгейм, Копенгаген, Марракеш і ще {more}.",
+    link="Знімки екрана та подробиці: {url}",
+)
 
-EXPLORACIÓN - {exp}.
+LANG["ja_JP"] = dict(
+    bullet="・", colon="：", paren=("（", "）"), sep="、", stop="。",
+    intro="赤道以北のヨーロッパ、地中海、アフリカ。すべての時代のすべての文明に歴史的な開始地点があり、川は実際に流れている場所に描かれています。",
+    maps_head="3種類のマップ",
+    maps=["遠方の地：アフリカ、スカンディナヴィア、アイスランドが海の向こう",
+          "単一大陸：同じ地形で遠方の地なし",
+          "バリアント：他の2つに手を触れず作り替えられる別のコピー"],
+    sizes="サイズは 112x98、128x112、144x126。",
+    starts_head="歴史的な開始地点",
+    starts=["すべての時代のすべての文明に固定の開始地点があります。自分の帝国を終わらせたい場所で始まる文明を選んでください。生きている時代は常にひとつだけなので、時代どうしは意図的に同じ都市を共有します。",
+            "ブリテンの系譜は実際の舞台どおりに進みます。レマン湖のガリアで始め、テムズ川でイングランドとなり、イギリスまたはアメリカで終える、という流れです。",
+            "ヨーロッパに歴史を持たない文明は代役です。それぞれがマップ上で空白になってしまう地域を受け持ち、地形と、必要な場合はその文明の解放条件に合わせて選ばれています。"],
+    age={"Antiquity": "古代", "Exploration": "探検の時代", "Modern": "近代"},
+    home="歴史上の本拠地：",
+    standin="代役：",
+    workshop_head="ワークショップの文明",
+    workshop="導入していれば、次の文明も配置されます：{list}。",
+    others_head="その他の文明",
+    others="開始地点を持たない文明、または開始地点を他のプレイヤーに取られた文明は、厳選された史跡に入植します。まずロンドンとダブリン、次いでキーウ、ウプサラ、フェズ、クラクフ、トロンハイム、コペンハーゲン、マラケシュ、さらに{more}か所。",
+    link="スクリーンショットと詳細：{url}",
+)
 
-ERA MODERNA - {mod}.
+LANG["ko_KR"] = dict(
+    bullet="- ", colon=": ", paren=(" (", ")"), sep=", ", stop=".",
+    intro="적도 이북의 유럽, 지중해, 아프리카. 모든 시대의 모든 문명에 역사적 시작 위치가 있고, 강은 실제로 흐르는 곳에 그려져 있습니다.",
+    maps_head="세 가지 지도",
+    maps=["먼 땅: 아프리카, 스칸디나비아, 아이슬란드가 바다 건너편",
+          "단일 대륙: 같은 지형에 먼 땅 없음",
+          "변형판: 다른 두 지도를 건드리지 않고 다시 빚을 수 있는 별도의 사본"],
+    sizes="크기는 112x98, 128x112, 144x126입니다.",
+    starts_head="역사적 시작 위치",
+    starts=["모든 시대의 모든 문명에 고정된 시작 위치가 있습니다. 제국이 끝나기를 바라는 곳에서 시작하는 문명을 고르십시오. 한 번에 한 시대만 살아 있으므로 시대들은 의도적으로 같은 도시를 공유합니다.",
+            "브리튼의 계보는 실제 무대에서 펼쳐집니다. 레만호의 갈리아로 시작해 템스강에서 잉글랜드가 되고 영국이나 아메리카로 마무리합니다.",
+            "유럽 역사가 없는 문명은 대역입니다. 각 문명은 지도가 비워 둘 지역을 맡으며, 지형과 필요한 경우 그 문명의 해금 조건에 따라 선택되었습니다."],
+    age={"Antiquity": "고대", "Exploration": "탐험 시대", "Modern": "현대"},
+    home="역사적 본거지:",
+    standin="대역:",
+    workshop_head="창작마당 문명",
+    workshop="설치되어 있다면 다음 문명도 배치됩니다: {list}.",
+    others_head="그 밖의 문명",
+    others="시작 위치가 없는 문명, 또는 시작 위치를 다른 플레이어가 이미 차지한 문명은 엄선된 역사적 장소에 정착합니다. 먼저 런던과 더블린, 이어서 키이우, 웁살라, 페스, 크라쿠프, 트론헤임, 코펜하겐, 마라케시 외 {more}곳.",
+    link="스크린샷과 자세한 내용: {url}",
+)
 
-Las civilizaciones sin historia europea se colocan por terreno y no por relato, y se ajustan a lo que sus habilidades necesitan cuando procede: incas y Nepal en el Cáucaso, que se desbloquean con asentamientos de montaña; Hawái en Sicilia, que se desbloquea con asentamientos isleños; Buganda en las tierras altas etíopes, que se desbloquea con lagos.
+LANG["zh_Hans_CN"] = dict(
+    bullet="- ", colon="：", paren=("（", "）"), sep="、", stop="。",
+    intro="赤道以北的欧洲、地中海与非洲。每个时代的每个文明都有历史起始点，河流画在它们真正流经的地方。",
+    maps_head="三张地图",
+    maps=["远方大陆：非洲、斯堪的纳维亚与冰岛隔海相望",
+          "单一大陆：地形相同，没有远方大陆",
+          "变体：单独的副本，可随意重塑而不影响另外两张"],
+    sizes="尺寸为 112x98、128x112 和 144x126。",
+    starts_head="历史起始点",
+    starts=["每个时代的每个文明都有固定的起始点：挑选在你希望帝国终点的位置开局的那一个。同一时间只有一个时代在运作，所以各时代是刻意共用城市的。",
+            "不列颠一脉在史实发生的地方展开：在日内瓦湖畔以高卢开局，在泰晤士河畔成为英格兰，最后成为英国或美国。",
+            "与欧洲没有历史渊源的文明是替身。每个替身占据一个地图上原本会空着的地区，按地形挑选，并在需要时配合该文明的解锁条件。"],
+    age={"Antiquity": "上古时代", "Exploration": "探索时代", "Modern": "现代"},
+    home="历史故地：",
+    standin="替身：",
+    workshop_head="创意工坊文明",
+    workshop="如已安装，以下文明同样会被安置：{list}。",
+    others_head="其余文明",
+    others="没有起始点的文明，或起始点已被其他玩家占据的文明，会在精选的历史地点定居：先是伦敦与都柏林，然后是基辅、乌普萨拉、非斯、克拉科夫、特隆赫姆、哥本哈根、马拉喀什，另有{more}处。",
+    link="截图与详情：{url}",
+)
 
-Los demás se asientan en un emplazamiento histórico seleccionado, primero Londres y Dublín, luego Kiev, Upsala, Fez, Cracovia, Trondheim, Copenhague, Marrakech y noventa más. Capturas de pantalla y detalles: {url}""",
+LANG["zh_Hant_HK"] = dict(
+    bullet="- ", colon="：", paren=("（", "）"), sep="、", stop="。",
+    intro="赤道以北的歐洲、地中海與非洲。每個時代的每個文明都有歷史起始點，河流畫在它們真正流經的地方。",
+    maps_head="三張地圖",
+    maps=["遠方大陸：非洲、斯堪的納維亞與冰島隔海相望",
+          "單一大陸：地形相同，沒有遠方大陸",
+          "變體：單獨的副本，可隨意重塑而不影響另外兩張"],
+    sizes="尺寸為 112x98、128x112 和 144x126。",
+    starts_head="歷史起始點",
+    starts=["每個時代的每個文明都有固定的起始點：挑選在你希望帝國終點的位置開局的那一個。同一時間只有一個時代在運作，所以各時代是刻意共用城市的。",
+            "不列顛一脈在史實發生的地方展開：在日內瓦湖畔以高盧開局，在泰晤士河畔成為英格蘭，最後成為英國或美國。",
+            "與歐洲沒有歷史淵源的文明是替身。每個替身佔據一個地圖上原本會空著的地區，按地形挑選，並在需要時配合該文明的解鎖條件。"],
+    age={"Antiquity": "上古時代", "Exploration": "探索時代", "Modern": "現代"},
+    home="歷史故地：",
+    standin="替身：",
+    workshop_head="創意工坊文明",
+    workshop="如已安裝，以下文明同樣會被安置：{list}。",
+    others_head="其餘文明",
+    others="沒有起始點的文明，或起始點已被其他玩家佔據的文明，會在精選的歷史地點定居：先是倫敦與都柏林，然後是基輔、烏普薩拉、非斯、克拉科夫、特隆赫姆、哥本哈根、馬拉喀什，另有{more}處。",
+    link="截圖與詳情：{url}",
+)
 
-"fr_FR": """L'Europe, la Méditerranée et l'Afrique au nord de l'équateur, en 112x98, 128x112 ou 144x126. Trois cartes : Terres lointaines (l'Afrique, la Scandinavie et l'Islande de l'autre côté de l'eau), Masse continentale unique (la même géographie sans rien de lointain) et une Variante tenue à l'écart, que l'on peut remodeler sans toucher aux originales.
+# Why each civilization starts where it does (keys from starts.py).
+REASONS = {}
 
-CHAQUE CIVILISATION DE CHAQUE ÈRE A UN DÉPART HISTORIQUE. Choisissez celle qui commence là où vous voulez que votre empire finisse. Civilization VII 1.5 a ajouté les Gaulois, l'Angleterre et Babylone, et ils sont exactement à leur place : la lignée britannique se joue enfin là où elle s'est déroulée. Commencez comme les Gaulois sur la Seine, devenez l'Angleterre sur la Tamise, finissez en Grande-Bretagne ou en Amérique. Là où le jeu laisse un vide, une civilisation attend quand même : les Mississippiens sur la Tamise, ou les Mayas dans la plaine d'Europe du Nord qui deviennent la Prusse en Allemagne. Une seule ère est active à la fois, les ères partagent donc leurs sites à dessein.
-
-ANTIQUITÉ - {ant}.
-
-EXPLORATION - {exp}.
-
-ÈRE MODERNE - {mod}.
-
-Les civilisations sans passé européen sont placées selon le terrain plutôt que selon l'histoire, et accordées à ce qui compte pour leurs aptitudes lorsque cela s'applique : les Incas et le Népal dans le Caucase, qui se débloquent sur les implantations de montagne ; Hawaï en Sicile, qui se débloque sur les implantations insulaires ; le Buganda sur les hauts plateaux éthiopiens, qui se débloque sur les lacs.
-
-Les autres s'installent sur un site historique sélectionné, Londres et Dublin d'abord, puis Kyiv, Uppsala, Fès, Cracovie, Trondheim, Copenhague, Marrakech et quatre-vingt-dix autres. Captures d'écran et détails : {url}""",
-
-"it_IT": """Europa, Mediterraneo e Africa sopra l'Equatore, a 112x98, 128x112 o 144x126. Tre mappe: Terre Lontane (Africa, Scandinavia e Islanda oltre il mare), Terra Unica (la stessa geografia senza nulla di lontano) e una Variante tenuta a parte, che si può rimodellare senza toccare le originali.
-
-OGNI CIVILTÀ DI OGNI ERA HA UNA PARTENZA STORICA. Scegli quella che comincia dove vuoi che il tuo impero finisca. Civilization VII 1.5 ha aggiunto Galli, Inghilterra e Babilonia, e stanno esattamente dove devono stare: la linea britannica si può finalmente giocare da dove è successa davvero. Comincia come Galli sulla Senna, diventa Inghilterra sul Tamigi e finisci come Gran Bretagna o America. Dove il gioco lascia un vuoto una civiltà aspetta comunque: i Mississippiani sul Tamigi, o i Maya nella pianura nordeuropea che diventano Prussia in Germania. È viva una sola era per volta, quindi le ere condividono i siti di proposito.
-
-ANTICHITÀ - {ant}.
-
-ESPLORAZIONE - {exp}.
-
-ERA MODERNA - {mod}.
-
-Le civiltà senza storia europea sono collocate in base al terreno anziché alla vicenda, e accordate a ciò che conta per le loro abilità dove serve: Inca e Nepal nel Caucaso, che si sbloccano con gli insediamenti di montagna; Hawaii in Sicilia, che si sblocca con gli insediamenti sulle isole; Buganda sugli altopiani etiopi, che si sblocca con i laghi.
-
-Tutti gli altri si insediano su un sito storico selezionato, prima Londra e Dublino, poi Kiev, Uppsala, Fez, Cracovia, Trondheim, Copenaghen, Marrakech e altri novanta. Screenshot e dettagli: {url}""",
+REASONS["en_US"] = {
+    "gaul": "the Helvetii on Lake Geneva",
+    "etruscans": "the one Etruscan city on the sea, as far from Rome as Etruria reaches",
+    "greece": "the coast of Macedon, north of Athens",
+    "bulgaria": "capital of the Second Bulgarian Empire",
+    "mongolia": "the Golden Horde",
+    "pirate": "the Barbary corsairs",
+    "america": "across the water from Britain",
+    "ottomans": "leaving Constantinople free to be taken",
+    "mississippian": "mound builders at the royal mounds of Gamla Uppsala",
+    "heian": "an island court off the mainland",
+    "maurya": "a large warm peninsula to unify",
+    "han": "a great river valley, the Dnieper",
+    "maya": "the north European plain, where Prussia later rises",
+    "khmer": "a river empire on the lower Danube",
+    "silla": "a mountainous peninsula",
+    "tonga": "a seafaring power in the middle of the sea",
+    "sengoku": "feudal lords among the Danish islands",
+    "majapahit": "an island thalassocracy",
+    "chola": "a trading coast facing the ocean",
+    "goryeo": "a peninsula of harbours",
+    "daiviet": "a river mouth, the Nile delta",
+    "inca": "mountain settlements, which the Inca unlock on",
+    "hawaii": "island settlements, which Hawaii unlocks on",
+    "shawnee": "the forests of the Vistula",
+    "ming": "a vast continental empire on the Russian rivers",
+    "mexico": "the Atlantic side of Iberia",
+    "joseon": "a peninsula",
+    "meiji": "an industrialising maritime north",
+    "qing": "a continental empire on the middle Danube",
+    "siam": "a warm coastal kingdom",
+    "mughal": "a great land empire, as the Polish-Lithuanian Commonwealth was",
+    "nepal": "mountain settlements, which Nepal unlocks on",
+    "buganda": "highland lakes, which Buganda unlocks on",
 }
 
-PROSE.update({
-"pl_PL": """Europa, Morze Śródziemne i Afryka na północ od równika, w rozmiarach 112x98, 128x112 lub 144x126. Trzy mapy: Dalekie Ziemie (Afryka, Skandynawia i Islandia po drugiej stronie wody), Jeden Ląd (ta sama geografia bez niczego dalekiego) oraz Wariant trzymany osobno, który można przekształcać bez ruszania oryginałów.
+REASONS["de_DE"] = {
+    "gaul": "die Helvetier am Genfersee",
+    "etruscans": "die einzige etruskische Stadt am Meer, so weit von Rom entfernt, wie Etrurien reicht",
+    "greece": "die Küste Makedoniens, nördlich von Athen",
+    "bulgaria": "Hauptstadt des Zweiten Bulgarischen Reiches",
+    "mongolia": "die Goldene Horde",
+    "pirate": "die Barbareskenkorsaren",
+    "america": "jenseits des Wassers von Britannien",
+    "ottomans": "Konstantinopel bleibt zur Eroberung frei",
+    "mississippian": "Hügelbauer an den Königshügeln von Gamla Uppsala",
+    "heian": "ein Inselhof vor dem Festland",
+    "maurya": "eine große, warme Halbinsel, die es zu einen gilt",
+    "han": "ein großes Flusstal, der Dnepr",
+    "maya": "die norddeutsche Tiefebene, in der später Preußen entsteht",
+    "khmer": "ein Flussreich an der unteren Donau",
+    "silla": "eine gebirgige Halbinsel",
+    "tonga": "eine Seemacht mitten im Meer",
+    "sengoku": "Feudalherren zwischen den dänischen Inseln",
+    "majapahit": "eine Inselthalassokratie",
+    "chola": "eine Handelsküste zum Ozean hin",
+    "goryeo": "eine Halbinsel voller Häfen",
+    "daiviet": "eine Flussmündung, das Nildelta",
+    "inca": "Bergsiedlungen, über die die Inka freigeschaltet werden",
+    "hawaii": "Inselsiedlungen, über die Hawaii freigeschaltet wird",
+    "shawnee": "die Wälder an der Weichsel",
+    "ming": "ein riesiges Kontinentalreich an den russischen Flüssen",
+    "mexico": "die atlantische Seite Iberiens",
+    "joseon": "eine Halbinsel",
+    "meiji": "ein sich industrialisierender maritimer Norden",
+    "qing": "ein Kontinentalreich an der mittleren Donau",
+    "siam": "ein warmes Küstenkönigreich",
+    "mughal": "ein großes Landreich, wie es Polen-Litauen war",
+    "nepal": "Bergsiedlungen, über die Nepal freigeschaltet wird",
+    "buganda": "Hochlandseen, über die Buganda freigeschaltet wird",
+}
 
-KAŻDA CYWILIZACJA KAŻDEJ ERY MA HISTORYCZNE MIEJSCE STARTU. Wybierz tę, która zaczyna tam, gdzie chcesz, by skończyło twoje imperium. Civilization VII 1.5 dodało Galów, Anglię i Babilon, a te stoją dokładnie tam, gdzie powinny - brytyjską linię można wreszcie rozegrać stamtąd, gdzie naprawdę się wydarzyła: zacznij jako Galowie nad Sekwaną, stań się Anglią nad Tamizą i skończ jako Wielka Brytania albo Ameryka. Tam, gdzie gra zostawia lukę, i tak czeka cywilizacja: Missisipijczycy nad Tamizą albo Majowie na Nizinie Środkowoeuropejskiej, którzy stają się Prusami w Niemczech. Naraz żyje tylko jedna era, więc ery dzielą swoje miejsca celowo.
+REASONS["es_ES"] = {
+    "gaul": "los helvecios en el lago de Ginebra",
+    "etruscans": "la única ciudad etrusca junto al mar, tan lejos de Roma como llega Etruria",
+    "greece": "la costa de Macedonia, al norte de Atenas",
+    "bulgaria": "capital del Segundo Imperio búlgaro",
+    "mongolia": "la Horda de Oro",
+    "pirate": "los corsarios berberiscos",
+    "america": "al otro lado del agua desde Gran Bretaña",
+    "ottomans": "deja Constantinopla libre para conquistarla",
+    "mississippian": "constructores de montículos junto a los túmulos reales de Gamla Uppsala",
+    "heian": "una corte isleña frente al continente",
+    "maurya": "una gran península cálida por unificar",
+    "han": "un gran valle fluvial, el Dniéper",
+    "maya": "la llanura del norte de Europa, donde luego surge Prusia",
+    "khmer": "un imperio fluvial en el bajo Danubio",
+    "silla": "una península montañosa",
+    "tonga": "una potencia marítima en medio del mar",
+    "sengoku": "señores feudales entre las islas danesas",
+    "majapahit": "una talasocracia insular",
+    "chola": "una costa comercial frente al océano",
+    "goryeo": "una península de puertos",
+    "daiviet": "una desembocadura, el delta del Nilo",
+    "inca": "asentamientos de montaña, con los que se desbloquean los incas",
+    "hawaii": "asentamientos isleños, con los que se desbloquea Hawái",
+    "shawnee": "los bosques del Vístula",
+    "ming": "un vasto imperio continental sobre los ríos rusos",
+    "mexico": "el lado atlántico de Iberia",
+    "joseon": "una península",
+    "meiji": "un norte marítimo en plena industrialización",
+    "qing": "un imperio continental en el Danubio medio",
+    "siam": "un reino costero y cálido",
+    "mughal": "un gran imperio terrestre, como lo fue la Mancomunidad polaco-lituana",
+    "nepal": "asentamientos de montaña, con los que se desbloquea Nepal",
+    "buganda": "lagos de montaña, con los que se desbloquea Buganda",
+}
 
-STAROŻYTNOŚĆ - {ant}.
+REASONS["fr_FR"] = {
+    "gaul": "les Helvètes sur le lac Léman",
+    "etruscans": "la seule cité étrusque sur la mer, aussi loin de Rome que va l'Étrurie",
+    "greece": "la côte de Macédoine, au nord d'Athènes",
+    "bulgaria": "capitale du Second Empire bulgare",
+    "mongolia": "la Horde d'or",
+    "pirate": "les corsaires barbaresques",
+    "america": "de l'autre côté de l'eau face à la Grande-Bretagne",
+    "ottomans": "Constantinople reste libre à prendre",
+    "mississippian": "des bâtisseurs de tertres aux tertres royaux de Gamla Uppsala",
+    "heian": "une cour insulaire au large du continent",
+    "maurya": "une grande péninsule chaude à unifier",
+    "han": "une grande vallée fluviale, le Dniepr",
+    "maya": "la plaine d'Europe du Nord, où la Prusse s'élèvera plus tard",
+    "khmer": "un empire fluvial sur le bas Danube",
+    "silla": "une péninsule montagneuse",
+    "tonga": "une puissance maritime au milieu de la mer",
+    "sengoku": "des seigneurs féodaux parmi les îles danoises",
+    "majapahit": "une thalassocratie insulaire",
+    "chola": "une côte marchande tournée vers l'océan",
+    "goryeo": "une péninsule de ports",
+    "daiviet": "une embouchure, le delta du Nil",
+    "inca": "des implantations de montagne, qui débloquent les Incas",
+    "hawaii": "des implantations insulaires, qui débloquent Hawaï",
+    "shawnee": "les forêts de la Vistule",
+    "ming": "un vaste empire continental sur les fleuves russes",
+    "mexico": "le versant atlantique de la péninsule Ibérique",
+    "joseon": "une péninsule",
+    "meiji": "un Nord maritime en pleine industrialisation",
+    "qing": "un empire continental sur le Danube moyen",
+    "siam": "un royaume côtier et chaud",
+    "mughal": "un grand empire terrestre, comme le fut la République des Deux Nations",
+    "nepal": "des implantations de montagne, qui débloquent le Népal",
+    "buganda": "des lacs d'altitude, qui débloquent le Buganda",
+}
 
-ERA ODKRYĆ - {exp}.
+REASONS["it_IT"] = {
+    "gaul": "gli Elvezi sul lago di Ginevra",
+    "etruscans": "l'unica città etrusca sul mare, lontana da Roma quanto l'Etruria consente",
+    "greece": "la costa della Macedonia, a nord di Atene",
+    "bulgaria": "capitale del Secondo Impero bulgaro",
+    "mongolia": "l'Orda d'Oro",
+    "pirate": "i corsari barbareschi",
+    "america": "oltre il mare rispetto alla Gran Bretagna",
+    "ottomans": "lascia Costantinopoli libera da conquistare",
+    "mississippian": "costruttori di tumuli presso i tumuli reali di Gamla Uppsala",
+    "heian": "una corte insulare al largo del continente",
+    "maurya": "una grande penisola calda da unificare",
+    "han": "una grande valle fluviale, il Dnepr",
+    "maya": "la pianura nordeuropea, dove più tardi sorge la Prussia",
+    "khmer": "un impero fluviale sul basso Danubio",
+    "silla": "una penisola montuosa",
+    "tonga": "una potenza marinara in mezzo al mare",
+    "sengoku": "signori feudali tra le isole danesi",
+    "majapahit": "una talassocrazia insulare",
+    "chola": "una costa mercantile affacciata sull'oceano",
+    "goryeo": "una penisola di porti",
+    "daiviet": "una foce, il delta del Nilo",
+    "inca": "insediamenti di montagna, con cui si sbloccano gli Inca",
+    "hawaii": "insediamenti sulle isole, con cui si sblocca Hawaii",
+    "shawnee": "le foreste della Vistola",
+    "ming": "un vasto impero continentale sui fiumi russi",
+    "mexico": "il versante atlantico della penisola iberica",
+    "joseon": "una penisola",
+    "meiji": "un nord marittimo che si industrializza",
+    "qing": "un impero continentale sul medio Danubio",
+    "siam": "un regno costiero e caldo",
+    "mughal": "un grande impero terrestre, come fu la Confederazione polacco-lituana",
+    "nepal": "insediamenti di montagna, con cui si sblocca il Nepal",
+    "buganda": "laghi d'altopiano, con cui si sblocca il Buganda",
+}
 
-ERA NOWOCZESNA - {mod}.
+REASONS["pl_PL"] = {
+    "gaul": "Helwetowie nad Jeziorem Genewskim",
+    "etruscans": "jedyne etruskie miasto nad morzem, tak daleko od Rzymu, jak sięga Etruria",
+    "greece": "wybrzeże Macedonii, na północ od Aten",
+    "bulgaria": "stolica Drugiego Carstwa Bułgarskiego",
+    "mongolia": "Złota Orda",
+    "pirate": "korsarze berberyjscy",
+    "america": "po drugiej stronie wody od Brytanii",
+    "ottomans": "Konstantynopol pozostaje wolny do zdobycia",
+    "mississippian": "budowniczowie kopców przy królewskich kurhanach Gamla Uppsala",
+    "heian": "wyspiarski dwór u wybrzeży lądu",
+    "maurya": "duży, ciepły półwysep do zjednoczenia",
+    "han": "wielka dolina rzeczna, Dniepr",
+    "maya": "Nizina Środkowoeuropejska, gdzie później powstają Prusy",
+    "khmer": "rzeczne imperium nad dolnym Dunajem",
+    "silla": "górzysty półwysep",
+    "tonga": "potęga morska pośrodku morza",
+    "sengoku": "panowie feudalni wśród duńskich wysp",
+    "majapahit": "wyspiarska talasokracja",
+    "chola": "kupieckie wybrzeże zwrócone ku oceanowi",
+    "goryeo": "półwysep pełen portów",
+    "daiviet": "ujście rzeki, delta Nilu",
+    "inca": "osady górskie, którymi odblokowują się Inkowie",
+    "hawaii": "osady wyspiarskie, którymi odblokowuje się Hawaje",
+    "shawnee": "lasy nad Wisłą",
+    "ming": "rozległe imperium kontynentalne nad rzekami Rosji",
+    "mexico": "atlantycka strona Półwyspu Iberyjskiego",
+    "joseon": "półwysep",
+    "meiji": "uprzemysławiająca się morska północ",
+    "qing": "imperium kontynentalne nad środkowym Dunajem",
+    "siam": "ciepłe królestwo nadmorskie",
+    "mughal": "wielkie imperium lądowe, jakim była Rzeczpospolita Obojga Narodów",
+    "nepal": "osady górskie, którymi odblokowuje się Nepal",
+    "buganda": "jeziora na wyżynach, którymi odblokowuje się Buganda",
+}
 
-Cywilizacje bez europejskiej historii rozmieszczono według terenu, a nie opowieści, i dopasowano do tego, na czym zależy ich zdolnościom, tam gdzie to istotne: Inkowie i Nepal na Kaukazie, odblokowywani osadami górskimi; Hawaje na Sycylii, odblokowywane osadami wyspiarskimi; Buganda na wyżynie etiopskiej, odblokowywana jeziorami.
+REASONS["pt_BR"] = {
+    "gaul": "os helvécios no lago de Genebra",
+    "etruscans": "a única cidade etrusca à beira-mar, tão longe de Roma quanto a Etrúria alcança",
+    "greece": "a costa da Macedônia, ao norte de Atenas",
+    "bulgaria": "capital do Segundo Império Búlgaro",
+    "mongolia": "a Horda Dourada",
+    "pirate": "os corsários berberes",
+    "america": "do outro lado da água em relação à Grã-Bretanha",
+    "ottomans": "deixa Constantinopla livre para ser tomada",
+    "mississippian": "construtores de montes junto aos túmulos reais de Gamla Uppsala",
+    "heian": "uma corte insular ao largo do continente",
+    "maurya": "uma grande península quente a unificar",
+    "han": "um grande vale fluvial, o Dnieper",
+    "maya": "a planície do norte da Europa, onde depois surge a Prússia",
+    "khmer": "um império fluvial no baixo Danúbio",
+    "silla": "uma península montanhosa",
+    "tonga": "uma potência marítima no meio do mar",
+    "sengoku": "senhores feudais entre as ilhas dinamarquesas",
+    "majapahit": "uma talassocracia insular",
+    "chola": "uma costa comercial voltada para o oceano",
+    "goryeo": "uma península de portos",
+    "daiviet": "uma foz, o delta do Nilo",
+    "inca": "assentamentos nas montanhas, com os quais os incas são desbloqueados",
+    "hawaii": "assentamentos em ilhas, com os quais o Havaí é desbloqueado",
+    "shawnee": "as florestas do Vístula",
+    "ming": "um vasto império continental sobre os rios russos",
+    "mexico": "o lado atlântico da Península Ibérica",
+    "joseon": "uma península",
+    "meiji": "um norte marítimo em industrialização",
+    "qing": "um império continental no médio Danúbio",
+    "siam": "um reino costeiro e quente",
+    "mughal": "um grande império terrestre, como foi a República das Duas Nações",
+    "nepal": "assentamentos nas montanhas, com os quais o Nepal é desbloqueado",
+    "buganda": "lagos de planalto, com os quais Buganda é desbloqueada",
+}
 
-Wszyscy pozostali osiedlają się w wybranym miejscu historycznym: najpierw Londyn i Dublin, potem Kijów, Uppsala, Fez, Kraków, Trondheim, Kopenhaga, Marrakesz i dziewięćdziesiąt innych. Zrzuty ekranu i szczegóły: {url}""",
+REASONS["uk_UA"] = {
+    "gaul": "гельвети на Женевському озері",
+    "etruscans": "єдине етруське місто на морі, так далеко від Рима, як сягає Етрурія",
+    "greece": "узбережжя Македонії, на північ від Афін",
+    "bulgaria": "столиця Другого Болгарського царства",
+    "mongolia": "Золота Орда",
+    "pirate": "берберійські корсари",
+    "america": "по інший бік води від Британії",
+    "ottomans": "Константинополь лишається вільним для завоювання",
+    "mississippian": "будівничі курганів біля королівських курганів Гамла-Уппсали",
+    "heian": "острівний двір біля материка",
+    "maurya": "великий теплий півострів, який треба об'єднати",
+    "han": "велика річкова долина, Дніпро",
+    "maya": "Північноєвропейська рівнина, де згодом постане Пруссія",
+    "khmer": "річкова імперія на нижньому Дунаї",
+    "silla": "гористий півострів",
+    "tonga": "морська держава посеред моря",
+    "sengoku": "феодали серед данських островів",
+    "majapahit": "острівна таласократія",
+    "chola": "торговельне узбережжя, звернене до океану",
+    "goryeo": "півострів гаваней",
+    "daiviet": "гирло річки, дельта Нілу",
+    "inca": "гірські поселення, якими відкриваються інки",
+    "hawaii": "острівні поселення, якими відкриваються Гаваї",
+    "shawnee": "ліси над Віслою",
+    "ming": "величезна континентальна імперія на російських річках",
+    "mexico": "атлантичний бік Піренейського півострова",
+    "joseon": "півострів",
+    "meiji": "морська північ, що індустріалізується",
+    "qing": "континентальна імперія на середньому Дунаї",
+    "siam": "тепле прибережне королівство",
+    "mughal": "велика сухопутна імперія, якою була Річ Посполита",
+    "nepal": "гірські поселення, якими відкривається Непал",
+    "buganda": "високогірні озера, якими відкривається Буганда",
+}
 
-"pt_BR": """Europa, Mediterrâneo e África acima do Equador, em 112x98, 128x112 ou 144x126. Três mapas: Terras Distantes (África, Escandinávia e Islândia do outro lado da água), Massa Continental Única (a mesma geografia sem nada distante) e uma Variante mantida à parte, que pode ser remodelada sem tocar nas originais.
+REASONS["ja_JP"] = {
+    "gaul": "レマン湖畔のヘルウェティイ族",
+    "etruscans": "海に面した唯一のエトルリア都市で、エトルリアの範囲内でローマから最も遠い",
+    "greece": "アテネの北、マケドニアの海岸",
+    "bulgaria": "第二次ブルガリア帝国の首都",
+    "mongolia": "ジョチ・ウルス（キプチャク・ハン国）",
+    "pirate": "バルバリア海賊",
+    "america": "ブリテンから見て海の向こう",
+    "ottomans": "コンスタンティノープルは奪取のために空けてある",
+    "mississippian": "ガムラ・ウプサラの王墓群に立つ墳丘の建設者",
+    "heian": "大陸の沖合にある島の宮廷",
+    "maurya": "統一すべき大きく温暖な半島",
+    "han": "大河の流域、ドニプロ川",
+    "maya": "後にプロイセンが興る北ヨーロッパ平原",
+    "khmer": "ドナウ川下流の河川帝国",
+    "silla": "山がちな半島",
+    "tonga": "海の真ん中の海洋勢力",
+    "sengoku": "デンマークの島々に割拠する封建領主",
+    "majapahit": "島の海洋帝国",
+    "chola": "大洋に面した交易の海岸",
+    "goryeo": "港の多い半島",
+    "daiviet": "河口、ナイル・デルタ",
+    "inca": "インカの解放条件である山岳の集落",
+    "hawaii": "ハワイの解放条件である島の集落",
+    "shawnee": "ヴィスワ川の森",
+    "ming": "ロシアの川に広がる巨大な大陸帝国",
+    "mexico": "イベリア半島の大西洋側",
+    "joseon": "半島",
+    "meiji": "工業化する海洋の北",
+    "qing": "ドナウ川中流の大陸帝国",
+    "siam": "温暖な沿岸の王国",
+    "mughal": "ポーランド・リトアニア共和国のような大陸の大帝国",
+    "nepal": "ネパールの解放条件である山岳の集落",
+    "buganda": "ブガンダの解放条件である高原の湖",
+}
 
-TODAS AS CIVILIZAÇÕES DE TODAS AS ERAS TÊM POSIÇÃO HISTÓRICA. Escolha aquela que começa onde você quer que seu império termine. O Civilization VII 1.5 acrescentou os gauleses, a Inglaterra e a Babilônia, e eles ficam exatamente onde devem - a linhagem britânica enfim pode ser jogada de onde realmente aconteceu: comece como os gauleses no Sena, torne-se a Inglaterra no Tâmisa e termine como Grã-Bretanha ou América. Onde o jogo deixa uma lacuna, ainda espera uma civilização: os mississipianos no Tâmisa, ou os maias na planície do norte europeu que se tornam a Prússia na Alemanha. Só uma era está viva de cada vez, então as eras compartilham seus locais de propósito.
+REASONS["ko_KR"] = {
+    "gaul": "레만호의 헬베티족",
+    "etruscans": "바다에 면한 유일한 에트루리아 도시로, 에트루리아 안에서 로마와 가장 먼 곳",
+    "greece": "아테네 북쪽, 마케도니아 해안",
+    "bulgaria": "제2차 불가리아 제국의 수도",
+    "mongolia": "킵차크 칸국(금장 칸국)",
+    "pirate": "바르바리 해적",
+    "america": "브리튼에서 바다 건너편",
+    "ottomans": "콘스탄티노플은 차지할 수 있도록 비워 둠",
+    "mississippian": "감라 웁살라 왕릉 언덕의 봉분 건설자",
+    "heian": "대륙 앞바다의 섬 조정",
+    "maurya": "통일해야 할 크고 따뜻한 반도",
+    "han": "큰 강 유역, 드니프로강",
+    "maya": "훗날 프로이센이 일어나는 북유럽 평원",
+    "khmer": "도나우강 하류의 강 제국",
+    "silla": "산이 많은 반도",
+    "tonga": "바다 한가운데의 해양 세력",
+    "sengoku": "덴마크 섬들 사이의 봉건 영주들",
+    "majapahit": "섬의 해양 제국",
+    "chola": "대양을 향한 교역 해안",
+    "goryeo": "항구가 많은 반도",
+    "daiviet": "강어귀, 나일 삼각주",
+    "inca": "잉카의 해금 조건인 산지 정착지",
+    "hawaii": "하와이의 해금 조건인 섬 정착지",
+    "shawnee": "비스와강의 숲",
+    "ming": "러시아의 강들 위에 펼쳐진 거대한 대륙 제국",
+    "mexico": "이베리아반도의 대서양 쪽",
+    "joseon": "반도",
+    "meiji": "산업화하는 바다의 북쪽",
+    "qing": "도나우강 중류의 대륙 제국",
+    "siam": "따뜻한 해안 왕국",
+    "mughal": "폴란드-리투아니아 연방 같은 거대한 육상 제국",
+    "nepal": "네팔의 해금 조건인 산지 정착지",
+    "buganda": "부간다의 해금 조건인 고원의 호수",
+}
 
-ANTIGUIDADE - {ant}.
+REASONS["zh_Hans_CN"] = {
+    "gaul": "日内瓦湖畔的赫尔维蒂人",
+    "etruscans": "唯一临海的伊特鲁里亚城市，在伊特鲁里亚境内离罗马最远",
+    "greece": "雅典以北的马其顿海岸",
+    "bulgaria": "第二保加利亚帝国的首都",
+    "mongolia": "金帐汗国",
+    "pirate": "巴巴里海盗",
+    "america": "与不列颠隔海相望",
+    "ottomans": "留出君士坦丁堡以待夺取",
+    "mississippian": "在旧乌普萨拉王家墓丘旁的土丘建造者",
+    "heian": "大陆外海的岛屿朝廷",
+    "maurya": "一个有待统一的温暖大半岛",
+    "han": "大河流域，第聂伯河",
+    "maya": "北欧平原，日后普鲁士在此兴起",
+    "khmer": "多瑙河下游的河流帝国",
+    "silla": "多山的半岛",
+    "tonga": "海洋中央的航海强国",
+    "sengoku": "丹麦诸岛间的封建领主",
+    "majapahit": "岛屿海洋帝国",
+    "chola": "面向大洋的贸易海岸",
+    "goryeo": "港口众多的半岛",
+    "daiviet": "河口，尼罗河三角洲",
+    "inca": "山地定居点，即印加的解锁条件",
+    "hawaii": "岛屿定居点，即夏威夷的解锁条件",
+    "shawnee": "维斯瓦河的森林",
+    "ming": "横跨俄罗斯诸河的庞大大陆帝国",
+    "mexico": "伊比利亚半岛的大西洋一侧",
+    "joseon": "一个半岛",
+    "meiji": "正在工业化的海洋北方",
+    "qing": "多瑙河中游的大陆帝国",
+    "siam": "温暖的沿海王国",
+    "mughal": "如波兰立陶宛联邦那样的陆上大帝国",
+    "nepal": "山地定居点，即尼泊尔的解锁条件",
+    "buganda": "高原湖泊，即布干达的解锁条件",
+}
 
-EXPLORAÇÃO - {exp}.
-
-ERA MODERNA - {mod}.
-
-Civilizações sem história europeia são colocadas pelo terreno e não pela narrativa, ajustadas ao que suas habilidades exigem quando isso se aplica: incas e Nepal no Cáucaso, que se desbloqueiam com assentamentos de montanha; Havaí na Sicília, que se desbloqueia com assentamentos em ilhas; Buganda nas terras altas etíopes, que se desbloqueia com lagos.
-
-Os demais se estabelecem em um sítio histórico selecionado, primeiro Londres e Dublin, depois Kiev, Upsala, Fez, Cracóvia, Trondheim, Copenhague, Marraquexe e outros noventa. Capturas de tela e detalhes: {url}""",
-
-"uk_UA": """Європа, Середземномор'я та Африка на північ від екватора, у розмірах 112x98, 128x112 або 144x126. Три карти: Далекі землі (Африка, Скандинавія та Ісландія за водою), Єдиний материк (та сама географія без нічого далекого) і Варіант, що тримається окремо й може бути перероблений, не торкаючись оригіналів.
-
-КОЖНА ЦИВІЛІЗАЦІЯ КОЖНОЇ ЕПОХИ МАЄ ІСТОРИЧНИЙ СТАРТ. Оберіть ту, що починає там, де ви хочете бачити свою імперію. Civilization VII 1.5 додала галлів, Англію та Вавилон, і вони стоять саме там, де їм належить, тож британську лінію нарешті можна грати звідти, де вона справді сталася: почніть як галли на Сені, станьте Англією на Темзі й завершіть як Велика Британія або Америка. Там, де гра лишає порожнечу, цивілізація все одно чекає: міссісіпська культура на Темзі або мая на Північноєвропейській рівнині, що стає Пруссією в Німеччині. Жива лише одна епоха за раз, тому епохи свідомо ділять свої місця.
-
-АНТИЧНІСТЬ - {ant}.
-
-ЕПОХА ВІДКРИТТІВ - {exp}.
-
-СУЧАСНА ЕПОХА - {mod}.
-
-Цивілізації без європейської історії розміщено за місцевістю, а не за оповіддю, і узгоджено з тим, що потрібно їхнім здібностям, де це доречно: інки та Непал на Кавказі, що відкриваються гірськими поселеннями; Гаваї на Сицилії, що відкриваються острівними поселеннями; Буганда на Ефіопському нагір'ї, що відкривається озерами.
-
-Решта селиться на дібраному історичному місці: спершу Лондон і Дублін, потім Київ, Уппсала, Фес, Краків, Тронгейм, Копенгаген, Марракеш і ще дев'яносто. Знімки екрана та подробиці: {url}""",
-})
-
-PROSE.update({
-"ja_JP": """赤道以北のヨーロッパ、地中海、アフリカ。112x98、128x112、144x126 の3サイズ。マップは3種類：遠方の地（アフリカ、スカンディナヴィア、アイスランドが海の向こう）、単一大陸（同じ地形で遠方の地なし）、そして原本に手を触れず作り替えられるよう別に保たれたバリアント。
-
-すべての時代のすべての文明に歴史的な開始地点があります。自分の帝国を終わらせたい場所で始まる文明を選べます。Civilization VII 1.5 でガリア、イングランド、バビロンが加わり、いずれも本来あるべき場所に配置されているため、ブリテンの系譜を実際の舞台どおりに辿れるようになりました。セーヌ川のガリアで始め、テムズ川でイングランドとなり、イギリスまたはアメリカで終える、という流れです。ゲームが空けたままの地域にも文明は控えています。テムズ川のミシシッピ、あるいは北ヨーロッパ平原のマヤで始めてドイツでプロイセンになる、といった具合です。生きている時代は常にひとつだけなので、時代どうしは意図的に同じ地点を共有します。
-
-古代 - {ant}。
-
-探検の時代 - {exp}。
-
-近代 - {mod}。
-
-ヨーロッパに歴史的なつながりを持たない文明は、物語ではなく地形で配置し、能力が地形を要求する場合はそれに合わせています。山岳の集落で解放されるインカとネパールはカフカス、島の集落で解放されるハワイはシチリア、湖で解放されるブガンダはエチオピア高原です。
-
-残りは厳選された史跡に入植します。まずロンドンとダブリン、次いでキーウ、ウプサラ、フェズ、クラクフ、トロンハイム、コペンハーゲン、マラケシュ、さらに90か所。スクリーンショットと詳細：{url}""",
-
-"ko_KR": """적도 이북의 유럽, 지중해, 아프리카. 112x98, 128x112, 144x126 크기로 제공됩니다. 지도는 세 종류입니다. 먼 땅(아프리카, 스칸디나비아, 아이슬란드가 바다 건너편), 단일 대륙(같은 지형에 먼 땅 없음), 그리고 원본을 건드리지 않고 다시 빚을 수 있도록 따로 둔 변형판입니다.
-
-모든 시대의 모든 문명에 역사적 시작 위치가 있습니다. 제국이 끝나기를 바라는 곳에서 시작하는 문명을 고르십시오. Civilization VII 1.5에서 갈리아, 잉글랜드, 바빌론이 추가되었고 모두 제자리에 놓였으므로, 브리튼의 계보를 실제 무대 그대로 따라갈 수 있습니다. 센강의 갈리아로 시작해 템스강에서 잉글랜드가 되고 영국이나 아메리카로 마무리하는 식입니다. 게임이 비워 둔 지역에도 문명이 기다립니다. 템스강의 미시시피, 또는 북유럽 평원의 마야로 시작해 독일에서 프로이센이 되는 식입니다. 한 번에 한 시대만 살아 있으므로 시대들은 의도적으로 같은 자리를 공유합니다.
-
-고대 - {ant}.
-
-탐험 시대 - {exp}.
-
-현대 - {mod}.
-
-유럽과 역사적 연고가 없는 문명은 이야기가 아니라 지형에 따라 배치했고, 능력이 지형을 요구하는 경우 그에 맞추었습니다. 산지 정착으로 해금되는 잉카와 네팔은 캅카스에, 섬 정착으로 해금되는 하와이는 시칠리아에, 호수로 해금되는 부간다는 에티오피아 고원에 있습니다.
-
-나머지는 엄선된 역사적 장소에 정착합니다. 먼저 런던과 더블린, 이어서 키이우, 웁살라, 페스, 크라쿠프, 트론헤임, 코펜하겐, 마라케시 등 아흔 곳이 더 있습니다. 스크린샷과 자세한 내용: {url}""",
-
-"zh_Hans_CN": """赤道以北的欧洲、地中海与非洲，提供 112x98、128x112、144x126 三种尺寸。共三张地图：远方大陆（非洲、斯堪的纳维亚与冰岛隔海相望）、单一大陆（地形相同，没有远方大陆），以及单独保留、可随意重塑而不影响原版的变体。
-
-每个时代的每个文明都有历史起始点。挑选在你希望帝国终点的位置开局的那一个。《文明7》1.5 加入了高卢、英格兰与巴比伦，且都安置在其本来的位置，因此不列颠一脉终于可以从史实发生的地方走完：在塞纳河畔以高卢开局，在泰晤士河畔成为英格兰，最后成为英国或美国。游戏留白之处仍有文明等候：泰晤士河畔的密西西比，或在北欧平原以玛雅开局、在德意志成为普鲁士。同一时间只有一个时代在运作，所以各时代是刻意共用地点的。
-
-上古时代 - {ant}。
-
-探索时代 - {exp}。
-
-现代 - {mod}。
-
-与欧洲没有历史渊源的文明按地形而非故事安置，并在能力有要求时予以配合：以山地定居解锁的印加与尼泊尔位于高加索，以岛屿定居解锁的夏威夷位于西西里，以湖泊解锁的布干达位于埃塞俄比亚高原。
-
-其余文明会在精选的历史地点定居，先是伦敦与都柏林，然后是基辅、乌普萨拉、非斯、克拉科夫、特隆赫姆、哥本哈根、马拉喀什，另有九十处。截图与详情：{url}""",
-
-"zh_Hant_HK": """赤道以北的歐洲、地中海與非洲，提供 112x98、128x112、144x126 三種尺寸。共三張地圖：遠方大陸（非洲、斯堪的納維亞與冰島隔海相望）、單一大陸（地形相同，沒有遠方大陸），以及單獨保留、可隨意重塑而不影響原版的變體。
-
-每個時代的每個文明都有歷史起始點。挑選在你希望帝國終點的位置開局的那一個。《文明7》1.5 加入了高盧、英格蘭與巴比倫，且都安置在其本來的位置，因此不列顛一脈終於可以從史實發生的地方走完：在塞納河畔以高盧開局，在泰晤士河畔成為英格蘭，最後成為英國或美國。遊戲留白之處仍有文明等候：泰晤士河畔的密西西比，或在北歐平原以馬雅開局、在德意志成為普魯士。同一時間只有一個時代在運作，所以各時代是刻意共用地點的。
-
-上古時代 - {ant}。
-
-探索時代 - {exp}。
-
-現代 - {mod}。
-
-與歐洲沒有歷史淵源的文明按地形而非故事安置，並在能力有要求時予以配合：以山地定居解鎖的印加與尼泊爾位於高加索，以島嶼定居解鎖的夏威夷位於西西里，以湖泊解鎖的布干達位於埃塞俄比亞高原。
-
-其餘文明會在精選的歷史地點定居，先是倫敦與都柏林，然後是基輔、烏普薩拉、非斯、克拉科夫、特隆赫姆、哥本哈根、馬拉喀什，另有九十處。截圖與詳情：{url}""",
-})
+REASONS["zh_Hant_HK"] = {
+    "gaul": "日內瓦湖畔的赫爾維蒂人",
+    "etruscans": "唯一臨海的伊特魯里亞城市，在伊特魯里亞境內離羅馬最遠",
+    "greece": "雅典以北的馬其頓海岸",
+    "bulgaria": "第二保加利亞帝國的首都",
+    "mongolia": "金帳汗國",
+    "pirate": "巴巴里海盜",
+    "america": "與不列顛隔海相望",
+    "ottomans": "留出君士坦丁堡以待奪取",
+    "mississippian": "在舊烏普薩拉王家墓丘旁的土丘建造者",
+    "heian": "大陸外海的島嶼朝廷",
+    "maurya": "一個有待統一的溫暖大半島",
+    "han": "大河流域，第聶伯河",
+    "maya": "北歐平原，日後普魯士在此興起",
+    "khmer": "多瑙河下游的河流帝國",
+    "silla": "多山的半島",
+    "tonga": "海洋中央的航海強國",
+    "sengoku": "丹麥諸島間的封建領主",
+    "majapahit": "島嶼海洋帝國",
+    "chola": "面向大洋的貿易海岸",
+    "goryeo": "港口眾多的半島",
+    "daiviet": "河口，尼羅河三角洲",
+    "inca": "山地定居點，即印加的解鎖條件",
+    "hawaii": "島嶼定居點，即夏威夷的解鎖條件",
+    "shawnee": "維斯瓦河的森林",
+    "ming": "橫跨俄羅斯諸河的龐大大陸帝國",
+    "mexico": "伊比利亞半島的大西洋一側",
+    "joseon": "一個半島",
+    "meiji": "正在工業化的海洋北方",
+    "qing": "多瑙河中游的大陸帝國",
+    "siam": "溫暖的沿海王國",
+    "mughal": "如波蘭立陶宛聯邦那樣的陸上大帝國",
+    "nepal": "山地定居點，即尼泊爾的解鎖條件",
+    "buganda": "高原湖泊，即布干達的解鎖條件",
+}

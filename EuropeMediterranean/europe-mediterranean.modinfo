@@ -2,19 +2,95 @@
 <Mod id="europe-mediterranean-map" version="60" xmlns="ModInfo">
     <Properties>
         <Name>Europe, Mediterranean, North Africa</Name>
-        <Description>Europe, the Mediterranean and Africa above the Equator, at 112x98, 128x112 or 144x126. Three maps: Distant Lands (Africa, Scandinavia and Iceland across the water), One Landmass (the same geography with nothing distant), and a Variant kept apart so it can be reshaped without touching the originals.
+        <Description>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
-EVERY CIVILIZATION OF EVERY AGE HAS A TRUE START. Pick the one that begins where you want your empire to end up. Civilization VII 1.5 added Gaul, England and Babylon, and they sit exactly where they belong, so the British line can now be played from where it actually happened: begin as Gaul on Lake Geneva, become England on the Thames, and end as Great Britain or America. Everywhere the game leaves empty, a civilization still waits - begin as the Mississippians on the Thames, or as the Maya on the north European plain and become Prussia in Germany. Only one age is ever live, so the ages share their sites on purpose.
+THREE MAPS
+- Distant Lands: Africa, Scandinavia and Iceland lie across the water
+- One Landmass: the same geography, with nothing distant
+- Variant: a separate copy you can reshape without touching the other two
+Sizes 112x98, 128x112 and 144x126.
 
-ANTIQUITY - Rome (Rome), Gaul (Lausanne), Etruscans (Populonia), Greece (Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Babylon (Babylon), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Kyiv), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse).
+TRUE STARTS
+Every civilization of every age has a fixed home, so pick the one that begins where you want your empire to end up. Only one age is live at a time, so the ages share their cities on purpose.
+The British line plays out where it happened: begin as Gaul on Lake Geneva, become England on the Thames, end as Great Britain or America.
+Civilizations with no history in Europe are stand-ins. Each holds a region the map would otherwise leave empty, chosen by terrain and, where it matters, by what the civilization unlocks on.
 
-EXPLORATION - England (London), Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (Copenhagen), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow).
+ANTIQUITY
+Historical homes:
+- Rome (Rome)
+- Gaul (Lausanne): the Helvetii on Lake Geneva
+- Etruscans (Populonia): the one Etruscan city on the sea, as far from Rome as Etruria reaches
+- Greece (Thermaic Gulf): the coast of Macedon, north of Athens
+- Byzantium (Constantinople)
+- Carthage (Carthage)
+- Egypt (Memphis)
+- Assyria (Nineveh)
+- Babylon (Babylon)
+- Persia (Susa)
+- Aksum (Axum)
+Stand-ins:
+- Mississippians (Uppsala): mound builders at the royal mounds of Gamla Uppsala
+- Heian Japan (Dublin): an island court off the mainland
+- Maurya (Madrid): a large warm peninsula to unify
+- Han (Kyiv): a great river valley, the Dnieper
+- Maya (Berlin): the north European plain, where Prussia later rises
+- Khmer (Bucharest): a river empire on the lower Danube
+- Silla (Ankara): a mountainous peninsula
+- Tonga (Syracuse): a seafaring power in the middle of the sea
 
-MODERN - Great Britain (London), America (Dublin), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Ottomans (Ankara), Qajar (Tehran), Byzantium (Constantinople), Etruscans (Populonia), Mexico (Seville), Joseon (Athens), Meiji (Uppsala), Qing (Vienna), Siam (Naples), Mughal (Budapest), Nepal (Tbilisi), Buganda (Gondar).
+EXPLORATION
+Historical homes:
+- England (London)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+- Tuscany (Florence)
+- Bulgaria (Veliko Tarnovo): capital of the Second Bulgarian Empire
+- Spain (Madrid)
+- Normans (Rouen)
+- Abbasids (Baghdad)
+- Iceland (Reykjavik)
+- Mongolia (Sarai on the lower Volga): the Golden Horde
+- Songhai (Gao)
+- Pirate Republic (Algiers): the Barbary corsairs
+Stand-ins:
+- Sengoku Japan (Copenhagen): feudal lords among the Danish islands
+- Majapahit (Dublin): an island thalassocracy
+- Chola (Lisbon): a trading coast facing the ocean
+- Goryeo (Athens): a peninsula of harbours
+- Dai Viet (Alexandria): a river mouth, the Nile delta
+- Inca (Tbilisi): mountain settlements, which the Inca unlock on
+- Hawaii (Syracuse): island settlements, which Hawaii unlocks on
+- Shawnee (Warsaw): the forests of the Vistula
+- Ming (Moscow): a vast continental empire on the Russian rivers
 
-Civilizations with no historical business in Europe are placed by terrain rather than by story, and matched to what their abilities care about where that applies: Inca and Nepal in the Caucasus, which unlock on mountain settlements; Hawaii on Sicily, which unlocks on island settlements; Buganda in the Ethiopian highlands, which unlocks on lakes.
+MODERN
+Historical homes:
+- Great Britain (London)
+- America (Dublin): across the water from Britain
+- French Empire (Paris)
+- Prussia (Berlin)
+- Russia (Moscow)
+- Ottomans (Ankara): leaving Constantinople free to be taken
+- Qajar (Tehran)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+Stand-ins:
+- Mexico (Seville): the Atlantic side of Iberia
+- Joseon (Athens): a peninsula
+- Meiji Japan (Uppsala): an industrialising maritime north
+- Qing (Vienna): a continental empire on the middle Danube
+- Siam (Naples): a warm coastal kingdom
+- Mughals (Warsaw): a great land empire, as the Polish-Lithuanian Commonwealth was
+- Nepal (Tbilisi): mountain settlements, which Nepal unlocks on
+- Buganda (Gondar): highland lakes, which Buganda unlocks on
 
-Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
+WORKSHOP CIVILIZATIONS
+Placed too, if you have them installed: Scythia (Kamianka), Kush (Meroe), Sumer (Ur), Austria-Hungary (Vienna).
+
+EVERYONE ELSE
+A civilization without a start, or one whose start another player already holds, settles a curated historical site: London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and 86 more.
+
+Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
         <Version>60</Version>
@@ -116,18 +192,1074 @@ Anyone left over settles a curated historical site, London and Dublin first, the
             <ko_KR>유럽, 지중해 및 북아프리카 지도</ko_KR>
         </Text>
         <Text id="LOC_MODULE_EUROPE_MED_DESCRIPTION">
-            <en_US>Europe, Mediterranean and Africa above the Equator, both single land and with distant lands of Africa, Iceland, Scandinavia. True start locations: Rome (Rome), Etruscans (Populonia), Tuscany (Florence), Byzantium (Constantinople), Greece (Thermaic Gulf), Egypt (Memphis), Persia (Susa), Carthage (Carthage), Assyria (Nineveh), Aksum (Axum), Bulgaria (Pliska), Spain (Madrid), Normans (Rouen), Abbasids (Baghdad), Ottomans (Ankara), Iceland (Reykjavik), Qajar (Tehran), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Great Britain (London) and America (Dublin); Aksum and Songhai on the large maps only. Every other civilization starts on a curated site such as Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh, Budapest, Lisbon or Damascus, as far from the others as possible. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</en_US>
-            <it_IT>Europa, Mediterraneo e Africa sopra l'Equatore, sia come terra emersa unica che con terre lontane d'Africa, Islanda, Scandinavia. Posizioni di partenza storiche: Roma (Roma), Etruschi (Populonia), Toscana (Firenze), Bisanzio (Costantinopoli), Grecia (Golfo Termaico), Egitto (Menfi), Persia (Susa), Cartagine (Cartagine), Assiria (Ninive), Aksum (Axum), Bulgaria (Pliska), Spagna (Madrid), Normanni (Rouen), Abbasidi (Baghdad), Ottomani (Ankara), Islanda (Reykjavik), Qajar (Teheran), Mongolia (Sarai sul basso Volga), Songhai (Gao), Repubblica dei Pirati (Algeri), Impero francese (Parigi), Prussia (Berlino), Russia (Mosca), Gran Bretagna (Londra) e America (Dublino); Aksum e Songhai solo sulle mappe grandi. Le altre civiltà partono da siti selezionati come Kiev, Uppsala, Fez, Cracovia, Trondheim, Copenaghen, Marrakech, Budapest, Lisbona e Damasco, il più lontano possibile le une dalle altre. Screenshot e dettagli: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</it_IT>
-            <uk_UA>Європа, Середземномор'я та Африка на північ від екватора, як єдиним материком, так і з далекими землями Африки, Ісландії, Скандинавії. Історичні стартові позиції: Рим (Рим), етруски (Популонія), Тоскана (Флоренція), Візантія (Константинополь), Греція (Термейська затока), Єгипет (Мемфіс), Персія (Сузи), Карфаген (Карфаген), Ассирія (Ніневія), Аксум (Аксум), Болгарія (Пліска), Іспанія (Мадрид), нормани (Руан), Аббасиди (Багдад), османи (Анкара), Ісландія (Рейк'явік), Каджари (Тегеран), Монголія (Сарай на нижній Волзі), Сонгаї (Гао), Піратська республіка (Алжир), Французька імперія (Париж), Пруссія (Берлін), Росія (Москва), Велика Британія (Лондон) та Америка (Дублін); Аксум і Сонгаї лише на великих мапах. Інші цивілізації розміщуються на підібраних місцях, як-от Київ, Уппсала, Фес, Краків, Тронгейм, Копенгаген, Марракеш, Будапешт, Лісабон і Дамаск, якомога далі одна від одної. Знімки екрана та подробиці: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</uk_UA>
-            <de_DE>Europa, Mittelmeer und Afrika nördlich des Äquators, sowohl als einheitliche Landmasse als auch mit fernen Ländern in Afrika, Island, Skandinavien. Historische Startpositionen: Rom (Rom), Etrusker (Populonia), Toskana (Florenz), Byzanz (Konstantinopel), Griechenland (Thermaischer Golf), Ägypten (Memphis), Persien (Susa), Karthago (Karthago), Assyrien (Ninive), Aksum (Aksum), Bulgarien (Pliska), Spanien (Madrid), Normannen (Rouen), Abbasiden (Bagdad), Osmanen (Ankara), Island (Reykjavik), Kadscharen (Teheran), Mongolei (Sarai an der unteren Wolga), Songhai (Gao), Piratenrepublik (Algier), Französisches Kaiserreich (Paris), Preußen (Berlin), Russland (Moskau), Großbritannien (London) und Amerika (Dublin); Aksum und Songhai nur auf den großen Karten. Alle anderen Zivilisationen starten an ausgewählten Orten wie Kiew, Uppsala, Fes, Krakau, Trondheim, Kopenhagen, Marrakesch, Budapest, Lissabon und Damaskus, so weit voneinander entfernt wie möglich. Screenshots und Details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</de_DE>
-            <fr_FR>Europe, Méditerranée et Afrique au-dessus de l'équateur, à la fois en masse continentale unique et avec les terres lointaines d'Afrique, d'Islande et de Scandinavie. Positions de départ historiques : Rome (Rome), Étrusques (Populonia), Toscane (Florence), Byzance (Constantinople), Grèce (golfe Thermaïque), Égypte (Memphis), Perse (Suse), Carthage (Carthage), Assyrie (Ninive), Aksoum (Axoum), Bulgarie (Pliska), Espagne (Madrid), Normands (Rouen), Abbassides (Bagdad), Ottomans (Ankara), Islande (Reykjavik), Qajars (Téhéran), Mongolie (Saraï sur la basse Volga), Songhaï (Gao), République pirate (Alger), Empire français (Paris), Prusse (Berlin), Russie (Moscou), Grande-Bretagne (Londres) et Amérique (Dublin) ; Aksoum et Songhaï uniquement sur les grandes cartes. Les autres civilisations démarrent sur des sites choisis tels que Kiev, Uppsala, Fès, Cracovie, Trondheim, Copenhague, Marrakech, Budapest, Lisbonne et Damas, aussi éloignés que possible les uns des autres. Captures d'écran et détails : https://marcobonechi.github.io/civ7mods/europe-mediterranean/</fr_FR>
-            <es_ES>Europa, el Mediterráneo y África por encima del ecuador, tanto como masa continental única como con tierras lejanas de África, Islandia y Escandinavia. Posiciones de inicio históricas: Roma (Roma), etruscos (Populonia), Toscana (Florencia), Bizancio (Constantinopla), Grecia (golfo Termaico), Egipto (Menfis), Persia (Susa), Cartago (Cartago), Asiria (Nínive), Aksum (Axum), Bulgaria (Pliska), España (Madrid), normandos (Ruan), abasíes (Bagdad), otomanos (Ankara), Islandia (Reikiavik), Qajar (Teherán), Mongolia (Sarai en el bajo Volga), Songhai (Gao), República Pirata (Argel), Imperio francés (París), Prusia (Berlín), Rusia (Moscú), Gran Bretaña (Londres) y América (Dublín); Aksum y Songhai solo en los mapas grandes. Las demás civilizaciones empiezan en lugares seleccionados como Kiev, Upsala, Fez, Cracovia, Trondheim, Copenhague, Marrakech, Budapest, Lisboa y Damasco, lo más alejadas posible entre sí. Capturas de pantalla y detalles: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</es_ES>
-            <pl_PL>Europa, Morze Śródziemne i Afryka na północ od równika, zarówno jako jednolity ląd, jak i z odległymi krainami Afryki, Islandii i Skandynawii. Historyczne pozycje startowe: Rzym (Rzym), Etruskowie (Populonia), Toskania (Florencja), Bizancjum (Konstantynopol), Grecja (Zatoka Termajska), Egipt (Memfis), Persja (Suza), Kartagina (Kartagina), Asyria (Niniwa), Aksum (Aksum), Bułgaria (Pliska), Hiszpania (Madryt), Normanowie (Rouen), Abbasydzi (Bagdad), Osmanie (Ankara), Islandia (Reykjavik), Kadżarowie (Teheran), Mongolia (Saraj nad dolną Wołgą), Songhaj (Gao), Republika Piratów (Algier), Cesarstwo Francuskie (Paryż), Prusy (Berlin), Rosja (Moskwa), Wielka Brytania (Londyn) i Ameryka (Dublin); Aksum i Songhaj tylko na dużych mapach. Pozostałe cywilizacje zaczynają w wybranych miejscach, takich jak Kijów, Uppsala, Fez, Kraków, Trondheim, Kopenhaga, Marrakesz, Budapeszt, Lizbona i Damaszek, możliwie najdalej od siebie. Zrzuty ekranu i szczegóły: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pl_PL>
-            <pt_BR>Europa, Mediterrâneo e África acima do Equador, tanto como massa de terra única quanto com terras distantes da África, Islândia e Escandinávia. Posições iniciais históricas: Roma (Roma), Etruscos (Populônia), Toscana (Florença), Bizâncio (Constantinopla), Grécia (golfo Termaico), Egito (Mênfis), Pérsia (Susa), Cartago (Cartago), Assíria (Nínive), Axum (Axum), Bulgária (Pliska), Espanha (Madri), Normandos (Ruão), Abássidas (Bagdá), Otomanos (Ancara), Islândia (Reykjavik), Qajar (Teerã), Mongólia (Sarai no baixo Volga), Songai (Gao), República Pirata (Argel), Império Francês (Paris), Prússia (Berlim), Rússia (Moscou), Grã-Bretanha (Londres) e América (Dublin); Axum e Songai apenas nos mapas grandes. As demais civilizações começam em locais selecionados como Kiev, Uppsala, Fez, Cracóvia, Trondheim, Copenhague, Marrakech, Budapeste, Lisboa e Damasco, o mais distantes possível umas das outras. Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pt_BR>
-            <zh_Hans_CN>欧洲、地中海以及赤道以北的非洲，既有单一完整大陆版本，也有包含非洲远方土地、冰岛和斯堪的纳维亚的版本。历史出生点：罗马（罗马）、伊特鲁里亚（波普洛尼亚）、托斯卡纳（佛罗伦萨）、拜占庭（君士坦丁堡）、希腊（塞尔迈湾）、埃及（孟菲斯）、波斯（苏萨）、迦太基（迦太基）、亚述（尼尼微）、阿克苏姆（阿克苏姆）、保加利亚（普利斯卡）、西班牙（马德里）、诺曼（鲁昂）、阿拔斯（巴格达）、奥斯曼（安卡拉）、冰岛（雷克雅未克）、恺加（德黑兰）、蒙古（伏尔加河下游的萨莱）、桑海（加奥）、海盗共和国（阿尔及尔）、法兰西帝国（巴黎）、普鲁士（柏林）、俄罗斯（莫斯科）、大不列颠（伦敦）和美国（都柏林）；阿克苏姆和桑海仅限大地图。其他文明在基辅、乌普萨拉、非斯、克拉科夫、特隆赫姆、哥本哈根、马拉喀什、布达佩斯、里斯本、大马士革等精选地点出生，彼此尽量相隔遥远。 截图与详细信息：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hans_CN>
-            <zh_Hant_HK>歐洲、地中海以及赤道以北的非洲，既有單一完整大陸版本，也有包含非洲遙遠土地、冰島和斯堪地那維亞的版本。歷史出生點：羅馬（羅馬）、伊特魯里亞（波普洛尼亞）、托斯卡尼（佛羅倫斯）、拜占庭（君士坦丁堡）、希臘（塞爾邁灣）、埃及（孟菲斯）、波斯（蘇薩）、迦太基（迦太基）、亞述（尼尼微）、阿克蘇姆（阿克蘇姆）、保加利亞（普利斯卡）、西班牙（馬德里）、諾曼（魯昂）、阿拔斯（巴格達）、鄂圖曼（安卡拉）、冰島（雷克雅維克）、卡扎爾（德黑蘭）、蒙古（伏爾加河下游的薩萊）、桑海（加奧）、海盜共和國（阿爾及爾）、法蘭西帝國（巴黎）、普魯士（柏林）、俄羅斯（莫斯科）、大不列顛（倫敦）和美國（都柏林）；阿克蘇姆和桑海僅限大地圖。其他文明在基輔、烏普薩拉、非斯、克拉科夫、特隆赫姆、哥本哈根、馬拉喀什、布達佩斯、里斯本、大馬士革等精選地點出生，彼此盡量相隔遙遠。 截圖與詳細資訊：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hant_HK>
-            <ja_JP>ヨーロッパ、地中海、赤道以北のアフリカ。単一の大陸版と、アフリカ・アイスランド・スカンディナヴィアの遠方土地を含む版の両方を収録。史実の初期位置：ローマ（ローマ）、エトルリア（ポプロニア）、トスカーナ（フィレンツェ）、ビザンツ（コンスタンティノープル）、ギリシャ（テルマイコス湾）、エジプト（メンフィス）、ペルシア（スサ）、カルタゴ（カルタゴ）、アッシリア（ニネヴェ）、アクスム（アクスム）、ブルガリア（プリスカ）、スペイン（マドリード）、ノルマン（ルーアン）、アッバース朝（バグダード）、オスマン（アンカラ）、アイスランド（レイキャヴィク）、ガージャール朝（テヘラン）、モンゴル（ヴォルガ川下流のサライ）、ソンガイ（ガオ）、海賊共和国（アルジェ）、フランス帝国（パリ）、プロイセン（ベルリン）、ロシア（モスクワ）、イギリス（ロンドン）、アメリカ（ダブリン）。アクスムとソンガイは大型マップのみ。その他の文明はキーウ、ウプサラ、フェズ、クラクフ、トロンハイム、コペンハーゲン、マラケシュ、ブダペスト、リスボン、ダマスカスなどの厳選地点に、できるだけ互いに離れて配置されます。 スクリーンショットと詳細：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ja_JP>
-            <ko_KR>유럽, 지중해 및 적도 이북의 아프리카. 단일 대륙 버전과 아프리카, 아이슬란드, 스칸디나비아의 먼 땅 버전을 모두 지원합니다. 역사적 시작 위치: 로마(로마), 에트루리아(포풀로니아), 토스카나(피렌체), 비잔티움(콘스탄티노폴리스), 그리스(테르마이코스만), 이집트(멤피스), 페르시아(수사), 카르타고(카르타고), 아시리아(니네베), 악숨(악숨), 불가리아(플리스카), 스페인(마드리드), 노르만(루앙), 아바스(바그다드), 오스만(앙카라), 아이슬란드(레이캬비크), 카자르(테헤란), 몽골(볼가강 하류의 사라이), 송가이(가오), 해적 공화국(알제), 프랑스 제국(파리), 프로이센(베를린), 러시아(모스크바), 영국(런던), 미국(더블린). 악숨과 송가이는 대형 지도에서만 제공됩니다. 그 외 문명은 키이우, 웁살라, 페스, 크라쿠프, 트론헤임, 코펜하겐, 마라케시, 부다페스트, 리스본, 다마스쿠스 등 엄선된 위치에서 서로 최대한 멀리 떨어져 시작합니다. 스크린샷 및 자세한 내용: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ko_KR>
+            <en_US>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
+
+THREE MAPS
+- Distant Lands: Africa, Scandinavia and Iceland lie across the water
+- One Landmass: the same geography, with nothing distant
+- Variant: a separate copy you can reshape without touching the other two
+Sizes 112x98, 128x112 and 144x126.
+
+TRUE STARTS
+Every civilization of every age has a fixed home, so pick the one that begins where you want your empire to end up. Only one age is live at a time, so the ages share their cities on purpose.
+The British line plays out where it happened: begin as Gaul on Lake Geneva, become England on the Thames, end as Great Britain or America.
+Civilizations with no history in Europe are stand-ins. Each holds a region the map would otherwise leave empty, chosen by terrain and, where it matters, by what the civilization unlocks on.
+
+ANTIQUITY
+Historical homes:
+- Rome (Rome)
+- Gaul (Lausanne): the Helvetii on Lake Geneva
+- Etruscans (Populonia): the one Etruscan city on the sea, as far from Rome as Etruria reaches
+- Greece (Thermaic Gulf): the coast of Macedon, north of Athens
+- Byzantium (Constantinople)
+- Carthage (Carthage)
+- Egypt (Memphis)
+- Assyria (Nineveh)
+- Babylon (Babylon)
+- Persia (Susa)
+- Aksum (Axum)
+Stand-ins:
+- Mississippians (Uppsala): mound builders at the royal mounds of Gamla Uppsala
+- Heian Japan (Dublin): an island court off the mainland
+- Maurya (Madrid): a large warm peninsula to unify
+- Han (Kyiv): a great river valley, the Dnieper
+- Maya (Berlin): the north European plain, where Prussia later rises
+- Khmer (Bucharest): a river empire on the lower Danube
+- Silla (Ankara): a mountainous peninsula
+- Tonga (Syracuse): a seafaring power in the middle of the sea
+
+EXPLORATION
+Historical homes:
+- England (London)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+- Tuscany (Florence)
+- Bulgaria (Veliko Tarnovo): capital of the Second Bulgarian Empire
+- Spain (Madrid)
+- Normans (Rouen)
+- Abbasids (Baghdad)
+- Iceland (Reykjavik)
+- Mongolia (Sarai on the lower Volga): the Golden Horde
+- Songhai (Gao)
+- Pirate Republic (Algiers): the Barbary corsairs
+Stand-ins:
+- Sengoku Japan (Copenhagen): feudal lords among the Danish islands
+- Majapahit (Dublin): an island thalassocracy
+- Chola (Lisbon): a trading coast facing the ocean
+- Goryeo (Athens): a peninsula of harbours
+- Dai Viet (Alexandria): a river mouth, the Nile delta
+- Inca (Tbilisi): mountain settlements, which the Inca unlock on
+- Hawaii (Syracuse): island settlements, which Hawaii unlocks on
+- Shawnee (Warsaw): the forests of the Vistula
+- Ming (Moscow): a vast continental empire on the Russian rivers
+
+MODERN
+Historical homes:
+- Great Britain (London)
+- America (Dublin): across the water from Britain
+- French Empire (Paris)
+- Prussia (Berlin)
+- Russia (Moscow)
+- Ottomans (Ankara): leaving Constantinople free to be taken
+- Qajar (Tehran)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+Stand-ins:
+- Mexico (Seville): the Atlantic side of Iberia
+- Joseon (Athens): a peninsula
+- Meiji Japan (Uppsala): an industrialising maritime north
+- Qing (Vienna): a continental empire on the middle Danube
+- Siam (Naples): a warm coastal kingdom
+- Mughals (Warsaw): a great land empire, as the Polish-Lithuanian Commonwealth was
+- Nepal (Tbilisi): mountain settlements, which Nepal unlocks on
+- Buganda (Gondar): highland lakes, which Buganda unlocks on
+
+WORKSHOP CIVILIZATIONS
+Placed too, if you have them installed: Scythia (Kamianka), Kush (Meroe), Sumer (Ur), Austria-Hungary (Vienna).
+
+EVERYONE ELSE
+A civilization without a start, or one whose start another player already holds, settles a curated historical site: London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and 86 more.
+
+Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</en_US>
+            <it_IT>Europa, Mediterraneo e Africa sopra l'Equatore, con una partenza storica per ogni civiltà di ogni era e fiumi tracciati dove scorrono davvero.
+
+TRE MAPPE
+- Terre Lontane: Africa, Scandinavia e Islanda oltre il mare
+- Terra Unica: la stessa geografia, senza nulla di lontano
+- Variante: una copia a parte, da rimodellare senza toccare le altre due
+Dimensioni 112x98, 128x112 e 144x126.
+
+PARTENZE STORICHE
+Ogni civiltà di ogni era ha un punto di partenza fisso: scegli quella che comincia dove vuoi che il tuo impero finisca. È viva una sola era per volta, quindi le ere condividono le città di proposito.
+La linea britannica si gioca dove è successa davvero: comincia come Galli sul lago di Ginevra, diventa Inghilterra sul Tamigi e finisci come Gran Bretagna o America.
+Le civiltà senza storia europea fanno da sostitute. Ognuna occupa una regione che la mappa lascerebbe vuota, scelta in base al terreno e, dove conta, a ciò con cui la civiltà si sblocca.
+
+ANTICHITÀ
+Patria storica:
+- Roma (Roma)
+- Galli (Losanna): gli Elvezi sul lago di Ginevra
+- Etruschi (Populonia): l'unica città etrusca sul mare, lontana da Roma quanto l'Etruria consente
+- Grecia (Golfo Termaico): la costa della Macedonia, a nord di Atene
+- Bisanzio (Costantinopoli)
+- Cartagine (Cartagine)
+- Egitto (Menfi)
+- Assiria (Ninive)
+- Babilonia (Babilonia)
+- Persia achemenide (Susa)
+- Axum (Axum)
+Sostitute:
+- Mississippiani (Uppsala): costruttori di tumuli presso i tumuli reali di Gamla Uppsala
+- Giappone Heian (Dublino): una corte insulare al largo del continente
+- Maurya (Madrid): una grande penisola calda da unificare
+- Han (Kiev): una grande valle fluviale, il Dnepr
+- Maya (Berlino): la pianura nordeuropea, dove più tardi sorge la Prussia
+- Khmer (Bucarest): un impero fluviale sul basso Danubio
+- Silla (Ankara): una penisola montuosa
+- Tonga (Siracusa): una potenza marinara in mezzo al mare
+
+ESPLORAZIONE
+Patria storica:
+- Inghilterra (Londra)
+- Bisanzio (Costantinopoli)
+- Etruschi (Populonia)
+- Toscana (Firenze)
+- Bulgaria (Veliko Tarnovo): capitale del Secondo Impero bulgaro
+- Spagna (Madrid)
+- Normanni (Rouen)
+- Abbasidi (Baghdad)
+- Islanda (Reykjavik)
+- Mongolia (Sarai sul basso Volga): l'Orda d'Oro
+- Songhai (Gao)
+- Repubblica dei Pirati (Algeri): i corsari barbareschi
+Sostitute:
+- Giappone Sengoku (Copenaghen): signori feudali tra le isole danesi
+- Majapahit (Dublino): una talassocrazia insulare
+- Chola (Lisbona): una costa mercantile affacciata sull'oceano
+- Goryeo (Atene): una penisola di porti
+- Đại Việt (Alessandria): una foce, il delta del Nilo
+- Inca (Tbilisi): insediamenti di montagna, con cui si sbloccano gli Inca
+- Hawaii (Siracusa): insediamenti sulle isole, con cui si sblocca Hawaii
+- Shawnee (Varsavia): le foreste della Vistola
+- Ming (Mosca): un vasto impero continentale sui fiumi russi
+
+ERA MODERNA
+Patria storica:
+- Gran Bretagna (Londra)
+- America (Dublino): oltre il mare rispetto alla Gran Bretagna
+- Impero francese (Parigi)
+- Prussia (Berlino)
+- Russia (Mosca)
+- Ottomani (Ankara): lascia Costantinopoli libera da conquistare
+- Qajar (Teheran)
+- Bisanzio (Costantinopoli)
+- Etruschi (Populonia)
+Sostitute:
+- Messico (Siviglia): il versante atlantico della penisola iberica
+- Joseon (Atene): una penisola
+- Giappone Meiji (Uppsala): un nord marittimo che si industrializza
+- Qing (Vienna): un impero continentale sul medio Danubio
+- Siam (Napoli): un regno costiero e caldo
+- Mughal (Varsavia): un grande impero terrestre, come fu la Confederazione polacco-lituana
+- Nepal (Tbilisi): insediamenti di montagna, con cui si sblocca il Nepal
+- Buganda (Gondar): laghi d'altopiano, con cui si sblocca il Buganda
+
+CIVILTÀ DEL WORKSHOP
+Collocate anche queste, se installate: Scizia (Kamjanka), Kush (Meroe), Sumer (Ur), Austria-Ungheria (Vienna).
+
+TUTTE LE ALTRE
+Una civiltà senza partenza, o la cui partenza è già occupata da un altro giocatore, si insedia su un sito storico selezionato: prima Londra e Dublino, poi Kiev, Uppsala, Fez, Cracovia, Trondheim, Copenaghen, Marrakech e altri 86.
+
+Screenshot e dettagli: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</it_IT>
+            <uk_UA>Європа, Середземномор'я та Африка на північ від екватора, з історичною стартовою позицією для кожної цивілізації кожної доби та річками там, де вони справді течуть.
+
+ТРИ КАРТИ
+- Далекі землі: Африка, Скандинавія та Ісландія за водою
+- Єдиний материк: та сама географія, без нічого далекого
+- Варіант: окрема копія, яку можна переробляти, не торкаючись двох інших
+Розміри 112x98, 128x112 і 144x126.
+
+ІСТОРИЧНІ СТАРТОВІ ПОЗИЦІЇ
+Кожна цивілізація кожної доби має сталу стартову позицію: оберіть ту, що починає там, де ви хочете завершити свою імперію. Водночас триває лише одна доба, тож доби навмисно ділять між собою міста.
+Британська лінія розгортається там, де вона справді відбулася: почніть галлами на Женевському озері, станьте Англією на Темзі й завершіть Великою Британією або Америкою.
+Цивілізації без європейської історії - це замінники. Кожна тримає регіон, який карта інакше залишила б порожнім, обраний за місцевістю, а там, де це важливо, - за умовою, якою відкривається цивілізація.
+
+АНТИЧНІСТЬ
+Історична батьківщина:
+- Рим (Рим)
+- Галли (Лозанна): гельвети на Женевському озері
+- Етруски (Популонія): єдине етруське місто на морі, так далеко від Рима, як сягає Етрурія
+- Греція (Термайська затока): узбережжя Македонії, на північ від Афін
+- Візантія (Константинополь)
+- Карфаген (Карфаген)
+- Єгипет (Мемфіс)
+- Ассирія (Ніневія)
+- Вавилон (Вавилон)
+- Персія (Сузи)
+- Аксум (Аксум)
+Замінники:
+- Міссісіпська культура (Уппсала): будівничі курганів біля королівських курганів Гамла-Уппсали
+- Японія Хейан (Дублін): острівний двір біля материка
+- Маур'ї (Мадрид): великий теплий півострів, який треба об'єднати
+- Хань (Київ): велика річкова долина, Дніпро
+- Мая (Берлін): Північноєвропейська рівнина, де згодом постане Пруссія
+- Кхмери (Бухарест): річкова імперія на нижньому Дунаї
+- Сілла (Анкара): гористий півострів
+- Тонга (Сиракузи): морська держава посеред моря
+
+ДОБА ДОСЛІДЖЕНЬ
+Історична батьківщина:
+- Англія (Лондон)
+- Візантія (Константинополь)
+- Етруски (Популонія)
+- Тоскана (Флоренція)
+- Болгарія (Велико-Тирново): столиця Другого Болгарського царства
+- Іспанія (Мадрид)
+- Нормани (Руан)
+- Аббасиди (Багдад)
+- Ісландія (Рейк'явік)
+- Монголія (Сарай на нижній Волзі): Золота Орда
+- Сонгаї (Гао)
+- Піратська республіка (Алжир): берберійські корсари
+Замінники:
+- Японія Сенгоку (Копенгаген): феодали серед данських островів
+- Маджапагіт (Дублін): острівна таласократія
+- Чола (Лісабон): торговельне узбережжя, звернене до океану
+- Корьо (Афіни): півострів гаваней
+- Дайв'єт (Александрія): гирло річки, дельта Нілу
+- Інки (Тбілісі): гірські поселення, якими відкриваються інки
+- Гаваї (Сиракузи): острівні поселення, якими відкриваються Гаваї
+- Шоні (Варшава): ліси над Віслою
+- Мін (Москва): величезна континентальна імперія на російських річках
+
+НОВА ДОБА
+Історична батьківщина:
+- Велика Британія (Лондон)
+- Америка (Дублін): по інший бік води від Британії
+- Французька імперія (Париж)
+- Пруссія (Берлін)
+- Росія (Москва)
+- Османи (Анкара): Константинополь лишається вільним для завоювання
+- Каджари (Тегеран)
+- Візантія (Константинополь)
+- Етруски (Популонія)
+Замінники:
+- Мексика (Севілья): атлантичний бік Піренейського півострова
+- Чосон (Афіни): півострів
+- Японія Мейдзі (Уппсала): морська північ, що індустріалізується
+- Цін (Відень): континентальна імперія на середньому Дунаї
+- Сіам (Неаполь): тепле прибережне королівство
+- Моголи (Варшава): велика сухопутна імперія, якою була Річ Посполита
+- Непал (Тбілісі): гірські поселення, якими відкривається Непал
+- Буганда (Гондер): високогірні озера, якими відкривається Буганда
+
+ЦИВІЛІЗАЦІЇ З МАЙСТЕРНІ
+Також розміщуються, якщо встановлені: Скіфія (Кам'янка), Куш (Мерое), Шумер (Ур), Австро-Угорщина (Відень).
+
+УСІ ІНШІ
+Цивілізація без стартової позиції або та, чию позицію вже займає інший гравець, селиться на дібраному історичному місці: спершу Лондон і Дублін, потім Київ, Уппсала, Фес, Краків, Тронгейм, Копенгаген, Марракеш і ще 86.
+
+Знімки екрана та подробиці: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</uk_UA>
+            <de_DE>Europa, das Mittelmeer und Afrika oberhalb des Äquators, mit einem historischen Startplatz für jede Zivilisation jedes Zeitalters und Flüssen dort, wo sie wirklich fließen.
+
+DREI KARTEN
+- Ferne Länder: Afrika, Skandinavien und Island liegen jenseits des Wassers
+- Eine Landmasse: dieselbe Geografie, ohne ferne Länder
+- Variante: eine eigene Kopie, die sich umgestalten lässt, ohne die anderen beiden anzurühren
+Größen 112x98, 128x112 und 144x126.
+
+HISTORISCHE STARTPLÄTZE
+Jede Zivilisation jedes Zeitalters hat einen festen Startplatz - wählen Sie diejenige, die dort beginnt, wo Ihr Reich enden soll. Es ist immer nur ein Zeitalter aktiv, deshalb teilen sich die Zeitalter ihre Städte absichtlich.
+Die britische Linie spielt dort, wo sie sich zugetragen hat: Beginnen Sie als Gallier am Genfersee, werden Sie England an der Themse und enden Sie als Großbritannien oder Amerika.
+Zivilisationen ohne europäische Geschichte sind Platzhalter. Jede hält eine Region, die die Karte sonst leer ließe - gewählt nach Gelände und, wo es zählt, nach der Freischaltbedingung der Zivilisation.
+
+ANTIKE
+Historische Heimat:
+- Rom (Rom)
+- Gallier (Lausanne): die Helvetier am Genfersee
+- Etrusker (Populonia): die einzige etruskische Stadt am Meer, so weit von Rom entfernt, wie Etrurien reicht
+- Griechenland (Thermaischer Golf): die Küste Makedoniens, nördlich von Athen
+- Byzanz (Konstantinopel)
+- Karthago (Karthago)
+- Ägypten (Memphis)
+- Assyrien (Ninive)
+- Babylon (Babylon)
+- Achämenidisches Persien (Susa)
+- Aksum (Aksum)
+Platzhalter:
+- Mississippi-Reich (Uppsala): Hügelbauer an den Königshügeln von Gamla Uppsala
+- Heian-Japan (Dublin): ein Inselhof vor dem Festland
+- Maurya (Madrid): eine große, warme Halbinsel, die es zu einen gilt
+- Han (Kyjiw): ein großes Flusstal, der Dnepr
+- Maya (Berlin): die norddeutsche Tiefebene, in der später Preußen entsteht
+- Khmer (Bukarest): ein Flussreich an der unteren Donau
+- Silla (Ankara): eine gebirgige Halbinsel
+- Tonga (Syrakus): eine Seemacht mitten im Meer
+
+ERKUNDUNG
+Historische Heimat:
+- England (London)
+- Byzanz (Konstantinopel)
+- Etrusker (Populonia)
+- Toskana (Florenz)
+- Bulgarien (Weliko Tarnowo): Hauptstadt des Zweiten Bulgarischen Reiches
+- Spanien (Madrid)
+- Normannenreich (Rouen)
+- Abbasiden-Kalifat (Bagdad)
+- Island (Reykjavík)
+- Mongolei (Sarai an der unteren Wolga): die Goldene Horde
+- Songhai (Gao)
+- Piratenrepublik (Algier): die Barbareskenkorsaren
+Platzhalter:
+- Sengoku-Japan (Kopenhagen): Feudalherren zwischen den dänischen Inseln
+- Majapahit (Dublin): eine Inselthalassokratie
+- Chola (Lissabon): eine Handelsküste zum Ozean hin
+- Goryeo (Athen): eine Halbinsel voller Häfen
+- Dai Viet (Alexandria): eine Flussmündung, das Nildelta
+- Inka (Tiflis): Bergsiedlungen, über die die Inka freigeschaltet werden
+- Hawaii (Syrakus): Inselsiedlungen, über die Hawaii freigeschaltet wird
+- Shawnee (Warschau): die Wälder an der Weichsel
+- Ming-Reich (Moskau): ein riesiges Kontinentalreich an den russischen Flüssen
+
+MODERNE
+Historische Heimat:
+- Großbritannien (London)
+- Amerika (Dublin): jenseits des Wassers von Britannien
+- Frankreich (Paris)
+- Preußen (Berlin)
+- Russland (Moskau)
+- Osmanen (Ankara): Konstantinopel bleibt zur Eroberung frei
+- Kadscharen (Teheran)
+- Byzanz (Konstantinopel)
+- Etrusker (Populonia)
+Platzhalter:
+- Mexiko (Sevilla): die atlantische Seite Iberiens
+- Joseon (Athen): eine Halbinsel
+- Meiji-Japan (Uppsala): ein sich industrialisierender maritimer Norden
+- Qing-Reich (Wien): ein Kontinentalreich an der mittleren Donau
+- Siam (Neapel): ein warmes Küstenkönigreich
+- Mogulreich (Warschau): ein großes Landreich, wie es Polen-Litauen war
+- Nepal (Tiflis): Bergsiedlungen, über die Nepal freigeschaltet wird
+- Buganda (Gonder): Hochlandseen, über die Buganda freigeschaltet wird
+
+ZIVILISATIONEN AUS DEM WORKSHOP
+Ebenfalls platziert, wenn installiert: Skythien (Kamjanka), Kusch (Meroe), Sumer (Ur), Österreich-Ungarn (Wien).
+
+ALLE ÜBRIGEN
+Eine Zivilisation ohne Startplatz, oder deren Platz schon ein anderer Spieler hält, siedelt auf einem kuratierten historischen Platz: zuerst London und Dublin, dann Kyjiw, Uppsala, Fès, Krakau, Trondheim, Kopenhagen, Marrakesch und 86 weitere.
+
+Screenshots und Details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</de_DE>
+            <fr_FR>L'Europe, la Méditerranée et l'Afrique au nord de l'équateur, avec un départ historique pour chaque civilisation de chaque ère et des fleuves tracés là où ils coulent vraiment.
+
+TROIS CARTES
+- Terres lointaines : l'Afrique, la Scandinavie et l'Islande de l'autre côté de l'eau
+- Masse continentale unique : la même géographie, sans rien de lointain
+- Variante : une copie à part, à remodeler sans toucher aux deux autres
+Tailles 112x98, 128x112 et 144x126.
+
+DÉPARTS HISTORIQUES
+Chaque civilisation de chaque ère a un point de départ fixe : choisissez celle qui commence là où vous voulez que votre empire finisse. Une seule ère est active à la fois, les ères partagent donc leurs villes à dessein.
+La lignée britannique se joue là où elle s'est déroulée : commencez comme les Gaulois sur le lac Léman, devenez l'Angleterre sur la Tamise, finissez en Grande-Bretagne ou en Amérique.
+Les civilisations sans passé européen sont des remplaçantes. Chacune occupe une région que la carte laisserait vide, choisie selon le terrain et, quand cela compte, selon ce qui débloque la civilisation.
+
+ANTIQUITÉ
+Berceau historique :
+- Rome (Rome)
+- Gaulois (Lausanne) : les Helvètes sur le lac Léman
+- Étrusques (Populonia) : la seule cité étrusque sur la mer, aussi loin de Rome que va l'Étrurie
+- Grèce (golfe Thermaïque) : la côte de Macédoine, au nord d'Athènes
+- Byzance (Constantinople)
+- Carthage (Carthage)
+- Égypte (Memphis)
+- Assyrie (Ninive)
+- Babylone (Babylone)
+- Perse achéménide (Suse)
+- Aksoum (Aksoum)
+Remplaçantes :
+- Mississippiens (Uppsala) : des bâtisseurs de tertres aux tertres royaux de Gamla Uppsala
+- Japon de l'époque de Heian (Dublin) : une cour insulaire au large du continent
+- Mauryas (Madrid) : une grande péninsule chaude à unifier
+- Dynastie Han (Kyiv) : une grande vallée fluviale, le Dniepr
+- Mayas (Berlin) : la plaine d'Europe du Nord, où la Prusse s'élèvera plus tard
+- Khmers (Bucarest) : un empire fluvial sur le bas Danube
+- Silla (Ankara) : une péninsule montagneuse
+- Tonga (Syracuse) : une puissance maritime au milieu de la mer
+
+EXPLORATION
+Berceau historique :
+- Angleterre (Londres)
+- Byzance (Constantinople)
+- Étrusques (Populonia)
+- Toscane (Florence)
+- Bulgarie (Veliko Tarnovo) : capitale du Second Empire bulgare
+- Espagne (Madrid)
+- Normands (Rouen)
+- Califat abbasside (Bagdad)
+- Islande (Reykjavik)
+- Mongolie (Saraï, sur la basse Volga) : la Horde d'or
+- Songhaïs (Gao)
+- République des Corsaires (Alger) : les corsaires barbaresques
+Remplaçantes :
+- Japon de l'époque Sengoku (Copenhague) : des seigneurs féodaux parmi les îles danoises
+- Majapahit (Dublin) : une thalassocratie insulaire
+- Dynastie Chola (Lisbonne) : une côte marchande tournée vers l'océan
+- Goryeo (Athènes) : une péninsule de ports
+- Đại Việt (Alexandrie) : une embouchure, le delta du Nil
+- Incas (Tbilissi) : des implantations de montagne, qui débloquent les Incas
+- Hawaï (Syracuse) : des implantations insulaires, qui débloquent Hawaï
+- Chaouanons (Varsovie) : les forêts de la Vistule
+- Dynastie Ming (Moscou) : un vaste empire continental sur les fleuves russes
+
+ÈRE MODERNE
+Berceau historique :
+- Grande-Bretagne (Londres)
+- Amérique (Dublin) : de l'autre côté de l'eau face à la Grande-Bretagne
+- Empire français (Paris)
+- Prusse (Berlin)
+- Russie (Moscou)
+- Ottomans (Ankara) : Constantinople reste libre à prendre
+- Dynastie Kadjar (Téhéran)
+- Byzance (Constantinople)
+- Étrusques (Populonia)
+Remplaçantes :
+- Mexique (Séville) : le versant atlantique de la péninsule Ibérique
+- Joseon (Athènes) : une péninsule
+- Japon de l'ère Meiji (Uppsala) : un Nord maritime en pleine industrialisation
+- Dynastie Qing (Vienne) : un empire continental sur le Danube moyen
+- Siam (Naples) : un royaume côtier et chaud
+- Moghols (Varsovie) : un grand empire terrestre, comme le fut la République des Deux Nations
+- Népal (Tbilissi) : des implantations de montagne, qui débloquent le Népal
+- Bouganda (Gondar) : des lacs d'altitude, qui débloquent le Buganda
+
+CIVILISATIONS DU WORKSHOP
+Placées aussi, si vous les avez installées : Scythie (Kamianka), Koush (Méroé), Sumer (Ur), Autriche-Hongrie (Vienne).
+
+TOUTES LES AUTRES
+Une civilisation sans départ, ou dont le départ est déjà pris par un autre joueur, s'installe sur un site historique sélectionné : Londres et Dublin d'abord, puis Kyiv, Uppsala, Fès, Cracovie, Trondheim, Copenhague, Marrakech et 86 autres.
+
+Captures d'écran et détails : https://marcobonechi.github.io/civ7mods/europe-mediterranean/</fr_FR>
+            <es_ES>Europa, el Mediterráneo y África por encima del ecuador, con una posición histórica para cada civilización de cada era y ríos trazados por donde corren de verdad.
+
+TRES MAPAS
+- Tierras Lejanas: África, Escandinavia e Islandia al otro lado del agua
+- Una Sola Masa Continental: la misma geografía, sin nada lejano
+- Variante: una copia aparte que puedes remodelar sin tocar las otras dos
+Tamaños 112x98, 128x112 y 144x126.
+
+POSICIONES HISTÓRICAS
+Cada civilización de cada era tiene un lugar fijo: elige la que empieza donde quieres que acabe tu imperio. Solo hay una era activa a la vez, así que las eras comparten sus ciudades a propósito.
+La línea británica se juega donde ocurrió: empieza como los galos en el lago de Ginebra, conviértete en Inglaterra en el Támesis y acaba como Gran Bretaña o América.
+Las civilizaciones sin historia en Europa son suplentes. Cada una ocupa una región que el mapa dejaría vacía, elegida por el terreno y, cuando importa, por lo que la civilización necesita para desbloquearse.
+
+ANTIGÜEDAD
+Hogar histórico:
+- Roma (Roma)
+- Galos (Lausana): los helvecios en el lago de Ginebra
+- etruscos (Populonia): la única ciudad etrusca junto al mar, tan lejos de Roma como llega Etruria
+- Grecia (golfo Termaico): la costa de Macedonia, al norte de Atenas
+- Bizancio (Constantinopla)
+- Cartago (Cartago)
+- Egipto (Menfis)
+- Asiria (Nínive)
+- Babilonia (Babilonia)
+- Persia aqueménida (Susa)
+- Aksum (Aksum)
+Suplentes:
+- Misisipianos (Upsala): constructores de montículos junto a los túmulos reales de Gamla Uppsala
+- Japón Heian (Dublín): una corte isleña frente al continente
+- Maurya (Madrid): una gran península cálida por unificar
+- Han (Kiev): un gran valle fluvial, el Dniéper
+- Mayas (Berlín): la llanura del norte de Europa, donde luego surge Prusia
+- Jemeres (Bucarest): un imperio fluvial en el bajo Danubio
+- Silla (Ankara): una península montañosa
+- Tonga (Siracusa): una potencia marítima en medio del mar
+
+EXPLORACIÓN
+Hogar histórico:
+- Inglaterra (Londres)
+- Bizancio (Constantinopla)
+- etruscos (Populonia)
+- Toscana (Florencia)
+- Bulgaria (Veliko Tarnovo): capital del Segundo Imperio búlgaro
+- España (Madrid)
+- Normandos (Rouen)
+- Abasidas (Bagdad)
+- Islandia (Reikiavik)
+- Mongolia (Sarai, en el bajo Volga): la Horda de Oro
+- Songhai (Gao)
+- República de los Piratas (Argel): los corsarios berberiscos
+Suplentes:
+- Japón Sengoku (Copenhague): señores feudales entre las islas danesas
+- Mayapajit (Dublín): una talasocracia insular
+- Chola (Lisboa): una costa comercial frente al océano
+- Goryeo (Atenas): una península de puertos
+- Đại Việt (Alejandría): una desembocadura, el delta del Nilo
+- Incas (Tiflis): asentamientos de montaña, con los que se desbloquean los incas
+- Hawái (Siracusa): asentamientos isleños, con los que se desbloquea Hawái
+- Shawnee (Varsovia): los bosques del Vístula
+- Ming (Moscú): un vasto imperio continental sobre los ríos rusos
+
+ERA MODERNA
+Hogar histórico:
+- Gran Bretaña (Londres)
+- Estados Unidos (Dublín): al otro lado del agua desde Gran Bretaña
+- Imperio francés (París)
+- Prusia (Berlín)
+- Rusia (Moscú)
+- Otomanos (Ankara): deja Constantinopla libre para conquistarla
+- Kayar (Teherán)
+- Bizancio (Constantinopla)
+- etruscos (Populonia)
+Suplentes:
+- México (Sevilla): el lado atlántico de Iberia
+- Choson (Atenas): una península
+- Japón Meiji (Upsala): un norte marítimo en plena industrialización
+- Qing (Viena): un imperio continental en el Danubio medio
+- Siam (Nápoles): un reino costero y cálido
+- Mogoles (Varsovia): un gran imperio terrestre, como lo fue la Mancomunidad polaco-lituana
+- Nepal (Tiflis): asentamientos de montaña, con los que se desbloquea Nepal
+- Buganda (Gondar): lagos de montaña, con los que se desbloquea Buganda
+
+CIVILIZACIONES DEL WORKSHOP
+También se colocan, si las tienes instaladas: Escitia (Kamianka), Kush (Meroe), Sumeria (Ur), Austria-Hungría (Viena).
+
+LAS DEMÁS
+Una civilización sin posición, o cuya posición ya ocupa otro jugador, se asienta en un emplazamiento histórico seleccionado: primero Londres y Dublín, luego Kiev, Upsala, Fez, Cracovia, Trondheim, Copenhague, Marrakech y 86 más.
+
+Capturas de pantalla y detalles: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</es_ES>
+            <pl_PL>Europa, Morze Śródziemne i Afryka na północ od równika, z historyczną pozycją startową dla każdej cywilizacji każdej epoki i rzekami tam, gdzie naprawdę płyną.
+
+TRZY MAPY
+- Dalekie Ziemie: Afryka, Skandynawia i Islandia po drugiej stronie wody
+- Jeden Ląd: ta sama geografia, bez niczego dalekiego
+- Wariant: osobna kopia, którą można przekształcać bez ruszania dwóch pozostałych
+Rozmiary 112x98, 128x112 i 144x126.
+
+HISTORYCZNE POZYCJE STARTOWE
+Każda cywilizacja każdej epoki ma stałe miejsce startu: wybierz tę, która zaczyna tam, gdzie chcesz, by twoje imperium się skończyło. Naraz trwa tylko jedna epoka, więc epoki celowo dzielą się miastami.
+Linia brytyjska rozgrywa się tam, gdzie się wydarzyła: zacznij jako Galowie nad Jeziorem Genewskim, zostań Anglią nad Tamizą i skończ jako Wielka Brytania lub Ameryka.
+Cywilizacje bez europejskiej historii są zastępcami. Każda zajmuje region, który mapa zostawiłaby pusty, wybrany według terenu, a tam, gdzie to ma znaczenie, według tego, czym cywilizacja się odblokowuje.
+
+STAROŻYTNOŚĆ
+Historyczna ojczyzna:
+- Rzym (Rzym)
+- Galowie (Lozanna): Helwetowie nad Jeziorem Genewskim
+- Etruskowie (Populonia): jedyne etruskie miasto nad morzem, tak daleko od Rzymu, jak sięga Etruria
+- Grecja (Zatoka Termajska): wybrzeże Macedonii, na północ od Aten
+- Bizancjum (Konstantynopol)
+- Kartagina (Kartagina)
+- Egipt (Memfis)
+- Asyria (Niniwa)
+- Babilon (Babilon)
+- Persja Achemenidów (Suza)
+- Aksum (Aksum)
+Zastępcy:
+- Missisipijczycy (Uppsala): budowniczowie kopców przy królewskich kurhanach Gamla Uppsala
+- Japonia Heianu (Dublin): wyspiarski dwór u wybrzeży lądu
+- Maurjowie (Madryt): duży, ciepły półwysep do zjednoczenia
+- Han (Kijów): wielka dolina rzeczna, Dniepr
+- Majowie (Berlin): Nizina Środkowoeuropejska, gdzie później powstają Prusy
+- Khmer (Bukareszt): rzeczne imperium nad dolnym Dunajem
+- Silla (Ankara): górzysty półwysep
+- Tonga (Syrakuzy): potęga morska pośrodku morza
+
+EPOKA ODKRYĆ
+Historyczna ojczyzna:
+- Anglia (Londyn)
+- Bizancjum (Konstantynopol)
+- Etruskowie (Populonia)
+- Toskania (Florencja)
+- Bułgaria (Wielkie Tyrnowo): stolica Drugiego Carstwa Bułgarskiego
+- Hiszpania (Madryt)
+- Normanowie (Rouen)
+- Abbasydzi (Bagdad)
+- Islandia (Reykjavik)
+- Mongolia (Saraj nad dolną Wołgą): Złota Orda
+- Songhaj (Gao)
+- Republika Piratów (Algier): korsarze berberyjscy
+Zastępcy:
+- Japonia Sengoku (Kopenhaga): panowie feudalni wśród duńskich wysp
+- Madżapahit (Dublin): wyspiarska talasokracja
+- Ćolowie (Lizbona): kupieckie wybrzeże zwrócone ku oceanowi
+- Goryeo (Ateny): półwysep pełen portów
+- Đại Việt (Aleksandria): ujście rzeki, delta Nilu
+- Inkowie (Tbilisi): osady górskie, którymi odblokowują się Inkowie
+- Hawaje (Syrakuzy): osady wyspiarskie, którymi odblokowuje się Hawaje
+- Szaunisi (Warszawa): lasy nad Wisłą
+- Mingowie (Moskwa): rozległe imperium kontynentalne nad rzekami Rosji
+
+NOWOŻYTNOŚĆ
+Historyczna ojczyzna:
+- Wielka Brytania (Londyn)
+- Ameryka (Dublin): po drugiej stronie wody od Brytanii
+- Imperium Francuskie (Paryż)
+- Prusy (Berlin)
+- Rosja (Moskwa)
+- Turkowie osmańscy (Ankara): Konstantynopol pozostaje wolny do zdobycia
+- Kadżarowie (Teheran)
+- Bizancjum (Konstantynopol)
+- Etruskowie (Populonia)
+Zastępcy:
+- Meksyk (Sewilla): atlantycka strona Półwyspu Iberyjskiego
+- Joseon (Ateny): półwysep
+- Japonia Meiji (Uppsala): uprzemysławiająca się morska północ
+- Qingowie (Wiedeń): imperium kontynentalne nad środkowym Dunajem
+- Syjam (Neapol): ciepłe królestwo nadmorskie
+- Mogołowie (Warszawa): wielkie imperium lądowe, jakim była Rzeczpospolita Obojga Narodów
+- Nepal (Tbilisi): osady górskie, którymi odblokowuje się Nepal
+- Buganda (Gonder): jeziora na wyżynach, którymi odblokowuje się Buganda
+
+CYWILIZACJE Z WARSZTATU
+Również rozmieszczane, jeśli są zainstalowane: Scytia (Kamianka), Kusz (Meroe), Sumer (Ur), Austro-Węgry (Wiedeń).
+
+WSZYSCY POZOSTALI
+Cywilizacja bez pozycji startowej albo taka, której pozycję zajmuje już inny gracz, osiedla się w wybranym miejscu historycznym: najpierw Londyn i Dublin, potem Kijów, Uppsala, Fez, Kraków, Trondheim, Kopenhaga, Marrakesz i 86 innych.
+
+Zrzuty ekranu i szczegóły: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pl_PL>
+            <pt_BR>Europa, Mediterrâneo e África acima do Equador, com uma posição histórica para cada civilização de cada era e rios traçados por onde realmente correm.
+
+TRÊS MAPAS
+- Terras Distantes: África, Escandinávia e Islândia do outro lado da água
+- Massa Continental Única: a mesma geografia, sem nada distante
+- Variante: uma cópia à parte, para remodelar sem tocar nas outras duas
+Tamanhos 112x98, 128x112 e 144x126.
+
+POSIÇÕES HISTÓRICAS
+Cada civilização de cada era tem um lugar fixo: escolha a que começa onde você quer que seu império termine. Só uma era fica ativa por vez, então as eras compartilham suas cidades de propósito.
+A linhagem britânica se joga onde aconteceu: comece como os gauleses no lago de Genebra, torne-se a Inglaterra no Tâmisa e termine como Grã-Bretanha ou América.
+Civilizações sem história na Europa são substitutas. Cada uma ocupa uma região que o mapa deixaria vazia, escolhida pelo terreno e, quando importa, pelo que desbloqueia a civilização.
+
+ANTIGUIDADE
+Lar histórico:
+- Roma (Roma)
+- Gauleses (Lausanne): os helvécios no lago de Genebra
+- etruscos (Populonia): a única cidade etrusca à beira-mar, tão longe de Roma quanto a Etrúria alcança
+- Grécia (golfo Termaico): a costa da Macedônia, ao norte de Atenas
+- Bizâncio (Constantinopla)
+- Cartago (Cartago)
+- Egito (Mênfis)
+- Assíria (Nínive)
+- Babilônia (Babilônia)
+- Pérsia Aquemênida (Susa)
+- Axum (Axum)
+Substitutas:
+- Mississipianos (Upsala): construtores de montes junto aos túmulos reais de Gamla Uppsala
+- Japão Heian (Dublin): uma corte insular ao largo do continente
+- Máuria (Madri): uma grande península quente a unificar
+- Han (Kiev): um grande vale fluvial, o Dnieper
+- Maias (Berlim): a planície do norte da Europa, onde depois surge a Prússia
+- Khmer (Bucareste): um império fluvial no baixo Danúbio
+- Silla (Ankara): uma península montanhosa
+- Tonga (Siracusa): uma potência marítima no meio do mar
+
+EXPLORAÇÃO
+Lar histórico:
+- Inglaterra (Londres)
+- Bizâncio (Constantinopla)
+- etruscos (Populonia)
+- Toscana (Florença)
+- Bulgária (Veliko Tarnovo): capital do Segundo Império Búlgaro
+- Espanha (Madri)
+- Normandos (Rouen)
+- Abássida (Bagdá)
+- Islândia (Reiquiavique)
+- Mongólia (Sarai, no baixo Volga): a Horda Dourada
+- Songai (Gao)
+- República dos Piratas (Argel): os corsários berberes
+Substitutas:
+- Japão Sengoku (Copenhague): senhores feudais entre as ilhas dinamarquesas
+- Majapahit (Dublin): uma talassocracia insular
+- Chola (Lisboa): uma costa comercial voltada para o oceano
+- Goryeo (Atenas): uma península de portos
+- Đại Việt (Alexandria): uma foz, o delta do Nilo
+- Incas (Tbilisi): assentamentos nas montanhas, com os quais os incas são desbloqueados
+- Havaí (Siracusa): assentamentos em ilhas, com os quais o Havaí é desbloqueado
+- Shawnee (Varsóvia): as florestas do Vístula
+- Ming (Moscou): um vasto império continental sobre os rios russos
+
+ERA MODERNA
+Lar histórico:
+- Grã-Bretanha (Londres)
+- América (Dublin): do outro lado da água em relação à Grã-Bretanha
+- Império Francês (Paris)
+- Prússia (Berlim)
+- Rússia (Moscou)
+- Otomanos (Ankara): deixa Constantinopla livre para ser tomada
+- Cajar (Teerã)
+- Bizâncio (Constantinopla)
+- etruscos (Populonia)
+Substitutas:
+- México (Sevilha): o lado atlântico da Península Ibérica
+- Joseon (Atenas): uma península
+- Império Meiji (Upsala): um norte marítimo em industrialização
+- Qing (Viena): um império continental no médio Danúbio
+- Sião (Nápoles): um reino costeiro e quente
+- Mogol (Varsóvia): um grande império terrestre, como foi a República das Duas Nações
+- Nepal (Tbilisi): assentamentos nas montanhas, com os quais o Nepal é desbloqueado
+- Buganda (Gondar): lagos de planalto, com os quais Buganda é desbloqueada
+
+CIVILIZAÇÕES DO WORKSHOP
+Também posicionadas, se estiverem instaladas: Cítia (Kamianka), Kush (Meroé), Suméria (Ur), Áustria-Hungria (Viena).
+
+TODAS AS OUTRAS
+Uma civilização sem posição, ou cuja posição outro jogador já ocupa, se instala em um local histórico selecionado: primeiro Londres e Dublin, depois Kiev, Uppsala, Fez, Cracóvia, Trondheim, Copenhague, Marrakech e mais 86.
+
+Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pt_BR>
+            <zh_Hans_CN>赤道以北的欧洲、地中海与非洲。每个时代的每个文明都有历史起始点，河流画在它们真正流经的地方。
+
+三张地图
+- 远方大陆：非洲、斯堪的纳维亚与冰岛隔海相望
+- 单一大陆：地形相同，没有远方大陆
+- 变体：单独的副本，可随意重塑而不影响另外两张
+尺寸为 112x98、128x112 和 144x126。
+
+历史起始点
+每个时代的每个文明都有固定的起始点：挑选在你希望帝国终点的位置开局的那一个。同一时间只有一个时代在运作，所以各时代是刻意共用城市的。
+不列颠一脉在史实发生的地方展开：在日内瓦湖畔以高卢开局，在泰晤士河畔成为英格兰，最后成为英国或美国。
+与欧洲没有历史渊源的文明是替身。每个替身占据一个地图上原本会空着的地区，按地形挑选，并在需要时配合该文明的解锁条件。
+
+上古时代
+历史故地：
+- 罗马（罗马）
+- 高卢（洛桑）：日内瓦湖畔的赫尔维蒂人
+- 伊特鲁里亚（波普洛尼亚）：唯一临海的伊特鲁里亚城市，在伊特鲁里亚境内离罗马最远
+- 希腊（塞尔迈湾）：雅典以北的马其顿海岸
+- 拜占庭（君士坦丁堡）
+- 迦太基（迦太基）
+- 埃及（孟菲斯）
+- 亚述（尼尼微）
+- 巴比伦（巴比伦）
+- 阿契美尼德波斯（苏萨）
+- 阿克苏姆（阿克苏姆）
+替身：
+- 密西西比（乌普萨拉）：在旧乌普萨拉王家墓丘旁的土丘建造者
+- 平安日本（都柏林）：大陆外海的岛屿朝廷
+- 孔雀（马德里）：一个有待统一的温暖大半岛
+- 汉朝（基辅）：大河流域，第聂伯河
+- 玛雅（柏林）：北欧平原，日后普鲁士在此兴起
+- 高棉（布加勒斯特）：多瑙河下游的河流帝国
+- 新罗（安卡拉）：多山的半岛
+- 汤加（锡拉库萨）：海洋中央的航海强国
+
+探索时代
+历史故地：
+- 英格兰（伦敦）
+- 拜占庭（君士坦丁堡）
+- 伊特鲁里亚（波普洛尼亚）
+- 托斯卡纳（佛罗伦萨）
+- 保加利亚（大特尔诺沃）：第二保加利亚帝国的首都
+- 西班牙（马德里）
+- 诺曼（鲁昂）
+- 阿拔斯（巴格达）
+- 冰岛（雷克雅未克）
+- 蒙古（伏尔加河下游的萨莱）：金帐汗国
+- 桑海（加奥）
+- 海盗共和国（阿尔及尔）：巴巴里海盗
+替身：
+- 战国日本（哥本哈根）：丹麦诸岛间的封建领主
+- 满者伯夷（都柏林）：岛屿海洋帝国
+- 朱罗（里斯本）：面向大洋的贸易海岸
+- 高丽（雅典）：港口众多的半岛
+- 大越（亚历山大）：河口，尼罗河三角洲
+- 印加（第比利斯）：山地定居点，即印加的解锁条件
+- 夏威夷（锡拉库萨）：岛屿定居点，即夏威夷的解锁条件
+- 肖尼族（华沙）：维斯瓦河的森林
+- 明朝（莫斯科）：横跨俄罗斯诸河的庞大大陆帝国
+
+现代
+历史故地：
+- 大不列颠（伦敦）
+- 美国（都柏林）：与不列颠隔海相望
+- 法兰西帝国（巴黎）
+- 普鲁士（柏林）
+- 俄罗斯（莫斯科）
+- 奥斯曼（安卡拉）：留出君士坦丁堡以待夺取
+- 卡扎尔（德黑兰）
+- 拜占庭（君士坦丁堡）
+- 伊特鲁里亚（波普洛尼亚）
+替身：
+- 墨西哥（塞维利亚）：伊比利亚半岛的大西洋一侧
+- 朝鲜（雅典）：一个半岛
+- 明治日本（乌普萨拉）：正在工业化的海洋北方
+- 清朝（维也纳）：多瑙河中游的大陆帝国
+- 暹罗（那不勒斯）：温暖的沿海王国
+- 莫卧儿（华沙）：如波兰立陶宛联邦那样的陆上大帝国
+- 尼泊尔（第比利斯）：山地定居点，即尼泊尔的解锁条件
+- 布干达（贡德尔）：高原湖泊，即布干达的解锁条件
+
+创意工坊文明
+如已安装，以下文明同样会被安置：斯基泰（卡米扬卡）、库施（麦罗埃）、苏美尔（乌尔）、奥匈帝国（维也纳）。
+
+其余文明
+没有起始点的文明，或起始点已被其他玩家占据的文明，会在精选的历史地点定居：先是伦敦与都柏林，然后是基辅、乌普萨拉、非斯、克拉科夫、特隆赫姆、哥本哈根、马拉喀什，另有86处。
+
+截图与详情：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hans_CN>
+            <zh_Hant_HK>赤道以北的歐洲、地中海與非洲。每個時代的每個文明都有歷史起始點，河流畫在它們真正流經的地方。
+
+三張地圖
+- 遠方大陸：非洲、斯堪的納維亞與冰島隔海相望
+- 單一大陸：地形相同，沒有遠方大陸
+- 變體：單獨的副本，可隨意重塑而不影響另外兩張
+尺寸為 112x98、128x112 和 144x126。
+
+歷史起始點
+每個時代的每個文明都有固定的起始點：挑選在你希望帝國終點的位置開局的那一個。同一時間只有一個時代在運作，所以各時代是刻意共用城市的。
+不列顛一脈在史實發生的地方展開：在日內瓦湖畔以高盧開局，在泰晤士河畔成為英格蘭，最後成為英國或美國。
+與歐洲沒有歷史淵源的文明是替身。每個替身佔據一個地圖上原本會空著的地區，按地形挑選，並在需要時配合該文明的解鎖條件。
+
+上古時代
+歷史故地：
+- 羅馬（羅馬）
+- 高盧（洛桑）：日內瓦湖畔的赫爾維蒂人
+- 伊特魯里亞（波普洛尼亞）：唯一臨海的伊特魯里亞城市，在伊特魯里亞境內離羅馬最遠
+- 希臘（塞爾邁灣）：雅典以北的馬其頓海岸
+- 拜占庭（君士坦丁堡）
+- 迦太基（迦太基）
+- 埃及（孟菲斯）
+- 亞述（尼尼微）
+- 巴比倫（巴比倫）
+- 阿契美尼德波斯（蘇薩）
+- 阿克蘇姆（阿克蘇姆）
+替身：
+- 密西西比（烏普薩拉）：在舊烏普薩拉王家墓丘旁的土丘建造者
+- 平安日本（都柏林）：大陸外海的島嶼朝廷
+- 孔雀（馬德里）：一個有待統一的溫暖大半島
+- 漢朝（基輔）：大河流域，第聶伯河
+- 馬雅（柏林）：北歐平原，日後普魯士在此興起
+- 高棉（布加勒斯特）：多瑙河下游的河流帝國
+- 新羅（安卡拉）：多山的半島
+- 東加（錫拉庫薩）：海洋中央的航海強國
+
+探索時代
+歷史故地：
+- 英格蘭（倫敦）
+- 拜占庭（君士坦丁堡）
+- 伊特魯里亞（波普洛尼亞）
+- 托斯卡納（佛羅倫斯）
+- 保加利亞（大特爾諾沃）：第二保加利亞帝國的首都
+- 西班牙（馬德里）
+- 諾曼（魯昂）
+- 阿拔斯（巴格達）
+- 冰島（雷克雅未克）
+- 蒙古（伏爾加河下游的薩萊）：金帳汗國
+- 桑海（加奧）
+- 海盜共和國（阿爾及爾）：巴巴里海盜
+替身：
+- 戰國日本（哥本哈根）：丹麥諸島間的封建領主
+- 滿者伯夷（都柏林）：島嶼海洋帝國
+- 朱羅（里斯本）：面向大洋的貿易海岸
+- 高麗（雅典）：港口眾多的半島
+- 大越（亞歷山大）：河口，尼羅河三角洲
+- 印加（第比利斯）：山地定居點，即印加的解鎖條件
+- 夏威夷（錫拉庫薩）：島嶼定居點，即夏威夷的解鎖條件
+- 肖尼族（華沙）：維斯瓦河的森林
+- 明朝（莫斯科）：橫跨俄羅斯諸河的龐大大陸帝國
+
+現代
+歷史故地：
+- 大不列顛（倫敦）
+- 美國（都柏林）：與不列顛隔海相望
+- 法蘭西帝國（巴黎）
+- 普魯士（柏林）
+- 俄羅斯（莫斯科）
+- 鄂圖曼（安卡拉）：留出君士坦丁堡以待奪取
+- 卡扎爾（德黑蘭）
+- 拜占庭（君士坦丁堡）
+- 伊特魯里亞（波普洛尼亞）
+替身：
+- 墨西哥（塞維利亞）：伊比利亞半島的大西洋一側
+- 朝鮮（雅典）：一個半島
+- 明治日本（烏普薩拉）：正在工業化的海洋北方
+- 清朝（維也納）：多瑙河中游的大陸帝國
+- 暹羅（拿坡里）：溫暖的沿海王國
+- 蒙兀兒（華沙）：如波蘭立陶宛聯邦那樣的陸上大帝國
+- 尼泊爾（第比利斯）：山地定居點，即尼泊爾的解鎖條件
+- 布干達（貢德爾）：高原湖泊，即布干達的解鎖條件
+
+創意工坊文明
+如已安裝，以下文明同樣會被安置：斯基泰（卡米揚卡）、庫施（麥羅埃）、蘇美爾（烏爾）、奧匈帝國（維也納）。
+
+其餘文明
+沒有起始點的文明，或起始點已被其他玩家佔據的文明，會在精選的歷史地點定居：先是倫敦與都柏林，然後是基輔、烏普薩拉、非斯、克拉科夫、特隆赫姆、哥本哈根、馬拉喀什，另有86處。
+
+截圖與詳情：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hant_HK>
+            <ja_JP>赤道以北のヨーロッパ、地中海、アフリカ。すべての時代のすべての文明に歴史的な開始地点があり、川は実際に流れている場所に描かれています。
+
+3種類のマップ
+・遠方の地：アフリカ、スカンディナヴィア、アイスランドが海の向こう
+・単一大陸：同じ地形で遠方の地なし
+・バリアント：他の2つに手を触れず作り替えられる別のコピー
+サイズは 112x98、128x112、144x126。
+
+歴史的な開始地点
+すべての時代のすべての文明に固定の開始地点があります。自分の帝国を終わらせたい場所で始まる文明を選んでください。生きている時代は常にひとつだけなので、時代どうしは意図的に同じ都市を共有します。
+ブリテンの系譜は実際の舞台どおりに進みます。レマン湖のガリアで始め、テムズ川でイングランドとなり、イギリスまたはアメリカで終える、という流れです。
+ヨーロッパに歴史を持たない文明は代役です。それぞれがマップ上で空白になってしまう地域を受け持ち、地形と、必要な場合はその文明の解放条件に合わせて選ばれています。
+
+古代
+歴史上の本拠地：
+・ローマ（ローマ）
+・ガリア（ローザンヌ）：レマン湖畔のヘルウェティイ族
+・エトルリア（ポプロニア）：海に面した唯一のエトルリア都市で、エトルリアの範囲内でローマから最も遠い
+・ギリシャ（テルマイコス湾）：アテネの北、マケドニアの海岸
+・ビザンティウム（コンスタンティノープル）
+・カルタゴ（カルタゴ）
+・エジプト（メンフィス）
+・アッシリア（ニネヴェ）
+・バビロン（バビロン）
+・アケメネス朝ペルシア（スーサ）
+・アクスム（アクスム）
+代役：
+・ミシシッピ（ウプサラ）：ガムラ・ウプサラの王墓群に立つ墳丘の建設者
+・平安日本（ダブリン）：大陸の沖合にある島の宮廷
+・マウリヤ（マドリード）：統一すべき大きく温暖な半島
+・漢（キーウ）：大河の流域、ドニプロ川
+・マヤ（ベルリン）：後にプロイセンが興る北ヨーロッパ平原
+・クメール（ブカレスト）：ドナウ川下流の河川帝国
+・新羅（アンカラ）：山がちな半島
+・トンガ（シラクサ）：海の真ん中の海洋勢力
+
+探検の時代
+歴史上の本拠地：
+・イングランド（ロンドン）
+・ビザンティウム（コンスタンティノープル）
+・エトルリア（ポプロニア）
+・トスカーナ（フィレンツェ）
+・ブルガリア（ヴェリコ・タルノヴォ）：第二次ブルガリア帝国の首都
+・スペイン（マドリード）
+・ノルマン（ルーアン）
+・アッバース（バグダード）
+・アイスランド（レイキャヴィク）
+・モンゴル（ヴォルガ川下流のサライ）：ジョチ・ウルス（キプチャク・ハン国）
+・ソンガイ（ガオ）
+・海賊共和国（アルジェ）：バルバリア海賊
+代役：
+・戦国日本（コペンハーゲン）：デンマークの島々に割拠する封建領主
+・マジャパヒト（ダブリン）：島の海洋帝国
+・チョーラ（リスボン）：大洋に面した交易の海岸
+・高麗（アテネ）：港の多い半島
+・大越（アレクサンドリア）：河口、ナイル・デルタ
+・インカ（トビリシ）：インカの解放条件である山岳の集落
+・ハワイ（シラクサ）：ハワイの解放条件である島の集落
+・ショーニー（ワルシャワ）：ヴィスワ川の森
+・明（モスクワ）：ロシアの川に広がる巨大な大陸帝国
+
+近代
+歴史上の本拠地：
+・イギリス（ロンドン）
+・アメリカ（ダブリン）：ブリテンから見て海の向こう
+・フランス帝国（パリ）
+・プロイセン（ベルリン）
+・ロシア（モスクワ）
+・オスマン（アンカラ）：コンスタンティノープルは奪取のために空けてある
+・ガージャール（テヘラン）
+・ビザンティウム（コンスタンティノープル）
+・エトルリア（ポプロニア）
+代役：
+・メキシコ（セビリア）：イベリア半島の大西洋側
+・李氏朝鮮（アテネ）：半島
+・近代日本（ウプサラ）：工業化する海洋の北
+・清（ウィーン）：ドナウ川中流の大陸帝国
+・シャム（ナポリ）：温暖な沿岸の王国
+・ムガル（ワルシャワ）：ポーランド・リトアニア共和国のような大陸の大帝国
+・ネパール（トビリシ）：ネパールの解放条件である山岳の集落
+・ブガンダ（ゴンダール）：ブガンダの解放条件である高原の湖
+
+ワークショップの文明
+導入していれば、次の文明も配置されます：スキタイ（カミアンカ）、クシュ（メロエ）、シュメール（ウル）、オーストリア＝ハンガリー（ウィーン）。
+
+その他の文明
+開始地点を持たない文明、または開始地点を他のプレイヤーに取られた文明は、厳選された史跡に入植します。まずロンドンとダブリン、次いでキーウ、ウプサラ、フェズ、クラクフ、トロンハイム、コペンハーゲン、マラケシュ、さらに86か所。
+
+スクリーンショットと詳細：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ja_JP>
+            <ko_KR>적도 이북의 유럽, 지중해, 아프리카. 모든 시대의 모든 문명에 역사적 시작 위치가 있고, 강은 실제로 흐르는 곳에 그려져 있습니다.
+
+세 가지 지도
+- 먼 땅: 아프리카, 스칸디나비아, 아이슬란드가 바다 건너편
+- 단일 대륙: 같은 지형에 먼 땅 없음
+- 변형판: 다른 두 지도를 건드리지 않고 다시 빚을 수 있는 별도의 사본
+크기는 112x98, 128x112, 144x126입니다.
+
+역사적 시작 위치
+모든 시대의 모든 문명에 고정된 시작 위치가 있습니다. 제국이 끝나기를 바라는 곳에서 시작하는 문명을 고르십시오. 한 번에 한 시대만 살아 있으므로 시대들은 의도적으로 같은 도시를 공유합니다.
+브리튼의 계보는 실제 무대에서 펼쳐집니다. 레만호의 갈리아로 시작해 템스강에서 잉글랜드가 되고 영국이나 아메리카로 마무리합니다.
+유럽 역사가 없는 문명은 대역입니다. 각 문명은 지도가 비워 둘 지역을 맡으며, 지형과 필요한 경우 그 문명의 해금 조건에 따라 선택되었습니다.
+
+고대
+역사적 본거지:
+- 로마 (로마)
+- 갈리아 (로잔): 레만호의 헬베티족
+- 에트루리아 (포풀로니아): 바다에 면한 유일한 에트루리아 도시로, 에트루리아 안에서 로마와 가장 먼 곳
+- 그리스 (테르마이코스만): 아테네 북쪽, 마케도니아 해안
+- 비잔티움 (콘스탄티노플)
+- 카르타고 (카르타고)
+- 이집트 (멤피스)
+- 아시리아 (니네베)
+- 바빌론 (바빌론)
+- 아케메네스 페르시아 (수사)
+- 악숨 (악숨)
+대역:
+- 미시시피 (웁살라): 감라 웁살라 왕릉 언덕의 봉분 건설자
+- 헤이안 일본 (더블린): 대륙 앞바다의 섬 조정
+- 마우리아 (마드리드): 통일해야 할 크고 따뜻한 반도
+- 한나라 (키이우): 큰 강 유역, 드니프로강
+- 마야 (베를린): 훗날 프로이센이 일어나는 북유럽 평원
+- 크메르 (부쿠레슈티): 도나우강 하류의 강 제국
+- 신라 (앙카라): 산이 많은 반도
+- 통가 (시라쿠사): 바다 한가운데의 해양 세력
+
+탐험 시대
+역사적 본거지:
+- 잉글랜드 (런던)
+- 비잔티움 (콘스탄티노플)
+- 에트루리아 (포풀로니아)
+- 토스카나 (피렌체)
+- 불가리아 (벨리코터르노보): 제2차 불가리아 제국의 수도
+- 스페인 (마드리드)
+- 노르만 (루앙)
+- 아바스조 (바그다드)
+- 아이슬란드 (레이캬비크)
+- 몽골 (볼가강 하류의 사라이): 킵차크 칸국(금장 칸국)
+- 송가이 (가오)
+- 해적 공화국 (알제): 바르바리 해적
+대역:
+- 센고쿠 일본 (코펜하겐): 덴마크 섬들 사이의 봉건 영주들
+- 마자파힛 (더블린): 섬의 해양 제국
+- 촐라 (리스본): 대양을 향한 교역 해안
+- 고려 (아테네): 항구가 많은 반도
+- 다이비엣 (알렉산드리아): 강어귀, 나일 삼각주
+- 잉카 (트빌리시): 잉카의 해금 조건인 산지 정착지
+- 하와이 (시라쿠사): 하와이의 해금 조건인 섬 정착지
+- 쇼니 (바르샤바): 비스와강의 숲
+- 명나라 (모스크바): 러시아의 강들 위에 펼쳐진 거대한 대륙 제국
+
+현대
+역사적 본거지:
+- 대영제국 (런던)
+- 미국 (더블린): 브리튼에서 바다 건너편
+- 프랑스 제국 (파리)
+- 프로이센 (베를린)
+- 러시아 (모스크바)
+- 오스만 (앙카라): 콘스탄티노플은 차지할 수 있도록 비워 둠
+- 카자르 (테헤란)
+- 비잔티움 (콘스탄티노플)
+- 에트루리아 (포풀로니아)
+대역:
+- 멕시코 (세비야): 이베리아반도의 대서양 쪽
+- 조선 (아테네): 반도
+- 메이지 일본 (웁살라): 산업화하는 바다의 북쪽
+- 청나라 (빈): 도나우강 중류의 대륙 제국
+- 시암 (나폴리): 따뜻한 해안 왕국
+- 무굴 (바르샤바): 폴란드-리투아니아 연방 같은 거대한 육상 제국
+- 네팔 (트빌리시): 네팔의 해금 조건인 산지 정착지
+- 부간다 (곤다르): 부간다의 해금 조건인 고원의 호수
+
+창작마당 문명
+설치되어 있다면 다음 문명도 배치됩니다: 스키타이 (카먄카), 쿠시 (메로에), 수메르 (우르), 오스트리아-헝가리 (빈).
+
+그 밖의 문명
+시작 위치가 없는 문명, 또는 시작 위치를 다른 플레이어가 이미 차지한 문명은 엄선된 역사적 장소에 정착합니다. 먼저 런던과 더블린, 이어서 키이우, 웁살라, 페스, 크라쿠프, 트론헤임, 코펜하겐, 마라케시 외 86곳.
+
+스크린샷과 자세한 내용: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ko_KR>
         </Text>
         <File>text/en_us/ModuleText.xml</File>
         <File>l10n/ModuleText.xml</File>

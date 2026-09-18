@@ -1108,8 +1108,15 @@ const GEO = {
         // Italy. These fill the empty regions instead: each civ below sits on the city
         // its later-age successor occupies, matched on terrain where the civ's own
         // abilities care about it. Only one age is ever live, so ages may share a site.
+        //
+        // Two moves so that Uppsala and Warsaw each hold a start in two ages: the Mississippians
+        // left London for Uppsala (England already takes London in the Exploration age and Great
+        // Britain in the Modern, and Gamla Uppsala is a real royal mound field), and the Mughals
+        // left Budapest for Warsaw (a great land empire where the Polish-Lithuanian Commonwealth
+        // was one). Britain has no Antiquity start again, which is why London stays first among
+        // the fallback sites below.
         // Antiquity:
-        CIVILIZATION_MISSISSIPPIAN:     [0.48, 51.41],        // London - Britain, the Thames - mound builders on a temperate river
+        CIVILIZATION_MISSISSIPPIAN:     [17.6, 59.9],         // Uppsala - the royal mounds of Gamla Uppsala - mound builders at a real mound field
         CIVILIZATION_HEIAN:             [-6.64, 53.32],       // Dublin - Ireland - an island, coastal, off the mainland
         CIVILIZATION_MAURYA:            [-3.7, 40.4],         // Toledo - Iberia - a big warm peninsula to unify
         CIVILIZATION_HAN:               [30.5, 50.4],         // Kyiv - the Dnieper, a great river valley (was Paris, now Gaul’s)
@@ -1133,9 +1140,9 @@ const GEO = {
         CIVILIZATION_MEIJI:             [17.6, 59.9],         // Uppsala - Scandinavia - an industrialising maritime north
         CIVILIZATION_QING:              [16.4, 48.2],         // Vienna - the middle Danube - a continental empire
         CIVILIZATION_SIAM:              [14.25, 40.85],       // Naples - southern Italy - a warm coastal kingdom
-        CIVILIZATION_MUGHAL:            [19, 47.5],           // Budapest - the Hungarian plain - a large land empire
+        CIVILIZATION_MUGHAL:            [21, 52.2],           // Warsaw - the Vistula - a great land empire, as the Polish-Lithuanian Commonwealth was
         CIVILIZATION_NEPAL:             [44.8, 41.7],         // Tbilisi - the Caucasus - mountain settlements, which Nepal unlock on
-        CIVILIZATION_BUGANDA:           [37.47, 12.6],
+        CIVILIZATION_BUGANDA:           [37.47, 12.6],        // Gondar - the Ethiopian highlands and lakes, which Buganda unlock on
 
         // Added in Civilization VII 1.5. Gaul and England are historically exact and take the
         // regions two stand-ins were holding; Babylon sits on its own river. Gaul leads to England
@@ -1143,7 +1150,7 @@ const GEO = {
         // line can now be played from where it actually happened.
         CIVILIZATION_GAUL:              [6.63, 46.52],        // Lausanne - the Helvetii on Lake Geneva
         CIVILIZATION_ENGLAND:           [0.48, 51.41],        // London - and England unlocks on island cities
-        CIVILIZATION_BABYLON:           [44.42, 32.54],       // Babylon on the Euphrates, south of Baghdad,        // Gondar - the Ethiopian highlands and lakes which Buganda unlock on
+        CIVILIZATION_BABYLON:           [44.42, 32.54],       // Babylon on the Euphrates, south of Baghdad
     },
 
     // Fallback start sites, best first. Pass 2 of assignEuropeStartPositions caps the
@@ -1151,6 +1158,7 @@ const GEO = {
     // that from any Antiquity true start - so among them this order alone decides who gets
     // settled. Britain leads it: no Antiquity civ has a true start there (Great Britain is
     // a Modern civ), so without this the isles stayed empty in every Antiquity game.
+    // Milan is deliberately left out of this list.
     fallbackSites: [
         [0.48, 51.41, "London"], [-6.64, 53.32, "Dublin"], [30.5, 50.4, "Kyiv"], [17.6, 59.9, "Uppsala"],
         [-5.0, 34.0, "Fez"], [19.9, 50.1, "Krakow"], [10.4, 63.4, "Trondheim"], [12.6, 55.7, "Copenhagen"],
@@ -1158,7 +1166,7 @@ const GEO = {
         [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [44.8, 41.7, "Tbilisi"],
         [39.8, 21.4, "Mecca"], [44.2, 15.4, "Sanaa"], [33.7, 16.9, "Meroe"], [-3.0, 16.8, "Timbuktu"],
         [10.75, 59.9, "Oslo"], [-1.51, 55.82, "Edinburgh"], [49.1, 55.8, "Kazan"], [39.7, 47.2, "Rostov"],
-        [4.8, 45.8, "Lyon"], [9.2, 45.5, "Milan"], [16.4, 48.2, "Vienna"], [31.3, 58.5, "Novgorod"],
+        [4.8, 45.8, "Lyon"], [16.4, 48.2, "Vienna"], [31.3, 58.5, "Novgorod"],
         [24.1, 57.0, "Riga"], [15.3, 37.1, "Syracuse"], [21.9, 32.8, "Cyrene"], [13.2, 32.9, "Tripoli"],
         [8.5, 12.0, "Kano"], [1.4, 43.6, "Toulouse"], [14.25, 40.85, "Naples"], [21.0, 52.2, "Warsaw"],
         [26.1, 44.4, "Bucharest"], [30.3, 59.95, "Petersburg"], [25.0, 60.2, "Helsinki"], [-0.98, 53.50, "Manchester"],

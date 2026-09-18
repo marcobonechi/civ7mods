@@ -173,16 +173,20 @@ Exploration, 17 of 17 in Modern (Civilization VII 1.5 rosters). The game's own l
 to Great Britain, America, Prussia and France, and Greece to Russia. Civilization VII 1.5 added
 Gaul, England and Babylon, which sit exactly where they belong, so the British line can now be
 played from where it happened: Gaul on Lake Geneva, England on the Thames, then Great Britain or
-America. Everywhere the game still leaves empty, a stand-in waits - the Mississippians on the
-Thames, the Maya on the north European plain who become Prussia in Germany. Only one age is ever live, so the ages share sites deliberately: Mississippian, Sengoku
-and Great Britain all start at London.
+America. Everywhere the game still leaves empty, a stand-in waits - the Mississippians at the
+royal mounds of Gamla Uppsala, the Maya on the north European plain who become Prussia in Germany.
+Only one age is ever live, so the ages share sites deliberately: Uppsala holds the Mississippians in
+Antiquity and Meiji Japan in the Modern age, Warsaw the Shawnee in Exploration and the Mughals in
+the Modern age, and London is England's and then Great Britain's.
 
 Civilizations with no historical business in Europe are placed by terrain rather than by story, and
 matched to their unlock conditions where those are geographic: Inca and Nepal in the Caucasus
 (mountain settlements), Hawaii on Sicily (island settlements), Buganda in the Ethiopian highlands
-(lakes). The full list is in `GEO.tsl` and in the mod description.
+(lakes). The full list, with the reason for every placement, is in `GEO.tsl` and in the mod
+description, which `tools/module-description/build.py` generates from `GEO.tsl` in all twelve
+languages and refuses to write if the two disagree.
 
-Anyone left over is placed on a curated site - 96 of them, London and Dublin first, then Kyiv,
+Anyone left over is placed on a curated site - 95 of them, London and Dublin first, then Kyiv,
 Uppsala, Fez, Krakow and the rest. Pass 2 caps its distance term at 12 hexes, and the sites near the
 top of the list are all further than that from any Antiquity start, so that order alone decides who
 gets settled; Britain leads it because the isles were otherwise empty in every Antiquity game. The

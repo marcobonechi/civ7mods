@@ -572,7 +572,7 @@ export const GEO = {
         [17.6, 59.9, "Uppsala"], [-6.3, 53.3, "Dublin"], [-9.1, 38.7, "Lisbon"], [-6.0, 37.4, "Seville"],
         [32.9, 39.9, "Ankara"], [36.3, 33.5, "Damascus"], [20.5, 44.8, "Belgrade"], [-5.0, 34.0, "Fez"],
         [12.6, 55.7, "Copenhagen"], [44.8, 41.7, "Tbilisi"], [49.1, 55.8, "Kazan"], [39.7, 47.2, "Rostov"],
-        [4.8, 45.8, "Lyon"], [9.2, 45.5, "Milan"], [16.4, 48.2, "Vienna"], [31.3, 58.5, "Novgorod"],
+        [4.8, 45.8, "Lyon"], [16.4, 48.2, "Vienna"], [31.3, 58.5, "Novgorod"],
         [24.1, 57.0, "Riga"], [10.4, 63.4, "Trondheim"], [15.3, 37.1, "Syracuse"], [21.9, 32.8, "Cyrene"],
         [2.35, 48.85, "Paris"], [13.4, 52.5, "Berlin"], [37.6, 55.75, "Moscow"], [12.5, 41.9, "Rome"],
         [23.7, 38.0, "Athens"], [31.2, 30.0, "Memphis"], [10.3, 36.8, "Carthage"], [29.1, 40.2, "Bursa"],

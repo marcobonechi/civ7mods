@@ -1,25 +1,43 @@
 # Module description generator
 
-Regenerates the mod's description in every language it ships.
+Regenerates the mod's description in every language it ships and writes it into the four
+places the game reads it from:
 
-The description lists all 53 true starts, so retyping it by hand across twelve
-languages is how it went stale before: it still named Pliska for Bulgaria and
-Madrid for Spain long after both had moved, and claimed Aksum and Songhai were
-on the large maps only.
+- `europe-mediterranean.modinfo` - the `<Description>` (English) and the inline
+  `LOC_MODULE_EUROPE_MED_DESCRIPTION` text for all twelve languages
+- `text/en_us/ModuleText.xml` - English
+- `l10n/ModuleText.xml` - the other eleven languages
 
-- `build.py` assembles each language from `prose.py` (the hand-written body text)
-  and the civilization and city tables in `cities.py`, filling the per-age lists
-  from `pairs.json`.
-- `pairs.json` is generated from `GEO.tsl`, so the lists cannot drift from the map.
-- Civilization names come from the game's own localisation files, so they read
-  exactly as they do in the interface. Ukrainian is not shipped by the game and
-  the three civilizations from this repo are not in it either, so those names are
-  supplied by hand in `cities.py`.
+    python3 tools/module-description/build.py              # check against the map, then write
+    python3 tools/module-description/build.py --check      # check only
+    python3 tools/module-description/build.py --print it_IT
 
-Regenerate after changing `GEO.tsl`:
+Run it after any change to `GEO.tsl` or `GEO.fallbackSites` in `europe-large-geo.js`.
 
-    node -e '...'                      # rebuild pairs.json, see the git history
-    python3 tools/module-description/build.py
+## Layout
 
-then paste into `europe-mediterranean.modinfo`, `text/en_us/ModuleText.xml` and
-`l10n/ModuleText.xml`.
+The game shows the description as plain text - no markup, and leading spaces are not
+guaranteed to survive - so the layout is carried by newlines alone: a blank line between
+sections, capitals for headings, and one civilization per line starting with `- ` (`・` in
+Japanese), written as `Civilization (City): why it starts there`.
+
+## Files
+
+- `starts.py` - every true start in the order the description lists it, split into historical
+  homes and stand-ins, with a reason key for each. Also the Workshop civilizations and the
+  fallback sites the text names.
+- `prose.py` - the hand-written text per language (`LANG`) and the reasons (`REASONS`).
+- `cities.py` - city names per language (anything missing falls back to English), English
+  civilization names, and names for civilizations the game's files do not carry (this repo's
+  own, the Workshop ones, and all of Ukrainian).
+- `civ-names.json` - civilization names taken from the game's own localisation files, so they
+  read exactly as they do in the interface.
+
+## Why it checks first
+
+The description lists 57 starts in twelve languages, and retyped by hand it went stale: it
+named Pliska for Bulgaria and Madrid for Spain long after both had moved, and the old
+`pairs.json` still put Gaul in Paris after it moved to Lausanne. So `build.py` reads `GEO.tsl`
+through node and the age rosters from `tools/check-map-sizes.mjs`, and refuses to write unless
+every civilization of every age is listed exactly once, at the city its start really is
+(within 0.35 degrees), and the fallback sites it names are the first ones in the list.

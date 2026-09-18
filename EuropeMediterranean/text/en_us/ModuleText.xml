@@ -5,19 +5,95 @@
             <Text>Europe, Mediterranean, North Africa</Text>
         </Row>
         <Row Tag="LOC_MODULE_EUROPE_MED_DESCRIPTION">
-            <Text>Europe, the Mediterranean and Africa above the Equator, at 112x98, 128x112 or 144x126. Three maps: Distant Lands (Africa, Scandinavia and Iceland across the water), One Landmass (the same geography with nothing distant), and a Variant kept apart so it can be reshaped without touching the originals.
+            <Text>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
-EVERY CIVILIZATION OF EVERY AGE HAS A TRUE START. Pick the one that begins where you want your empire to end up. Civilization VII 1.5 added Gaul, England and Babylon, and they sit exactly where they belong, so the British line can now be played from where it actually happened: begin as Gaul on Lake Geneva, become England on the Thames, and end as Great Britain or America. Everywhere the game leaves empty, a civilization still waits - begin as the Mississippians on the Thames, or as the Maya on the north European plain and become Prussia in Germany. Only one age is ever live, so the ages share their sites on purpose.
+THREE MAPS
+- Distant Lands: Africa, Scandinavia and Iceland lie across the water
+- One Landmass: the same geography, with nothing distant
+- Variant: a separate copy you can reshape without touching the other two
+Sizes 112x98, 128x112 and 144x126.
 
-ANTIQUITY - Rome (Rome), Gaul (Lausanne), Etruscans (Populonia), Greece (Thermaic Gulf), Byzantium (Constantinople), Carthage (Carthage), Egypt (Memphis), Assyria (Nineveh), Babylon (Babylon), Persia (Susa), Aksum (Axum), Mississippian (London), Heian (Dublin), Maurya (Madrid), Han (Kyiv), Maya (Berlin), Khmer (Bucharest), Silla (Ankara), Tonga (Syracuse).
+TRUE STARTS
+Every civilization of every age has a fixed home, so pick the one that begins where you want your empire to end up. Only one age is live at a time, so the ages share their cities on purpose.
+The British line plays out where it happened: begin as Gaul on Lake Geneva, become England on the Thames, end as Great Britain or America.
+Civilizations with no history in Europe are stand-ins. Each holds a region the map would otherwise leave empty, chosen by terrain and, where it matters, by what the civilization unlocks on.
 
-EXPLORATION - England (London), Byzantium (Constantinople), Etruscans (Populonia), Tuscany (Florence), Bulgaria (Veliko Tarnovo), Spain (Madrid), Norman (Rouen), Abbasid (Baghdad), Iceland (Reykjavik), Mongolia (Sarai on the lower Volga), Songhai (Gao), Pirate Republic (Algiers), Sengoku (Copenhagen), Majapahit (Dublin), Chola (Lisbon), Goryeo (Athens), Dai Viet (Alexandria), Inca (Tbilisi), Hawaii (Syracuse), Shawnee (Warsaw), Ming (Moscow).
+ANTIQUITY
+Historical homes:
+- Rome (Rome)
+- Gaul (Lausanne): the Helvetii on Lake Geneva
+- Etruscans (Populonia): the one Etruscan city on the sea, as far from Rome as Etruria reaches
+- Greece (Thermaic Gulf): the coast of Macedon, north of Athens
+- Byzantium (Constantinople)
+- Carthage (Carthage)
+- Egypt (Memphis)
+- Assyria (Nineveh)
+- Babylon (Babylon)
+- Persia (Susa)
+- Aksum (Axum)
+Stand-ins:
+- Mississippians (Uppsala): mound builders at the royal mounds of Gamla Uppsala
+- Heian Japan (Dublin): an island court off the mainland
+- Maurya (Madrid): a large warm peninsula to unify
+- Han (Kyiv): a great river valley, the Dnieper
+- Maya (Berlin): the north European plain, where Prussia later rises
+- Khmer (Bucharest): a river empire on the lower Danube
+- Silla (Ankara): a mountainous peninsula
+- Tonga (Syracuse): a seafaring power in the middle of the sea
 
-MODERN - Great Britain (London), America (Dublin), French Empire (Paris), Prussia (Berlin), Russia (Moscow), Ottomans (Ankara), Qajar (Tehran), Byzantium (Constantinople), Etruscans (Populonia), Mexico (Seville), Joseon (Athens), Meiji (Uppsala), Qing (Vienna), Siam (Naples), Mughal (Budapest), Nepal (Tbilisi), Buganda (Gondar).
+EXPLORATION
+Historical homes:
+- England (London)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+- Tuscany (Florence)
+- Bulgaria (Veliko Tarnovo): capital of the Second Bulgarian Empire
+- Spain (Madrid)
+- Normans (Rouen)
+- Abbasids (Baghdad)
+- Iceland (Reykjavik)
+- Mongolia (Sarai on the lower Volga): the Golden Horde
+- Songhai (Gao)
+- Pirate Republic (Algiers): the Barbary corsairs
+Stand-ins:
+- Sengoku Japan (Copenhagen): feudal lords among the Danish islands
+- Majapahit (Dublin): an island thalassocracy
+- Chola (Lisbon): a trading coast facing the ocean
+- Goryeo (Athens): a peninsula of harbours
+- Dai Viet (Alexandria): a river mouth, the Nile delta
+- Inca (Tbilisi): mountain settlements, which the Inca unlock on
+- Hawaii (Syracuse): island settlements, which Hawaii unlocks on
+- Shawnee (Warsaw): the forests of the Vistula
+- Ming (Moscow): a vast continental empire on the Russian rivers
 
-Civilizations with no historical business in Europe are placed by terrain rather than by story, and matched to what their abilities care about where that applies: Inca and Nepal in the Caucasus, which unlock on mountain settlements; Hawaii on Sicily, which unlocks on island settlements; Buganda in the Ethiopian highlands, which unlocks on lakes.
+MODERN
+Historical homes:
+- Great Britain (London)
+- America (Dublin): across the water from Britain
+- French Empire (Paris)
+- Prussia (Berlin)
+- Russia (Moscow)
+- Ottomans (Ankara): leaving Constantinople free to be taken
+- Qajar (Tehran)
+- Byzantium (Constantinople)
+- Etruscans (Populonia)
+Stand-ins:
+- Mexico (Seville): the Atlantic side of Iberia
+- Joseon (Athens): a peninsula
+- Meiji Japan (Uppsala): an industrialising maritime north
+- Qing (Vienna): a continental empire on the middle Danube
+- Siam (Naples): a warm coastal kingdom
+- Mughals (Warsaw): a great land empire, as the Polish-Lithuanian Commonwealth was
+- Nepal (Tbilisi): mountain settlements, which Nepal unlocks on
+- Buganda (Gondar): highland lakes, which Buganda unlocks on
 
-Anyone left over settles a curated historical site, London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and ninety more. Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Text>
+WORKSHOP CIVILIZATIONS
+Placed too, if you have them installed: Scythia (Kamianka), Kush (Meroe), Sumer (Ur), Austria-Hungary (Vienna).
+
+EVERYONE ELSE
+A civilization without a start, or one whose start another player already holds, settles a curated historical site: London and Dublin first, then Kyiv, Uppsala, Fez, Krakow, Trondheim, Copenhagen, Marrakesh and 86 more.
+
+Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Text>
         </Row>
     </EnglishText>
 </Database>

@@ -27,3 +27,52 @@ MOD_CIVS = {
 "zh_Hant_HK":{"ETRUSCANS":"伊特魯里亞","TUSCANY":"托斯卡納","BYZANTIUM":"拜占庭"},
 "uk_UA":{"GAUL":"Галли","ENGLAND":"Англія","BABYLON":"Вавилон","ROME":"Рим","ETRUSCANS":"Етруски","GREECE":"Греція","BYZANTIUM":"Візантія","CARTHAGE":"Карфаген","EGYPT":"Єгипет","ASSYRIA":"Ассирія","PERSIA":"Персія","AKSUM":"Аксум","MISSISSIPPIAN":"Міссісіпська культура","HEIAN":"Японія Хейан","MAURYA":"Маур'ї","HAN":"Хань","MAYA":"Мая","KHMER":"Кхмери","SILLA":"Сілла","TONGA":"Тонга","TUSCANY":"Тоскана","BULGARIA":"Болгарія","SPAIN":"Іспанія","NORMAN":"Нормани","ABBASID":"Аббасиди","ICELAND":"Ісландія","MONGOLIA":"Монголія","SONGHAI":"Сонгаї","PIRATE_REPUBLIC":"Піратська республіка","SENGOKU":"Японія Сенгоку","MAJAPAHIT":"Маджапагіт","CHOLA":"Чола","GORYEO":"Корьо","DAI_VIET":"Дайв'єт","INCA":"Інки","HAWAII":"Гаваї","SHAWNEE":"Шоні","MING":"Мін","GREAT_BRITAIN":"Велика Британія","AMERICA":"Америка","FRENCH_EMPIRE":"Французька імперія","PRUSSIA":"Пруссія","RUSSIA":"Росія","OTTOMANS":"Османи","QAJAR":"Каджари","MEXICO":"Мексика","JOSEON":"Чосон","MEIJI":"Японія Мейдзі","QING":"Цін","SIAM":"Сіам","MUGHAL":"Моголи","NEPAL":"Непал","BUGANDA":"Буганда"},
 }
+
+# Cities added with the per-line layout: Lausanne (Gaul), and the Workshop civilizations' homes.
+_MORE = {
+"de_DE": {"Lausanne": "Lausanne", "Kamianka": "Kamjanka", "Meroe": "Meroe", "Ur": "Ur"},
+"es_ES": {"Lausanne": "Lausana", "Kamianka": "Kamianka", "Meroe": "Meroe", "Ur": "Ur"},
+"fr_FR": {"Lausanne": "Lausanne", "Kamianka": "Kamianka", "Meroe": "Méroé", "Ur": "Ur"},
+"it_IT": {"Lausanne": "Losanna", "Kamianka": "Kamjanka", "Meroe": "Meroe", "Ur": "Ur"},
+"pl_PL": {"Lausanne": "Lozanna", "Kamianka": "Kamianka", "Meroe": "Meroe", "Ur": "Ur"},
+"pt_BR": {"Lausanne": "Lausanne", "Kamianka": "Kamianka", "Meroe": "Meroé", "Ur": "Ur"},
+"uk_UA": {"Lausanne": "Лозанна", "Kamianka": "Кам'янка", "Meroe": "Мерое", "Ur": "Ур"},
+"ja_JP": {"Lausanne": "ローザンヌ", "Kamianka": "カミアンカ", "Meroe": "メロエ", "Ur": "ウル"},
+"ko_KR": {"Lausanne": "로잔", "Kamianka": "카먄카", "Meroe": "메로에", "Ur": "우르"},
+"zh_Hans_CN": {"Lausanne": "洛桑", "Kamianka": "卡米扬卡", "Meroe": "麦罗埃", "Ur": "乌尔"},
+"zh_Hant_HK": {"Lausanne": "洛桑", "Kamianka": "卡米揚卡", "Meroe": "麥羅埃", "Ur": "烏爾"},
+}
+for _l, _t in _MORE.items():
+    CITY.setdefault(_l, {}).update(_t)
+
+# English civilization names as the description writes them (the game's own English names
+# are not in civ-names.json, which holds the translations).
+EN_CIVS = {
+    "ROME": "Rome", "GAUL": "Gaul", "ETRUSCANS": "Etruscans", "GREECE": "Greece", "BYZANTIUM": "Byzantium",
+    "CARTHAGE": "Carthage", "EGYPT": "Egypt", "ASSYRIA": "Assyria", "BABYLON": "Babylon", "PERSIA": "Persia",
+    "AKSUM": "Aksum", "MISSISSIPPIAN": "Mississippians", "HEIAN": "Heian Japan", "MAURYA": "Maurya", "HAN": "Han",
+    "MAYA": "Maya", "KHMER": "Khmer", "SILLA": "Silla", "TONGA": "Tonga",
+    "ENGLAND": "England", "TUSCANY": "Tuscany", "BULGARIA": "Bulgaria", "SPAIN": "Spain", "NORMAN": "Normans",
+    "ABBASID": "Abbasids", "ICELAND": "Iceland", "MONGOLIA": "Mongolia", "SONGHAI": "Songhai",
+    "PIRATE_REPUBLIC": "Pirate Republic", "SENGOKU": "Sengoku Japan", "MAJAPAHIT": "Majapahit", "CHOLA": "Chola",
+    "GORYEO": "Goryeo", "DAI_VIET": "Dai Viet", "INCA": "Inca", "HAWAII": "Hawaii", "SHAWNEE": "Shawnee", "MING": "Ming",
+    "GREAT_BRITAIN": "Great Britain", "AMERICA": "America", "FRENCH_EMPIRE": "French Empire", "PRUSSIA": "Prussia",
+    "RUSSIA": "Russia", "OTTOMANS": "Ottomans", "QAJAR": "Qajar", "MEXICO": "Mexico", "JOSEON": "Joseon",
+    "MEIJI": "Meiji Japan", "QING": "Qing", "SIAM": "Siam", "MUGHAL": "Mughals", "NEPAL": "Nepal", "BUGANDA": "Buganda",
+}
+
+# Civilizations from other people's Workshop mods, which the game's files do not name.
+WORKSHOP_CIVS = {
+"en_US": {"SCYTHIA": "Scythia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Hungary"},
+"de_DE": {"SCYTHIA": "Skythien", "KUSH": "Kusch", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Österreich-Ungarn"},
+"es_ES": {"SCYTHIA": "Escitia", "KUSH": "Kush", "SUMER": "Sumeria", "AUSTRIA_HUNGARY": "Austria-Hungría"},
+"fr_FR": {"SCYTHIA": "Scythie", "KUSH": "Koush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Autriche-Hongrie"},
+"it_IT": {"SCYTHIA": "Scizia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Ungheria"},
+"pl_PL": {"SCYTHIA": "Scytia", "KUSH": "Kusz", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austro-Węgry"},
+"pt_BR": {"SCYTHIA": "Cítia", "KUSH": "Kush", "SUMER": "Suméria", "AUSTRIA_HUNGARY": "Áustria-Hungria"},
+"uk_UA": {"SCYTHIA": "Скіфія", "KUSH": "Куш", "SUMER": "Шумер", "AUSTRIA_HUNGARY": "Австро-Угорщина"},
+"ja_JP": {"SCYTHIA": "スキタイ", "KUSH": "クシュ", "SUMER": "シュメール", "AUSTRIA_HUNGARY": "オーストリア＝ハンガリー"},
+"ko_KR": {"SCYTHIA": "스키타이", "KUSH": "쿠시", "SUMER": "수메르", "AUSTRIA_HUNGARY": "오스트리아-헝가리"},
+"zh_Hans_CN": {"SCYTHIA": "斯基泰", "KUSH": "库施", "SUMER": "苏美尔", "AUSTRIA_HUNGARY": "奥匈帝国"},
+"zh_Hant_HK": {"SCYTHIA": "斯基泰", "KUSH": "庫施", "SUMER": "蘇美爾", "AUSTRIA_HUNGARY": "奧匈帝國"},
+}
