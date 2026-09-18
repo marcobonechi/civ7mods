@@ -31,6 +31,11 @@ if os.path.basename(CIV7_ROOT).startswith("EuropeMediterranean"):
 MAPS_PRIMARY = os.path.join(CIV7_ROOT, "EuropeMediterranean", "maps")
 PREVIEW_SCRIPT = os.path.join(CIV7_ROOT, "preview", "build-preview.sh")
 INSTALL_SCRIPT = os.path.join(CIV7_ROOT, "install.sh")
+# The Eurasia maps' geography is built from the Europe file, so saving that file rebuilds it, and
+# the built file itself is not saved from the editor (the next rebuild would overwrite the edit).
+EURASIA_BUILD = os.path.join(CIV7_ROOT, "tools", "eurasia-compressed", "build.mjs")
+SHARED_GEO = "europe-large-geo.js"
+GENERATED_GEO = {"europe-alt-geo.js": "It is built from europe-large-geo.js: edit the shared geography there (this file is rebuilt when you save it) and Eurasia's own - the Eastern Ocean and East Asia - in tools/eurasia-compressed/build.mjs."}
 
 # Which geography file the editor opens first. Set by --map; the browser can
 # switch to any other file /api/maps lists.
@@ -38,8 +43,8 @@ SELECTED_MAP = None
 
 # Labels for the files we ship, so the picker reads better than a bare filename.
 MAP_LABELS = {
-    "europe-large-geo.js": "Europe, Mediterranean & Sahel (Distant Lands + One Landmass)",
-    "europe-alt-geo.js": "Eurasia Compressed",
+    "europe-large-geo.js": "Europe & Mediterranean - shared by all four maps",
+    "europe-alt-geo.js": "Eurasia Compressed (built from the Europe file - view only)",
     "europe-geo.js": "Europe & Mediterranean (Standard, not registered)",
 }
 
@@ -224,6 +229,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 self._json(400, {"success": False, "error": "bad filename or content"})
                 return
 
+            if filename in GENERATED_GEO:
+                self.log_msg(RED, "REFUSED", "%s is generated" % filename)
+                self._json(403, {"success": False,
+                                 "error": "Not saved: %s is generated. %s" % (filename, GENERATED_GEO[filename])})
+                return
+
             target = os.path.join(MAPS_PRIMARY, filename)
             if not os.path.isfile(target):
                 self._json(404, {"success": False, "error": "no such map file: %s" % filename})
@@ -248,9 +259,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
             self.log_msg(GREEN, "SAVE", "%s  (previous kept as %s)"
                          % (filename, os.path.basename(backup)))
-            self._json(200, {"success": True,
-                             "message": "Saved %s (backup: %s)" % (filename, os.path.basename(backup)),
-                             "written": [target]})
+            message = "Saved %s (backup: %s)" % (filename, os.path.basename(backup))
+            written = [target]
+            if filename == SHARED_GEO and os.path.isfile(EURASIA_BUILD):
+                # carry the shared geography into the Eurasia maps
+                proc = subprocess.run(["node", EURASIA_BUILD], cwd=CIV7_ROOT, capture_output=True, text=True)
+                line = (proc.stdout.strip().splitlines() or [""])[0]
+                if proc.returncode == 0:
+                    self.log_msg(GREEN, "EURASIA", line)
+                    message += "; Eurasia maps rebuilt"
+                    if "found under the ocean" in line:
+                        message += " (left out of Eurasia: " + line.split("found under the ocean: ", 1)[1].rstrip(")") + ")"
+                    written.append(os.path.join(MAPS_PRIMARY, "europe-alt-geo.js"))
+                else:
+                    self.log_msg(RED, "EURASIA", (proc.stderr or proc.stdout).strip()[-400:])
+                    message += "; Eurasia rebuild FAILED - run node tools/eurasia-compressed/build.mjs to see why"
+            self._json(200, {"success": True, "message": message, "written": written})
         except Exception as exc:
             self.log_msg(RED, "ERROR", "save failed: %s" % exc)
             self._json(500, {"success": False, "error": str(exc)})

@@ -52,6 +52,15 @@ const ISLAND_MAX = 400;
 let failures = 0;
 const check = (cond, msg) => { console.log((cond ? '    ok   ' : '    FAIL ') + msg); if (!cond) failures++; };
 
+// The Eurasia maps' geography is built from the Europe file (tools/eurasia-compressed/build.mjs);
+// checking it here catches a shared edit that never reached them.
+{
+    const { spawnSync } = await import('child_process');
+    const r = spawnSync('node', [path.join(HERE, 'eurasia-compressed', 'build.mjs'), '--check'], { encoding: 'utf8' });
+    console.log('\n=== europe-alt-geo.js against europe-large-geo.js');
+    check(r.status === 0, (r.stdout || r.stderr).trim().split('\n')[0]);
+}
+
 // Only the geography behind a map the game actually offers at these grids is checked.
 // maps/europe-geo.js is still in the repo but is not registered in config/config.xml,
 // and it is built for the base game's sizes, so it is not in scope here.

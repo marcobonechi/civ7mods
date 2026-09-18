@@ -1,23 +1,24 @@
 #!/usr/bin/env node
-// East Asia for the Eurasia Compressed map (EuropeMediterranean/maps/europe-alt-geo.js).
+// Builds EuropeMediterranean/maps/europe-alt-geo.js - the geography of "Eurasia Compressed" and
+// "Eurasia Compressed (Distant Lands)" - from europe-large-geo.js, the Europe & Mediterranean maps'.
 //
-// Russia, the North Caucasus, the Caspian and the Central Asian steppe are replaced by an
-// "Eastern Ocean", and China, Korea, Manchuria, Mongolia and Japan are fitted into the space it
-// frees. Everything East Asian here is written in REAL longitude/latitude; this script fits it
-// into the map and writes plain coordinates into the geo file, between marker comments:
+//     node tools/eurasia-compressed/build.mjs            # rebuild (the map editor runs this on save)
+//     node tools/eurasia-compressed/build.mjs --check    # exit 1 if the file is out of date
 //
-//     // @east-asia:begin ... // @east-asia:end
-//
-// so the geo file stays pure data (the map editor edits it as text) and a re-run replaces the
-// blocks it wrote before. Edit this file, not the blocks, then:
-//
-//     node tools/eurasia-compressed/east-asia.mjs && ./preview/build-preview.sh
+// Shared geography lives in europe-large-geo.js, so an edit there - Italy, the Alps, Africa - reaches
+// all four maps. What is Eurasia's own lives here: the Eastern Ocean that replaces Russia, the North
+// Caucasus, the Caspian and the steppe; the Russian entries it takes out (REMOVE, and anything else
+// found under the ocean, which is dropped and reported); the Suez canal; and East Asia - China,
+// Korea, Manchuria, Mongolia and Japan, written in REAL longitude/latitude and fitted into the space
+// the ocean frees. The output is plain data between // @east-asia marker comments, so the file stays
+// something the map editor can open.
 //
 // The fit works in hex space on the 128x112 grid (the projection is the same at every size):
-// real latitude maps linearly to a row, and at each row real longitude from WEST_LON to the
-// east end of the land at that latitude (EAST_LON) is stretched between the moat on the west
-// (LEFT, which keeps a sea gap from the South Caucasus, the Black Sea strip and Europe) and the
-// map's right edge. The Eastern Ocean itself is drawn in the map's own coordinates.
+// real latitude maps to a row (LAT_ROWS), and at each row real longitude from the western cut to the
+// east end of the land at that latitude (EAST_LON) is stretched between the moat on the west (LEFT,
+// which keeps a sea gap from the South Caucasus, the Black Sea strip and Europe) and the map's right
+// edge. Korea and Japan are then enlarged (GROW). The Eastern Ocean is drawn in the map's own
+// coordinates.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -26,7 +27,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const MAPS = path.join(HERE, "..", "..", "EuropeMediterranean", "maps");
 const GEO_FILE = path.join(MAPS, "europe-alt-geo.js");
 const { makeProjection } = await import(pathToFileURL(path.join(MAPS, "europe-raster.js")).href);
-const { GEO } = await import(pathToFileURL(GEO_FILE).href + "?" + Date.now());
+const { GEO } = await import(pathToFileURL(path.join(MAPS, "europe-large-geo.js")).href);   // for the projection
 
 // ---- the fit ---------------------------------------------------------------------------------
 const W = 128, H = 112;
@@ -264,19 +265,68 @@ const OCEAN = [
     [58.4, 37.7], [59.3, 37.3], [60.4, 36.6], [61.2, 36.6], [85.0, 36.6], [85.0, 75.0],
 ];
 
-// Russian features the ocean replaces: removed from the geo file once, by name.
+// ---- what Eurasia takes out of the Europe geography --------------------------------------------
+// europe-alt-geo.js is built from europe-large-geo.js: everything shared - Italy, the Alps, France,
+// Africa - comes from there, so an edit in the Europe file reaches all four maps. These are the named
+// entries the Eastern Ocean replaces. Anything else that turns up later in Russia, the Caspian or
+// the East Asia space is dropped too, automatically, and reported (see UNDER below), so an edit
+// there reaches only the Europe pair.
 const REMOVE = {
     lakes: ["Ladoga", "Onega", "Ilmen", "Beloye", "Imandra"],
     landBlobs: ["Kolguyev"],
     rivers: ["Volga", "Don"],
-    waterLines: ["Karelian passage"],
+    waterLines: ["Karelian passage", "White Sea mouth", "Suez Canal"],
+    shallow: ["Caspian", "White Sea"],
     ranges: ["Valdai Hills", "Central Russian Upland", "Urals", "Valdai", "Volga Upland", "Timan Ridge", "Khibiny"],
+    resourceAreas: ["Northern Russia"],
+    biomeAreas: ["Caspian Desert", "Russian Taiga", "Russian Mixed Forest"],
+    rainAreas: ["Russian plain", "Russian Taiga", "Caspian Desert"],
     fallbackSites: ["Moscow", "Kazan", "Novgorod", "Petersburg", "Sarai", "Smolensk"],
     tsl: Object.keys(STARTS).concat(["CIVILIZATION_RUSSIA"]),
 };
-// Russia keeps a European start on the one piece of Russia left: Rostov-on-Don, on the strip.
+const REMOVE_MULTILINE = { land: ["Novaya Zemlya"], water: ["Caspian Sea"] };
+// Areas that straddle the new coast keep only their part west of 41E (Ukraine), under a new name.
+const CLIP_EAST = 41.0;
+const CLIP = [["biomeAreas", "Steppe", "Pontic steppe (Ukraine)"], ["rainAreas", "Steppe", "Pontic steppe (Ukraine)"],
+    ["biomeAreas", "Ukraine and the steppe east (green)", "Ukraine (green)"],
+    ["rainAreas", "Ukraine and the steppe east (vegetated)", "Ukraine (vegetated)"], ["resourceAreas", "Pontic steppe", "Pontic steppe"]];
+// Distant Lands anchors of the Europe maps that are home lands here: Africa and the Atlantic islets.
+const ANCHORS_DROPPED = ["[20, 10],", "[-12.0, 47.0],", "[-12.6, 44.6],"];
+// The canal where the real one runs (the Europe maps cut a channel through Palestine instead).
+const SUEZ = [[32.3, 31.45], [32.3, 30.6], [32.45, 30.2], [32.55, 29.9]];
 // Russia starts at Vladivostok, its Pacific port - the one Russia the map now has room for.
 const RUSSIA = [131.90, 43.12, "Vladivostok, Russia's Pacific port"];
+
+const HEADER = `// europe-alt-geo.js - GENERATED, do not edit by hand.
+// Geography for "Eurasia Compressed" and "Eurasia Compressed (Distant Lands)".
+//
+// Built by tools/eurasia-compressed/build.mjs from europe-large-geo.js: everything the two pairs of
+// maps share comes from that file, so edit the shared geography there (the map editor rebuilds this
+// file when it saves it), and edit what is Eurasia's own - the Eastern Ocean, East Asia, the starts
+// that move there, the Suez canal - in the build script. Russia, the North Caucasus, the Caspian and
+// the Central Asian steppe are an Eastern Ocean here, and China, Korea, Mongolia and Japan sit in the
+// space it frees, fitted from real coastlines.
+//
+// Everything below is plain [lon, lat] data in degrees; see the README for what each key means.
+`;
+const ANCHOR_COMMENT = `    // Two maps read this file. "Eurasia Compressed (Distant Lands)" uses these anchors as they
+    // stand: East Asia, Scandinavia with Finland, and Iceland (with Faroe and Shetland, its stepping
+    // stones) are Distant Lands; Africa and everything else are home lands. "Eurasia Compressed"
+    // passes the file through oneLandmassGeo (europe-raster.js), which empties the list.
+    // East Asia, Scandinavia and Iceland against everything else (tools/check-map-sizes.mjs reads
+    // this range; the other maps use 25-50%).
+    distantLandsShare: [12, 28],
+    // What check-map-sizes verifies about land connections here: [name, from, to], each end a
+    // [lon, lat] or a true-start key.
+    expectLand: {
+        joined: [],
+        apart: [["Finland and Estonia", [23.8, 61.5], [24.75, 59.44]],
+                ["Europe and China", "CIVILIZATION_ROME", "CIVILIZATION_QING"],
+                ["Korea and Japan", "CIVILIZATION_JOSEON", "CIVILIZATION_MEIJI"],
+                ["China and Iran", "CIVILIZATION_MING", "CIVILIZATION_QAJAR"]],
+    },
+    distantLandsAnchors: [
+`;
 
 // ---- writing ---------------------------------------------------------------------------------
 const f = (n) => +n.toFixed(2);
@@ -291,7 +341,10 @@ const blocks = {
     water: [`${I}{ name: "Eastern Ocean", pts: ${pts(OCEAN)} },`],
     // 2. the Sea of Azov opens into the Eastern Ocean up the Don, past Rostov: the southern sea
     // route, Black Sea - Kerch - Azov - Asia.
-    waterLines: [`${I}{ name: "Don channel (Sea of Azov to the Eastern Ocean)", pts: [[38.9, 47.1], [39.7, 47.25], [40.5, 47.45], [41.4, 47.6]] },`],
+    waterLines: [`${I}{ name: "Don channel (Sea of Azov to the Eastern Ocean)", pts: [[38.9, 47.1], [39.7, 47.25], [40.5, 47.45], [41.4, 47.6]] },`,
+                 `${I}// The Suez Canal where it really runs, Port Said - Ismailia - Suez, into the Gulf of Suez:`,
+                 `${I}// ships pass from the Mediterranean to the Red Sea, and Sinai belongs to Asia.`,
+                 `${I}{ name: "Suez Canal", pts: ${pts(SUEZ)} },`],
     distantLandsAnchors: Object.entries(ANCHORS).map(([n, p]) => { const [x, y] = fit(p); return `${I}[${x}, ${y}],   // ${n}`; }),
     ranges: RANGES.map(([n, c, fr, p]) => `${I}{ name: ${q(n)}, core: ${c}, fringe: ${fr}, pts: ${pts(densify(p, 2.0, false).map(fit))} },`),
     rivers: RIVERS.map(([n, p]) => `${I}{ name: ${q(n)}, pts: ${pts(p.map(fit))} },`),
@@ -307,29 +360,82 @@ const blocks = {
 const PLACE = { waterLines: "start", land: "start", water: "start", distantLandsAnchors: "end", ranges: "start", rivers: "start", volcanoes: "end",
                  biomeAreas: "end", rainAreas: "end", resourceAreas: "start", tsl: "start", fallbackSites: "end" };
 
-let text = fs.readFileSync(GEO_FILE, "utf8");
-const BEGIN = "// @east-asia:begin - generated by tools/eurasia-compressed/east-asia.mjs; edit that, not this",
+const LARGE_FILE = path.join(MAPS, "europe-large-geo.js");
+let text = fs.readFileSync(LARGE_FILE, "utf8");
+const BEGIN = "// @east-asia:begin - generated by tools/eurasia-compressed/build.mjs; edit that, not this",
       END = "// @east-asia:end";
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-// one-time removals (a no-op once they are gone)
 const keyRange = (key) => {
     const open = new RegExp(`\\n    ${key}: [\\[{]\\n`).exec(text);
     if (!open) throw new Error("no key " + key);
     const start = open.index + open[0].length;
-    const close = text.indexOf("\n    ]", start) >= 0 && key !== "tsl" ? text.indexOf("\n    ]", start) : text.indexOf("\n    }", start);
+    const close = key !== "tsl" ? text.indexOf("\n    ]", start) : text.indexOf("\n    }", start);
     return [start, close];
 };
-for (const [key, names] of Object.entries(REMOVE)) {
-    let [a, b] = keyRange(key);
-    let body = text.slice(a, b);
-    for (const n of names) {
-        if (key === "tsl") body = body.replace(new RegExp(`^ *${n}:\\s*\\[[^\\]]*\\],?[^\\n]*\\n`, "gm"), "");
-        else if (key === "lakes" || key === "landBlobs" || key === "fallbackSites")
-            body = body.replace(new RegExp(`\\s*\\[[^\\[\\]]*${q(n).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\],?`), "");
-        else body = body.replace(new RegExp(`^ *\\{ name: ${q(n)}[^\\n]*\\n`, "m"), "");
-    }
-    text = text.slice(0, a) + body + text.slice(b);
+const editKey = (key, fn) => { const [a, b] = keyRange(key); text = text.slice(0, a) + fn(text.slice(a, b)) + text.slice(b); };
+const must = (cond, what) => { if (!cond) throw new Error("europe-large-geo.js has changed: " + what + " not found"); };
+
+// header and the anchors' comment
+{
+    const g = text.indexOf("export const GEO = {");
+    must(g > 0, "export const GEO");
+    text = HEADER + "\n" + text.slice(g);
+    const a = text.search(/\n( *\/\/[^\n]*\n)*    distantLandsAnchors: \[\n/);
+    must(a > 0, "distantLandsAnchors");
+    const b = text.indexOf("    distantLandsAnchors: [\n", a) + "    distantLandsAnchors: [\n".length;
+    text = text.slice(0, a + 1) + ANCHOR_COMMENT + text.slice(b);
+    editKey("distantLandsAnchors", (body) => {
+        for (const d of ANCHORS_DROPPED) body = body.replace(new RegExp(`^ *${esc(d)}[^\\n]*\\n`, "m"), "");
+        return body.replace(/(\[18\.1, 59\.3\],\s*\/\/)[^\n]*/, "$1 Scandinavia and Finland, cut off by the Eastern Ocean, which covers Karelia");
+    });
 }
+// removals: a single-line entry goes with the comment lines directly above it
+const removed = [];
+for (const [key, names] of Object.entries(REMOVE)) editKey(key, (body) => {
+    for (const n of names) {
+        let re;
+        if (key === "tsl") re = new RegExp(`^ *${n}:\\s*\\[[^\\]]*\\],?[^\\n]*\\n`, "gm");
+        else if (key === "lakes" || key === "landBlobs" || key === "fallbackSites") re = new RegExp(`\\s*\\[[^\\[\\]]*${esc(q(n))}\\],?`);
+        else re = new RegExp(`(^ *//[^\\n]*\\n)*^ *\\{ name: ${esc(q(n))}[^\\n]*(?:\\n|(?![\\s\\S]))`, "m");
+        if (re.test(body)) removed.push(`${key}: ${n}`);
+        body = body.replace(re, "");
+    }
+    return body;
+});
+for (const [key, names] of Object.entries(REMOVE_MULTILINE)) editKey(key, (body) => {
+    for (const n of names) {
+        const re = new RegExp(`\\n?        \\{\\n            name: ${esc(q(n))}, pts: \\[[\\s\\S]*?\\n            \\]\\n        \\},?`);
+        must(re.test(body), `${key}: ${n}`);
+        body = body.replace(re, ""); removed.push(`${key}: ${n}`);
+    }
+    return body;
+});
+// clips at 41E
+const clip = (poly, xmax) => {
+    const out = [];
+    for (let i = 0; i < poly.length; i++) {
+        const [a, b] = [poly[i], poly[(i + 1) % poly.length]];
+        const ina = a[0] <= xmax, inb = b[0] <= xmax;
+        if (ina) out.push(a);
+        if (ina !== inb) { const t = (xmax - a[0]) / (b[0] - a[0]); out.push([xmax, +(a[1] + t * (b[1] - a[1])).toFixed(2)]); }
+    }
+    return out;
+};
+for (const [key, name, rename] of CLIP) editKey(key, (body) => {
+    const re = new RegExp(`(\\{ name: )${esc(q(name))}(,[^\\n]*?pts: )(\\[\\[.*?\\]\\])( \\})`);
+    const m = re.exec(body);
+    must(m, `${key}: ${name}`);
+    const c = clip(JSON.parse(m[3]), CLIP_EAST);
+    return body.slice(0, m.index) + m[1] + q(rename) + m[2] + pts(c) + m[4] + body.slice(m.index + m[0].length);
+});
+// the Mainland outline's Kola and Arctic Russia coast goes straight across under the ocean
+{
+    const a = text.indexOf("                // Kola, White Sea, Arctic Russia\n"), b = text.indexOf("                // Closing edge east (outside the window)");
+    must(a > 0 && b > a, "the Mainland's Kola coast");
+    text = text.slice(0, a) + "                // (Kola and Arctic Russia went under the Eastern Ocean: the outline runs straight east)\n                [31.2, 69.8], [66.0, 69.8],\n" + text.slice(b);
+}
+text = text.replace("        // Mesopotamia, Russia\n", "        // Mesopotamia\n");
 
 for (const [key, lines] of Object.entries(blocks)) {
     const block = `${I}${BEGIN}\n${lines.join("\n")}\n${I}${END}\n`;
@@ -361,8 +467,54 @@ for (const [key, lines] of Object.entries(blocks)) {
     }
     text = text.slice(0, a) + nb + text.slice(b);
 }
+// Safety net: anything still drawn under the Eastern Ocean or on East Asia (outside the East Asia
+// blocks) came from the Europe file and does not belong here - a lake, a river or a start someone
+// added in Russia, say. Drop it by name and say so.
+const inPoly = (x, y, P) => { let c = false; for (let i = 0, j = P.length - 1; i < P.length; j = i++) { const [xi, yi] = P[i], [xj, yj] = P[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; };
+const UNDER = [OCEAN, fitAll(MAINLAND), ...Object.values(ISLANDS).map((p) => fitAll(p))];
+const underOcean = (x, y) => UNDER.some((P) => inPoly(x, y, P));
+const autoDropped = [];
+{
+    const tmp = path.join(fs.mkdtempSync(path.join((await import("node:os")).tmpdir(), "eurasia-")), "g.mjs");
+    fs.writeFileSync(tmp, text);
+    const { GEO: G } = await import(pathToFileURL(tmp).href);
+    const ours = new Set([...blocks.land, ...blocks.water, ...blocks.waterLines, ...blocks.ranges, ...blocks.rivers, ...blocks.biomeAreas,
+                          ...blocks.rainAreas, ...blocks.resourceAreas, ...blocks.volcanoes, ...blocks.fallbackSites].join("\n").match(/"[^"]+"/g).map((x) => JSON.parse(x)));
+    for (const [key, val] of Object.entries(G)) {
+        if (key === "tsl" && val) {
+            const own = new Set(Object.keys(STARTS).concat(["CIVILIZATION_RUSSIA"]));
+            for (const [civ, ll] of Object.entries(val)) {
+                if (own.has(civ) || !underOcean(ll[0], ll[1])) continue;
+                autoDropped.push(`tsl: ${civ}`);
+                editKey("tsl", (b) => b.replace(new RegExp(`^ *${civ}:\\s*\\[[^\\]]*\\],?[^\\n]*\\n`, "m"), ""));
+            }
+            continue;
+        }
+        if (!Array.isArray(val) || ["distantLandsAnchors", "land", "water"].includes(key)) continue;
+        for (const e of val) {
+            let pp = null, name = null;
+            if (e && e.pts && e.name) { pp = e.pts; name = e.name; }
+            else if (Array.isArray(e) && typeof e[0] === "number" && typeof e[e.length - 1] === "string") { pp = [[e[0], e[1]]]; name = e[e.length - 1]; }
+            if (!pp || ours.has(name)) continue;
+            const under = pp.filter(([x, y]) => underOcean(x, y)).length;
+            if (under / pp.length <= 0.5) continue;
+            autoDropped.push(`${key}: ${name}`);
+            editKey(key, (b) => (typeof e[0] === "number")
+                ? b.replace(new RegExp(`\\s*\\[[^\\[\\]]*${esc(q(name))}\\],?`), "")
+                : b.replace(new RegExp(`(^ *//[^\\n]*\\n)*^ *\\{ name: ${esc(q(name))}[^\\n]*(?:\\n|(?![\\s\\S]))`, "m"), ""));
+        }
+    }
+}
+
+const rel = path.relative(process.cwd(), GEO_FILE);
+if (process.argv.includes("--check")) {
+    const now = fs.existsSync(GEO_FILE) ? fs.readFileSync(GEO_FILE, "utf8") : "";
+    if (now !== text) { console.log(`${rel} is out of date with europe-large-geo.js - run: node tools/eurasia-compressed/build.mjs`); process.exit(1); }
+    console.log(`${rel} is up to date`);
+    process.exit(0);
+}
 fs.writeFileSync(GEO_FILE, text);
-console.log("wrote East Asia into " + path.relative(process.cwd(), GEO_FILE));
+console.log(`built ${rel} from europe-large-geo.js (${removed.length} Russian entries left out${autoDropped.length ? ", plus " + autoDropped.length + " more found under the ocean: " + autoDropped.join("; ") : ""})`);
 for (const [n, p] of Object.entries({ Beijing: [116.4, 39.9], Shanghai: [121.5, 31.2], Guangzhou: [113.3, 23.1], Seoul: [127, 37.6], Tokyo: [139.7, 35.7], Sapporo: [141.35, 43.06] })) {
     const [x, y] = toTile(...p); console.log(`  ${n.padEnd(10)} -> hex ${x.toFixed(1)},${y.toFixed(1)} (128x112)  map ${fit(p)}`);
 }

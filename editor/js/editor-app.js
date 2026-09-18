@@ -1317,7 +1317,9 @@
                     state.sourceText = r.text;
                     state.origGeo = structuredClone(state.geo);
                     setDirtyIndicator();
-                    showToast('Saved ' + state.filename + ' (' + describeEdits(r) + ')');
+                    // the server's message says more when it did more (the Eurasia rebuild after
+                    // the shared Europe file is saved, and anything it left out of Eurasia)
+                    showToast((data.message || ('Saved ' + state.filename)) + ' (' + describeEdits(r) + ')');
                     return;
                 }
                 showToast(data.error || ('Save failed (' + resp.status + ')'), true);

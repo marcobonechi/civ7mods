@@ -121,11 +121,26 @@ Pick **One Landmass** if you would rather reach every civilization overland from
 cost is that the Exploration Age Economic (treasure) and Military legacy paths cannot score,
 because both award victory points only in distant lands.
 
-**Eurasia Compressed** has its own geography file, which both Eurasia maps read: `europe-alt-map.js` passes it through `oneLandmassGeo()` (no Distant Lands), `europe-alt-distant-map.js` uses its anchors as they stand (East Asia, Scandinavia, Iceland). Its East Asia is not drawn by hand: `tools/eurasia-compressed/east-asia.mjs` holds real coastlines, ranges, rivers, biomes, resources and starts for China, Korea, Mongolia and Japan, fits them into the space the Eastern Ocean frees, and writes plain coordinates into the `// @east-asia` blocks of `maps/europe-alt-geo.js`, so the file stays data the editor can open. Edit the script, then run it and rebuild the preview:
+**Eurasia Compressed** reads `maps/europe-alt-geo.js`, and so does its twin: `europe-alt-map.js` passes it
+through `oneLandmassGeo()` (no Distant Lands), `europe-alt-distant-map.js` uses its anchors as they stand
+(East Asia, Scandinavia, Iceland). That file is **generated** from `maps/europe-large-geo.js` by
+`tools/eurasia-compressed/build.mjs`, so the four maps share one geography:
+
+- **Shared ground** - Italy, the Alps, France, Africa, everything the two pairs have in common - is edited
+  in `europe-large-geo.js`, and reaches all four maps. The map editor rebuilds the Eurasia file every
+  time it saves `europe-large-geo.js`, and refuses to save into the generated file.
+- **What only the Europe & Mediterranean maps have** - Russia, the Caspian, the steppe - is edited in
+  `europe-large-geo.js` too, and stays out of Eurasia: the build leaves out the named Russian entries,
+  and drops (and reports) anything else it finds under the Eastern Ocean or on East Asia, so a lake
+  added near Moscow never appears there.
+- **What only the Eurasia maps have** - the Eastern Ocean, East Asia fitted from real coastlines, its
+  ranges, rivers, biomes, resources and starts, the Suez canal - lives in the build script.
 
 ```bash
-node tools/eurasia-compressed/east-asia.mjs && ./preview/build-preview.sh
+node tools/eurasia-compressed/build.mjs && ./preview/build-preview.sh
 ```
+
+`tools/check-map-sizes.mjs` fails if the Eurasia file is out of date with the Europe file.
 
 Note: the engine takes the grid from the map-size database rows (`data/maps.xml`), not from the
 map script, so the first map renders on whatever standard size is picked and the large map declares

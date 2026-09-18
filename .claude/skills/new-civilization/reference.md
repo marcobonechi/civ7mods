@@ -434,7 +434,7 @@ indistinguishable for three days.
 
 ## 5. Map integration
 
-`tsl` in `europe-large-geo.js` (Distant Lands and One Landmass read it), `europe-alt-geo.js` (Eurasia Compressed) and `europe-geo.js` (unregistered): `[lon, lat]`. The map
+`tsl` in `europe-large-geo.js`: `[lon, lat]`. It reaches all four maps - `europe-alt-geo.js` (the Eurasia pair) is generated from it by `tools/eurasia-compressed/build.mjs`, which is also where the East Asian civilizations' Eurasia starts live; rebuild it after editing. `europe-geo.js` is unregistered. The map
 script checks `MIN_SPACING` (5 hexes on the standard map, grid width / 14 on the large ones)
 against already placed starts, in player order; a blocked true start falls back to the
 curated list. Keep neighbouring true starts apart or move one.
