@@ -227,16 +227,18 @@ left empty when off-map civilizations play.
 
 ## Editing and previewing
 
-1. Edit `EuropeMediterranean/maps/europe-large-geo.js` (large maps) or `europe-geo.js` (first map).
+1. Edit `EuropeMediterranean/maps/europe-large-geo.js` - the geography all four maps share (see
+   [Four maps, one geography](#four-maps-one-geography-where-to-edit-what) below for what goes where).
    All shapes are plain `[lon, lat]` lists in degrees (east and north positive); widths and radii
    are in hex tiles.
 2. Rebuild the previews with `./preview/build-preview.sh --open` (Windows: `preview\build-preview.ps1 -Open`).
-   It writes `preview/europe-large.html` and `preview/europe.html`; open them in any browser. Mouse
+   It writes `preview/europe-large.html`, `preview/europe-alt.html` (Eurasia Compressed) and
+   `preview/europe.html`; open them in any browser. Mouse
    wheel zooms at the cursor, drag pans, the +/−/fit buttons do the same, and hovering a hex prints its
    grid coordinates, longitude/latitude, terrain, biome, rainfall, region, start and volcano. Zoomed in
    past about 2x the hex coordinates are drawn on the map. Append `?w=128&h=112` to the URL to preview
    another grid size, `?seed=7` for a different random roll. Screenshot mode: `?shot=1&cw=1600&ch=1100&view=lon0,lat0,lon1,lat1&regions=1&title=...`
-   hides the toolbar, frames a lon/lat box, tints home/distant lands and prints a caption (`preview/shots.ps1` uses it). Below the picture is a text dump of the grid:
+   hides the toolbar, frames a lon/lat box, tints home/distant lands and prints a caption (`preview/shots.sh`, or `shots.ps1` on Windows, uses it to retake `EuropeMediterranean/screenshots/`). Below the picture is a text dump of the grid:
    `.` ocean, `,` coast, `V` planned river course, `^` mountain, lowercase = flat, uppercase = hills, with
    `g` grassland, `p` plains, `d` desert, `t` tundra, `r` tropical.
 3. Install with `./install.sh` and restart the game (mods are read at startup only).
@@ -244,6 +246,65 @@ left empty when off-map civilizations play.
 
 There is also an interactive editor — `./run-editor.sh` starts a local server at
 http://localhost:8080 and opens a browser. See *Editing maps in the editor* below.
+
+### Four maps, one geography: where to edit what
+
+The mod ships four map types in two pairs, and they share one geography:
+
+| Map type | Script | Geography |
+|---|---|---|
+| Europe & Mediterranean (Distant Lands) | `europe-large-map.js` | `europe-large-geo.js` as it stands |
+| Europe & Mediterranean (One Landmass) | `europe-large-united-map.js` | the same, through `oneLandmassGeo()` |
+| Eurasia Compressed | `europe-alt-map.js` | `europe-alt-geo.js`, through `oneLandmassGeo()` |
+| Eurasia Compressed (Distant Lands) | `europe-alt-distant-map.js` | `europe-alt-geo.js` as it stands |
+
+`oneLandmassGeo()` (in `europe-raster.js`) empties the Distant Lands anchors and drops every channel
+marked `separatesDistantLands`, so each pair's two maps can never drift apart. And
+**`europe-alt-geo.js` is generated**: `tools/eurasia-compressed/build.mjs` builds it from
+`europe-large-geo.js`, leaves out what the Eastern Ocean replaces, and adds what is Eurasia's own.
+Never edit it by hand - the next build overwrites it, and the map editor refuses to save it.
+
+**What goes where:**
+
+| You want to change... | Edit | It reaches |
+|---|---|---|
+| Anything the pairs share: Italy, the Alps, France, Africa, the Mediterranean, a shared start | `europe-large-geo.js` (by hand or in the editor), then rebuild Eurasia | all four maps |
+| Russia, the Caspian, the steppe - land that only the Europe maps have | `europe-large-geo.js` | the Europe pair only: the build drops anything under the Eastern Ocean or on East Asia and says so |
+| The Eastern Ocean's coast, East Asia's shape, ranges, rivers, biomes, resources, sites; the starts that move to East Asia; the Suez canal | `tools/eurasia-compressed/build.mjs` | the Eurasia pair only |
+| Which Russian features Eurasia leaves out by name | `REMOVE` in `build.mjs` | the Eurasia pair |
+| Which lands are Distant Lands | `distantLandsAnchors` in `europe-large-geo.js` (Europe pair) or `ANCHOR_COMMENT` / `ANCHORS` in `build.mjs` (Eurasia pair) | that pair |
+| A start or a stand-in's reason in the mod description | `europe-large-geo.js` and `tools/module-description/` | the description (it lists the Europe maps' starts) |
+
+**After editing, rebuild what is generated from it.** Everything below is derived, so it is rebuilt
+rather than edited:
+
+| Generated file | Built by | When |
+|---|---|---|
+| `maps/europe-alt-geo.js` | `node tools/eurasia-compressed/build.mjs` | after any edit to `europe-large-geo.js` or `build.mjs` (the editor runs it for you on save) |
+| the mod description (modinfo, `text/en_us/ModuleText.xml`, `l10n/ModuleText.xml`) | `python3 tools/module-description/build.py` | after moving a start, changing a fallback site or the description's wording |
+| `preview/*.html` | `./preview/build-preview.sh` | after any geography edit |
+| `EuropeMediterranean/screenshots/*.png` | `./preview/shots.sh` (after the previews) | when the map has changed visibly |
+
+**Then check it.** `node tools/check-map-sizes.mjs` builds all four maps at every size and fails if
+`europe-alt-geo.js` is out of date, if a start lands too close to another, if the Distant Lands share
+or a land connection the geography declares (`expectLand`) is wrong. `node tools/check-rivers.mjs`
+plans every river on all four maps and fails if one runs uphill, through a mountain pass or onto a
+start. `python3 tools/module-description/build.py --check` fails if the description no longer
+matches the starts.
+
+**Worked examples.**
+
+- *Add a lake in Tuscany.* Draw it in the editor with the Europe file open and save: the save
+  message says the Eurasia maps were rebuilt, and the lake is on all four maps.
+- *Add a lake near Moscow.* Same steps: the save message says it was left out of Eurasia, because it
+  sits under the Eastern Ocean. It appears on the Europe pair only.
+- *Move a Japanese civilization's Eurasia start.* Edit `STARTS` in `build.mjs` (real longitude and
+  latitude - the script fits them to the map), run `node tools/eurasia-compressed/build.mjs`, then
+  `node tools/check-map-sizes.mjs`. Its Europe start is the `tsl` entry in `europe-large-geo.js`.
+- *Reshape East Asia.* The fit is controlled by `LAT_ROWS` (real latitude to rows), `LEFT` (the moat
+  on the west, per row), `EAST_LON`, `KNEE` and `GROW` (Korea and Japan enlarged) at the top of
+  `build.mjs`; coastlines are the `MAINLAND` and `ISLANDS` point lists in real coordinates.
+  Rebuild, then look at `preview/europe-alt.html`.
 
 ### What the geography file contains (large map)
 
@@ -296,6 +357,15 @@ tagging it:
 
 Then commit, push, and cut a GitHub release for the new version. Players update with `git pull`
 followed by `./install.sh`.
+
+Before a release, make sure everything generated is current and every check passes:
+
+```bash
+node tools/eurasia-compressed/build.mjs          # the Eurasia geography
+python3 tools/module-description/build.py        # the mod description, twelve languages
+./preview/build-preview.sh && ./preview/shots.sh # previews and screenshots
+node tools/check-map-sizes.mjs && node tools/check-rivers.mjs && node editor/test-geo-io.mjs
+```
 
 ---
 
@@ -399,7 +469,12 @@ actually produced rather than what you asked for. *Remove patch* takes it back o
 editing (dragging coastlines, rivers, ranges) works as before with the mode off.
 
 **Save** (leftmost in the toolbar, or Ctrl+S) writes the file in
-`EuropeMediterranean/maps` and nothing else. **Install to Game** is the separate step that
+`EuropeMediterranean/maps`. Saving `europe-large-geo.js` - labelled *shared by all four maps* in the
+dropdown - also rebuilds `europe-alt-geo.js` for the Eurasia maps, and the save message says so and
+names anything it left out of Eurasia because it lies under the Eastern Ocean. `europe-alt-geo.js`
+can be opened to look at but not saved: it is generated (see
+[Four maps, one geography](#four-maps-one-geography-where-to-edit-what)), so edit the Europe file or
+`tools/eurasia-compressed/build.mjs` instead. **Install to Game** is the separate step that
 rsyncs the whole mod into Civ VII's Mods folder, and it copies what is on disk - so save
 first. The game only reads mods at startup, so restart it afterwards.
 
