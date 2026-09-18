@@ -61,7 +61,8 @@ modules first and copy a working row.
    `LEADER_HAPPY` and `LEADER_ANGRY` rows, circle crops for `CIRCLE_MASK` and `PORTRAIT_MASK`), plus
    `lsl_<leader>`. The 140 px `PORTRAIT_MASK` circle must be padded with a baked frame or it is
    oversized in Leader Select, and a modded leader never gets the level ring (reference.md §4,
-   recipe included). The 3D model is borrowed in the UI script by rewriting
+   recipe included). The `lp_hex` images are cut-out busts for the diplomacy ribbon: build them
+   with `tools/leader-hex.sh <painting> <Civ>/icons <leader>` from the full-size source painting. The 3D model is borrowed in the UI script by rewriting
    `<LEADER_TYPE>_GAME_ASSET` in `addModel`, `addModelAtPos` **and** `setAssetName`; missing the
    last one crashes the 1.5 leader select. Check `UI.log` for
    `civ7mods: leader model ... (accepted)` after picking the leader.

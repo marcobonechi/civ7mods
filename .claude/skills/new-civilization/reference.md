@@ -342,6 +342,22 @@ Markup: `[icon:YIELD_CULTURE]`, `[TIP:LOC_PEDIA_CONCEPTS_..._TOOLTIP]text[/TIP]`
   `CIRCLE_MASK` / `PORTRAIT_MASK` pointing at a **circle** crop. Pointing all of them at one
   square PNG is what makes a modded leader show up square in Leader Select while every shipped
   leader is round with a frame.
+- **The hex images (`lp_hex_<leader>_{256,128,64}`) are cut-out busts, not hex-shaped paintings.**
+  The diplomacy ribbon (`base-standard/ui/diplo-ribbon/panel-diplo-ribbon.js`) draws the hex
+  background and frame itself (`final_leader-hex`, `hud_diplo_hex-frame`) in a 5.83rem slot, then
+  lays the default-context leader icon over it at 6.5rem, shifted up 26.5% of the slot, and
+  mirrored for everyone but the local player. The same rows, at 128, are the `LEADER_HAPPY` /
+  `LEADER_ANGRY` faces the ribbon switches to with the relationship. Shipped images are a bust on
+  transparency whose head rises above the frame. A painting cropped to a hex covers the frame and
+  looks twice the size of its neighbours; the frame is a pointy-top hex about 47% of the icon wide,
+  centred at about (50%, 72%) (measured on a screenshot of the 1.5 ribbon).
+  `tools/leader-hex.sh <painting> <icons dir> <leader>` builds all three sizes: macOS Vision
+  (`tools/lift-subject.swift`, subject lifting plus face detection, macOS 14+) cuts the leader off
+  the painting, the face box is scaled to 30% of the canvas and centred at (50%, 63%), and below
+  the frame's upper edge the bust is trimmed to the hex so the shoulders stay inside it. Feed it
+  the full-resolution source painting (`icons/src/leader_<leader>.raw.jpg`), not the 256 icon.
+  Porsenna and Lorenzo are built this way. A painted leader that faces sideways still reads as
+  modded next to the 3D-rendered shipped busts; that is fine.
 - **The `PORTRAIT_MASK` image (`lp_circ_<leader>_140`) is not a full-bleed circle.** Since 1.5
   the leader-select grid (`core/ui-next/screens/create-game/leader-select-button.js`) stacks
   three layers the size of the button: the `leader_box` square, the `PORTRAIT_MASK` icon at
