@@ -10,7 +10,8 @@ Two mods live here, each in its own folder with a `.modinfo` inside:
 | `Tuscany/` | Tuscany, an Exploration Age civilization of bankers, navigators and painters, with Lorenzo il Magnifico and the Maestri | version 1, see [Tuscany](#tuscany) below |
 | `ChangeCapital/` | Relocate your capital freely at every age transition, or any time for a price | version 1, see [Change Capital](#change-capital) below |
 
-Further civilizations follow the recipe in `.claude/skills/new-civilization/`.
+Further civilizations follow the recipe in `.claude/skills/new-civilization/`, and leaders the one in
+`.claude/skills/new-leader/`.
 
 # Europe & Mediterranean — a map mod for Civilization VII
 

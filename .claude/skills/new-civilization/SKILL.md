@@ -1,6 +1,6 @@
 ---
 name: new-civilization
-description: Add a new playable civilization or leader to the civ7mods repository as its own Civilization VII mod folder (data XML, shell config, text, icons, leader portraits and borrowed model, visual remaps, true start on the Europe maps). Use when asked to create, scaffold, or extend a Civ 7 civilization or leader mod.
+description: Add a new playable civilization to the civ7mods repository as its own Civilization VII mod folder (data XML, shell config, text, icons, visual remaps, true start on the Europe maps). Use when asked to create, scaffold, or extend a Civ 7 civilization mod. For a leader use the new-leader skill.
 ---
 
 # New civilization mod
@@ -8,7 +8,9 @@ description: Add a new playable civilization or leader to the civ7mods repositor
 Builds a civilization the way Firaxis ships one: a self-contained mod folder next to
 `EuropeMediterranean/`, modelled on the Bulgaria DLC (Exploration Age, small, no bespoke
 art). Read `reference.md` in this folder for the table-by-table details and pitfalls, and
-`plans/byzantium.md` for a worked example.
+`plans/byzantium.md` for a worked example. Leaders are a separate skill,
+`.claude/skills/new-leader`: when the civ comes with a leader of its own, finish the civ, then run
+that skill for the leader.
 
 ## Ground truth to consult first
 
@@ -30,8 +32,7 @@ modules first and copy a working row.
 
 Do not start from guesses. Before any file is written, ask the user in **two rounds**, each one
 message, and wait for the answers. Say which items you can draft for them ("leave blank and I
-will propose") so they only fill what they care about. If they are adding only a leader to an
-existing civ, skip the civ items. Anything still open after both rounds is proposed in the design
+will propose") so they only fill what they care about. Anything still open after both rounds is proposed in the design
 sheet (step 1) and confirmed there, not decided silently.
 
 **Round 1 — names and the art to start from.** One plain message with a checklist to fill in
@@ -40,16 +41,13 @@ sheet (step 1) and confirmed there, not decided silently.
 - Civilization: name, full name ("The Etruscan League"), adjective, capital, apex age, where it
   starts on the Europe maps (a city or `[lon, lat]`), 30 city names and 10 + 10 citizen names
   (offer to draft both).
-- Leader: name and epithet, gender, a one-line quote for Leader Select, and which shipped leader's
-  3D model to borrow (a mod cannot ship one; offer candidates that fit the era and dress).
+- Whether a new leader comes with it. If so, note the name only; the leader's own intake happens
+  in the new-leader skill after the civ is built.
 - The names of the uniques: each unique unit and the base unit it replaces, the two quarter
   buildings and the quarter's name, the associated wonder, the three civics with their traditions.
 - Art they already have, as file paths. For each slot, say what it becomes, and that a missing one
   gets a placeholder (`tools/make-icons.py`, `tools/make-backgrounds.py`) or a generator prompt
   from `plans/etruscans-tuscany-art.md` §2:
-  - leader painting, square, ideally 1024² or larger, head and shoulders with some space above the
-    head → `leader_<leader>`, the `lp_circ_*` circles, the `lp_hex_*` ribbon busts
-    (`tools/leader-hex.sh`) and, cropped to 2:3, `lsl_<leader>` (720×1080);
   - civ symbol (a single bold shape; it is recoloured) → `civ_sym_<civ>`;
   - one silhouette per unique unit → `unitflag_*`; one icon per building and the wonder →
     `buildicon_*`, `wondericon_*` (`tools/art-icon.py` keys a flat background off);
@@ -59,14 +57,13 @@ sheet (step 1) and confirmed there, not decided silently.
 **Round 2 — what makes them special.** Ask for the gameplay, in plain language; they do not need
 to know effect ids:
 
-- Civ ability: name and 2-3 effects. Leader ability: name and 2-3 effects.
-- Two attributes each for the civ and the leader, from the six the game has: Cultural,
+- Civ ability: name and 2-3 effects.
+- Two attributes for the civ, from the six the game has: Cultural,
   Diplomatic (`TAG_TRAIT_POLITICAL`), Economic, Expansionist, Militaristic, Scientific. List all
   six in the message; `AskUserQuestion` offers at most four options, so it cannot carry them.
 - For each unique unit, how it differs from the unit it replaces. Yields or effects of the two
   buildings and the quarter bonus. The wonder's effect. The effect of each tradition.
 - Unlocks: which civs and leaders unlock this civ, and which next-age civ it unlocks. Start bias.
-  The leader's diplomatic agenda (every shipped leader has one, reference.md §4).
 
 Then map every answer onto an effect the game already has: grep the base modules for a working row
 (see "Never invent" above). Report back any ability that has no existing effect, with the nearest
@@ -103,19 +100,11 @@ thing that does exist, before building it.
    `ages-post-process.sql`), so baseline age modifiers are handled.
 7. **Unlocks** (`unlocks-*.xml`): the civ's own unlock, the leader and civ requirement sets,
    and the Modern civ it unlocks. Guard DLC-only rows with `ModInUse` criteria.
-8. **Leader** (if the mod adds one). Nine `IconDefinitions` rows (hex crops for the default,
-   `LEADER_HAPPY` and `LEADER_ANGRY` rows, circle crops for `CIRCLE_MASK` and `PORTRAIT_MASK`), plus
-   `lsl_<leader>`. The 140 px `PORTRAIT_MASK` circle must be padded with a baked frame or it is
-   oversized in Leader Select, and a modded leader never gets the level ring (reference.md §4,
-   recipe included). The `lp_hex` images are cut-out busts for the diplomacy ribbon: build them
-   with `tools/leader-hex.sh <painting> <Civ>/icons <leader>` from the full-size source painting. The 3D model is borrowed in the UI script by rewriting
-   `<LEADER_TYPE>_GAME_ASSET` in `addModel`, `addModelAtPos` **and** `setAssetName`; missing the
-   last one crashes the 1.5 leader select. Check `UI.log` for
-   `civ7mods: leader model ... (accepted)` after picking the leader.
-9. **True start.** Add `CIVILIZATION_X: [lon, lat]` to `tsl` in every geo file under
+8. **True start.** Add `CIVILIZATION_X: [lon, lat]` to `tsl` in every geo file under
    `EuropeMediterranean/maps/` and check spacing against neighbours.
-10. **Polish**: civilopedia history text, loading screen text, citizen names, favoured wonder,
+9. **Polish**: civilopedia history text, loading screen text, citizen names, favoured wonder,
    AI biases. Then README section, version bump, commit with jj, push, tag.
+10. **Leader**, if the civ has its own: the new-leader skill, with the leader's rows in this mod.
 
 ## Checks before every install
 
