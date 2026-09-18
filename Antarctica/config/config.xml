@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shell side of the Antarctica map: the entry in the map list and its three sizes. The grids
+     themselves come from data/maps.xml (game side), and maps/antarctica-geo.js knows them too. -->
+<Database>
+    <Maps>
+        <Row File="{antarctica-map}maps/antarctica-map.js" Name="LOC_MAP_ANTARCTICA_NAME" Description="LOC_MAP_ANTARCTICA_DESCRIPTION" SortIndex="12"/>
+    </Maps>
+
+    <!-- Every player starts on Antarctica, so all of them can be human in either domain. -->
+    <MapSizes>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_STD" Name="LOC_MAPSIZE_ANTARCTICA_STD_NAME" Description="LOC_MAPSIZE_ANTARCTICA_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="10" DefaultPlayers="8" SortIndex="210"/>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_LRG" Name="LOC_MAPSIZE_ANTARCTICA_LRG_NAME" Description="LOC_MAPSIZE_ANTARCTICA_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="12" MaxHumans="12" DefaultPlayers="10" SortIndex="211"/>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_HUGE" Name="LOC_MAPSIZE_ANTARCTICA_HUGE_NAME" Description="LOC_MAPSIZE_ANTARCTICA_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="12" DefaultPlayers="12" SortIndex="212"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_STD" Name="LOC_MAPSIZE_ANTARCTICA_STD_NAME" Description="LOC_MAPSIZE_ANTARCTICA_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="10" DefaultPlayers="8" SortIndex="210"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_LRG" Name="LOC_MAPSIZE_ANTARCTICA_LRG_NAME" Description="LOC_MAPSIZE_ANTARCTICA_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="12" MaxHumans="12" DefaultPlayers="10" SortIndex="211"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_ANTARCTICA_HUGE" Name="LOC_MAPSIZE_ANTARCTICA_HUGE_NAME" Description="LOC_MAPSIZE_ANTARCTICA_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="12" DefaultPlayers="12" SortIndex="212"/>
+    </MapSizes>
+
+    <!-- The map only offers its own sizes -->
+    <SupportedValuesByMap>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="StandardMapSizes" Value="MAPSIZE_ANTARCTICA_STD"/>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="StandardMapSizes" Value="MAPSIZE_ANTARCTICA_LRG"/>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="StandardMapSizes" Value="MAPSIZE_ANTARCTICA_HUGE"/>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_ANTARCTICA_STD"/>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_ANTARCTICA_LRG"/>
+        <Row Map="{antarctica-map}maps/antarctica-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_ANTARCTICA_HUGE"/>
+    </SupportedValuesByMap>
+</Database>

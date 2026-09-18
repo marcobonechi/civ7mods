@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="antarctica-map" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>LOC_MODULE_ANTARCTICA_NAME</Name>
+        <Description>LOC_MODULE_ANTARCTICA_DESCRIPTION</Description>
+        <Authors>Marco</Authors>
+        <Package>Mod</Package>
+        <Version>1</Version>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always">
+            <AlwaysMet></AlwaysMet>
+        </Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="shell-antarctica" scope="shell" criteria="always">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>config/config.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>text/en_us/MapText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="game-antarctica" scope="game" criteria="always">
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/maps.xml</Item>
+                </UpdateDatabase>
+                <ImportFiles>
+                    <Item>maps/antarctica-geo.js</Item>
+                    <Item>maps/antarctica-map.js</Item>
+                </ImportFiles>
+                <UpdateText>
+                    <Item>text/en_us/MapText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+    <LocalizedText>
+        <Text id="LOC_MODULE_ANTARCTICA_NAME">
+            <en_US>Antarctica Map</en_US>
+            <it_IT>Mappa Antartide</it_IT>
+        </Text>
+        <Text id="LOC_MODULE_ANTARCTICA_DESCRIPTION">
+            <en_US>A south polar map with Antarctica in the middle. Every civilization starts on its ice-free coast, a band four hexes deep; inland the continent is ice, with the Transantarctic, Ellsworth and Peninsula mountains, hills and plateau, and the rivers and lakes that run under the ice (Lambert, Institute, Byrd, Lake Vostok) plus the Onyx, its one real surface river, into Lake Vanda.
+
+Across the Southern Ocean lie the Distant Lands: South America, Southern Africa, Australia and New Zealand, running off the top and bottom of the map.
+
+No fixed starts: the game picks a new site on the coast every time. Sizes 108x80, 124x92 and 138x102.</en_US>
+            <it_IT>Una mappa polare australe con l'Antartide al centro. Ogni civiltà parte dalla sua costa libera dai ghiacci, una fascia profonda quattro esagoni; all'interno il continente è ghiaccio, con le catene Transantartica, Ellsworth e della Penisola, colline e altopiano, e i fiumi e i laghi che scorrono sotto il ghiaccio (Lambert, Institute, Byrd, lago Vostok) più l'Onyx, il suo unico vero fiume di superficie, che finisce nel lago Vanda.
+
+Oltre l'Oceano Meridionale ci sono le Terre Lontane: Sud America, Africa australe, Australia e Nuova Zelanda, che escono dai bordi superiore e inferiore della mappa.
+
+Nessuna partenza fissa: il gioco sceglie ogni volta un nuovo punto sulla costa. Dimensioni 108x80, 124x92 e 138x102.</it_IT>
+        </Text>
+    </LocalizedText>
+</Mod>

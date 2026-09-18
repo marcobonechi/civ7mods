@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Game side of the Antarctica map sizes. The engine takes the grid from these rows, so each size
+     has its own MapSizeType; maps/antarctica-geo.js (SIZES) must list the same grids.
+     All players start on Antarctica's coastal band: PlayersLandmass1 holds everyone. -->
+<Database>
+    <Types>
+        <Replace Type="MAPSIZE_ANTARCTICA_STD" Kind="KIND_MAPSIZE"/>
+        <Replace Type="MAPSIZE_ANTARCTICA_LRG" Kind="KIND_MAPSIZE"/>
+        <Replace Type="MAPSIZE_ANTARCTICA_HUGE" Kind="KIND_MAPSIZE"/>
+    </Types>
+    <Maps>
+        <Replace MapSizeType="MAPSIZE_ANTARCTICA_STD" Name="LOC_MAPSIZE_ANTARCTICA_STD_NAME" Description="LOC_MAPSIZE_ANTARCTICA_STD_DESCRIPTION" DefaultPlayers="8" PlayersLandmass1="8" PlayersLandmass2="0" GridWidth="108" GridHeight="80" NumNaturalWonders="7" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="5" StartSectorRows="4" StartSectorCols="3"/>
+        <Replace MapSizeType="MAPSIZE_ANTARCTICA_LRG" Name="LOC_MAPSIZE_ANTARCTICA_LRG_NAME" Description="LOC_MAPSIZE_ANTARCTICA_LRG_DESCRIPTION" DefaultPlayers="10" PlayersLandmass1="10" PlayersLandmass2="0" GridWidth="124" GridHeight="92" NumNaturalWonders="8" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="5" StartSectorRows="4" StartSectorCols="3"/>
+        <Replace MapSizeType="MAPSIZE_ANTARCTICA_HUGE" Name="LOC_MAPSIZE_ANTARCTICA_HUGE_NAME" Description="LOC_MAPSIZE_ANTARCTICA_HUGE_DESCRIPTION" DefaultPlayers="12" PlayersLandmass1="12" PlayersLandmass2="0" GridWidth="138" GridHeight="102" NumNaturalWonders="9" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="5" StartSectorRows="4" StartSectorCols="3"/>
+    </Maps>
+    <!-- as for the base sizes: eliminating a player gives no age progress -->
+    <AgeProgressionEventMapSizeOverrides>
+        <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_ANTARCTICA_STD" Points="0"/>
+        <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_ANTARCTICA_LRG" Points="0"/>
+        <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_ANTARCTICA_HUGE" Points="0"/>
+    </AgeProgressionEventMapSizeOverrides>
+</Database>

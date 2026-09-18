@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <EnglishText>
+        <Replace Tag="LOC_MAP_ANTARCTICA_NAME">
+            <Text>Antarctica</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_ANTARCTICA_DESCRIPTION">
+            <Text>A south polar map. Every civilization starts on the ice-free coast of Antarctica, a band four hexes deep around an icy interior of mountains, hills and plateau, with the rivers and lakes that run under the ice. Across the Southern Ocean lie the Distant Lands: South America, Southern Africa, Australia and New Zealand.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_STD_NAME">
+            <Text>Antarctica 108x80</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_STD_DESCRIPTION">
+            <Text>108x80 grid, 8 players by default.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_LRG_NAME">
+            <Text>Antarctica 124x92</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_LRG_DESCRIPTION">
+            <Text>124x92 grid, 10 players by default.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_HUGE_NAME">
+            <Text>Antarctica 138x102</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_ANTARCTICA_HUGE_DESCRIPTION">
+            <Text>138x102 grid, 12 players by default.</Text>
+        </Replace>
+    </EnglishText>
+</Database>

@@ -1,6 +1,6 @@
 # civ7mods — Civilization VII mods
 
-Civilization VII mods by genginsbon: a map of Europe, the Mediterranean and Africa, three civilizations to play on it, and a small gameplay mod. Each lives in its own folder with a `.modinfo` inside and its own README:
+Civilization VII mods by genginsbon: a map of Europe, the Mediterranean and Africa, three civilizations to play on it, a south polar Antarctica map, and a small gameplay mod. Each lives in its own folder with a `.modinfo` inside and its own README:
 
 | Folder | Mod | Status |
 |---|---|---|
@@ -8,6 +8,7 @@ Civilization VII mods by genginsbon: a map of Europe, the Mediterranean and Afri
 | [`Byzantium/`](Byzantium/README.md) | Byzantium, an Exploration Age civilization (Rome and Greece lead to it); also playable Time-Tested from an Antiquity or Modern start, listed as "Eastern Roman Empire" in Antiquity with its own Late Roman kit (Clibanarii, Liburna, Cistern and Milion forming the Mese) | version 1 |
 | [`Etruscans/`](Etruscans/README.md) | The Etruscans, an Antiquity Age civilization of engineers and banqueters, with Lars Porsenna of Clusium | version 1 |
 | [`Tuscany/`](Tuscany/README.md) | Tuscany, an Exploration Age civilization of bankers, navigators and painters, with Lorenzo il Magnifico and the Maestri | version 1 |
+| [`Antarctica/`](Antarctica/README.md) | Antarctica map script: a south polar map with every civilization starting on the ice-free coast of Antarctica, and South America, Southern Africa, Australia and New Zealand as Distant Lands | version 1, not yet released |
 | [`ChangeCapital/`](ChangeCapital/README.md) | Relocate your capital freely at every age transition, or any time for a price | version 1 |
 
 Further civilizations follow the recipe in `.claude/skills/new-civilization/`, and leaders the one in
@@ -26,7 +27,7 @@ Workshop. Project pages with screenshots: https://marcobonechi.github.io/civ7mod
 | `install.sh`, `install.ps1`, `uninstall.ps1`, `release.sh`, `release.ps1` | install, remove and release the mods (below) |
 | `editor/`, `run-editor.sh` | the browser-based geography editor for the map mod |
 | `preview/` | standalone preview pages of the maps and the screenshot script |
-| `tools/` | checks and generators (map sizes, rivers, mod data, the Eurasia geography, the map's description) |
+| `tools/` | checks and generators (map sizes, rivers, mod data, the Eurasia geography, the map's description; the Antarctica map's check and preview) |
 | `3d_art/`, `tools/civ7-art-studio/`, `textures/` | the art pipeline for the civilizations' 3D models and icons |
 | `skills/`, `.claude/skills/` | written-up techniques: new civilizations, new leaders, 3D models, UI extension |
 | `plans/` | design sheets and work logs |
