@@ -9,13 +9,14 @@ import { writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildAntarcticaGrid, SIZES, T, B, hexNeighbors } from "../Antarctica/maps/antarctica-geo.js";
+import { GEO } from "../Antarctica/maps/antarctica-geo.js";
+import { buildAntarcticaGrid, SIZES, T, B, hexNeighbors } from "../Antarctica/maps/antarctica-raster.js";
 
 const [sizeArg = "STD", seedArg = "7", outArg] = process.argv.slice(2);
 const [W, H] = SIZES["MAPSIZE_ANTARCTICA_" + sizeArg.toUpperCase()];
 let s = Number(seedArg) >>> 0;
 const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
-const g = buildAntarcticaGrid(W, H, rnd, (m) => console.log(m));
+const g = buildAntarcticaGrid(W, H, GEO, rnd, (m) => console.log(m));
 
 const R = 8, DX = R * Math.sqrt(3), DY = R * 1.5;
 const cx = (x, y) => DX * (x + 0.5 * (y & 1)) + DX / 2 + 4;

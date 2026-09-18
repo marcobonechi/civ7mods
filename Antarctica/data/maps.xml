@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Game side of the Antarctica map sizes. The engine takes the grid from these rows, so each size
-     has its own MapSizeType; maps/antarctica-geo.js (SIZES) must list the same grids.
+     has its own MapSizeType; maps/antarctica-raster.js (SIZES) must list the same grids.
      All players start on Antarctica's coastal band: PlayersLandmass1 holds everyone. -->
 <Database>
     <Types>

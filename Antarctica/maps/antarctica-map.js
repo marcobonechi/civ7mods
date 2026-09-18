@@ -1,15 +1,17 @@
 // antarctica-map.js
 // Map script: Antarctica. The frozen continent in the middle of a south polar map, with South
 // America, Southern Africa, Australia and New Zealand across the Southern Ocean as Distant Lands.
-// Antarctica is icy inland, but a band of BAND_DEPTH hexes along its whole coast is open ground,
+// Antarctica is icy inland, but a band of GEO.bandDepth hexes along its whole coast is open ground,
 // and every civilization starts somewhere in that band: no fixed starts, the game picks the sites.
 //
-// The geography and its rasterizer live in antarctica-geo.js (no engine calls, so the offline
-// preview in tools/preview.mjs draws the same map). Rivers are painted hex by hex the way the
+// The geography is plain data in antarctica-geo.js (edited with ./run-editor.sh antarctica), and
+// antarctica-raster.js turns it into a grid with no engine calls, so the offline preview
+// (tools/antarctica-preview.mjs) and the editor draw the same map. Rivers are painted hex by hex the way the
 // Europe map in this repository does it for Civilization VII 1.5 (setRiverInfo, finalizeRivers,
 // setRiverInfo again), with modelRivers as the fallback on an older game.
 
-import { buildAntarcticaGrid, SIZES, T, B, REGION, BAND_DEPTH, hexNeighbors, hexDistance, directionName } from '/antarctica-map/maps/antarctica-geo.js';
+import { GEO } from '/antarctica-map/maps/antarctica-geo.js';
+import { buildAntarcticaGrid, SIZES, T, B, REGION, hexDistance, directionName } from '/antarctica-map/maps/antarctica-raster.js';
 import * as globals from '/base-standard/maps/map-globals.js';
 import { addNaturalWonders } from '/base-standard/maps/natural-wonder-generator.js';
 import { addFeatures } from '/base-standard/maps/feature-biome-generator.js';
@@ -307,7 +309,7 @@ function paintSnow(grid) {
     for (let y = 0; y < grid.H; y++) for (let x = 0; x < grid.W; x++) {
         const i = grid.idx(x, y);
         if (grid.owner[i] !== 0 || grid.band[i] || GameplayMap.isWater(x, y)) continue;
-        const depth = grid.coastDist[i] - BAND_DEPTH;   // 1 = first hex of ice
+        const depth = grid.coastDist[i] - grid.bandDepth;   // 1 = first hex of ice
         const r = TerrainBuilder.getRandomNumber(100, "Antarctic Snow");
         const effect = depth <= 1 ? (r < 60 ? light : medium) : depth <= 3 ? (r < 60 ? medium : heavy) : (r < 15 ? medium : heavy);
         if (effect >= 0) { MapPlotEffects.addPlotEffect(GameplayMap.getIndexFromXY(x, y), effect); n++; }
@@ -360,7 +362,7 @@ function generateMap() {
     const iNumNaturalWonders = mapInfo ? mapInfo.NumNaturalWonders : 8;
     // getRandomNumber tops out at 32767: combine two draws for a uniform value in [0, 1)
     const rnd = () => (TerrainBuilder.getRandomNumber(1000, "Antarctica Raster") * 1000 + TerrainBuilder.getRandomNumber(1000, "Antarctica Raster")) / 1000000;
-    const grid = buildAntarcticaGrid(iWidth, iHeight, rnd, (m) => console.log(TAG + m));
+    const grid = buildAntarcticaGrid(iWidth, iHeight, GEO, rnd, (m) => console.log(TAG + m));
 
     applyTerrain(grid);
     TerrainBuilder.validateAndFixTerrain();

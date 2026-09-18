@@ -25,7 +25,8 @@ Workshop. Project pages with screenshots: https://marcobonechi.github.io/civ7mod
 |---|---|
 | `<Mod>/` | one folder per mod, copied as-is into the game's Mods folder |
 | `install.sh`, `install.ps1`, `uninstall.ps1`, `release.sh`, `release.ps1` | install, remove and release the mods (below) |
-| `editor/`, `run-editor.sh` | the browser-based geography editor for the map mod |
+| `editor/`, `run-editor.sh` | the browser-based geography editor for the Europe map mod |
+| `editor-antarctica/` | the Antarctica map's own editor (`./run-editor.sh antarctica`) |
 | `preview/` | standalone preview pages of the maps and the screenshot script |
 | `tools/` | checks and generators (map sizes, rivers, mod data, the Eurasia geography, the map's description; the Antarctica map's check and preview) |
 | `3d_art/`, `tools/civ7-art-studio/`, `textures/` | the art pipeline for the civilizations' 3D models and icons |

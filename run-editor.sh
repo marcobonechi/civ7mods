@@ -9,6 +9,21 @@
 #
 # Any *-geo.js in EuropeMediterranean/maps can also be picked from the dropdown
 # in the browser; --map only chooses which one is open at startup.
+#
+#   ./run-editor.sh antarctica                 # the Antarctica map's own editor (editor-antarctica/)
+#   ./run-editor.sh --map antarctica           # the same
+#
+# The Antarctica map keeps each continent in its own projection, which the Europe editor cannot
+# draw, so it has a separate editor; this script only picks which one to start.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if [ "${1:-}" = "antarctica" ]; then
+    shift
+    exec python3 "$ROOT/editor-antarctica/server.py" "$@"
+fi
+if [ "${1:-}" = "--map" ] && [ "${2:-}" = "antarctica" ]; then
+    shift 2
+    exec python3 "$ROOT/editor-antarctica/server.py" "$@"
+fi
 exec python3 "$ROOT/editor/server.py" "$@"

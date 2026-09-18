@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Antarctica Map Editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Antarctica Map Editor</h1>
+    <label>Size
+        <select id="size">
+            <option value="MAPSIZE_ANTARCTICA_STD">108x80</option>
+            <option value="MAPSIZE_ANTARCTICA_LRG">124x92</option>
+            <option value="MAPSIZE_ANTARCTICA_HUGE">138x102</option>
+        </select>
+    </label>
+    <label>Seed <input id="seed" type="number" value="7" min="1"></label>
+    <button id="reseed" title="Another random seed: coasts, hills and biome patches change">New seed</button>
+    <span class="sep"></span>
+    <label class="tog"><input type="checkbox" id="showShapes" checked> Shapes</label>
+    <label class="tog"><input type="checkbox" id="showRivers" checked> Rivers</label>
+    <label class="tog"><input type="checkbox" id="showBand" checked> Band</label>
+    <label class="tog"><input type="checkbox" id="showHexes" checked> Hexes</label>
+    <span class="sep"></span>
+    <button id="undo" title="Undo (Cmd/Ctrl+Z)">Undo</button>
+    <button id="redo" title="Redo (Shift+Cmd/Ctrl+Z)">Redo</button>
+    <button id="fit" title="Fit the map to the window">Fit</button>
+    <span class="grow"></span>
+    <span id="dirty"></span>
+    <button id="check" title="Run tools/antarctica-check.mjs on the saved file">Check</button>
+    <button id="save" class="primary" title="Save antarctica-geo.js (Cmd/Ctrl+S)">Save</button>
+    <button id="install" title="Copy the mod into the game's Mods folder">Install</button>
+</header>
+<main>
+    <aside id="tree"></aside>
+    <section id="view">
+        <canvas id="map"></canvas>
+        <div id="hover"></div>
+        <div id="help">
+            Drag empty space to pan, wheel to zoom. Click a shape to select it.
+            Drag a point to move it; click the <b>+</b> between two points to add one;
+            Alt/Option-click a point (or hover it and press Delete) to remove it.
+            A selected land shows its frame handles: the square moves it, the circle turns and scales it.
+        </div>
+    </section>
+    <aside id="props"></aside>
+</main>
+<footer id="log"></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

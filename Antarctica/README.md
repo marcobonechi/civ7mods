@@ -65,11 +65,49 @@ fertility scoring and the civilizations' start biases apply). Every start is in 
 
 | File | What it is |
 |---|---|
-| `maps/antarctica-geo.js` | the geography (outlines, ranges, rivers, lakes, biome rules, placement of each land) and the rasterizer; pure JavaScript, no engine calls |
+| `maps/antarctica-geo.js` | the geography as plain data: each land's frame (where it sits, its scale and turn), outlines, ranges, rivers, lakes, volcanoes; the islands, the wonders and the band depth. Written by the editor |
+| `maps/antarctica-raster.js` | turns the geography into a hex grid: projections, coasts, band, relief, rivers, biome rules per land; no engine calls, so the game, the tools and the editor build the same grid |
 | `maps/antarctica-map.js` | the map script: terrain, rivers, wonders, features, snow, resources, starts |
 | `config/config.xml` | the map picker entry and the three sizes (shell) |
-| `data/maps.xml` | the three grids (game); must match `SIZES` in `antarctica-geo.js` |
+| `data/maps.xml` | the three grids (game); must match `SIZES` in `antarctica-raster.js` |
 | `text/en_us/MapText.xml` | map and size names |
+
+## Editing the map
+
+```bash
+./run-editor.sh antarctica
+```
+
+(or `./run-editor.sh --map antarctica`) starts the Antarctica editor on http://localhost:8095/ and
+opens it; `--port <n>` and `--no-open` work as for the Europe editor. On Windows, where `run-editor.ps1`
+has no Antarctica switch, run `python editor-antarctica/server.py` (Python 3 and Node.js needed). It is a separate editor
+(`editor-antarctica/`), because every land here has its own projection and the Europe editor
+draws everything through one.
+
+- The map is drawn by the mod's own rasterizer, live, for the size and seed you pick at the top,
+  so what you see is what the game builds. **New seed** shows how the random details (coast
+  jitter, hills, biome patches) vary between games.
+- Click a land (on the map or in the list) to select it. A Distant Land shows a **square** (drag to
+  move the whole land) and a **circle** (drag to turn and scale it; Shift scales only, Alt turns
+  only). Antarctica has only the circle: it stays on the pole. The same values are editable as
+  numbers on the right.
+- Click an outline, range, river, lake, volcano, island or wonder to select it. Drag its points; click
+  a **+** between two points to add one; Alt/Option-click a point, or hover it and press Delete, to
+  remove one. A river runs from its green point (source) to its mouth.
+- The land panel adds outlines, ranges, rivers, lakes, volcanoes and wonders, in the middle of the
+  view. **Map settings** holds the band depth, adds islands, and runs the checks live: band size per
+  player, continents on their edges, sea between Antarctica and each land, no coast-only route.
+- **Save** (Cmd/Ctrl+S) writes `maps/antarctica-geo.js`, keeps the previous file as
+  `antarctica-geo.js.bak` (not tracked), refuses a file that does not load, and runs
+  `tools/antarctica-check.mjs`. **Check** runs that check on the saved file; **Install** copies the
+  mod into the game. Undo/Redo: Cmd/Ctrl+Z, Shift+Cmd/Ctrl+Z.
+
+The editor writes the geography in one fixed layout (`editor-antarctica/geo-format.js`), so saving an
+unchanged map gives back the same file and a diff shows only what moved. Keep explanations in the
+`note` fields: comments inside `GEO` would not survive a save (the header comment above it does).
+
+Not editable in the editor: the biome rules (code, per land, in `antarctica-raster.js`) and new
+lands. A land added by hand to `antarctica-geo.js` gets a plain temperate mix until it has rules.
 
 ## Tools
 
@@ -89,9 +127,7 @@ node tools/antarctica-preview.mjs STD 7
 Draws the map for a size (`STD`, `LRG`, `HUGE`) and seed to `preview/antarctica-std.svg`, plus a PNG
 when ImageMagick is installed. The screenshot above comes from it.
 
-To move a continent, change its `localFrame(lon0, lat0, [x, y], scale, rotation)` in
-`antarctica-geo.js` (canvas units: the map centre is 0,0 and half the map height is 1), then run
-both tools.
+Both tools read the same `antarctica-geo.js` the editor saves.
 
 ## Not yet verified in game
 

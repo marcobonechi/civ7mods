@@ -34,6 +34,7 @@
                 <ImportFiles>
                     <Item>maps/antarctica-geo.js</Item>
                     <Item>maps/antarctica-map.js</Item>
+                    <Item>maps/antarctica-raster.js</Item>
                 </ImportFiles>
                 <UpdateText>
                     <Item>text/en_us/MapText.xml</Item>

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Builds every Antarctica map size offline, over several seeds, and checks what the map promises:
-//  - the grids in data/maps.xml are the ones antarctica-geo.js knows;
+//  - the grids in data/maps.xml are the ones antarctica-raster.js knows;
 //  - South America and Africa reach the top edge, Australia and New Zealand the bottom one;
 //  - Antarctica is cut off from every Distant Land by deep ocean (no coast-only route, so it
 //    really takes the Exploration Age to get there);
@@ -12,7 +12,10 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildAntarcticaGrid, SIZES, T, BAND_DEPTH, LANDS, hexNeighbors, hexDistance } from "../Antarctica/maps/antarctica-geo.js";
+import { GEO } from "../Antarctica/maps/antarctica-geo.js";
+import { buildAntarcticaGrid, SIZES, T, hexNeighbors, hexDistance } from "../Antarctica/maps/antarctica-raster.js";
+
+const LANDS = GEO.lands, BAND_DEPTH = GEO.bandDepth;
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const MOD = join(HERE, "..", "Antarctica");
@@ -26,7 +29,7 @@ const config = readFileSync(join(MOD, "config", "config.xml"), "utf8");
 const maxPlayers = {};
 for (const m of config.matchAll(/MapSizeType="(\w+)"[^>]*MaxPlayers="(\d+)"/g)) maxPlayers[m[1]] = Math.max(maxPlayers[m[1]] || 0, +m[2]);
 for (const [name, w, h] of shipped) {
-    if (!SIZES[name] || SIZES[name][0] !== w || SIZES[name][1] !== h) fail(name + " is " + w + "x" + h + " in data/maps.xml but " + JSON.stringify(SIZES[name]) + " in antarctica-geo.js");
+    if (!SIZES[name] || SIZES[name][0] !== w || SIZES[name][1] !== h) fail(name + " is " + w + "x" + h + " in data/maps.xml but " + JSON.stringify(SIZES[name]) + " in antarctica-raster.js");
 }
 
 const EDGE = { "south-america": "top", "africa": "top", "australia": "bottom", "new-zealand": "bottom" };
@@ -36,7 +39,7 @@ for (const [name, W, H] of shipped) {
         let s = seed * 7919 >>> 0;
         const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
         const logs = [];
-        const g = buildAntarcticaGrid(W, H, rnd, (m) => logs.push(m));
+        const g = buildAntarcticaGrid(W, H, GEO, rnd, (m) => logs.push(m));
         const tag = name + " seed " + seed;
         const before = failures;
         for (const m of logs) if (/not on land|no land course|no mouth/.test(m)) fail(tag + ": " + m);

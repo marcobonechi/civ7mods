@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Shell side of the Antarctica map: the entry in the map list and its three sizes. The grids
-     themselves come from data/maps.xml (game side), and maps/antarctica-geo.js knows them too. -->
+     themselves come from data/maps.xml (game side), and maps/antarctica-raster.js knows them too. -->
 <Database>
     <Maps>
         <Row File="{antarctica-map}maps/antarctica-map.js" Name="LOC_MAP_ANTARCTICA_NAME" Description="LOC_MAP_ANTARCTICA_DESCRIPTION" SortIndex="12"/>
