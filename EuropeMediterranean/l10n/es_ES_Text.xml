@@ -23,7 +23,13 @@
             <Text>Eurasia comprimida</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="es_ES">
-            <Text>Una copia separada del mapa, para modificarla en el editor sin tocar los otros dos.</Text>
+            <Text>Europa, el Mediterráneo y África; Rusia y el Caspio son un Océano Oriental y, al otro lado, China, Corea, Mongolia y Japón. Sin tierras lejanas.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="es_ES">
+            <Text>Eurasia comprimida (Tierras Lejanas)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="es_ES">
+            <Text>El mismo mapa, con Asia Oriental, Escandinavia e Islandia como tierras lejanas al otro lado del agua.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="es_ES">
             <Text>Europa Grande 112x98</Text>

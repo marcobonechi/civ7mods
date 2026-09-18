@@ -23,7 +23,13 @@
             <Text>Eurasie compressée</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="fr_FR">
-            <Text>Une copie séparée de la carte, à remodeler dans l'éditeur sans toucher aux deux autres.</Text>
+            <Text>L'Europe, la Méditerranée et l'Afrique ; la Russie et la Caspienne deviennent un océan Oriental, avec au-delà la Chine, la Corée, la Mongolie et le Japon. Sans terres lointaines.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="fr_FR">
+            <Text>Eurasie compressée (Terres lointaines)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="fr_FR">
+            <Text>La même carte, avec l'Asie orientale, la Scandinavie et l'Islande en terres lointaines de l'autre côté de l'eau.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="fr_FR">
             <Text>Europe Grande 112x98</Text>

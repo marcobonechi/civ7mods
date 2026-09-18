@@ -23,7 +23,13 @@
             <Text>Eurazja skompresowana</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="pl_PL">
-            <Text>Osobna kopia mapy do przerabiania w edytorze bez zmieniania dwóch pozostałych.</Text>
+            <Text>Europa, Morze Śródziemne i Afryka; Rosja i Morze Kaspijskie stają się Oceanem Wschodnim, a za nim leżą Chiny, Korea, Mongolia i Japonia. Bez dalekich ziem.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="pl_PL">
+            <Text>Eurazja skompresowana (Dalekie Ziemie)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="pl_PL">
+            <Text>Ta sama mapa, z Azją Wschodnią, Skandynawią i Islandią jako dalekimi ziemiami po drugiej stronie wody.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pl_PL">
             <Text>Europa Duża 112x98</Text>

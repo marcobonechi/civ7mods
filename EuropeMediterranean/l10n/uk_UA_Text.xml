@@ -23,7 +23,13 @@
             <Text>Стиснута Євразія</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="uk_UA">
-            <Text>Окрема копія мапи, яку можна переробляти в редакторі, не змінюючи двох інших.</Text>
+            <Text>Європа, Середземномор'я та Африка; Росія й Каспій стають Східним океаном, а за ним — Китай, Корея, Монголія та Японія. Без далеких земель.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="uk_UA">
+            <Text>Стиснута Євразія (Далекі землі)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="uk_UA">
+            <Text>Та сама мапа, де Східна Азія, Скандинавія та Ісландія — далекі землі за водою.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="uk_UA">
             <Text>Європа велика 112x98</Text>

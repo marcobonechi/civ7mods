@@ -23,7 +23,13 @@
             <Text>圧縮ユーラシア</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="ja_JP">
-            <Text>他の2つに影響を与えずにエディターで作り変えられる、マップの独立したコピー。</Text>
+            <Text>ヨーロッパ、地中海、アフリカ。ロシアとカスピ海は東の大洋となり、その向こうに中国、朝鮮、モンゴル、日本がある。遠方の地なし。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="ja_JP">
+            <Text>圧縮ユーラシア（遠方の地）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="ja_JP">
+            <Text>同じマップで、東アジア、スカンディナヴィア、アイスランドが海の向こうの遠方の地となる。</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ja_JP">
             <Text>ヨーロッパ 大型 112x98</Text>

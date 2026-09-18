@@ -23,7 +23,13 @@
             <Text>Eurasien komprimiert</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="de_DE">
-            <Text>Eine separate Kopie der Karte, die sich im Editor umgestalten lässt, ohne die anderen beiden zu verändern.</Text>
+            <Text>Europa, das Mittelmeer und Afrika; Russland und das Kaspische Meer sind ein Östlicher Ozean, dahinter China, Korea, die Mongolei und Japan. Keine fernen Länder.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="de_DE">
+            <Text>Eurasien komprimiert (Ferne Länder)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="de_DE">
+            <Text>Dieselbe Karte, mit Ostasien, Skandinavien und Island als ferne Länder jenseits des Wassers.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="de_DE">
             <Text>Europa Groß 112x98</Text>

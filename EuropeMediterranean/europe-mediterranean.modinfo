@@ -4,10 +4,11 @@
         <Name>Europe, Mediterranean, North Africa</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
-THREE MAPS
+FOUR MAPS
 - Distant Lands: Africa, Scandinavia and Iceland lie across the water
 - One Landmass: the same geography with nothing distant - Finland joins Russia and Egypt joins the Levant by land
-- Eurasia Compressed: a separate copy you can reshape without touching the other two
+- Eurasia Compressed: Russia and the Caspian become an Eastern Ocean, with China, Korea, Mongolia and Japan beyond it, where the East Asian civilizations start
+- Eurasia Compressed (Distant Lands): the same, with East Asia, Scandinavia and Iceland as Distant Lands
 Sizes 112x98, 128x112 and 144x126.
 
 TRUE STARTS
@@ -133,6 +134,7 @@ Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterr
                 </UpdateDatabase>
                 <ImportFiles>
                     <Item>maps/europe-alt-geo.js</Item>
+                    <Item>maps/europe-alt-distant-map.js</Item>
                     <Item>maps/europe-alt-map.js</Item>
                     <Item>maps/europe-geo.js</Item>
                     <Item>maps/europe-large-core.js</Item>
@@ -194,10 +196,11 @@ Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterr
         <Text id="LOC_MODULE_EUROPE_MED_DESCRIPTION">
             <en_US>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
-THREE MAPS
+FOUR MAPS
 - Distant Lands: Africa, Scandinavia and Iceland lie across the water
 - One Landmass: the same geography with nothing distant - Finland joins Russia and Egypt joins the Levant by land
-- Eurasia Compressed: a separate copy you can reshape without touching the other two
+- Eurasia Compressed: Russia and the Caspian become an Eastern Ocean, with China, Korea, Mongolia and Japan beyond it, where the East Asian civilizations start
+- Eurasia Compressed (Distant Lands): the same, with East Asia, Scandinavia and Iceland as Distant Lands
 Sizes 112x98, 128x112 and 144x126.
 
 TRUE STARTS
@@ -283,10 +286,11 @@ A civilization without a start, or one whose start another player already holds,
 Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</en_US>
             <it_IT>Europa, Mediterraneo e Africa sopra l'Equatore, con una partenza storica per ogni civiltà di ogni era e fiumi tracciati dove scorrono davvero.
 
-TRE MAPPE
+QUATTRO MAPPE
 - Terre Lontane: Africa, Scandinavia e Islanda oltre il mare
 - Terra Unica: la stessa geografia senza nulla di lontano - la Finlandia si unisce alla Russia e l'Egitto al Levante via terra
-- Eurasia compressa: una copia a parte, da rimodellare senza toccare le altre due
+- Eurasia compressa: la Russia e il Caspio diventano un Oceano Orientale, e al di là Cina, Corea, Mongolia e Giappone, dove partono le civiltà dell'Asia orientale
+- Eurasia compressa (Terre lontane): la stessa, con Asia orientale, Scandinavia e Islanda come terre lontane
 Dimensioni 112x98, 128x112 e 144x126.
 
 PARTENZE STORICHE
@@ -372,10 +376,11 @@ Una civiltà senza partenza, o la cui partenza è già occupata da un altro gioc
 Screenshot e dettagli: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</it_IT>
             <uk_UA>Європа, Середземномор'я та Африка на північ від екватора, з історичною стартовою позицією для кожної цивілізації кожної доби та річками там, де вони справді течуть.
 
-ТРИ КАРТИ
+ЧОТИРИ КАРТИ
 - Далекі землі: Африка, Скандинавія та Ісландія за водою
 - Єдиний материк: та сама географія без нічого далекого - Фінляндія суходолом з'єднана з Росією, а Єгипет із Левантом
-- Стиснута Євразія: окрема копія, яку можна переробляти, не торкаючись двох інших
+- Стиснута Євразія: Росія й Каспій стають Східним океаном, а за ним — Китай, Корея, Монголія та Японія, де починають цивілізації Східної Азії
+- Стиснута Євразія (Далекі землі): те саме, зі Східною Азією, Скандинавією та Ісландією як далекими землями
 Розміри 112x98, 128x112 і 144x126.
 
 ІСТОРИЧНІ СТАРТОВІ ПОЗИЦІЇ
@@ -461,10 +466,11 @@ Screenshot e dettagli: https://marcobonechi.github.io/civ7mods/europe-mediterran
 Знімки екрана та подробиці: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</uk_UA>
             <de_DE>Europa, das Mittelmeer und Afrika oberhalb des Äquators, mit einem historischen Startplatz für jede Zivilisation jedes Zeitalters und Flüssen dort, wo sie wirklich fließen.
 
-DREI KARTEN
+VIER KARTEN
 - Ferne Länder: Afrika, Skandinavien und Island liegen jenseits des Wassers
 - Eine Landmasse: dieselbe Geografie ohne ferne Länder - Finnland hängt über Land an Russland, Ägypten an der Levante
-- Eurasien komprimiert: eine eigene Kopie, die sich umgestalten lässt, ohne die anderen beiden anzurühren
+- Eurasien komprimiert: Russland und das Kaspische Meer werden ein Östlicher Ozean, dahinter China, Korea, die Mongolei und Japan, wo die ostasiatischen Zivilisationen beginnen
+- Eurasien komprimiert (Ferne Länder): dasselbe, mit Ostasien, Skandinavien und Island als ferne Länder
 Größen 112x98, 128x112 und 144x126.
 
 HISTORISCHE STARTPLÄTZE
@@ -550,10 +556,11 @@ Eine Zivilisation ohne Startplatz, oder deren Platz schon ein anderer Spieler h�
 Screenshots und Details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</de_DE>
             <fr_FR>L'Europe, la Méditerranée et l'Afrique au nord de l'équateur, avec un départ historique pour chaque civilisation de chaque ère et des fleuves tracés là où ils coulent vraiment.
 
-TROIS CARTES
+QUATRE CARTES
 - Terres lointaines : l'Afrique, la Scandinavie et l'Islande de l'autre côté de l'eau
 - Masse continentale unique : la même géographie sans rien de lointain - la Finlande rejoint la Russie et l'Égypte le Levant par la terre
-- Eurasie compressée : une copie à part, à remodeler sans toucher aux deux autres
+- Eurasie compressée : la Russie et la Caspienne deviennent un océan Oriental, avec au-delà la Chine, la Corée, la Mongolie et le Japon, où commencent les civilisations d'Asie orientale
+- Eurasie compressée (Terres lointaines) : la même, avec l'Asie orientale, la Scandinavie et l'Islande en terres lointaines
 Tailles 112x98, 128x112 et 144x126.
 
 DÉPARTS HISTORIQUES
@@ -639,10 +646,11 @@ Une civilisation sans départ, ou dont le départ est déjà pris par un autre j
 Captures d'écran et détails : https://marcobonechi.github.io/civ7mods/europe-mediterranean/</fr_FR>
             <es_ES>Europa, el Mediterráneo y África por encima del ecuador, con una posición histórica para cada civilización de cada era y ríos trazados por donde corren de verdad.
 
-TRES MAPAS
+CUATRO MAPAS
 - Tierras Lejanas: África, Escandinavia e Islandia al otro lado del agua
 - Una Sola Masa Continental: la misma geografía sin nada lejano - Finlandia se une a Rusia y Egipto al Levante por tierra
-- Eurasia comprimida: una copia aparte que puedes remodelar sin tocar las otras dos
+- Eurasia comprimida: Rusia y el Caspio se convierten en un Océano Oriental y, al otro lado, China, Corea, Mongolia y Japón, donde empiezan las civilizaciones de Asia Oriental
+- Eurasia comprimida (Tierras Lejanas): lo mismo, con Asia Oriental, Escandinavia e Islandia como tierras lejanas
 Tamaños 112x98, 128x112 y 144x126.
 
 POSICIONES HISTÓRICAS
@@ -728,10 +736,11 @@ Una civilización sin posición, o cuya posición ya ocupa otro jugador, se asie
 Capturas de pantalla y detalles: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</es_ES>
             <pl_PL>Europa, Morze Śródziemne i Afryka na północ od równika, z historyczną pozycją startową dla każdej cywilizacji każdej epoki i rzekami tam, gdzie naprawdę płyną.
 
-TRZY MAPY
+CZTERY MAPY
 - Dalekie Ziemie: Afryka, Skandynawia i Islandia po drugiej stronie wody
 - Jeden Ląd: ta sama geografia bez niczego dalekiego - Finlandia łączy się lądem z Rosją, a Egipt z Lewantem
-- Eurazja skompresowana: osobna kopia, którą można przekształcać bez ruszania dwóch pozostałych
+- Eurazja skompresowana: Rosja i Morze Kaspijskie stają się Oceanem Wschodnim, a za nim Chiny, Korea, Mongolia i Japonia, gdzie zaczynają cywilizacje Azji Wschodniej
+- Eurazja skompresowana (Dalekie Ziemie): to samo, z Azją Wschodnią, Skandynawią i Islandią jako dalekimi ziemiami
 Rozmiary 112x98, 128x112 i 144x126.
 
 HISTORYCZNE POZYCJE STARTOWE
@@ -817,10 +826,11 @@ Cywilizacja bez pozycji startowej albo taka, której pozycję zajmuje już inny 
 Zrzuty ekranu i szczegóły: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pl_PL>
             <pt_BR>Europa, Mediterrâneo e África acima do Equador, com uma posição histórica para cada civilização de cada era e rios traçados por onde realmente correm.
 
-TRÊS MAPAS
+QUATRO MAPAS
 - Terras Distantes: África, Escandinávia e Islândia do outro lado da água
 - Massa Continental Única: a mesma geografia sem nada distante - a Finlândia se liga à Rússia e o Egito ao Levante por terra
-- Eurásia comprimida: uma cópia à parte, para remodelar sem tocar nas outras duas
+- Eurásia comprimida: a Rússia e o Cáspio viram um Oceano Oriental e, além dele, China, Coreia, Mongólia e Japão, onde começam as civilizações da Ásia Oriental
+- Eurásia comprimida (Terras Distantes): o mesmo, com a Ásia Oriental, a Escandinávia e a Islândia como terras distantes
 Tamanhos 112x98, 128x112 e 144x126.
 
 POSIÇÕES HISTÓRICAS
@@ -906,10 +916,11 @@ Uma civilização sem posição, ou cuja posição outro jogador já ocupa, se i
 Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</pt_BR>
             <zh_Hans_CN>赤道以北的欧洲、地中海与非洲。每个时代的每个文明都有历史起始点，河流画在它们真正流经的地方。
 
-三张地图
+四张地图
 - 远方大陆：非洲、斯堪的纳维亚与冰岛隔海相望
 - 单一大陆：地形相同，没有远方大陆，芬兰与俄罗斯、埃及与黎凡特陆路相连
-- 压缩欧亚大陆：单独的副本，可随意重塑而不影响另外两张
+- 压缩欧亚大陆：俄罗斯和里海化为东方大洋，彼岸的中国、朝鲜半岛、蒙古和日本是东亚文明的起点
+- 压缩欧亚大陆（远方大陆）：地形相同，东亚、斯堪的纳维亚和冰岛为远方大陆
 尺寸为 112x98、128x112 和 144x126。
 
 历史起始点
@@ -995,10 +1006,11 @@ Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-medi
 截图与详情：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hans_CN>
             <zh_Hant_HK>赤道以北的歐洲、地中海與非洲。每個時代的每個文明都有歷史起始點，河流畫在它們真正流經的地方。
 
-三張地圖
+四張地圖
 - 遠方大陸：非洲、斯堪的納維亞與冰島隔海相望
 - 單一大陸：地形相同，沒有遠方大陸，芬蘭與俄羅斯、埃及與黎凡特陸路相連
-- 壓縮歐亞大陸：單獨的副本，可隨意重塑而不影響另外兩張
+- 壓縮歐亞大陸：俄羅斯和裏海化為東方大洋，彼岸的中國、朝鮮半島、蒙古和日本是東亞文明的起點
+- 壓縮歐亞大陸（遠方大陸）：地形相同，東亞、斯堪的納維亞和冰島為遠方大陸
 尺寸為 112x98、128x112 和 144x126。
 
 歷史起始點
@@ -1084,10 +1096,11 @@ Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-medi
 截圖與詳情：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</zh_Hant_HK>
             <ja_JP>赤道以北のヨーロッパ、地中海、アフリカ。すべての時代のすべての文明に歴史的な開始地点があり、川は実際に流れている場所に描かれています。
 
-3種類のマップ
+4種類のマップ
 ・遠方の地：アフリカ、スカンディナヴィア、アイスランドが海の向こう
 ・単一大陸：同じ地形で遠方の地なし。フィンランドはロシアと、エジプトはレバントと陸続き
-・圧縮ユーラシア：他の2つに手を触れず作り替えられる別のコピー
+・圧縮ユーラシア：ロシアとカスピ海は東の大洋となり、その向こうの中国、朝鮮、モンゴル、日本で東アジアの文明が始まる
+・圧縮ユーラシア（遠方の地）：同じ地形で、東アジア、スカンディナヴィア、アイスランドが遠方の地
 サイズは 112x98、128x112、144x126。
 
 歴史的な開始地点
@@ -1173,10 +1186,11 @@ Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-medi
 スクリーンショットと詳細：https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ja_JP>
             <ko_KR>적도 이북의 유럽, 지중해, 아프리카. 모든 시대의 모든 문명에 역사적 시작 위치가 있고, 강은 실제로 흐르는 곳에 그려져 있습니다.
 
-세 가지 지도
+네 가지 지도
 - 먼 땅: 아프리카, 스칸디나비아, 아이슬란드가 바다 건너편
 - 단일 대륙: 같은 지형에 먼 땅 없음 - 핀란드는 러시아와, 이집트는 레반트와 육지로 이어짐
-- 압축된 유라시아: 다른 두 지도를 건드리지 않고 다시 빚을 수 있는 별도의 사본
+- 압축된 유라시아: 러시아와 카스피해가 동쪽 대양이 되고, 그 너머 중국, 한국, 몽골, 일본에서 동아시아 문명이 시작
+- 압축된 유라시아 (먼 땅): 같은 지형에 동아시아, 스칸디나비아, 아이슬란드가 먼 땅
 크기는 112x98, 128x112, 144x126입니다.
 
 역사적 시작 위치

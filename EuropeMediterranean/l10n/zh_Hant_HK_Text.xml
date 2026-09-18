@@ -23,7 +23,13 @@
             <Text>壓縮歐亞大陸</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hant_HK">
-            <Text>地圖的獨立副本，可在編輯器中改造，不影響另外兩張地圖。</Text>
+            <Text>歐洲、地中海與非洲；俄羅斯和裏海化為東方大洋，大洋彼岸是中國、朝鮮半島、蒙古和日本。沒有遠方大陸。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="zh_Hant_HK">
+            <Text>壓縮歐亞大陸（遠方大陸）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="zh_Hant_HK">
+            <Text>同一張地圖，東亞、斯堪的納維亞和冰島作為隔海的遠方大陸。</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hant_HK">
             <Text>歐洲大型地圖 112x98</Text>

@@ -23,7 +23,13 @@
             <Text>Eurasia Compressed</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION">
-            <Text>A separate copy of the map, to reshape in the editor without touching the other two.</Text>
+            <Text>Europe, the Mediterranean and Africa, with Russia and the Caspian turned into an Eastern Ocean and China, Korea, Mongolia and Japan beyond it. No Distant Lands.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME">
+            <Text>Eurasia Compressed (Distant Lands)</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION">
+            <Text>The same map, with East Asia, Scandinavia and Iceland as Distant Lands across the water.</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>

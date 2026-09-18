@@ -23,7 +23,13 @@
             <Text>压缩欧亚大陆</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hans_CN">
-            <Text>地图的独立副本，可在编辑器中改造，不影响另外两张地图。</Text>
+            <Text>欧洲、地中海与非洲；俄罗斯和里海化为东方大洋，大洋彼岸是中国、朝鲜半岛、蒙古和日本。没有远方大陆。</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_NAME" Language="zh_Hans_CN">
+            <Text>压缩欧亚大陆（远方大陆）</Text>
+        </Replace>
+        <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>同一张地图，东亚、斯堪的纳维亚和冰岛作为隔海的远方大陆。</Text>
         </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hans_CN">
             <Text>欧洲大地图 112x98</Text>

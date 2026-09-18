@@ -31,9 +31,9 @@ export const GEO = {
     // Distant Lands: one anchor per landmass that should sit across the sea. [20, 10] is the
     // Sahel, i.e. the African landmass, which the Mediterranean and the Suez channel separate
     // from Eurasia. Leave the list empty to put every landmass in one region.
-    // East Asia is distant land too, so the distant share runs higher than on the other maps
-    // (tools/check-map-sizes.mjs reads this range; the others use 25-50%).
-    distantLandsShare: [25, 62],
+    // East Asia, Scandinavia and Iceland against everything else (tools/check-map-sizes.mjs reads
+    // this range; the other maps use 25-50%).
+    distantLandsShare: [12, 28],
     // What check-map-sizes verifies about land connections here: [name, from, to], each end a
     // [lon, lat] or a true-start key.
     expectLand: {
@@ -43,10 +43,11 @@ export const GEO = {
                 ["Korea and Japan", "CIVILIZATION_JOSEON", "CIVILIZATION_MEIJI"],
                 ["China and Iran", "CIVILIZATION_MING", "CIVILIZATION_QAJAR"]],
     },
+    // Two maps read this file. "Eurasia Compressed (Distant Lands)" uses these anchors as they
+    // stand: East Asia, Scandinavia with Finland, and Iceland (with Faroe and Shetland, its stepping
+    // stones) are Distant Lands; Africa and everything else are home lands. "Eurasia Compressed"
+    // passes the file through oneLandmassGeo (europe-raster.js), which empties the list.
     distantLandsAnchors: [
-        [20, 10],            // the Sahel, i.e. the whole African landmass
-        [-12.0, 47.0],       // Ile de l'Ouest  - Atlantic outposts, reachable only by sea
-        [-12.6, 44.6],       // Ile du Sud,
         [18.1, 59.3],        // Scandinavia and Finland, cut off by the Eastern Ocean, which covers Karelia
         [-21.9, 64.1],       // Iceland,
         [-6.9, 62.0],        // Faroe   - stepping stones, so the Norse north is one region and
@@ -727,8 +728,10 @@ export const GEO = {
         { name: "Euripus", pts: [[23.2, 38.85], [23.6, 38.55]] },
         { name: "Gulf of Suez", pts: [[32.55, 29.9], [33.0, 28.7], [33.7, 27.6], [34.4, 26.6]] },
         { name: "Gulf of Aqaba", pts: [[35.0, 29.5], [34.7, 28.6], [34.4, 27.8]] },
-        // Suez Canal: a one-hex sea channel from the Mediterranean near Gaza through the Dead Sea to the Gulf of Aqaba
-        { name: "Suez Canal", pts: [[34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6]] },
+        // The Suez Canal where it really runs, Port Said - Ismailia - Suez, one hex wide into the Gulf of
+        // Suez: ships pass from the Mediterranean to the Red Sea, and Sinai belongs to Asia. (The other
+        // maps cut a channel through Palestine instead, from Gaza by the Dead Sea to Aqaba.)
+        { name: "Suez Canal", pts: [[32.3, 31.45], [32.3, 30.6], [32.45, 30.2], [32.55, 29.9]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
     ],
