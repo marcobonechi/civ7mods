@@ -1,6 +1,6 @@
 ---
 name: new-civilization
-description: Add a new playable civilization to the civ7mods repository as its own Civilization VII mod folder (data XML, shell config, text, icons, visual remaps, true start on the Europe maps). Use when asked to create, scaffold, or extend a Civ 7 civilization mod.
+description: Add a new playable civilization or leader to the civ7mods repository as its own Civilization VII mod folder (data XML, shell config, text, icons, leader portraits and borrowed model, visual remaps, true start on the Europe maps). Use when asked to create, scaffold, or extend a Civ 7 civilization or leader mod.
 ---
 
 # New civilization mod
@@ -26,9 +26,55 @@ art). Read `reference.md` in this folder for the table-by-table details and pitf
 Never invent a table, column, effect, requirement or modifier id. Grep it in the base
 modules first and copy a working row.
 
+## Intake: ask before building
+
+Do not start from guesses. Before any file is written, ask the user in **two rounds**, each one
+message, and wait for the answers. Say which items you can draft for them ("leave blank and I
+will propose") so they only fill what they care about. If they are adding only a leader to an
+existing civ, skip the civ items. Anything still open after both rounds is proposed in the design
+sheet (step 1) and confirmed there, not decided silently.
+
+**Round 1 — names and the art to start from.** One plain message with a checklist to fill in
+(not `AskUserQuestion`: these are free-text answers):
+
+- Civilization: name, full name ("The Etruscan League"), adjective, capital, apex age, where it
+  starts on the Europe maps (a city or `[lon, lat]`), 30 city names and 10 + 10 citizen names
+  (offer to draft both).
+- Leader: name and epithet, gender, a one-line quote for Leader Select, and which shipped leader's
+  3D model to borrow (a mod cannot ship one; offer candidates that fit the era and dress).
+- The names of the uniques: each unique unit and the base unit it replaces, the two quarter
+  buildings and the quarter's name, the associated wonder, the three civics with their traditions.
+- Art they already have, as file paths. For each slot, say what it becomes, and that a missing one
+  gets a placeholder (`tools/make-icons.py`, `tools/make-backgrounds.py`) or a generator prompt
+  from `plans/etruscans-tuscany-art.md` §2:
+  - leader painting, square, ideally 1024² or larger, head and shoulders with some space above the
+    head → `leader_<leader>`, the `lp_circ_*` circles, the `lp_hex_*` ribbon busts
+    (`tools/leader-hex.sh`) and, cropped to 2:3, `lsl_<leader>` (720×1080);
+  - civ symbol (a single bold shape; it is recoloured) → `civ_sym_<civ>`;
+  - one silhouette per unique unit → `unitflag_*`; one icon per building and the wonder →
+    `buildicon_*`, `wondericon_*` (`tools/art-icon.py` keys a flat background off);
+  - a 16:9 landscape painting → loading screen and picker panel, and a 9:16 one → the tall
+    civ-select card and detail card (`tools/art-background.py`).
+
+**Round 2 — what makes them special.** Ask for the gameplay, in plain language; they do not need
+to know effect ids:
+
+- Civ ability: name and 2-3 effects. Leader ability: name and 2-3 effects.
+- Two attributes each for the civ and the leader, from the six the game has: Cultural,
+  Diplomatic (`TAG_TRAIT_POLITICAL`), Economic, Expansionist, Militaristic, Scientific. List all
+  six in the message; `AskUserQuestion` offers at most four options, so it cannot carry them.
+- For each unique unit, how it differs from the unit it replaces. Yields or effects of the two
+  buildings and the quarter bonus. The wonder's effect. The effect of each tradition.
+- Unlocks: which civs and leaders unlock this civ, and which next-age civ it unlocks. Start bias.
+  The leader's diplomatic agenda (every shipped leader has one, reference.md §4).
+
+Then map every answer onto an effect the game already has: grep the base modules for a working row
+(see "Never invent" above). Report back any ability that has no existing effect, with the nearest
+thing that does exist, before building it.
+
 ## Procedure
 
-1. **Design sheet.** Decide: id (`CIVILIZATION_X`, `TRAIT_X`, `TRAIT_X_ABILITY`), apex age,
+1. **Design sheet**, from the intake answers. Decide: id (`CIVILIZATION_X`, `TRAIT_X`, `TRAIT_X_ABILITY`), apex age,
    two attribute tags, ability (2 or 3 effects), unique units (a 3-tier line replacing a base
    line, plus optionally a second unit or commander), unique quarter (two buildings), associated
    wonder, three civic nodes with three traditions, city list (30), citizen names (10+10),
