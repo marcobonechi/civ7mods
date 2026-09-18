@@ -50,11 +50,17 @@ const xml = fs.readFileSync(path.join(MOD, 'data', 'maps.xml'), 'utf8');
 const shipped = [...xml.matchAll(/MapSizeType="(\w+)"[^>]*GridWidth="(\d+)" GridHeight="(\d+)"/g)].map(m => ({ name: m[1], w: +m[2], h: +m[3] }));
 const cfg = fs.readFileSync(path.join(MOD, 'config', 'config.xml'), 'utf8');
 const registered = [...cfg.matchAll(/<Row File="\{europe-mediterranean-map\}maps\/([\w-]+\.js)"/g)].map(m => m[1]);
-const geoFiles = [...new Set(registered.flatMap(f => [...fs.readFileSync(path.join(MAPS, f), 'utf8').matchAll(/maps\/([\w-]+-geo\.js)/g)].map(m => m[1])))].sort();
+// Each registered map script as the game builds it: One Landmass passes the shared geo through
+// oneLandmassGeo, which drops channels, so its rivers are planned on different coasts.
+const maps = registered.map(script => {
+    const src = fs.readFileSync(path.join(MAPS, script), 'utf8');
+    return { script, geoFile: (src.match(/maps\/([\w-]+-geo\.js)/) || [])[1], united: /oneLandmassGeo\(/.test(src) };
+}).filter(m => m.geoFile);
 
-for (const geoFile of geoFiles) {
-    const { GEO } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
-    console.log('\n=== ' + geoFile);
+for (const { script, geoFile, united } of maps) {
+    const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
+    const GEO = united ? raster.oneLandmassGeo(RAW) : RAW;
+    console.log('\n=== ' + script + ' (' + geoFile + (united ? ', one landmass' : '') + ')');
     for (const { name, w: W, h: H } of shipped) {
         for (let seed = 1; seed <= seeds; seed++) {
             let s = seed * 7919;

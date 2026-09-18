@@ -19,12 +19,6 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="pt_BR">
             <Text>O mesmo mapa sem Terras Distantes: todas as civilizações são alcançáveis por terra. Os caminhos de legado do tesouro e militar da Era da Exploração não pontuam aqui.</Text>
         </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="pt_BR">
-            <Text>Europa e Mediterrâneo (Variante)</Text>
-        </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="pt_BR">
-            <Text>Uma cópia separada do mapa, para remodelar no editor sem alterar os outros dois.</Text>
-        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pt_BR">
             <Text>Europa Grande 112x98</Text>
         </Replace>

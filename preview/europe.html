@@ -827,6 +827,20 @@ function hexDistance(x1, y1, x2, y2) {
 
 // ---- main ------------------------------------------------------------------
 
+// The One Landmass map is the Distant Lands geography with its separations taken out, derived
+// here rather than kept as a second geo file so the two maps can never drift apart: every edit
+// to europe-large-geo.js reaches both. It drops the Distant Lands anchors (one region for all
+// land) and every waterLine marked separatesDistantLands - the channels that exist only to cut
+// one landmass into two (the Karelian passage, the Palestine channel). The map scripts and the
+// check tools all call this, so what the tools verify is what the game builds.
+function oneLandmassGeo(GEO) {
+    return {
+        ...GEO,
+        distantLandsAnchors: [],
+        waterLines: (GEO.waterLines || []).filter((l) => !l.separatesDistantLands),
+    };
+}
+
 function buildEuropeGrid(W, H, GEO, rnd) {
     const P = makeProjection(GEO, W, H);
     const N = W * H;

@@ -19,12 +19,6 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="uk_UA">
             <Text>Та сама мапа без Далеких земель: до кожної цивілізації можна дістатися суходолом. Скарбовий і військовий шляхи спадщини Доби досліджень тут не приносять очок.</Text>
         </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="uk_UA">
-            <Text>Європа та Середземномор'я (Варіант)</Text>
-        </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="uk_UA">
-            <Text>Окрема копія мапи, яку можна переробляти в редакторі, не змінюючи двох інших.</Text>
-        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="uk_UA">
             <Text>Європа велика 112x98</Text>
         </Replace>

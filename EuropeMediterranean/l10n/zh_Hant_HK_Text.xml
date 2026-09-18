@@ -19,12 +19,6 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="zh_Hant_HK">
             <Text>沒有遙遠土地的同一張地圖：所有文明都可經陸路抵達。探索時代的寶藏與軍事傳承之路在此無法得分。</Text>
         </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="zh_Hant_HK">
-            <Text>歐洲與地中海（變體）</Text>
-        </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="zh_Hant_HK">
-            <Text>地圖的獨立副本，可在編輯器中改造，不影響另外兩張地圖。</Text>
-        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hant_HK">
             <Text>歐洲大型地圖 112x98</Text>
         </Replace>

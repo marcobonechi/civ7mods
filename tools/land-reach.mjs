@@ -8,13 +8,13 @@
 // thirty-seven tiles with no land route to the rest of Europe at any grid size. Nothing in the
 // map output says so; you have to flood-fill for it.
 //
-//   node tools/land-reach.mjs <europe|large|alt> <W> <H> <lon> <lat> [seed]
+//   node tools/land-reach.mjs <europe|large|united> <W> <H> <lon> <lat> [seed]
 //
 // Prints the walkable-tile count and the northernmost latitude reached. On a healthy start the
 // count is in the thousands and the map's own northern edge comes back as the latitude.
 //
 // Grid sizes, from the map scripts: europe-map.js uses 56x50, 66x60, 78x70, 90x80, 102x92;
-// europe-large-core.js (the Large and Variant maps) uses 60x38, 74x46, 84x54, 96x60, 106x66 and
+// europe-large-core.js (the Distant Lands and One Landmass maps) uses 60x38, 74x46, 84x54, 96x60, 106x66 and
 // 112x98, 128x112, 144x126. Terrain is seeded, so sweep a few seeds.
 import { mkdtempSync, copyFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -22,16 +22,18 @@ import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const [geoName, W, H, lon, lat, seedArg] = process.argv.slice(2);
-if (!lat) { console.error("usage: land-reach.mjs <europe|large|alt> W H lon lat [seed]"); process.exit(2); }
+if (!lat) { console.error("usage: land-reach.mjs <europe|large|united> W H lon lat [seed]"); process.exit(2); }
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "EuropeMediterranean", "maps");
-const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", alt: "europe-alt-geo.js" }[geoName];
+const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js" }[geoName];
 if (!geoFile) { console.error("unknown geo: " + geoName); process.exit(2); }
 // The map files are ES modules with a .js extension; copy them as .mjs so node accepts them.
 const tmp = mkdtempSync(join(tmpdir(), "civ7-reach-"));
 copyFileSync(join(root, "europe-raster.js"), join(tmp, "europe-raster.mjs"));
 copyFileSync(join(root, geoFile), join(tmp, "geo.mjs"));
-const { buildEuropeGrid, T } = await import(pathToFileURL(join(tmp, "europe-raster.mjs")).href);
-const { GEO } = await import(pathToFileURL(join(tmp, "geo.mjs")).href);
+const { buildEuropeGrid, T, oneLandmassGeo } = await import(pathToFileURL(join(tmp, "europe-raster.mjs")).href);
+const { GEO: RAW } = await import(pathToFileURL(join(tmp, "geo.mjs")).href);
+// "united" is the One Landmass map: the large geography through oneLandmassGeo, as the game builds it.
+const GEO = geoName === "united" ? oneLandmassGeo(RAW) : RAW;
 
 let s = Number(seedArg ?? 7) >>> 0;
 const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };

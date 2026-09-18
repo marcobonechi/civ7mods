@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Count how many regional resource areas cover each hex of a Europe map, offline.
-// Usage: node tools/resource-overlap.mjs <large|alt> [W H]
+// Usage: node tools/resource-overlap.mjs <large|united> [W H]
 // Water areas (only sea resources) count on water hexes, land areas on land hexes.
 import { mkdtempSync, copyFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -8,12 +8,14 @@ import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 const [geoName, W = "128", H = "112"] = process.argv.slice(2);
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "EuropeMediterranean", "maps");
-const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", alt: "europe-alt-geo.js" }[geoName];
+const geoFile = { europe: "europe-geo.js", large: "europe-large-geo.js", united: "europe-large-geo.js" }[geoName];
 const tmp = mkdtempSync(join(tmpdir(), "civ7-ov-"));
 copyFileSync(join(root, "europe-raster.js"), join(tmp, "europe-raster.mjs"));
 copyFileSync(join(root, geoFile), join(tmp, "geo.mjs"));
-const { buildEuropeGrid, T } = await import(pathToFileURL(join(tmp, "europe-raster.mjs")).href);
-const { GEO } = await import(pathToFileURL(join(tmp, "geo.mjs")).href);
+const { buildEuropeGrid, T, oneLandmassGeo } = await import(pathToFileURL(join(tmp, "europe-raster.mjs")).href);
+const { GEO: RAW } = await import(pathToFileURL(join(tmp, "geo.mjs")).href);
+// "united" is the One Landmass map: the large geography through oneLandmassGeo, as the game builds it.
+const GEO = geoName === "united" ? oneLandmassGeo(RAW) : RAW;
 let s = 7; const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 const grid = buildEuropeGrid(Number(W), Number(H), GEO, rnd);
 const SEA = new Set(["RESOURCE_FISH", "RESOURCE_CRABS", "RESOURCE_TURTLES", "RESOURCE_PEARLS", "RESOURCE_WHALES", "RESOURCE_DYES", "RESOURCE_COWRIE"]);   // cowrie sits on coast water

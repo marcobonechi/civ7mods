@@ -14,7 +14,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const MOD = path.join(HERE, '..', 'EuropeMediterranean');
 const MAPS = path.join(MOD, 'maps');
 
-const { buildEuropeGrid, hexNeighbors, hexDistance } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
+const { buildEuropeGrid, hexNeighbors, hexDistance, oneLandmassGeo } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
 
 // Sizes come from the mod's own gameplay data, so this cannot drift from what ships.
 const xml = fs.readFileSync(path.join(MOD, 'data', 'maps.xml'), 'utf8');
@@ -57,15 +57,24 @@ const check = (cond, msg) => { console.log((cond ? '    ok   ' : '    FAIL ') + 
 // and it is built for the base game's sizes, so it is not in scope here.
 const cfg = fs.readFileSync(path.join(MOD, 'config', 'config.xml'), 'utf8');
 const registered = [...cfg.matchAll(/<Row File="\{europe-mediterranean-map\}maps\/([\w-]+\.js)"/g)].map(m => m[1]);
-const geoFiles = [...new Set(registered.flatMap(f => {
-    const src = fs.readFileSync(path.join(MAPS, f), 'utf8');
-    return [...src.matchAll(/maps\/([\w-]+-geo\.js)/g)].map(m => m[1]);
-}))].sort();
-if (!geoFiles.length) { console.error('no registered map scripts found'); process.exit(1); }
+// Each registered map script is checked as the game builds it: its geo file, passed through
+// oneLandmassGeo when the script does that (the One Landmass map), so both maps are verified
+// from the one europe-large-geo.js they share.
+const maps = registered.map(script => {
+    const src = fs.readFileSync(path.join(MAPS, script), 'utf8');
+    const geoFile = (src.match(/maps\/([\w-]+-geo\.js)/) || [])[1];
+    return { script, geoFile, united: /oneLandmassGeo\(/.test(src) };
+}).filter(m => m.geoFile);
+if (!maps.length) { console.error('no registered map scripts found'); process.exit(1); }
 
-for (const geoFile of geoFiles) {
-    const { GEO } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
-    console.log('\n=== ' + geoFile + '  (' + shipped.length + ' shipped sizes)');
+// Land that Distant Lands keeps apart by sea and One Landmass joins: [name, from, to].
+const JOINS = [['Finland and Russia', [23.8, 61.5], [37.6, 55.75]],
+               ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]]];
+
+for (const { script, geoFile, united } of maps) {
+    const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
+    const GEO = united ? oneLandmassGeo(RAW) : RAW;
+    console.log('\n=== ' + script + ' (' + geoFile + (united ? ', one landmass' : '') + ')  (' + shipped.length + ' shipped sizes)');
 
     for (const { name, w: W, h: H } of shipped) {
         let s = 1;
@@ -90,7 +99,21 @@ for (const geoFile of geoFiles) {
         // A region change across connected land is an impassable wall - this is the bug
         // that once stopped a Roman scout entering Greece.
         check(seam === 0, `no land seam between regions (${seam})`);
-        check(eastPct > 25 && eastPct < 50, `Distant Lands hold ${eastPct.toFixed(1)}% of land`);
+        if (united) check(east === 0, `no Distant Lands (${eastPct.toFixed(1)}% of land)`);
+        else check(eastPct > 25 && eastPct < 50, `Distant Lands hold ${eastPct.toFixed(1)}% of land`);
+        const landOf = (ll) => {
+            const t = g.findLandTile(ll[0], ll[1], 3, true);
+            const seen = new Set([t.join()]), q = [t];
+            for (let h = 0; h < q.length; h++) for (const [a, b] of hexNeighbors(...q[h])) {
+                if (!inB(a, b) || seen.has(a + ',' + b) || !g.isLand[g.idx(a, b)]) continue;
+                seen.add(a + ',' + b); q.push([a, b]);
+            }
+            return seen;
+        };
+        for (const [name, a, b] of JOINS) {
+            const tb = g.findLandTile(b[0], b[1], 3, true), joined = landOf(a).has(tb.join());
+            check(joined === united, `${name} ${joined ? 'joined by land' : 'apart by sea'}`);
+        }
 
         // Only one age is ever live, so two ages may share a site on purpose - a
         // clash only matters between civs that can be in the same game. The engine

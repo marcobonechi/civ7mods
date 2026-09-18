@@ -492,7 +492,7 @@ leader is picked. To check an asset name before borrowing it, the 28,000-name
 
 ## 5. Map integration
 
-`tsl` in `europe-geo.js`, `europe-large-geo.js`, `europe-alt-geo.js`: `[lon, lat]`. The map
+`tsl` in `europe-large-geo.js` (both shipped maps read it) and `europe-geo.js` (unregistered): `[lon, lat]`. The map
 script checks `MIN_SPACING` (5 hexes on the standard map, grid width / 14 on the large ones)
 against already placed starts, in player order; a blocked true start falls back to the
 curated list. Keep neighbouring true starts apart or move one.

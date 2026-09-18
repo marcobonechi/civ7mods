@@ -663,7 +663,9 @@ export const GEO = {
         // Karelian passage: a one-hex channel from the Gulf of Finland through Ladoga and Onega to
         // the White Sea, following the line of the real Belomorsk canal. It cuts Finland from
         // Russia, which is what makes Scandinavia a landmass of its own and so Distant Lands.
-        { name: "Karelian passage", pts: [[29.5, 60.0], [31.3, 60.9], [35.4, 61.9], [36.5, 64.0], [36.5, 66.5]] },
+        // separatesDistantLands: the One Landmass map leaves it out (oneLandmassGeo in
+        // europe-raster.js), so there Finland and Russia are joined by land as they really are.
+        { name: "Karelian passage", separatesDistantLands: true, pts: [[29.5, 60.0], [31.3, 60.9], [35.4, 61.9], [36.5, 64.0], [36.5, 66.5]] },
         { name: "Kerch", pts: [[36.5, 45.15], [36.9, 45.5]] },
         { name: "Sea of Azov", pts: [[36.9, 45.5], [37.4, 46.0], [37.9, 46.5], [38.5, 46.9]] },
         { name: "Messina", pts: [[15.5, 38.4], [15.7, 38.05], [15.9, 37.8]] },
@@ -690,8 +692,11 @@ export const GEO = {
         { name: "Euripus", pts: [[23.2, 38.85], [23.6, 38.55]] },
         { name: "Gulf of Suez", pts: [[32.55, 29.9], [33.0, 28.7], [33.7, 27.6], [34.4, 26.6]] },
         { name: "Gulf of Aqaba", pts: [[35.0, 29.5], [34.7, 28.6], [34.4, 27.8]] },
-        // Suez Canal: a one-hex sea channel from the Mediterranean near Gaza through the Dead Sea to the Gulf of Aqaba
-        { name: "Suez Canal", pts: [[34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6]] },
+        // Suez Canal: a one-hex sea channel from the Mediterranean near Gaza through the Dead Sea to
+        // the Gulf of Aqaba. It cuts Africa and Sinai from the Levant, which is what makes Africa
+        // Distant Lands. separatesDistantLands: left out of the One Landmass map, where Egypt walks
+        // into Palestine over Sinai.
+        { name: "Suez Canal", separatesDistantLands: true, pts: [[34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
     ],

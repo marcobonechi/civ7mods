@@ -19,12 +19,6 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="pl_PL">
             <Text>Ta sama mapa bez Odległych krain: do każdej cywilizacji można dotrzeć lądem. Ścieżki dziedzictwa skarbów i militarna Epoki Odkryć nie dają tu punktów.</Text>
         </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="pl_PL">
-            <Text>Europa i Morze Śródziemne (Wariant)</Text>
-        </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="pl_PL">
-            <Text>Osobna kopia mapy do przerabiania w edytorze bez zmieniania dwóch pozostałych.</Text>
-        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pl_PL">
             <Text>Europa Duża 112x98</Text>
         </Replace>

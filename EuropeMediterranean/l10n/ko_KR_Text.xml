@@ -19,12 +19,6 @@
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ko_KR">
             <Text>머나먼 땅이 없는 같은 지도로, 모든 문명에 육로로 닿을 수 있습니다. 탐험 시대의 보물 및 군사 유산 경로는 여기서 점수를 얻을 수 없습니다.</Text>
         </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_NAME" Language="ko_KR">
-            <Text>유럽 및 지중해 (변형판)</Text>
-        </Replace>
-        <Replace Tag="LOC_MAP_EUROPE_ALT_DESCRIPTION" Language="ko_KR">
-            <Text>다른 두 지도를 건드리지 않고 편집기에서 고칠 수 있는 별도의 지도 사본.</Text>
-        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ko_KR">
             <Text>유럽 대형 112x98</Text>
         </Replace>

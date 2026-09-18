@@ -91,22 +91,28 @@ anything, or name a single mod (`uninstall.ps1 Byzantium`). Restart the game aft
 
 ---
 
-## The three maps
+## The two maps
 
-All three offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
+Both offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
 | Europe & Mediterranean (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
 | Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
-| Europe & Mediterranean (Variant) | identical geography, separate copy to reshape freely | Africa, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
 
 `maps/europe-map.js` and `maps/europe-geo.js` (the original smaller-extent map on the base game's
 sizes) are still in the repo but are no longer registered in `config/config.xml`, so they do not
 appear in the map picker.
 
-The Distant Lands and One Landmass maps share all their geography and generation code (`maps/europe-large-core.js`);
-they differ only in `distantLandsAnchors`. Pick **Distant Lands** for the full Exploration Age —
+The Distant Lands and One Landmass maps share all their geography (`maps/europe-large-geo.js`) and
+generation code (`maps/europe-large-core.js`). One Landmass is derived from the same geography by
+`oneLandmassGeo()` in `maps/europe-raster.js`, which empties `distantLandsAnchors` and drops every
+`waterLines` entry marked `separatesDistantLands: true` - the Karelian passage, so Finland joins
+Russia, and the Palestine channel, so Egypt joins the Levant over Sinai. Those channels exist only to
+cut the land into Distant Lands; with no distant lands they would be an arbitrary sea. So an edit to
+the geography reaches both maps, and the one place they differ is that flag. `tools/check-map-sizes.mjs`
+and `tools/check-rivers.mjs` build both maps the way the game does and check that the two joins are
+sea on Distant Lands and land on One Landmass. Pick **Distant Lands** for the full Exploration Age —
 Africa sits across the Mediterranean, so treasure fleets and the distant-lands legacy paths work.
 Pick **One Landmass** if you would rather reach every civilization overland from turn one; the
 cost is that the Exploration Age Economic (treasure) and Military legacy paths cannot score,
@@ -296,7 +302,7 @@ instead of regenerating it (so nothing is silently dropped), the file being edit
 
 ```bash
 ./run-editor.sh                 # editor at http://localhost:8080
-./run-editor.sh --map europe-alt-geo.js   # open this map instead of the first one
+./run-editor.sh --map europe-geo.js       # open this map instead of the first one
 ./run-editor.sh --port 9000     # different port
 ./run-editor.sh --no-open       # don't launch a browser
 
@@ -340,7 +346,7 @@ node tools/check-map-sizes.mjs         # before shipping a map change
 ### Editing maps in the editor
 
 `./run-editor.sh` serves the editor at http://localhost:8080. It lists every `*-geo.js` in
-`EuropeMediterranean/maps` in the dropdown at the top; `--map europe-alt-geo.js` picks which
+`EuropeMediterranean/maps` in the dropdown at the top; `--map europe-geo.js` picks which
 one opens first. Switching maps warns if the current one has unsaved changes.
 
 Two things make it safe to save from:
