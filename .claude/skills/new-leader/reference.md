@@ -109,6 +109,40 @@ leader is picked. To check an asset name before borrowing it, the 28,000-name
 `remap/world-ui-asset-names.js` shipped with the Custom Civ Art Fixes mod lists every valid one.
 
 
+**The other way: a 2D full-body portrait (Modworks Core).** The Venice Pack (Workshop 3770602022)
+shows Enrico Dandolo in Leader Select as a still, full-length painting instead of a borrowed body.
+The work is done by a separate mod from the same author, Modworks Core (Workshop 3766502959,
+`ui/modworks-core-2d-leaderselect.js`, shell scope; read 2026-09-18):
+
+- It wraps `WorldUI.createModelGroup` and then `addModel`, `setAssetName` and `setAlpha` on every
+  handle the groups return — the same entry points as the model borrow above.
+- When a handle is switched to a leader with no 3D asset, the engine puts a black silhouette on it.
+  The script holds that handle at `setAlpha(0)` and paints the portrait in a `<div>` it inserts in
+  the Leader Select screen's root (the parent of `.leader-select-leaders-panel`), so it sits above
+  the 3D scene and below the grid: right 5%, bottom 4%, 38% wide, 84% tall, `background-size:
+  contain`, anchored at the bottom, with a short fade-in.
+- "Has no 3D asset" is decided by name since 1.5 (its own leader-type prefixes, e.g. `LEADER_VP_`,
+  plus anything given to `ModworksCore.register2DLeader(leaderType, url)`); an `addModelAtPos`
+  probe that returns null for a missing asset is kept behind `window.ModworksCoreProbe3D`.
+- If `addModel` itself returns null (a modded leader remembered as the last selection), it re-adds
+  `LEADER_FALLBACK_GAME_ASSET`, as the pre-1.5 leader-select code did, so the screen keeps working.
+- It skips `setState` and `updateSelectionScriptParams` while a model-less leader is shown: in 1.5
+  those drive the idle and voice-line animations, and there is no model behind the handle. That is
+  the likely mechanism of the Porsenna crash in §3 — `setAssetName` to a missing asset leaves a
+  silhouette, and the next `setState` on it brings the game down. A borrowed model never hits it,
+  because the handle always holds a real asset.
+- The portrait is found at `fs://game/lsl_<leader>` then `fs://game/lsl_<leader>.png`. Venice ships
+  `lsl_vp_enrico_dandolo` as an 800×1080 full-length cut-out on transparency, imported with no
+  extension and no folder (and its icon rows use the same bare `fs://game/<name>` form).
+- The game-scope companion, `modworks-core-2d-diplomacy.js`, does the same in the diplomacy scene:
+  it keeps `LEADER_FALLBACK_GAME_ASSET` alive at scale 0.001 (the cutscenes wait on a model's
+  triggers) and draws the portrait over it, with optional angry/happy/unhappy/smug variants.
+
+Choosing: the borrow gives an animated, voiced body with the wrong face, and needs nothing else
+installed; the 2D route gives the right face, still, and either depends on Modworks Core (register
+the leader with it and drop the borrow) or needs the same overlay in our own UI script. A full-length
+cut-out can be made from a full-length painting with `tools/lift-subject.swift`.
+
 ## 4. Gameplay
 
 - **Every shipped leader has a diplomatic agenda** (`EFFECT_DIPLOMACY_AGENDA_TIMED_UPDATE`, one

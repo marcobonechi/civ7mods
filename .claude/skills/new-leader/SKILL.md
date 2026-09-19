@@ -38,8 +38,10 @@ proposed in the design sheet (step 1) and confirmed there, not decided silently.
 - Name and epithet, gender, a one-line quote for Leader Select, a short loading-screen intro.
 - Which civilization they belong to (an existing mod here, or a shipped civ), and whether the
   leader goes into that civ's mod or into a mod folder of its own.
-- Which shipped leader's 3D model to borrow. A mod cannot ship one; offer two or three candidates
-  that fit the era and dress (Augustus for Porsenna, Machiavelli for Lorenzo).
+- How the leader stands in Leader Select: a borrowed shipped leader's 3D model (animated and
+  voiced, the wrong face; offer two or three candidates that fit the era and dress, e.g. Augustus
+  for Porsenna), or a still full-length 2D portrait the way the Venice Pack does it (the right
+  face; needs a full-length painting, and Modworks Core or our own overlay — reference.md §3).
 - Art they already have, as file paths. Say what each becomes, and that a missing one gets a
   generator prompt in the style of `plans/etruscans-tuscany-art.md` §2:
   - a square painting, ideally 1024² or larger, head and shoulders with space above the head,

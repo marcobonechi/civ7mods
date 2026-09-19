@@ -62,7 +62,9 @@ on all four Europe maps. Pickable at an Exploration or Modern start too, listed 
   `<LEADER_TYPE>_GAME_ASSET`, and `Leaders.BasePersonaType` does not change that lookup. The UI
   script rewrites the name instead, so Porsenna is shown with Augustus's model and Lorenzo with
   Machiavelli's. Since Civilization VII 1.5 leader select switches models with `setAssetName`,
-  which the script also rewrites; without that, picking either leader crashed the game.
+  which the script also rewrites; without that, picking either leader crashed the game. The other
+  route, a still full-length painting in place of the 3D figure, is how the Venice Pack shows
+  Enrico Dandolo (through the Modworks Core mod); the leader skill's reference compares the two.
 - **Leader-select portraits carry their own frame.** Shipped leaders get a dark frame and a level
   badge from 2K's online legend progression, which a mod cannot add to. `lp_circ_<leader>_140.png`
   is therefore drawn smaller than the button with the frame painted in, so it lines up with its
