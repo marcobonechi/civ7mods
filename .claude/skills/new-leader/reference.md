@@ -25,6 +25,15 @@ example: Porsenna, whose rows sit inside the Etruscans mod.
 | `text/en_us/LeaderText.xml`, `LoadingText.xml`, `CivilopediaText.xml`, `UnlockText.xml` | game **and** shell | names, ability, quote, intro, pedia |
 | `ui/<mod>-images.js` | game **and** shell `UIScripts` | the `leaders` entry in its `CONFIG`: portrait files and the borrowed model (§3) |
 
+**Italian is the second language.** Every leader tag in `text/en_us` also goes into
+`text/it_IT/LeaderText.xml`, in the shipped l10n form: `<LocalizedText>` with
+`<Replace Tag="..." Language="it_IT">` rows (see `DLC/ada-lovelace/modules/l10n/it_IT_Text.xml`).
+The modinfo loads it next to the English file in both the game and the shell `UpdateText`, as
+`<Item locale="it_IT">text/it_IT/LeaderText.xml</Item>`. Take the game terms from
+`Base/modules/base-standard/l10n/it_IT_Text.xml` (insediamenti, distretti, Capolavori,
+Forza di combattimento, Rotte commerciali, Salute; agendas "apprezza ... / disprezza ...").
+Porsenna and Lorenzo have all their leader tags translated.
+
 A leader can live in a civ's mod (Porsenna) or in its own mod folder (the Ada Lovelace layout). In
 its own mod it still needs the shared `ui/<mod>-images.js` copied from `Etruscans/ui/`, with only
 the `CONFIG` block changed.

@@ -103,7 +103,10 @@ effect, with the nearest thing that does exist, before building it.
    - Start a game with the leader, and another where the AI has them: the ribbon shows the bust
      with the head above the frame, and the ability works (check the modifiers in the pedia and
      in play).
-8. **Polish**: civilopedia text, AI favoured items, README section, version bump, commit with jj.
+8. **Italian**: every leader tag also in `text/it_IT/LeaderText.xml`, loaded with `locale="it_IT"`
+   in both scopes (reference.md §1). Check with a script that the English and Italian tag sets
+   match.
+9. **Polish**: civilopedia text, AI favoured items, README section, version bump, commit with jj.
 
 ## Checks before every install
 

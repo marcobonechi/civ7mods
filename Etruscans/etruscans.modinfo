@@ -90,6 +90,7 @@
                     <Item>text/en_us/ConstructibleText.xml</Item>
                     <Item>text/en_us/CultureText.xml</Item>
                     <Item>text/en_us/LeaderText.xml</Item>
+                    <Item locale="it_IT">text/it_IT/LeaderText.xml</Item>
                     <Item>text/en_us/LoadingText.xml</Item>
                     <Item>text/en_us/ModuleText.xml</Item>
                     <Item>text/en_us/UnitText.xml</Item>
@@ -225,6 +226,7 @@
                     <Item>text/en_us/ConstructibleText.xml</Item>
                     <Item>text/en_us/CultureText.xml</Item>
                     <Item>text/en_us/LeaderText.xml</Item>
+                    <Item locale="it_IT">text/it_IT/LeaderText.xml</Item>
                     <Item>text/en_us/LoadingText.xml</Item>
                     <Item>text/en_us/ModuleText.xml</Item>
                     <Item>text/en_us/UnitText.xml</Item>

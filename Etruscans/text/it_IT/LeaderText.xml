@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Porsenna: Italian text for every leader tag in text/en_us. Terms follow the base game's
+     it_IT translation (insediamenti, distretti, Capolavori, Forza di combattimento). -->
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_LEADER_PORSENNA_NAME" Language="it_IT">
+            <Text>Porsenna</Text>
+        </Replace>
+        <Replace Tag="LOC_LEADER_PORSENNA_DESCRIPTION" Language="it_IT">
+            <Text>Lars Porsenna, lucumone di Chiusi, il re etrusco che assediò Roma e le cui opere Plinio stentava a credere.</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_NAME" Language="it_IT">
+            <Text>Lars di Chiusi</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_PREVIEW" Language="it_IT">
+            <Text>Lars di Chiusi</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_PORSENNA_ABILITY_DESCRIPTION" Language="it_IT">
+            <Text>+3 [icon:YIELD_PRODUCTION] Produzione nelle città, +2 [icon:YIELD_SCIENCE] Scienza e +2 [icon:YIELD_HAPPINESS] Felicità in tutti gli insediamenti, e gli edifici costano il 15% in meno di [icon:YIELD_GOLD] Oro all'acquisto. I distretti con una fortificazione hanno +30 Salute, le unità che difendono uno dei tuoi distretti hanno +4 alla [icon:COMBAT] Forza di combattimento e le tue unità hanno +5 alla [icon:COMBAT] Forza di combattimento quando attaccano un distretto.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_NAME" Language="it_IT">
+            <Text>Il Labirinto</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC" Language="it_IT">
+            <Text>Apprezza i leader che hanno più edifici nei loro distretti di lui. Disprezza chi ne ha meno.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_LIKES" Language="it_IT">
+            <Text>Porsenna apprezza i leader che hanno più edifici nei loro distretti di lui.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_DISLIKES" Language="it_IT">
+            <Text>Porsenna disprezza i leader che hanno meno edifici nei loro distretti di lui.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY" Language="it_IT">
+            <Text>Portatemi gli agrimensori prima di portarmi l'esercito.</Text>
+        </Replace>
+        <Replace Tag="LOC_LOADING_LEADER_INTRO_TEXT_PORSENNA" Language="it_IT">
+            <Text>Lars Porsenna di Chiusi, che marciò su Roma e, si dice, si fece costruire una tomba sopra un labirinto.</Text>
+        </Replace>
+        <Replace Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_DESCRIPTION" Language="it_IT">
+            <Text>Gioca con Porsenna</Text>
+        </Replace>
+        <Replace Tag="LOC_UNLOCK_PLAY_AS_PORSENNA_ETRUSCANS_TOOLTIP" Language="it_IT">
+            <Text>Porsenna fu lucumone di Chiusi.</Text>
+        </Replace>
+        <Replace Tag="LOC_PEDIA_PAGE_LEADER_PORSENNA_CHAPTER_HISTORY_PARA_1" Language="it_IT">
+            <Text>Lars Porsenna, lucumone di Chiusi, marciò su Roma intorno al 508 a.C.: secondo il racconto romano per riportare sul trono i Tarquini esiliati, e sempre secondo il racconto romano fu respinto dal coraggio di Orazio Coclite al ponte e dalla mano di Muzio Scevola nel fuoco. Tacito e Plinio lasciano trapelare un'altra storia: che Porsenna prese la città e ne dettò le condizioni, vietando ai Romani l'uso del ferro se non per lavorare i campi.</Text>
+        </Replace>
+        <Replace Tag="LOC_PEDIA_PAGE_LEADER_PORSENNA_CHAPTER_HISTORY_PARA_2" Language="it_IT">
+            <Text>Plinio riporta anche, con evidente incredulità, la descrizione che Varrone dà della tomba di Porsenna a Chiusi: una base quadrata di cinquanta metri di lato che racchiudeva un labirinto inestricabile, sormontata da cinque piramidi e, sopra di esse, da altre piramidi ancora, adorne di campanelle di bronzo. Nessun monumento del genere è mai stato trovato. A Chiusi si sono trovati invece un paesaggio di tombe a camera dipinte e una città che fu tra le più ricche d'Etruria, e per ora può bastare.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>

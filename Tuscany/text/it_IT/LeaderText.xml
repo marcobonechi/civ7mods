@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lorenzo: Italian text for every leader tag in text/en_us. Terms follow the base game's
+     it_IT translation (insediamenti, distretti, Capolavori, Forza di combattimento). -->
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_LEADER_LORENZO_NAME" Language="it_IT">
+            <Text>Lorenzo</Text>
+        </Replace>
+        <Replace Tag="LOC_LEADER_LORENZO_DESCRIPTION" Language="it_IT">
+            <Text>Lorenzo de' Medici, il Magnifico: banchiere, poeta, diplomatico, l'uomo che tenne l'Italia in pace per dodici anni e Firenze piena di botteghe.</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_NAME" Language="it_IT">
+            <Text>Il Magnifico</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_PREVIEW" Language="it_IT">
+            <Text>Il Magnifico</Text>
+        </Replace>
+        <Replace Tag="LOC_TRAIT_LEADER_LORENZO_ABILITY_DESCRIPTION" Language="it_IT">
+            <Text>+3 [icon:YIELD_GOLD] Oro e +1 [icon:YIELD_HAPPINESS] Felicità per ogni Capolavoro in un insediamento. +1 [icon:YIELD_CULTURE] Cultura e +1 [icon:YIELD_SCIENCE] Scienza in tutti gli insediamenti, e +20% [icon:YIELD_PRODUCTION] Produzione per le Meraviglie. Le entrate delle Rotte commerciali aumentano del 50%, hai +1 alla capacità di Rotte commerciali e +3 [icon:YIELD_GOLD] Oro per ogni Rotta commerciale, e gli edifici costano il 15% in meno di [icon:YIELD_GOLD] Oro all'acquisto.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_NAME" Language="it_IT">
+            <Text>Mecenate delle botteghe</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC" Language="it_IT">
+            <Text>Apprezza i leader che hanno più [icon:NAR_REW_GREATWORK] Capolavori di lui. Disprezza chi ne ha meno.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC_LIKES" Language="it_IT">
+            <Text>Lorenzo apprezza i leader che hanno più [icon:NAR_REW_GREATWORK] Capolavori di lui.</Text>
+        </Replace>
+        <Replace Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC_DISLIKES" Language="it_IT">
+            <Text>Lorenzo disprezza i leader che hanno meno [icon:NAR_REW_GREATWORK] Capolavori di lui.</Text>
+        </Replace>
+        <Replace Tag="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY" Language="it_IT">
+            <Text>Quant'è bella giovinezza, che si fugge tuttavia! Chi vuol esser lieto, sia: di doman non c'è certezza.</Text>
+        </Replace>
+        <Replace Tag="LOC_LOADING_LEADER_INTRO_TEXT_LORENZO" Language="it_IT">
+            <Text>Lorenzo de' Medici, che non ricoprì alcuna carica e governò Firenze per ventitré anni.</Text>
+        </Replace>
+        <Replace Tag="LOC_UNLOCK_PLAY_AS_LORENZO_DESCRIPTION" Language="it_IT">
+            <Text>Gioca con Lorenzo</Text>
+        </Replace>
+        <Replace Tag="LOC_UNLOCK_PLAY_AS_LORENZO_TUSCANY_TOOLTIP" Language="it_IT">
+            <Text>Lorenzo governò Firenze senza mai ricoprire una carica.</Text>
+        </Replace>
+        <Replace Tag="LOC_UNLOCK_PLAY_AS_LORENZO_ETRUSCANS_TOOLTIP" Language="it_IT">
+            <Text>I Medici collezionavano bronzi etruschi.</Text>
+        </Replace>
+        <Replace Tag="LOC_PEDIA_PAGE_LEADER_LORENZO_CHAPTER_HISTORY_PARA_1" Language="it_IT">
+            <Text>Lorenzo de' Medici (1449-1492) ereditò la guida di Firenze a vent'anni e la tenne per ventitré anni senza mai ricoprire una carica che gliela conferisse. Sopravvisse alla congiura dei Pazzi del 1478, in cui il fratello fu assassinato durante la messa, poi convinse il re di Napoli a rinunciare alla guerra che ne seguì andando a Napoli da solo, per mare, e restandovi tre mesi.</Text>
+        </Replace>
+        <Replace Tag="LOC_PEDIA_PAGE_LEADER_LORENZO_CHAPTER_HISTORY_PARA_2" Language="it_IT">
+            <Text>Fu un poeta di rilievo in volgare toscano quando gli uomini seri scrivevano in latino, tenne un giardino di sculture dove fu notato il giovane Michelangelo, finanziò la ricerca di manoscritti greci e mantenne in equilibrio gli stati italiani per dodici anni. Come banchiere fu peggiore del nonno: sotto di lui chiusero diverse filiali. Due anni dopo la sua morte i Francesi invasero l'Italia, i Medici furono cacciati e Savonarola bruciava le vanità in piazza.</Text>
+        </Replace>
+    </LocalizedText>
+</Database>
