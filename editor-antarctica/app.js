@@ -19,7 +19,7 @@ const EDGE = { "south-america": "top", africa: "top", australia: "bottom", "new-
 const BIOME_COL = { [B.GRASSLAND]: "#6fae4a", [B.PLAINS]: "#b5b35a", [B.DESERT]: "#e3cf8e", [B.TUNDRA]: "#8e9f86", [B.TROPICAL]: "#2f7d3a" };
 const T_NAME = ["ocean", "coast", "flat", "hills", "mountain", "lake"];
 const B_NAME = ["marine", "grassland", "plains", "desert", "tundra", "tropical"];
-const LAND_COL = ["#ffffff", "#ffb070", "#ffe070", "#ff8080", "#90e0ff"];
+const LAND_COL = ["#ffffff", "#ffb070", "#ffe070", "#ff8080", "#90e0ff", "#c0a0ff"];
 
 const $ = (id) => document.getElementById(id);
 const cv = $("map"), ctx = cv.getContext("2d");
@@ -670,7 +670,7 @@ function renderProps() {
         p.append(el("div", { class: "buttons" },
             ...[["poly", "+ Outline"], ["range", "+ Range"], ["river", "+ River"], ["lake", "+ Lake"], ["volcano", "+ Volcano"]].map(([t, lab]) => el("button", { onclick: () => addItem(t, l) }, lab)),
             el("button", { onclick: () => addWonder(l) }, "+ Wonder")));
-        if (!["antarctica", "south-america", "africa", "australia", "new-zealand"].includes(L.id)) p.append(el("p", {}, "No biome rules for this land id: it gets a temperate mix."));
+        if (!["antarctica", "south-america", "africa", "madagascar", "australia", "new-zealand"].includes(L.id)) p.append(el("p", {}, "No biome rules for this land id: it gets a temperate mix."));
         return;
     }
     const title = { poly: "Outline", range: "Mountain range", river: "River", lake: "Lake", volcano: "Volcano", island: "Island", wonder: "Natural wonder" }[sel.t];

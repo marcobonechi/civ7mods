@@ -45,9 +45,10 @@ off the map edges:
 
 | Corner | Land | Notes |
 |---|---|---|
-| upper left | South America, Cape Horn to the Paraná | Andes, Patagonian steppe, Pampas, Atacama; Paraná–Río de la Plata (navigable), Uruguay, Negro, Colorado, Chubut, Santa Cruz, Biobío; Villarrica; the Falklands; Torres del Paine and Iguazú Falls at their sites when the terrain allows |
+| upper left | South America, Cape Horn to the Paraná | Andes, Patagonian steppe, Pampas, Atacama; Paraná–Río de la Plata (navigable), Uruguay, Negro, Colorado, Chubut, Santa Cruz, Biobío; Villarrica; the Falklands; Torres del Paine at its site when the terrain allows (Iguazú is north of the top edge, so it is left to the random pass) |
 | upper right | Southern Africa, the Cape to the Zambezi | Namib and Kalahari, Karoo, Highveld, Drakensberg; Zambezi (navigable), Orange and Vaal, Limpopo; Table Mountain (Hoerikwaggo) at the Cape |
-| lower right | Australia, upside down with Tasmania towards the pole | the Outback, Great Dividing Range; Murray (navigable) and Darling, Burdekin, Fitzroy; Uluru and the Great Barrier Reef at their sites when the terrain allows |
+| right edge | Madagascar, moved south of its real place so its western half peeks in below Africa | its own land and frame; highlands, Betsiboka and Onilahy; rainforest east, dry south-west |
+| lower right | Australia, upside down with Tasmania towards the pole | the Outback, Great Dividing Range; Murray (navigable) and Darling, Burdekin, Fitzroy; Uluru, and the Great Barrier Reef at its southern end (the rest of the reef is past the bottom edge), when the terrain allows |
 | lower left | New Zealand, drawn about twice as large as the rest so it is worth the trip | Southern Alps, Ruapehu, Lake Taupo; Waikato, Clutha, Waitaki |
 
 Twenty islands and small archipelagos fill the oceans in between, as small Distant Lands: in the

@@ -105,7 +105,6 @@ const BIOME_RULES = {
         return n < 0.55 ? B.GRASSLAND : B.TROPICAL;                                    // Parana forest
     },
     africa(lon, lat, n) {
-        if (lon > 42) return lon > 46.5 || lat > -14 ? (n < 0.75 ? B.TROPICAL : B.GRASSLAND) : (n < 0.6 ? B.PLAINS : B.DESERT);
         if (lat < -32.5) return lon < 22 ? (n < 0.5 ? B.PLAINS : B.GRASSLAND) : (n < 0.6 ? B.GRASSLAND : B.PLAINS);
         if (lon < 16.5) return B.DESERT;                                      // Namib
         if (lon < 25 && lat > -30) return n < 0.65 ? B.DESERT : B.PLAINS;     // Kalahari
@@ -114,6 +113,12 @@ const BIOME_RULES = {
         if (lat < -23) return n < 0.7 ? B.GRASSLAND : B.PLAINS;               // Highveld
         if (lon > 33) return n < 0.65 ? B.TROPICAL : B.PLAINS;
         return n < 0.6 ? B.PLAINS : (n < 0.85 ? B.TROPICAL : B.GRASSLAND);   // miombo savanna
+    },
+    madagascar(lon, lat, n) {
+        // rainforest on the wet east coast, grass on the highlands, dry spiny forest in the south-west
+        if (lon > 47.5 || lat > -14) return n < 0.75 ? B.TROPICAL : B.GRASSLAND;
+        if (lon < 45 && lat < -21) return n < 0.6 ? B.DESERT : B.PLAINS;
+        return n < 0.5 ? B.GRASSLAND : B.PLAINS;
     },
     australia(lon, lat, n) {
         if (lat < -40) return B.GRASSLAND;                                    // Tasmania

@@ -234,14 +234,6 @@ export const GEO = {
                         [39.5, -4.5], [41, -2], [43, 0],
                     ],
                 },
-                {
-                    name: "Madagascar",
-                    pts: [
-                        [49.3, -12], [50.3, -15.5], [49.5, -17], [48, -21], [47, -25], [45, -25.5],
-                        [43.7, -23.5], [43.3, -21.5], [44.4, -19.5], [44, -17], [46, -15.8],
-                        [48, -13.5],
-                    ],
-                },
             ],
             ranges: [
                 {
@@ -259,10 +251,6 @@ export const GEO = {
                 {
                     name: "Namibian Highlands", w: 1.2, m: 0.05, h: 0.6,
                     pts: [[16.5, -27], [17, -23], [16.5, -19]],
-                },
-                {
-                    name: "Madagascar Highlands", w: 1, m: 0.35, h: 0.9,
-                    pts: [[48.8, -13.5], [47.5, -17], [47, -20], [46.6, -23.5]],
                 },
                 {
                     name: "Eastern Highlands", w: 1, m: 0.15, h: 0.7,
@@ -425,6 +413,32 @@ export const GEO = {
             ],
             lakes: [{ name: "Taupo", lon: 175.9, lat: -38.8, size: 1 }],
         },
+        {
+            id: "madagascar", name: "Madagascar", region: "distant",
+            frame: { type: "local", lon0: 47, lat0: -19, at: [1.53, 0.42], k: 0.03, rot: -18 },
+            polys: [
+                {
+                    name: "Madagascar",
+                    pts: [
+                        [49.3, -12], [50.3, -15.5], [49.5, -17], [48, -21], [47, -25], [45, -25.5],
+                        [43.7, -23.5], [43.3, -21.5], [44.4, -19.5], [44, -17], [46, -15.8],
+                        [48, -13.5],
+                    ],
+                },
+            ],
+            ranges: [
+                {
+                    name: "Madagascar Highlands", w: 1, m: 0.35, h: 0.9,
+                    pts: [[48.8, -13.5], [47.5, -17], [47, -20], [46.6, -23.5]],
+                },
+            ],
+            volcanoes: [],
+            rivers: [
+                { name: "Betsiboka", nav: 0, pts: [[47, -19.5], [46.6, -17], [46.3, -15.7]] },
+                { name: "Onilahy", nav: 0, pts: [[45.5, -22.8], [44.3, -23.4], [43.7, -23.6]] },
+            ],
+            lakes: [],
+        },
     ],
     islands: [
         { name: "South Orkney", lon: -45, lat: -60.8, r: 0.7, n: 2, spread: 1.5, climate: "polar" },
@@ -477,9 +491,8 @@ export const GEO = {
     ],
     wonders: [
         { feature: "FEATURE_TORRES_DEL_PAINE", land: "south-america", lon: -72.9, lat: -50.9 },
-        { feature: "FEATURE_IGUAZU_FALLS", land: "south-america", lon: -54.4, lat: -25.7 },
         { feature: "FEATURE_HOERIKWAGGO", land: "africa", lon: 18.5, lat: -33.9 },
         { feature: "FEATURE_ULURU", land: "australia", lon: 131, lat: -25.3 },
-        { feature: "FEATURE_BARRIER_REEF", land: "australia", lon: 147.5, lat: -18 },
+        { feature: "FEATURE_BARRIER_REEF", land: "australia", lon: 152.8, lat: -23.8 },
     ],
 };
