@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Porsenna's agenda counts Altars. No agenda weight type names a single building, but
+     DIPLOMACY_AGENDA_COMPARE_DISTRICTS2 (Himiko's) reads constructible tags - its Args are the
+     CULTURE / HAPPINESS / SCIENCE / GOLD tags - so the Altar gets a tag of its own for it to find.
+     BUILDING_ALTAR persists into later ages but its base tags are Antiquity-only, so this loads in
+     the persist group: Altars still standing keep counting. -->
+<Database>
+    <Tags>
+        <Row Tag="ETRUSCANS_ALTAR" Category="CONSTRUCTIBLE_TAG"/>
+    </Tags>
+    <TypeTags>
+        <Row Type="BUILDING_ALTAR" Tag="ETRUSCANS_ALTAR"/>
+    </TypeTags>
+</Database>

@@ -20,13 +20,13 @@
             <Text>The Labyrinth</Text>
         </Row>
         <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC">
-            <Text>Likes Leaders with more buildings in their Districts than him. Dislikes those with fewer.</Text>
+            <Text>Likes Leaders with Altars in their Settlements. Dislikes those without one.</Text>
         </Row>
         <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_LIKES">
-            <Text>Porsenna likes Leaders with more buildings in their Districts than him.</Text>
+            <Text>Porsenna likes Leaders with Altars in their Settlements.</Text>
         </Row>
         <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_DISLIKES">
-            <Text>Porsenna dislikes Leaders with fewer buildings in their Districts than him.</Text>
+            <Text>Porsenna dislikes Leaders without an Altar in their Settlements.</Text>
         </Row>
         <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY">
             <Text>Bring me the surveyors before you bring me the army.</Text>

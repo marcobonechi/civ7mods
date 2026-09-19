@@ -22,13 +22,13 @@
             <Text>Il Labirinto</Text>
         </Replace>
         <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC" Language="it_IT">
-            <Text>Apprezza i leader che hanno più edifici nei loro distretti di lui. Disprezza chi ne ha meno.</Text>
+            <Text>Apprezza i leader che hanno Altari nei loro insediamenti. Disprezza chi non ne ha.</Text>
         </Replace>
         <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_LIKES" Language="it_IT">
-            <Text>Porsenna apprezza i leader che hanno più edifici nei loro distretti di lui.</Text>
+            <Text>Porsenna apprezza i leader che hanno Altari nei loro insediamenti.</Text>
         </Replace>
         <Replace Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_DISLIKES" Language="it_IT">
-            <Text>Porsenna disprezza i leader che hanno meno edifici nei loro distretti di lui.</Text>
+            <Text>Porsenna disprezza i leader che non hanno un Altare nei loro insediamenti.</Text>
         </Replace>
         <Replace Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY" Language="it_IT">
             <Text>Portatemi gli agrimensori prima di portarmi l'esercito.</Text>

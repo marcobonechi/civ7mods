@@ -165,6 +165,7 @@
                     <Item>data/greatworks.xml</Item>
                     <Item>data/traditions-persist.xml</Item>
                     <Item>data/traditions-gameeffects-persist.xml</Item>
+                    <Item>data/agenda-altars.xml</Item>
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
