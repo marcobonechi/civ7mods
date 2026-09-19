@@ -16,7 +16,10 @@
 // polys: outlines as [lon, lat] rings. ranges: polylines, w = half width in hexes, m = chance of a
 //   mountain inside, h = chance of a hill. rivers: source to mouth, nav = navigable hexes above the
 //   mouth, toLake = the lake it ends in. lakes: centre and size in hexes. islands: on the polar
-//   projection, r = radius in hexes. bandDepth: Antarctica's ice-free coastal band, in hexes.
+//   projection, r = radius in hexes; n > 1 makes an archipelago of n islets scattered within
+//   `spread` hexes (a new scatter every game); climate "polar", "cool" or "warm" sets their biomes;
+//   sizes are for the 108x80 map and grow with the grid. bandDepth: Antarctica's ice-free coastal
+//   band, in hexes.
 
 export const GEO = {
     bandDepth: 4,
@@ -424,12 +427,53 @@ export const GEO = {
         },
     ],
     islands: [
-        { name: "South Georgia", lon: -36.5, lat: -54.3, r: 1.2 },
-        { name: "Kerguelen", lon: 69.5, lat: -49.3, r: 1.6 },
-        { name: "Heard", lon: 73.5, lat: -53.1, r: 0.6 },
-        { name: "Bouvet", lon: 3.4, lat: -54.4, r: 0.6 },
-        { name: "Macquarie", lon: 158.9, lat: -54.6, r: 0.6 },
-        { name: "South Orkney", lon: -45, lat: -60.6, r: 0.7 },
+        { name: "South Orkney", lon: -45, lat: -60.8, r: 0.7, n: 2, spread: 1.5, climate: "polar" },
+        { name: "South Georgia", lon: -36.6, lat: -54.3, r: 1.2, climate: "polar" },
+        {
+            name: "South Sandwich Islands", lon: -19.2, lat: -60.6, r: 0.5, n: 4, spread: 3,
+            climate: "polar",
+        },
+        { name: "Bouvet", lon: 3.6, lat: -64.1, r: 0.6, climate: "polar" },
+        { name: "Tristan da Cunha", lon: 16.9, lat: -59, r: 0.6, n: 3, spread: 2, climate: "cool" },
+        { name: "Gough", lon: 33, lat: -59.2, r: 0.7, climate: "cool" },
+        {
+            name: "Prince Edward Islands", lon: 72, lat: -62.9, r: 0.6, n: 2, spread: 1.5,
+            climate: "polar",
+        },
+        { name: "Crozet Islands", lon: 82.2, lat: -47, r: 0.6, n: 4, spread: 2.5, climate: "polar" },
+        { name: "Kerguelen", lon: 69.6, lat: -49.4, r: 1.6, climate: "polar" },
+        {
+            name: "Heard and McDonald", lon: 73.8, lat: -53, r: 0.6, n: 2, spread: 1.2,
+            climate: "polar",
+        },
+        {
+            name: "Amsterdam and St Paul", lon: 92, lat: -43.2, r: 0.6, n: 2, spread: 1.8,
+            climate: "cool",
+        },
+        { name: "Macquarie", lon: 154.6, lat: -61.4, r: 0.6, climate: "polar" },
+        { name: "Lord Howe", lon: 146.3, lat: -53.9, r: 0.6, climate: "warm" },
+        { name: "Campbell", lon: -176.3, lat: -64.8, r: 0.8, climate: "polar" },
+        {
+            name: "Auckland Islands", lon: -156.2, lat: -66, r: 0.7, n: 3, spread: 2,
+            climate: "polar",
+        },
+        {
+            name: "Snares and Bounty", lon: 171, lat: -59, r: 0.4, n: 4, spread: 2.5,
+            climate: "polar",
+        },
+        {
+            name: "Chatham Islands", lon: -112.6, lat: -64.8, r: 0.9, n: 2, spread: 1.8,
+            climate: "cool",
+        },
+        {
+            name: "Pitcairn Islands", lon: -88.9, lat: -56.1, r: 0.5, n: 3, spread: 2.5,
+            climate: "warm",
+        },
+        { name: "Rapa Nui", lon: -97.8, lat: -47, r: 0.8, climate: "warm" },
+        {
+            name: "Juan Fernandez", lon: -78.5, lat: -44.6, r: 0.6, n: 2, spread: 2.5,
+            climate: "warm",
+        },
     ],
     wonders: [
         { feature: "FEATURE_TORRES_DEL_PAINE", land: "south-america", lon: -72.9, lat: -50.9 },

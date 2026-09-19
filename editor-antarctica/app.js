@@ -260,8 +260,12 @@ function drawMarker(ref, [x, y], selected) {
     if (ref.t === "volcano") { ctx.moveTo(x, y - 7); ctx.lineTo(x + 6, y + 5); ctx.lineTo(x - 6, y + 5); ctx.closePath(); ctx.fillStyle = "#e03020"; ctx.fill(); }
     else if (ref.t === "lake") { ctx.arc(x, y, 5, 0, 7); ctx.fillStyle = "#58c6ff"; ctx.fill(); }
     else if (ref.t === "island") {
-        const rr = Math.max(4, (it.r || 0.6) * state.zoom);
+        const scale = state.zoom * state.grid.halfH / (79 * SQ3 / 2);   // hexes of 108x80 -> pixels
+        const rr = Math.max(4, (it.r || 0.6) * scale);
         ctx.arc(x, y, rr, 0, 7); ctx.strokeStyle = "#c0ffc0"; ctx.stroke();
+        if ((it.n || 1) > 1 && it.spread) {
+            ctx.beginPath(); ctx.setLineDash([3, 3]); ctx.arc(x, y, it.spread * scale, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        }
     } else if (ref.t === "wonder") {
         for (let k = 0; k < 10; k++) { const a = Math.PI / 5 * k - Math.PI / 2, rr = k % 2 ? 3 : 7; k ? ctx.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)) : ctx.moveTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); }
         ctx.closePath(); ctx.fillStyle = "#ffe040"; ctx.fill();
@@ -556,7 +560,7 @@ function addItem(t, l) {
 function addIsland() {
     const [lon, lat] = viewCentreIn(0);
     state.geo.islands = state.geo.islands || [];
-    state.geo.islands.push({ name: "new island", lon: r1(lon), lat: r1(lat), r: 0.8 });
+    state.geo.islands.push({ name: "new island", lon: r1(lon), lat: r1(lat), r: 0.8, climate: "polar" });
     pushHistory(); rebuild(); select({ t: "island", i: state.geo.islands.length - 1 });
 }
 
@@ -635,7 +639,7 @@ function renderProps() {
         p.append(el("h2", {}, "Map settings"));
         p.append(field("Band depth", state.geo, "bandDepth", "number", { step: 1 }));
         p.append(el("p", {}, "Hexes of ice-free coast round Antarctica; every start is in this band."));
-        p.append(el("div", { class: "buttons" }, el("button", { onclick: addIsland }, "+ Island")));
+        p.append(el("div", { class: "buttons" }, el("button", { onclick: addIsland }, "+ Island or archipelago")));
         p.append(el("div", { id: "stats", class: "stats" }));
         renderStats();
         return;
@@ -688,7 +692,13 @@ function renderProps() {
         p.append(el("p", {}, r ? `On this grid: ${r.tiles.length} hexes, ${r.toOcean ? "reaches the sea" : "ends in a lake or another river"}.` : "On this grid: no river (see the log below)."));
     }
     if (sel.t === "lake") p.append(field("Size (hexes)", it, "size", "number", { step: 1 }));
-    if (sel.t === "island") p.append(field("Radius (hexes)", it, "r", "number", { step: 0.1 }));
+    if (sel.t === "island") {
+        p.append(field("Radius (hexes)", it, "r", "number", { step: 0.1 }));
+        p.append(field("Islets", it, "n", "number", { step: 1 }));
+        p.append(field("Spread (hexes)", it, "spread", "number", { step: 0.5 }));
+        p.append(field("Climate", it, "climate", "select", { choices: [["polar", "polar (tundra)"], ["cool", "cool (grass, plains)"], ["warm", "warm (tropical)"]] }));
+        p.append(el("p", {}, "Islets 1 = a single island. More makes an archipelago: the islets scatter within the spread (the dashed circle), differently every game. Sizes are for 108x80 and grow with the map."));
+    }
     if (sel.t === "wonder") {
         p.append(field("Feature", it, "feature"));
         p.append(field("Land", it, "land", "select", { choices: state.geo.lands.map((L) => [L.id, L.name]) }));

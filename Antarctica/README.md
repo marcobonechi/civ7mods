@@ -50,8 +50,14 @@ off the map edges:
 | lower right | Australia, upside down with Tasmania towards the pole | the Outback, Great Dividing Range; Murray (navigable) and Darling, Burdekin, Fitzroy; Uluru and the Great Barrier Reef at their sites when the terrain allows |
 | lower left | New Zealand, drawn about twice as large as the rest so it is worth the trip | Southern Alps, Ruapehu, Lake Taupo; Waikato, Clutha, Waitaki |
 
-South Georgia, the South Orkneys, Bouvet, Kerguelen, Heard and Macquarie are small Distant Lands in
-between. Antarctica is the homeland; everything else is Distant Lands, and at least seven hexes of
+Twenty islands and small archipelagos fill the oceans in between, as small Distant Lands: in the
+South Atlantic the South Orkneys, South Georgia, the South Sandwich Islands, Bouvet, Tristan da Cunha
+and Gough; in the Indian Ocean Prince Edward, Crozet, Kerguelen, Heard and McDonald, Amsterdam and St
+Paul; towards New Zealand Macquarie, Lord Howe, Campbell, the Auckland Islands, the Snares and Bounty;
+in the Pacific the Chatham Islands, Pitcairn, Rapa Nui and Juan Fernández. They sit roughly in their
+ocean rather than at their true spot (the corners are not a true projection). An archipelago's
+islets scatter differently every game, and each island has a climate: subantarctic tundra, cool
+grassland, or warm and tropical for Rapa Nui, Pitcairn, Lord Howe and Juan Fernández. Antarctica is the homeland; everything else is Distant Lands, and at least seven hexes of
 sea with deep ocean in it separate them, so nobody reaches another continent before the Exploration
 Age.
 
@@ -91,7 +97,7 @@ draws everything through one.
   move the whole land) and a **circle** (drag to turn and scale it; Shift scales only, Alt turns
   only). Antarctica has only the circle: it stays on the pole. The same values are editable as
   numbers on the right.
-- Click an outline, range, river, lake, volcano, island or wonder to select it. Drag its points; click
+- Click an outline, range, river, lake, volcano, island or wonder to select it. An island has a radius, a number of islets (more than 1 makes an archipelago, drawn with its spread as a dashed circle) and a climate. Drag its points; click
   a **+** between two points to add one; Alt/Option-click a point, or hover it and press Delete, to
   remove one. A river runs from its green point (source) to its mouth.
 - The land panel adds outlines, ranges, rivers, lakes, volcanoes and wonders, in the middle of the

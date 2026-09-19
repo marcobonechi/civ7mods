@@ -242,14 +242,31 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
         if (t && owner[idx(t[0], t[1])] < 0) owner[idx(t[0], t[1])] = l;
     }));
     const polar = ANTARCTICA.frame;
+    // Islands: a single island (n 1) or a small archipelago of n islets scattered within `spread`
+    // hexes of the centre, a different scatter every game. Radius and spread are in hexes of the
+    // 108x80 map and grow with the grid, like the continents.
+    const hexScale = halfH / ((80 - 1) * SQ3 / 2);
+    const islandClimate = new Array(N).fill(null);   // "polar" (default), "cool" or "warm"
     for (const isl of ISLANDS) {
         const [X, Y] = polar.toCanvas(isl.lon, isl.lat);
-        const c = nearestHex(X, Y);
-        if (!c) continue;
-        for (let y = c[1] - 3; y <= c[1] + 3; y++) for (let x = c[0] - 3; x <= c[0] + 3; x++) {
-            if (!inBounds(x, y) || owner[idx(x, y)] >= 0) continue;
-            const d = hexDistance(c[0], c[1], x, y);
-            if (d === 0 || d < isl.r + (rnd() - 0.5) * 0.8) owner[idx(x, y)] = -2;
+        const n = Math.max(1, Math.round(isl.n || 1));
+        const spread = (isl.spread || 0) * hexScale / halfH;       // canvas units
+        const radius = (isl.r || 0.6) * hexScale;
+        for (let k = 0; k < n; k++) {
+            let cx = X, cy = Y;
+            if (k > 0) {
+                const a = rnd() * 2 * Math.PI, d = spread * (0.45 + 0.55 * rnd());
+                cx += d * Math.cos(a); cy += d * Math.sin(a);
+            }
+            const c = nearestHex(cx, cy);
+            if (!c) continue;
+            const rr = k === 0 ? radius : radius * (0.6 + 0.5 * rnd());
+            const R = Math.ceil(rr) + 1;
+            for (let y = c[1] - R; y <= c[1] + R; y++) for (let x = c[0] - R; x <= c[0] + R; x++) {
+                if (!inBounds(x, y) || owner[idx(x, y)] !== -1) continue;
+                const d = hexDistance(c[0], c[1], x, y);
+                if (d === 0 || d < rr + (rnd() - 0.5) * 0.8) { owner[idx(x, y)] = -2; islandClimate[idx(x, y)] = isl.climate || "polar"; }
+            }
         }
     }
     // keep a clear sea on the map edges' first column so nothing touches the left and right sides
@@ -496,7 +513,11 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
                 b = g > 0.78 ? B.GRASSLAND : g > 0.5 ? B.PLAINS : B.TUNDRA;
             }
         } else if (owner[i] === -2) {
-            b = n < 0.6 ? B.TUNDRA : B.GRASSLAND;
+            // each island's own climate: the polar map's latitude cannot tell Rapa Nui from Kerguelen
+            const c = islandClimate[i];
+            b = c === "warm" ? (n < 0.45 ? B.TROPICAL : n < 0.8 ? B.GRASSLAND : B.PLAINS)
+              : c === "cool" ? (n < 0.6 ? B.GRASSLAND : B.PLAINS)
+              : (n < 0.7 ? B.TUNDRA : B.GRASSLAND);
         } else {
             b = LANDS[owner[i]].biome(lon[i], lat[i], n);
         }
