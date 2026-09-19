@@ -58,9 +58,9 @@ const r2 = (v) => Math.round(v * 100) / 100;
 const r3 = (v) => Math.round(v * 1000) / 1000;
 
 // ---- selection references ------------------------------------------------------------------
-// { t: "land" | "poly" | "range" | "river" | "lake" | "volcano", l, i } | { t: "island" | "wonder", i } | { t: "settings" }
+// { t: "land" | "poly" | "range" | "river" | "lake" | "sea" | "volcano", l, i } | { t: "island" | "wonder", i } | { t: "settings" }
 
-const LIST = { poly: "polys", range: "ranges", river: "rivers", lake: "lakes", volcano: "volcanoes" };
+const LIST = { poly: "polys", range: "ranges", river: "rivers", lake: "lakes", sea: "seas", volcano: "volcanoes" };
 const landIndexOf = (ref) => ref.t === "island" ? 0 : ref.t === "wonder" ? state.geo.lands.findIndex((L) => L.id === state.geo.wonders[ref.i].land) : ref.l;
 const frameOf = (ref) => state.frames[landIndexOf(ref)];
 function itemOf(ref) {
@@ -71,13 +71,13 @@ function itemOf(ref) {
     return null;
 }
 const isLine = (ref) => ref && (ref.t === "poly" || ref.t === "range" || ref.t === "river");
-const isPoint = (ref) => ref && (ref.t === "lake" || ref.t === "volcano" || ref.t === "island" || ref.t === "wonder");
+const isPoint = (ref) => ref && (ref.t === "lake" || ref.t === "sea" || ref.t === "volcano" || ref.t === "island" || ref.t === "wonder");
 const sameRef = (a, b) => a && b && a.t === b.t && a.l === b.l && a.i === b.i;
 
 function allRefs() {
     const out = [];
     state.geo.lands.forEach((L, l) => {
-        for (const t of ["poly", "range", "river", "lake", "volcano"]) (L[LIST[t]] || []).forEach((_, i) => out.push({ t, l, i }));
+        for (const t of ["poly", "range", "river", "lake", "sea", "volcano"]) (L[LIST[t]] || []).forEach((_, i) => out.push({ t, l, i }));
     });
     (state.geo.islands || []).forEach((_, i) => out.push({ t: "island", i }));
     (state.geo.wonders || []).forEach((_, i) => out.push({ t: "wonder", i }));
@@ -259,6 +259,14 @@ function drawMarker(ref, [x, y], selected) {
     ctx.beginPath();
     if (ref.t === "volcano") { ctx.moveTo(x, y - 7); ctx.lineTo(x + 6, y + 5); ctx.lineTo(x - 6, y + 5); ctx.closePath(); ctx.fillStyle = "#e03020"; ctx.fill(); }
     else if (ref.t === "lake") { ctx.arc(x, y, 5, 0, 7); ctx.fillStyle = "#58c6ff"; ctx.fill(); }
+    else if (ref.t === "sea") { ctx.arc(x, y, 7, 0, 7); ctx.fillStyle = "#1f5fbf"; ctx.fill(); ctx.strokeStyle = "#9fd0ff"; ctx.stroke(); }
+    else if (ref.t === "island" && it.shape === "atoll") {
+        const scale = state.zoom * state.grid.halfH / (79 * SQ3 / 2);
+        const R = (it.r || 4) * scale, a = -(it.gap || 0) * Math.PI / 180;
+        ctx.strokeStyle = "#ffe0a0"; ctx.setLineDash([3, 3]);
+        ctx.arc(x, y, R, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.moveTo(x - R * Math.cos(a), y - R * Math.sin(a)); ctx.lineTo(x + R * Math.cos(a), y + R * Math.sin(a)); ctx.stroke();
+    }
     else if (ref.t === "island") {
         const scale = state.zoom * state.grid.halfH / (79 * SQ3 / 2);   // hexes of 108x80 -> pixels
         const rr = Math.max(4, (it.r || 0.6) * scale);
@@ -549,6 +557,7 @@ function addItem(t, l) {
     if (t === "range") item = { name: "new range", w: 1, m: 0.4, h: 0.9, pts: [at(-1.5, 0), at(1.5, 0)] };
     if (t === "river") item = { name: "new river", nav: 0, pts: [at(-1.5, 0), at(0, 0.3), at(1.5, 0)] };
     if (t === "lake") item = { name: "new lake", lon: r1(lon), lat: r1(lat), size: 1 };
+    if (t === "sea") item = { name: "new sea", lon: r1(lon), lat: r1(lat), size: 14 };
     if (t === "volcano") item = { name: "new volcano", lon: r1(lon), lat: r1(lat) };
     const key = LIST[t];
     L[key] = L[key] || [];
@@ -562,6 +571,13 @@ function addIsland() {
     state.geo.islands = state.geo.islands || [];
     state.geo.islands.push({ name: "new island", lon: r1(lon), lat: r1(lat), r: 0.8, climate: "polar" });
     pushHistory(); rebuild(); select({ t: "island", i: state.geo.islands.length - 1 });
+}
+
+function addAtoll() {
+    const [lon, lat] = viewCentreIn(0);
+    state.geo.islands = state.geo.islands || [];
+    state.geo.islands.push({ name: "new atoll", lon: r1(lon), lat: r1(lat), shape: "atoll", r: 4, width: 2, gap: 0, climate: "warm" });
+    pushHistory(); buildNow(); select({ t: "island", i: state.geo.islands.length - 1 });
 }
 
 function addWonder(l) {
@@ -594,7 +610,7 @@ function renderTree() {
         const g = el("div", { class: "group" });
         g.append(el("div", { class: "head", style: `color:${LAND_COL[l] || "#fff"}`, onclick: () => select({ t: "land", l }) }, L.name));
         const sub = el("div", { class: "sub" });
-        for (const [t, kind] of [["poly", "outline"], ["range", "range"], ["river", "river"], ["lake", "lake"], ["volcano", "volcano"]]) {
+        for (const [t, kind] of [["poly", "outline"], ["range", "range"], ["river", "river"], ["lake", "lake"], ["sea", "sea"], ["volcano", "volcano"]]) {
             (L[LIST[t]] || []).forEach((it, i) => sub.append(item({ t, l, i }, it.name || "(unnamed)", kind)));
         }
         g.append(sub);
@@ -639,7 +655,7 @@ function renderProps() {
         p.append(el("h2", {}, "Map settings"));
         p.append(field("Band depth", state.geo, "bandDepth", "number", { step: 1 }));
         p.append(el("p", {}, "Hexes of ice-free coast round Antarctica; every start is in this band."));
-        p.append(el("div", { class: "buttons" }, el("button", { onclick: addIsland }, "+ Island or archipelago")));
+        p.append(el("div", { class: "buttons" }, el("button", { onclick: addIsland }, "+ Island or archipelago"), el("button", { onclick: addAtoll }, "+ Atoll")));
         p.append(el("div", { id: "stats", class: "stats" }));
         renderStats();
         return;
@@ -668,12 +684,12 @@ function renderProps() {
         }
         p.append(el("p", {}, "On the map: drag the square to move, the circle to turn and scale (Shift: scale only, Alt: turn only)."));
         p.append(el("div", { class: "buttons" },
-            ...[["poly", "+ Outline"], ["range", "+ Range"], ["river", "+ River"], ["lake", "+ Lake"], ["volcano", "+ Volcano"]].map(([t, lab]) => el("button", { onclick: () => addItem(t, l) }, lab)),
+            ...[["poly", "+ Outline"], ["range", "+ Range"], ["river", "+ River"], ["lake", "+ Lake"], ["sea", "+ Sea"], ["volcano", "+ Volcano"]].map(([t, lab]) => el("button", { onclick: () => addItem(t, l) }, lab)),
             el("button", { onclick: () => addWonder(l) }, "+ Wonder")));
         if (!["antarctica", "south-america", "africa", "madagascar", "australia", "new-zealand"].includes(L.id)) p.append(el("p", {}, "No biome rules for this land id: it gets a temperate mix."));
         return;
     }
-    const title = { poly: "Outline", range: "Mountain range", river: "River", lake: "Lake", volcano: "Volcano", island: "Island", wonder: "Natural wonder" }[sel.t];
+    const title = { poly: "Outline", range: "Mountain range", river: "River", lake: "Lake", sea: "Inner sea", volcano: "Volcano", island: it.shape === "atoll" ? "Atoll" : "Island", wonder: "Natural wonder" }[sel.t];
     p.append(el("h2", {}, title + (LIST[sel.t] ? " - " + state.geo.lands[sel.l].name : "")));
     if (sel.t !== "wonder") p.append(field("Name", it, "name"));
     if (sel.t === "range") {
@@ -692,7 +708,20 @@ function renderProps() {
         p.append(el("p", {}, r ? `On this grid: ${r.tiles.length} hexes, ${r.toOcean ? "reaches the sea" : "ends in a lake or another river"}.` : "On this grid: no river (see the log below)."));
     }
     if (sel.t === "lake") p.append(field("Size (hexes)", it, "size", "number", { step: 1 }));
-    if (sel.t === "island") {
+    if (sel.t === "sea") {
+        p.append(field("Size (hexes)", it, "size", "number", { step: 1 }));
+        p.append(field("Note", it, "note", "textarea", { optional: true }));
+        p.append(el("p", {}, "A landlocked sea: over the map's lake size (10 hexes) the game treats it as sea, not a lake, so it has no fresh water. Size is for 108x80 and grows with the map. It never reaches the shore, and its own shore stays ice."));
+    }
+    if (sel.t === "island") p.append(field("Shape", it, "shape", "select", { optional: true, choices: [["", "island or archipelago"], ["atoll", "atoll (ring round a lagoon)"]] }));
+    if (sel.t === "island" && it.shape === "atoll") {
+        p.append(field("Radius (hexes)", it, "r", "number", { step: 1 }));
+        p.append(field("Ring width", it, "width", "number", { step: 1 }));
+        p.append(field("Cut (deg)", it, "gap", "number", { step: 15 }));
+        p.append(field("Climate", it, "climate", "select", { choices: [["warm", "warm (tropical)"], ["cool", "cool (grass, plains)"], ["polar", "polar (tundra)"]] }));
+        p.append(field("Note", it, "note", "textarea", { optional: true }));
+        p.append(el("p", {}, "A ring of land round a shallow lagoon, cut in two semicircles along the line at this angle (0 = east-west): each end of the cut is a one-hex opening. The radius grows with the map, the ring width does not."));
+    } else if (sel.t === "island") {
         p.append(field("Radius (hexes)", it, "r", "number", { step: 0.1 }));
         p.append(field("Islets", it, "n", "number", { step: 1 }));
         p.append(field("Spread (hexes)", it, "spread", "number", { step: 0.5 }));

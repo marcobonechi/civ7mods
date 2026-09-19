@@ -38,6 +38,10 @@ Ronne and Filchner ice shelves count as land, so the coast follows their fronts.
   navigable at the mouth), Recovery Glacier, the Adventure Trench flood through the Byrd Glacier, the
   Siple Coast lakes under the Whillans Ice Stream, and the old river valleys under the Totten and
   Denman glaciers and Pine Island Bay. Lake Vostok is a three-hex lake deep in the ice.
+- **The Inner Sea** (imaginary) lies near the pole: a landlocked sea of about 18 hexes, bigger than a
+  lake so the game treats it as sea. Six imaginary rivers cross the ice into it: the Vostok Outflow
+  from Lake Vostok, the Gamburtsev, Dome Fuji, Dome Concordia, Maudheim and Beardmore. Its shore
+  stays ice, so it adds no starting land, and no pack ice forms on it.
 - **Sea ice** floats in the Southern Ocean, never next to a coast, so every shore can be reached.
 
 **The Distant Lands**, each in its own projection with its north pointing away from the pole, run
@@ -58,7 +62,11 @@ Paul; towards New Zealand Macquarie, Lord Howe, Campbell, the Auckland Islands, 
 in the Pacific the Chatham Islands, Pitcairn, Rapa Nui and Juan Fernández. They sit roughly in their
 ocean rather than at their true spot (the corners are not a true projection). An archipelago's
 islets scatter differently every game, and each island has a climate: subantarctic tundra, cool
-grassland, or warm and tropical for Rapa Nui, Pitcairn, Lord Howe and Juan Fernández. Antarctica is the homeland; everything else is Distant Lands, and at least seven hexes of
+grassland, or warm and tropical for Rapa Nui, Pitcairn, Lord Howe and Juan Fernández.
+
+**Twin Reef Atoll** (imaginary) lies in the Pacific between New Zealand and South America: two
+semicircles of land two hexes wide round a shallow lagoon full of reefs, with a one-hex opening into
+the lagoon at each end of the cut between them. Antarctica is the homeland; everything else is Distant Lands, and at least seven hexes of
 sea with deep ocean in it separate them, so nobody reaches another continent before the Exploration
 Age.
 
@@ -98,7 +106,7 @@ draws everything through one.
   move the whole land) and a **circle** (drag to turn and scale it; Shift scales only, Alt turns
   only). Antarctica has only the circle: it stays on the pole. The same values are editable as
   numbers on the right.
-- Click an outline, range, river, lake, volcano, island or wonder to select it. An island has a radius, a number of islets (more than 1 makes an archipelago, drawn with its spread as a dashed circle) and a climate. Drag its points; click
+- Click an outline, range, river, lake, volcano, island or wonder to select it. An island has a radius, a number of islets (more than 1 makes an archipelago, drawn with its spread as a dashed circle) and a climate; an atoll has a radius, a ring width and the angle of its cut (the openings follow it). A land's panel can add an inner sea; Map settings adds islands and atolls. Drag its points; click
   a **+** between two points to add one; Alt/Option-click a point, or hover it and press Delete, to
   remove one. A river runs from its green point (source) to its mouth.
 - The land panel adds outlines, ranges, rivers, lakes, volcanoes and wonders, in the middle of the
@@ -125,7 +133,8 @@ node tools/antarctica-check.mjs
 Builds every size over several seeds and checks the promises above: the grids match, South America
 and Africa reach the top edge and Australia and New Zealand the bottom one, no coast-only route from
 Antarctica to a Distant Land, the band is all Antarctica and has room for the most players each size
-allows, every river is an unbroken chain ending in water, lakes are inland.
+allows, every river is an unbroken chain ending in water, lakes are inland, inner seas are landlocked and
+leave the band alone, and the atoll has exactly two openings at every cut angle.
 
 ```bash
 node tools/antarctica-preview.mjs STD 7

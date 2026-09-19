@@ -7,7 +7,8 @@
 //  - the band is BAND_DEPTH deep, all on Antarctica, with room for the most players the size allows,
 //    split into arcs the way antarctica-map.js splits it, each arc with open ground to settle;
 //  - every river is a connected chain of land hexes, none on a mountain or volcano, ending in water;
-//  - lakes are inland.
+//  - lakes are inland; inner seas are landlocked in Antarctica and leave the band alone;
+//  - an atoll has a lagoon with exactly two openings to the sea, at any cut angle.
 // Usage: node tools/antarctica-check.mjs [seeds=5]
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -30,6 +31,32 @@ const maxPlayers = {};
 for (const m of config.matchAll(/MapSizeType="(\w+)"[^>]*MaxPlayers="(\d+)"/g)) maxPlayers[m[1]] = Math.max(maxPlayers[m[1]] || 0, +m[2]);
 for (const [name, w, h] of shipped) {
     if (!SIZES[name] || SIZES[name][0] !== w || SIZES[name][1] !== h) fail(name + " is " + w + "x" + h + " in data/maps.xml but " + JSON.stringify(SIZES[name]) + " in antarctica-raster.js");
+}
+
+// Separate openings of the atoll lagoons: groups of open water (not lagoon) touching a lagoon.
+function atollOpenings(g) {
+    const W = g.W, lag = new Set(), exits = new Set();
+    for (let i = 0; i < W * g.H; i++) if (g.lagoon[i]) lag.add(i);
+    if (!lag.size) return 0;
+    for (const i of lag) for (const [a, b] of hexNeighbors(i % W, Math.floor(i / W))) {
+        if (g.inBounds(a, b) && !g.isLand(a, b) && !lag.has(g.idx(a, b))) exits.add(g.idx(a, b));
+    }
+    const seen = new Set();
+    let groups = 0;
+    for (const e of exits) {
+        if (seen.has(e)) continue;
+        groups++;
+        const q = [e];
+        seen.add(e);
+        while (q.length) {
+            const u = q.pop();
+            for (const [a, b] of hexNeighbors(u % W, Math.floor(u / W))) {
+                const j = g.idx(a, b);
+                if (g.inBounds(a, b) && exits.has(j) && !seen.has(j)) { seen.add(j); q.push(j); }
+            }
+        }
+    }
+    return groups;
 }
 
 const EDGE = { "south-america": "top", "africa": "top", "australia": "bottom", "new-zealand": "bottom" };
@@ -112,6 +139,21 @@ for (const [name, W, H] of shipped) {
             if (!water(mx, my) && !g.riverTiles.has(mx + "," + my)) fail(tag + ": river " + r.name + " ends on dry land");
         }
         for (const v of g.volcanoes) if (g.riverTiles.has(v.x + "," + v.y)) fail(tag + ": volcano " + v.name + " sits on a river");
+        // inner seas: landlocked, on Antarctica, and their shore is not part of the band
+        for (const [name, tiles] of g.seaTiles) {
+            if (!tiles.length) fail(tag + ": sea " + name + " has no water");
+            for (const [x, y] of tiles) for (const [a, b] of hexNeighbors(x, y)) {
+                if (!g.inBounds(a, b)) continue;
+                const j = g.idx(a, b);
+                if (g.isLand(a, b) ? g.owner[j] !== 0 : !g.inlandSea[j]) { fail(tag + ": sea " + name + " is not enclosed by Antarctica"); break; }
+                if (g.isLand(a, b) && g.band[j] && g.coastDist[j] === 1 && !hexNeighbors(a, b).some(([p, q]) => g.inBounds(p, q) && !g.isLand(p, q) && !g.inlandSea[g.idx(p, q)])) fail(tag + ": sea " + name + " made its shore part of the band");
+            }
+        }
+        // atolls: a lagoon with exactly two openings to the open sea (one at each end of the cut)
+        for (const isl of GEO.islands.filter((z) => z.shape === "atoll")) {
+            const n = atollOpenings(g);
+            if (n !== 2) fail(tag + ": atoll " + isl.name + " has " + n + " opening(s) instead of 2");
+        }
         // lakes
         for (const [lk, tiles] of g.lakeTiles) for (const [x, y] of tiles) {
             if (hexNeighbors(x, y).some(([a, b]) => g.inBounds(a, b) && (g.terrain[g.idx(a, b)] === T.OCEAN || g.terrain[g.idx(a, b)] === T.COAST))) fail(tag + ": lake " + lk + " touches the sea");
@@ -125,5 +167,18 @@ for (const [name, W, H] of shipped) {
         }
     }
 }
+// The atoll's openings at every cut angle, so an edit in the editor cannot close the lagoon.
+for (const isl of GEO.islands.filter((z) => z.shape === "atoll")) {
+    const keep = isl.gap;
+    for (let gap = 0; gap < 360; gap += 15) for (const [name, W, H] of shipped) {
+        isl.gap = gap;
+        let s = 11;
+        const rnd = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+        const n = atollOpenings(buildAntarcticaGrid(W, H, GEO, rnd));
+        if (n !== 2) fail(name + ": atoll " + isl.name + " cut at " + gap + " degrees has " + n + " opening(s) instead of 2");
+    }
+    isl.gap = keep;
+}
+
 console.log(failures ? failures + " problem(s)" : "all checks passed");
 process.exit(failures ? 1 : 0);

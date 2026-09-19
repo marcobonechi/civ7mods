@@ -252,8 +252,10 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
     // 108x80 map and grow with the grid, like the continents.
     const hexScale = halfH / ((80 - 1) * SQ3 / 2);
     const islandClimate = new Array(N).fill(null);   // "polar" (default), "cool" or "warm"
+    const lagoon = new Array(N).fill(false);         // water inside an atoll
     for (const isl of ISLANDS) {
         const [X, Y] = polar.toCanvas(isl.lon, isl.lat);
+        if (isl.shape === "atoll") { placeAtoll(isl, X, Y); continue; }
         const n = Math.max(1, Math.round(isl.n || 1));
         const spread = (isl.spread || 0) * hexScale / halfH;       // canvas units
         const radius = (isl.r || 0.6) * hexScale;
@@ -274,6 +276,41 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
             }
         }
     }
+    // An atoll: a ring `width` hexes wide and `r` hexes out (r grows with the grid, width does not),
+    // cut in two semicircles by a line through the centre at `gap` degrees (counter-clockwise from
+    // east), which leaves a one-hex opening into the lagoon at each end of the cut.
+    function placeAtoll(isl, X, Y) {
+        const c = nearestHex(X, Y);
+        if (!c) { log("atoll " + isl.name + " is off the map"); return; }
+        const R = Math.max(2, Math.round((isl.r || 4) * hexScale)), w = Math.max(1, Math.round(isl.width || 2));
+        const ga = (isl.gap || 0) * D2R;
+        const [cX, cY] = toCanvas(c[0], c[1]);
+        // the openings: at each end of the cut, for every step across the ring, the one hex
+        // nearest the cut line - a one-hex channel at any angle (a plain distance-to-line test
+        // misses every hex centre at some angles and leaves the ring closed)
+        const opening = new Set();
+        for (const dir of [1, -1]) for (let d = R - w + 1; d <= R; d++) {
+            const px = cX + dir * d * Math.cos(ga) / halfH, py = cY + dir * d * Math.sin(ga) / halfH;
+            let best = null, bd = Infinity;
+            for (let y = c[1] - R; y <= c[1] + R; y++) for (let x = c[0] - R; x <= c[0] + R; x++) {
+                if (!inBounds(x, y) || hexDistance(c[0], c[1], x, y) !== d) continue;
+                const [tX, tY] = toCanvas(x, y);
+                const dd = Math.hypot(tX - px, tY - py);
+                if (dd < bd) { bd = dd; best = idx(x, y); }
+            }
+            if (best !== null) opening.add(best);
+        }
+        for (let y = c[1] - R; y <= c[1] + R; y++) for (let x = c[0] - R; x <= c[0] + R; x++) {
+            if (!inBounds(x, y)) continue;
+            const d = hexDistance(c[0], c[1], x, y);
+            if (d > R) continue;
+            const i = idx(x, y);
+            if (d <= R - w) { if (owner[i] === -1) lagoon[i] = true; continue; }
+            if (opening.has(i) || owner[i] !== -1) continue;
+            owner[i] = -2; islandClimate[i] = isl.climate || "warm";
+        }
+    }
+
     // keep a clear sea on the map edges' first column so nothing touches the left and right sides
     for (let y = 0; y < H; y++) { owner[idx(0, y)] = -1; owner[idx(W - 1, y)] = -1; }
 
@@ -308,6 +345,32 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
         lakeTiles.set(lk.name, tiles);
     }));
 
+    // --- inner seas: landlocked water bigger than a lake (the engine calls a water body over the
+    // map's LakeSizeCutoff a sea). Their shore does not count as coast for the band, so it stays ice.
+    const inlandSea = new Array(N).fill(false);
+    const seaTiles = new Map();
+    LANDS.forEach((L, l) => (L.seas || []).forEach((sea) => {
+        const [X, Y] = L.frame.toCanvas(sea.lon, sea.lat);
+        const c = nearestHex(X, Y);
+        if (!c || owner[idx(c[0], c[1])] !== l) { log("sea " + sea.name + " is not on land"); return; }
+        const want = Math.max(1, Math.round((sea.size || 12) * hexScale * hexScale));
+        const tiles = [c], seen = new Set([c.join(",")]);
+        while (tiles.length < want) {
+            // grow round the centre, with a little randomness so the shore is not a perfect hexagon
+            let best = null, bd = Infinity;
+            for (const t of tiles) for (const [a, b] of hexNeighbors(t[0], t[1])) {
+                if (!inBounds(a, b) || seen.has(a + "," + b) || owner[idx(a, b)] !== l) continue;
+                if (hexNeighbors(a, b).some(([p, q]) => !inBounds(p, q) || owner[idx(p, q)] !== l)) continue;   // never reach the shore
+                const dd = hexDistance(c[0], c[1], a, b) + rnd() * 1.2;
+                if (dd < bd) { bd = dd; best = [a, b]; }
+            }
+            if (!best) break;
+            seen.add(best.join(",")); tiles.push(best);
+        }
+        for (const [a, b] of tiles) { terrain[idx(a, b)] = T.OCEAN; inlandSea[idx(a, b)] = true; }
+        seaTiles.set(sea.name, tiles);
+    }));
+
     // --- water depth: coast next to land, ocean further out ---
     // Distances to the homeland (Antarctica) and to the Distant Lands are kept apart: shallow water
     // two or three hexes out only grows where the other side is far away, so no chain of coast
@@ -335,6 +398,7 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
         const other = Math.max(dHome[i], dFar[i]);
         const n = noise(x / 4 + 40, y / 4 + 40);
         if (d === 1 || (other > 4 && ((d === 2 && n > 0.45) || (d === 3 && n > 0.72)))) terrain[i] = T.COAST;
+        if (lagoon[i]) terrain[i] = T.COAST;   // an atoll's lagoon is shallow all through
     }
 
     // --- Antarctica's ice-free band: land within BAND_DEPTH hexes of the sea (lakes do not count) ---
@@ -345,7 +409,7 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
         for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
             const i = idx(x, y);
             if (!isLand(i)) continue;
-            if (hexNeighbors(x, y).some(([a, b]) => inBounds(a, b) && (terrain[idx(a, b)] === T.OCEAN || terrain[idx(a, b)] === T.COAST))) {
+            if (hexNeighbors(x, y).some(([a, b]) => inBounds(a, b) && !inlandSea[idx(a, b)] && (terrain[idx(a, b)] === T.OCEAN || terrain[idx(a, b)] === T.COAST))) {
                 coastDist[i] = 1; q.push([x, y]);
             }
         }
@@ -552,7 +616,7 @@ export function buildAntarcticaGrid(W, H, GEO, rnd, log = () => {}) {
     return {
         W, H, idx, inBounds, toCanvas, nearestHex, halfH,
         terrain, biome, owner, region, lon, lat, plat, rain, band, coastDist, canvasX, canvasY,
-        riverTiles, riverList, volcanoes, wonders, lakeTiles, centre, bandTiles, lands: LANDS, bandDepth: BAND_DEPTH,
+        riverTiles, riverList, volcanoes, wonders, lakeTiles, seaTiles, inlandSea, lagoon, islandClimate, centre, bandTiles, lands: LANDS, bandDepth: BAND_DEPTH,
         isLand: (x, y) => isLand(idx(x, y)),
     };
 }

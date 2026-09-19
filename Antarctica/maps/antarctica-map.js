@@ -11,7 +11,7 @@
 // setRiverInfo again), with modelRivers as the fallback on an older game.
 
 import { GEO } from '/antarctica-map/maps/antarctica-geo.js';
-import { buildAntarcticaGrid, SIZES, T, B, REGION, hexDistance, directionName } from '/antarctica-map/maps/antarctica-raster.js';
+import { buildAntarcticaGrid, SIZES, T, B, REGION, hexNeighbors, hexDistance, directionName } from '/antarctica-map/maps/antarctica-raster.js';
 import * as globals from '/base-standard/maps/map-globals.js';
 import { addNaturalWonders } from '/base-standard/maps/natural-wonder-generator.js';
 import { addFeatures } from '/base-standard/maps/feature-biome-generator.js';
@@ -248,8 +248,9 @@ function dropDuplicateWonders(grid) {
 // Features the engine placed by its own (straight-line) latitude are put right here:
 //  - the frozen interior keeps no forest, marsh or bog: it is ice;
 //  - sea ice and reefs are cleared and placed again by each hex's real latitude: pack ice in the
-//    Southern Ocean (never next to land, so every coast stays reachable), cold reefs off
-//    Antarctica and the sub-Antarctic islands, warm reefs and atolls only in warm water.
+//    Southern Ocean (never next to land, so every coast stays reachable, and never on the Inner
+//    Sea), cold reefs off Antarctica and the sub-Antarctic islands, warm reefs by warm islands and
+//    plenty of them in an atoll's lagoon.
 
 const NO_FEATURE = () => ({ Feature: FeatureTypes.NO_FEATURE, Direction: -1, Elevation: 0 });
 
@@ -275,10 +276,21 @@ function fixFeatures(grid) {
         }
     }
     const roll = (n) => TerrainBuilder.getRandomNumber(n, "Antarctica features");
+    // water next to a warm island (Rapa Nui, the atoll) is warm whatever the polar latitude says
+    const nearWarmIsland = (x, y) => hexNeighbors(x, y).some(([a, b]) => grid.inBounds(a, b) && grid.islandClimate[grid.idx(a, b)] === "warm");
+    let lagoonReefs = 0;
     for (let y = 0; y < grid.H; y++) for (let x = 0; x < grid.W; x++) {
         if (!GameplayMap.isWater(x, y) || GameplayMap.getFeatureType(x, y) !== FeatureTypes.NO_FEATURE) continue;
         if (GameplayMap.isLake(x, y)) continue;
-        const lat = grid.plat[grid.idx(x, y)];
+        const i = grid.idx(x, y);
+        if (grid.inlandSea[i]) continue;   // the Inner Sea stays open water
+        if (grid.lagoon[i]) {
+            if (REEF >= 0 && roll(100) < 45 && TerrainBuilder.canHaveFeature(x, y, REEF)) {
+                TerrainBuilder.setFeatureType(x, y, { Feature: REEF, Direction: -1, Elevation: 0 }); lagoonReefs++;
+            }
+            continue;
+        }
+        const lat = nearWarmIsland(x, y) ? -30 : grid.plat[i];
         const nearLand = GameplayMap.isAdjacentToLand(x, y);
         if (ICE >= 0 && lat < -62 && !nearLand && GameplayMap.getTerrainType(x, y) === globals.g_OceanTerrain) {
             // denser towards the continent, and never a solid wall
@@ -298,7 +310,7 @@ function fixFeatures(grid) {
         }
     }
     console.log(TAG + "features - " + clearedLand + " cleared from the ice, " + clearedIce + " sea features cleared; placed " +
-        ice + " pack ice, " + cold + " cold reefs, " + warm + " reefs");
+        ice + " pack ice, " + cold + " cold reefs, " + warm + " reefs, " + lagoonReefs + " reefs in atoll lagoons");
 }
 
 // Antarctica is ice beyond its coastal band: permanent snow, heavier further in. The band stays clear.

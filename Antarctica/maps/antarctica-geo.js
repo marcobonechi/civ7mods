@@ -15,10 +15,14 @@
 //   height = 1.
 // polys: outlines as [lon, lat] rings. ranges: polylines, w = half width in hexes, m = chance of a
 //   mountain inside, h = chance of a hill. rivers: source to mouth, nav = navigable hexes above the
-//   mouth, toLake = the lake it ends in. lakes: centre and size in hexes. islands: on the polar
+//   mouth, toLake = the lake it ends in. lakes: centre and size in hexes. seas: landlocked water
+//   over the lake size (the game calls it sea), size in hexes of the 108x80 map; never touches
+//   the shore, and its own shore stays ice rather than joining the band. islands: on the polar
 //   projection, r = radius in hexes; n > 1 makes an archipelago of n islets scattered within
 //   `spread` hexes (a new scatter every game); climate "polar", "cool" or "warm" sets their biomes;
-//   sizes are for the 108x80 map and grow with the grid. bandDepth: Antarctica's ice-free coastal
+//   sizes are for the 108x80 map and grow with the grid. shape "atoll": a ring `width` hexes wide
+//   and `r` hexes out round a shallow lagoon, cut in two semicircles along the line at `gap`
+//   degrees (0 = east-west), with a one-hex opening at each end of the cut. bandDepth: Antarctica's ice-free coastal
 //   band, in hexes.
 
 export const GEO = {
@@ -141,10 +145,44 @@ export const GEO = {
                     note: "the one real surface river: it runs inland, into Lake Vanda in the Dry Valleys",
                     pts: [[163.8, -76.9], [159, -77.4], [154.5, -77.8]],
                 },
+                {
+                    name: "Vostok Outflow", nav: 0,
+                    note: "imaginary: Lake Vostok drains into the Inner Sea",
+                    pts: [[104, -78.6], [96, -81.5], [86, -84.6]],
+                },
+                {
+                    name: "Gamburtsev", nav: 0,
+                    note: "imaginary: off the buried Gamburtsev Mountains",
+                    pts: [[68, -78.2], [74, -81.5], [79, -84.3]],
+                },
+                {
+                    name: "Dome Fuji", nav: 0, note: "imaginary: from Dome Fuji on the plateau",
+                    pts: [[38, -77.2], [50, -81], [66, -84.6]],
+                },
+                {
+                    name: "Dome Concordia", nav: 0,
+                    note: "imaginary: from Dome C, joining the Vostok Outflow",
+                    pts: [[124, -75.3], [116, -79], [104, -81.6]],
+                },
+                {
+                    name: "Maudheim", nav: 0, note: "imaginary: down from Queen Maud Land",
+                    pts: [[-12, -77.8], [8, -82.5], [40, -86], [62, -86.6]],
+                },
+                {
+                    name: "Beardmore", nav: 0,
+                    note: "imaginary: off the Transantarctic Mountains past the pole",
+                    pts: [[164, -83.8], [150, -87.2], [110, -87.8]],
+                },
             ],
             lakes: [
                 { name: "Vanda", lon: 152.5, lat: -77.9, size: 1 },
                 { name: "Vostok", lon: 106, lat: -77.3, size: 3 },
+            ],
+            seas: [
+                {
+                    name: "Inner Sea", note: "imaginary: a landlocked sea under the polar plateau",
+                    lon: 80, lat: -86, size: 18,
+                },
             ],
         },
         {
@@ -480,13 +518,18 @@ export const GEO = {
             climate: "cool",
         },
         {
-            name: "Pitcairn Islands", lon: -88.9, lat: -56.1, r: 0.5, n: 3, spread: 2.5,
+            name: "Pitcairn Islands", lon: -83.3, lat: -56.9, r: 0.5, n: 3, spread: 2.5,
             climate: "warm",
         },
         { name: "Rapa Nui", lon: -97.8, lat: -47, r: 0.8, climate: "warm" },
         {
             name: "Juan Fernandez", lon: -78.5, lat: -44.6, r: 0.6, n: 2, spread: 2.5,
             climate: "warm",
+        },
+        {
+            name: "Twin Reef Atoll",
+            note: "imaginary: two semicircles round a lagoon, with an opening at each end of the cut",
+            lon: -102.4, lat: -57, shape: "atoll", r: 4, width: 2, gap: 0, climate: "warm",
         },
     ],
     wonders: [
