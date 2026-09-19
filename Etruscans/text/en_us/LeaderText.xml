@@ -20,7 +20,13 @@
             <Text>The Labyrinth</Text>
         </Row>
         <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC">
-            <Text>Porsenna measures a neighbour by what stands in their cities. He respects leaders whose Districts are well built up, and thinks little of those who leave them empty.</Text>
+            <Text>Likes Leaders with more buildings in their Districts than him. Dislikes those with fewer.</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_LIKES">
+            <Text>Porsenna likes Leaders with more buildings in their Districts than him.</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_THE_LABYRINTH_DESC_DISLIKES">
+            <Text>Porsenna dislikes Leaders with fewer buildings in their Districts than him.</Text>
         </Row>
         <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_PORSENNA_ANY">
             <Text>Bring me the surveyors before you bring me the army.</Text>

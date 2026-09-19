@@ -150,3 +150,18 @@ cut-out can be made from a full-length painting with `tools/lift-subject.swift`.
   diplomatically inert. Copy the argument set from `MACHIAVELLI_MOD_AGENDA_THE_SPIDER` and pick
   a `WeightType` from the `DIPLOMACY_AGENDA_COMPARE_*` list in `base-standard/data`. While you
   are there: the base game's median leader has five ability modifiers, not three.
+- **An agenda needs three text rows, not two.** Besides the `Tooltip` tag (`..._DESC`), the 1.5
+  agenda popup (`base-standard/ui-next/screens/diplo-message/diplo-message-popup.js`) shows the
+  `Tooltip` tag with `_LIKES` appended when the relationship went up and `_DISLIKES` when it went
+  down. Without those two rows it prints the raw `LOC_..._DESC_LIKES` id. 25 of the 26 shipped
+  agendas define both; copy their wording: `DESC` states the rule ("Likes Leaders with ... Dislikes
+  those ..."), `_LIKES` / `_DISLIKES` are one sentence each, starting with the leader's name.
+- **`AWARD_HIGHER` / `AWARD_LOWER` compare against the agenda's owner**, `AWARD_HIGHEST` /
+  `AWARD_LOWEST` against everyone. Hatshepsut (`HIGHER` with a negative amount, `LOWER` with a
+  positive one) dislikes leaders with more Wonders than her and likes those with fewer. The sign of
+  `AwardAmtType` (`..._AMT_...` or `..._NEG_AMT_...`) decides like or dislike, so write the text
+  from the arguments, not from the intent.
+- Some weight types take extra arguments; copy them from a shipped agenda with the same
+  `WeightType`. `DIPLOMACY_AGENDA_COMPARE_DISTRICT_BUILDINGS` takes `Arg1` (the district type,
+  e.g. `DISTRICT_URBAN`) and `Arg2` (the minimum number of buildings for a district to count;
+  Lafayette's 2 means Quarters).

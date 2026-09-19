@@ -20,7 +20,13 @@
             <Text>Patron of Workshops</Text>
         </Row>
         <Row Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC">
-            <Text>Lorenzo judges a court by what its artists have made. He admires leaders who hold many Great Works, and has little to say to those who hold none.</Text>
+            <Text>Likes Leaders with more [icon:NAR_REW_GREATWORK] Great Works than him. Dislikes those with fewer.</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC_LIKES">
+            <Text>Lorenzo likes Leaders with more [icon:NAR_REW_GREATWORK] Great Works than him.</Text>
+        </Row>
+        <Row Tag="LOC_DIPLOMACY_AGENDA_PATRON_OF_WORKSHOPS_DESC_DISLIKES">
+            <Text>Lorenzo dislikes Leaders with fewer [icon:NAR_REW_GREATWORK] Great Works than him.</Text>
         </Row>
         <Row Tag="LOC_MAIN_CHAR_SELECT_LEADER_LORENZO_ANY">
             <Text>How beautiful is youth, that flies from us so fast. Let who will be glad: of tomorrow there is no certainty.</Text>
