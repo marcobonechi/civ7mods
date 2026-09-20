@@ -16,7 +16,9 @@ Installing, game versions, the toolchain, version control and releasing are shar
 
 ## The four maps
 
-All four offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**.
+All four offer the same three grids: **112x98 (Standard), 128x112 (Large), 144x126 (Huge)**. The two
+Europe & Mediterranean maps also come in **90x76 (Compact)**, 8 players by default - see
+[The compact size](#the-compact-size-90x76) below.
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
@@ -64,9 +66,42 @@ node tools/eurasia-compressed/build.mjs && ./preview/build-preview.sh
 
 `tools/check-map-sizes.mjs` fails if the Eurasia file is out of date with the Europe file.
 
+### The compact size (90x76)
+
+Compact is not the large geography on a coarser grid. It is its own cut of it, 62% of the 112x98
+map's tiles, got by cutting and squeezing what is empty far more than by scaling: Italy, France,
+Greece and the rest of core Europe keep 94% of the tile scale they have at 112x98.
+
+- **East.** East of 34E a screen degree covers 1.8 geographic degrees (1.35 from 35E on the large map),
+  so Russia, the Caucasus and Iran take about twelve fewer columns. The edge still reaches far enough
+  for the Persian, Sumerian and Qajar starts.
+- **West.** The Atlantic is trimmed; Iberia and West Africa are compressed by three columns, which
+  the sea gains; West Africa south of 30N is squeezed by 3.0 instead of 2.2. Iceland is 75% of its size
+  and sits level with Shetland, Ireland is 78% of its size, shrunk towards Dublin, and the two Atlantic
+  islets move in with the coast.
+- **South.** The Sahel and Sahara band and the desert strip between 27N and 31N are squashed.
+- **North.** North of 54N the rows run out fast - Scandinavia and northern Russia are about six rows
+  shorter - and the top row is open sea (`topWater`), so the Arctic Ocean closes the map.
+- **Starts.** At this scale three pairs of true starts fall under the 5-hex spacing, so on Compact the
+  Etruscans start at Spina on the Adriatic, Persia further up the Karun, and the Normans at Alencon;
+  the Abbasids start at Samarra, because Baghdad is hemmed in by both rivers; and a pass corridor opens
+  the Ethiopian highlands round Axum and Gondar so a city there has land to build on.
+
+`maps/europe-compact-geo.js` is **generated** from `europe-large-geo.js` by
+`tools/europe-compact/build.mjs`, which holds everything above; islands are moved in tile space, so they
+keep their shape. The file says which grid it is for (`gridSizes: [[90, 76]]`) and
+`europe-large-core.js` swaps it in when the game picks that grid; One Landmass passes it through
+`oneLandmassGeo()` like the large geography. Eurasia Compressed has no compact geography, so
+`config/config.xml` offers the size to the two Europe & Mediterranean maps only. The checks follow the
+same rules: each map is built only at the sizes it is offered, with the geography that size uses.
+
+```bash
+node tools/europe-compact/build.mjs && ./preview/build-preview.sh   # writes preview/europe-compact.html too
+```
+
 Note: the engine takes the grid from the map-size database rows (`data/maps.xml`), not from the
 map script, so the first map renders on whatever standard size is picked and the large map declares
-its own three sizes.
+its own sizes.
 
 The large map (`maps/europe-large-geo.js`, `maps/europe-large-map.js`) adds the Sahel, Ethiopia and
 Arabia, compresses the Arctic and the Sahara vertically (piecewise latitude mapping), trims the Atlantic
@@ -93,6 +128,35 @@ true starts for Aksum (Axum) and Songhai (Gao). Its fallback ranking favours Mor
   every river a gorge.)
   `node tools/check-rivers.mjs` plans every map at every shipped size over several seeds and checks
   each river drains to the sea and runs downhill.
+
+## Natural wonders
+
+The base generator picks each wonder's hex uniformly from every valid one on the map, so on a map
+this wide a wonder is as likely to land in the Sahel as in Spain. Three lists in the geography
+narrow that down, and `maps/europe-large-core.js` runs the first two before handing the rest to the
+base generator:
+
+- `wonders` put a named wonder at a named place: Thera on Santorini, Kilimanjaro in East Africa,
+  Gullfoss on the Hvita in Iceland. The exact hex is tried first, then rings outwards, and the
+  engine validates the whole footprint - Thera needs four coastal tiles, Kilimanjaro three adjacent
+  mountains - so one that will not fit is logged and left to the random pass rather than forced.
+- `wonderSites` fix the place but not the wonder. The candidate list is shuffled with the engine's
+  own generator and the first whose footprint fits wins, so the site is a certainty and which
+  wonder appears there is not. There are two: the Central System in Spain and the Irish Sea.
+- `requestedWonders` go to the base generator, which moves them to the front of its shuffled list
+  and forces their chance to 100%, so those are the ones that turn up - somewhere.
+
+The sites exist because several civilizations are weak without a natural wonder they own, and a
+settlement's borders reach only three tiles from its city centre. Isabella scales her wonder tile
+yields by the number of wonders in her empire, Iceland reads culture off every wonder and volcano
+tile it holds, and Majapahit's Meru pays happiness per wonder tile in the city. Left to the random
+pass, the chance any one of them starts within reach of a wonder is about one in twenty.
+
+Every hand-placed wonder spends one of the map's slots (`NumNaturalWonders` in `data/maps.xml`: 9
+on the compact grid up to 16 on the largest), so the lists are kept short. `node
+tools/check-map-sizes.mjs` checks, on every map at every shipped size, that each pin and each site
+has ground its wonder can actually stand on, and that a site is still inside border reach of the
+start it was put there for.
 
 Distant Lands: landmass regions are assigned to whole water-separated landmasses, never by
 longitude. The engine treats a region change as a distant-lands boundary, so a boundary running
@@ -203,12 +267,13 @@ rather than edited:
 | Generated file | Built by | When |
 |---|---|---|
 | `maps/europe-alt-geo.js` | `node tools/eurasia-compressed/build.mjs` | after any edit to `europe-large-geo.js` or `build.mjs` (the editor runs it for you on save) |
+| `maps/europe-compact-geo.js` | `node tools/europe-compact/build.mjs` | after any edit to `europe-large-geo.js` or that `build.mjs` (the editor runs it for you on save) |
 | the mod description (modinfo, `text/en_us/ModuleText.xml`, `l10n/ModuleText.xml`) | `python3 tools/module-description/build.py` | after moving a start, changing a fallback site or the description's wording |
 | `preview/*.html` | `./preview/build-preview.sh` | after any geography edit |
 | `EuropeMediterranean/screenshots/*.png` | `./preview/shots.sh` (after the previews) | when the map has changed visibly |
 
-**Then check it.** `node tools/check-map-sizes.mjs` builds all four maps at every size and fails if
-`europe-alt-geo.js` is out of date, if a start lands too close to another, if the Distant Lands share
+**Then check it.** `node tools/check-map-sizes.mjs` builds all four maps at every size they offer and fails if
+`europe-alt-geo.js` or `europe-compact-geo.js` is out of date, if a start lands too close to another, if the Distant Lands share
 or a land connection the geography declares (`expectLand`) is wrong. `node tools/check-rivers.mjs`
 plans every river on all four maps and fails if one runs uphill, through a mountain pass or onto a
 start. `python3 tools/module-description/build.py --check` fails if the description no longer

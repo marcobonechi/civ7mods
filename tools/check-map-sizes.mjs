@@ -14,7 +14,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const MOD = path.join(HERE, '..', 'EuropeMediterranean');
 const MAPS = path.join(MOD, 'maps');
 
-const { buildEuropeGrid, hexNeighbors, hexDistance, oneLandmassGeo } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
+const { buildEuropeGrid, hexNeighbors, hexDistance, oneLandmassGeo, T } = await import(pathToFileURL(path.join(MAPS, 'europe-raster.js')).href);
 
 // Sizes come from the mod's own gameplay data, so this cannot drift from what ships.
 const xml = fs.readFileSync(path.join(MOD, 'data', 'maps.xml'), 'utf8');
@@ -49,6 +49,51 @@ const ISLANDS = { Britain: [-1.5, 52.5], Ireland: [-8.0, 53.3], Sicily: [14.2, 3
 // An island merged into the mainland shows up as a component far larger than this.
 const ISLAND_MAX = 400;
 
+// What ground each natural wonder needs, read off the game's own tables: Feature_ValidTerrains,
+// Feature_ValidBiomes and Feature_NaturalWonders.Tiles (base-standard/data/terrain.xml and
+// racetowonders-terrain.xml, plus the mountain-natural-wonders, water-wonders and
+// japan-korea-wonders DLC - 22 wonders in all). `river` is NoRiver="false":
+// only the three waterfalls may stand on a river course, every other wonder may not.
+// This is the engine's canHaveFeatureParam test approximated - it does not model the Direction
+// column, so a wonder that wants a particular triangle of mountains can still be refused in game,
+// which is why europe-large-core.js falls back to the random pass instead of insisting.
+const WONDER_GROUND = {
+    FEATURE_VALLEY_OF_FLOWERS:     { terrain: 'FLAT',     biomes: 'P',  tiles: 2 },
+    FEATURE_REDWOOD_FOREST:        { terrain: 'FLAT',     biomes: 'G',  tiles: 3 },
+    FEATURE_GRAND_CANYON:          { terrain: 'FLAT',     biomes: 'D',  tiles: 4 },
+    FEATURE_GULLFOSS:              { terrain: 'HILL',     biomes: 'TG', tiles: 1, river: true },
+    FEATURE_IGUAZU_FALLS:          { terrain: 'HILL',     biomes: 'R',  tiles: 1, river: true },
+    FEATURE_ULURU:                 { terrain: 'HILL',     biomes: 'D',  tiles: 1 },
+    FEATURE_HOERIKWAGGO:           { terrain: 'MOUNTAIN', biomes: 'G',  tiles: 4 },
+    FEATURE_KILIMANJARO:           { terrain: 'MOUNTAIN', biomes: 'P',  tiles: 3 },
+    FEATURE_ZHANGJIAJIE:           { terrain: 'MOUNTAIN', biomes: 'R',  tiles: 2 },
+    FEATURE_TORRES_DEL_PAINE:      { terrain: 'MOUNTAIN', biomes: 'T',  tiles: 3 },
+    FEATURE_MOUNT_EVEREST:         { terrain: 'MOUNTAIN', biomes: 'R',  tiles: 4 },
+    FEATURE_MOUNT_FUJI:            { terrain: 'MOUNTAIN', biomes: 'G',  tiles: 3 },
+    FEATURE_MACHAPUCHARE:          { terrain: 'MOUNTAIN', biomes: 'R',  tiles: 3 },
+    FEATURE_VIHREN:                { terrain: 'MOUNTAIN', biomes: 'P',  tiles: 3 },
+    FEATURE_VINICUNCA:             { terrain: 'MOUNTAIN', biomes: 'D',  tiles: 4 },
+    FEATURE_NACHI_FALLS:           { terrain: 'MOUNTAIN', biomes: 'R',  tiles: 4, river: true },
+    FEATURE_THERA:                 { terrain: 'COAST',    biomes: 'M',  tiles: 4 },
+    FEATURE_BARRIER_REEF:          { terrain: 'COAST',    biomes: 'M',  tiles: 4 },
+    FEATURE_GREAT_BLUE_HOLE:       { terrain: 'COAST',    biomes: 'M',  tiles: 1 },
+    FEATURE_MAPU_A_VAEA_BLOWHOLES: { terrain: 'COAST',    biomes: 'M',  tiles: 2 },
+    FEATURE_SEONGSAN_ILCHULBONG:   { terrain: 'COAST',    biomes: 'M',  tiles: 2 },
+    // The only wonder that wants deep water rather than coast.
+    FEATURE_BERMUDA_TRIANGLE:      { terrain: 'OCEAN',    biomes: 'M',  tiles: 3 },
+};
+// Civilizations whose ability needs a natural wonder inside their own borders, and borders reach
+// three tiles from a city centre (Civilopedia, Growth). A site further than this from the start it
+// was put there for is serving a second city at best, so it is worth knowing about.
+const WONDER_BORDER_REACH = 3;
+// Land within this many hexes of a true start is not dependable ground for a wonder: before the
+// wonders go in, europe-large-core.js flattens the start hex (prepareStartTile) and then
+// boostStartFood turns tiles around it into flat grassland until the start has five rich ones.
+// Water is untouched by that pass, so coastal sites are unaffected. Not modelling this is what let
+// the checker pass Gullfoss on the compact grid when the engine went on to refuse it.
+const START_FOOD_REACH = 2;
+const WONDER_SITE_FOR = { 'the Central System, Spain': 'CIVILIZATION_SPAIN', 'the Irish Sea': 'CIVILIZATION_MAJAPAHIT' };
+
 let failures = 0;
 const check = (cond, msg) => { console.log((cond ? '    ok   ' : '    FAIL ') + msg); if (!cond) failures++; };
 
@@ -59,6 +104,10 @@ const check = (cond, msg) => { console.log((cond ? '    ok   ' : '    FAIL ') + 
     const r = spawnSync('node', [path.join(HERE, 'eurasia-compressed', 'build.mjs'), '--check'], { encoding: 'utf8' });
     console.log('\n=== europe-alt-geo.js against europe-large-geo.js');
     check(r.status === 0, (r.stdout || r.stderr).trim().split('\n')[0]);
+    // ...and so is the compact 90x76 geography (tools/europe-compact/build.mjs).
+    const c = spawnSync('node', [path.join(HERE, 'europe-compact', 'build.mjs'), '--check'], { encoding: 'utf8' });
+    console.log('\n=== europe-compact-geo.js against europe-large-geo.js');
+    check(c.status === 0, (c.stdout || c.stderr).trim().split('\n')[0]);
 }
 
 // Only the geography behind a map the game actually offers at these grids is checked.
@@ -198,6 +247,62 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
                                               .map(([n, ll]) => n + '=' + size(...ll));
         check(!merged.length, `islands stay separate${merged.length ? ' (merged or missing: ' + merged.join(', ') + ')' : ''}`);
 
+        // Natural wonders the geography places by hand (GEO.wonders) or by site (GEO.wonderSites).
+        const startFood = new Set();
+        for (const civ in GEO.tsl || {}) {
+            const t0 = g.findLandTile(...GEO.tsl[civ], 3, false);
+            if (!t0) continue;
+            for (let dy = -START_FOOD_REACH; dy <= START_FOOD_REACH; dy++)
+                for (let dx = -START_FOOD_REACH; dx <= START_FOOD_REACH; dx++) {
+                    const x = t0[0] + dx, y = t0[1] + dy;
+                    if (hexDistance(t0[0], t0[1], x, y) <= START_FOOD_REACH) startFood.add(x + ',' + y);
+                }
+        }
+        // A pin or a site that finds no ground silently falls back to the random pass in game,
+        // which puts the wonder somewhere else entirely - the failure this catches.
+        const fitsHere = (feature, lon, lat, radius) => {
+            const g0 = WONDER_GROUND[feature];
+            if (!g0) return null;                 // a wonder this table does not know: not judged
+            const ok = (x, y) => {
+                if (!inB(x, y)) return false;
+                const code = g.terrain[g.idx(x, y)];
+                if (code !== T.OCEAN && code !== T.COAST && startFood.has(x + ',' + y)) return false;
+                const terr = code === T.RIVER ? (g0.river ? 'FLAT' : null)
+                           : code === T.OCEAN ? 'OCEAN' : Object.keys(T).find(k => T[k] === code);
+                if (terr !== g0.terrain) return false;
+                const biome = (code === T.OCEAN || code === T.COAST) ? 'M' : g.biome[g.idx(x, y)];
+                return g0.biomes.includes(biome);
+            };
+            // The footprint may run outside the search radius, so only its first tile is bounded.
+            const t = g.P.nearestTile(lon, lat);
+            for (let r = 0; r <= radius; r++) for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+                const x = t[0] + dx, y = t[1] + dy;
+                if (hexDistance(t[0], t[1], x, y) !== r || !ok(x, y)) continue;
+                const seen = new Set([x + ',' + y]), qq = [[x, y]];
+                for (let h = 0; h < qq.length && qq.length < g0.tiles; h++)
+                    for (const [a, b] of hexNeighbors(...qq[h]))
+                        if (!seen.has(a + ',' + b) && ok(a, b)) { seen.add(a + ',' + b); qq.push([a, b]); }
+                if (qq.length >= g0.tiles) return r;
+            }
+            return -1;
+        };
+        for (const w of GEO.wonders || []) {
+            const r = fitsHere(w.feature, w.lon, w.lat, w.radius || 3);
+            if (r === null) continue;
+            check(r >= 0, `${w.feature.replace('FEATURE_', '')} fits at its site` + (r >= 0 ? ` (${r} hex away)` : ''));
+        }
+        for (const s2 of GEO.wonderSites || []) {
+            const fit = (s2.candidates || []).filter(f => fitsHere(f, s2.lon, s2.lat, s2.radius || 3) >= 0);
+            check(fit.length > 0, `wonder site "${s2.name}" fits ${fit.length}/${(s2.candidates || []).length} candidates` +
+                  (fit.length ? ' (' + fit.map(f => f.replace('FEATURE_', '')).join(', ') + ')' : ''));
+            // and it is no use to the civilization it was put there for if borders cannot reach it
+            const civ = WONDER_SITE_FOR[s2.name];
+            if (!civ || !GEO.tsl[civ]) continue;
+            const a = g.findLandTile(...GEO.tsl[civ], 3, false), b = g.P.nearestTile(s2.lon, s2.lat);
+            const d = a ? hexDistance(a[0], a[1], b[0], b[1]) : 99;
+            check(d <= WONDER_BORDER_REACH, `"${s2.name}" is ${d} hexes from ${civ.replace('CIVILIZATION_', '')} ` +
+                  `(borders reach ${WONDER_BORDER_REACH})`);
+        }
     }
 }
 

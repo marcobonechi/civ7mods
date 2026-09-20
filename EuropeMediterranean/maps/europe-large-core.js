@@ -152,42 +152,86 @@ function applyBiomes(grid) {
     }
 }
 
-// Place the named natural wonders at their real locations. The engine validates the whole
-// footprint through canHaveFeatureParam - Thera needs four coastal tiles, Kilimanjaro three
-// adjacent mountains - so a wonder that will not fit is reported and left to the random pass,
-// which still places it somewhere thanks to GEO.requestedWonders.
+// Natural wonders the map chooses for itself, rather than leaving every one to the random pass:
+//   GEO.wonders     - a named wonder at a named place (Thera on Santorini, Gullfoss in Iceland)
+//   GEO.wonderSites - a place that should have a wonder without it always being the same one: the
+//                     candidates are shuffled per game and the first that fits the ground wins
+// The engine validates the whole footprint through canHaveFeatureParam - Thera needs four coastal
+// tiles, Kilimanjaro three adjacent mountains - so a wonder that will not fit is reported and left
+// to the random pass, which still places it somewhere thanks to GEO.requestedWonders.
 const namedWonderTiles = {};   // FeatureType -> [x, y] chosen by placeNamedWonders
+
+// What the ground under a hex actually is, for the log. canHaveFeatureParam weighs terrain, biome
+// and whatever feature is already there, and it does not say which of them it objected to, so a
+// refusal is only diagnosable if the log carries the ground with it.
+function describeHex(x, y) {
+    const t = GameplayMap.getTerrainType(x, y), b = GameplayMap.getBiomeType(x, y);
+    const f = GameplayMap.getFeatureType(x, y);
+    const name = (table, v) => { const r = GameInfo[table].lookup(v); return r ? r[table.slice(0, -1) + "Type"].replace(/^(TERRAIN|BIOME|FEATURE)_/, "") : v; };
+    return "(" + x + "," + y + ") " + name("Terrains", t) + "/" + name("Biomes", b) +
+           (f !== FeatureTypes.NO_FEATURE ? "/" + name("Features", f) : "");
+}
+
+// One feature at one place: the exact hex first, then rings outwards, so a near miss still lands
+// close to home. A feature already placed elsewhere is refused, so two sites cannot share one.
+function placeWonderNear(feature, grid, lon, lat, maxR, where) {
+    const def = GameInfo.Features.lookup(feature);
+    if (!def) { console.log("Europe large map: wonder " + feature + " is not in this ruleset"); return false; }
+    if (namedWonderTiles[feature]) return false;
+    const nw = GameInfo.Feature_NaturalWonders.lookup(def.$hash);
+    const t = grid.P.nearestTile(lon, lat);
+    const tried = [];
+    for (let r = 0; r <= maxR; r++) {
+        for (let dy = -r; dy <= r; dy++) {
+            for (let dx = -r; dx <= r; dx++) {
+                const x = t[0] + dx, y = t[1] + dy;
+                if (!grid.inBounds(x, y)) continue;
+                if (hexDistance(t[0], t[1], x, y) !== r) continue;
+                const featureParam = {
+                    Feature: def.$hash,
+                    Direction: nw ? nw.Direction : -1,
+                    Elevation: GameplayMap.getElevation(x, y)
+                };
+                if (!TerrainBuilder.canHaveFeatureParam(x, y, featureParam)) {
+                    if (tried.length < 16 && !GameplayMap.isWater(x, y)) tried.push(describeHex(x, y));
+                    continue;
+                }
+                TerrainBuilder.setFeatureType(x, y, featureParam);
+                namedWonderTiles[feature] = [x, y];
+                console.log("Europe large map: wonder " + feature + " placed at (" + x + ", " + y + "), " + r + " hex from " + where);
+                return true;
+            }
+        }
+    }
+    // Only the pins report here; a site has other candidates to try before it gives up.
+    if (tried.length) console.log("Europe large map: " + feature + " refused on the land near " + where + ": " + tried.join("  "));
+    return false;
+}
+
+// Fisher-Yates on the engine's own generator, so a site draws a different wonder from game to game
+// but the same one for a given map seed.
+function shuffleWonders(list) {
+    const out = list.slice();
+    for (let i = out.length - 1; i > 0; i--) {
+        const j = TerrainBuilder.getRandomNumber(i + 1, "Europe wonder site");
+        const swap = out[i]; out[i] = out[j]; out[j] = swap;
+    }
+    return out;
+}
 
 function placeNamedWonders(grid) {
     const placed = [];
     for (const w of GEO.wonders || []) {
-        const def = GameInfo.Features.lookup(w.feature);
-        if (!def) { console.log("Europe large map: wonder " + w.feature + " is not in this ruleset"); continue; }
-        const nw = GameInfo.Feature_NaturalWonders.lookup(def.$hash);
-        const t = grid.P.nearestTile(w.lon, w.lat);
-        let done = false;
-        // try the exact hex, then rings outwards, so a near miss still lands close to home
-        for (let r = 0; r <= 3 && !done; r++) {
-            for (let dy = -r; dy <= r && !done; dy++) {
-                for (let dx = -r; dx <= r && !done; dx++) {
-                    const x = t[0] + dx, y = t[1] + dy;
-                    if (!grid.inBounds(x, y)) continue;
-                    if (hexDistance(t[0], t[1], x, y) !== r) continue;
-                    const featureParam = {
-                        Feature: def.$hash,
-                        Direction: nw ? nw.Direction : -1,
-                        Elevation: GameplayMap.getElevation(x, y)
-                    };
-                    if (!TerrainBuilder.canHaveFeatureParam(x, y, featureParam)) continue;
-                    TerrainBuilder.setFeatureType(x, y, featureParam);
-                    namedWonderTiles[w.feature] = [x, y];
-                    placed.push(w.feature);
-                    console.log("Europe large map: wonder " + w.feature + " placed at (" + x + ", " + y + "), " + r + " hex from its site");
-                    done = true;
-                }
-            }
+        if (placeWonderNear(w.feature, grid, w.lon, w.lat, w.radius || 3, "its site")) placed.push(w.feature);
+        else console.log("Europe large map: wonder " + w.feature + " found no valid footprint near its site; leaving it to the random pass");
+    }
+    for (const s of GEO.wonderSites || []) {
+        let got = null;
+        for (const feature of shuffleWonders(s.candidates || [])) {
+            if (placeWonderNear(feature, grid, s.lon, s.lat, s.radius || 3, s.name)) { got = feature; break; }
         }
-        if (!done) console.log("Europe large map: wonder " + w.feature + " found no valid footprint near its site; leaving it to the random pass");
+        if (got) placed.push(got);
+        else console.log("Europe large map: wonder site " + s.name + " fits none of its candidates; leaving the slot to the random pass");
     }
     return placed;
 }

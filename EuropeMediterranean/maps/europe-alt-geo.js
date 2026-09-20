@@ -1056,11 +1056,58 @@ export const GEO = {
     // `wonders` are attempted at an exact hex first; the engine validates the whole footprint
     // (Thera needs four coastal tiles, Kilimanjaro three adjacent mountains) and a placement that
     // does not fit is skipped with a log line rather than forced.
+    // `wonderSites` fix the place but not the wonder: the candidates are shuffled per game and the
+    // first whose footprint fits the ground wins, so the site is a certainty and the wonder is not.
     // `requestedWonders` are handed to the base generator, which moves them to the front of its
-    // shuffled list and forces their placement chance to 100%, so they are the ones that appear.
+    // shuffled list and forces their placement chance to 100%, so they are the ones that appear -
+    // but it picks the hex uniformly from every valid one on the map, which is why the two lists
+    // above exist at all.
     wonders: [
         { feature: "FEATURE_THERA", lon: 25.4, lat: 36.4 },
-        { feature: "FEATURE_KILIMANJARO", lon: 17.11, lat: 7.89 }
+        { feature: "FEATURE_KILIMANJARO", lon: 17.11, lat: 7.89 },
+        // Gullfoss is a real place inside this window and was already in the requested list below,
+        // so pinning it costs no variety - it only stops the golden falls surfacing in the Atlas.
+        // It also gives Iceland the wonder its civilization is built around, and tundra hills are
+        // the only ground it accepts here anyway.
+        //
+        // Vihren was pinned to the Pirin too and had to come out: it wants three connected
+        // mountains in a PLAINS biome, and the Pirin comes out grassland on the 128x112 and
+        // 144x126 grids, so the pin failed there and fell back to the random pass. Widening the
+        // search far enough to find plains mountains put it in Serbia or Anatolia, which is worse
+        // than leaving it to chance. It stays in requestedWonders. tools/check-map-sizes.mjs
+        // reports this, so it is worth retrying if the Balkan biomes ever change.
+        // The engine refused this on the compact grid ("no valid footprint"), and two things are
+        // working against it. Gullfoss takes only a hill in tundra, and Reykjavik's start sits on
+        // the same hex: prepareStartTile flattens the centre and boostStartFood turns the tiles
+        // around it into flat grassland before the wonders go in. Hence radius 5 rather than the
+        // default 3, to reach past the start's food radius. But the likelier cause is that this
+        // map has no river in Iceland at all (rivers: below has none north of the Faroes), and
+        // Gullfoss is one of only two features the database tags WATERFALL and lets stand on a
+        // river course. If the refusal survives the wider ring, the fix is the Hvita, the river
+        // the real falls drop into - not a different hex. europe-large-core.js now logs the
+        // ground it was refused on, so the next run says which of the two it is.
+        { feature: "FEATURE_GULLFOSS", lon: -20.12, lat: 64.33, radius: 5 }   // the golden falls on the Hvita
+    ],
+
+    // Natural wonder sites. Several civilizations are weak without a natural wonder they own, and
+    // borders reach only three tiles from a city centre: Isabella scales her wonder tile yields by
+    // the number of wonders in her empire, Iceland reads culture off every wonder and volcano tile
+    // it holds, and Majapahit's Meru pays happiness per wonder tile in the city. Left to the
+    // random pass the chance any one of them starts with a workable wonder is about one in twenty,
+    // because the generator draws from every valid hex between Iceland and Iran. A site fixes that
+    // for one region without fixing which wonder turns up there.
+    //
+    // Each site spends one of the map's wonder slots (NumNaturalWonders in data/maps.xml: 9 on the
+    // compact grid, 16 on the largest), so there are only two.
+    wonderSites: [
+        // Within three tiles of Madrid, so Spain's capital can work it from the start.
+        { name: "the Central System, Spain", lon: -5.1, lat: 40.3, radius: 3,
+          candidates: ["FEATURE_VALLEY_OF_FLOWERS", "FEATURE_HOERIKWAGGO", "FEATURE_REDWOOD_FOREST"] },
+        // Dublin Bay: coast is the one thing Ireland has plenty of, and the marine wonders have the
+        // smallest footprints, so this site almost never comes up empty.
+        { name: "the Irish Sea", lon: -6.1, lat: 53.33, radius: 3,
+          candidates: ["FEATURE_GREAT_BLUE_HOLE", "FEATURE_SEONGSAN_ILCHULBONG",
+                       "FEATURE_MAPU_A_VAEA_BLOWHOLES", "FEATURE_BARRIER_REEF"] }
     ],
     requestedWonders: [
         "FEATURE_THERA", "FEATURE_VIHREN", "FEATURE_GULLFOSS", "FEATURE_KILIMANJARO",
