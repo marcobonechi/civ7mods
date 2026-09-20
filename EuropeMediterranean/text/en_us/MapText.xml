@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION">
             <Text>The same map, with East Asia, Scandinavia and Iceland as Distant Lands across the water.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME">
+            <Text>Europe Compact 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION">
+            <Text>90x76 grid, 8 players by default. Europe &amp; Mediterranean maps only: the same geography cut down, with Russia, the Sahara and the far north squeezed.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>
         </Replace>

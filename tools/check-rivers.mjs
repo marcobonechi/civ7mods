@@ -54,14 +54,22 @@ const registered = [...cfg.matchAll(/<Row File="\{europe-mediterranean-map\}maps
 // oneLandmassGeo, which drops channels, so its rivers are planned on different coasts.
 const maps = registered.map(script => {
     const src = fs.readFileSync(path.join(MAPS, script), 'utf8');
-    return { script, geoFile: (src.match(/maps\/([\w-]+-geo\.js)/) || [])[1], united: /oneLandmassGeo\(/.test(src) };
+    // The first geography a script imports is its own; any other is drawn for particular grids
+    // (GEO.gridSizes) and europe-large-core.js swaps it in on those, so the check does the same.
+    const geoFiles = [...src.matchAll(/maps\/([\w-]+-geo\.js)/g)].map(m => m[1]);
+    // A map is only built at the sizes config.xml offers it.
+    const sizes = new Set([...cfg.matchAll(new RegExp('Map="\\{europe-mediterranean-map\\}maps/' + script.replace(/[.]/g, '\\.') + '" Domain="\\w+" Value="(\\w+)"', 'g'))].map(m => m[1]));
+    return { script, geoFile: geoFiles[0], sizedGeoFiles: geoFiles.slice(1), sizes, united: /oneLandmassGeo\(/.test(src) };
 }).filter(m => m.geoFile);
 
-for (const { script, geoFile, united } of maps) {
-    const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
-    const GEO = united ? raster.oneLandmassGeo(RAW) : RAW;
+for (const { script, geoFile, sizedGeoFiles, sizes, united } of maps) {
+    const load = async (f) => { const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, f)).href); return united ? raster.oneLandmassGeo(RAW) : RAW; };
+    const OWN = await load(geoFile);
+    const SIZED = [];
+    for (const f of sizedGeoFiles) SIZED.push(await load(f));
     console.log('\n=== ' + script + ' (' + geoFile + (united ? ', one landmass' : '') + ')');
-    for (const { name, w: W, h: H } of shipped) {
+    for (const { name, w: W, h: H } of shipped.filter(z => !sizes.size || sizes.has(z.name))) {
+        const GEO = SIZED.find(z => (z.gridSizes || []).some(d => d[0] === W && d[1] === H)) || OWN;
         for (let seed = 1; seed <= seeds; seed++) {
             let s = seed * 7919;
             const rnd = () => (s = (s * 1103515245 + 12345) % 2147483648) / 2147483648;

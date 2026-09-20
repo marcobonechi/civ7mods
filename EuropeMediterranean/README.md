@@ -3,7 +3,7 @@
 Map scripts covering the Mediterranean basin and Europe: Urals to Iceland, Morocco to the Sinai.
 Four map types in two pairs, historical start locations, and a browser-based geography editor with live preview.
 
-Current mod version: **61**.
+Current mod version: **62**.
 
 Project page with screenshots and the map types explained: https://marcobonechi.github.io/civ7mods/europe-mediterranean/
 (source in `docs/europe-mediterranean/index.html`; the `docs/` landing page lists all mods; GitHub Pages must serve the `docs` folder of `main`).

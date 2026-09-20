@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="europe-mediterranean-map" version="61" xmlns="ModInfo">
+<Mod id="europe-mediterranean-map" version="62" xmlns="ModInfo">
     <Properties>
         <Name>TSL (1) Europe, Med Africa (2) Eurasia Compressed</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
@@ -97,7 +97,7 @@ A civilization without a start, or one whose start another player already holds,
 Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
-        <Version>61</Version>
+        <Version>62</Version>
     </Properties>
     <Dependencies>
         <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
@@ -139,6 +139,7 @@ Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterr
                     <Item>maps/europe-alt-geo.js</Item>
                     <Item>maps/europe-alt-distant-map.js</Item>
                     <Item>maps/europe-alt-map.js</Item>
+                    <Item>maps/europe-compact-geo.js</Item>
                     <Item>maps/europe-geo.js</Item>
                     <Item>maps/europe-large-core.js</Item>
                     <Item>maps/europe-large-geo.js</Item>
@@ -180,6 +181,7 @@ Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterr
                     <Item>screenshots/09-eurasia-compressed.png</Item>
                     <Item>screenshots/10-eurasia-distant-lands.png</Item>
                     <Item>screenshots/11-eurasia-east.png</Item>
+                    <Item>screenshots/12-compact.png</Item>
                 </ImportFiles>
             </Actions>
         </ActionGroup>

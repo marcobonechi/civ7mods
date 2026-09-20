@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="pl_PL">
             <Text>Ta sama mapa, z Azją Wschodnią, Skandynawią i Islandią jako dalekimi ziemiami po drugiej stronie wody.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="pl_PL">
+            <Text>Europa Kompaktowa 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="pl_PL">
+            <Text>Siatka 90x76, domyślnie 8 graczy. Tylko dla map Europa i Morze Śródziemne: ta sama geografia w pomniejszeniu, ze ściśniętą Rosją, Saharą i daleką północą.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pl_PL">
             <Text>Europa Duża 112x98</Text>
         </Replace>

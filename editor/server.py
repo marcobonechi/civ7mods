@@ -34,8 +34,10 @@ INSTALL_SCRIPT = os.path.join(CIV7_ROOT, "install.sh")
 # The Eurasia maps' geography is built from the Europe file, so saving that file rebuilds it, and
 # the built file itself is not saved from the editor (the next rebuild would overwrite the edit).
 EURASIA_BUILD = os.path.join(CIV7_ROOT, "tools", "eurasia-compressed", "build.mjs")
+COMPACT_BUILD = os.path.join(CIV7_ROOT, "tools", "europe-compact", "build.mjs")
 SHARED_GEO = "europe-large-geo.js"
-GENERATED_GEO = {"europe-alt-geo.js": "It is built from europe-large-geo.js: edit the shared geography there (this file is rebuilt when you save it) and Eurasia's own - the Eastern Ocean and East Asia - in tools/eurasia-compressed/build.mjs."}
+GENERATED_GEO = {"europe-compact-geo.js": "It is built from europe-large-geo.js: edit the shared geography there (this file is rebuilt when you save it) and what is compact-only - the projection, Iceland, Ireland, the moved starts - in tools/europe-compact/build.mjs.",
+                 "europe-alt-geo.js": "It is built from europe-large-geo.js: edit the shared geography there (this file is rebuilt when you save it) and Eurasia's own - the Eastern Ocean and East Asia - in tools/eurasia-compressed/build.mjs."}
 
 # Which geography file the editor opens first. Set by --map; the browser can
 # switch to any other file /api/maps lists.
@@ -45,6 +47,7 @@ SELECTED_MAP = None
 MAP_LABELS = {
     "europe-large-geo.js": "Europe & Mediterranean - shared by all four maps",
     "europe-alt-geo.js": "Eurasia Compressed (built from the Europe file - view only)",
+    "europe-compact-geo.js": "Europe & Mediterranean, compact 90x76 (built from the Europe file - view only)",
     "europe-geo.js": "Europe & Mediterranean (Standard, not registered)",
 }
 
@@ -274,6 +277,16 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 else:
                     self.log_msg(RED, "EURASIA", (proc.stderr or proc.stdout).strip()[-400:])
                     message += "; Eurasia rebuild FAILED - run node tools/eurasia-compressed/build.mjs to see why"
+            if filename == SHARED_GEO and os.path.isfile(COMPACT_BUILD):
+                # ...and into the compact 90x76 size of the Europe & Mediterranean maps
+                proc = subprocess.run(["node", COMPACT_BUILD], cwd=CIV7_ROOT, capture_output=True, text=True)
+                if proc.returncode == 0:
+                    self.log_msg(GREEN, "COMPACT", (proc.stdout.strip().splitlines() or [""])[0])
+                    message += "; compact 90x76 geography rebuilt"
+                    written.append(os.path.join(MAPS_PRIMARY, "europe-compact-geo.js"))
+                else:
+                    self.log_msg(RED, "COMPACT", (proc.stderr or proc.stdout).strip()[-400:])
+                    message += "; compact rebuild FAILED - run node tools/europe-compact/build.mjs to see why"
             self._json(200, {"success": True, "message": message, "written": written})
         except Exception as exc:
             self.log_msg(RED, "ERROR", "save failed: %s" % exc)

@@ -29,7 +29,9 @@ build() {
       strip_exports "$MAPS/$geo"
       printf '\n'
       strip_exports "$MAPS/europe-raster.js"
-      cat "$TPL/$tail_tpl"
+      # optional 4th/5th argument: the grid the page opens on (the template's default is 112x98)
+      if [ -n "${4:-}" ]; then sed "s/q.get('w')||'112'/q.get('w')||'$4'/; s/q.get('h')||'98'/q.get('h')||'$5'/" "$TPL/$tail_tpl"
+      else cat "$TPL/$tail_tpl"; fi
     } > "$ROOT/$out"
     echo "built $out"
 }
@@ -37,6 +39,7 @@ build() {
 build "europe-large-geo.js" "tail-large.html"    "europe-large.html"
 build "europe-geo.js"       "tail-standard.html" "europe.html"
 build "europe-alt-geo.js"   "tail-large.html"    "europe-alt.html"
+build "europe-compact-geo.js" "tail-large.html"  "europe-compact.html" 90 76
 
 if [ "$OPEN" -eq 1 ]; then
     if command -v open >/dev/null; then open "$ROOT/europe-large.html"

@@ -10,8 +10,9 @@
 // require distant lands.
 
 import { GEO } from '/europe-mediterranean-map/maps/europe-large-geo.js';
+import { GEO as COMPACT } from '/europe-mediterranean-map/maps/europe-compact-geo.js';
 import { oneLandmassGeo } from '/europe-mediterranean-map/maps/europe-raster.js';
 import { initEuropeLargeMap } from '/europe-mediterranean-map/maps/europe-large-core.js';
 
 console.log("Loading europe-large-united-map.js (one landmass)");
-initEuropeLargeMap(oneLandmassGeo(GEO), "one-landmass");
+initEuropeLargeMap(oneLandmassGeo(GEO), "one-landmass", [oneLandmassGeo(COMPACT)]);

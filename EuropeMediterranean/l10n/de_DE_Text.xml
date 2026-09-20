@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="de_DE">
             <Text>Dieselbe Karte, mit Ostasien, Skandinavien und Island als ferne Länder jenseits des Wassers.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="de_DE">
+            <Text>Europa Kompakt 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="de_DE">
+            <Text>90x76-Raster, standardmäßig 8 Spieler. Nur für die Karten Europa &amp; Mittelmeer: dieselbe Geografie, verkleinert, mit gestauchtem Russland, gestauchter Sahara und gestauchtem hohen Norden.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="de_DE">
             <Text>Europa Groß 112x98</Text>
         </Replace>

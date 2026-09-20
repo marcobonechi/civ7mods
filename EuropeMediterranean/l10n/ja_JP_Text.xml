@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="ja_JP">
             <Text>同じマップで、東アジア、スカンディナヴィア、アイスランドが海の向こうの遠方の地となる。</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="ja_JP">
+            <Text>ヨーロッパ コンパクト 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="ja_JP">
+            <Text>90x76グリッド、デフォルト8人プレイ。ヨーロッパ・地中海マップ専用：同じ地形を縮小し、ロシア、サハラ、極北を圧縮。</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ja_JP">
             <Text>ヨーロッパ 大型 112x98</Text>
         </Replace>

@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="zh_Hans_CN">
             <Text>同一张地图，东亚、斯堪的纳维亚和冰岛作为隔海的远方大陆。</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="zh_Hans_CN">
+            <Text>欧洲紧凑地图 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>90x76 网格，默认 8 名玩家。仅适用于欧洲与地中海地图：同样的地理，但压缩了俄罗斯、撒哈拉和极北地区。</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hans_CN">
             <Text>欧洲大地图 112x98</Text>
         </Replace>

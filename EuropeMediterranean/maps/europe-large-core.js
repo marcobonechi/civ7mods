@@ -19,11 +19,22 @@ import { dumpContinents, dumpTerrain, dumpBiomes, dumpFeatures, dumpResources } 
 
 // Set by initEuropeLargeMap() before any engine handler is registered.
 let GEO = null;
+// A map may come with geographies drawn for particular grids (GEO.gridSizes: [[w, h], ...]): the
+// compact 90x76 size is its own cut of Europe, not the large geography on a coarser grid. The
+// geography is chosen again whenever the grid is known; BASE_GEO is what every other size uses.
+let BASE_GEO = null;
+let SIZED_GEOS = [];
+function useGeoFor(w, h) {
+    const sized = SIZED_GEOS.find((g) => (g.gridSizes || []).some((d) => d[0] === w && d[1] === h));
+    GEO = sized || BASE_GEO;
+    console.log("Europe large map: geography for " + w + "x" + h + " - " + (sized ? "its own" : "the shared one"));
+}
 
 console.log("Loading europe-large-core.js");
 
 // Grid dimensions per map size. Width/height ratio keeps Europe's real proportions on a hex grid.
 const SIZES = {
+    MAPSIZE_EUROPE_LARGE_COMPACT: [90, 76],
     MAPSIZE_EUROPE_LARGE_STD: [112, 98],
     MAPSIZE_EUROPE_LARGE_LRG: [128, 112],
     MAPSIZE_EUROPE_LARGE_HUGE: [144, 126],
@@ -62,6 +73,7 @@ function pickDims(initParams) {
 
 function requestMapData(initParams) {
     const dims = pickDims(initParams);
+    useGeoFor(dims[0], dims[1]);
     initParams.width = dims[0];
     initParams.height = dims[1];
     initParams.wrapX = false;
@@ -724,7 +736,17 @@ function assignEuropeStartPositions(grid) {
         reserved++;
     }
     if (reserved) console.log("Europe large map: " + reserved + " unused historic sites kept resource-free");
-    return startPositions;
+
+    // generateDiscoveries() treats this as a dense list: getDistanceToClosestStart() walks
+    // 0..length-1 and reads startPositions[i] % gridWidth. A player none of the passes could place
+    // leaves a hole, and `undefined % width` is NaN - the engine would then measure every discovery
+    // against a start at (NaN, NaN). Hand back only the positions actually set.
+    const placed = startPositions.filter((p) => p !== undefined);
+    if (placed.length != aliveMajorIds.length) {
+        console.log("Europe large map: WARNING " + (aliveMajorIds.length - placed.length) +
+            " of " + aliveMajorIds.length + " player(s) have no start position");
+    }
+    return placed;
 }
 
 // ---------------------------------------------------------------------------
@@ -890,6 +912,7 @@ function generateMap() {
     const iWidth = GameplayMap.getGridWidth();
     const iHeight = GameplayMap.getGridHeight();
     console.log("Europe large map: engine grid " + iWidth + "x" + iHeight);
+    useGeoFor(iWidth, iHeight);
     const uiMapSize = GameplayMap.getMapSize();
     const mapInfo = GameInfo.Maps.lookup(uiMapSize);
     const iNumNaturalWonders = mapInfo ? mapInfo.NumNaturalWonders : 5;
@@ -976,8 +999,9 @@ function generateMap() {
 
 // Entry scripts call this with the geography they want. Only one map script is loaded per
 // game, so the two variants never share this module's state.
-export function initEuropeLargeMap(geo, label) {
-    GEO = geo;
+export function initEuropeLargeMap(geo, label, sizedGeos) {
+    GEO = BASE_GEO = geo;
+    SIZED_GEOS = sizedGeos || [];
     console.log("Europe large map: variant " + (label || "default") +
         ", distant-lands anchors " + JSON.stringify(geo.distantLandsAnchors || []));
     engine.on('RequestMapInitData', requestMapData);

@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="ko_KR">
             <Text>같은 지도에서 동아시아, 스칸디나비아, 아이슬란드가 바다 건너 먼 땅이 됩니다.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="ko_KR">
+            <Text>유럽 소형 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="ko_KR">
+            <Text>90x76 격자, 기본 8인 플레이. 유럽 및 지중해 지도 전용: 같은 지형을 줄이고 러시아, 사하라, 극북을 압축했습니다.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ko_KR">
             <Text>유럽 대형 112x98</Text>
         </Replace>

@@ -71,8 +71,12 @@ const registered = [...cfg.matchAll(/<Row File="\{europe-mediterranean-map\}maps
 // from the one europe-large-geo.js they share.
 const maps = registered.map(script => {
     const src = fs.readFileSync(path.join(MAPS, script), 'utf8');
-    const geoFile = (src.match(/maps\/([\w-]+-geo\.js)/) || [])[1];
-    return { script, geoFile, united: /oneLandmassGeo\(/.test(src) };
+    // The first geography a script imports is its own; any other is drawn for particular grids
+    // (GEO.gridSizes) and europe-large-core.js swaps it in on those, so the check does the same.
+    const geoFiles = [...src.matchAll(/maps\/([\w-]+-geo\.js)/g)].map(m => m[1]);
+    // A map is only built at the sizes config.xml offers it.
+    const sizes = new Set([...cfg.matchAll(new RegExp('Map="\\{europe-mediterranean-map\\}maps/' + script.replace(/[.]/g, '\\.') + '" Domain="\\w+" Value="(\\w+)"', 'g'))].map(m => m[1]));
+    return { script, geoFile: geoFiles[0], sizedGeoFiles: geoFiles.slice(1), sizes, united: /oneLandmassGeo\(/.test(src) };
 }).filter(m => m.geoFile);
 if (!maps.length) { console.error('no registered map scripts found'); process.exit(1); }
 
@@ -80,17 +84,24 @@ if (!maps.length) { console.error('no registered map scripts found'); process.ex
 const JOINS = [['Finland and Russia', [23.8, 61.5], [37.6, 55.75]],
                ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]]];
 
-for (const { script, geoFile, united } of maps) {
-    const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, geoFile)).href);
-    const GEO = united ? oneLandmassGeo(RAW) : RAW;
-    console.log('\n=== ' + script + ' (' + geoFile + (united ? ', one landmass' : '') + ')  (' + shipped.length + ' shipped sizes)');
+for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps) {
+    const load = async (f) => { const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, f)).href); return united ? oneLandmassGeo(RAW) : RAW; };
+    const OWN = await load(ownGeoFile);
+    const SIZED = [];
+    for (const f of sizedGeoFiles) SIZED.push({ file: f, geo: await load(f) });
+    const offered = shipped.filter(z => z.name === '(extra)' || !sizes.size || sizes.has(z.name));
+    console.log('\n=== ' + script + ' (' + ownGeoFile + (united ? ', one landmass' : '') + ')  (' + offered.length + ' sizes offered)');
 
-    for (const { name, w: W, h: H } of shipped) {
+    for (const { name, w: W, h: H } of offered) {
+        const sized = SIZED.find(z => (z.geo.gridSizes || []).some(d => d[0] === W && d[1] === H));
+        const GEO = sized ? sized.geo : OWN, geoFile = sized ? sized.file : ownGeoFile;
+        // Islands a sized geography has moved are looked for where it put them (GEO.checkIslands).
+        const ISLANDS_HERE = { ...ISLANDS, ...(GEO.checkIslands || {}) };
         let s = 1;
         const rnd = () => (s = (s * 1103515245 + 12345) % 2147483648) / 2147483648;
         const g = buildEuropeGrid(W, H, structuredClone(GEO), rnd);
         const N = W * H, inB = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
-        console.log(`\n  ${W}x${H}  ${name}`);
+        console.log(`\n  ${W}x${H}  ${name}` + (sized ? '  (' + geoFile + ')' : ''));
 
         let land = 0, east = 0, seam = 0;
         for (let i = 0; i < N; i++) { land += g.isLand[i]; if (g.isLand[i] && g.region[i] === 'E') east++; }
@@ -127,7 +138,7 @@ for (const { script, geoFile, united } of maps) {
         const at = (p) => typeof p === 'string' ? GEO.tsl[p] : p;
         const joinedBy = (a, b) => { const tb = g.findLandTile(...at(b), 3, true); return landOf(at(a)).has(tb.join()); };
         // The Distant Lands / One Landmass pair share one geography, so these two joins tell them apart.
-        if (geoFile === 'europe-large-geo.js') for (const [name, a, b] of JOINS) {
+        if (geoFile === 'europe-large-geo.js' || geoFile === 'europe-compact-geo.js') for (const [name, a, b] of JOINS) {
             const joined = joinedBy(a, b);
             check(joined === united, `${name} ${joined ? 'joined by land' : 'apart by sea'}`);
         }
@@ -183,9 +194,10 @@ for (const { script, geoFile, united } of maps) {
             }
             return qq.length;
         };
-        const merged = Object.entries(ISLANDS).filter(([, ll]) => { const n = size(...ll); return n === 0 || n > ISLAND_MAX; })
+        const merged = Object.entries(ISLANDS_HERE).filter(([, ll]) => { const n = size(...ll); return n === 0 || n > ISLAND_MAX; })
                                               .map(([n, ll]) => n + '=' + size(...ll));
         check(!merged.length, `islands stay separate${merged.length ? ' (merged or missing: ' + merged.join(', ') + ')' : ''}`);
+
     }
 }
 

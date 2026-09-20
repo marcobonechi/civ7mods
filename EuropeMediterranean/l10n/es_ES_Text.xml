@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="es_ES">
             <Text>El mismo mapa, con Asia Oriental, Escandinavia e Islandia como tierras lejanas al otro lado del agua.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="es_ES">
+            <Text>Europa Compacta 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="es_ES">
+            <Text>Cuadrícula de 90x76, 8 jugadores por defecto. Solo para los mapas de Europa y el Mediterráneo: la misma geografía recortada, con Rusia, el Sáhara y el extremo norte comprimidos.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="es_ES">
             <Text>Europa Grande 112x98</Text>
         </Replace>

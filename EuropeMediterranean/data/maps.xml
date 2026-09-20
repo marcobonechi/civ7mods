@@ -2,28 +2,38 @@
 <!-- Gameplay-side map sizes for the large map. The engine takes the grid from these rows,
      not from the map script, so each size needs its own MapSizeType.
 
-     Player counts: these maps are far bigger than the base game's, which runs about 570
-     tiles per player at every size. Even at these counts they stay roomier than that
-     (915 / 1024 / 1210), which suits a historical map where the true starts are spread
-     from Ethiopia to Iran - but the old 10/12/12 left 1100-1500 tiles each and civs
-     rarely met before the Exploration Age.
+     Player counts: the ceiling is the civilization pool, not the map, and not the engine -
+     independent powers take player ids after the majors, so the slots go well past 18 (see the
+     note in config/config.xml). Every major player wants a distinct civilization, and the base
+     game ships 10 per age; the full official catalogue reaches 17 Antiquity, 18 Exploration,
+     15 Modern.
 
-     The ceiling is the civilization pool, not the map: an Antiquity game needs one
-     distinct civ per player and the base game ships 15 (17 with the Etruscans and
-     Byzantium mods in this repo). MaxPlayers in config/config.xml goes higher for
-     anyone who has more civilizations installed. -->
+     DefaultPlayers climbs with the grid - 8 / 12 / 14 / 15 - so a bigger map means more
+     civilizations rather than more room each: 855, 915, 1024 and 1210 tiles per player, against
+     the base game's ~570 at every size. Still roomy, which suits a historical map whose true
+     starts run from Ethiopia to Iran, but without the 1100-1500 of the old 10/12/12 where civs
+     rarely met before the Exploration Age. One DLC pack covers 12 in any age; 14 and 15 want
+     most of the catalogue in a Modern game, and anyone with fewer can turn the count down in
+     the setup screen.
+
+     Compact stays at 8. It is the size for machines that cannot carry the others, so it is the
+     one place where a lower count is the point rather than a compromise. -->
 <Database>
     <Types>
+        <Replace Type="MAPSIZE_EUROPE_LARGE_COMPACT" Kind="KIND_MAPSIZE"/>
         <Replace Type="MAPSIZE_EUROPE_LARGE_STD" Kind="KIND_MAPSIZE"/>
         <Replace Type="MAPSIZE_EUROPE_LARGE_LRG" Kind="KIND_MAPSIZE"/>
         <Replace Type="MAPSIZE_EUROPE_LARGE_HUGE" Kind="KIND_MAPSIZE"/>
     </Types>
     <Maps>
+        <!-- Compact: its own cut of the geography (maps/europe-compact-geo.js), 855 tiles per player at 8. -->
+        <Replace MapSizeType="MAPSIZE_EUROPE_LARGE_COMPACT" Name="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" DefaultPlayers="8" PlayersLandmass1="5" PlayersLandmass2="3" GridWidth="90" GridHeight="76" NumNaturalWonders="9" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="4" StartSectorRows="3" StartSectorCols="3"/>
         <Replace MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Name="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" DefaultPlayers="12" PlayersLandmass1="7" PlayersLandmass2="5" GridWidth="112" GridHeight="98" NumNaturalWonders="12" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="4" StartSectorRows="4" StartSectorCols="3"/>
         <Replace MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Name="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" DefaultPlayers="14" PlayersLandmass1="8" PlayersLandmass2="6" GridWidth="128" GridHeight="112" NumNaturalWonders="14" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="4" StartSectorRows="4" StartSectorCols="3"/>
         <Replace MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Name="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" DefaultPlayers="15" PlayersLandmass1="8" PlayersLandmass2="7" GridWidth="144" GridHeight="126" NumNaturalWonders="16" OceanWidth="4" LakeSizeCutoff="10" LakeGenerationFrequency="25" Continents="4" StartSectorRows="4" StartSectorCols="3"/>
     </Maps>
     <AgeProgressionEventMapSizeOverrides>
+        <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_EUROPE_LARGE_COMPACT" Points="0"/>
         <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Points="0"/>
         <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Points="0"/>
         <Row AgeProgressionEventType="AGE_PROGRESSION_PLAYER_ELIMINATED" MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Points="0"/>

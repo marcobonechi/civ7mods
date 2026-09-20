@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="uk_UA">
             <Text>Та сама мапа, де Східна Азія, Скандинавія та Ісландія — далекі землі за водою.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="uk_UA">
+            <Text>Європа компактна 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="uk_UA">
+            <Text>Сітка 90x76, за замовчуванням 8 гравців. Лише для мап «Європа і Середземномор'я»: та сама географія у зменшеному вигляді, зі стиснутими Росією, Сахарою та крайньою північчю.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="uk_UA">
             <Text>Європа велика 112x98</Text>
         </Replace>

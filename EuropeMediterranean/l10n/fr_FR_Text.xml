@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="fr_FR">
             <Text>La même carte, avec l'Asie orientale, la Scandinavie et l'Islande en terres lointaines de l'autre côté de l'eau.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="fr_FR">
+            <Text>Europe Compacte 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="fr_FR">
+            <Text>Grille de 90x76, 8 joueurs par défaut. Cartes Europe et Méditerranée uniquement : la même géographie réduite, avec la Russie, le Sahara et le Grand Nord comprimés.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="fr_FR">
             <Text>Europe Grande 112x98</Text>
         </Replace>

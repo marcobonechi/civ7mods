@@ -31,6 +31,12 @@
         <Replace Tag="LOC_MAP_EUROPE_ALT_DISTANT_DESCRIPTION" Language="pt_BR">
             <Text>O mesmo mapa, com a Ásia Oriental, a Escandinávia e a Islândia como terras distantes do outro lado da água.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Language="pt_BR">
+            <Text>Europa Compacta 90x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="pt_BR">
+            <Text>Grade de 90x76, 8 jogadores por padrão. Apenas para os mapas Europa e Mediterrâneo: a mesma geografia reduzida, com a Rússia, o Saara e o extremo norte comprimidos.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pt_BR">
             <Text>Europa Grande 112x98</Text>
         </Replace>

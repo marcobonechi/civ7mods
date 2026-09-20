@@ -1699,6 +1699,11 @@ function buildEuropeGrid(W, H, GEO, rnd) {
             }
         }
     }
+    // 5b'. optional open sea along the top edge (GEO.topWater: { rows }), for a map whose far north
+    // is squashed so hard that the Arctic coast would otherwise run off the top and close the ocean
+    if (GEO.topWater) {
+        for (let y = H - GEO.topWater.rows; y < H; y++) for (let x = 0; x < W; x++) isLand[idx(x, y)] = 0;
+    }
     // 5c. optional sea lane along the left edge, for rows below a tile latitude
     if (GEO.leftWater) {
         for (let y = 0; y < H; y++) {
