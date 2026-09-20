@@ -139,6 +139,9 @@ const STARTS = {
     CIVILIZATION_PERSIA: [50.0, 32.3],        // up the Karun into Elam, clear of Babylon
     CIVILIZATION_ABBASID: [44.0, 34.2],       // Samarra, the Abbasid capital upriver: Baghdad is hemmed in by both rivers here
     CIVILIZATION_NORMAN: [0.09, 48.43],       // Alencon, on the southern march of Normandy, clear of London
+    // Not spacing: at three quarters scale the start landed on the same hex as Iceland's wonder
+    // site and on the Hvita's course. One hex west onto the coast leaves both room.
+    CIVILIZATION_ICELAND: [-14.14, 58.83],
 };
 for (const [civ, ll] of Object.entries(STARTS)) {
     if (!geo.tsl[civ]) throw new Error("no such start: " + civ);

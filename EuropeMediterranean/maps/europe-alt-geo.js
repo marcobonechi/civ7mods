@@ -376,7 +376,15 @@ export const GEO = {
         // Africa
         { name: "Volta", pts: [[0.1, 5.6], [-0.5, 7.0], [-1.0, 8.0], [-1.5, 10.5]] },
         { name: "Benue", pts: [[6.7, 7.8], [8.5, 8.4], [9.7, 8.9], [12.5, 9.3]] },
-        { name: "Sebou", pts: [[-6.7, 34.3], [-5.9, 34.2], [-5.0, 34.0]] }
+        { name: "Sebou", pts: [[-6.7, 34.3], [-5.9, 34.2], [-5.0, 34.0]] },
+        // The Hvita, from the Langjokull ice cap past Gullfoss to the sea at Eyrarbakki. The only
+        // river on the map north of the Faroes, and the reason Gullfoss can stand at all: a
+        // waterfall wants running water, and without this Iceland had none.
+        // strength below MINOR_STRENGTH keeps the whole course a minor river, and that is the
+        // point rather than modesty about a glacial river: a navigable hex is its own terrain
+        // here, so it stops being TERRAIN_HILL, and Gullfoss takes nothing but a hill. As a minor
+        // river the water runs along the hex edges and the hills it passes stay hills.
+        { name: "Hvita", strength: 0.4, pts: [[-19.95, 64.62], [-20.12, 64.33]] }
     ],
 
     // Generated minor rivers per area (europe-rivers.js): minorShare scales how many may start
@@ -1076,17 +1084,13 @@ export const GEO = {
         // search far enough to find plains mountains put it in Serbia or Anatolia, which is worse
         // than leaving it to chance. It stays in requestedWonders. tools/check-map-sizes.mjs
         // reports this, so it is worth retrying if the Balkan biomes ever change.
-        // The engine refused this on the compact grid ("no valid footprint"), and two things are
-        // working against it. Gullfoss takes only a hill in tundra, and Reykjavik's start sits on
-        // the same hex: prepareStartTile flattens the centre and boostStartFood turns the tiles
-        // around it into flat grassland before the wonders go in. Hence radius 5 rather than the
-        // default 3, to reach past the start's food radius. But the likelier cause is that this
-        // map has no river in Iceland at all (rivers: below has none north of the Faroes), and
-        // Gullfoss is one of only two features the database tags WATERFALL and lets stand on a
-        // river course. If the refusal survives the wider ring, the fix is the Hvita, the river
-        // the real falls drop into - not a different hex. europe-large-core.js now logs the
-        // ground it was refused on, so the next run says which of the two it is.
-        { feature: "FEATURE_GULLFOSS", lon: -20.12, lat: 64.33, radius: 5 }   // the golden falls on the Hvita
+        // Gullfoss is not here, and cannot be. Asked directly, the engine accepts it on 0 hexes
+        // of this map out of the 547 that match its own terrain and biome rows - and the same for
+        // FEATURE_IGUAZU_FALLS, the only other feature tagged WATERFALL. The twice it has ever
+        // appeared it stood on a FLAT hex, which Feature_ValidTerrains says is invalid for it. The
+        // contradiction is inside the engine and nothing a map script sets - terrain, biome, river,
+        // Direction, Elevation, all tried - changes the answer. It stays in requestedWonders so it
+        // turns up on the rare map that suits it. Iceland gets a wonder it can actually keep below.
     ],
 
     // Natural wonder sites. Several civilizations are weak without a natural wonder they own, and
@@ -1100,9 +1104,25 @@ export const GEO = {
     // Each site spends one of the map's wonder slots (NumNaturalWonders in data/maps.xml: 9 on the
     // compact grid, 16 on the largest), so there are only two.
     wonderSites: [
+        // Iceland, measured rather than assumed: asked what it would accept within six hexes of
+        // Reykjavik, the engine answered Bermuda Triangle 40, Barrier Reef 9, Torres del Paine 8,
+        // Great Blue Hole 3 - and Gullfoss nothing. Torres del Paine leads because it is the only
+        // land wonder among them and glacial peaks in tundra are what Iceland is; the marine three
+        // follow so the site fills even where the mountains do not line up. This is what the civ
+        // needs: a wonder inside its borders for the culture its ability reads off wonder tiles.
+        { name: "Iceland", lon: -20.12, lat: 64.33, radius: 5,
+          candidates: ["FEATURE_TORRES_DEL_PAINE", "FEATURE_BERMUDA_TRIANGLE", "FEATURE_BARRIER_REEF"] },
         // Within three tiles of Madrid, so Spain's capital can work it from the start.
-        { name: "the Central System, Spain", lon: -5.1, lat: 40.3, radius: 3,
-          candidates: ["FEATURE_VALLEY_OF_FLOWERS", "FEATURE_HOERIKWAGGO", "FEATURE_REDWOOD_FOREST"] },
+        // Only two wonders reliably find ground here: Redwood Forest and Vihren - the one that
+        // would not fit the real Pirin, at home in the Spanish sierras instead. Valley of Flowers
+        // was the obvious third and had to go: the engine refuses it everywhere on this map (see
+        // the note on Gullfoss above), and Hoerikwaggo and Mount Fuji fit about once in thirty.
+        // radius 5 rather than 3 because two candidates is a thin list and the ring search takes
+        // the nearest hex that fits, so the wider ring only decides the games where nothing close
+        // works - a wonder a little further out beats none. It still lands inside Madrid's borders
+        // in most games, and the site itself is 2-3 hexes from the start on every grid.
+        { name: "the Central System, Spain", lon: -5.1, lat: 40.3, radius: 5,
+          candidates: ["FEATURE_REDWOOD_FOREST", "FEATURE_VIHREN"] },
         // Dublin Bay: coast is the one thing Ireland has plenty of, and the marine wonders have the
         // smallest footprints, so this site almost never comes up empty.
         { name: "the Irish Sea", lon: -6.1, lat: 53.33, radius: 3,

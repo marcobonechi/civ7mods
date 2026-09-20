@@ -4145,6 +4145,20 @@ export const GEO = {
      34
     ]
    ]
+  },
+  {
+   "name": "Hvita",
+   "strength": 0.4,
+   "pts": [
+    [
+     -13.695,
+     59.804
+    ],
+    [
+     -13.891,
+     59.63
+    ]
+   ]
   }
  ],
  "riverAreas": [
@@ -13654,24 +13668,28 @@ export const GEO = {
    "feature": "FEATURE_KILIMANJARO",
    "lon": 17.11,
    "lat": 7.89
-  },
-  {
-   "feature": "FEATURE_GULLFOSS",
-   "lon": -13.891,
-   "lat": 59.63,
-   "radius": 5
   }
  ],
  "wonderSites": [
   {
+   "name": "Iceland",
+   "lon": -13.891,
+   "lat": 59.63,
+   "radius": 5,
+   "candidates": [
+    "FEATURE_TORRES_DEL_PAINE",
+    "FEATURE_BERMUDA_TRIANGLE",
+    "FEATURE_BARRIER_REEF"
+   ]
+  },
+  {
    "name": "the Central System, Spain",
    "lon": -3.84,
    "lat": 40.3,
-   "radius": 3,
+   "radius": 5,
    "candidates": [
-    "FEATURE_VALLEY_OF_FLOWERS",
-    "FEATURE_HOERIKWAGGO",
-    "FEATURE_REDWOOD_FOREST"
+    "FEATURE_REDWOOD_FOREST",
+    "FEATURE_VIHREN"
    ]
   },
   {
@@ -13812,8 +13830,8 @@ export const GEO = {
    39.9
   ],
   "CIVILIZATION_ICELAND": [
-   -14.15,
-   59.318
+   -14.14,
+   58.83
   ],
   "CIVILIZATION_QAJAR": [
    51.4,

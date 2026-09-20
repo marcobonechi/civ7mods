@@ -124,7 +124,12 @@ for (const { script, geoFile, sizedGeoFiles, sizes, united } of maps) {
                 if (!check(inB(tx, ty) && hexDistance(t.x, t.y, tx, ty) === 1, `${where} drains to non-neighbour (${tx},${ty})`)) { bad++; continue; }
                 check(isWater(tx, ty) || plan.tiles.has(tx + ',' + ty), `${where} drains onto dry land (${tx},${ty})`) || bad++;
                 check(!isWater(t.x, t.y), `${where} is on water`) || bad++;
-                check(!reserved.has(t.x + ',' + t.y), `${where} takes a true start`) || bad++;
+                // A drawn river running through a true start is intended - Rome is on the Tiber,
+                // and a minor river is fresh water under the city, not an obstacle. What must not
+                // happen is a start on a navigable hex, which is its own terrain, or a generated
+                // stream taking one, which the planner is given `reserved` to avoid.
+                const startHazard = reserved.has(t.x + ',' + t.y) && (!t.river || t.type === RIVER_NAVIGABLE);
+                check(!startHazard, `${where} takes a true start`) || bad++;
                 check(!g.passHexes.has(t.x + ',' + t.y), `${where} runs through a mountain pass`) || bad++;
                 directionName(t.x, t.y, t.to);
                 // follow the flow to the sea

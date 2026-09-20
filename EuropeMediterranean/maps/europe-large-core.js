@@ -168,8 +168,103 @@ function describeHex(x, y) {
     const t = GameplayMap.getTerrainType(x, y), b = GameplayMap.getBiomeType(x, y);
     const f = GameplayMap.getFeatureType(x, y);
     const name = (table, v) => { const r = GameInfo[table].lookup(v); return r ? r[table.slice(0, -1) + "Type"].replace(/^(TERRAIN|BIOME|FEATURE)_/, "") : v; };
+    // Water state too: the two wonders this map cannot place are exactly the two the database
+    // marks AddsFreshWater, so whether a hex is wet is the difference worth seeing.
+    const wet = [];
+    const ask = (label, fn) => { try { if (fn()) wet.push(label); } catch (e) { /* not in this build */ } };
+    ask("river", () => GameplayMap.isRiver(x, y));
+    ask("navigable", () => GameplayMap.isNavigableRiver(x, y));
+    ask("lake", () => GameplayMap.isLake(x, y));
+    ask("fresh", () => GameplayMap.isFreshWater(x, y));
+    ask("byRiver", () => GameplayMap.isAdjacentToRivers(x, y, 1));
     return "(" + x + "," + y + ") " + name("Terrains", t) + "/" + name("Biomes", b) +
-           (f !== FeatureTypes.NO_FEATURE ? "/" + name("Features", f) : "");
+           (f !== FeatureTypes.NO_FEATURE ? "/" + name("Features", f) : "") +
+           (wet.length ? "[" + wet.join(",") + "]" : "");
+}
+
+// Where on the whole map would the engine take this feature? canHaveFeatureParam is the only
+// oracle for what it actually wants, so when a pin fails, read the answer off the map it built
+// rather than guessing at the rule. Reports a sample, and the count, which is the useful part:
+// zero means the feature cannot be placed at all here, whatever we do to Iceland.
+function surveyWonder(feature, iWidth, iHeight, grid, anchorLon, anchorLat) {
+    const def = GameInfo.Features.lookup(feature);
+    if (!def) return;
+    const nw = GameInfo.Feature_NaturalWonders.lookup(def.$hash);
+    const found = [];
+    let total = 0;
+    for (let y = 0; y < iHeight; y++) {
+        for (let x = 0; x < iWidth; x++) {
+            const featureParam = {
+                Feature: def.$hash,
+                Direction: nw ? nw.Direction : -1,
+                Elevation: GameplayMap.getElevation(x, y)
+            };
+            if (!TerrainBuilder.canHaveFeatureParam(x, y, featureParam)) continue;
+            total++;
+            if (found.length < 8) found.push(describeHex(x, y));
+        }
+    }
+    console.log("Europe large map: " + feature + " - the engine accepts " + total + " hexes on this map" +
+        (found.length ? ": " + found.join("  ") : ""));
+    if (total > 0) return;
+    // Nothing anywhere. The ground is not the only input: we also hand canHaveFeatureParam a
+    // Direction and an Elevation, and those have never been varied. Try the whole space on a hex
+    // that satisfies the feature's own terrain and biome rows, and report what it takes.
+    const terr = new Set(GameInfo.Feature_ValidTerrains.filter(r => r.FeatureType === feature).map(r => r.TerrainType));
+    const bio = new Set(GameInfo.Feature_ValidBiomes.filter(r => r.FeatureType === feature).map(r => r.BiomeType));
+    const nameOf = (table, v) => { const r = GameInfo[table].lookup(v); return r ? r[table.slice(0, -1) + "Type"] : String(v); };
+    // Collect the candidates first, well away from the map edge - the outermost rows are barred
+    // for reasons of their own and say nothing about this feature - and prefer ones near the site.
+    const pool = [];
+    for (let y = 3; y < iHeight - 3; y++) {
+        for (let x = 3; x < iWidth - 3; x++) {
+            if (!terr.has(nameOf("Terrains", GameplayMap.getTerrainType(x, y)))) continue;
+            if (!bio.has(nameOf("Biomes", GameplayMap.getBiomeType(x, y)))) continue;
+            if (GameplayMap.getFeatureType(x, y) !== FeatureTypes.NO_FEATURE) continue;
+            pool.push([x, y]);
+        }
+    }
+    console.log("Europe large map:   " + pool.length + " hexes away from the edge match its terrain and biome rows");
+    // Is it this feature, or is it this corner of the map? Ask every natural wonder in the ruleset
+    // how many hexes it would take inside the site's own neighbourhood, and how many it takes on
+    // the map as a whole. If the neighbourhood is zero for all of them, the ground was never the
+    // question and no amount of reshaping it will help.
+    if (grid) {
+        const a = grid.P.nearestTile(anchorLon, anchorLat);
+        const near = [], far = [];
+        for (const row of GameInfo.Feature_NaturalWonders) {
+            const d = GameInfo.Features.lookup(row.FeatureType);
+            if (!d) continue;
+            let n = 0, f = 0;
+            for (let y = 0; y < iHeight; y++) for (let x = 0; x < iWidth; x++) {
+                const fp = { Feature: d.$hash, Direction: row.Direction, Elevation: GameplayMap.getElevation(x, y) };
+                if (!TerrainBuilder.canHaveFeatureParam(x, y, fp)) continue;
+                if (hexDistance(a[0], a[1], x, y) <= 6) n++; else f++;
+            }
+            const tag = row.FeatureType.replace("FEATURE_", "");
+            if (n) near.push(tag + ":" + n);
+            if (f) far.push(tag + ":" + f);
+        }
+        console.log("Europe large map:   within 6 hexes of the site, the engine accepts - " + (near.join(" ") || "nothing at all"));
+        console.log("Europe large map:   elsewhere on the map it accepts - " + (far.join(" ") || "nothing at all"));
+    }
+    const anchor = grid ? grid.P.nearestTile(anchorLon, anchorLat) : null;
+    if (anchor) pool.sort((a, b) => hexDistance(anchor[0], anchor[1], a[0], a[1]) - hexDistance(anchor[0], anchor[1], b[0], b[1]));
+    let probed = 0;
+    for (const [x, y] of pool) {
+        if (probed >= 4) break;
+        {
+            probed++;
+            const hits = [];
+            for (let dir = -1; dir <= 5; dir++) {
+                for (const el of [0, 1, GameplayMap.getElevation(x, y)]) {
+                    if (TerrainBuilder.canHaveFeatureParam(x, y, { Feature: def.$hash, Direction: dir, Elevation: el })) hits.push("dir=" + dir + " elev=" + el);
+                }
+            }
+            console.log("Europe large map:   probe " + describeHex(x, y) + " elev=" + GameplayMap.getElevation(x, y) +
+                " -> " + (hits.length ? "ACCEPTED with " + hits.join(", ") : "refused for every Direction/Elevation tried"));
+        }
+    }
 }
 
 // One feature at one place: the exact hex first, then rings outwards, so a near miss still lands
@@ -223,7 +318,10 @@ function placeNamedWonders(grid) {
     const placed = [];
     for (const w of GEO.wonders || []) {
         if (placeWonderNear(w.feature, grid, w.lon, w.lat, w.radius || 3, "its site")) placed.push(w.feature);
-        else console.log("Europe large map: wonder " + w.feature + " found no valid footprint near its site; leaving it to the random pass");
+        else {
+            console.log("Europe large map: wonder " + w.feature + " found no valid footprint near its site; leaving it to the random pass");
+            surveyWonder(w.feature, grid.W, grid.H, grid, w.lon, w.lat);
+        }
     }
     for (const s of GEO.wonderSites || []) {
         let got = null;
@@ -527,8 +625,26 @@ function clearStartFeature(x, y) {
 const TSL_FOOD_RADIUS = 2;
 const TSL_FOOD_MIN = 5;
 
+// Hexes a named wonder or a wonder site is aiming at. boostStartFood runs first and would happily
+// flatten a hill or lift a tundra biome that the wonder needs - on a small island like Iceland that
+// is the whole of the ground it has to choose from - so those hexes are left as they are.
+function wonderGroundHexes(grid) {
+    const out = new Set();
+    const mark = (lon, lat, r) => {
+        const t = grid.P.nearestTile(lon, lat);
+        for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) {
+            const x = t[0] + dx, y = t[1] + dy;
+            if (grid.inBounds(x, y) && hexDistance(t[0], t[1], x, y) <= r) out.add(x + "," + y);
+        }
+    };
+    for (const w of GEO.wonders || []) mark(w.lon, w.lat, 1);
+    for (const s of GEO.wonderSites || []) mark(s.lon, s.lat, 1);
+    return out;
+}
+
 function boostStartFood(grid) {
     if (!GEO.tsl) return;
+    const wonderGround = wonderGroundHexes(grid);
     const radius = GEO.tslFoodRadius !== undefined ? GEO.tslFoodRadius : TSL_FOOD_RADIUS;
     const want = GEO.tslFoodMin !== undefined ? GEO.tslFoodMin : TSL_FOOD_MIN;
     const isRich = (x, y) => GameplayMap.getTerrainType(x, y) == globals.g_FlatTerrain &&
@@ -549,6 +665,7 @@ function boostStartFood(grid) {
                 if (hexDistance(t[0], t[1], x, y) > radius) continue;
                 if (GameplayMap.isWater(x, y) || GameplayMap.isMountain(x, y)) continue;
                 if (GameplayMap.isNavigableRiver(x, y)) continue;
+                if (wonderGround.has(x + "," + y)) continue;
                 cells.push([x, y]);
             }
         }
@@ -1006,6 +1123,12 @@ function generateMap() {
 
     applyBiomes(grid);
     boostStartFood(grid);
+    // The engine's water model is normally built by modelRivers(); this map paints its rivers
+    // itself, so nothing has told the engine about them in the terms canHaveFeatureParam may read.
+    // storeWaterData() is cheap, idempotent and called again below, and a waterfall is exactly the
+    // kind of feature that would be refused everywhere if the water it needs is not yet recorded.
+    AreaBuilder.recalculateAreas();
+    TerrainBuilder.storeWaterData();
     const namedWonders = placeNamedWonders(grid);
     addNaturalWonders(iWidth, iHeight, Math.max(0, iNumNaturalWonders - namedWonders.length),
         false, (GEO.requestedWonders || []).filter((f) => !namedWonders.includes(f)));

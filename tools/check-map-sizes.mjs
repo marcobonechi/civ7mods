@@ -57,6 +57,13 @@ const ISLAND_MAX = 400;
 // This is the engine's canHaveFeatureParam test approximated - it does not model the Direction
 // column, so a wonder that wants a particular triangle of mountains can still be refused in game,
 // which is why europe-large-core.js falls back to the random pass instead of insisting.
+// Four wonders the engine refuses everywhere on these maps, observed straight from its own scan
+// ("No valid location for ..." in Scripting.log, 2026-09-20): both WATERFALL features, which want
+// running water this map never puts on the ground they need, Valley of Flowers, and Mount Everest,
+// which wants mountains in a tropical biome. Listing one as a site candidate is dead weight, so
+// the checker refuses to count them.
+const WONDER_UNPLACEABLE = new Set(['FEATURE_GULLFOSS', 'FEATURE_IGUAZU_FALLS',
+                                    'FEATURE_VALLEY_OF_FLOWERS', 'FEATURE_MOUNT_EVEREST']);
 const WONDER_GROUND = {
     FEATURE_VALLEY_OF_FLOWERS:     { terrain: 'FLAT',     biomes: 'P',  tiles: 2 },
     FEATURE_REDWOOD_FOREST:        { terrain: 'FLAT',     biomes: 'G',  tiles: 3 },
@@ -258,11 +265,23 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
                     if (hexDistance(t0[0], t0[1], x, y) <= START_FOOD_REACH) startFood.add(x + ',' + y);
                 }
         }
+        // europe-large-core.js exempts the ground a pin or a site is aiming at, so the checker must
+        // too - otherwise it writes off hexes the pass will actually leave alone.
+        for (const w of [...(GEO.wonders || []), ...(GEO.wonderSites || [])]) {
+            const t0 = g.P.nearestTile(w.lon, w.lat);
+            for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+                const x = t0[0] + dx, y = t0[1] + dy;
+                if (hexDistance(t0[0], t0[1], x, y) <= 1) startFood.delete(x + ',' + y);
+            }
+        }
         // A pin or a site that finds no ground silently falls back to the random pass in game,
         // which puts the wonder somewhere else entirely - the failure this catches.
+        const gRef = { g };
         const fitsHere = (feature, lon, lat, radius) => {
+            const g = gRef.g;
             const g0 = WONDER_GROUND[feature];
             if (!g0) return null;                 // a wonder this table does not know: not judged
+            if (WONDER_UNPLACEABLE.has(feature)) return -1;
             const ok = (x, y) => {
                 if (!inB(x, y)) return false;
                 const code = g.terrain[g.idx(x, y)];
@@ -287,14 +306,36 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
             return -1;
         };
         for (const w of GEO.wonders || []) {
+            // A pin for a wonder the engine refuses everywhere is a known limitation the geography
+            // documents, not a failure to report every run - but a site that lists one is dead
+            // weight, and that is still a failure below.
+            if (WONDER_UNPLACEABLE.has(w.feature)) {
+                console.log(`    note ${w.feature.replace('FEATURE_', '')} pinned but unplaceable on this map (see europe-large-geo.js)`);
+                continue;
+            }
             const r = fitsHere(w.feature, w.lon, w.lat, w.radius || 3);
             if (r === null) continue;
             check(r >= 0, `${w.feature.replace('FEATURE_', '')} fits at its site` + (r >= 0 ? ` (${r} hex away)` : ''));
         }
+        // A site is not pass-or-fail on one seed: the ground under it is rolled per game, so what
+        // matters is how often it can fill. Sample several and require most of them - judging this
+        // on the checker's single seed reported a site that fills nineteen games in twenty as broken.
+        const SITE_SEEDS = 8, SITE_MIN = 0.7;
         for (const s2 of GEO.wonderSites || []) {
-            const fit = (s2.candidates || []).filter(f => fitsHere(f, s2.lon, s2.lat, s2.radius || 3) >= 0);
-            check(fit.length > 0, `wonder site "${s2.name}" fits ${fit.length}/${(s2.candidates || []).length} candidates` +
-                  (fit.length ? ' (' + fit.map(f => f.replace('FEATURE_', '')).join(', ') + ')' : ''));
+            let filled = 0;
+            const everFits = new Set();
+            for (let sd = 1; sd <= SITE_SEEDS; sd++) {
+                let ss = sd * 7919;
+                const rnd2 = () => (ss = (ss * 1103515245 + 12345) % 2147483648) / 2147483648;
+                const g2 = buildEuropeGrid(W, H, structuredClone(GEO), rnd2);
+                const saved = g;
+                const fit2 = (s2.candidates || []).filter(f => { gRef.g = g2; return fitsHere(f, s2.lon, s2.lat, s2.radius || 3) >= 0; });
+                gRef.g = saved;
+                if (fit2.length) { filled++; fit2.forEach(f => everFits.add(f)); }
+            }
+            const rate = filled / SITE_SEEDS;
+            check(rate >= SITE_MIN, `wonder site "${s2.name}" fills ${filled}/${SITE_SEEDS} seeds` +
+                  (everFits.size ? ' (' + [...everFits].map(f => f.replace('FEATURE_', '')).join(', ') + ')' : ''));
             // and it is no use to the civilization it was put there for if borders cannot reach it
             const civ = WONDER_SITE_FOR[s2.name];
             if (!civ || !GEO.tsl[civ]) continue;

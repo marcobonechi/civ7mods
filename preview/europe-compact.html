@@ -4160,6 +4160,20 @@ const GEO = {
      34
     ]
    ]
+  },
+  {
+   "name": "Hvita",
+   "strength": 0.4,
+   "pts": [
+    [
+     -13.695,
+     59.804
+    ],
+    [
+     -13.891,
+     59.63
+    ]
+   ]
   }
  ],
  "riverAreas": [
@@ -13669,24 +13683,28 @@ const GEO = {
    "feature": "FEATURE_KILIMANJARO",
    "lon": 17.11,
    "lat": 7.89
-  },
-  {
-   "feature": "FEATURE_GULLFOSS",
-   "lon": -13.891,
-   "lat": 59.63,
-   "radius": 5
   }
  ],
  "wonderSites": [
   {
+   "name": "Iceland",
+   "lon": -13.891,
+   "lat": 59.63,
+   "radius": 5,
+   "candidates": [
+    "FEATURE_TORRES_DEL_PAINE",
+    "FEATURE_BERMUDA_TRIANGLE",
+    "FEATURE_BARRIER_REEF"
+   ]
+  },
+  {
    "name": "the Central System, Spain",
    "lon": -3.84,
    "lat": 40.3,
-   "radius": 3,
+   "radius": 5,
    "candidates": [
-    "FEATURE_VALLEY_OF_FLOWERS",
-    "FEATURE_HOERIKWAGGO",
-    "FEATURE_REDWOOD_FOREST"
+    "FEATURE_REDWOOD_FOREST",
+    "FEATURE_VIHREN"
    ]
   },
   {
@@ -13827,8 +13845,8 @@ const GEO = {
    39.9
   ],
   "CIVILIZATION_ICELAND": [
-   -14.15,
-   59.318
+   -14.14,
+   58.83
   ],
   "CIVILIZATION_QAJAR": [
    51.4,
@@ -15290,10 +15308,21 @@ function buildEuropeGrid(W, H, GEO, rnd) {
         // river rather than a navigable one.
         const chain = { name: river.name, strength: river.strength, navigable: river.navigable, mouth: river.mouth, tiles: [] };
         riverChains.push(chain);
+        // A minor river is a stream, not a valley, so it keeps the ground it crosses: a hill on its
+        // course stays a hill instead of being cut down to river flat. That is not cosmetic. The
+        // engine refuses any NoRiver="false" feature - Gullfoss, Iguazu Falls - on a hex that is
+        // not on a river, and a hand-drawn course was the one thing on this map that could put a
+        // river on a hill, except that rasterizing it flattened the hill first. Only low-strength
+        // rivers are treated this way, so the navigable courses are untouched.
+        const minor = river.strength !== undefined && river.strength < 0.5;
+        const onChain = new Set();
         const markRiver = (x, y) => {
             if (!inBounds(x, y) || x < 1 || x >= W - 1) return;
             const i = idx(x, y);
-            if (isLand[i] && terrain[i] !== T.RIVER) { terrain[i] = T.RIVER; riverTiles.push([x, y]); chain.tiles.push([x, y]); }
+            if (!isLand[i] || onChain.has(i)) return;
+            if (minor && terrain[i] === T.HILL) { onChain.add(i); riverTiles.push([x, y]); chain.tiles.push([x, y]); return; }
+            if (terrain[i] === T.RIVER) return;
+            terrain[i] = T.RIVER; onChain.add(i); riverTiles.push([x, y]); chain.tiles.push([x, y]);
         };
         for (let s = 0; s < river.pts.length - 1; s++) {
             const a = river.pts[s], b = river.pts[s + 1];
