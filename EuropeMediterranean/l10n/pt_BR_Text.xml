@@ -8,13 +8,13 @@
             <Text>Um mapa da Europa, da bacia do Mediterrâneo e do Norte da África, dos Urais à Islândia e do Marrocos ao Sinai. Posições iniciais históricas para civilizações da região; outras civilizações começam em locais selecionados.[n]Compatível com os tamanhos padrão de mapa.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="pt_BR">
-            <Text>Europa, Mediterrâneo e Sahel com continentes</Text>
+            <Text>Europa Mediterrâneo, Sahel (Terras distantes)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="pt_BR">
-            <Text>Europa, Mediterrâneo e Norte da África até o Sahel, com inícios históricos e rios onde realmente correm. África, Escandinávia e Islândia são Terras Distantes.</Text>
+            <Text>Europa, Mediterrâneo e Norte da África até o Sahel, com inícios históricos e rios onde realmente correm. África, Oriente Médio, Escandinávia e Islândia são Terras Distantes.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="pt_BR">
-            <Text>Europa e Mediterrâneo (Massa Terrestre Única)</Text>
+            <Text>Europa Mediterrâneo, Sahel</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="pt_BR">
             <Text>O mesmo mapa sem Terras Distantes: todas as civilizações são alcançáveis por terra. Os caminhos de legado do tesouro e militar da Era da Exploração não pontuam aqui.</Text>

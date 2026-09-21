@@ -8,13 +8,13 @@
             <Text>A map of Europe, the Mediterranean basin and North Africa, from the Urals to Iceland and from Morocco to the Sinai. Historical start locations for civilizations from the region; other civilizations start at curated sites.[n]Works with the standard map sizes.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME">
-            <Text>Europe, Mediterranean and the Sahel with Continents</Text>
+            <Text>Europe Mediterranean, Sahel (Distant Lands)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION">
-            <Text>Europe, the Mediterranean and North Africa down to the Sahel, with historical starts and rivers where they really run. Seven continents: the North, Western, Central and Eastern Europe, West and East Africa, the Middle East. Africa, the Middle East with Anatolia, Scandinavia and Iceland are Distant Lands.</Text>
+            <Text>Europe, the Mediterranean and Africa down to the Sahel, with historical starts and real rivers. Africa, the Middle East, Scandinavia and Iceland are Distant Lands.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME">
-            <Text>Europe &amp; Mediterranean (One Landmass)</Text>
+            <Text>Europe Mediterranean, Sahel</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION">
             <Text>The same map with no Distant Lands: every civilization is reachable overland. The Exploration Age treasure and military legacy paths cannot score here.</Text>

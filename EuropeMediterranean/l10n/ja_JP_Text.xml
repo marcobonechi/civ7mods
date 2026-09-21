@@ -8,13 +8,13 @@
             <Text>ウラル山脈からアイスランド、モロッコからシナイ半島に至るヨーロッパ、地中海盆地、北アフリカのマップ。該当地域の文明には史実準拠のスタート地点を用意。他の文明は厳選された地点からスタートします。[n]標準マップサイズに対応。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ja_JP">
-            <Text>ヨーロッパ・地中海・サヘル(大陸あり)</Text>
+            <Text>ヨーロッパ・地中海・サヘル (遥かなる地)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ja_JP">
-            <Text>サヘルまでのヨーロッパ、地中海、北アフリカ。史実の初期位置と、実際の流路どおりの川。アフリカ、スカンディナヴィア、アイスランドは遥かなる地です。</Text>
+            <Text>サヘルまでのヨーロッパ、地中海、北アフリカ。史実の初期位置と、実際の流路どおりの川。アフリカ、中東、スカンディナヴィア、アイスランドは遥かなる地です。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ja_JP">
-            <Text>ヨーロッパ＆地中海（単一陸塊）</Text>
+            <Text>ヨーロッパ・地中海・サヘル</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ja_JP">
             <Text>遥かなる地のない同じマップ。すべての文明に陸路で到達できます。探検の時代の財宝と軍事のレガシーパスはここでは得点できません。</Text>

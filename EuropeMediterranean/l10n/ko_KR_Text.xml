@@ -8,13 +8,13 @@
             <Text>우랄산맥에서 아이슬란드, 모로코에서 시나이반도에 이르는 유럽, 지중해 분지 및 북아프리카 지도입니다. 해당 지역 문명을 위한 역사적 시작 위치를 제공하며, 기타 문명은 엄선된 위치에서 시작합니다.[n]표준 지도 크기와 호환됩니다.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="ko_KR">
-            <Text>유럽, 지중해, 사헬 (대륙 포함)</Text>
+            <Text>유럽 지중해, 사헬 (머나먼 땅)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ko_KR">
-            <Text>사헬까지 이어지는 유럽, 지중해, 북아프리카. 역사적 시작 위치와 실제 물길을 따르는 강. 아프리카, 스칸디나비아, 아이슬란드는 머나먼 땅입니다.</Text>
+            <Text>사헬까지 이어지는 유럽, 지중해, 북아프리카. 역사적 시작 위치와 실제 물길을 따르는 강. 아프리카, 중동, 스칸디나비아, 아이슬란드는 머나먼 땅입니다.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ko_KR">
-            <Text>유럽 및 지중해 (단일 대륙)</Text>
+            <Text>유럽 지중해, 사헬</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="ko_KR">
             <Text>머나먼 땅이 없는 같은 지도로, 모든 문명에 육로로 닿을 수 있습니다. 탐험 시대의 보물 및 군사 유산 경로는 여기서 점수를 얻을 수 없습니다.</Text>

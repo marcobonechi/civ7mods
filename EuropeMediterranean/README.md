@@ -22,8 +22,8 @@ Europe & Mediterranean maps also come in **90x76 (Compact)**, 8 players by defau
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
-| Europe, Mediterranean and the Sahel with Continents (the Distant Lands map) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, the Middle East with Anatolia, Scandinavia, Iceland | `maps/europe-large-geo.js` |
-| Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
+| Europe Mediterranean, Sahel (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, the Middle East with Anatolia, Scandinavia, Iceland | `maps/europe-large-geo.js` |
+| Europe Mediterranean, Sahel (the One Landmass map) | identical geography | none | `maps/europe-large-geo.js` |
 | Eurasia Compressed | Russia, the North Caucasus and the Caspian become an Eastern Ocean; China, Korea, Mongolia and Japan fill the space; the Suez Canal at Suez | none | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
 | Eurasia Compressed (Distant Lands) | identical geography | East Asia, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
 

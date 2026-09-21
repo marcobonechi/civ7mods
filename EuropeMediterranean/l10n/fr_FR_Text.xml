@@ -8,13 +8,13 @@
             <Text>Une carte de l'Europe, du bassin méditerranéen et de l'Afrique du Nord, de l'Oural à l'Islande et du Maroc au Sinaï. Emplacements de départ historiques pour les civilisations de la région ; les autres civilisations démarrent sur des sites choisis.[n]Compatible avec les tailles de carte standard.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="fr_FR">
-            <Text>Europe, Méditerranée et Sahel avec continents</Text>
+            <Text>Europe Méditerranée, Sahel (Terres lointaines)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="fr_FR">
-            <Text>L'Europe, la Méditerranée et l'Afrique du Nord jusqu'au Sahel, avec des départs historiques et des fleuves là où ils coulent vraiment. L'Afrique, la Scandinavie et l'Islande sont des Terres lointaines.</Text>
+            <Text>L'Europe, la Méditerranée et l'Afrique du Nord jusqu'au Sahel, avec des départs historiques et des fleuves là où ils coulent vraiment. L'Afrique, le Moyen-Orient, la Scandinavie et l'Islande sont des Terres lointaines.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="fr_FR">
-            <Text>Europe et Méditerranée (Masse continentale unique)</Text>
+            <Text>Europe Méditerranée, Sahel</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_DESCRIPTION" Language="fr_FR">
             <Text>La même carte sans Terres lointaines : chaque civilisation est accessible par voie terrestre. Les voies d'héritage du trésor et militaire de l'Âge de l'Exploration ne rapportent aucun point ici.</Text>
