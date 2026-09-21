@@ -7,7 +7,7 @@
 // GEO is set once by initEuropeLargeMap() before either engine handler can run, so every
 // function below still reads it as a module-level value.
 
-import { buildEuropeGrid, hexDistance, hexNeighbors, T, B } from '/europe-mediterranean-map/maps/europe-raster.js';
+import { buildEuropeGrid, hexDistance, hexNeighbors, T, B, continentStampMask } from '/europe-mediterranean-map/maps/europe-raster.js';
 import { planRivers, carveRiverValleys, directionName, RIVER_NAVIGABLE } from '/europe-mediterranean-map/maps/europe-rivers.js';
 import * as globals from '/base-standard/maps/map-globals.js';
 import { addNaturalWonders } from '/base-standard/maps/natural-wonder-generator.js';
@@ -130,6 +130,66 @@ function applyLandmassRegions(grid) {
         }
     }
     console.log("Europe large map: landmass regions west=" + west + " east=" + east);
+}
+
+// Continents as GEO.continents draws them. The engine has no call that sets a hex's continent:
+// stampContinents() makes as many as the map size's Continents column says (7, data/maps.xml) and
+// lets each spread over land and shallow water until it meets another. So for that one call the
+// engine is shown the map continentStampMask builds - a line of mountains along every land border,
+// deep ocean down the middle of the water between two continents, islands tied to their mainland
+// by a causeway, no other mountains - and each continent fills exactly its own compartment. Then
+// the real terrain goes back. Border hexes can land on either side. Found by trial in the game
+// (1.5): with water for the land borders the border hexes came out with no continent at all, with
+// Continents at 4 the seven were merged into four, and without the deep water Iceland and western
+// Norway went to Britain's continent and Yemen to East Africa's.
+function stampGeoContinents(grid) {
+    if (!(GEO.continents || []).length) { TerrainBuilder.stampContinents(); return; }
+    const { W, H } = grid;
+    const saved = [];
+    try {
+        const { mask, deep, unjoined } = continentStampMask(grid, "high");
+        const set = (x, y, was, now) => { if (was != now) { saved.push([x, y, was]); TerrainBuilder.setTerrainType(x, y, now); } };
+        for (let y = 0; y < H; y++) {
+            for (let x = 0; x < W; x++) {
+                const i = grid.idx(x, y);
+                const terrain = GameplayMap.getTerrainType(x, y);
+                const water = terrain == globals.g_OceanTerrain || terrain == globals.g_CoastTerrain;
+                if (mask[i]) set(x, y, terrain, water ? globals.g_FlatTerrain : terrain == globals.g_MountainTerrain ? globals.g_HillTerrain : terrain);
+                else if (!water) set(x, y, terrain, globals.g_MountainTerrain);
+                else if (deep[i]) set(x, y, terrain, globals.g_OceanTerrain);
+            }
+        }
+        AreaBuilder.recalculateAreas();
+        TerrainBuilder.stampContinents();
+        console.log("Europe large map: continents stamped with " + saved.length + " hexes changed meanwhile, " + unjoined + " islands left to the engine");
+    } catch (e) {
+        console.log("Europe large map: drawing the continents failed (" + e + "), the engine's own are used");
+        for (const [x, y, terrain] of saved.splice(0)) TerrainBuilder.setTerrainType(x, y, terrain);
+        AreaBuilder.recalculateAreas();
+        TerrainBuilder.stampContinents();
+        return;
+    }
+    for (const [x, y, terrain] of saved) TerrainBuilder.setTerrainType(x, y, terrain);
+    AreaBuilder.recalculateAreas();
+    reportContinents(grid);
+}
+
+// One log line per drawn continent: which of the engine's continents its hexes ended up in.
+function reportContinents(grid) {
+    const tally = GEO.continents.map(() => ({}));
+    for (let y = 0; y < grid.H; y++) for (let x = 0; x < grid.W; x++) {
+        const c = grid.continent[grid.idx(x, y)];
+        if (c < 0) continue;
+        const type = GameplayMap.getContinentType(x, y);
+        tally[c][type] = (tally[c][type] || 0) + 1;
+    }
+    GEO.continents.forEach((continent, c) => {
+        const parts = Object.entries(tally[c]).sort((p, q) => q[1] - p[1]).map(([type, n]) => {
+            const info = GameInfo.Continents.lookup(Number(type));
+            return (info ? info.ContinentType : "none") + " x" + n;
+        });
+        console.log("Europe large map: continent " + continent.name + " - " + parts.join(", "));
+    });
 }
 
 function applyRainfall(grid) {
@@ -1096,7 +1156,8 @@ function generateMap() {
     TerrainBuilder.validateAndFixTerrain();
     applyLandmassRegions(grid);
     AreaBuilder.recalculateAreas();
-    TerrainBuilder.stampContinents();
+    stampGeoContinents(grid);
+    applyLandmassRegions(grid);
 
     placeVolcanoes(grid);
     AreaBuilder.recalculateAreas();

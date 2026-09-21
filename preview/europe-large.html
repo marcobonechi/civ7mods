@@ -9,7 +9,7 @@ canvas{display:block;margin:0 8px;cursor:grab}
 pre{font-size:9px;line-height:9px;letter-spacing:1px;padding:6px}
 </style>
 <div id="info"></div>
-<div id="bar"><button id="zin">+</button><button id="zout">&minus;</button><button id="zfit">fit</button><button id="sites">sites</button><span>wheel = zoom at cursor, drag = pan, hover = hex details</span><span id="hover"></span></div>
+<div id="bar"><button id="zin">+</button><button id="zout">&minus;</button><button id="zfit">fit</button><button id="sites">sites</button><button id="continents">continents</button><span>wheel = zoom at cursor, drag = pan, hover = hex details</span><span id="hover"></span></div>
 <canvas id="c"></canvas>
 <pre id="ascii"></pre>
 <script>
@@ -43,12 +43,34 @@ const GEO = {
         [20, 10],            // the Sahel, i.e. the whole African landmass
         [-12.0, 47.0],       // Ile de l'Ouest  - Atlantic outposts, reachable only by sea
         [-12.6, 44.6],       // Ile du Sud,
+        [44.4, 33.3],        // the Middle East and Anatolia: Bosporus, Caucasus crest, Uzboy and Suez
+        [33.2, 35.0],        // Cyprus, which goes with the Levant
         [18.1, 59.3],        // Scandinavia and Finland, cut off by the Karelian passage above
         [-21.9, 64.1],       // Iceland,
         [-6.9, 62.0],        // Faroe   - stepping stones, so the Norse north is one region and
         [1.48, 58.93],       // Shetland  Iceland can island-hop to Norway in the Antiquity age.
                              // Orkney is deliberately left out: it belongs to Britain's landmass
                              // and anchoring it would pull all of Britain into the distant lands.
+    ],
+    // Africa, the Middle East with Anatolia, Scandinavia and Iceland: a little over half the land.
+    // tools/check-map-sizes.mjs fails outside this range (percent of land).
+    distantLandsShare: [45, 60],
+    // Continents: every land hex belongs to the first polygon here that contains its centre (the
+    // last one is a catch-all). Continents are independent of Distant Lands: the North is one
+    // continent - Russia, Scandinavia, Iceland and the British Isles, split from Western Europe down
+    // the middle of the Channel - but only Scandinavia and Iceland are Distant Lands. Borders
+    // on land follow the usual divides (Rhine and western Alps, Poland's eastern border and the
+    // Drina, the Russian border, the Gulf of Sidra); at sea they run down the middle of the water.
+    // The engine has no call to set a hex's continent, only stampContinents(), which stamps one
+    // continent per connected landmass - see stampGeoContinents in europe-large-core.js.
+    continents: [
+        { name: "West Africa", key: "AFRICA_WEST", pts: [[-40, 35.9], [-5.6, 35.95], [-2.0, 36.0], [3.0, 37.6], [8.0, 37.9], [11.3, 37.6], [12.0, 36.9], [13.0, 35.5], [15.0, 34.8], [19.0, 34.4], [19.0, 30.3], [16.0, 23.0], [15.0, 0], [-40, 0]] },
+        { name: "East Africa", key: "AFRICA_EAST", pts: [[19.0, 34.4], [20.0, 34.3], [27.0, 33.5], [31.0, 33.0], [33.5, 32.2], [34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6], [34.8, 28.5], [36.0, 25.5], [38.5, 21.0], [40.5, 17.0], [42.5, 14.0], [43.3, 12.6], [45.0, 11.7], [48.0, 12.3], [80, 13.0], [80, 0], [15.0, 0], [16.0, 23.0], [19.0, 30.3]] },
+        { name: "Middle East and Anatolia", key: "MIDDLE_EAST", pts: [[28.5, 33.6], [27.5, 35.3], [26.2, 36.6], [25.6, 37.6], [25.4, 38.6], [25.6, 39.6], [26.0, 40.1], [26.70, 40.35], [27.40, 40.60], [28.10, 40.72], [28.70, 40.85], [29.05, 41.10], [29.18, 41.40], [30.0, 42.6], [33.0, 43.3], [35.0, 43.6], [37.0, 44.0], [38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5], [51.5, 41.0], [52.5, 39.8], [56.0, 39.6], [60.0, 39.4], [80, 39.3], [80, 0], [28.5, 0]] },
+        { name: "The North", key: "NORTH", pts: [[-40, 48.6], [-7.0, 48.9], [-5.2, 49.4], [-3.0, 49.75], [-1.0, 50.15], [0.5, 50.45], [1.4, 50.95], [2.2, 51.45], [2.9, 52.0], [3.2, 54.0], [3.0, 58.0], [7.0, 57.4], [10.8, 57.9], [11.7, 57.0], [12.4, 56.25], [12.7, 55.75], [12.75, 55.3], [14.0, 54.85], [16.0, 55.0], [19.5, 56.0], [20.0, 57.0], [20.8, 58.5], [21.5, 59.4], [24.5, 59.75], [27.0, 59.85], [28.0, 59.45], [27.6, 58.0], [28.2, 56.2], [30.8, 55.6], [32.0, 53.6], [31.4, 52.2], [34.0, 52.3], [35.5, 50.4], [38.0, 49.9], [40.1, 49.6], [45.0, 50.3], [47.0, 50.5], [52.0, 51.5], [80, 51.5], [80, 85], [-40, 85]] },
+        { name: "Western Europe", key: "EUROPE_WEST", pts: [[-40, 62], [3.0, 62], [4.5, 56.0], [6.0, 55.0], [6.9, 53.7], [7.2, 53.3], [7.1, 52.3], [6.0, 51.8], [6.1, 50.8], [6.1, 50.1], [6.4, 49.5], [8.2, 49.0], [7.6, 47.6], [7.0, 47.3], [6.9, 46.0], [7.0, 45.0], [7.0, 44.2], [7.5, 43.75], [7.8, 43.0], [7.5, 40.0], [7.0, 30], [-40, 30]] },
+        { name: "Central Europe", key: "EUROPE_CENTRAL", pts: [[3.0, 62], [4.5, 56.0], [6.0, 55.0], [6.9, 53.7], [7.2, 53.3], [7.1, 52.3], [6.0, 51.8], [6.1, 50.8], [6.1, 50.1], [6.4, 49.5], [8.2, 49.0], [7.6, 47.6], [7.0, 47.3], [6.9, 46.0], [7.0, 45.0], [7.0, 44.2], [7.5, 43.75], [7.8, 43.0], [7.5, 40.0], [7.0, 30], [16.0, 30], [17.5, 36.5], [19.0, 38.5], [19.0, 40.3], [18.9, 41.0], [18.5, 42.5], [19.2, 43.5], [19.4, 44.9], [19.0, 45.5], [19.0, 45.9], [20.3, 46.1], [21.2, 46.2], [22.9, 48.0], [22.2, 48.4], [22.9, 49.0], [24.1, 50.5], [23.6, 51.5], [23.9, 52.7], [23.5, 53.9], [22.8, 54.4], [19.7, 54.45], [19.5, 56.0], [19.5, 62]] },
+        { name: "Eastern Europe and Western Asia", key: "EUROPE_EAST", pts: [[-40, 0], [80, 0], [80, 85], [-40, 85]] }
     ],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
@@ -707,8 +729,21 @@ const GEO = {
         // Distant Lands. separatesDistantLands: left out of the One Landmass map, where Egypt walks
         // into Palestine over Sinai.
         { name: "Suez Canal", separatesDistantLands: true, pts: [[34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6]] },
+        // The Middle East and Anatolia are Distant Lands. East of the Caspian the desert ties them
+        // to the home lands, and is cut where water once ran: the Uzboy, the dry bed that took the
+        // Amu Darya to the Caspian. (Between the Black Sea and the Caspian there is no channel: the
+        // Caucasus crest does it, see mountainWalls.) Left out of the One Landmass map.
+        { name: "Uzboy", separatesDistantLands: true, pts: [[52.5, 39.8], [56.0, 39.6], [60.0, 39.4], [66.0, 39.3]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
+    ],
+
+    // Unbroken mountain lines from shore to shore, where a Distant Lands boundary crosses land
+    // (europe-raster.js). The Greater Caucasus from the Black Sea at Tuapse to the Caspian at
+    // Derbent: the Black Sea and the Caspian stay two seas, and the Middle East is still reached
+    // only by ship. On the One Landmass map the crest is an ordinary range with its gaps.
+    mountainWalls: [
+        { name: "Caucasus crest", separatesDistantLands: true, pts: [[38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5]] }
     ],
 
     lakes: [
@@ -1527,6 +1562,7 @@ function oneLandmassGeo(GEO) {
         ...GEO,
         distantLandsAnchors: [],
         waterLines: (GEO.waterLines || []).filter((l) => !l.separatesDistantLands),
+        mountainWalls: (GEO.mountainWalls || []).filter((l) => !l.separatesDistantLands),
     };
 }
 
@@ -1553,6 +1589,7 @@ function buildEuropeGrid(W, H, GEO, rnd) {
     const biome = new Array(N);
     const rain = new Uint16Array(N);
     const region = new Array(N);   // "W" or "E"
+    const continent = new Int8Array(N).fill(-1);   // index into GEO.continents, -1 for water
     const lonC = new Float32Array(N);
     const latC = new Float32Array(N);
 
@@ -1988,7 +2025,46 @@ function buildEuropeGrid(W, H, GEO, rnd) {
     // water-separated landmasses rather than by longitude. Landmasses containing one of
     // GEO.distantLandsAnchors become "E" (distant lands); everything else is "W" (home lands).
     // With no anchors the whole map is one region and every civilization is reachable overland.
-    assignLandmassRegions(W, H, idx, isLand, region, P, GEO.distantLandsAnchors);
+    // Where no sea divides two regions a mountain wall can: GEO.mountainWalls are unbroken,
+    // hex-connected lines of mountain from shore to shore (the Caucasus crest). Nothing walks
+    // over a mountain, so the region boundary along it is a wall that is really there. For the
+    // regions the wall counts as sea; its own hexes take the region of the nearest land.
+    const wall = new Uint8Array(N);
+    for (const line of GEO.mountainWalls || []) {
+        let prev = null;
+        const mark = (x, y) => { if (inBounds(x, y) && isLand[idx(x, y)]) { wall[idx(x, y)] = 1; terrain[idx(x, y)] = T.MOUNTAIN; } };
+        for (let s = 0; s < line.pts.length - 1; s++) {
+            const a = line.pts[s], b = line.pts[s + 1];
+            const [ax, ay] = P.toTile(a[0], a[1]);
+            const [bx, by] = P.toTile(b[0], b[1]);
+            const steps = Math.max(1, Math.ceil(Math.sqrt((bx - ax) ** 2 + ((by - ay) * ROW_SPACING) ** 2) * 4));
+            for (let k = 0; k <= steps; k++) {
+                const f = k / steps;
+                const [x, y] = P.nearestTile(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f);
+                if (prev && (prev[0] !== x || prev[1] !== y) && hexDistance(prev[0], prev[1], x, y) > 1) {
+                    for (const n of hexNeighbors(prev[0], prev[1])) {
+                        if (hexDistance(n[0], n[1], x, y) <= 1) { mark(n[0], n[1]); break; }
+                    }
+                }
+                mark(x, y);
+                prev = [x, y];
+            }
+        }
+    }
+    const walkable = wall.some((w) => w) ? isLand.map((l, i) => (l && !wall[i] ? 1 : 0)) : isLand;
+    assignLandmassRegions(W, H, idx, walkable, region, P, GEO.distantLandsAnchors);
+
+    // 7c. continents: the first GEO.continents polygon containing the hex centre. Unlike regions
+    // these may divide connected land, since a continent border stops nobody.
+    const continentPolys = prepPolys(GEO.continents);
+    if (continentPolys.length) {
+        for (let i = 0; i < N; i++) {
+            if (!isLand[i]) continue;
+            for (let c = 0; c < continentPolys.length; c++) {
+                if (pointInPolygon(lonC[i], latC[i], continentPolys[c])) { continent[i] = c; break; }
+            }
+        }
+    }
 
     // 8. biomes and rainfall
     for (let i = 0; i < N; i++) {
@@ -2122,7 +2198,7 @@ function buildEuropeGrid(W, H, GEO, rnd) {
     }
 
     const grid = {
-        W, H, P, terrain, biome, rain, region, isLand, lonC, latC, volcanoes, riverTiles, riverChains, passHexes,
+        W, H, P, terrain, biome, rain, region, continent, wall, isLand, lonC, latC, volcanoes, riverTiles, riverChains, passHexes,
         idx, inBounds, findLandTile,
         // prepare a start tile: flat, with no mountain wall around it
         prepareStartTile(x, y) {
@@ -2130,7 +2206,7 @@ function buildEuropeGrid(W, H, GEO, rnd) {
             for (const n of hexNeighbors(x, y)) {
                 if (!inBounds(n[0], n[1])) continue;
                 const j = idx(n[0], n[1]);
-                if (terrain[j] === T.MOUNTAIN) terrain[j] = T.HILL;
+                if (terrain[j] === T.MOUNTAIN && !wall[j]) terrain[j] = T.HILL;
             }
         }
     };
@@ -2209,6 +2285,126 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
         }
     }
 }
+
+// ---- continents --------------------------------------------------------------
+// The map the engine is shown while it stamps the continents (stampGeoContinents in
+// europe-large-core.js, which says why): mask 1 = land meanwhile - every continent's land less
+// the hexes along a land border, plus causeways tying its islands to its mainland - and deep =
+// water to turn into ocean meanwhile, so that the connected compartments are exactly
+// GEO.continents. side picks which side of a land border is given up: "high" the hex whose
+// continent comes later in GEO.continents, "low" the other.
+function continentStampMask(grid, side) {
+    const { W, H, isLand, continent } = grid;
+    const N = W * H;
+    const idx = (x, y) => y * W + x;
+    const inB = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+    const owner = new Int8Array(N).fill(-1);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        const i = idx(x, y);
+        if (!isLand[i] || continent[i] < 0) continue;
+        let cut = false;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const c = continent[idx(nx, ny)];
+            if (c >= 0 && (side === "low" ? c > continent[i] : c < continent[i])) { cut = true; break; }
+        }
+        if (!cut) owner[i] = continent[i];
+    }
+
+    // connected components of what is land so far
+    const comp = new Int32Array(N).fill(-1);
+    const comps = [];
+    for (let s = 0; s < N; s++) {
+        if (owner[s] < 0 || comp[s] >= 0) continue;
+        const id = comps.length, tiles = [s];
+        comp[s] = id;
+        for (let h = 0; h < tiles.length; h++) {
+            const x = tiles[h] % W, y = (tiles[h] - x) / W;
+            for (const [nx, ny] of hexNeighbors(x, y)) {
+                if (!inB(nx, ny)) continue;
+                const j = idx(nx, ny);
+                if (owner[j] === owner[s] && comp[j] < 0) { comp[j] = id; tiles.push(j); }
+            }
+        }
+        comps.push({ c: owner[s], tiles });
+    }
+
+    // Causeways, smallest islands last so the big ones are tied first and can serve as stepping
+    // stones. A causeway hex may touch no other continent's land, or it would join the two.
+    const root = comps.map((_, k) => k);
+    const find = (k) => { while (root[k] !== k) k = root[k] = root[root[k]]; return k; };
+    const free = (j, c) => {
+        if (owner[j] >= 0) return false;
+        const x = j % W, y = (j - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const o = owner[idx(nx, ny)];
+            if (o >= 0 && o !== c) return false;
+        }
+        return true;
+    };
+    const order = comps.map((_, k) => k).sort((a, b) => comps[b].tiles.length - comps[a].tiles.length);
+    const main = {};
+    for (const k of order) if (main[comps[k].c] === undefined) main[comps[k].c] = k;
+    let unjoined = 0;
+    for (const k of order) {
+        const c = comps[k].c;
+        if (find(k) === find(main[c])) continue;
+        // breadth-first from this island through free water to land of the mainland's component
+        const prev = new Int32Array(N).fill(-2);
+        const queue = [];
+        for (const t of comps[k].tiles) { prev[t] = -1; queue.push(t); }
+        let hit = -1;
+        for (let h = 0; h < queue.length && hit < 0; h++) {
+            const t = queue[h], x = t % W, y = (t - x) / W;
+            for (const [nx, ny] of hexNeighbors(x, y)) {
+                if (!inB(nx, ny)) continue;
+                const j = idx(nx, ny);
+                if (prev[j] !== -2) continue;
+                if (owner[j] === c && comp[j] >= 0 && find(comp[j]) === find(main[c])) { hit = t; break; }
+                if (!free(j, c)) continue;
+                prev[j] = t; queue.push(j);
+            }
+        }
+        if (hit < 0) { unjoined++; continue; }
+        for (let t = hit; t >= 0 && owner[t] < 0; t = prev[t]) { owner[t] = c; comp[t] = k; }
+        root[find(k)] = find(main[c]);
+    }
+
+    // The engine's continents also spread through shallow water, so an island chain or a strait
+    // lets one continent reach the next one's shore before that continent gets there itself.
+    // deep marks the water to turn into ocean meanwhile: wherever the nearest land on one side is
+    // another continent's than on the other, two hexes wide.
+    const near = Int8Array.from(owner);
+    for (let i = 0; i < N; i++) if (near[i] < 0 && isLand[i]) near[i] = continent[i];   // the cut hexes
+    const queue = [];
+    for (let i = 0; i < N; i++) if (near[i] >= 0) queue.push(i);
+    for (let h = 0; h < queue.length; h++) {
+        const t = queue[h], x = t % W, y = (t - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const j = idx(nx, ny);
+            if (near[j] < 0) { near[j] = near[t]; queue.push(j); }
+        }
+    }
+    const isWater = (i) => owner[i] < 0 && !isLand[i];
+    const edge = new Uint8Array(N), deep = new Uint8Array(N);
+    for (let i = 0; i < N; i++) {
+        if (!isWater(i)) continue;
+        const x = i % W, y = (i - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) if (inB(nx, ny) && near[idx(nx, ny)] !== near[i]) { edge[i] = 1; break; }
+    }
+    for (let i = 0; i < N; i++) {
+        if (!isWater(i)) continue;
+        if (edge[i]) { deep[i] = 1; continue; }
+        const x = i % W, y = (i - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) if (inB(nx, ny) && edge[idx(nx, ny)]) { deep[i] = 1; break; }
+    }
+
+    const mask = new Uint8Array(N);
+    for (let i = 0; i < N; i++) mask[i] = owner[i] >= 0 ? 1 : 0;
+    return { mask, owner, deep, unjoined };
+}
 (function(){
   const q = new URLSearchParams(location.search);
   const W = parseInt(q.get('w')||'112'), H = parseInt(q.get('h')||'98');
@@ -2225,6 +2421,8 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
   const shotW = parseInt(q.get('cw')||'1800'), shotH = parseInt(q.get('ch')||'1380');
   const viewBox = q.get('view') ? q.get('view').split(',').map(Number) : null;
   const showRegions = q.get('regions') === '1';
+  // continents=1 colours each continent (GEO.continents) and stripes the distant lands.
+  let showContinents = q.get('continents') === '1';
   const title = q.get('title') || '';
   if (shot) { for (const id of ['info','bar','ascii']) document.getElementById(id).style.display = 'none'; document.getElementById('c').style.margin = '0'; }
 
@@ -2295,6 +2493,28 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
     }
   }
 
+  // optional overlay: one colour per continent, distant lands striped in white
+  const continentColors = ['#e6a23c', '#d9534f', '#c774e8', '#5bd6e8', '#2f4bff', '#3fae3f', '#f0e04a'];
+  let continentLayer = null;
+  if ((GEO.continents || []).length) {
+    continentLayer = document.createElement('canvas'); continentLayer.width = off.width; continentLayer.height = off.height;
+    const cctx = continentLayer.getContext('2d');
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = g.idx(x,y); const c = g.continent[i]; if (c < 0) continue;
+      const [cx, cy] = centerOf(x, y);
+      cctx.beginPath(); for (let k=0;k<6;k++){ const a=(60*k-30)*Math.PI/180; const px=cx+s*Math.cos(a), py=cy+s*Math.sin(a); if(k===0)cctx.moveTo(px,py); else cctx.lineTo(px,py);} cctx.closePath();
+      cctx.globalAlpha = 0.7; cctx.fillStyle = continentColors[c % continentColors.length]; cctx.fill(); cctx.globalAlpha = 1;
+      if (g.region[i] === 'E') { cctx.save(); cctx.clip(); cctx.strokeStyle = 'rgba(255,255,255,0.75)'; cctx.lineWidth = 1.1;
+        for (let d = -2; d <= 2; d++) { cctx.beginPath(); cctx.moveTo(cx - s + d*4, cy + s); cctx.lineTo(cx + s + d*4, cy - s); cctx.stroke(); } cctx.restore(); }
+      // continent borders: a dark edge wherever the neighbour across it is another continent
+      // [dx, dy, screen angle of that neighbour]; row y+1 is drawn above row y
+      const nb = (y & 1) ? [[1,0,0],[1,-1,60],[0,-1,120],[-1,0,180],[0,1,240],[1,1,300]] : [[1,0,0],[0,-1,60],[-1,-1,120],[-1,0,180],[-1,1,240],[0,1,300]];
+      for (const [dx, dy, th] of nb) { const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue; const cj = g.continent[g.idx(nx, ny)];
+        if (cj < 0 || cj === c) continue; const a0 = (th-30)*Math.PI/180, a1 = (th+30)*Math.PI/180;
+        cctx.strokeStyle = '#111'; cctx.lineWidth = 1.6; cctx.beginPath(); cctx.moveTo(cx+s*Math.cos(a0), cy+s*Math.sin(a0)); cctx.lineTo(cx+s*Math.cos(a1), cy+s*Math.sin(a1)); cctx.stroke(); }
+    }
+  }
+
   // ---- viewport with zoom and pan ----
   const cv = document.getElementById('c');
   const ctx = cv.getContext('2d');
@@ -2325,6 +2545,7 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
     ctx.imageSmoothingEnabled = zoom < 1;
     ctx.drawImage(off, 0, 0);
     if (regionLayer) ctx.drawImage(regionLayer, 0, 0);
+    if (showContinents && continentLayer) ctx.drawImage(continentLayer, 0, 0);
     // labels keep a readable screen size
     const fs = Math.max(9, 11 / zoom); ctx.font = fs + 'px sans-serif'; ctx.lineWidth = 2 / zoom;
     if (showSites) for (const si of sites) { if(!si.t) continue; if (startAt[si.t[0]+','+si.t[1]]) continue;
@@ -2340,6 +2561,16 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
     // caption and legend in screen space
     ctx.setTransform(1,0,0,1,0,0);
     if (title) { ctx.font = 'bold 28px sans-serif'; const tw = ctx.measureText(title).width; ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(12, cv.height - 56, tw + 24, 44); ctx.fillStyle = '#fff'; ctx.fillText(title, 24, cv.height - 24); }
+    if (showContinents && continentLayer) {
+      const items = GEO.continents.map((c, k) => [continentColors[k % continentColors.length], c.name]);
+      // in the open Atlantic west of France, clear of Iceland, Ireland and Iberia
+      const ly = shot ? Math.round(cv.height * 0.33) : 12;
+      ctx.font = '15px sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(12, ly, 292, 18 + (items.length + 1)*24);
+      items.forEach((it, k) => { ctx.fillStyle = it[0]; ctx.fillRect(24, ly + 10 + k*24, 20, 20); ctx.fillStyle = '#fff'; ctx.fillText(it[1], 54, ly + 25 + k*24); });
+      const ky = ly + 10 + items.length*24; ctx.fillStyle = '#777'; ctx.fillRect(24, ky, 20, 20); ctx.save(); ctx.beginPath(); ctx.rect(24, ky, 20, 20); ctx.clip(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+      for (let d = -3; d <= 3; d++) { ctx.beginPath(); ctx.moveTo(24 + d*7, ky + 20); ctx.lineTo(44 + d*7, ky); ctx.stroke(); } ctx.restore();
+      ctx.fillStyle = '#fff'; ctx.fillText('striped = Distant Lands', 54, ky + 15);
+    }
     if (regionLayer) {
       const items = [['rgba(255,150,30,0.9)', 'Home lands (west landmass)'], ['rgba(90,60,255,0.9)', 'Distant lands (east landmass)']];
       ctx.font = '22px sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(12, 12, 360, 84);
@@ -2355,7 +2586,7 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
     if (x < 0 || x >= W || y < 0 || y >= H) return '';
     const i = g.idx(x, y); const t = g.terrain[i];
     let d = `hex ${x},${y}   lon ${g.lonC[i].toFixed(1)}  lat ${g.latC[i].toFixed(1)}   ${terrainName[t]}`;
-    if (t !== T.OCEAN && t !== T.COAST) d += `  ${biomeName[g.biome[i]]||g.biome[i]}  rain ${g.rain[i]}  region ${g.region[i]}`;
+    if (t !== T.OCEAN && t !== T.COAST) d += `  ${biomeName[g.biome[i]]||g.biome[i]}  rain ${g.rain[i]}  region ${g.region[i]}${g.continent[i] >= 0 && GEO.continents ? '  continent ' + GEO.continents[g.continent[i]].name : ''}`;
     if (startAt[x+','+y]) d += `   start: ${startAt[x+','+y]}`;
     if (volcanoAt[x+','+y]) d += `   volcano: ${volcanoAt[x+','+y]}`;
     return d;
@@ -2375,6 +2606,7 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
     if (!hover || hover[0] !== hx[0] || hover[1] !== hx[1]) { hover = hx; document.getElementById('hover').textContent = describe(hx[0], hx[1]); draw(); }
   });
   cv.addEventListener('mouseleave', () => { hover = null; draw(); });
+  const cb = document.getElementById('continents'); if (cb) cb.onclick = () => { showContinents = !showContinents; draw(); };
   document.getElementById('sites').onclick = () => { showSites = !showSites; draw(); };
   document.getElementById('zin').onclick = () => { const nz = Math.min(12, zoom*1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };
   document.getElementById('zout').onclick = () => { const nz = Math.max(0.2, zoom/1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };

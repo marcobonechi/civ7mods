@@ -8,7 +8,7 @@
             <Text>一张欧洲、地中海盆地与北非地图，涵盖从乌拉尔山脉到冰岛、从摩洛哥到西奈半岛的区域。本区域文明拥有史实起始位置；其他文明则在精选位置起始。[n]适用于标准地图尺寸。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="zh_Hans_CN">
-            <Text>欧洲与地中海（远方土地）</Text>
+            <Text>欧洲、地中海与萨赫勒(含大陆)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="zh_Hans_CN">
             <Text>欧洲、地中海与北非，南至萨赫勒，拥有历史出生点，河流沿真实河道流淌。非洲、斯堪的纳维亚和冰岛为远方土地。</Text>

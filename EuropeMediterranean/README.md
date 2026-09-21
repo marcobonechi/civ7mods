@@ -3,7 +3,7 @@
 Map scripts covering the Mediterranean basin and Europe: Urals to Iceland, Morocco to the Sinai.
 Four map types in two pairs, historical start locations, and a browser-based geography editor with live preview.
 
-Current mod version: **63**.
+Current mod version: **64**.
 
 Project page with screenshots and the map types explained: https://marcobonechi.github.io/civ7mods/europe-mediterranean/
 (source in `docs/europe-mediterranean/index.html`; the `docs/` landing page lists all mods; GitHub Pages must serve the `docs` folder of `main`).
@@ -22,7 +22,7 @@ Europe & Mediterranean maps also come in **90x76 (Compact)**, 8 players by defau
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
-| Europe & Mediterranean (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
+| Europe, Mediterranean and the Sahel with Continents (the Distant Lands map) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, the Middle East with Anatolia, Scandinavia, Iceland | `maps/europe-large-geo.js` |
 | Europe & Mediterranean (One Landmass) | identical geography | none | `maps/europe-large-geo.js` |
 | Eurasia Compressed | Russia, the North Caucasus and the Caspian become an Eastern Ocean; China, Korea, Mongolia and Japan fill the space; the Suez Canal at Suez | none | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
 | Eurasia Compressed (Distant Lands) | identical geography | East Asia, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
@@ -164,6 +164,29 @@ through connected land is an invisible wall: land units cannot cross it and the 
 beyond it cannot be contacted until the Exploration Age. On the large map three landmasses are Distant Lands: Africa (across the Mediterranean and the Suez channel), Scandinavia with Finland (cut from Russia by the Karelian passage, a one-hex channel from the Gulf of Finland through Ladoga and Onega to the White Sea), and Iceland, plus two small Atlantic islets west of France. Denmark stays in the home lands. The standard map has no anchors: north of 27.5N Europe, North Africa and the Near East form one
 connected landmass, so it runs as a single region and the Exploration Age distant-lands and
 treasure mechanics do not apply there.
+
+## Continents
+
+The Europe pair has seven continents, drawn as polygons in `GEO.continents`: the North (Russia,
+Scandinavia, Iceland and the British Isles), Western Europe, Central Europe (with Italy), Eastern
+Europe and Western Asia, West Africa, East Africa (split at the Gulf of Sidra), and the Middle East
+with Anatolia and the Caucasus south of the crest. Continents and Distant Lands are independent: the
+North is one continent of which only Scandinavia and Iceland are distant.
+
+The engine has no call to set a hex's continent, only `TerrainBuilder.stampContinents()`, which
+makes as many continents as the map size's `Continents` column says (7 in `data/maps.xml`) and lets
+each spread over land and shallow water. `stampGeoContinents` in `maps/europe-large-core.js` shows
+it a different map for that one call - mountains along every land border, deep ocean down the middle
+of the water between continents, causeways from islands to their mainland - and then puts the real
+terrain back. The log prints one line per continent with the engine continents its hexes got; border
+hexes can fall either side. The names are the engine's (it picks them at random). The Eurasia maps
+leave `continents` empty and get the engine's own seven.
+
+The Middle East is Distant Lands without a channel between the Black Sea and the Caspian:
+`GEO.mountainWalls` draws the Caucasus crest as an unbroken line of mountain from shore to shore,
+and the region boundary runs along it. East of the Caspian the `Uzboy` channel does the same job by
+water. One Landmass drops both. `preview/europe-large.html` has a *continents* button
+(`?continents=1` in screenshot mode): one colour per continent, Distant Lands striped.
 
 ## Start locations
 
@@ -324,6 +347,9 @@ matches the starts.
 | `lowAreas` | hills and mountains→flat inside polygons, applied after every other terrain step (the Asian shore of the Bosporus) |
 | `shallowLines` | corridors where ocean becomes shallow coast (island hopping) |
 | `lonSqueeze`, `lonSqueezeWest` | horizontal squeezes east / west of a longitude |
+| `continents` | `{ name, key, pts }` polygons, first match wins, the last a catch-all (see [Continents](#continents)) |
+| `mountainWalls` | `{ name, pts, separatesDistantLands }` unbroken mountain lines from shore to shore that a Distant Lands boundary may follow |
+| `distantLandsShare` | `[min, max]` percent of land that should be Distant Lands, checked by `tools/check-map-sizes.mjs` |
 | `volcanoes` | `[lon, lat, name]` |
 | `tsl` | true start location per civilization type |
 | `fallbackSites` | ranked start sites for civilizations without a true start |

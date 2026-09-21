@@ -8,7 +8,7 @@
             <Text>Eine Karte von Europa, dem Mittelmeerraum und Nordafrika, vom Ural bis nach Island und von Marokko bis zum Sinai. Historische Startpositionen für Zivilisationen aus dieser Region; andere Zivilisationen starten an ausgewählten Orten.[n]Kompatibel mit Standard-Kartengrößen.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="de_DE">
-            <Text>Europa &amp; Mittelmeer (Ferne Länder)</Text>
+            <Text>Europa, Mittelmeer und Sahel mit Kontinenten</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="de_DE">
             <Text>Europa, der Mittelmeerraum und Nordafrika bis zum Sahel, mit historischen Startpositionen und Flüssen dort, wo sie wirklich fließen. Afrika, Skandinavien und Island sind Ferne Länder.</Text>

@@ -28,12 +28,34 @@ export const GEO = {
         [20, 10],            // the Sahel, i.e. the whole African landmass
         [-12.0, 47.0],       // Ile de l'Ouest  - Atlantic outposts, reachable only by sea
         [-12.6, 44.6],       // Ile du Sud,
+        [44.4, 33.3],        // the Middle East and Anatolia: Bosporus, Caucasus crest, Uzboy and Suez
+        [33.2, 35.0],        // Cyprus, which goes with the Levant
         [18.1, 59.3],        // Scandinavia and Finland, cut off by the Karelian passage above
         [-21.9, 64.1],       // Iceland,
         [-6.9, 62.0],        // Faroe   - stepping stones, so the Norse north is one region and
         [1.48, 58.93],       // Shetland  Iceland can island-hop to Norway in the Antiquity age.
                              // Orkney is deliberately left out: it belongs to Britain's landmass
                              // and anchoring it would pull all of Britain into the distant lands.
+    ],
+    // Africa, the Middle East with Anatolia, Scandinavia and Iceland: a little over half the land.
+    // tools/check-map-sizes.mjs fails outside this range (percent of land).
+    distantLandsShare: [45, 60],
+    // Continents: every land hex belongs to the first polygon here that contains its centre (the
+    // last one is a catch-all). Continents are independent of Distant Lands: the North is one
+    // continent - Russia, Scandinavia, Iceland and the British Isles, split from Western Europe down
+    // the middle of the Channel - but only Scandinavia and Iceland are Distant Lands. Borders
+    // on land follow the usual divides (Rhine and western Alps, Poland's eastern border and the
+    // Drina, the Russian border, the Gulf of Sidra); at sea they run down the middle of the water.
+    // The engine has no call to set a hex's continent, only stampContinents(), which stamps one
+    // continent per connected landmass - see stampGeoContinents in europe-large-core.js.
+    continents: [
+        { name: "West Africa", key: "AFRICA_WEST", pts: [[-40, 35.9], [-5.6, 35.95], [-2.0, 36.0], [3.0, 37.6], [8.0, 37.9], [11.3, 37.6], [12.0, 36.9], [13.0, 35.5], [15.0, 34.8], [19.0, 34.4], [19.0, 30.3], [16.0, 23.0], [15.0, 0], [-40, 0]] },
+        { name: "East Africa", key: "AFRICA_EAST", pts: [[19.0, 34.4], [20.0, 34.3], [27.0, 33.5], [31.0, 33.0], [33.5, 32.2], [34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6], [34.8, 28.5], [36.0, 25.5], [38.5, 21.0], [40.5, 17.0], [42.5, 14.0], [43.3, 12.6], [45.0, 11.7], [48.0, 12.3], [80, 13.0], [80, 0], [15.0, 0], [16.0, 23.0], [19.0, 30.3]] },
+        { name: "Middle East and Anatolia", key: "MIDDLE_EAST", pts: [[28.5, 33.6], [27.5, 35.3], [26.2, 36.6], [25.6, 37.6], [25.4, 38.6], [25.6, 39.6], [26.0, 40.1], [26.70, 40.35], [27.40, 40.60], [28.10, 40.72], [28.70, 40.85], [29.05, 41.10], [29.18, 41.40], [30.0, 42.6], [33.0, 43.3], [35.0, 43.6], [37.0, 44.0], [38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5], [51.5, 41.0], [52.5, 39.8], [56.0, 39.6], [60.0, 39.4], [80, 39.3], [80, 0], [28.5, 0]] },
+        { name: "The North", key: "NORTH", pts: [[-40, 48.6], [-7.0, 48.9], [-5.2, 49.4], [-3.0, 49.75], [-1.0, 50.15], [0.5, 50.45], [1.4, 50.95], [2.2, 51.45], [2.9, 52.0], [3.2, 54.0], [3.0, 58.0], [7.0, 57.4], [10.8, 57.9], [11.7, 57.0], [12.4, 56.25], [12.7, 55.75], [12.75, 55.3], [14.0, 54.85], [16.0, 55.0], [19.5, 56.0], [20.0, 57.0], [20.8, 58.5], [21.5, 59.4], [24.5, 59.75], [27.0, 59.85], [28.0, 59.45], [27.6, 58.0], [28.2, 56.2], [30.8, 55.6], [32.0, 53.6], [31.4, 52.2], [34.0, 52.3], [35.5, 50.4], [38.0, 49.9], [40.1, 49.6], [45.0, 50.3], [47.0, 50.5], [52.0, 51.5], [80, 51.5], [80, 85], [-40, 85]] },
+        { name: "Western Europe", key: "EUROPE_WEST", pts: [[-40, 62], [3.0, 62], [4.5, 56.0], [6.0, 55.0], [6.9, 53.7], [7.2, 53.3], [7.1, 52.3], [6.0, 51.8], [6.1, 50.8], [6.1, 50.1], [6.4, 49.5], [8.2, 49.0], [7.6, 47.6], [7.0, 47.3], [6.9, 46.0], [7.0, 45.0], [7.0, 44.2], [7.5, 43.75], [7.8, 43.0], [7.5, 40.0], [7.0, 30], [-40, 30]] },
+        { name: "Central Europe", key: "EUROPE_CENTRAL", pts: [[3.0, 62], [4.5, 56.0], [6.0, 55.0], [6.9, 53.7], [7.2, 53.3], [7.1, 52.3], [6.0, 51.8], [6.1, 50.8], [6.1, 50.1], [6.4, 49.5], [8.2, 49.0], [7.6, 47.6], [7.0, 47.3], [6.9, 46.0], [7.0, 45.0], [7.0, 44.2], [7.5, 43.75], [7.8, 43.0], [7.5, 40.0], [7.0, 30], [16.0, 30], [17.5, 36.5], [19.0, 38.5], [19.0, 40.3], [18.9, 41.0], [18.5, 42.5], [19.2, 43.5], [19.4, 44.9], [19.0, 45.5], [19.0, 45.9], [20.3, 46.1], [21.2, 46.2], [22.9, 48.0], [22.2, 48.4], [22.9, 49.0], [24.1, 50.5], [23.6, 51.5], [23.9, 52.7], [23.5, 53.9], [22.8, 54.4], [19.7, 54.45], [19.5, 56.0], [19.5, 62]] },
+        { name: "Eastern Europe and Western Asia", key: "EUROPE_EAST", pts: [[-40, 0], [80, 0], [80, 85], [-40, 85]] }
     ],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
@@ -692,8 +714,21 @@ export const GEO = {
         // Distant Lands. separatesDistantLands: left out of the One Landmass map, where Egypt walks
         // into Palestine over Sinai.
         { name: "Suez Canal", separatesDistantLands: true, pts: [[34.3, 31.55], [34.9, 31.5], [35.5, 31.5], [35.3, 30.6], [35.0, 29.6]] },
+        // The Middle East and Anatolia are Distant Lands. East of the Caspian the desert ties them
+        // to the home lands, and is cut where water once ran: the Uzboy, the dry bed that took the
+        // Amu Darya to the Caspian. (Between the Black Sea and the Caspian there is no channel: the
+        // Caucasus crest does it, see mountainWalls.) Left out of the One Landmass map.
+        { name: "Uzboy", separatesDistantLands: true, pts: [[52.5, 39.8], [56.0, 39.6], [60.0, 39.4], [66.0, 39.3]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
+    ],
+
+    // Unbroken mountain lines from shore to shore, where a Distant Lands boundary crosses land
+    // (europe-raster.js). The Greater Caucasus from the Black Sea at Tuapse to the Caspian at
+    // Derbent: the Black Sea and the Caspian stay two seas, and the Middle East is still reached
+    // only by ship. On the One Landmass map the crest is an ordinary range with its gaps.
+    mountainWalls: [
+        { name: "Caucasus crest", separatesDistantLands: true, pts: [[38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5]] }
     ],
 
     lakes: [

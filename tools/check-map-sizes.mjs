@@ -138,7 +138,9 @@ if (!maps.length) { console.error('no registered map scripts found'); process.ex
 
 // Land that Distant Lands keeps apart by sea and One Landmass joins: [name, from, to].
 const JOINS = [['Finland and Russia', [23.8, 61.5], [37.6, 55.75]],
-               ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]]];
+               ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]],
+               ['Anatolia and the Pontic steppe', [32.9, 39.9], [34.4, 47.5]],     // the Caucasus crest
+               ['Persia and the Kazakh steppe', [51.4, 35.7], [58.0, 45.0]]];      // the Uzboy channel
 
 for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps) {
     const load = async (f) => { const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, f)).href); return united ? oneLandmassGeo(RAW) : RAW; };
@@ -167,7 +169,8 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
             for (const [a, b] of hexNeighbors(x, y)) {
                 if (!inB(a, b)) continue;
                 const j = g.idx(a, b);
-                if (g.isLand[j] && g.region[j] !== g.region[i]) seam++;
+                // a mountain wall (GEO.mountainWalls) is a boundary nothing can walk across
+                if (g.isLand[j] && g.region[j] !== g.region[i] && !g.wall[i] && !g.wall[j]) seam++;
             }
         }
         const landPct = 100 * land / N, eastPct = 100 * east / land;
@@ -186,7 +189,7 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
             const t = g.findLandTile(ll[0], ll[1], 3, true);
             const seen = new Set([t.join()]), q = [t];
             for (let h = 0; h < q.length; h++) for (const [a, b] of hexNeighbors(...q[h])) {
-                if (!inB(a, b) || seen.has(a + ',' + b) || !g.isLand[g.idx(a, b)]) continue;
+                if (!inB(a, b) || seen.has(a + ',' + b) || !g.isLand[g.idx(a, b)] || g.wall[g.idx(a, b)]) continue;
                 seen.add(a + ',' + b); q.push([a, b]);
             }
             return seen;

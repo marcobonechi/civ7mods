@@ -290,8 +290,9 @@ const CLIP_EAST = 41.0;
 const CLIP = [["biomeAreas", "Steppe", "Pontic steppe (Ukraine)"], ["rainAreas", "Steppe", "Pontic steppe (Ukraine)"],
     ["biomeAreas", "Ukraine and the steppe east (green)", "Ukraine (green)"],
     ["rainAreas", "Ukraine and the steppe east (vegetated)", "Ukraine (vegetated)"], ["resourceAreas", "Pontic steppe", "Pontic steppe"]];
-// Distant Lands anchors of the Europe maps that are home lands here: Africa and the Atlantic islets.
-const ANCHORS_DROPPED = ["[20, 10],", "[-12.0, 47.0],", "[-12.6, 44.6],"];
+// Distant Lands anchors of the Europe maps that are home lands here: Africa, the Atlantic islets,
+// the Middle East and Cyprus.
+const ANCHORS_DROPPED = ["[20, 10],", "[-12.0, 47.0],", "[-12.6, 44.6],", "[44.4, 33.3],", "[33.2, 35.0],"];
 // The canal where the real one runs (the Europe maps cut a channel through Palestine instead).
 const SUEZ = [[32.3, 31.45], [32.3, 30.6], [32.45, 30.2], [32.55, 29.9]];
 // Russia starts at Vladivostok, its Pacific port - the one Russia the map now has room for.
@@ -389,6 +390,15 @@ const must = (cond, what) => { if (!cond) throw new Error("europe-large-geo.js h
         for (const d of ANCHORS_DROPPED) body = body.replace(new RegExp(`^ *${esc(d)}[^\\n]*\\n`, "m"), "");
         return body.replace(/(\[18\.1, 59\.3\],\s*\/\/)[^\n]*/, "$1 Scandinavia and Finland, cut off by the Eastern Ocean, which covers Karelia");
     });
+}
+// The continents are drawn for the Europe maps: here East Asia lies where Russia and the Caspian
+// were, so the polygons would name it wrongly. Left empty, the engine stamps its own.
+editKey("continents", () => "");
+// The Europe maps' own Distant Lands share; this file declares its own above the anchors.
+{
+    const n = text.length;
+    text = text.replace(/( *\/\/[^\n]*\n)*    distantLandsShare: \[45, 60\],\n/, "");
+    must(text.length < n, "distantLandsShare: [45, 60]");
 }
 // removals: a single-line entry goes with the comment lines directly above it
 const removed = [];

@@ -61,6 +61,17 @@ export const GEO = {
         [53.82, 42.26],   // Hainan
         // @east-asia:end
     ],
+    // Continents: every land hex belongs to the first polygon here that contains its centre (the
+    // last one is a catch-all). Continents are independent of Distant Lands: the North is one
+    // continent - Russia, Scandinavia, Iceland and the British Isles, split from Western Europe down
+    // the middle of the Channel - but only Scandinavia and Iceland are Distant Lands. Borders
+    // on land follow the usual divides (Rhine and western Alps, Poland's eastern border and the
+    // Drina, the Russian border, the Gulf of Sidra); at sea they run down the middle of the water.
+    // The engine has no call to set a hex's continent, only stampContinents(), which stamps one
+    // continent per connected landmass - see stampGeoContinents in europe-large-core.js.
+    continents: [
+
+    ],
     // Vertical remap of West/Central Africa south of 33N (west of 5E, fading to none at 28E so
     // Egypt and Ethiopia keep their rows). westMap pairs are [geographic lat, tile lat]:
     // Gulf of Guinea coast just above the sea lane, a tall Sahel, a three-row Sahara.
@@ -721,6 +732,14 @@ export const GEO = {
         { name: "Gulf of Aqaba", pts: [[35.0, 29.5], [34.7, 28.6], [34.4, 27.8]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
+    ],
+
+    // Unbroken mountain lines from shore to shore, where a Distant Lands boundary crosses land
+    // (europe-raster.js). The Greater Caucasus from the Black Sea at Tuapse to the Caspian at
+    // Derbent: the Black Sea and the Caspian stay two seas, and the Middle East is still reached
+    // only by ship. On the One Landmass map the crest is an ordinary range with its gaps.
+    mountainWalls: [
+        { name: "Caucasus crest", separatesDistantLands: true, pts: [[38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5]] }
     ],
 
     lakes: [

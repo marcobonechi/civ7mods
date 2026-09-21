@@ -14,6 +14,8 @@
   const shotW = parseInt(q.get('cw')||'1800'), shotH = parseInt(q.get('ch')||'1380');
   const viewBox = q.get('view') ? q.get('view').split(',').map(Number) : null;
   const showRegions = q.get('regions') === '1';
+  // continents=1 colours each continent (GEO.continents) and stripes the distant lands.
+  let showContinents = q.get('continents') === '1';
   const title = q.get('title') || '';
   if (shot) { for (const id of ['info','bar','ascii']) document.getElementById(id).style.display = 'none'; document.getElementById('c').style.margin = '0'; }
 
@@ -84,6 +86,28 @@
     }
   }
 
+  // optional overlay: one colour per continent, distant lands striped in white
+  const continentColors = ['#e6a23c', '#d9534f', '#c774e8', '#5bd6e8', '#2f4bff', '#3fae3f', '#f0e04a'];
+  let continentLayer = null;
+  if ((GEO.continents || []).length) {
+    continentLayer = document.createElement('canvas'); continentLayer.width = off.width; continentLayer.height = off.height;
+    const cctx = continentLayer.getContext('2d');
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = g.idx(x,y); const c = g.continent[i]; if (c < 0) continue;
+      const [cx, cy] = centerOf(x, y);
+      cctx.beginPath(); for (let k=0;k<6;k++){ const a=(60*k-30)*Math.PI/180; const px=cx+s*Math.cos(a), py=cy+s*Math.sin(a); if(k===0)cctx.moveTo(px,py); else cctx.lineTo(px,py);} cctx.closePath();
+      cctx.globalAlpha = 0.7; cctx.fillStyle = continentColors[c % continentColors.length]; cctx.fill(); cctx.globalAlpha = 1;
+      if (g.region[i] === 'E') { cctx.save(); cctx.clip(); cctx.strokeStyle = 'rgba(255,255,255,0.75)'; cctx.lineWidth = 1.1;
+        for (let d = -2; d <= 2; d++) { cctx.beginPath(); cctx.moveTo(cx - s + d*4, cy + s); cctx.lineTo(cx + s + d*4, cy - s); cctx.stroke(); } cctx.restore(); }
+      // continent borders: a dark edge wherever the neighbour across it is another continent
+      // [dx, dy, screen angle of that neighbour]; row y+1 is drawn above row y
+      const nb = (y & 1) ? [[1,0,0],[1,-1,60],[0,-1,120],[-1,0,180],[0,1,240],[1,1,300]] : [[1,0,0],[0,-1,60],[-1,-1,120],[-1,0,180],[-1,1,240],[0,1,300]];
+      for (const [dx, dy, th] of nb) { const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue; const cj = g.continent[g.idx(nx, ny)];
+        if (cj < 0 || cj === c) continue; const a0 = (th-30)*Math.PI/180, a1 = (th+30)*Math.PI/180;
+        cctx.strokeStyle = '#111'; cctx.lineWidth = 1.6; cctx.beginPath(); cctx.moveTo(cx+s*Math.cos(a0), cy+s*Math.sin(a0)); cctx.lineTo(cx+s*Math.cos(a1), cy+s*Math.sin(a1)); cctx.stroke(); }
+    }
+  }
+
   // ---- viewport with zoom and pan ----
   const cv = document.getElementById('c');
   const ctx = cv.getContext('2d');
@@ -114,6 +138,7 @@
     ctx.imageSmoothingEnabled = zoom < 1;
     ctx.drawImage(off, 0, 0);
     if (regionLayer) ctx.drawImage(regionLayer, 0, 0);
+    if (showContinents && continentLayer) ctx.drawImage(continentLayer, 0, 0);
     // labels keep a readable screen size
     const fs = Math.max(9, 11 / zoom); ctx.font = fs + 'px sans-serif'; ctx.lineWidth = 2 / zoom;
     if (showSites) for (const si of sites) { if(!si.t) continue; if (startAt[si.t[0]+','+si.t[1]]) continue;
@@ -129,6 +154,16 @@
     // caption and legend in screen space
     ctx.setTransform(1,0,0,1,0,0);
     if (title) { ctx.font = 'bold 28px sans-serif'; const tw = ctx.measureText(title).width; ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(12, cv.height - 56, tw + 24, 44); ctx.fillStyle = '#fff'; ctx.fillText(title, 24, cv.height - 24); }
+    if (showContinents && continentLayer) {
+      const items = GEO.continents.map((c, k) => [continentColors[k % continentColors.length], c.name]);
+      // in the open Atlantic west of France, clear of Iceland, Ireland and Iberia
+      const ly = shot ? Math.round(cv.height * 0.33) : 12;
+      ctx.font = '15px sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(12, ly, 292, 18 + (items.length + 1)*24);
+      items.forEach((it, k) => { ctx.fillStyle = it[0]; ctx.fillRect(24, ly + 10 + k*24, 20, 20); ctx.fillStyle = '#fff'; ctx.fillText(it[1], 54, ly + 25 + k*24); });
+      const ky = ly + 10 + items.length*24; ctx.fillStyle = '#777'; ctx.fillRect(24, ky, 20, 20); ctx.save(); ctx.beginPath(); ctx.rect(24, ky, 20, 20); ctx.clip(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+      for (let d = -3; d <= 3; d++) { ctx.beginPath(); ctx.moveTo(24 + d*7, ky + 20); ctx.lineTo(44 + d*7, ky); ctx.stroke(); } ctx.restore();
+      ctx.fillStyle = '#fff'; ctx.fillText('striped = Distant Lands', 54, ky + 15);
+    }
     if (regionLayer) {
       const items = [['rgba(255,150,30,0.9)', 'Home lands (west landmass)'], ['rgba(90,60,255,0.9)', 'Distant lands (east landmass)']];
       ctx.font = '22px sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(12, 12, 360, 84);
@@ -144,7 +179,7 @@
     if (x < 0 || x >= W || y < 0 || y >= H) return '';
     const i = g.idx(x, y); const t = g.terrain[i];
     let d = `hex ${x},${y}   lon ${g.lonC[i].toFixed(1)}  lat ${g.latC[i].toFixed(1)}   ${terrainName[t]}`;
-    if (t !== T.OCEAN && t !== T.COAST) d += `  ${biomeName[g.biome[i]]||g.biome[i]}  rain ${g.rain[i]}  region ${g.region[i]}`;
+    if (t !== T.OCEAN && t !== T.COAST) d += `  ${biomeName[g.biome[i]]||g.biome[i]}  rain ${g.rain[i]}  region ${g.region[i]}${g.continent[i] >= 0 && GEO.continents ? '  continent ' + GEO.continents[g.continent[i]].name : ''}`;
     if (startAt[x+','+y]) d += `   start: ${startAt[x+','+y]}`;
     if (volcanoAt[x+','+y]) d += `   volcano: ${volcanoAt[x+','+y]}`;
     return d;
@@ -164,6 +199,7 @@
     if (!hover || hover[0] !== hx[0] || hover[1] !== hx[1]) { hover = hx; document.getElementById('hover').textContent = describe(hx[0], hx[1]); draw(); }
   });
   cv.addEventListener('mouseleave', () => { hover = null; draw(); });
+  const cb = document.getElementById('continents'); if (cb) cb.onclick = () => { showContinents = !showContinents; draw(); };
   document.getElementById('sites').onclick = () => { showSites = !showSites; draw(); };
   document.getElementById('zin').onclick = () => { const nz = Math.min(12, zoom*1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };
   document.getElementById('zout').onclick = () => { const nz = Math.max(0.2, zoom/1.5); panX = cv.width/2 - (cv.width/2 - panX)*(nz/zoom); panY = cv.height/2 - (cv.height/2 - panY)*(nz/zoom); zoom = nz; draw(); };

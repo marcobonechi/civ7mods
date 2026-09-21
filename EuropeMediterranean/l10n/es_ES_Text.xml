@@ -8,7 +8,7 @@
             <Text>Un mapa de Europa, la cuenca mediterránea y el Norte de África, desde los Urales hasta Islandia y desde Marruecos hasta el Sinaí. Ubicaciones de inicio históricas para las civilizaciones de la región; otras civilizaciones comienzan en sitios seleccionados.[n]Compatible con tamaños de mapa estándar.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_NAME" Language="es_ES">
-            <Text>Europa y Mediterráneo (Tierras lejanas)</Text>
+            <Text>Europa, Mediterráneo y el Sahel con continentes</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="es_ES">
             <Text>Europa, el Mediterráneo y el norte de África hasta el Sahel, con inicios históricos y ríos donde realmente fluyen. África, Escandinavia e Islandia son Tierras lejanas.</Text>

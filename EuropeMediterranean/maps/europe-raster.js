@@ -238,6 +238,7 @@ export function oneLandmassGeo(GEO) {
         ...GEO,
         distantLandsAnchors: [],
         waterLines: (GEO.waterLines || []).filter((l) => !l.separatesDistantLands),
+        mountainWalls: (GEO.mountainWalls || []).filter((l) => !l.separatesDistantLands),
     };
 }
 
@@ -264,6 +265,7 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     const biome = new Array(N);
     const rain = new Uint16Array(N);
     const region = new Array(N);   // "W" or "E"
+    const continent = new Int8Array(N).fill(-1);   // index into GEO.continents, -1 for water
     const lonC = new Float32Array(N);
     const latC = new Float32Array(N);
 
@@ -699,7 +701,46 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     // water-separated landmasses rather than by longitude. Landmasses containing one of
     // GEO.distantLandsAnchors become "E" (distant lands); everything else is "W" (home lands).
     // With no anchors the whole map is one region and every civilization is reachable overland.
-    assignLandmassRegions(W, H, idx, isLand, region, P, GEO.distantLandsAnchors);
+    // Where no sea divides two regions a mountain wall can: GEO.mountainWalls are unbroken,
+    // hex-connected lines of mountain from shore to shore (the Caucasus crest). Nothing walks
+    // over a mountain, so the region boundary along it is a wall that is really there. For the
+    // regions the wall counts as sea; its own hexes take the region of the nearest land.
+    const wall = new Uint8Array(N);
+    for (const line of GEO.mountainWalls || []) {
+        let prev = null;
+        const mark = (x, y) => { if (inBounds(x, y) && isLand[idx(x, y)]) { wall[idx(x, y)] = 1; terrain[idx(x, y)] = T.MOUNTAIN; } };
+        for (let s = 0; s < line.pts.length - 1; s++) {
+            const a = line.pts[s], b = line.pts[s + 1];
+            const [ax, ay] = P.toTile(a[0], a[1]);
+            const [bx, by] = P.toTile(b[0], b[1]);
+            const steps = Math.max(1, Math.ceil(Math.sqrt((bx - ax) ** 2 + ((by - ay) * ROW_SPACING) ** 2) * 4));
+            for (let k = 0; k <= steps; k++) {
+                const f = k / steps;
+                const [x, y] = P.nearestTile(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f);
+                if (prev && (prev[0] !== x || prev[1] !== y) && hexDistance(prev[0], prev[1], x, y) > 1) {
+                    for (const n of hexNeighbors(prev[0], prev[1])) {
+                        if (hexDistance(n[0], n[1], x, y) <= 1) { mark(n[0], n[1]); break; }
+                    }
+                }
+                mark(x, y);
+                prev = [x, y];
+            }
+        }
+    }
+    const walkable = wall.some((w) => w) ? isLand.map((l, i) => (l && !wall[i] ? 1 : 0)) : isLand;
+    assignLandmassRegions(W, H, idx, walkable, region, P, GEO.distantLandsAnchors);
+
+    // 7c. continents: the first GEO.continents polygon containing the hex centre. Unlike regions
+    // these may divide connected land, since a continent border stops nobody.
+    const continentPolys = prepPolys(GEO.continents);
+    if (continentPolys.length) {
+        for (let i = 0; i < N; i++) {
+            if (!isLand[i]) continue;
+            for (let c = 0; c < continentPolys.length; c++) {
+                if (pointInPolygon(lonC[i], latC[i], continentPolys[c])) { continent[i] = c; break; }
+            }
+        }
+    }
 
     // 8. biomes and rainfall
     for (let i = 0; i < N; i++) {
@@ -833,7 +874,7 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     }
 
     const grid = {
-        W, H, P, terrain, biome, rain, region, isLand, lonC, latC, volcanoes, riverTiles, riverChains, passHexes,
+        W, H, P, terrain, biome, rain, region, continent, wall, isLand, lonC, latC, volcanoes, riverTiles, riverChains, passHexes,
         idx, inBounds, findLandTile,
         // prepare a start tile: flat, with no mountain wall around it
         prepareStartTile(x, y) {
@@ -841,7 +882,7 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
             for (const n of hexNeighbors(x, y)) {
                 if (!inBounds(n[0], n[1])) continue;
                 const j = idx(n[0], n[1]);
-                if (terrain[j] === T.MOUNTAIN) terrain[j] = T.HILL;
+                if (terrain[j] === T.MOUNTAIN && !wall[j]) terrain[j] = T.HILL;
             }
         }
     };
@@ -919,4 +960,124 @@ function assignLandmassRegions(W, H, idx, isLand, region, P, anchors) {
             queue.push([nx, ny]);
         }
     }
+}
+
+// ---- continents --------------------------------------------------------------
+// The map the engine is shown while it stamps the continents (stampGeoContinents in
+// europe-large-core.js, which says why): mask 1 = land meanwhile - every continent's land less
+// the hexes along a land border, plus causeways tying its islands to its mainland - and deep =
+// water to turn into ocean meanwhile, so that the connected compartments are exactly
+// GEO.continents. side picks which side of a land border is given up: "high" the hex whose
+// continent comes later in GEO.continents, "low" the other.
+export function continentStampMask(grid, side) {
+    const { W, H, isLand, continent } = grid;
+    const N = W * H;
+    const idx = (x, y) => y * W + x;
+    const inB = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
+    const owner = new Int8Array(N).fill(-1);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        const i = idx(x, y);
+        if (!isLand[i] || continent[i] < 0) continue;
+        let cut = false;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const c = continent[idx(nx, ny)];
+            if (c >= 0 && (side === "low" ? c > continent[i] : c < continent[i])) { cut = true; break; }
+        }
+        if (!cut) owner[i] = continent[i];
+    }
+
+    // connected components of what is land so far
+    const comp = new Int32Array(N).fill(-1);
+    const comps = [];
+    for (let s = 0; s < N; s++) {
+        if (owner[s] < 0 || comp[s] >= 0) continue;
+        const id = comps.length, tiles = [s];
+        comp[s] = id;
+        for (let h = 0; h < tiles.length; h++) {
+            const x = tiles[h] % W, y = (tiles[h] - x) / W;
+            for (const [nx, ny] of hexNeighbors(x, y)) {
+                if (!inB(nx, ny)) continue;
+                const j = idx(nx, ny);
+                if (owner[j] === owner[s] && comp[j] < 0) { comp[j] = id; tiles.push(j); }
+            }
+        }
+        comps.push({ c: owner[s], tiles });
+    }
+
+    // Causeways, smallest islands last so the big ones are tied first and can serve as stepping
+    // stones. A causeway hex may touch no other continent's land, or it would join the two.
+    const root = comps.map((_, k) => k);
+    const find = (k) => { while (root[k] !== k) k = root[k] = root[root[k]]; return k; };
+    const free = (j, c) => {
+        if (owner[j] >= 0) return false;
+        const x = j % W, y = (j - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const o = owner[idx(nx, ny)];
+            if (o >= 0 && o !== c) return false;
+        }
+        return true;
+    };
+    const order = comps.map((_, k) => k).sort((a, b) => comps[b].tiles.length - comps[a].tiles.length);
+    const main = {};
+    for (const k of order) if (main[comps[k].c] === undefined) main[comps[k].c] = k;
+    let unjoined = 0;
+    for (const k of order) {
+        const c = comps[k].c;
+        if (find(k) === find(main[c])) continue;
+        // breadth-first from this island through free water to land of the mainland's component
+        const prev = new Int32Array(N).fill(-2);
+        const queue = [];
+        for (const t of comps[k].tiles) { prev[t] = -1; queue.push(t); }
+        let hit = -1;
+        for (let h = 0; h < queue.length && hit < 0; h++) {
+            const t = queue[h], x = t % W, y = (t - x) / W;
+            for (const [nx, ny] of hexNeighbors(x, y)) {
+                if (!inB(nx, ny)) continue;
+                const j = idx(nx, ny);
+                if (prev[j] !== -2) continue;
+                if (owner[j] === c && comp[j] >= 0 && find(comp[j]) === find(main[c])) { hit = t; break; }
+                if (!free(j, c)) continue;
+                prev[j] = t; queue.push(j);
+            }
+        }
+        if (hit < 0) { unjoined++; continue; }
+        for (let t = hit; t >= 0 && owner[t] < 0; t = prev[t]) { owner[t] = c; comp[t] = k; }
+        root[find(k)] = find(main[c]);
+    }
+
+    // The engine's continents also spread through shallow water, so an island chain or a strait
+    // lets one continent reach the next one's shore before that continent gets there itself.
+    // deep marks the water to turn into ocean meanwhile: wherever the nearest land on one side is
+    // another continent's than on the other, two hexes wide.
+    const near = Int8Array.from(owner);
+    for (let i = 0; i < N; i++) if (near[i] < 0 && isLand[i]) near[i] = continent[i];   // the cut hexes
+    const queue = [];
+    for (let i = 0; i < N; i++) if (near[i] >= 0) queue.push(i);
+    for (let h = 0; h < queue.length; h++) {
+        const t = queue[h], x = t % W, y = (t - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (!inB(nx, ny)) continue;
+            const j = idx(nx, ny);
+            if (near[j] < 0) { near[j] = near[t]; queue.push(j); }
+        }
+    }
+    const isWater = (i) => owner[i] < 0 && !isLand[i];
+    const edge = new Uint8Array(N), deep = new Uint8Array(N);
+    for (let i = 0; i < N; i++) {
+        if (!isWater(i)) continue;
+        const x = i % W, y = (i - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) if (inB(nx, ny) && near[idx(nx, ny)] !== near[i]) { edge[i] = 1; break; }
+    }
+    for (let i = 0; i < N; i++) {
+        if (!isWater(i)) continue;
+        if (edge[i]) { deep[i] = 1; continue; }
+        const x = i % W, y = (i - x) / W;
+        for (const [nx, ny] of hexNeighbors(x, y)) if (inB(nx, ny) && edge[idx(nx, ny)]) { deep[i] = 1; break; }
+    }
+
+    const mask = new Uint8Array(N);
+    for (let i = 0; i < N; i++) mask[i] = owner[i] >= 0 ? 1 : 0;
+    return { mask, owner, deep, unjoined };
 }

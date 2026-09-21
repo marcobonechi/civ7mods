@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="europe-mediterranean-map" version="63" xmlns="ModInfo">
+<Mod id="europe-mediterranean-map" version="64" xmlns="ModInfo">
     <Properties>
-        <Name>TSL (1) Europe, Med Africa (2) Eurasia Compressed</Name>
+        <Name>Europe, Mediterranean and the Sahel with Continents</Name>
         <Description>Europe, the Mediterranean and Africa above the Equator, with a true start for every civilization of every age and rivers painted where they really run.
 
 Updated to 1.5 with quasi-fixed Navigable Rivers, and Hall of History (Gauls, England, Babylon) 
@@ -97,7 +97,7 @@ A civilization without a start, or one whose start another player already holds,
 Screenshots and details: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</Description>
         <Authors>Marco</Authors>
         <Package>Mod</Package>
-        <Version>63</Version>
+        <Version>64</Version>
     </Properties>
     <Dependencies>
         <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
