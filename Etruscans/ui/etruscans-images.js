@@ -54,10 +54,20 @@
                     portrait: "lsl_porsenna.png" }],
     };
 
+    // Bump whenever anything in the shared block below changes. Several of these mods can be
+    // installed together, and only the first one to load used to install the shared hooks - so
+    // the oldest copy on disk decided what all of them got. A stale Byzantium left Tuscany and
+    // Etruscans without the setAssetName swap Civilization VII 1.5 needs, and picking Lorenzo
+    // crashed the game with nothing in the log. Now each hook records the version that
+    // installed it and a newer script replaces the ones older than itself, in any load order.
+    const HOOKS_VERSION = 2;
+
     const KEY = "__civ7modsCivArt";
     const shared = window[KEY] || (window[KEY] = { textures: new Map(), panels: new Map(), hooked: false });
     if (!shared.leaderAssets) shared.leaderAssets = new Map();
     if (!shared.unitAssets) shared.unitAssets = new Map();
+    if (!shared.ownAssets) shared.ownAssets = [];
+    if (!shared.installed) shared.installed = {};
 
     const url = (file) => "fs://game/" + CONFIG.modId + "/" + file;
 
@@ -87,10 +97,33 @@
         if (leader.model) shared.leaderAssets.set(leader.type + "_GAME_ASSET", leader.model + "_GAME_ASSET");
     }
 
+    // The create-game screens put the selected civilization's *banner* in the same 3D scene as
+    // the leader - core/ui-next/screens/create-game/leader-banner-3d.js asks the engine for
+    // `<CIV_TYPE>_BANNER_GAME_ASSET`. Ours does not exist either, so it needs the same swap as
+    // the leader model. CIVILIZATION_RANDOM_BANNER_GAME_ASSET is the one banner the game always
+    // has, whatever is owned or installed.
+    shared.leaderAssets.set(CONFIG.civType + "_BANNER_GAME_ASSET", "CIVILIZATION_RANDOM_BANNER_GAME_ASSET");
+
+    // Every asset-name prefix this mod introduces. A name of ours that reaches the engine with
+    // no mapping is an access violation, not a blank model, so the hook below stands one in
+    // rather than letting it through - which is cheaper than guessing every naming convention
+    // the shell might invent next patch.
+    shared.ownAssets.push(CONFIG.civType);
+    for (const leader of CONFIG.leaders || []) shared.ownAssets.push(leader.type);
+
     // ---------------------------------------------------------------- shared, install once
 
-    if (!shared.hooked) {
-        shared.hooked = true;
+    // Before this change `hooked` was a boolean, and `true >= 2` is false - so a script from
+    // before it can neither keep a newer one out nor be kept out by one.
+    if (!(shared.hooked >= HOOKS_VERSION)) {
+        shared.hooked = HOOKS_VERSION;
+
+        // Re-installing a hook stacks the new wrapper on top of the old one instead of
+        // unwinding it. That is safe here because every rewrite below is idempotent: the
+        // stand-in a swap returns is never itself a key, and a URL fixCss has already fixed
+        // comes back unchanged.
+        const stale = (name) => !(shared.installed[name] >= HOOKS_VERSION);
+        const done = (name) => { shared.installed[name] = HOOKS_VERSION; };
 
         // "url('blp:bg-panel-x.png')" / "fs://game/bg-card-x.png" / "blp:civ_sym_x" -> our URL,
         // or null when this is not one of ours.
@@ -159,34 +192,43 @@
         //    background-image misses it, which is why a Condottiero inside a commander had no
         //    icon while the same civ's symbol, set through a quoted url(), was fine.
         try {
-            const original = CSSStyleDeclaration.prototype.setProperty;
-            CSSStyleDeclaration.prototype.setProperty = function (prop, value, priority) {
-                if (typeof value === "string" && MAYBE_URL.test(value)) value = fixCss(value);
-                return original.call(this, prop, value, priority);
-            };
+            if (stale("setProperty")) {
+                const original = CSSStyleDeclaration.prototype.setProperty;
+                CSSStyleDeclaration.prototype.setProperty = function (prop, value, priority) {
+                    if (typeof value === "string" && MAYBE_URL.test(value)) value = fixCss(value);
+                    return original.call(this, prop, value, priority);
+                };
+                done("setProperty");
+            }
         } catch (e) { /* leave the engine alone if it will not take the hook */ }
 
         // 2. el.style.backgroundImage = ... (the age-transition card and details panel)
         try {
-            wrapAccessor(CSSStyleDeclaration.prototype, "backgroundImage", fixCss);
-            wrapAccessor(CSSStyleDeclaration.prototype, "background", fixCss);
+            if (stale("backgroundImage")) {
+                wrapAccessor(CSSStyleDeclaration.prototype, "backgroundImage", fixCss);
+                wrapAccessor(CSSStyleDeclaration.prototype, "background", fixCss);
+                done("backgroundImage");
+            }
         } catch (e) { /* ignore */ }
 
         // 3. <img src>, both setAttribute and the accessor. The accessor keeps its own record of
         //    what was assigned so image-cache.js's `image.src != url` check still passes.
         const SRC = "__civ7modsAssignedSrc";
         try {
-            const original = Element.prototype.setAttribute;
-            Element.prototype.setAttribute = function (name, value) {
-                if (name === "src") {
-                    const fixed = fixCss(value);
-                    if (fixed !== value) { this[SRC] = value; return original.call(this, name, fixed); }
-                }
-                return original.call(this, name, value);
-            };
+            if (stale("setAttribute")) {
+                const original = Element.prototype.setAttribute;
+                Element.prototype.setAttribute = function (name, value) {
+                    if (name === "src") {
+                        const fixed = fixCss(value);
+                        if (fixed !== value) { this[SRC] = value; return original.call(this, name, fixed); }
+                    }
+                    return original.call(this, name, value);
+                };
+                done("setAttribute");
+            }
         } catch (e) { /* ignore */ }
         try {
-            const d = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "src");
+            const d = stale("imgSrc") ? Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "src") : null;
             if (d && d.set && d.configurable) {
                 Object.defineProperty(HTMLImageElement.prototype, "src", {
                     configurable: true,
@@ -198,6 +240,7 @@
                         d.set.call(this, fixed);
                     },
                 });
+                done("imgSrc");
             }
         } catch (e) { /* ignore */ }
 
@@ -205,10 +248,13 @@
         //    there is nothing to rewrite: show the PNG on an overlay div instead, the way the
         //    two Workshop frameworks do.
         let overlay = null;
+        const OVERLAY_ID = "civ7mods-civ-art-overlay";
         const getOverlay = () => {
             if (overlay && overlay.isConnected) return overlay;
+            overlay = document.getElementById(OVERLAY_ID);
+            if (overlay) return overlay;
             overlay = document.createElement("div");
-            overlay.id = "civ7mods-civ-art-overlay";
+            overlay.id = OVERLAY_ID;
             const s = overlay.style;
             s.setProperty("position", "fixed");
             s.setProperty("background-size", "cover");
@@ -245,7 +291,7 @@
         shared.hideOverlay = hideOverlay;
 
         try {
-            if (window.WorldUI && WorldUI.addBackgroundLayer) {
+            if (window.WorldUI && WorldUI.addBackgroundLayer && stale("addBackgroundLayer")) {
                 const original = WorldUI.addBackgroundLayer.bind(WorldUI);
                 WorldUI.addBackgroundLayer = function (texture, params, pass) {
                     const hit = typeof texture === "string" ? shared.panels.get(texture.toLowerCase()) : null;
@@ -254,10 +300,11 @@
                     return original(texture, params, pass);
                 };
             }
-            if (window.WorldUI && WorldUI.clearBackground) {
+            if (window.WorldUI && WorldUI.clearBackground && stale("addBackgroundLayer")) {
                 const original = WorldUI.clearBackground.bind(WorldUI);
                 WorldUI.clearBackground = function () { hideOverlay(); return original(); };
             }
+            done("addBackgroundLayer");
         } catch (e) { /* ignore */ }
 
         // 5. Unit portraits. WorldUI.requestPortrait(name, unitType, background) renders a unit's
@@ -278,7 +325,7 @@
         shared.announce = announce;
 
         try {
-            if (window.WorldUI && WorldUI.requestPortrait) {
+            if (window.WorldUI && WorldUI.requestPortrait && stale("requestPortrait")) {
                 const original = WorldUI.requestPortrait.bind(WorldUI);
                 WorldUI.requestPortrait = function (name, unitType, background) {
                     const stand = typeof unitType === "string" ? shared.unitAssets.get(unitType) : null;
@@ -292,6 +339,7 @@
                     // the panel's url("live:/<ours>") at the texture we know exists.
                     return original(stand, stand, background);
                 };
+                done("requestPortrait");
             }
         } catch (e) { /* ignore */ }
 
@@ -306,43 +354,64 @@
         //      on every leader change, so an unswapped name reaches the engine, and a missing
         //      asset there crashes the game instead of falling back.
         try {
-            if (window.WorldUI && WorldUI.createModelGroup) {
+            if (window.WorldUI && WorldUI.createModelGroup && stale("createModelGroup")) {
                 const original = WorldUI.createModelGroup.bind(WorldUI);
-                const swap = (name) => (typeof name === "string"
-                    && shared.leaderAssets.get(name.toUpperCase())) || name;
-                // Report whether the engine actually took the asset. leader-select falls
-                // back to LEADER_FALLBACK_GAME_ASSET when addModel returns null, so a
-                // borrowed model that fails looks exactly like one that was never tried.
-                const report = (asset, swapped, ok) => {
-                    if (swapped !== asset) {
-                        announce("leader model", asset, swapped + (ok ? " (accepted)" : " (REFUSED - engine returned null)"));
+                const swap = (name) => {
+                    if (typeof name !== "string") return name;
+                    const key = name.toUpperCase();
+                    const mapped = shared.leaderAssets.get(key);
+                    if (mapped) return mapped;
+                    // One of ours that nothing mapped. The engine uses what its asset lookup
+                    // returned without checking that it found anything, so letting this through
+                    // is an access violation - stand in what the base game falls back to.
+                    if (shared.ownAssets.some((prefix) => key.indexOf(prefix + "_") === 0)) {
+                        const stand = /_BANNER_GAME_ASSET$/.test(key)
+                            ? "CIVILIZATION_RANDOM_BANNER_GAME_ASSET"
+                            : "LEADER_FALLBACK_GAME_ASSET";
+                        announce("unmapped asset", name, stand);
+                        return stand;
                     }
+                    return name;
                 };
+                // Announced *before* the engine call, never after. A bad asset name takes the
+                // whole process down inside that call, and a line written on the way out never
+                // reaches the log - which is how the last crash came to leave no trace of what
+                // it was loading.
+                const report = (asset, swapped) => {
+                    if (swapped !== asset) announce("leader model", asset, swapped);
+                };
+                // The markers hold a version, not a flag: an older script's wrapper on the same
+                // group or model has to be wrapped again, not mistaken for this one's.
                 const wrapModel = (model) => {
-                    if (!model || typeof model.setAssetName !== "function" || model.setAssetName.__civ7mods) return;
+                    if (!model || typeof model.setAssetName !== "function") return;
+                    if (model.setAssetName.__civ7mods >= HOOKS_VERSION) return;
                     try {
                         const inner = model.setAssetName.bind(model);
                         const wrapped = function (asset) {
                             const swapped = swap(asset);
-                            const result = inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
-                            report(asset, swapped, true);
-                            return result;
+                            report(asset, swapped);
+                            return inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
                         };
-                        wrapped.__civ7mods = true;
+                        wrapped.__civ7mods = HOOKS_VERSION;
                         model.setAssetName = wrapped;
                     } catch (e) { /* ignore */ }
                 };
                 const wrapMethod = (group, method) => {
-                    if (!group || typeof group[method] !== "function" || group[method].__civ7mods) return;
+                    if (!group || typeof group[method] !== "function") return;
+                    if (group[method].__civ7mods >= HOOKS_VERSION) return;
                     const inner = group[method].bind(group);
                     const wrapped = function (asset) {
                         const swapped = swap(asset);
+                        report(asset, swapped);
                         const model = inner.apply(null, [swapped].concat([].slice.call(arguments, 1)));
-                        report(asset, swapped, !!model);
+                        // leader-select falls back to LEADER_FALLBACK_GAME_ASSET when addModel
+                        // returns null, so a borrowed model the engine refused looks exactly
+                        // like one that was never tried. Say which it was.
+                        if (!model && swapped !== asset) announce("model refused", asset, swapped);
                         wrapModel(model);
                         return model;
                     };
-                    wrapped.__civ7mods = true;
+                    wrapped.__civ7mods = HOOKS_VERSION;
                     group[method] = wrapped;
                 };
                 WorldUI.createModelGroup = function () {
@@ -351,6 +420,7 @@
                     wrapMethod(group, "addModelAtPos");
                     return group;
                 };
+                done("createModelGroup");
             }
         } catch (e) { /* ignore */ }
 
@@ -370,14 +440,19 @@
                 fixElement(root);
                 if (root && root.querySelectorAll) root.querySelectorAll("*").forEach(fixElement);
             };
-            new MutationObserver((records) => {
-                for (const r of records) {
-                    if (r.type === "attributes") fixElement(r.target);
-                    else r.addedNodes.forEach(scan);
-                }
-            }).observe(document.documentElement, {
-                subtree: true, childList: true, attributes: true, attributeFilter: ["style", "src"],
-            });
+            if (stale("observer")) {
+                if (shared.observer) shared.observer.disconnect();
+                shared.observer = new MutationObserver((records) => {
+                    for (const r of records) {
+                        if (r.type === "attributes") fixElement(r.target);
+                        else r.addedNodes.forEach(scan);
+                    }
+                });
+                shared.observer.observe(document.documentElement, {
+                    subtree: true, childList: true, attributes: true, attributeFilter: ["style", "src"],
+                });
+                done("observer");
+            }
             scan(document.documentElement);
         } catch (e) { /* ignore */ }
     }
@@ -388,14 +463,14 @@
     // Returning our URL here keeps the tall civ-select card pointed at a real file, and the
     // blp: prefix another caller adds is stripped by fixCss above.
     try {
-        if (window.UI && typeof UI.getIconBLP === "function" && !UI.getIconBLP.__civ7mods) {
+        if (window.UI && typeof UI.getIconBLP === "function" && !(UI.getIconBLP.__civ7mods >= HOOKS_VERSION)) {
             const original = UI.getIconBLP.bind(UI);
             const wrapped = function (id, context) {
                 const civ = window[KEY].verts && window[KEY].verts.get(String(id));
                 if (civ && context === "BACKGROUND_VERT") return civ;
                 return original(id, context);
             };
-            wrapped.__civ7mods = true;
+            wrapped.__civ7mods = HOOKS_VERSION;
             UI.getIconBLP = wrapped;
         }
         (shared.verts || (shared.verts = new Map())).set(CONFIG.civType, url(CONFIG.vert));
