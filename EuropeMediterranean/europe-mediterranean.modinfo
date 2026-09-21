@@ -1283,7 +1283,11 @@ Capturas de tela e detalhes: https://marcobonechi.github.io/civ7mods/europe-medi
 
 스크린샷과 자세한 내용: https://marcobonechi.github.io/civ7mods/europe-mediterranean/</ko_KR>
         </Text>
-        <File>text/en_us/ModuleText.xml</File>
-        <File>l10n/ModuleText.xml</File>
+        <!-- No File entries here. The <Text> blocks above already carry the name and the description
+             in all twelve languages, and every file that could be listed defines the same two
+             tags again - each one a second INSERT on the same (mod, tag, locale), which the
+             database rejects: 24 "UNIQUE constraint failed: LocalizedText" lines per rebuild.
+             The files are still loaded where they belong, by the UpdateText actions above.
+             tools/module-description/build.py writes all three from the same source. -->
     </LocalizedText>
 </Mod>
