@@ -1127,6 +1127,36 @@ function dumpRivers(iWidth, iHeight) {
     }
 }
 
+// The Distant Lands boundary must never run between two hexes a land unit can stand on, or it is
+// an invisible wall in open country. At sea that is true by construction; where the boundary
+// follows GEO.mountainWalls it holds only while every hex of the wall is still impassable in the
+// finished map, so this looks at what the engine actually has - after volcanoes, rivers, wonders
+// and validateAndFixTerrain - and says so in the log.
+function reportRegionWalls(grid) {
+    const { W, H } = grid;
+    const walkable = (x, y) => !GameplayMap.isWater(x, y) && !GameplayMap.isMountain(x, y) && !GameplayMap.isImpassable(x, y);
+    const open = [];
+    let wallHexes = 0;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (!grid.wall[grid.idx(x, y)]) continue;
+        wallHexes++;
+        if (walkable(x, y)) open.push(x + "," + y);
+    }
+    const seams = [];
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (!walkable(x, y)) continue;
+        const here = GameplayMap.getLandmassRegionId(x, y);
+        for (const [nx, ny] of hexNeighbors(x, y)) {
+            if (nx <= x && ny <= y) continue;                       // each pair once
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H || !walkable(nx, ny)) continue;
+            if (GameplayMap.getLandmassRegionId(nx, ny) != here) seams.push(x + "," + y + "|" + nx + "," + ny);
+        }
+    }
+    console.log("Europe large map: region walls - " + wallHexes + " wall hexes, " + open.length + " of them walkable" +
+        (open.length ? " (" + open.join(" ") + ")" : "") + "; walkable neighbours in different regions: " + seams.length +
+        (seams.length ? " (" + seams.slice(0, 40).join(" ") + ")" : "") + (open.length || seams.length ? "  <-- BROKEN" : "  - sound"));
+}
+
 function generateMap() {
     console.log("Europe large map: generating");
     console.log(`Age - ${GameInfo.Ages.lookup(Game.age).AgeType}`);
@@ -1222,6 +1252,7 @@ function generateMap() {
     dumpResources(iWidth, iHeight);
     FertilityBuilder.recalculate();
     assignAdvancedStartRegions();
+    try { reportRegionWalls(grid); } catch (e) { console.log("Europe large map: region wall check failed, " + e); }
     console.log("Europe large map: done");
 }
 
