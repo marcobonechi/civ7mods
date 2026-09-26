@@ -30,7 +30,7 @@ Workshop. Project pages with screenshots: https://marcobonechi.github.io/civ7mod
 | `preview/` | standalone preview pages of the maps and the screenshot script |
 | `tools/` | checks and generators (map sizes, rivers, mod data, the Eurasia geography, the map's description; the Antarctica map's check and preview) |
 | `3d_art/`, `tools/civ7-art-studio/`, `textures/` | the art pipeline for the civilizations' 3D models and icons |
-| `skills/`, `.claude/skills/` | written-up techniques: new civilizations, new leaders, 3D models, UI extension |
+| `skills/`, `.claude/skills/` | written-up techniques: new civilizations, new leaders, 3D models, UI extension, Distant Lands and continents on the Europe map |
 | `plans/` | design sheets and work logs |
 | `docs/` | the project web pages |
 

@@ -11,7 +11,7 @@
             <Text>欧洲、地中海、萨赫勒 (远方土地)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="zh_Hans_CN">
-            <Text>欧洲、地中海与北非，南至萨赫勒，拥有历史出生点，河流沿真实河道流淌。非洲、中东、斯堪的纳维亚和冰岛为远方土地。</Text>
+            <Text>欧洲、地中海与北非，南至萨赫勒，拥有历史出生点，河流沿真实河道流淌。非洲、斯堪的纳维亚和冰岛为远方土地。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="zh_Hans_CN">
             <Text>欧洲、地中海、萨赫勒</Text>

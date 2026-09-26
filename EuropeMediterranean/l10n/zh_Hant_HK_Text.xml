@@ -11,7 +11,7 @@
             <Text>歐洲、地中海、薩赫爾 (遙遠土地)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="zh_Hant_HK">
-            <Text>歐洲、地中海與北非，南至薩赫爾，擁有歷史出生點，河流沿真實河道流淌。非洲、中東、斯堪地那維亞和冰島為遙遠土地。</Text>
+            <Text>歐洲、地中海與北非，南至薩赫爾，擁有歷史出生點，河流沿真實河道流淌。非洲、斯堪地那維亞和冰島為遙遠土地。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="zh_Hant_HK">
             <Text>歐洲、地中海、薩赫爾</Text>

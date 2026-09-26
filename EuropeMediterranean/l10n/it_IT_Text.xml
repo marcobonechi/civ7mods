@@ -11,7 +11,7 @@
             <Text>Europa Mediterraneo, Sahel (Terre lontane)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="it_IT">
-            <Text>Europa, Mediterraneo e Nord Africa fino al Sahel, con partenze storiche e fiumi dove scorrono davvero. Africa, Medio Oriente, Scandinavia e Islanda sono Terre lontane.</Text>
+            <Text>Europa, Mediterraneo e Nord Africa fino al Sahel, con partenze storiche e fiumi dove scorrono davvero. Africa, Scandinavia e Islanda sono Terre lontane.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="it_IT">
             <Text>Europa Mediterraneo, Sahel</Text>

@@ -11,7 +11,7 @@
             <Text>Europa Morze Śródziemne, Sahel (Odległe krainy)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="pl_PL">
-            <Text>Europa, basen Morza Śródziemnego i Afryka Północna aż po Sahel, z historycznymi pozycjami startowymi i rzekami tam, gdzie naprawdę płyną. Afryka, Bliski Wschód, Skandynawia i Islandia to Odległe krainy.</Text>
+            <Text>Europa, basen Morza Śródziemnego i Afryka Północna aż po Sahel, z historycznymi pozycjami startowymi i rzekami tam, gdzie naprawdę płyną. Afryka, Skandynawia i Islandia to Odległe krainy.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="pl_PL">
             <Text>Europa Morze Śródziemne, Sahel</Text>

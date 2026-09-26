@@ -64,14 +64,6 @@ export const GEO = {
    44.454
   ],
   [
-   44.4,
-   33.3
-  ],
-  [
-   33.2,
-   35
-  ],
-  [
    18.1,
    59.3
   ],
@@ -89,8 +81,8 @@ export const GEO = {
   ]
  ],
  "distantLandsShare": [
-  45,
-  60
+  25,
+  50
  ],
  "continents": [
   {
@@ -9100,28 +9092,6 @@ export const GEO = {
    ]
   },
   {
-   "name": "Uzboy",
-   "separatesDistantLands": true,
-   "pts": [
-    [
-     52.5,
-     39.8
-    ],
-    [
-     56,
-     39.6
-    ],
-    [
-     60,
-     39.4
-    ],
-    [
-     66,
-     39.3
-    ]
-   ]
-  },
-  {
    "name": "Bab el Mandeb",
    "pts": [
     [
@@ -9156,50 +9126,7 @@ export const GEO = {
    ]
   }
  ],
- "mountainWalls": [
-  {
-   "name": "Caucasus crest",
-   "separatesDistantLands": true,
-   "pts": [
-    [
-     38.4,
-     44.3
-    ],
-    [
-     39.8,
-     44.3
-    ],
-    [
-     41.3,
-     43.7
-    ],
-    [
-     43,
-     43.2
-    ],
-    [
-     44.5,
-     42.9
-    ],
-    [
-     46,
-     42.5
-    ],
-    [
-     47.3,
-     42.2
-    ],
-    [
-     48,
-     41.7
-    ],
-    [
-     49.6,
-     41.5
-    ]
-   ]
-  }
- ],
+ "mountainWalls": [],
  "lakes": [
   [
    31.3,

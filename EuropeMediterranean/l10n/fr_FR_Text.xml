@@ -11,7 +11,7 @@
             <Text>Europe Méditerranée, Sahel (Terres lointaines)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="fr_FR">
-            <Text>L'Europe, la Méditerranée et l'Afrique du Nord jusqu'au Sahel, avec des départs historiques et des fleuves là où ils coulent vraiment. L'Afrique, le Moyen-Orient, la Scandinavie et l'Islande sont des Terres lointaines.</Text>
+            <Text>L'Europe, la Méditerranée et l'Afrique du Nord jusqu'au Sahel, avec des départs historiques et des fleuves là où ils coulent vraiment. L'Afrique, la Scandinavie et l'Islande sont des Terres lointaines.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="fr_FR">
             <Text>Europe Méditerranée, Sahel</Text>

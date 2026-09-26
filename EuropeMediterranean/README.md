@@ -22,7 +22,7 @@ Europe & Mediterranean maps also come in **90x76 (Compact)**, 8 players by defau
 
 | Map type | Extent | Distant Lands | Geography file |
 |---|---|---|---|
-| Europe Mediterranean, Sahel (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, the Middle East with Anatolia, Scandinavia, Iceland | `maps/europe-large-geo.js` |
+| Europe Mediterranean, Sahel (Distant Lands) | Urals–Iceland, Morocco–Sinai, 10N–71N | Africa, Scandinavia, Iceland | `maps/europe-large-geo.js` |
 | Europe Mediterranean, Sahel (the One Landmass map) | identical geography | none | `maps/europe-large-geo.js` |
 | Eurasia Compressed | Russia, the North Caucasus and the Caspian become an Eastern Ocean; China, Korea, Mongolia and Japan fill the space; the Suez Canal at Suez | none | `maps/europe-alt-geo.js` (files keep the old `europe-alt` name) |
 | Eurasia Compressed (Distant Lands) | identical geography | East Asia, Scandinavia, Iceland | `maps/europe-alt-geo.js` |
@@ -182,10 +182,12 @@ terrain back. The log prints one line per continent with the engine continents i
 hexes can fall either side. The names are the engine's (it picks them at random). The Eurasia maps
 leave `continents` empty and get the engine's own seven.
 
-The Middle East is Distant Lands without a channel between the Black Sea and the Caspian:
-`GEO.mountainWalls` draws the Caucasus crest as an unbroken line of mountain from shore to shore,
-and the region boundary runs along it. East of the Caspian the `Uzboy` channel does the same job by
-water. One Landmass drops both. `preview/europe-large.html` has a *continents* button
+The Middle East with Anatolia can be Distant Lands as well, and was for a while: the anchors, the
+`Uzboy` channel east of the Caspian and a `GEO.mountainWalls` entry - the Caucasus crest as an
+unbroken line of mountain from shore to shore, along which the region boundary runs, so that the
+Black Sea and the Caspian need not be joined - are all still in `europe-large-geo.js`, commented
+out. It worked in the game but moves half the Antiquity civilizations across the water, so the
+Middle East stays home for now. `.claude/skills/civ7-map-distant-lands` says how to put it back. `preview/europe-large.html` has a *continents* button
 (`?continents=1` in screenshot mode): one colour per continent, Distant Lands striped.
 
 ## Start locations

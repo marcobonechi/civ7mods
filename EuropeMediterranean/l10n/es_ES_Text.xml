@@ -11,7 +11,7 @@
             <Text>Europa Mediterráneo, Sahel (Tierras lejanas)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="es_ES">
-            <Text>Europa, el Mediterráneo y el norte de África hasta el Sahel, con inicios históricos y ríos donde realmente fluyen. África, Oriente Medio, Escandinavia e Islandia son Tierras lejanas.</Text>
+            <Text>Europa, el Mediterráneo y el norte de África hasta el Sahel, con inicios históricos y ríos donde realmente fluyen. África, Escandinavia e Islandia son Tierras lejanas.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="es_ES">
             <Text>Europa Mediterráneo, Sahel</Text>

@@ -138,9 +138,11 @@ if (!maps.length) { console.error('no registered map scripts found'); process.ex
 
 // Land that Distant Lands keeps apart by sea and One Landmass joins: [name, from, to].
 const JOINS = [['Finland and Russia', [23.8, 61.5], [37.6, 55.75]],
-               ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]],
-               ['Anatolia and the Pontic steppe', [32.9, 39.9], [34.4, 47.5]],     // the Caucasus crest
-               ['Persia and the Kazakh steppe', [51.4, 35.7], [58.0, 45.0]]];      // the Uzboy channel
+               ['Egypt and the Levant', [31.2, 30.0], [36.3, 33.5]]];
+// With the Middle East in the Distant Lands (the commented-out anchors, Caucasus crest and Uzboy
+// in europe-large-geo.js) add these two:
+//             ['Anatolia and the Pontic steppe', [32.9, 39.9], [34.4, 47.5]],     // the Caucasus crest
+//             ['Persia and the Kazakh steppe', [51.4, 35.7], [58.0, 45.0]]        // the Uzboy channel
 
 for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps) {
     const load = async (f) => { const { GEO: RAW } = await import(pathToFileURL(path.join(MAPS, f)).href); return united ? oneLandmassGeo(RAW) : RAW; };

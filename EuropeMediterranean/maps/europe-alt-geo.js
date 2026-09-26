@@ -44,6 +44,11 @@ export const GEO = {
                 ["China and Iran", "CIVILIZATION_MING", "CIVILIZATION_QAJAR"]],
     },
     distantLandsAnchors: [
+        // The Middle East with Anatolia can be Distant Lands too - the Bosporus, the Caucasus crest
+        // (mountainWalls), the Uzboy channel and Suez close the ring, and it worked in the game -
+        // but it moves half the Antiquity roster across the water, too big a change for now:
+        // [44.4, 33.3],     // the Middle East and Anatolia
+        // [33.2, 35.0],     // Cyprus, which goes with the Levant
         [18.1, 59.3],        // Scandinavia and Finland, cut off by the Eastern Ocean, which covers Karelia
         [-21.9, 64.1],       // Iceland,
         [-6.9, 62.0],        // Faroe   - stepping stones, so the Norse north is one region and
@@ -730,16 +735,25 @@ export const GEO = {
         { name: "Euripus", pts: [[23.2, 38.85], [23.6, 38.55]] },
         { name: "Gulf of Suez", pts: [[32.55, 29.9], [33.0, 28.7], [33.7, 27.6], [34.4, 26.6]] },
         { name: "Gulf of Aqaba", pts: [[35.0, 29.5], [34.7, 28.6], [34.4, 27.8]] },
+        // For a Distant Lands Middle East (see distantLandsAnchors): east of the Caspian the desert
+        // ties it to the home lands, cut where water once ran - the Uzboy, the dry bed that took the
+        // Amu Darya to the Caspian. Between the Black Sea and the Caspian the Caucasus crest does
+        // the same without a channel (mountainWalls). Kept for when it is wanted:
+        // { name: "Uzboy", separatesDistantLands: true, pts: [[52.5, 39.8], [56.0, 39.6], [60.0, 39.4], [66.0, 39.3]] },
         { name: "Bab el Mandeb", pts: [[42.9, 12.3], [43.3, 12.7], [43.4, 13.1]] },
         { name: "Hormuz", pts: [[56.0, 26.2], [56.6, 26.6], [57.2, 26.4]] }
     ],
 
-    // Unbroken mountain lines from shore to shore, where a Distant Lands boundary crosses land
-    // (europe-raster.js). The Greater Caucasus from the Black Sea at Tuapse to the Caspian at
-    // Derbent: the Black Sea and the Caspian stay two seas, and the Middle East is still reached
-    // only by ship. On the One Landmass map the crest is an ordinary range with its gaps.
+    // Unbroken mountain lines from shore to shore, where a Distant Lands boundary crosses land:
+    // the rasterizer forces every hex on the line to mountain and treats the line as sea when it
+    // decides which land is connected (europe-raster.js), so the region boundary runs along a
+    // wall that is really there and no sea has to be dug. The Greater Caucasus from the Black Sea
+    // at Tuapse to the Caspian at Derbent made the Middle East Distant Lands without joining the
+    // two seas; verified in the game (1.5, the "region walls ... sound" log line). Not wanted
+    // now - the Middle East stays home - so the entry is commented out; put it back together with
+    // the anchors above and the Uzboy channel. How to: .claude/skills/civ7-map-distant-lands.
     mountainWalls: [
-        { name: "Caucasus crest", separatesDistantLands: true, pts: [[38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5]] }
+        // { name: "Caucasus crest", separatesDistantLands: true, pts: [[38.4, 44.3], [39.8, 44.3], [41.3, 43.7], [43.0, 43.2], [44.5, 42.9], [46.0, 42.5], [47.3, 42.2], [48.0, 41.7], [49.6, 41.5]] }
     ],
 
     lakes: [

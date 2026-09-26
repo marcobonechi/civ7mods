@@ -11,7 +11,7 @@
             <Text>Europe Mediterranean, Sahel (Distant Lands)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION">
-            <Text>Europe, the Mediterranean and Africa down to the Sahel, with historical starts and real rivers. Africa, the Middle East, Scandinavia and Iceland are Distant Lands.</Text>
+            <Text>Europe, the Mediterranean and Africa down to the Sahel, with historical starts and real rivers. Africa, Scandinavia and Iceland are Distant Lands.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME">
             <Text>Europe Mediterranean, Sahel</Text>

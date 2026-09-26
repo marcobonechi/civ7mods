@@ -11,7 +11,7 @@
             <Text>Europa Mediterrâneo, Sahel (Terras distantes)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="pt_BR">
-            <Text>Europa, Mediterrâneo e Norte da África até o Sahel, com inícios históricos e rios onde realmente correm. África, Oriente Médio, Escandinávia e Islândia são Terras Distantes.</Text>
+            <Text>Europa, Mediterrâneo e Norte da África até o Sahel, com inícios históricos e rios onde realmente correm. África, Escandinávia e Islândia são Terras Distantes.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="pt_BR">
             <Text>Europa Mediterrâneo, Sahel</Text>

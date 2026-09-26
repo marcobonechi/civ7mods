@@ -11,7 +11,7 @@
             <Text>유럽 지중해, 사헬 (머나먼 땅)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ko_KR">
-            <Text>사헬까지 이어지는 유럽, 지중해, 북아프리카. 역사적 시작 위치와 실제 물길을 따르는 강. 아프리카, 중동, 스칸디나비아, 아이슬란드는 머나먼 땅입니다.</Text>
+            <Text>사헬까지 이어지는 유럽, 지중해, 북아프리카. 역사적 시작 위치와 실제 물길을 따르는 강. 아프리카, 스칸디나비아, 아이슬란드는 머나먼 땅입니다.</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ko_KR">
             <Text>유럽 지중해, 사헬</Text>

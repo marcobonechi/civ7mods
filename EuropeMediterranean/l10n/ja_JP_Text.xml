@@ -11,7 +11,7 @@
             <Text>ヨーロッパ・地中海・サヘル (遥かなる地)</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_DESCRIPTION" Language="ja_JP">
-            <Text>サヘルまでのヨーロッパ、地中海、北アフリカ。史実の初期位置と、実際の流路どおりの川。アフリカ、中東、スカンディナヴィア、アイスランドは遥かなる地です。</Text>
+            <Text>サヘルまでのヨーロッパ、地中海、北アフリカ。史実の初期位置と、実際の流路どおりの川。アフリカ、スカンディナヴィア、アイスランドは遥かなる地です。</Text>
         </Replace>
         <Replace Tag="LOC_MAP_EUROPE_MED_LARGE_UNITED_NAME" Language="ja_JP">
             <Text>ヨーロッパ・地中海・サヘル</Text>
