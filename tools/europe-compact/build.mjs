@@ -69,6 +69,8 @@ const MOVES = [
 const WEST = { anchorLon: 3.3, ramp: 20, shift: 3, latFull: 43.9, latNone: 45.4 };
 
 const geo = JSON.parse(JSON.stringify(LARGE));
+// Hex patches drawn for another grid size (grid: [W, H]) never apply here.
+geo.hexPatches = (geo.hexPatches || []).filter((h) => !h.grid || (h.grid[0] === SIZE.W && h.grid[1] === SIZE.H));
 Object.assign(geo, PROJ);
 geo.gridSizes = [[SIZE.W, SIZE.H]];      // europe-large-core.js uses this geography on this grid only
 const P0 = makeProjection(LARGE, REF.W, REF.H);

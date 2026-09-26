@@ -227,6 +227,12 @@ matched to their unlock conditions where those are geographic: Inca and Nepal in
 description, which `tools/module-description/build.py` generates from `GEO.tsl` in all twelve
 languages and refuses to write if the two disagree.
 
+**Which islands count as islands.** The game calls a landmass an island only if it has at most 30
+tiles (England's ability, traditions and unlock, Hawaii's unlock). Sicily, Sardinia, Corsica, Crete
+and Cyprus qualify on every size. Ireland and Iceland qualify on Compact and Standard; on Standard
+Iceland's stretched northern tip is trimmed by 7 tiles to fit (30). Great Britain (97-195 tiles)
+never does. `tools/check-map-sizes.mjs` fails if any of these grows past 30.
+
 Anyone left over is placed on a curated site - 95 of them, London and Dublin first, then Kyiv,
 Uppsala, Fez, Krakow and the rest. Pass 2 caps its distance term at 12 hexes, and the sites near the
 top of the list are all further than that from any Antiquity start, so that order alone decides who
@@ -355,7 +361,7 @@ matches the starts.
 | `volcanoes` | `[lon, lat, name]` |
 | `tsl` | true start location per civilization type |
 | `fallbackSites` | ranked start sites for civilizations without a true start |
-| `hexPatches` | single-hex overrides: `{ lon, lat, land?, terrain?, biome?, rain?, name? }`. Only the fields you give are pinned. `land` is applied before the coast, mountain and Distant Lands passes so the shape change is seen everywhere; `terrain`, `biome` and `rain` are applied after the biome blobs and before the rivers, so a river still carves through. Written by Hex Edit in the editor |
+| `hexPatches` | single-hex overrides: `{ lon, lat, land?, terrain?, biome?, rain?, grid?, name? }`. Only the fields you give are pinned; `grid: [W, H]` limits the patch to that grid size. `land` is applied before the coast, mountain and Distant Lands passes so the shape change is seen everywhere; `terrain`, `biome` and `rain` are applied after the biome blobs and before the rivers, so a river still carves through. Written by Hex Edit in the editor |
 
 ---
 

@@ -1310,6 +1310,18 @@ export const GEO = {
             terrain: "flat",
             biome: "G",
             name: "island between scotland and ireland"
-        }
+        },
+        // Iceland on the Standard grid (112x98): the game counts a landmass of at most 30 tiles
+        // as an island (REQUIREMENT_CITY_IS_ISLAND, Tiles=30 - England's ability, traditions and
+        // unlock, Hawaii's unlock), and Iceland came out at 37. The stretched northern tip, the
+        // top two rows, gives up its 7 tiles; the start, the wonder site, the Hvita and Hekla are
+        // all further south. tools/check-map-sizes.mjs checks the count (GAME_ISLANDS).
+        { lon: -21.08, lat: 68.26, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -19.38, lat: 68.26, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -18.54, lat: 68.26, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -17.69, lat: 68.26, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -16.84, lat: 68.26, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -18.02, lat: 69.17, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" },
+        { lon: -17.15, lat: 69.17, land: false, grid: [112, 98], name: "Iceland north tip, Standard (island size)" }
     ]
 };

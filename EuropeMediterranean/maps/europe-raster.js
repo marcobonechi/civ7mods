@@ -459,8 +459,10 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     // 4b2. per-hex patches, land/water half. Applied here, before the straits and
     // before the coast distances, mountains and landmass regions below, so a hex
     // turned to land or water is seen by every pass that depends on the shape.
+    // A patch with grid: [W, H] applies to that grid size only.
+    const patchHere = (h) => !h.grid || (h.grid[0] === W && h.grid[1] === H);
     for (const h of GEO.hexPatches || []) {
-        if (h.land === undefined) continue;
+        if (h.land === undefined || !patchHere(h)) continue;
         const [x, y] = P.nearestTile(h.lon, h.lat);
         if (!inBounds(x, y)) continue;
         const i = idx(x, y);
@@ -795,6 +797,7 @@ export function buildEuropeGrid(W, H, GEO, rnd) {
     // navigable river chain - the river still carves through.
     const PATCH_TERRAIN = { flat: T.FLAT, hill: T.HILL, hills: T.HILL, mountain: T.MOUNTAIN };
     for (const h of GEO.hexPatches || []) {
+        if (!patchHere(h)) continue;
         const [x, y] = P.nearestTile(h.lon, h.lat);
         if (!inBounds(x, y)) continue;
         const i = idx(x, y);

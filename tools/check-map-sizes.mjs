@@ -45,9 +45,15 @@ const ALLOWED_CLOSE = new Set(['ETRUSCANS/TUSCANY']);
 
 const SEAS = { Med: [18.5, 34.8], Black: [34.0, 43.5], Baltic: [19.5, 57.5], Red: [38.5, 19.0], NorthSea: [3.0, 56.0] };
 const ISLANDS = { Britain: [-1.5, 52.5], Ireland: [-8.0, 53.3], Sicily: [14.2, 37.6], Crete: [24.9, 35.2],
-                  Cyprus: [33.2, 35.0], Iceland: [-19.0, 64.8], Sardinia: [9.1, 40.1] };
+                  Cyprus: [33.2, 35.0], Iceland: [-19.0, 64.8], Sardinia: [9.1, 40.1], Corsica: [9.1, 42.1] };
 // An island merged into the mainland shows up as a component far larger than this.
 const ISLAND_MAX = 400;
+// Islands the game itself must count as islands: REQUIREMENT_CITY_IS_ISLAND takes a landmass of at
+// most 30 tiles (England's ability, traditions and unlock, Hawaii's unlock). Each is listed with
+// the grid widths it has to fit on; Britain never does, and Ireland and Iceland only up to Standard.
+const GAME_ISLAND_TILES = 30;
+const GAME_ISLANDS = { Sicily: [90, 112, 128, 144], Sardinia: [90, 112, 128, 144], Corsica: [90, 112, 128, 144], Crete: [90, 112, 128, 144],
+                       Cyprus: [90, 112, 128, 144], Ireland: [90, 112], Iceland: [90, 112] };
 
 // What ground each natural wonder needs, read off the game's own tables: Feature_ValidTerrains,
 // Feature_ValidBiomes and Feature_NaturalWonders.Tiles (base-standard/data/terrain.xml and
@@ -258,6 +264,9 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
         const merged = Object.entries(ISLANDS_HERE).filter(([, ll]) => { const n = size(...ll); return n === 0 || n > ISLAND_MAX; })
                                               .map(([n, ll]) => n + '=' + size(...ll));
         check(!merged.length, `islands stay separate${merged.length ? ' (merged or missing: ' + merged.join(', ') + ')' : ''}`);
+        const gameIslands = Object.entries(GAME_ISLANDS).filter(([, ws]) => ws.includes(W)).map(([n]) => [n, size(...ISLANDS_HERE[n])]);
+        const tooBig = gameIslands.filter(([, n]) => n > GAME_ISLAND_TILES);
+        check(!tooBig.length, `islands for the game (${GAME_ISLAND_TILES} tiles or fewer): ` + gameIslands.map(([n, k]) => n + ' ' + k).join(', '));
 
         // Natural wonders the geography places by hand (GEO.wonders) or by site (GEO.wonderSites).
         const startFood = new Set();

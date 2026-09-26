@@ -1007,6 +1007,8 @@
         if (!list || !canvasView.grid) return -1;
         const g = canvasView.grid;
         for (let i = 0; i < list.length; i++) {
+            const gs = list[i].grid;   // a patch for another grid size is not this hex's
+            if (gs && (gs[0] !== g.W || gs[1] !== g.H)) continue;
             const t = g.P.nearestTile(list[i].lon, list[i].lat);
             if (t[0] === x && t[1] === y) return i;
         }
