@@ -2,7 +2,7 @@
 <Database>
     <EnglishText>
         <Row Tag="LOC_UNLOCK_WALLS_BYZANTIUM_DESCRIPTION">
-            <Text>Have [B]Ancient Walls[/B] in three Settlements.</Text>
+            <Text>Build 3 [B]Ancient Walls[/B].</Text>
         </Row>
         <Row Tag="LOC_UNLOCK_WALLS_BYZANTIUM_TOOLTIP">
             <Text>The [B]Theodosian Walls[/B] kept [B]Byzantium[/B] standing for a thousand years.</Text>

@@ -12,7 +12,7 @@ Constantinople on all four Europe maps.
 | Augustaion | Unique quarter of Hippodrome (Culture) and Great Palace (Influence): +2 Happiness per Great Work displayed in the city |
 | Hagia Sophia | Associated wonder: +4 Culture, +2 Influence, 3 Great Work slots, a Relic on completion |
 | Civics | Themata, Pentarchy, Porphyrogennetos, each with a tradition; Test of Time nodes for Antiquity and Modern |
-| Unlocks | From Rome and Greece, or with Augustus, Catherine, Charlemagne, Xerxes; in Antiquity by holding Ancient Walls in three settlements. Leads to Russia (and the Ottomans when that DLC is present) |
+| Unlocks | From Rome and Greece, or with Augustus, Catherine, Charlemagne, Xerxes; in Antiquity by building 3 Ancient Walls. Leads to Russia (and the Ottomans when that DLC is present) |
 
 Antiquity (Time-Tested) uniques: the Clibanarii (heavy cavalry on the Horseman, Iron Working), the Liburna (fast
 galley on the Galley, Sailing), and the Cistern and Milion, which form the Mese quarter (Gold per settlement); the

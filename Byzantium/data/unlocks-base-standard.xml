@@ -12,7 +12,8 @@
     <UnlockConfigurationValues>
         <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" ConfigurationValue="CIVILIZATION_BYZANTIUM"/>
     </UnlockConfigurationValues>
-    <!-- Gameplay unlock in Antiquity: walls in three settlements (the Theodosian Walls). -->
+    <!-- Gameplay unlock in Antiquity: three Ancient Walls (the Theodosian Walls). The requirement counts
+         wall buildings, not settlements, so three walls in one city count too. -->
     <RequirementSets>
         <Row RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
     </RequirementSets>
@@ -25,6 +26,8 @@
     </RequirementArguments>
     <RequirementSetRequirements>
         <Row RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementId="REQ_PLAYER_HAS_3_WALLS_BYZANTIUM"/>
+        <!-- Antiquity only, like the Normans walls unlock: otherwise it lingers as an open goal in later ages. -->
+        <Row RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" RequirementId="REQ_AGE_IS_ANTIQUITY"/>
     </RequirementSetRequirements>
     <UnlockRequirements>
         <InsertOrIgnore UnlockType="UNLOCK_CIVILIZATION_BYZANTIUM" RequirementSetId="REQSET_PLAYER_HAS_3_WALLS_BYZANTIUM" Description="LOC_UNLOCK_WALLS_BYZANTIUM_DESCRIPTION" Tooltip="LOC_UNLOCK_WALLS_BYZANTIUM_TOOLTIP" GameplayUnlock="True" NarrativeText="LOC_UNLOCK_WALLS_BYZANTIUM_NARRATIVE"/>
