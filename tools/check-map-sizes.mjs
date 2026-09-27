@@ -32,7 +32,7 @@ const AGE_CIVS = {
                 'MAURYA','MAYA','MISSISSIPPIAN','PERSIA','ROME','SILLA','TONGA','ETRUSCANS','BYZANTIUM'],
     Exploration: ['ABBASID','BULGARIA','CHOLA','DAI_VIET','ENGLAND','GORYEO','HAWAII','ICELAND','INCA',
                   'MAJAPAHIT','MING','MONGOLIA','NORMAN','PIRATE_REPUBLIC','SENGOKU','SHAWNEE','SONGHAI',
-                  'SPAIN','ETRUSCANS','BYZANTIUM','TUSCANY'],
+                  'SPAIN','ETRUSCANS','BYZANTIUM','TUSCANY','VP_VENICE'],
     Modern: ['AMERICA','BUGANDA','FRENCH_EMPIRE','GREAT_BRITAIN','JOSEON','MEIJI','MEXICO','MUGHAL','NEPAL',
              'OTTOMANS','PRUSSIA','QAJAR','QING','RUSSIA','SIAM','ETRUSCANS','BYZANTIUM'],
 };
@@ -51,9 +51,10 @@ const ISLAND_MAX = 400;
 // Islands the game itself must count as islands: REQUIREMENT_CITY_IS_ISLAND takes a landmass of at
 // most 30 tiles (England's ability, traditions and unlock, Hawaii's unlock). Each is listed with
 // the grid widths it has to fit on; Britain never does, and Ireland and Iceland only up to Standard.
+// 98 is Eurasia Compact, whose Europe is drawn at Compact's scale.
 const GAME_ISLAND_TILES = 30;
-const GAME_ISLANDS = { Sicily: [90, 112, 128, 144], Sardinia: [90, 112, 128, 144], Corsica: [90, 112, 128, 144], Crete: [90, 112, 128, 144],
-                       Cyprus: [90, 112, 128, 144], Ireland: [90, 112], Iceland: [90, 112] };
+const GAME_ISLANDS = { Sicily: [90, 98, 112, 128, 144], Sardinia: [90, 98, 112, 128, 144], Corsica: [90, 98, 112, 128, 144], Crete: [90, 98, 112, 128, 144],
+                       Cyprus: [90, 98, 112, 128, 144], Ireland: [90, 98, 112], Iceland: [90, 98, 112] };
 
 // What ground each natural wonder needs, read off the game's own tables: Feature_ValidTerrains,
 // Feature_ValidBiomes and Feature_NaturalWonders.Tiles (base-standard/data/terrain.xml and
@@ -117,10 +118,10 @@ const check = (cond, msg) => { console.log((cond ? '    ok   ' : '    FAIL ') + 
     const r = spawnSync('node', [path.join(HERE, 'eurasia-compressed', 'build.mjs'), '--check'], { encoding: 'utf8' });
     console.log('\n=== europe-alt-geo.js against europe-large-geo.js');
     check(r.status === 0, (r.stdout || r.stderr).trim().split('\n')[0]);
-    // ...and so is the compact 90x76 geography (tools/europe-compact/build.mjs).
+    // ...and so are the two compact geographies (tools/europe-compact/build.mjs).
     const c = spawnSync('node', [path.join(HERE, 'europe-compact', 'build.mjs'), '--check'], { encoding: 'utf8' });
-    console.log('\n=== europe-compact-geo.js against europe-large-geo.js');
-    check(c.status === 0, (c.stdout || c.stderr).trim().split('\n')[0]);
+    console.log('\n=== europe-compact-geo.js and eurasia-compact-geo.js against their sources');
+    for (const line of (c.stdout || c.stderr).trim().split('\n')) check(/up to date/.test(line), line);
 }
 
 // Only the geography behind a map the game actually offers at these grids is checked.
@@ -239,6 +240,44 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
                   (tooClose.length ? ` (too close: ${tooClose.join(', ')})` : ''));
         }
 
+        // Every true start and every fallback site must come out on a hex a city can be founded on,
+        // on the land its coordinates are on. europe-large-core.js flattens the hex findLandTile(2)
+        // gives each true start before terrain goes in, and at assignment takes the nearest valid
+        // hex within 3 of a start or site; a coordinate that is only near land in the sea snaps to
+        // whatever is closest, which can be the wrong island or the far side of a strait.
+        {
+            const comp = new Int32Array(N).fill(-1), compSize = [];
+            for (let i = 0; i < N; i++) {
+                if (!g.isLand[i] || comp[i] >= 0) continue;
+                const id = compSize.length, qq = [[i % W, Math.floor(i / W)]];
+                comp[i] = id;
+                for (let h = 0; h < qq.length; h++) for (const [a, b] of hexNeighbors(...qq[h])) {
+                    if (!inB(a, b)) continue;
+                    const j = g.idx(a, b);
+                    if (g.isLand[j] && comp[j] < 0) { comp[j] = id; qq.push([a, b]); }
+                }
+                compSize.push(qq.length);
+            }
+            const volcano = new Set(g.volcanoes.map((v) => v.x + ',' + v.y));
+            const places = [...Object.entries(GEO.tsl).map(([c, ll]) => [c.replace('CIVILIZATION_', ''), ll, 2]),
+                            ...GEO.fallbackSites.map((s) => [s[2], s, 3])];
+            const bad = [], small = [], far = [];
+            for (const [name, ll, r] of places) {
+                const t = g.findLandTile(ll[0], ll[1], r, false);
+                if (!t) { bad.push(name + ' (no buildable land within ' + r + ')'); continue; }
+                const at = g.P.nearestTile(ll[0], ll[1]), ai = g.idx(at[0], at[1]), ti = g.idx(t[0], t[1]);
+                const d = hexDistance(at[0], at[1], t[0], t[1]);
+                if (volcano.has(t.join(','))) bad.push(name + ' (on a volcano)');
+                else if (g.isLand[ai] && comp[ai] !== comp[ti]) bad.push(name + ' (across the water from its coordinates)');
+                // Buildable, but worth knowing: a city with almost no land around it.
+                if (compSize[comp[ti]] < 3) small.push(name + ' ' + compSize[comp[ti]]);
+                if (d > 1) far.push(name + ' ' + d);
+            }
+            check(!bad.length, `${places.length} starts and sites on buildable land${bad.length ? ' (' + bad.join('; ') + ')' : ''}` +
+                  (far.length ? `; more than a hex from their coordinates: ${far.join(', ')}` : '') +
+                  (small.length ? `; on islands under 3 hexes: ${small.join(', ')}` : ''));
+        }
+
         const st = g.P.nearestTile(...SEAS.Med), si = g.idx(st[0], st[1]);
         const q = [st], wet = new Uint8Array(N);
         if (!g.isLand[si]) wet[si] = 1;
@@ -250,6 +289,35 @@ for (const { script, geoFile: ownGeoFile, sizedGeoFiles, sizes, united } of maps
         }
         const cut = Object.entries(SEAS).filter(([, ll]) => { const t = g.P.nearestTile(...ll); return !wet[g.idx(t[0], t[1])]; }).map(([n]) => n);
         check(!cut.length, `every sea reachable from the Mediterranean${cut.length ? ' (cut off: ' + cut.join(', ') + ')' : ''}`);
+
+        // ...but reachable is not enough for a strait: on the Eurasia maps the Black Sea reaches the
+        // Mediterranean the long way round (Azov, the Eastern Ocean, the Baltic, the Atlantic), and
+        // that hid a Bosporus closed on all four sizes. Each narrowed strait must carry a route of its
+        // own, found without leaving a box round the strait and its two open-sea points.
+        for (const st of GEO.narrowStraits || []) {
+            const pts = [...st.pts, st.openA, st.openB];
+            const lo0 = Math.min(...pts.map((p) => p[0])) - 1, lo1 = Math.max(...pts.map((p) => p[0])) + 1;
+            const la0 = Math.min(...pts.map((p) => p[1])) - 0.6, la1 = Math.max(...pts.map((p) => p[1])) + 0.6;
+            const inside = (i) => g.lonC[i] >= lo0 && g.lonC[i] <= lo1 && g.latC[i] >= la0 && g.latC[i] <= la1;
+            const sea = (ll) => { const t = g.P.nearestTile(...ll); return g.idx(t[0], t[1]); };
+            const a = sea(st.openA), b = sea(st.openB);
+            const seen = new Uint8Array(N), qq = [a];
+            let through = !g.isLand[a] && !g.isLand[b];
+            if (through) {
+                seen[a] = 1; through = false;
+                for (let h = 0; h < qq.length && !through; h++) {
+                    const c = qq[h]; if (c === b) { through = true; break; }
+                    const cx = c % W, cy = (c - cx) / W;
+                    for (const [nx, ny] of hexNeighbors(cx, cy)) {
+                        if (!inB(nx, ny)) continue;
+                        const j = g.idx(nx, ny);
+                        if (g.isLand[j] || seen[j] || !inside(j)) continue;
+                        seen[j] = 1; qq.push(j);
+                    }
+                }
+            }
+            check(through, `${st.name} open through the strait itself`);
+        }
 
         const size = (lon, lat) => {
             const t = g.findLandTile(lon, lat, 3, true);

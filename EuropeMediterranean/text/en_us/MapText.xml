@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION">
             <Text>90x76 grid, 8 players by default. Europe &amp; Mediterranean maps only: the same geography cut down, with Russia, the Sahara and the far north squeezed.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME">
+            <Text>Eurasia Compact 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION">
+            <Text>98x76 grid, 8 players by default. Eurasia Compressed maps only: Europe as on Europe Compact, with the Eastern Ocean and East Asia beside it.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME">
             <Text>Europe Large 112x98</Text>
         </Replace>

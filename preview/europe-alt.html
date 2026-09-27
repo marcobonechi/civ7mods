@@ -1272,6 +1272,12 @@ const GEO = {
         // England's London and 11-14 from the Normans' Rouen across the three sizes, clear of the
         // large maps' spacing.
         CIVILIZATION_ICTH_DUTCH_REPUBLIC: [4.90, 52.37],   // "Dutch Republic" (Workshop 3623432341)
+        // Grado, at the head of the lagoon, where Aquileia's refugees founded the first Venetian
+        // settlements. An Exploration-age civilization, and Tuscany's Florence is the one start near
+        // it in that age: the Rialto itself lands 4 hexes from Florence on 112x98 and 128x112, and
+        // Grado 5-6 on every size. The same point as the Venice fallback site below. The compact
+        // grid moves it to Zara (tools/europe-compact/build.mjs).
+        CIVILIZATION_VP_VENICE: [13.10, 45.55],   // "Venice Pack" (Workshop 3770602022)
 
         // ---- regional starts for civilizations with no European history -------
         // Every civilization of every age now has a fixed home on this map, so you can
@@ -1805,13 +1811,21 @@ function buildEuropeGrid(W, H, GEO, rnd) {
         const from = nearestWater(openA[0], openA[1]);
         const to = nearestWater(openB[0], openB[1]);
         if (from < 0 || to < 0 || from === to) continue;
+        // The route has to run through the strait itself, so the search stays inside a box round the
+        // line and the two open-sea points. Unbounded, it found the long way round wherever one
+        // exists - on the Eurasia maps the Black Sea reaches the Aegean through Azov, the Eastern
+        // Ocean, the Baltic and the Atlantic - and the fill then closed the Bosporus outright.
+        const PAD = 3;
+        const boxPts = [...samples, openA, openB];
+        const bx0 = Math.floor(Math.min(...boxPts.map((p) => p[0]))) - PAD, bx1 = Math.ceil(Math.max(...boxPts.map((p) => p[0]))) + PAD;
+        const by0 = Math.floor(Math.min(...boxPts.map((p) => p[1]))) - PAD, by1 = Math.ceil(Math.max(...boxPts.map((p) => p[1]))) + PAD;
         const connected = () => {
             const seen = new Uint8Array(N); const q = [from]; seen[from] = 1;
             for (let h = 0; h < q.length; h++) {
                 const cur = q[h]; if (cur === to) return true;
                 const cx = cur % W, cy = (cur - cx) / W;
                 for (const [nx2, ny2] of hexNeighbors(cx, cy)) {
-                    if (!inBounds(nx2, ny2)) continue;
+                    if (!inBounds(nx2, ny2) || nx2 < bx0 || nx2 > bx1 || ny2 < by0 || ny2 > by1) continue;
                     const ni = idx(nx2, ny2);
                     if (isLand[ni] || seen[ni]) continue;
                     seen[ni] = 1; q.push(ni);

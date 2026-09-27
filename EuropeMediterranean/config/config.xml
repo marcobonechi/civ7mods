@@ -23,17 +23,20 @@
          screen, which is the safe direction. -->
     <MapSizes>
         <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_COMPACT" Name="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="8" DefaultPlayers="8" SortIndex="199"/>
+        <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EURASIA_COMPACT" Name="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Description="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="8" DefaultPlayers="8" SortIndex="199"/>
         <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Name="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="10" DefaultPlayers="12" SortIndex="200"/>
         <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Name="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="16" MaxHumans="12" DefaultPlayers="14" SortIndex="201"/>
         <Row Domain="StandardMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Name="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="18" MaxHumans="12" DefaultPlayers="15" SortIndex="202"/>
         <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_COMPACT" Name="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="5" DefaultPlayers="8" SortIndex="199"/>
+        <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EURASIA_COMPACT" Name="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Description="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" MinPlayers="2" MaxPlayers="10" MaxHumans="5" DefaultPlayers="8" SortIndex="199"/>
         <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_STD" Name="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_STD_DESCRIPTION" MinPlayers="2" MaxPlayers="14" MaxHumans="6" DefaultPlayers="12" SortIndex="200"/>
         <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_LRG" Name="LOC_MAPSIZE_EUROPE_LARGE_LRG_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_LRG_DESCRIPTION" MinPlayers="2" MaxPlayers="16" MaxHumans="7" DefaultPlayers="14" SortIndex="201"/>
         <Row Domain="DistantLandsMapSizes" MapSizeType="MAPSIZE_EUROPE_LARGE_HUGE" Name="LOC_MAPSIZE_EUROPE_LARGE_HUGE_NAME" Description="LOC_MAPSIZE_EUROPE_LARGE_HUGE_DESCRIPTION" MinPlayers="2" MaxPlayers="18" MaxHumans="7" DefaultPlayers="15" SortIndex="202"/>
     </MapSizes>
 
-    <!-- The large map only offers its own sizes. Compact (90x76) is for the two Europe & Mediterranean
-         maps only: it has its own geography, and there is none for Eurasia Compressed. -->
+    <!-- The large map only offers its own sizes. Each pair has its own compact size, with its own
+         geography: Compact (90x76) for the two Europe & Mediterranean maps, Eurasia Compact (98x76)
+         for the two Eurasia Compressed maps, which needs the extra columns for East Asia. -->
     <SupportedValuesByMap>
         <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_COMPACT"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
@@ -51,15 +54,19 @@
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-large-united-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EURASIA_COMPACT"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EURASIA_COMPACT"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EURASIA_COMPACT"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="StandardMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>
+        <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EURASIA_COMPACT"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_STD"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_LRG"/>
         <Row Map="{europe-mediterranean-map}maps/europe-alt-distant-map.js" Domain="DistantLandsMapSizes" Value="MAPSIZE_EUROPE_LARGE_HUGE"/>

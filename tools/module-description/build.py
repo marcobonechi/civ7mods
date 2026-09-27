@@ -57,7 +57,11 @@ def check(geo):
         if hypot(a - c, b - d) > 0.35:
             errors.append(f"{civ}: listed at {city} {c},{d} but GEO.tsl has {a},{b}")
 
+    # Workshop civilizations sit in the checker's rosters for the spacing test, but the
+    # description gives them a line of their own (WORKSHOP), not a place in an age.
+    workshop = {key for key, _, _ in WORKSHOP}
     for age, roster in rosters().items():
+        roster = [c for c in roster if c not in workshop]
         listed = [c for part in STARTS[age].values() for c, _, _ in part]
         for c in roster:
             if listed.count(c) != 1:

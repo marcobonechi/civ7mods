@@ -1202,6 +1202,12 @@ export const GEO = {
         // England's London and 11-14 from the Normans' Rouen across the three sizes, clear of the
         // large maps' spacing.
         CIVILIZATION_ICTH_DUTCH_REPUBLIC: [4.90, 52.37],   // "Dutch Republic" (Workshop 3623432341)
+        // Grado, at the head of the lagoon, where Aquileia's refugees founded the first Venetian
+        // settlements. An Exploration-age civilization, and Tuscany's Florence is the one start near
+        // it in that age: the Rialto itself lands 4 hexes from Florence on 112x98 and 128x112, and
+        // Grado 5-6 on every size. The same point as the Venice fallback site below. The compact
+        // grid moves it to Zara (tools/europe-compact/build.mjs).
+        CIVILIZATION_VP_VENICE: [13.10, 45.55],   // "Venice Pack" (Workshop 3770602022)
 
         // ---- regional starts for civilizations with no European history -------
         // Every civilization of every age now has a fixed home on this map, so you can

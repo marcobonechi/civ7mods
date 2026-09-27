@@ -94,6 +94,7 @@ WORKSHOP = [
     ("SUMER_TEST", "SUMER", "Ur"),
     ("DEVONISLAND_AUSTRIA_HUNGARY", "AUSTRIA_HUNGARY", "Vienna"),
     ("ICTH_DUTCH_REPUBLIC", "DUTCH_REPUBLIC", "Amsterdam"),
+    ("VP_VENICE", "VENICE", "Grado"),
 ]
 
 # Where each city is, for the check against GEO.tsl. Cities that are also fallback sites are
@@ -113,6 +114,7 @@ CITY_LL = {
     "Kamianka": (34.40, 47.50),
     "Ur": (46.10, 30.90),
     "Amsterdam": (4.90, 52.37),
+    "Grado": (13.10, 45.55),
     "Rabat": (-6.84, 34.02),
     "Lagos": (3.4, 6.45),
     "Mallorca": (2.9, 39.6),

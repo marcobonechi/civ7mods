@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="pt_BR">
             <Text>Grade de 90x76, 8 jogadores por padrão. Apenas para os mapas Europa e Mediterrâneo: a mesma geografia reduzida, com a Rússia, o Saara e o extremo norte comprimidos.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="pt_BR">
+            <Text>Eurásia Compacta 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="pt_BR">
+            <Text>Grade de 98x76, 8 jogadores por padrão. Apenas para os mapas Eurásia comprimida: a Europa como na Europa Compacta, com o Oceano Oriental e a Ásia Oriental ao lado.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pt_BR">
             <Text>Europa Grande 112x98</Text>
         </Replace>

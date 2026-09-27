@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="de_DE">
             <Text>90x76-Raster, standardmäßig 8 Spieler. Nur für die Karten Europa &amp; Mittelmeer: dieselbe Geografie, verkleinert, mit gestauchtem Russland, gestauchter Sahara und gestauchtem hohen Norden.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="de_DE">
+            <Text>Eurasien Kompakt 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="de_DE">
+            <Text>98x76-Raster, standardmäßig 8 Spieler. Nur für die Karten Eurasien komprimiert: Europa wie bei Europa Kompakt, daneben der Östliche Ozean und Ostasien.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="de_DE">
             <Text>Europa Groß 112x98</Text>
         </Replace>

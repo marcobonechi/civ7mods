@@ -63,18 +63,18 @@ EN_CIVS = {
 
 # Civilizations from other people's Workshop mods, which the game's files do not name.
 WORKSHOP_CIVS = {
-"en_US": {"SCYTHIA": "Scythia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Hungary", "DUTCH_REPUBLIC": "Dutch Republic"},
-"de_DE": {"SCYTHIA": "Skythien", "KUSH": "Kusch", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Österreich-Ungarn", "DUTCH_REPUBLIC": "Niederländische Republik"},
-"es_ES": {"SCYTHIA": "Escitia", "KUSH": "Kush", "SUMER": "Sumeria", "AUSTRIA_HUNGARY": "Austria-Hungría", "DUTCH_REPUBLIC": "República Neerlandesa"},
-"fr_FR": {"SCYTHIA": "Scythie", "KUSH": "Koush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Autriche-Hongrie", "DUTCH_REPUBLIC": "Provinces-Unies"},
-"it_IT": {"SCYTHIA": "Scizia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Ungheria", "DUTCH_REPUBLIC": "Repubblica olandese"},
-"pl_PL": {"SCYTHIA": "Scytia", "KUSH": "Kusz", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austro-Węgry", "DUTCH_REPUBLIC": "Republika Zjednoczonych Prowincji"},
-"pt_BR": {"SCYTHIA": "Cítia", "KUSH": "Kush", "SUMER": "Suméria", "AUSTRIA_HUNGARY": "Áustria-Hungria", "DUTCH_REPUBLIC": "República Neerlandesa"},
-"uk_UA": {"SCYTHIA": "Скіфія", "KUSH": "Куш", "SUMER": "Шумер", "AUSTRIA_HUNGARY": "Австро-Угорщина", "DUTCH_REPUBLIC": "Республіка Об'єднаних провінцій"},
-"ja_JP": {"SCYTHIA": "スキタイ", "KUSH": "クシュ", "SUMER": "シュメール", "AUSTRIA_HUNGARY": "オーストリア＝ハンガリー", "DUTCH_REPUBLIC": "ネーデルラント連邦共和国"},
-"ko_KR": {"SCYTHIA": "스키타이", "KUSH": "쿠시", "SUMER": "수메르", "AUSTRIA_HUNGARY": "오스트리아-헝가리", "DUTCH_REPUBLIC": "네덜란드 공화국"},
-"zh_Hans_CN": {"SCYTHIA": "斯基泰", "KUSH": "库施", "SUMER": "苏美尔", "AUSTRIA_HUNGARY": "奥匈帝国", "DUTCH_REPUBLIC": "荷兰共和国"},
-"zh_Hant_HK": {"SCYTHIA": "斯基泰", "KUSH": "庫施", "SUMER": "蘇美爾", "AUSTRIA_HUNGARY": "奧匈帝國", "DUTCH_REPUBLIC": "荷蘭共和國"},
+"en_US": {"SCYTHIA": "Scythia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Hungary", "DUTCH_REPUBLIC": "Dutch Republic", "VENICE": "Venice"},
+"de_DE": {"SCYTHIA": "Skythien", "KUSH": "Kusch", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Österreich-Ungarn", "DUTCH_REPUBLIC": "Niederländische Republik", "VENICE": "Venedig"},
+"es_ES": {"SCYTHIA": "Escitia", "KUSH": "Kush", "SUMER": "Sumeria", "AUSTRIA_HUNGARY": "Austria-Hungría", "DUTCH_REPUBLIC": "República Neerlandesa", "VENICE": "Venecia"},
+"fr_FR": {"SCYTHIA": "Scythie", "KUSH": "Koush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Autriche-Hongrie", "DUTCH_REPUBLIC": "Provinces-Unies", "VENICE": "Venise"},
+"it_IT": {"SCYTHIA": "Scizia", "KUSH": "Kush", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austria-Ungheria", "DUTCH_REPUBLIC": "Repubblica olandese", "VENICE": "Venezia"},
+"pl_PL": {"SCYTHIA": "Scytia", "KUSH": "Kusz", "SUMER": "Sumer", "AUSTRIA_HUNGARY": "Austro-Węgry", "DUTCH_REPUBLIC": "Republika Zjednoczonych Prowincji", "VENICE": "Wenecja"},
+"pt_BR": {"SCYTHIA": "Cítia", "KUSH": "Kush", "SUMER": "Suméria", "AUSTRIA_HUNGARY": "Áustria-Hungria", "DUTCH_REPUBLIC": "República Neerlandesa", "VENICE": "Veneza"},
+"uk_UA": {"SCYTHIA": "Скіфія", "KUSH": "Куш", "SUMER": "Шумер", "AUSTRIA_HUNGARY": "Австро-Угорщина", "DUTCH_REPUBLIC": "Республіка Об'єднаних провінцій", "VENICE": "Венеція"},
+"ja_JP": {"SCYTHIA": "スキタイ", "KUSH": "クシュ", "SUMER": "シュメール", "AUSTRIA_HUNGARY": "オーストリア＝ハンガリー", "DUTCH_REPUBLIC": "ネーデルラント連邦共和国", "VENICE": "ヴェネツィア"},
+"ko_KR": {"SCYTHIA": "스키타이", "KUSH": "쿠시", "SUMER": "수메르", "AUSTRIA_HUNGARY": "오스트리아-헝가리", "DUTCH_REPUBLIC": "네덜란드 공화국", "VENICE": "베네치아"},
+"zh_Hans_CN": {"SCYTHIA": "斯基泰", "KUSH": "库施", "SUMER": "苏美尔", "AUSTRIA_HUNGARY": "奥匈帝国", "DUTCH_REPUBLIC": "荷兰共和国", "VENICE": "威尼斯"},
+"zh_Hant_HK": {"SCYTHIA": "斯基泰", "KUSH": "庫施", "SUMER": "蘇美爾", "AUSTRIA_HUNGARY": "奧匈帝國", "DUTCH_REPUBLIC": "荷蘭共和國", "VENICE": "威尼斯"},
 }
 
 # Amsterdam, for the Dutch Republic (Workshop).
@@ -85,6 +85,13 @@ CITY.setdefault("ja_JP", {})["Amsterdam"] = "アムステルダム"
 CITY.setdefault("ko_KR", {})["Amsterdam"] = "암스테르담"
 CITY.setdefault("zh_Hans_CN", {})["Amsterdam"] = "阿姆斯特丹"
 CITY.setdefault("zh_Hant_HK", {})["Amsterdam"] = "阿姆斯特丹"
+
+# Grado, for Venice (Workshop).
+CITY.setdefault("uk_UA", {})["Grado"] = "Градо"
+CITY.setdefault("ja_JP", {})["Grado"] = "グラード"
+CITY.setdefault("ko_KR", {})["Grado"] = "그라도"
+CITY.setdefault("zh_Hans_CN", {})["Grado"] = "格拉多"
+CITY.setdefault("zh_Hant_HK", {})["Grado"] = "格拉多"
 
 # Rabat, for Mexico.
 CITY.setdefault("uk_UA", {})["Rabat"] = "Рабат"

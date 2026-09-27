@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="it_IT">
             <Text>Griglia 90x76, 8 giocatori predefiniti. Solo per le mappe Europa e Mediterraneo: la stessa geografia ridotta, con Russia, Sahara ed estremo nord compressi.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="it_IT">
+            <Text>Eurasia compatta 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="it_IT">
+            <Text>Griglia 98x76, 8 giocatori predefiniti. Solo per le mappe Eurasia compressa: l'Europa come in Europa compatta, con l'Oceano orientale e l'Asia orientale accanto.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="it_IT">
             <Text>Europa grande 112x98</Text>
         </Replace>

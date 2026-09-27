@@ -35,6 +35,7 @@ console.log("Loading europe-large-core.js");
 // Grid dimensions per map size. Width/height ratio keeps Europe's real proportions on a hex grid.
 const SIZES = {
     MAPSIZE_EUROPE_LARGE_COMPACT: [90, 76],
+    MAPSIZE_EURASIA_COMPACT: [98, 76],
     MAPSIZE_EUROPE_LARGE_STD: [112, 98],
     MAPSIZE_EUROPE_LARGE_LRG: [128, 112],
     MAPSIZE_EUROPE_LARGE_HUGE: [144, 126],

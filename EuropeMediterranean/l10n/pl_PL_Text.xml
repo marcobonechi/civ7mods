@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="pl_PL">
             <Text>Siatka 90x76, domyślnie 8 graczy. Tylko dla map Europa i Morze Śródziemne: ta sama geografia w pomniejszeniu, ze ściśniętą Rosją, Saharą i daleką północą.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="pl_PL">
+            <Text>Eurazja Kompaktowa 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="pl_PL">
+            <Text>Siatka 98x76, domyślnie 8 graczy. Tylko dla map Eurazja skompresowana: Europa jak na Europie Kompaktowej, a obok Ocean Wschodni i Azja Wschodnia.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="pl_PL">
             <Text>Europa Duża 112x98</Text>
         </Replace>

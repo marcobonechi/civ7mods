@@ -34,6 +34,7 @@ VIEWS=(
   "09-eurasia-compressed|europe-alt.html|1400|1076|title=Eurasia Compressed - 112x98"
   "10-eurasia-distant-lands|europe-alt.html|1400|1076|regions=1&title=Eurasia Compressed (Distant Lands) - home lands and distant lands"
   "12-compact|europe-compact.html|1400|1040|title=Europe %26 Mediterranean (Compact) - 90x76"
+  "13-eurasia-compact|eurasia-compact.html|1400|960|title=Eurasia Compressed (Compact) - 98x76"
   "11-eurasia-east|europe-alt.html|1600|1100|w=128&h=112&view=24,36,68,70&title=Eurasia Compressed - the Eastern Ocean and East Asia, 128x112"
 )
 

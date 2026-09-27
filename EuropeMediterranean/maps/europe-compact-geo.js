@@ -14666,6 +14666,10 @@ export const GEO = {
    4.9,
    52.37
   ],
+  "CIVILIZATION_VP_VENICE": [
+   15.23,
+   44.12
+  ],
   "CIVILIZATION_MISSISSIPPIAN": [
    17.6,
    59.9

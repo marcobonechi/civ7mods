@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="zh_Hans_CN">
             <Text>90x76 网格，默认 8 名玩家。仅适用于欧洲与地中海地图：同样的地理，但压缩了俄罗斯、撒哈拉和极北地区。</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="zh_Hans_CN">
+            <Text>欧亚紧凑地图 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="zh_Hans_CN">
+            <Text>98x76 网格，默认 8 名玩家。仅适用于压缩欧亚大陆地图：欧洲与欧洲紧凑地图相同，旁边是东方大洋和东亚。</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="zh_Hans_CN">
             <Text>欧洲大地图 112x98</Text>
         </Replace>

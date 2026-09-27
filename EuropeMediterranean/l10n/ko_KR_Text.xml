@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="ko_KR">
             <Text>90x76 격자, 기본 8인 플레이. 유럽 및 지중해 지도 전용: 같은 지형을 줄이고 러시아, 사하라, 극북을 압축했습니다.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="ko_KR">
+            <Text>유라시아 소형 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="ko_KR">
+            <Text>98x76 격자, 기본 8인 플레이. 압축된 유라시아 지도 전용: 유럽은 유럽 소형과 같고, 그 옆에 동쪽 대양과 동아시아가 있습니다.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="ko_KR">
             <Text>유럽 대형 112x98</Text>
         </Replace>

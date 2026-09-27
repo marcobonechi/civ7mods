@@ -40,6 +40,7 @@ build "europe-large-geo.js" "tail-large.html"    "europe-large.html"
 build "europe-geo.js"       "tail-standard.html" "europe.html"
 build "europe-alt-geo.js"   "tail-large.html"    "europe-alt.html"
 build "europe-compact-geo.js" "tail-large.html"  "europe-compact.html" 90 76
+build "eurasia-compact-geo.js" "tail-large.html" "eurasia-compact.html" 98 76
 
 if [ "$OPEN" -eq 1 ]; then
     if command -v open >/dev/null; then open "$ROOT/europe-large.html"

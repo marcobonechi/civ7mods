@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="fr_FR">
             <Text>Grille de 90x76, 8 joueurs par défaut. Cartes Europe et Méditerranée uniquement : la même géographie réduite, avec la Russie, le Sahara et le Grand Nord comprimés.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="fr_FR">
+            <Text>Eurasie Compacte 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="fr_FR">
+            <Text>Grille de 98x76, 8 joueurs par défaut. Cartes Eurasie compressée uniquement : l'Europe comme sur Europe Compacte, avec l'Océan oriental et l'Asie de l'Est à côté.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="fr_FR">
             <Text>Europe Grande 112x98</Text>
         </Replace>

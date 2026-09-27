@@ -37,6 +37,12 @@
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_COMPACT_DESCRIPTION" Language="uk_UA">
             <Text>Сітка 90x76, за замовчуванням 8 гравців. Лише для мап «Європа і Середземномор'я»: та сама географія у зменшеному вигляді, зі стиснутими Росією, Сахарою та крайньою північчю.</Text>
         </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_NAME" Language="uk_UA">
+            <Text>Євразія компактна 98x76</Text>
+        </Replace>
+        <Replace Tag="LOC_MAPSIZE_EURASIA_COMPACT_DESCRIPTION" Language="uk_UA">
+            <Text>Сітка 98x76, за замовчуванням 8 гравців. Лише для мап «Стиснута Євразія»: Європа як на мапі «Європа компактна», а поруч Східний океан і Східна Азія.</Text>
+        </Replace>
         <Replace Tag="LOC_MAPSIZE_EUROPE_LARGE_STD_NAME" Language="uk_UA">
             <Text>Європа велика 112x98</Text>
         </Replace>
